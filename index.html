@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Louai Grira (r3xdec) — Software Engineer & Security Researcher</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #f3f4f6;
+        }
+        .gradient-glow {
+            background: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.15) 0%, transparent 70%);
+        }
+        .card-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-emerald-500 selection:text-black">
+    <div class="gradient-glow absolute inset-0 pointer-events-none -z-10"></div>
+
+    <header class="max-w-5xl mx-auto w-full px-6 py-8 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center font-bold text-emerald-400 text-lg">
+                G
+            </div>
+            <div>
+                <span class="font-bold text-white text-lg tracking-tight">Louai Grira</span>
+                <span class="block text-xs text-emerald-400 font-mono">@r3xdec-bit</span>
+            </div>
+        </div>
+        <nav class="flex items-center space-x-6 text-sm text-gray-400">
+            <a href="#about" class="hover:text-emerald-400 transition-colors">About</a>
+            <a href="#projects" class="hover:text-emerald-400 transition-colors">Projects</a>
+            <a href="https://github.com/r3xdec-bit" target="_blank" class="px-4 py-1.5 rounded-lg border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 transition-all">GitHub</a>
+        </nav>
+    </header>
+
+    <main class="max-w-5xl mx-auto w-full px-6 py-12 flex-1">
+        <section class="py-12 text-center max-w-3xl mx-auto">
+            <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 mb-6">
+                Available for software engineering & security research
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight leading-tight mb-6">
+                Building Secure, Scalable <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">& Intelligent</span> Systems.
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl leading-relaxed mb-8">
+                Software Engineer and Cybersecurity Researcher focused on multi-agent AI systems, offensive security automation, and robust web applications.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="https://github.com/r3xdec-bit" target="_blank" class="px-6 py-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-black font-semibold text-sm transition-all shadow-lg shadow-emerald-500/20">
+                    View GitHub Repositories
+                </a>
+                <a href="mailto:r3xdec@gmail.com" class="px-6 py-3 rounded-xl card-border hover:border-emerald-500/40 text-gray-200 font-medium text-sm transition-all">
+                    Get In Touch
+                </a>
+            </div>
+        </section>
+
+        <section id="projects" class="py-16">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-2xl font-bold text-white">Featured Projects</h2>
+                    <p class="text-gray-400 text-sm mt-1">Open-source work and architectural experiments</p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="card-border rounded-2xl p-6 hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider">Security / AI Framework</span>
+                            <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">R3X-BugBounty</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Autonomous Multi-Agent AI Cybersecurity & Security Auditing Framework for Linux & WSL. Integrates terminal-native tools with automated vulnerability reasoning.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+                        <span class="text-xs text-gray-500 font-mono">Python • Security • Agentic AI</span>
+                        <a href="https://github.com/r3xdec-bit/r3x-bugbounty" target="_blank" class="text-xs text-emerald-400 font-medium hover:underline">Explore Repo &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="card-border rounded-2xl p-6 hover:border-emerald-500/30 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-xs font-mono text-teal-400 uppercase tracking-wider">Full-Stack Platform</span>
+                            <span class="w-2 h-2 rounded-full bg-teal-400"></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-2">VEN Platform</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">
+                            Next-generation volunteer emergency network platform engineered for rapid coordination, real-time crisis management, and humanitarian field response.
+                        </p>
+                    </div>
+                    <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+                        <span class="text-xs text-gray-500 font-mono">TypeScript • Next.js • Tailwind</span>
+                        <a href="https://github.com/r3xdec-bit/VEN-platform" target="_blank" class="text-xs text-emerald-400 font-medium hover:underline">Explore Repo &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-12 border-t border-gray-800/60">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <h2 class="text-xl font-bold text-white">Core Competencies</h2>
+                    <p class="text-gray-400 text-sm mt-1">Specialized toolchains and disciplines</p>
+                </div>
+                <div class="md:col-span-2 flex flex-wrap gap-2">
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">Application Security</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">Multi-Agent AI Architectures</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">Python</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">TypeScript / JavaScript</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">Linux & WSL Automation</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">Cloud Architecture</span>
+                    <span class="px-3 py-1.5 rounded-lg bg-gray-900 border border-gray-800 text-xs text-gray-300">API Design & Hardening</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-gray-800/80 py-8 px-6 text-center text-xs text-gray-500">
+        <p>&copy; 2026 Louai Grira (r3xdec-bit). Domain registration via <a href="https://is-a.dev" class="text-emerald-400 hover:underline">is-a.dev</a>.</p>
+    </footer>
+</body>
+</html>
