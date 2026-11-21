@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chrome Void — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Saira+Condensed:wght@600;700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#181818;
+  --surface:#353535;
+  --surface-alt:#202020;
+  --text-primary:#FFFFFF;
+  --text-secondary:#C9C9C9;
+  --accent:#713DFF;
+  --accent-ember:#F54900;
+  --border:#707070;
+  --border-subtle:#353535;
+  --r-control:10px;
+  --r-card:20px;
+  --r-chip:12px;
+  --r-well:50px;
+  --sp-base:8px;
+  --gap:20px;
+  --gap-lg:30px;
+  --section-padding:120px;
+  --section-gap:292px;
+  --display:"Saira Condensed","Microgramma D Extended",sans-serif;
+  --sans:"Inter","Suisse",sans-serif;
+  --mono:"Helvetica",Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--display);font-weight:700;letter-spacing:-1.4px;line-height:1;text-transform:uppercase}
+a{color:inherit}
+.wrap{max-width:1300px;margin:0 auto;padding:0 40px}
+.band{padding:120px 0}
+.eyebrow{font-family:var(--sans);font-size:14px;font-weight:700;letter-spacing:-0.4px;text-transform:uppercase;color:var(--text-secondary)}
+.lead{font-size:16px;line-height:1.5;color:var(--text-secondary);max-width:640px}
+/* hero */
+#hero{position:relative;min-height:96vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;overflow:hidden;background:var(--background)}
+.hero-grid{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.hero-grid::before{
+  content:"";position:absolute;left:50%;bottom:-10%;width:200%;height:120%;transform:translateX(-50%) perspective(600px) rotateX(62deg);
+  background-image:linear-gradient(rgba(112,112,112,0.28) 1px,transparent 1px),linear-gradient(90deg,rgba(112,112,112,0.28) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(80% 80% at 50% 60%,#000 0%,transparent 75%);
+}
+.hero-top-wash{position:absolute;top:0;left:0;right:0;height:60%;background:radial-gradient(91.7% 54.32% at 50% -0.02%,rgba(113,61,255,0.55) 0%,rgba(0,0,0,0) 100%);pointer-events:none}
+.hero-inner{position:relative;z-index:2;padding:120px 40px}
+.chrome-word{
+  font-family:var(--display);font-weight:700;font-size:clamp(48px,11vw,150px);letter-spacing:-4px;line-height:.9;
+  background:linear-gradient(180deg,#fff 0%,#c9c9c9 30%,#707070 52%,#e8e8e8 60%,#353535 78%,#bdbdbd 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:#c9c9c9;
+  text-transform:uppercase;
+}
+.hero-h1{font-size:clamp(40px,7vw,68px);letter-spacing:-2.7px;margin:40px 0 24px;line-height:1}
+.hero-sub{font-size:clamp(17px,2vw,24px);font-weight:500;line-height:1.4;color:var(--text-secondary);max-width:620px;margin:0 auto 40px}
+.hero-cta-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;align-items:center}
+.btn-primary-hero{background:#FFFFFF;color:#141414;border-radius:6px;height:48px;padding:0 28px;display:inline-flex;align-items:center;font-weight:700;border:none;cursor:pointer;font-family:var(--sans);font-size:15px}
+.btn-outline{background:transparent;border:1px solid var(--border);color:#fff;border-radius:10px;height:45px;padding:12px 48px;display:inline-flex;align-items:center;cursor:pointer;font-family:var(--sans);font-size:15px;transition:background-color .2s ease-in-out,color .2s ease-in-out}
+.btn-outline:hover{background:#fff;color:#000}
+.trust-strip{margin-top:64px;font-family:var(--mono);font-size:13px;color:var(--text-secondary);letter-spacing:.5px;display:flex;gap:32px;justify-content:center;flex-wrap:wrap;opacity:.85}
+@media(max-width:768px){.wrap{padding:0 24px}.band{padding:80px 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-top-wash" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="chrome-word" aria-label="Chrome Void wordmark">CHROME&nbsp;VOID</div>
+    <h1 class="hero-h1">Built From Light, Not Fill</h1>
+    <p class="hero-sub">A near-black stage, a chrome wordmark in a wireframe room, and violet washes rationed to the millimetre. This is the whole system.</p>
+    <div class="hero-cta-row">
+      <button class="btn-primary-hero">Enter the void</button>
+      <button class="btn-outline">View components</button>
+    </div>
+    <div class="trust-strip">
+      <span>NEAR-BLACK #181818</span>
+      <span>ONE ACCENT · VIOLET</span>
+      <span>CONDENSED DISPLAY</span>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .role-group{margin-bottom:56px}
+#palette .role-title{font-size:24px;letter-spacing:-1px;margin-bottom:24px}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.swatch{border:1px solid var(--border-subtle);border-radius:20px;overflow:hidden;background:var(--surface-alt)}
+.swatch .chip{height:120px;display:block}
+.swatch .meta{padding:16px}
+.swatch .name{font-weight:700;font-size:14px;letter-spacing:-.4px;text-transform:uppercase}
+.swatch .val{font-family:var(--mono);font-size:13px;color:var(--text-secondary);margin:4px 0 8px}
+.swatch .note{font-size:14px;color:var(--text-secondary);line-height:1.45}
+.checker{background-image:linear-gradient(45deg,#2a2a2a 25%,transparent 25%),linear-gradient(-45deg,#2a2a2a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2a2a2a 75%),linear-gradient(-45deg,transparent 75%,#2a2a2a 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+</style>
+<section id="palette" class="band wrap">
+  <p class="eyebrow">Palette</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 48px">Colour Is Light</h2>
+
+  <div class="role-group">
+    <h3 class="role-title">Surfaces</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><span class="chip" style="background:#181818;border-bottom:1px solid var(--border-subtle)"></span><div class="meta"><div class="name">Background</div><div class="val">#181818</div><div class="note">The near-black stage — ~78% of every rendered screen.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#353535"></span><div class="meta"><div class="name">Surface</div><div class="val">#353535</div><div class="note">Panel cards sit one value-step up. No shadow.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#202020"></span><div class="meta"><div class="name">Surface Alt</div><div class="val">#202020</div><div class="note">Secondary surface and divider tone.</div></div></div>
+    </div>
+  </div>
+
+  <div class="role-group">
+    <h3 class="role-title">Text</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><span class="chip" style="background:#FFFFFF"></span><div class="meta"><div class="name">Text Primary</div><div class="val">#FFFFFF</div><div class="note">Headlines and primary body ink.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#C9C9C9"></span><div class="meta"><div class="name">Text Secondary</div><div class="val">#C9C9C9</div><div class="note">Support copy and underline-button labels.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#000000"></span><div class="meta"><div class="name">Ink On Light</div><div class="val">#000000</div><div class="note">Reserved for hover-inverted light surfaces.</div></div></div>
+    </div>
+  </div>
+
+  <div class="role-group">
+    <h3 class="role-title">Accents — Atmosphere Only</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><span class="chip checker" style="background:radial-gradient(80% 80% at 50% 100%,rgba(113,61,255,0.9),rgba(0,0,0,0))"></span><div class="meta"><div class="name">Violet</div><div class="val">#713DFF</div><div class="note">The single accent hue. Only soft radial glows — never fill, never text.</div></div></div>
+      <div class="swatch"><span class="chip checker" style="background:radial-gradient(60% 60% at 50% 50%,rgba(245,73,0,0.9),rgba(113,61,255,0.4),rgba(0,0,0,0))"></span><div class="meta"><div class="name">Ember</div><div class="val">#F54900</div><div class="note">Appears exactly once, blended into one wash at a section midpoint.</div></div></div>
+    </div>
+  </div>
+
+  <div class="role-group">
+    <h3 class="role-title">Borders</h3>
+    <div class="swatch-grid">
+      <div class="swatch"><span class="chip" style="background:#707070"></span><div class="meta"><div class="name">Border</div><div class="val">#707070</div><div class="note">Hairline outline for controls and structure.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#353535"></span><div class="meta"><div class="name">Border Subtle</div><div class="val">#353535</div><div class="note">Hairline divider against the near-black ground.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec-row{border-top:1px solid var(--border-subtle);padding:40px 0;display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:baseline}
+#type-scale .spec-row:last-child{border-bottom:1px solid var(--border-subtle)}
+#type-scale .metrics{font-family:var(--mono);font-size:13px;color:var(--text-secondary);line-height:1.7}
+.spec-display{font-family:var(--display);font-weight:700;font-size:clamp(40px,7vw,68px);letter-spacing:-2.7px;line-height:1;text-transform:uppercase}
+.spec-headline{font-size:24px;font-weight:500;letter-spacing:-.7px;line-height:1.2}
+.spec-body-md{font-size:24px;font-weight:500;line-height:1.4;color:var(--text-secondary)}
+.spec-label{font-size:14px;font-weight:700;letter-spacing:-.4px;line-height:1.2;text-transform:uppercase}
+.spec-base{font-size:16px;font-weight:400;line-height:1.5;color:var(--text-secondary)}
+@media(max-width:768px){#type-scale .spec-row{grid-template-columns:1fr;gap:16px}}
+</style>
+<section id="type-scale" class="band wrap">
+  <p class="eyebrow">Type Scale</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 48px">Geometry-Driven Contrast</h2>
+
+  <div class="spec-row">
+    <div class="spec-display">Chrome In A Wireframe Room</div>
+    <div class="metrics">display-lg<br>Microgramma D Extended<br>68px · 700 · lh 1 · -2.7px</div>
+  </div>
+  <div class="spec-row">
+    <div class="spec-headline">Section subheads carry the mid-page rhythm without shouting.</div>
+    <div class="metrics">headline-md<br>Suisse<br>24px · 500 · lh 1.2 · -0.7px</div>
+  </div>
+  <div class="spec-row">
+    <div class="spec-body-md">A display-adjacent lead, used sparingly — never as default paragraph text.</div>
+    <div class="metrics">body-md<br>Suisse<br>24px · 500 · lh 1.4</div>
+  </div>
+  <div class="spec-row">
+    <div class="spec-label">Eyebrow · Numbered Label · Utility</div>
+    <div class="metrics">label-md<br>Suisse<br>14px · 700 · lh 1.2 · -0.4px</div>
+  </div>
+  <div class="spec-row">
+    <div class="spec-base">Standard body copy runs at sixteen pixels, the workhorse role for everything that is not a claim, a subhead, or a label. It stays calm against the near-black stage.</div>
+    <div class="metrics">body-base<br>Suisse<br>16px · 400 · lh 1.5</div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid var(--border-subtle);padding:64px 0}
+#components .comp-head{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline;margin-bottom:32px}
+#components .comp-title{font-size:24px;letter-spacing:-1px}
+#components .comp-desc{font-size:14px;color:var(--text-secondary);max-width:520px;margin-top:8px;line-height:1.5;text-transform:none;font-family:var(--sans);font-weight:400;letter-spacing:0}
+.instance-badge{font-family:var(--mono);font-size:12px;color:var(--text-secondary);border:1px solid var(--border-subtle);border-radius:12px;padding:4px 10px}
+.spec-card{font-family:var(--mono);font-size:12px;color:var(--text-secondary);line-height:1.7;background:var(--surface-alt);border:1px solid var(--border-subtle);border-radius:12px;padding:16px 18px;margin-top:24px}
+.spec-card b{color:#fff;font-weight:400}
+.demo{display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start}
+/* buttons */
+.btn-underline{background:linear-gradient(to top,rgb(201,201,201) 1px,rgba(0,0,0,0) 1px);color:#C9C9C9;border:none;border-radius:0;height:22px;padding:0 0 4px;cursor:pointer;font-family:var(--sans);font-size:15px}
+.btn-plain{background:transparent;border:none;color:#fff;height:48px;padding:0 4px;border-radius:0;cursor:pointer;font-family:var(--sans);font-size:15px;transition:opacity .2s ease-in-out}
+.btn-plain:hover{opacity:.6}
+.btn-plain:disabled{color:var(--text-secondary);opacity:.4;cursor:not-allowed}
+.on-light{background:#f2f2f2;padding:20px;border-radius:20px}
+.on-light .btn-plain{color:#000}
+/* matrix */
+.matrix{width:100%;border-collapse:collapse;margin-top:8px}
+.matrix th,.matrix td{text-align:left;padding:16px 20px;border:1px solid var(--border-subtle);vertical-align:middle}
+.matrix th{font-family:var(--mono);font-size:12px;color:var(--text-secondary);font-weight:400;text-transform:uppercase}
+.matrix td:first-child{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+/* orbit */
+.orbit-stage{position:relative;width:100%;max-width:520px;aspect-ratio:1;margin:0 auto}
+.orbit-sphere{position:absolute;inset:18%;border-radius:50%;border:1px solid var(--border);overflow:hidden}
+.orbit-sphere::before,.orbit-sphere::after{content:"";position:absolute;inset:0;border-radius:50%;border:1px solid var(--border-subtle)}
+.orbit-sphere::before{transform:scaleX(.45)}
+.orbit-sphere::after{transform:scaleY(.45)}
+.orbit-mer{position:absolute;inset:18%;border-radius:50%;border:1px solid var(--border-subtle);transform:scaleX(.72)}
+.orbit-lead{position:absolute;top:50%;left:50%;height:1px;width:34%;background:repeating-linear-gradient(90deg,var(--border) 0 5px,transparent 5px 10px);transform-origin:left center}
+.orbit-lbl{position:absolute;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--text-secondary);white-space:nowrap}
+/* carousel */
+.rail-controls{display:flex;gap:12px;margin-bottom:20px}
+.rail-btn{width:44px;height:44px;border-radius:50%;border:1px solid var(--border);background:transparent;color:#fff;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:background-color .2s ease-in-out,color .2s ease-in-out}
+.rail-btn:hover{background:#fff;color:#000}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px;scroll-snap-type:x mandatory}
+.num-card{position:relative;flex:0 0 340px;aspect-ratio:1.05;background:var(--surface-alt);border:1px solid var(--border-subtle);border-radius:20px;padding:28px;overflow:hidden;scroll-snap-align:start;box-shadow:rgba(0,0,0,0.25) 0 20px 60px 0}
+.num-card .num{font-family:var(--display);font-weight:700;font-size:44px;letter-spacing:-2px}
+.num-card .sphere{position:absolute;top:24px;right:24px;width:48px;height:48px;border-radius:50%;background:radial-gradient(30% 30% at 35% 30%,#fff,#9a9a9a 40%,#353535 90%)}
+.num-card h4{font-size:22px;letter-spacing:-.8px;margin:auto 0 12px;text-transform:none;font-weight:600}
+.num-card p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+.num-card .body-wrap{position:relative;z-index:2;margin-top:auto;height:100%;display:flex;flex-direction:column}
+.wash-violet{background:radial-gradient(83% 72% at 100% 0%,rgba(113,61,255,0.5) 0%,rgba(113,61,255,0) 70%)}
+.wash-ember{background:radial-gradient(46.54% 25.81% at 48.6% 63.98%,rgb(245,73,0) 6%,rgba(113,61,255,0.5) 50%,rgba(0,0,0,0) 100%)}
+.card-wash{position:absolute;inset:0;z-index:1;pointer-events:none}
+/* dark panel */
+.panel-family{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+.panel-card{background:#353535;border-radius:20px;padding:0;overflow:hidden}
+.panel-card .pc-inner{padding:24px}
+.panel-card h4{font-size:20px;letter-spacing:-.6px;text-transform:none;font-weight:600;margin-bottom:12px}
+.panel-card ul{list-style:none;margin:0 0 16px}
+.panel-card li{font-size:14px;color:var(--text-secondary);padding:8px 0;border-bottom:1px solid #444}
+.panel-card p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+.disclosure{border-top:1px solid #444}
+.disclosure summary{cursor:pointer;list-style:none;padding:16px 0 0;font-size:14px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.disclosure summary::-webkit-details-marker{display:none}
+.disclosure[open] summary iconify-icon{transform:rotate(180deg)}
+.disclosure p{padding-top:12px}
+/* flat structural */
+.media-right-rows{display:flex;flex-direction:column;gap:48px}
+.media-right{display:grid;grid-template-columns:1fr 1fr;gap:40px;background:transparent;border-radius:0;padding:0 40px 0 0;align-items:center}
+.media-slot{aspect-ratio:16/10;background:radial-gradient(60% 80% at 70% 20%,#2c2c2c,#181818);border:1px solid var(--border-subtle);display:flex;align-items:center;justify-content:center}
+.media-slot .chip-orb{width:70px;height:70px;border-radius:50%;background:radial-gradient(30% 30% at 35% 30%,#fff,#8f8f8f 45%,#2a2a2a 90%)}
+.media-right h4{font-size:24px;letter-spacing:-.7px;text-transform:none;font-weight:600;margin-bottom:12px}
+.media-right p{font-size:16px;color:var(--text-secondary);line-height:1.5}
+.tile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.tile-card{background:transparent;border-radius:0;padding:0 20px}
+.tile-media{aspect-ratio:16/10;background:radial-gradient(60% 80% at 40% 30%,#2c2c2c,#181818);border:1px solid var(--border-subtle);margin-bottom:16px}
+.tile-card h4{font-size:20px;letter-spacing:-.6px;text-transform:none;font-weight:600;margin-bottom:8px}
+.tile-card p{font-size:14px;color:var(--text-secondary);line-height:1.5;margin-bottom:16px}
+.subtiles{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.subtile{border:1px solid var(--border-subtle);padding:12px;font-size:13px;color:var(--text-secondary)}
+.subtile b{color:#fff;display:block;font-family:var(--display);font-size:20px;letter-spacing:-1px}
+.uniform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.grid-cell{background:transparent;border-radius:0;padding:0 20px;border-left:1px solid var(--border-subtle)}
+.grid-cell h4{font-size:18px;letter-spacing:-.5px;text-transform:none;font-weight:600;margin-bottom:8px}
+.grid-cell p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+.list-col{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.list-card{background:transparent;border-radius:0;padding:0 10px}
+.list-card h4{font-size:16px;letter-spacing:-.4px;text-transform:uppercase;font-weight:700;margin-bottom:16px;font-family:var(--sans)}
+.list-card ul{list-style:none}
+.list-card li{padding:8px 0;border-bottom:1px solid var(--border-subtle)}
+.list-card p{font-size:13px;color:var(--text-secondary);margin-top:12px}
+.compact-row{display:grid;grid-template-columns:repeat(6,1fr);gap:20px}
+.compact-panel{background:transparent;border-radius:0;padding:30px 10px;text-align:center;border:1px solid var(--border-subtle)}
+.compact-panel .cp-num{font-family:var(--display);font-size:28px;letter-spacing:-1.4px}
+.compact-panel .cp-lbl{font-size:13px;color:var(--text-secondary);margin-top:8px}
+@media(max-width:768px){.media-right,.tile-grid,.uniform-grid,.list-col,.compact-row{grid-template-columns:1fr}.compact-row{grid-template-columns:1fr 1fr}}
+</style>
+<section id="components" class="band wrap">
+  <p class="eyebrow">Components</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 8px">The Inventory</h2>
+  <p class="lead" style="margin-bottom:24px">Flat panels and hairline borders carry the structure. Colour stays as atmosphere.</p>
+
+  <!-- NAVBAR -->
+  <div class="comp" data-tier-a-component="navbar">
+    <div class="comp-head">
+      <div><div class="comp-title">Navbar</div><div class="comp-desc">Edge-to-edge 102px glass bar — the only true glassmorphic surface. Square corners, CTA pinned right.</div></div>
+      <span class="instance-badge">×1</span>
+    </div>
+    <div style="position:relative;border:1px solid var(--border-subtle);border-radius:12px;overflow:hidden">
+      <div style="height:110px;background:radial-gradient(60% 100% at 20% 0%,#2a2a2a,#181818)"></div>
+      <div style="position:absolute;top:0;left:0;right:0;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(24,24,24,0.4);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px)">
+        <span style="font-family:var(--display);font-size:20px;letter-spacing:-1px">CHROME VOID</span>
+        <nav style="display:flex;gap:24px;align-items:center" aria-label="Primary">
+          <span class="btn-plain" style="height:auto">Product</span>
+          <span class="btn-plain" style="height:auto">Systems</span>
+          <span class="btn-plain" style="height:auto">Work</span>
+          <button class="btn-outline" style="height:45px">Get started</button>
+        </nav>
+      </div>
+    </div>
+    <div class="spec-card">--navbar · fill <b>rgba(24,24,24,0.4)</b> · <b>backdrop-filter blur(50px)</b> · radius <b>0px</b> · height <b>102px</b> · width <b>100vw</b></div>
+  </div>
+
+  <!-- HERO PRIMARY BUTTON -->
+  <div class="comp" data-tier-a-component="hero-primary-button">
+    <div class="comp-head">
+      <div><div class="comp-title">Hero Primary Button</div><div class="comp-desc">The single highest-contrast control on the first screen — a solid light fill with dark ink, distinct from the glass nav CTA.</div></div>
+      <span class="instance-badge">×1</span>
+    </div>
+    <div class="demo"><button class="btn-primary-hero">Enter the void</button></div>
+    <div class="spec-card">--button-primary-hero · fill <b>#FFFFFF</b> · text <b>#141414</b> · radius <b>6px</b> · height <b>48px</b></div>
+  </div>
+
+  <!-- UNDERLINE BUTTON -->
+  <div class="comp" data-tier-a-component="underline-button">
+    <div class="comp-head">
+      <div><div class="comp-title">Underline Button</div><div class="comp-desc">Minimal inline link action — a 1px gradient baseline stands in for a border. Not a filled button.</div></div>
+      <span class="instance-badge">×10</span>
+    </div>
+    <div class="demo">
+      <button class="btn-underline">Read the case study</button>
+      <button class="btn-underline">See methodology</button>
+      <button class="btn-underline">Download report</button>
+    </div>
+    <div class="spec-card">--button-underline · fill <b>linear-gradient(to top,#C9C9C9 1px,transparent 1px)</b> · text <b>#C9C9C9</b> · radius <b>0px</b> · height <b>22px</b> · padding <b>0 0 4px</b></div>
+  </div>
+
+  <!-- OUTLINE BUTTON -->
+  <div class="comp" data-tier-a-component="outline-button">
+    <div class="comp-head">
+      <div><div class="comp-title">Outline Button</div><div class="comp-desc">Navbar CTA and repeated section CTAs. White text inverts to black on hover.</div></div>
+      <span class="instance-badge">×6</span>
+    </div>
+    <table class="matrix">
+      <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>outline</td>
+          <td><button class="btn-outline">Get started</button></td>
+          <td><button class="btn-outline" style="background:#fff;color:#000">Get started</button></td>
+          <td><button class="btn-outline" style="color:var(--text-secondary);border-color:var(--border-subtle);opacity:.5" disabled>Get started</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="spec-card">--button-nav-cta · fill <b>transparent</b> · border <b>1px #707070</b> · text <b>#FFFFFF</b> · hover text <b>#000000</b> · radius <b>10px</b> · height <b>45px</b> · padding <b>12px 48px</b> · motion <b>ease-in-out 0.2s</b></div>
+  </div>
+
+  <!-- PLAIN GHOST -->
+  <div class="comp" data-tier-a-component="plain-ghost-button">
+    <div class="comp-head">
+      <div><div class="comp-title">Plain / Ghost Button</div><div class="comp-desc">Text-only low-emphasis action beside headings. Achromatic on both dark and light ground.</div></div>
+      <span class="instance-badge">×11 + ×1</span>
+    </div>
+    <table class="matrix">
+      <thead><tr><th>Context</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>on dark</td>
+          <td><button class="btn-plain">Learn more</button></td>
+          <td><button class="btn-plain" style="opacity:.6">Learn more</button></td>
+          <td><button class="btn-plain" disabled>Learn more</button></td>
+        </tr>
+        <tr>
+          <td>on light</td>
+          <td class="on-light" style="border:1px solid var(--border-subtle)"><button class="btn-plain">Learn more</button></td>
+          <td class="on-light" style="border:1px solid var(--border-subtle)"><button class="btn-plain" style="opacity:.6">Learn more</button></td>
+          <td class="on-light" style="border:1px solid var(--border-subtle)"><button class="btn-plain" style="color:#000" disabled>Learn more</button></td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="spec-card">--button-plain · fill <b>transparent</b> · text <b>#000000 / #141414</b> (on dark #FFFFFF) · radius <b>0px</b> · height <b>48px</b></div>
+  </div>
+
+  <!-- ORBIT -->
+  <div class="comp" data-tier-a-component="orbit-globe-diagram">
+    <div class="comp-head">
+      <div><div class="comp-title">Orbit / Globe Diagram</div><div class="comp-desc">A wireframe sphere with dashed leaders radiating to short labels around the upper hemisphere — a capability set, not a card grid.</div></div>
+      <span class="instance-badge">×1</span>
+    </div>
+    <div class="orbit-stage" role="img" aria-label="Wireframe globe with radiating capability labels">
+      <div class="orbit-sphere"></div>
+      <div class="orbit-mer"></div>
+      <div class="orbit-lead" style="transform:rotate(-140deg)"></div>
+      <div class="orbit-lead" style="transform:rotate(-110deg)"></div>
+      <div class="orbit-lead" style="transform:rotate(-70deg)"></div>
+      <div class="orbit-lead" style="transform:rotate(-40deg)"></div>
+      <div class="orbit-lbl" style="top:6%;left:8%">Strategy</div>
+      <div class="orbit-lbl" style="top:0;left:44%">Systems</div>
+      <div class="orbit-lbl" style="top:6%;right:6%">Motion</div>
+      <div class="orbit-lbl" style="top:34%;right:0">Chrome</div>
+      <div class="orbit-lbl" style="top:34%;left:0">Grids</div>
+    </div>
+    <div class="spec-card">tokens · stroke <b>#707070 / #353535</b> · label type <b>Suisse 14/500</b> · dashed leaders on <b>#707070</b></div>
+  </div>
+
+  <!-- CAROUSEL -->
+  <div class="comp" data-tier-a-component="numbered-gradient-carousel">
+    <div class="comp-head">
+      <div><div class="comp-title">Numbered Gradient Panel Carousel</div><div class="comp-desc">Horizontal rail of near-square panels — numeral, radial wash, glossy sphere accent, heading and body. Violet on card 1, ember-into-violet on card 2.</div></div>
+      <span class="instance-badge">×1</span>
+    </div>
+    <div class="rail-controls">
+      <button class="rail-btn" aria-label="Previous" data-rail="prev"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+      <button class="rail-btn" aria-label="Next" data-rail="next"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+    </div>
+    <div class="rail" id="carousel-rail">
+      <div class="num-card">
+        <div class="card-wash wash-violet"></div>
+        <div class="body-wrap"><div class="num">01</div><span class="sphere"></span><h4>Perspective Grid</h4><p>The drafting-line room that turns a flat logo into an object in space.</p></div>
+      </div>
+      <div class="num-card">
+        <div class="card-wash wash-ember"></div>
+        <div class="body-wrap"><div class="num">02</div><span class="sphere"></span><h4>Rationed Light</h4><p>Ember blends into violet exactly once — a controlled two-colour wash, never a rainbow.</p></div>
+      </div>
+      <div class="num-card">
+        <div class="card-wash wash-violet"></div>
+        <div class="body-wrap"><div class="num">03</div><span class="sphere"></span><h4>Chrome Object</h4><p>Liquid-metal specular highlights carry the accent that fills never do.</p></div>
+      </div>
+    </div>
+    <div class="spec-card">tokens · fill <b>#202020</b> · border <b>#353535</b> · radius <b>20px</b> · shadow <b>rgba(0,0,0,0.25) 0 20px 60px</b> · numeral <b>Microgramma 700</b> · motion <b>ease-in-out 0.4s</b></div>
+  </div>
+
+  <!-- DARK PANEL CARD FAMILY -->
+  <div class="comp" data-tier-a-component="dark-panel-card">
+    <div class="comp-head">
+      <div><div class="comp-title">Dark Panel Card Family</div><div class="comp-desc">#353535 fill, 20px radius, FAQ / feature-accordion style. Separation via value shift — never a drop shadow.</div></div>
+      <span class="instance-badge">×9</span>
+    </div>
+    <div class="panel-family">
+      <div class="panel-card"><div class="pc-inner"><h4>What ships in a system?</h4><ul><li>Colour and light tokens</li><li>Condensed display role</li><li>Flat panel grammar</li></ul><details class="disclosure"><summary>How is elevation handled? <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary><p>Through value shift against the near-black stage — no shadow on these panels.</p></details></div></div>
+      <div class="panel-card"><div class="pc-inner"><h4>Where does colour live?</h4><ul><li>Radial glows only</li><li>Violet as atmosphere</li><li>Ember once, at a midpoint</li></ul><details class="disclosure"><summary>Can accents be fills? <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary><p>No. Buttons, chips and card fills stay achromatic by design.</p></details></div></div>
+      <div class="panel-card"><div class="pc-inner"><h4>What carries headlines?</h4><ul><li>Microgramma D Extended</li><li>-2.7px tracking</li><li>Mixed-case, all-caps feel</li></ul><details class="disclosure"><summary>And body copy? <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></summary><p>Suisse carries every non-display role from 14px labels to 24px leads.</p></details></div></div>
+    </div>
+    <div class="spec-card">--card-panel · fill <b>#353535</b> · radius <b>20px</b> · padding <b>0px</b> (children pad) · <b>no drop shadow</b></div>
+  </div>
+
+  <!-- MEDIA RIGHT -->
+  <div class="comp" data-tier-a-component="media-right-feature-row">
+    <div class="comp-head">
+      <div><div class="comp-title">Media-Right Feature Row</div><div class="comp-desc">Alternating capability rows — image right, text left. Transparent, 0px radius, deliberate flat structural ground.</div></div>
+      <span class="instance-badge">×5</span>
+    </div>
+    <div class="media-right-rows">
+      <div class="media-right">
+        <div><h4>The stage stays near-black</h4><p>Backgrounds hold at #181818 across ~78% of every screen. The chrome object supplies the only reflective light.</p></div>
+        <div class="media-slot"><span class="chip-orb"></span></div>
+      </div>
+      <div class="media-right">
+        <div><h4>Structure through hairlines</h4><p>Panels and 1px borders build hierarchy where other systems reach for shadow and fill.</p></div>
+        <div class="media-slot"><span class="chip-orb"></span></div>
+      </div>
+    </div>
+    <div class="spec-card">--card-media-right · fill <b>transparent</b> · radius <b>0px</b> · padding <b>0 40px 0 0</b> · <b>never rounded</b></div>
+  </div>
+
+  <!-- MEDIA TOP TILE -->
+  <div class="comp" data-tier-a-component="media-top-tile-card">
+    <div class="comp-head">
+      <div><div class="comp-title">Media-Top Tile Card</div><div class="comp-desc">Compact case-study tile — full-bleed media top, heading, body, and two nested sub-tiles.</div></div>
+      <span class="instance-badge">×3</span>
+    </div>
+    <div class="tile-grid">
+      <div class="tile-card"><div class="tile-media"></div><h4>Aurora UI Result</h4><p>Rationed washes lifted engagement without a single mesh gradient.</p><div class="subtiles"><div class="subtile"><b>+34%</b>dwell</div><div class="subtile"><b>5</b>washes</div></div></div>
+      <div class="tile-card"><div class="tile-media"></div><h4>Chrome Rebuild</h4><p>One wordmark, two placements, bookending the whole page.</p><div class="subtiles"><div class="subtile"><b>2×</b>chrome</div><div class="subtile"><b>0</b>fills</div></div></div>
+      <div class="tile-card"><div class="tile-media"></div><h4>Grid Discipline</h4><p>Strict 33/33/33 cells held their edges across breakpoints.</p><div class="subtiles"><div class="subtile"><b>6</b>cells</div><div class="subtile"><b>0px</b>radius</div></div></div>
+    </div>
+    <div class="spec-card">--card-tile-media-top · fill <b>transparent</b> · radius <b>0px</b> · padding <b>0 20px</b> · two nested sub-tiles</div>
+  </div>
+
+  <!-- UNIFORM GRID -->
+  <div class="comp" data-tier-a-component="uniform-grid-cell">
+    <div class="comp-head">
+      <div><div class="comp-title">Uniform Grid Cell</div><div class="comp-desc">Two rows of three equal cells. Uniform grid, not bento — no cell spans wider. 0px radius by design.</div></div>
+      <span class="instance-badge">×6</span>
+    </div>
+    <div class="uniform-grid">
+      <div class="grid-cell"><h4>Near-black stage</h4><p>#181818 dominates the rendered surface.</p></div>
+      <div class="grid-cell"><h4>Single accent</h4><p>Violet, rationed only to radial glows.</p></div>
+      <div class="grid-cell"><h4>Ember once</h4><p>Blended into one wash at a midpoint.</p></div>
+      <div class="grid-cell"><h4>Condensed display</h4><p>Microgramma at -2.7px tracking.</p></div>
+      <div class="grid-cell"><h4>Flat panels</h4><p>Value shift instead of elevation.</p></div>
+      <div class="grid-cell"><h4>Hairline borders</h4><p>#707070 structural only.</p></div>
+    </div>
+    <div class="spec-card">--card-grid-cell · fill <b>transparent</b> · radius <b>0px</b> · padding <b>0 20px</b> · layout <b>33/33/33 ×2</b></div>
+  </div>
+
+  <!-- LIST CARD -->
+  <div class="comp" data-tier-a-component="list-card">
+    <div class="comp-head">
+      <div><div class="comp-title">List Card</div><div class="comp-desc">Narrow column-stacked resource index near page end. Transparent, flat, 0px radius.</div></div>
+      <span class="instance-badge">×4</span>
+    </div>
+    <div class="list-col">
+      <div class="list-card"><h4>System</h4><ul><li><button class="btn-underline">Tokens</button></li><li><button class="btn-underline">Palette</button></li><li><button class="btn-underline">Type scale</button></li></ul><p>Foundations of Chrome Void.</p></div>
+      <div class="list-card"><h4>Components</h4><ul><li><button class="btn-underline">Buttons</button></li><li><button class="btn-underline">Cards</button></li><li><button class="btn-underline">Navbar</button></li></ul><p>Live UI inventory.</p></div>
+      <div class="list-card"><h4>Effects</h4><ul><li><button class="btn-underline">Radial washes</button></li><li><button class="btn-underline">Chrome</button></li><li><button class="btn-underline">Grid texture</button></li></ul><p>Light-driven colour.</p></div>
+      <div class="list-card"><h4>Motion</h4><ul><li><button class="btn-underline">Ease-in-out</button></li><li><button class="btn-underline">Crossfades</button></li><li><button class="btn-underline">Slide entrances</button></li></ul><p>Quick and mechanical.</p></div>
+    </div>
+    <div class="spec-card">--card-list · fill <b>transparent</b> · radius <b>0px</b> · padding <b>0 10px</b></div>
+  </div>
+
+  <!-- COMPACT PANEL -->
+  <div class="comp" data-tier-a-component="compact-panel">
+    <div class="comp-head">
+      <div><div class="comp-title">Compact Panel</div><div class="comp-desc">Simple vertical content blocks — logo-strip or stat-adjacent groupings.</div></div>
+      <span class="instance-badge">×6</span>
+    </div>
+    <div class="compact-row">
+      <div class="compact-panel"><div class="cp-num">78%</div><div class="cp-lbl">near-black</div></div>
+      <div class="compact-panel"><div class="cp-num">5</div><div class="cp-lbl">washes</div></div>
+      <div class="compact-panel"><div class="cp-num">1</div><div class="cp-lbl">accent hue</div></div>
+      <div class="compact-panel"><div class="cp-num">292</div><div class="cp-lbl">section gap</div></div>
+      <div class="compact-panel"><div class="cp-num">20px</div><div class="cp-lbl">panel radius</div></div>
+      <div class="compact-panel"><div class="cp-num">0px</div><div class="cp-lbl">grid radius</div></div>
+    </div>
+    <div class="spec-card">compact-panel · fill <b>transparent</b> · radius <b>0px</b> · padding <b>30px 10px</b> · numeral <b>Microgramma 700</b></div>
+  </div>
+
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;margin-top:40px}
+.depth-card{padding:32px;background:var(--surface-alt);border:1px solid var(--border-subtle)}
+.depth-card .dc-title{font-size:16px;font-weight:700;letter-spacing:-.4px;text-transform:uppercase;margin-bottom:8px}
+.depth-card .dc-meta{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+.rr-10{border-radius:10px}.rr-20{border-radius:20px}.rr-12{border-radius:12px}.rr-50{border-radius:50px}
+.shadow-lift{box-shadow:rgba(0,0,0,0.25) 0 20px 60px 0}
+.shadow-light{box-shadow:rgba(0,0,0,0.15) 0 4px 16px 0}
+</style>
+<section id="surface-depth" class="band wrap">
+  <p class="eyebrow">Surface & Depth</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 8px">Radii & Elevation</h2>
+  <p class="lead">Corners round as elements get more interactive; shadows are reserved for lifted panels only.</p>
+  <div class="depth-grid">
+    <div class="depth-card rr-10"><div class="dc-title">Control</div><div class="dc-meta">r-control · 10px</div></div>
+    <div class="depth-card rr-12"><div class="dc-title">Chip</div><div class="dc-meta">r-chip · 12px</div></div>
+    <div class="depth-card rr-20"><div class="dc-title">Card</div><div class="dc-meta">r-card · 20px</div></div>
+    <div class="depth-card rr-50"><div class="dc-title">Well</div><div class="dc-meta">r-well · 50px</div></div>
+    <div class="depth-card rr-20 shadow-lift" style="background:#202020"><div class="dc-title">Lifted Panel</div><div class="dc-meta">shadow · 0 20px 60px rgba(0,0,0,0.25)</div></div>
+    <div class="depth-card rr-20 shadow-light" style="background:#202020"><div class="dc-title">Light Separation</div><div class="dc-meta">shadow · 0 4px 16px rgba(0,0,0,0.15)</div></div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;margin-top:40px}
+.motion-card{background:var(--surface-alt);border:1px solid var(--border-subtle);border-radius:20px;padding:32px}
+.motion-card .m-label{font-family:var(--mono);font-size:12px;color:var(--text-secondary);margin-bottom:20px}
+.mover{width:48px;height:48px;border-radius:10px;background:linear-gradient(180deg,#fff,#8f8f8f 50%,#353535);}
+.track{height:48px;display:flex;align-items:center}
+.play{margin-top:20px;font-family:var(--sans);font-size:14px}
+.mover.go-2{transition:transform .2s ease-in-out;transform:translateX(calc(100% * 3))}
+.mover.go-4{transition:transform .4s ease-in-out;transform:translateX(calc(100% * 3))}
+</style>
+<section id="motion" class="band wrap">
+  <p class="eyebrow">Motion</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 8px">Quick & Mechanical</h2>
+  <p class="lead">Short, consistent ease-in-out with no spring or overshoot — matching the chrome aesthetic.</p>
+  <div class="motion-grid">
+    <div class="motion-card">
+      <div class="m-label">State change · 0.2s ease-in-out</div>
+      <div class="track"><div class="mover" data-motion></div></div>
+      <button class="btn-plain play" data-play="go-2">Replay ▸</button>
+    </div>
+    <div class="motion-card">
+      <div class="m-label">Crossfade / carousel · 0.4s ease-in-out</div>
+      <div class="track"><div class="mover" data-motion></div></div>
+      <button class="btn-plain play" data-play="go-4">Replay ▸</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid var(--border-subtle);border-radius:20px;overflow:hidden;background:var(--background);position:relative;margin-top:40px}
+.mock-nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(24,24,24,0.4);backdrop-filter:blur(50px);-webkit-backdrop-filter:blur(50px);border-bottom:1px solid var(--border-subtle);position:relative;z-index:3}
+.mock-hero{position:relative;padding:80px 40px;text-align:center;overflow:hidden}
+.mock-hero .wash{position:absolute;top:0;left:0;right:0;height:100%;background:radial-gradient(91.7% 54.32% at 50% -0.02%,rgba(113,61,255,0.4),rgba(0,0,0,0) 70%);pointer-events:none}
+.mock-hero .cw{position:relative;z-index:2}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;padding:40px}
+.mc{background:#353535;border-radius:20px;padding:24px}
+.mc h4{font-size:18px;text-transform:none;font-weight:600;letter-spacing:-.5px;margin-bottom:8px}
+.mc p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+.mock-cta{padding:0 40px 56px;position:relative}
+.mock-cta .inner{position:relative;border-radius:20px;padding:56px 40px;text-align:center;border:1px solid var(--border-subtle);overflow:hidden}
+.mock-cta .wash{position:absolute;inset:0;background:radial-gradient(83.21% 71.85% at 50% 125.28%,rgba(113,61,255,0.5),rgba(113,61,255,0) 70%);pointer-events:none}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" class="band wrap">
+  <p class="eyebrow">In Composition</p>
+  <h2 style="font-size:clamp(36px,6vw,68px);letter-spacing:-2.7px;margin:16px 0 8px">It Holds Together</h2>
+  <p class="lead">A full screen assembled entirely from the tokens above.</p>
+  <div class="mock">
+    <div class="mock-nav">
+      <span style="font-family:var(--display);font-size:18px;letter-spacing:-1px">CHROME VOID</span>
+      <button class="btn-outline" style="height:45px">Get started</button>
+    </div>
+    <div class="mock-hero">
+      <div class="wash"></div>
+      <div class="cw">
+        <div class="chrome-word" style="font-size:clamp(36px,7vw,72px)">CHROME VOID</div>
+        <h3 style="font-size:clamp(28px,4vw,44px);letter-spacing:-2px;margin:24px 0 16px">Light Does The Work</h3>
+        <p style="color:var(--text-secondary);max-width:480px;margin:0 auto 28px;font-weight:500;font-size:18px;line-height:1.4">A near-black stage, a chrome object, and washes rationed to the corner.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary-hero">Enter</button>
+          <button class="btn-outline" style="height:45px">Explore</button>
+        </div>
+      </div>
+    </div>
+    <div class="mock-cards">
+      <div class="mc"><h4>Rationed Colour</h4><p>Violet appears only as soft glows — never a fill, never text.</p></div>
+      <div class="mc"><h4>Flat Structure</h4><p>Panels lift by value shift, not by shadow.</p></div>
+      <div class="mc"><h4>Condensed Voice</h4><p>Microgramma carries every headline claim.</p></div>
+    </div>
+    <div class="mock-cta">
+      <div class="inner">
+        <div class="wash"></div>
+        <h3 style="position:relative;z-index:2;font-size:clamp(28px,4vw,44px);letter-spacing:-2px;margin-bottom:24px">Ready To Build In The Void?</h3>
+        <button class="btn-primary-hero" style="position:relative;z-index:2">Start now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{position:relative;padding:120px 0 60px;overflow:hidden;border-top:1px solid var(--border-subtle)}
+#footer .foot-wash{position:absolute;bottom:0;left:0;right:0;height:70%;background:radial-gradient(120.41% 99.94% at 50% 100%,rgba(113,61,255,0.45),rgba(0,0,0,0) 70%);pointer-events:none}
+#footer .foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;position:relative;z-index:2}
+#footer .foot-cols h4{font-size:14px;letter-spacing:-.4px;text-transform:uppercase;margin-bottom:16px;font-family:var(--sans);font-weight:700}
+#footer .foot-cols ul{list-style:none}
+#footer .foot-cols li{padding:6px 0}
+#footer .foot-cols a{color:var(--text-secondary);text-decoration:none;font-size:14px}
+#footer .foot-cols a:hover{color:#fff}
+.social-row{display:flex;gap:12px;margin-top:20px}
+.social-chip{width:40px;height:40px;border-radius:50%;background:var(--surface-alt);border:1px solid var(--border-subtle);display:inline-flex;align-items:center;justify-content:center;color:var(--text-secondary)}
+.social-chip:hover{color:#fff}
+.foot-word{position:relative;z-index:2;text-align:center;margin:80px 0 40px}
+.foot-legal{position:relative;z-index:2;text-align:center;font-family:var(--mono);font-size:12px;color:var(--text-secondary);line-height:1.8}
+.foot-legal a{color:var(--text-secondary)}
+@media(max-width:768px){#footer .foot-cols{grid-template-columns:1fr 1fr}}
+</style>
+<footer id="footer">
+  <div class="foot-wash" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="foot-cols">
+      <div><h4>System</h4><ul><li><a href="#palette">Palette</a></li><li><a href="#type-scale">Type</a></li><li><a href="#surface-depth">Surface</a></li><li><a href="#motion">Motion</a></li></ul></div>
+      <div><h4>Components</h4><ul><li><a href="#components">Buttons</a></li><li><a href="#components">Cards</a></li><li><a href="#components">Navbar</a></li><li><a href="#components">Carousel</a></li></ul></div>
+      <div><h4>Hubs</h4><ul><li><a href="#footer">New York — 1 Grid Ave</a></li><li><a href="#footer">London — 12 Chrome St</a></li><li><a href="#footer">Berlin — 8 Void Platz</a></li></ul></div>
+      <div><h4>Connect</h4>
+        <div class="social-row">
+          <a class="social-chip" href="#footer" aria-label="Twitter"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+          <a class="social-chip" href="#footer" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+          <a class="social-chip" href="#footer" aria-label="GitHub"><iconify-icon icon="lucide:github" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-word"><span class="chrome-word" style="font-size:clamp(44px,13vw,180px)">CHROME&nbsp;VOID</span></div>
+    <div class="foot-legal">
+      Chrome Void · <a href="https://nogood.io/">https://nogood.io/</a><br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rail=document.getElementById('carousel-rail');
+  if(rail){
+    document.querySelectorAll('[data-rail]').forEach(function(b){
+      b.addEventListener('click',function(){
+        var d=b.getAttribute('data-rail')==='next'?1:-1;
+        rail.scrollBy({left:d*360,behavior:'smooth'});
+      });
+    });
+  }
+  document.querySelectorAll('[data-play]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var cls=btn.getAttribute('data-play');
+      var mover=btn.closest('.motion-card').querySelector('[data-motion]');
+      mover.classList.remove(cls);
+      void mover.offsetWidth;
+      mover.classList.add(cls);
+    });
+  });
+})();
+</script>
+</body>
+</html>

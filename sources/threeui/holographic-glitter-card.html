@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Holographic Foil Card — r3xdec 3D</title>
+  <script type="importmap">
+  { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 45%, #13131f, #050509 74%); }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'three';
+    import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 40);
+    camera.position.z = 5.2;
+
+    // Crisp engraved card artwork texture
+    const art = document.createElement('canvas');
+    art.width = 512; art.height = 768;
+    const ctx = art.getContext('2d');
+    ctx.fillStyle = '#0c0d14'; ctx.fillRect(0, 0, 512, 768);
+    ctx.strokeStyle = 'rgba(255,255,255,0.22)'; ctx.lineWidth = 3;
+    ctx.strokeRect(26, 26, 460, 716);
+    ctx.strokeStyle = 'rgba(130,210,255,0.35)'; ctx.lineWidth = 1.5;
+    for (let r = 48; r <= 180; r += 26) { ctx.beginPath(); ctx.arc(256, 330, r, 0, Math.PI * 2); ctx.stroke(); }
+    ctx.fillStyle = '#ffffff'; ctx.font = '700 28px system-ui'; ctx.fillText('r3xdec // 001', 50, 82);
+    ctx.fillStyle = '#a5b4fc'; ctx.font = '600 15px monospace'; ctx.fillText('HOLOGRAPHIC EDITION · WEBGL2', 50, 112);
+    ctx.fillStyle = '#ffffff'; ctx.font = '700 44px system-ui'; ctx.fillText('PRISM', 50, 620);
+    ctx.fillStyle = '#94a3b8'; ctx.font = '500 16px monospace'; ctx.fillText('DIFFRACTION FOIL · 60FPS', 50, 658);
+    ctx.fillText('SN 2026-8849-X', 50, 706);
+    const artTex = new THREE.CanvasTexture(art);
+
+    const uniforms = {
+      uTime: { value: 0 },
+      uTex: { value: artTex },
+    };
+
+    const holoMat = new THREE.ShaderMaterial({
+      uniforms,
+      vertexShader: `
+        varying vec2 vUv;
+        varying vec3 vNormal, vViewPos;
+        void main() {
+          vUv = uv;
+          vNormal = normalize(normalMatrix * normal);
+          vec4 mv = modelViewMatrix * vec4(position, 1.0);
+          vViewPos = -mv.xyz;
+          gl_Position = projectionMatrix * mv;
+        }
+      `,
+      fragmentShader: `
+        uniform float uTime;
+        uniform sampler2D uTex;
+        varying vec2 vUv;
+        varying vec3 vNormal, vViewPos;
+
+        float hash(vec2 p) { return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+
+        void main() {
+          vec3 N = normalize(vNormal);
+          vec3 V = normalize(vViewPos);
+          float ndv = clamp(dot(N, V), 0.0, 1.0);
+          float fresnel = pow(1.0 - ndv, 2.5);
+
+          // Diffraction rainbow spectrum tied to viewing angle + diagonal grating
+          float phase = dot(vUv, vec2(3.4, 2.6)) + (1.0 - ndv) * 4.5 + sin(uTime * 0.9) * 0.5;
+          vec3 rainbow = 0.55 + 0.45 * cos(6.28318 * (phase + vec3(0.0, 0.33, 0.67)));
+
+          // Micro-glitter facets
+          vec2 cell = floor(vUv * 95.0);
+          float sparkle = pow(hash(cell), 12.0) * (0.5 + 0.5 * sin(uTime * 4.5 + hash(cell) * 40.0 + ndv * 18.0));
+
+          // Specular sweeping sheen
+          float sheen = pow(max(dot(N, normalize(vec3(sin(uTime * 0.8), cos(uTime * 0.6), 1.4))), 0.0), 18.0);
+
+          vec3 base = texture2D(uTex, vUv).rgb;
+          vec3 foil = mix(base, base + rainbow * 0.65, 0.55) + rainbow * fresnel * 0.85;
+          foil += vec3(1.0) * (sparkle * 2.2 + sheen * 0.55);
+          gl_FragColor = vec4(foil, 1.0);
+        }
+      `,
+    });
+
+    const card = new THREE.Mesh(new RoundedBoxGeometry(2.2, 3.25, 0.09, 6, 0.06), holoMat);
+    scene.add(card);
+
+    let tx = 0, ty = 0;
+    window.addEventListener('pointermove', (e) => {
+      tx = ((e.clientX / window.innerWidth) - 0.5) * 0.9;
+      ty = ((e.clientY / window.innerHeight) - 0.5) * 0.7;
+    });
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate(ms) {
+      const t = ms * 0.001;
+      uniforms.uTime.value = t;
+      const idleY = Math.sin(t * 0.9) * 0.32;
+      const idleX = Math.cos(t * 0.7) * 0.14;
+      card.rotation.y += ((idleY + tx) - card.rotation.y) * 0.08;
+      card.rotation.x += ((idleX + ty) - card.rotation.x) * 0.08;
+      card.position.y = Math.sin(t * 1.4) * 0.08;
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

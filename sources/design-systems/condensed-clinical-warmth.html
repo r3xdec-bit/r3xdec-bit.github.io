@@ -1,0 +1,617 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Condensed Clinical Warmth — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Archivo+Narrow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface-warm:#E9E5DF;
+  --surface-dark:#161513;
+  --text-primary:#2A241E;
+  --text-on-dark:#FFFFFF;
+  --accent:#FFA341;
+  --accent-deep:#B05F44;
+  --border-dark:#2A241E;
+  --ink:#0A0A0A;
+  --ink-hover:#262626;
+  --r-control:11px;
+  --r-card:5.33333px;
+  --r-pill:9999px;
+  --r-hero-media:80px;
+  --base:8px;
+  --gap:16px;
+  --gap-lg:32px;
+  --section-padding:188px;
+  --display-lg:91px;
+  --headline-md:51px;
+  --body-md:17px;
+  --label-md:16px;
+  --font-display:"Integral CF","Oswald",sans-serif;
+  --font-body:"Instrument Sans Variable","Instrument Sans",sans-serif;
+  --font-label:"Instrument Sans",ui-sans-serif,sans-serif;
+  --font-eyebrow:"N27","Archivo Narrow",sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{margin:0;background:var(--background);color:var(--text-primary);font-family:var(--font-body);font-size:var(--body-md);line-height:1.36;-webkit-font-smoothing:antialiased;}
+h1,h2,h3,h4{margin:0;font-family:var(--font-display);font-weight:400;text-transform:uppercase;line-height:1;}
+p{margin:0;}
+a{color:inherit;}
+.eyebrow{font-family:var(--font-eyebrow);font-size:var(--label-md);line-height:1.5;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);margin-bottom:24px;display:block;}
+.band{padding:96px 40px;}
+.wrap{max-width:1280px;margin:0 auto;}
+.italic{font-style:italic;}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;height:96px;width:100%;background:transparent;display:flex;align-items:center;padding:0 40px;border-radius:0;backdrop-filter:blur(4px);}
+.nav .logo{font-family:var(--font-display);font-size:26px;letter-spacing:-.04em;text-transform:uppercase;color:var(--text-primary);}
+.nav ul{list-style:none;display:flex;gap:32px;margin:0 0 0 auto;padding:0;font-family:var(--font-label);font-size:15px;text-transform:uppercase;letter-spacing:.04em;}
+.nav ul a{text-decoration:none;color:var(--text-primary);transition:color .25s ease;}
+.nav ul a:hover{color:var(--accent-deep);}
+.nav .util{margin-left:32px;}
+.btn-sec{display:inline-flex;align-items:center;justify-content:center;height:49px;padding:14.4px 21.6px;border-radius:var(--r-pill);background:transparent;color:var(--ink);border:1px solid var(--ink);font-family:var(--font-label);font-size:15px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:background .2s ease;}
+.btn-sec:hover{background:rgba(0,0,0,.05);}
+.btn-pri{display:inline-flex;align-items:center;justify-content:center;height:49px;padding:14.4px 21.6px;border-radius:var(--r-pill);background:var(--ink);color:#fff;border:1px solid var(--ink);font-family:var(--font-label);font-size:15px;text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:background .2s ease;}
+.btn-pri:hover{background:var(--ink-hover);}
+
+/* hero */
+#hero{padding:40px 40px 0;}
+.hero-inner{max-width:1280px;margin:0 auto;padding:40px 0 120px;}
+.hero-col{max-width:620px;}
+.stars{color:var(--accent);font-size:20px;margin-bottom:20px;display:flex;gap:4px;align-items:center;}
+.stars span{color:var(--text-primary);font-size:15px;font-family:var(--font-label);margin-left:8px;}
+.hero-h{font-size:clamp(48px,9vw,91px);letter-spacing:-2.7px;line-height:1;margin-bottom:28px;}
+.hero-sub{font-size:20px;line-height:1.36;max-width:520px;margin-bottom:36px;color:var(--text-primary);}
+.hero-band{position:relative;height:360px;margin-top:0;border-radius:var(--r-hero-media) var(--r-hero-media) 0 0;overflow:hidden;background:linear-gradient(120deg,#c98a45,#e4b472 40%,#f0e7da);}
+.hero-band::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(248,243,237,0) 0px,rgba(248,243,237,.8) 70%);}
+@media(max-width:768px){.band{padding:72px 24px;}.nav ul{display:none;}#hero{padding:24px;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo">ReadyRx</div>
+  <nav aria-label="Primary">
+    <ul>
+      <li><a href="#">Energy &amp; Recovery</a></li>
+      <li><a href="#">Hormones &amp; Strength</a></li>
+      <li><a href="#">Weight Loss</a></li>
+      <li><a href="#">Labs</a></li>
+    </ul>
+  </nav>
+  <a class="btn-sec util" href="#">Log in</a>
+</header>
+
+<main>
+
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-col">
+      <div class="stars" aria-label="Rated five stars">
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <span>Trusted by 14,000+ members</span>
+      </div>
+      <h1 class="hero-h">Clinical care<br>built <span class="italic">around you</span></h1>
+      <p class="hero-sub">Physician-guided protocols, real lab work, and medication that arrives at your door. Health that actually keeps up with your life.</p>
+      <a class="btn-pri" href="#">Start your intake</a>
+    </div>
+  </div>
+  <div class="hero-band" role="img" aria-label="Golden-hour photographic band fading into the page"></div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--background);}
+.pal-group{margin-bottom:56px;}
+.pal-group h3{font-size:28px;letter-spacing:-.02em;margin-bottom:24px;}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;}
+.swatch{border:1px solid rgba(42,36,30,.12);border-radius:var(--r-card);overflow:hidden;}
+.swatch .chip{height:120px;}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+.swatch .meta{padding:16px;background:#fff;}
+.swatch .meta .nm{font-family:var(--font-label);font-size:15px;font-weight:600;}
+.swatch .meta .val{font-family:var(--font-label);font-size:13px;color:#6b645c;margin:4px 0 8px;}
+.swatch .meta .use{font-family:var(--font-label);font-size:13px;line-height:1.5;color:#6b645c;}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <span class="eyebrow">01 / Palette</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;margin-bottom:48px;">A near-white field, one rationed warmth</h2>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid rgba(42,36,30,.12);"></div><div class="meta"><div class="nm">background</div><div class="val">#FFFFFF</div><div class="use">The true canvas — dominates roughly 63% of the field.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E9E5DF;"></div><div class="meta"><div class="nm">surface-warm</div><div class="val">#E9E5DF</div><div class="use">Cream reserved for testimonial cards and transition washes.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#161513;"></div><div class="meta"><div class="nm">surface-dark</div><div class="val">#161513</div><div class="use">Near-black footer and dark data bands.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#0A0A0A;"></div><div class="meta"><div class="nm">ink</div><div class="val">#0A0A0A</div><div class="use">Hard display ink and solid button fill.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#2A241E;"></div><div class="meta"><div class="nm">text-primary</div><div class="val">#2A241E</div><div class="use">Warm near-black ink on white and cream.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#161513;"></div><div class="meta"><div class="nm" style="color:#161513;">text-on-dark</div><div class="val">#FFFFFF</div><div class="use">Pure white on every dark band.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#FFA341;"></div><div class="meta"><div class="nm">accent</div><div class="val">#FFA341</div><div class="use">Coral/amber for eyebrows, stars, quote glyphs.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#B05F44;"></div><div class="meta"><div class="nm">accent-deep</div><div class="val">#B05F44</div><div class="use">Deeper rust for tracked-caps labels and chips.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background);}
+.spec{border-top:1px solid rgba(42,36,30,.14);padding:36px 0;}
+.spec .live{margin-bottom:16px;}
+.spec .metrics{font-family:var(--font-label);font-size:13px;color:#6b645c;letter-spacing:.02em;}
+.disp-lg{font-family:var(--font-display);font-size:clamp(48px,9vw,91px);letter-spacing:-2.7px;line-height:1;text-transform:uppercase;}
+.head-md{font-family:var(--font-display);font-size:clamp(34px,6vw,51px);line-height:1;text-transform:uppercase;letter-spacing:-.01em;}
+.body-md{font-family:var(--font-body);font-size:20px;line-height:1.36;max-width:620px;}
+.label-md{font-family:var(--font-label);font-size:16px;line-height:1.5;}
+.eyebrow-sp{font-family:var(--font-eyebrow);font-size:16px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-deep);}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <span class="eyebrow">02 / Type Scale</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;margin-bottom:48px;">Condensed display, humane body</h2>
+
+    <div class="spec">
+      <div class="live disp-lg">Health, <span class="italic">on time</span></div>
+      <div class="metrics">display-lg · Integral CF · 91px / 400 / 1.0 / -2.7px</div>
+    </div>
+    <div class="spec">
+      <div class="live head-md">Know your biomarkers</div>
+      <div class="metrics">headline-md · Integral CF · 51px / 400 / 1.0</div>
+    </div>
+    <div class="spec">
+      <div class="live body-md">Every protocol begins with real diagnostics, reviewed by a licensed clinician, then delivered as a plan you can actually follow.</div>
+      <div class="metrics">body-md · Instrument Sans · 20px / 400 / 1.36</div>
+    </div>
+    <div class="spec">
+      <div class="live label-md">From $49/mo · Ships monthly · Cancel anytime</div>
+      <div class="metrics">label-md · ui-sans-serif · 16px / 400 / 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="live eyebrow-sp">03 / Biomarker Intelligence</div>
+      <div class="metrics">accent-eyebrow · N27 · 16px / 400 / 1.5 · tracked caps · accent-deep</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--background);}
+.comp-block{margin-bottom:88px;}
+.comp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:16px;margin-bottom:24px;}
+.comp-head h3{font-family:var(--font-display);font-size:30px;text-transform:uppercase;letter-spacing:-.01em;}
+.comp-head .count{font-family:var(--font-label);font-size:13px;color:var(--accent-deep);letter-spacing:.08em;text-transform:uppercase;}
+.comp-desc{font-family:var(--font-label);font-size:15px;color:#6b645c;max-width:620px;margin-bottom:28px;line-height:1.5;}
+.speccard{font-family:var(--font-label);font-size:12.5px;line-height:1.7;color:#6b645c;background:#F6F4F1;border-left:2px solid var(--accent-deep);padding:16px 20px;margin-top:24px;}
+.speccard code{font-family:ui-monospace,monospace;color:var(--text-primary);}
+
+/* nav demo */
+.nav-demo{height:96px;background:var(--surface-warm);display:flex;align-items:center;padding:0 32px;border-radius:0;}
+.nav-demo .logo{font-family:var(--font-display);font-size:24px;text-transform:uppercase;letter-spacing:-.04em;}
+.nav-demo ul{list-style:none;display:flex;gap:24px;margin:0 0 0 auto;padding:0;font-family:var(--font-label);font-size:14px;text-transform:uppercase;letter-spacing:.04em;}
+.nav-demo ul a{text-decoration:none;color:var(--text-primary);}
+.nav-demo .util{margin-left:24px;}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{padding:18px;text-align:left;border-bottom:1px solid rgba(42,36,30,.12);vertical-align:middle;}
+.matrix th{font-family:var(--font-label);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:#6b645c;font-weight:600;}
+.btn-pri.is-hover{background:var(--ink-hover);}
+.btn-sec.is-hover{background:rgba(0,0,0,.05);}
+.btn-pri.is-dis,.btn-sec.is-dis{opacity:.4;pointer-events:none;}
+.dark-cell{background:var(--surface-dark);}
+.btn-sec-inv{display:inline-flex;align-items:center;justify-content:center;height:49px;padding:14.4px 21.6px;border-radius:var(--r-pill);background:transparent;color:#fff;border:1px solid #fff;font-family:var(--font-label);font-size:15px;text-transform:uppercase;letter-spacing:.04em;}
+.btn-sec-inv.is-hover{background:rgba(255,255,255,.08);}
+
+/* marquee */
+.marquee{overflow:hidden;background:rgba(22,21,19,.88);padding:18px 0;}
+.marquee .track{display:flex;gap:48px;white-space:nowrap;font-family:var(--font-label);font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:#fff;width:max-content;animation:rx-ticker 22s linear infinite;}
+@keyframes rx-ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* product cards */
+.prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.prod{background:transparent;border-radius:0;padding:0;}
+.prod .media{position:relative;aspect-ratio:1/1.1;background:#EDEAE4;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.prod .media iconify-icon{font-size:72px;color:#b7afa4;}
+.prod .badge{position:absolute;top:14px;right:14px;width:62px;height:62px;border-radius:var(--r-pill);background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-size:10px;letter-spacing:.08em;text-align:center;text-transform:uppercase;line-height:1.2;}
+.prod .info{padding:16px 0 0;}
+.prod .info .nm{font-family:var(--font-display);font-size:22px;text-transform:uppercase;}
+.prod .info .pr{font-family:var(--font-label);font-size:15px;color:#6b645c;margin-top:4px;}
+
+/* glass stack */
+.glass-band{position:relative;background:#212120;padding:48px;overflow:hidden;}
+.glass-band::before{content:"";position:absolute;inset:0;background:radial-gradient(80% 75% at 55% 50%,rgba(33,33,32,0) 55%,rgba(33,33,32,.65) 100%);}
+.glass-band::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(33,33,32,.86) 0%,rgba(33,33,32,.5) 40%,rgba(33,33,32,0) 72%);}
+.glass-stack{position:relative;z-index:2;display:flex;flex-direction:column;gap:12px;max-width:760px;}
+.glass-row{background:rgba(197,197,197,.12);backdrop-filter:blur(11.8667px);-webkit-backdrop-filter:blur(11.8667px);border-radius:5.33333px;padding:28px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;}
+.glass-row .gh{font-family:var(--font-display);font-size:22px;text-transform:uppercase;color:#fff;}
+.glass-row .gd{font-family:var(--font-label);font-size:14px;color:rgba(255,255,255,.72);margin-top:4px;}
+.glass-row .chip{flex:none;font-family:var(--font-label);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(255,163,65,.5);border-radius:var(--r-pill);padding:6px 14px;}
+
+/* feature numbered */
+.feat-head{border-top:1px solid rgba(42,36,30,.2);padding-top:36px;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:36px;}
+.feat .num{font-family:var(--font-label);font-size:14px;color:#9a9288;margin-bottom:12px;}
+.feat .ft{font-family:var(--font-display);font-size:28px;text-transform:uppercase;margin-bottom:10px;}
+.feat .fb{font-family:var(--font-label);font-size:15px;color:#6b645c;line-height:1.5;}
+
+/* testimonial rail */
+.rail{display:flex;gap:16px;overflow-x:auto;padding-bottom:16px;}
+.tcard{flex:none;border-radius:0;}
+.tcard.media{width:320px;position:relative;background:#333;overflow:hidden;}
+.tcard.media .frame{aspect-ratio:3/4;background:linear-gradient(140deg,#8a7d6c,#54463a);position:relative;display:flex;align-items:center;justify-content:center;}
+.tcard.media .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(38,38,38,.38),rgba(38,38,38,.38));}
+.tcard.media .play{position:relative;z-index:2;width:56px;height:56px;border-radius:var(--r-pill);background:rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--ink);}
+.tcard.media .cap{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:18px;color:#fff;font-family:var(--font-label);font-size:14px;background:linear-gradient(transparent,rgba(38,38,38,.6));}
+.tcard.quote{width:360px;background:var(--surface-warm);padding:24px;display:flex;flex-direction:column;}
+.tcard.quote .qm{font-family:Georgia,serif;font-size:64px;line-height:.6;color:var(--accent-deep);margin-bottom:12px;}
+.tcard.quote .qt{font-family:var(--font-body);font-size:19px;line-height:1.36;flex:1;}
+.tcard.quote .rate{font-family:var(--font-label);font-size:15px;font-weight:600;margin-top:20px;}
+.tcard.quote .rate span{color:var(--accent-deep);font-weight:400;}
+
+/* logo strip */
+.logostrip{background:var(--surface-warm);padding:40px;display:flex;flex-wrap:wrap;gap:40px;align-items:center;justify-content:center;}
+.logostrip .lw{font-family:var(--font-display);font-size:22px;text-transform:uppercase;color:#8a8278;letter-spacing:-.02em;}
+
+/* footer demo */
+.foot-demo{position:relative;background:var(--surface-dark);color:#fff;padding:64px 48px 90px;overflow:hidden;box-shadow:rgba(0,0,0,.14) 0 -6px 28px 0;}
+.foot-top{display:flex;justify-content:flex-end;border-top:1px solid rgba(255,255,255,.14);padding-top:16px;margin-bottom:40px;}
+.foot-top a{color:var(--accent);text-decoration:none;font-family:var(--font-label);font-size:13px;letter-spacing:.08em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;}
+.foot-cols{position:relative;z-index:2;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:32px;}
+.foot-cols .logo{font-family:var(--font-display);font-size:30px;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:16px;}
+.foot-cols .tag{font-family:var(--font-label);font-size:14px;color:rgba(255,255,255,.7);max-width:260px;line-height:1.5;}
+.foot-cols .cph{font-family:var(--font-label);font-size:12px;color:rgba(255,255,255,.5);margin-top:24px;}
+.foot-cols h4{font-family:var(--font-eyebrow);font-size:13px;letter-spacing:.14em;color:var(--accent);text-transform:uppercase;margin-bottom:16px;}
+.foot-cols ul{list-style:none;margin:0;padding:0;}
+.foot-cols ul li{margin-bottom:10px;}
+.foot-cols ul a{color:#fff;text-decoration:none;font-family:var(--font-label);font-size:15px;}
+.foot-cols ul a:hover{color:var(--accent);}
+.ghost{position:absolute;left:0;bottom:-40px;z-index:1;font-family:var(--font-display);font-size:26vw;line-height:.8;text-transform:uppercase;color:rgba(255,255,255,.05);white-space:nowrap;letter-spacing:-.04em;}
+.badges{display:flex;gap:12px;margin-top:20px;}
+.badges span{font-family:var(--font-label);font-size:11px;border:1px solid rgba(255,255,255,.25);border-radius:var(--r-pill);padding:6px 12px;color:rgba(255,255,255,.75);}
+
+@media(max-width:1024px){.prod-grid,.feat-grid,.foot-cols{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.prod-grid,.feat-grid{grid-template-columns:1fr;}.nav-demo ul{display:none;}}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <span class="eyebrow">04 / Components</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;margin-bottom:56px;">The full inventory</h2>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · 96px · 0px corners</span></div>
+      <p class="comp-desc">Transparent, perfectly square, edge-to-edge bar. Wordmark left, nav items centered-right, an outline utility pill at the far right — never the primary CTA.</p>
+      <div class="nav-demo">
+        <div class="logo">ReadyRx</div>
+        <ul>
+          <li><a href="#">Energy &amp; Recovery</a></li>
+          <li><a href="#">Hormones &amp; Strength</a></li>
+          <li><a href="#">Weight Loss</a></li>
+          <li><a href="#">Labs</a></li>
+        </ul>
+        <a class="btn-sec util" href="#">Log in</a>
+      </div>
+      <div class="speccard"><code>--navbar</code> · height <code>96</code> · radius <code>0</code> · bg <code>transparent</code> · nav type <code>label-md</code> · util <code>button-secondary</code></div>
+    </div>
+
+    <!-- BUTTON PRIMARY + SECONDARY MATRIX -->
+    <div class="comp-block" data-tier-a-component="button-primary">
+      <div class="comp-head"><h3>Button — primary</h3><span class="count">solid pill · 49px</span></div>
+      <p class="comp-desc">The single most emphasized control on the first screen — solid ink fill, full pill, white label. Hover darkens to #262626.</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Primary</strong></td>
+            <td><a class="btn-pri" href="#">Start intake</a></td>
+            <td><a class="btn-pri is-hover" href="#">Start intake</a></td>
+            <td><span class="btn-pri is-dis">Start intake</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="speccard"><code>--btn-primary</code> · fill <code>ink #0A0A0A</code> · text <code>#FFFFFF</code> · radius <code>pill 9999</code> · height <code>49</code> · padding <code>14.4px 21.6px</code> · border <code>1px solid #0A0A0A</code> · hover <code>#262626</code> · motion <code>all .2s ease</code></div>
+    </div>
+
+    <div class="comp-block" data-tier-a-component="button-secondary">
+      <div class="comp-head"><h3>Button — secondary / outline</h3><span class="count">transparent pill · inverts on dark</span></div>
+      <p class="comp-desc">Lower-emphasis outline pill for navbar utility and dark-band CTAs. Same geometry as primary, transparent fill, hover to a 5% ink tint. Inverts to white-on-transparent on dark.</p>
+      <table class="matrix">
+        <thead><tr><th>Context</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>On light</strong></td>
+            <td><a class="btn-sec" href="#">Log in</a></td>
+            <td><a class="btn-sec is-hover" href="#">Log in</a></td>
+            <td><span class="btn-sec is-dis">Log in</span></td>
+          </tr>
+          <tr>
+            <td class="dark-cell" style="color:#fff;"><strong>On dark</strong></td>
+            <td class="dark-cell"><a class="btn-sec-inv" href="#">Join waitlist</a></td>
+            <td class="dark-cell"><a class="btn-sec-inv is-hover" href="#">Join waitlist</a></td>
+            <td class="dark-cell"><span class="btn-sec-inv is-dis" style="opacity:.4;">Join waitlist</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="speccard"><code>--btn-secondary</code> · fill <code>transparent</code> · text <code>#0A0A0A</code> · radius <code>pill 9999</code> · height <code>49</code> · border <code>1px solid #0A0A0A</code> · hover <code>rgba(0,0,0,.05)</code></div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="comp-block" data-tier-a-component="marquee-ticker">
+      <div class="comp-head"><h3>Marquee ticker</h3><span class="count">×1 · continuous linear</span></div>
+      <p class="comp-desc">Full-bleed translucent dark band under the hero, looping all-caps trust labels at a steady linear pace.</p>
+      <div class="marquee">
+        <div class="track" aria-hidden="true">
+          <span>FDA-Regulated Pharmacies</span><span>·</span><span>Licensed Clinicians</span><span>·</span><span>Real Lab Work</span><span>·</span><span>HIPAA Secure</span><span>·</span><span>Free Shipping</span><span>·</span>
+          <span>FDA-Regulated Pharmacies</span><span>·</span><span>Licensed Clinicians</span><span>·</span><span>Real Lab Work</span><span>·</span><span>HIPAA Secure</span><span>·</span><span>Free Shipping</span><span>·</span>
+        </div>
+      </div>
+      <div class="speccard"><code>--marquee</code> · fill <code>rgba(22,21,19,.88)</code> · type <code>label-md caps</code> · motion <code>linear infinite</code></div>
+    </div>
+
+    <!-- PRODUCT CARD -->
+    <div class="comp-block" data-tier-a-component="product-card">
+      <div class="comp-head"><h3>Product card</h3><span class="count">×4 · bestsellers grid</span></div>
+      <p class="comp-desc">4-up uniform tiles, no chrome, no shadow, 0px corners. Top media bleed with a rotating RX / IN STOCK badge, bottom name + "From $X/mo".</p>
+      <div class="prod-grid">
+        <div class="prod"><div class="media"><iconify-icon icon="lucide:pill" aria-hidden="true"></iconify-icon><div class="badge">RX<br>IN STOCK</div></div><div class="info"><div class="nm">Testosterone</div><div class="pr">From $89/mo</div></div></div>
+        <div class="prod"><div class="media"><iconify-icon icon="lucide:syringe" aria-hidden="true"></iconify-icon><div class="badge">RX<br>IN STOCK</div></div><div class="info"><div class="nm">GLP-1</div><div class="pr">From $199/mo</div></div></div>
+        <div class="prod"><div class="media"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon><div class="badge">RX<br>IN STOCK</div></div><div class="info"><div class="nm">NAD+</div><div class="pr">From $129/mo</div></div></div>
+        <div class="prod"><div class="media"><iconify-icon icon="lucide:moon" aria-hidden="true"></iconify-icon><div class="badge">RX<br>IN STOCK</div></div><div class="info"><div class="nm">Sleep</div><div class="pr">From $49/mo</div></div></div>
+      </div>
+      <div class="speccard"><code>--card-media-bleed</code> · bg <code>transparent</code> · radius <code>0</code> · padding <code>0</code> · no shadow · name <code>headline</code> · price <code>body-md</code> · badge <code>pill 9999</code></div>
+    </div>
+
+    <!-- GLASS STAT CARDS -->
+    <div class="comp-block" data-tier-a-component="glass-stat-card">
+      <div class="comp-head"><h3>Glass stat-card stack</h3><span class="count">×7 · biomarker band</span></div>
+      <p class="comp-desc">Full-width glass rows layered over a dark microscope-texture photograph with a radial vignette and a left-to-right legibility fade. Glass lives only on dark bands.</p>
+      <div class="glass-band">
+        <div class="glass-stack">
+          <div class="glass-row"><div><div class="gh">Testosterone, Total</div><div class="gd">Free and bound hormone driving energy and recovery.</div></div><span class="chip">Hormonal</span></div>
+          <div class="glass-row"><div><div class="gh">TSH</div><div class="gd">Thyroid-stimulating hormone — metabolic set point.</div></div><span class="chip">Thyroid</span></div>
+          <div class="glass-row"><div><div class="gh">HbA1c</div><div class="gd">Three-month average of blood glucose control.</div></div><span class="chip">Metabolic</span></div>
+          <div class="glass-row"><div><div class="gh">Vitamin D</div><div class="gd">Immune function, bone density and mood regulation.</div></div><span class="chip">Nutrient</span></div>
+          <div class="glass-row"><div><div class="gh">Cortisol, AM</div><div class="gd">Morning stress-axis output and recovery capacity.</div></div><span class="chip">Hormonal</span></div>
+          <div class="glass-row"><div><div class="gh">Lipid Panel</div><div class="gd">Cholesterol fractions for cardiovascular risk.</div></div><span class="chip">Cardiac</span></div>
+          <div class="glass-row"><div><div class="gh">Ferritin</div><div class="gd">Iron stores behind energy and endurance.</div></div><span class="chip">Nutrient</span></div>
+        </div>
+      </div>
+      <div class="speccard"><code>--card-glass-row</code> · fill <code>rgba(197,197,197,.12)</code> · backdrop <code>blur(11.8667px)</code> · radius <code>5.33px</code> · chip text <code>accent #FFA341</code> · vignette <code>radial-gradient</code></div>
+    </div>
+
+    <!-- FEATURE NUMBERED -->
+    <div class="comp-block" data-tier-a-component="feature-numbered-column">
+      <div class="comp-head"><h3>Feature / numbered columns</h3><span class="count">×4 · "Why" section</span></div>
+      <p class="comp-desc">Equal columns on pure white, divided from the headline above by a thin hairline rule. Muted numeral, bold headline word, one line of body.</p>
+      <div class="feat-head">
+        <h3 style="font-family:var(--font-display);font-size:34px;text-transform:uppercase;letter-spacing:-.01em;">Why ReadyRx</h3>
+        <div class="feat-grid">
+          <div class="feat"><div class="num">01</div><div class="ft">Diagnose</div><div class="fb">Real lab work before any plan is written.</div></div>
+          <div class="feat"><div class="num">02</div><div class="ft">Prescribe</div><div class="fb">Licensed clinicians build your protocol.</div></div>
+          <div class="feat"><div class="num">03</div><div class="ft">Deliver</div><div class="fb">Medication ships to your door monthly.</div></div>
+          <div class="feat"><div class="num">04</div><div class="ft">Adjust</div><div class="fb">Retest and refine as your body responds.</div></div>
+        </div>
+      </div>
+      <div class="speccard"><code>--feature-column</code> · bg <code>#FFFFFF</code> · rule <code>hairline border-dark</code> · numeral <code>label muted</code> · head <code>headline</code> · body <code>label-md</code></div>
+    </div>
+
+    <!-- TESTIMONIAL MEDIA -->
+    <div class="comp-block" data-tier-a-component="testimonial-media-card">
+      <div class="comp-head"><h3>Testimonial — media card</h3><span class="count">scrolling rail</span></div>
+      <p class="comp-desc">Edge-to-edge media, 0px radius, play-button overlay, a flat dark scrim for lower-third caption legibility. A static darkened frame stands in for live video.</p>
+      <div class="rail">
+        <div class="tcard media"><div class="frame"><div class="play"><iconify-icon icon="lucide:play" aria-label="Play video testimonial"></iconify-icon></div></div><div class="cap">"Down 24 lbs and off two medications." — Marcus R.</div></div>
+        <div class="tcard media"><div class="frame" style="background:linear-gradient(140deg,#9a8a74,#453a2e);"><div class="play"><iconify-icon icon="lucide:play" aria-label="Play video testimonial"></iconify-icon></div></div><div class="cap">"My energy is back after years." — Dana K.</div></div>
+      </div>
+      <div class="speccard"><code>--card-media-bleed</code> · radius <code>0</code> · scrim <code>linear-gradient rgba(38,38,38,.38)</code> · play <code>pill 9999</code> · caption <code>label-md on-dark</code></div>
+    </div>
+
+    <!-- TESTIMONIAL QUOTE -->
+    <div class="comp-block" data-tier-a-component="testimonial-quote-card">
+      <div class="comp-head"><h3>Testimonial — quote card</h3><span class="count">scrolling rail</span></div>
+      <p class="comp-desc">Cream fill, 0px radius, 24px padding. Coral quote glyph, body quote, bold rating line with a coral parenthetical review count.</p>
+      <div class="rail">
+        <div class="tcard quote"><div class="qm">&ldquo;</div><div class="qt">The intake took ten minutes, the labs were real, and the plan actually worked. First time a health brand felt clinical and human at once.</div><div class="rate">Rated 4.9 <span>(2,418 reviews)</span></div></div>
+        <div class="tcard quote" style="background:#F0ECE6;"><div class="qm">&ldquo;</div><div class="qt">No gimmicks, no upsells. Just my numbers, a clinician, and medication that showed up on time every month.</div><div class="rate">Rated 4.8 <span>(1,066 reviews)</span></div></div>
+      </div>
+      <div class="speccard"><code>--card-testimonial</code> · fill <code>surface-warm #E9E5DF</code> · radius <code>0</code> · padding <code>24</code> · glyph &amp; count <code>accent-deep</code></div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip">
+      <div class="comp-head"><h3>Logo strip</h3><span class="count">×1 · grayscale press row</span></div>
+      <p class="comp-desc">A single centered row of grayscale wordmarks on the cream background, directly beneath the testimonial rail.</p>
+      <div class="logostrip">
+        <span class="lw">Forbes</span><span class="lw">Wired</span><span class="lw">Vogue</span><span class="lw">GQ</span><span class="lw">Men's Health</span><span class="lw">TechCrunch</span>
+      </div>
+      <div class="speccard"><code>--logo-strip</code> · bg <code>surface-warm</code> · marks <code>grayscale</code> · layout <code>centered row</code></div>
+    </div>
+
+    <!-- FOOTER (component) -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <div class="comp-head"><h3>Footer</h3><span class="count">×1 · near-black closing band</span></div>
+      <p class="comp-desc">Brand column, three coral-headed link columns, a lifting top shadow, and an oversized ghost wordmark cropped off the bottom edge.</p>
+      <div class="foot-demo">
+        <div class="foot-top"><a href="#top">Go to top <iconify-icon icon="lucide:arrow-up" aria-hidden="true"></iconify-icon></a></div>
+        <div class="foot-cols">
+          <div>
+            <div class="logo">ReadyRx</div>
+            <p class="tag">Clinical care, built around you. Diagnose, prescribe, deliver, adjust.</p>
+            <div class="badges"><span>LegitScript Certified</span><span>HIPAA</span></div>
+            <p class="cph">© 2024 ReadyRx. All rights reserved.</p>
+          </div>
+          <div><h4>Products</h4><ul><li><a href="#">Energy &amp; Recovery</a></li><li><a href="#">Hormones &amp; Strength</a></li><li><a href="#">Weight Loss</a></li><li><a href="#">Labs</a></li><li><a href="#">Supplements</a></li><li><a href="#">Bundles</a></li></ul></div>
+          <div><h4>Get in Touch</h4><ul><li><a href="#">Support</a></li><li><a href="#">Book a call</a></li><li><a href="#">FAQ</a></li><li><a href="#">Pharmacy</a></li><li><a href="#">Returns</a></li><li><a href="#">Status</a></li></ul></div>
+          <div><h4>Company</h4><ul><li><a href="#">About</a></li><li><a href="#">Clinicians</a></li><li><a href="#">Careers</a></li><li><a href="#">Press</a></li><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li></ul></div>
+        </div>
+        <div class="ghost" aria-hidden="true">ReadyRx</div>
+      </div>
+      <div class="speccard"><code>--footer</code> · bg <code>surface-dark #161513</code> · headings <code>accent-eyebrow caps</code> · shadow <code>rgba(0,0,0,.14) 0 -6px 28px</code> · ghost <code>display ghost-opacity</code></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--surface-warm);}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px;margin-top:40px;}
+.depth-card{background:#fff;padding:28px;}
+.depth-card .lbl{font-family:var(--font-label);font-size:13px;color:#6b645c;margin-top:16px;}
+.r0{border-radius:0;}
+.r-card{border-radius:var(--r-card);}
+.r-control{border-radius:var(--r-control);}
+.r-pill{border-radius:var(--r-pill);}
+.r-hero{border-radius:var(--r-hero-media);}
+.depth-swatch{height:88px;background:linear-gradient(120deg,#EDEAE4,#d9d3c9);}
+.shadow-foot{box-shadow:rgba(0,0,0,.14) 0 -6px 28px 0;}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <span class="eyebrow">05 / Surface &amp; Depth</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;">Bimodal radii, one soft lift</h2>
+    <div class="depth-grid">
+      <div class="depth-card r0"><div class="depth-swatch r0"></div><div class="lbl">rounded.media — <strong>0px</strong> · product &amp; media cards</div></div>
+      <div class="depth-card"><div class="depth-swatch r-card"></div><div class="lbl">rounded.card — <strong>5.33px</strong> · glass stat rows</div></div>
+      <div class="depth-card"><div class="depth-swatch r-control"></div><div class="lbl">rounded.control — <strong>11px</strong></div></div>
+      <div class="depth-card"><div class="depth-swatch r-pill" style="height:49px;"></div><div class="lbl">rounded.pill — <strong>9999px</strong> · every button &amp; badge</div></div>
+      <div class="depth-card"><div class="depth-swatch r-hero"></div><div class="lbl">rounded.hero-media — <strong>80px</strong> · hero band top corners</div></div>
+      <div class="depth-card shadow-foot" style="background:var(--surface-dark);"><div class="depth-swatch" style="background:#222;border-radius:0;"></div><div class="lbl" style="color:rgba(255,255,255,.7);">footer shadow — <strong>rgba(0,0,0,.14) 0 -6px 28px</strong></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--background);}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:40px;}
+.motion-card{border:1px solid rgba(42,36,30,.14);padding:28px;border-radius:var(--r-card);}
+.motion-card .demo{height:80px;display:flex;align-items:center;}
+.dot{width:44px;height:44px;border-radius:var(--r-pill);background:var(--ink);}
+.m1 .dot{transition:transform .2s ease;}
+.m2 .dot{transition:transform .32s cubic-bezier(.2,.7,.2,1);}
+.m3 .dot{transition:opacity .24s ease-out;background:var(--accent-deep);}
+.motion-card.play .m1,.motion-card.play .dot{}
+.motion-card.go .m1 .dot{transform:translateX(160px);}
+.motion-card.go .m2 .dot{transform:translateX(160px);}
+.motion-card.go .m3 .dot{opacity:.15;}
+.motion-card .lbl{font-family:var(--font-label);font-size:13px;color:#6b645c;margin-top:12px;}
+.motion-card .hint{font-family:var(--font-label);font-size:12px;color:var(--accent-deep);margin-top:8px;text-transform:uppercase;letter-spacing:.08em;cursor:pointer;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <span class="eyebrow">06 / Motion</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;">Quick, utilitarian, warm</h2>
+    <div class="motion-grid">
+      <div class="motion-card" data-motion><div class="demo m1"><div class="dot"></div></div><div class="lbl">Hover — <strong>all 0.2s ease</strong></div><div class="hint" role="button" tabindex="0">Replay</div></div>
+      <div class="motion-card" data-motion><div class="demo m2"><div class="dot"></div></div><div class="lbl">Reveal — <strong>transform 0.32s cubic-bezier(.2,.7,.2,1)</strong></div><div class="hint" role="button" tabindex="0">Replay</div></div>
+      <div class="motion-card" data-motion><div class="demo m3"><div class="dot"></div></div><div class="lbl">Fade — <strong>opacity 0.24s ease-out</strong></div><div class="hint" role="button" tabindex="0">Replay</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background);padding:0;}
+.mock{border:1px solid rgba(42,36,30,.12);margin:0;overflow:hidden;}
+.mock-nav{height:96px;display:flex;align-items:center;padding:0 40px;background:transparent;}
+.mock-nav .logo{font-family:var(--font-display);font-size:24px;text-transform:uppercase;letter-spacing:-.04em;}
+.mock-nav ul{list-style:none;display:flex;gap:24px;margin:0 0 0 auto;padding:0;font-family:var(--font-label);font-size:14px;text-transform:uppercase;}
+.mock-nav ul a{text-decoration:none;color:var(--text-primary);}
+.mock-nav .btn-sec{margin-left:24px;}
+.mock-hero{padding:60px 40px 80px;}
+.mock-hero .eyebrow{margin-bottom:16px;}
+.mock-hero h2{font-size:clamp(42px,7vw,72px);letter-spacing:-.04em;line-height:1;max-width:620px;margin-bottom:24px;}
+.mock-hero p{font-size:19px;max-width:480px;color:#6b645c;margin-bottom:28px;}
+.mock-cards{background:var(--surface-warm);padding:60px 40px;display:grid;grid-template-columns:repeat(3,1fr);gap:32px;}
+.mock-cards .c{background:#fff;padding:0;}
+.mock-cards .c .m{aspect-ratio:1/1;background:#EDEAE4;display:flex;align-items:center;justify-content:center;}
+.mock-cards .c .m iconify-icon{font-size:56px;color:#b7afa4;}
+.mock-cards .c .i{padding:14px 0 0;}
+.mock-cards .c .nm{font-family:var(--font-display);font-size:20px;text-transform:uppercase;}
+.mock-cards .c .pr{font-family:var(--font-label);font-size:14px;color:#6b645c;margin-top:4px;}
+.mock-cta{background:var(--surface-dark);color:#fff;padding:72px 40px;text-align:center;}
+.mock-cta h2{font-size:clamp(36px,6vw,51px);letter-spacing:-.02em;margin-bottom:28px;}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-nav ul{display:none;}}
+</style>
+<section id="composition" class="band" style="padding-top:96px;padding-bottom:96px;">
+  <div class="wrap">
+    <span class="eyebrow">07 / In Composition</span>
+    <h2 style="font-size:var(--headline-md);letter-spacing:-.02em;margin-bottom:40px;">The system, assembled</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="logo">ReadyRx</div>
+        <ul><li><a href="#">Energy</a></li><li><a href="#">Hormones</a></li><li><a href="#">Labs</a></li></ul>
+        <a class="btn-sec" href="#">Log in</a>
+      </div>
+      <div class="mock-hero">
+        <span class="eyebrow">01 / Membership</span>
+        <h2>Your labs, <span class="italic">your plan</span></h2>
+        <p>One clinical membership covering diagnostics, prescriptions, and delivery.</p>
+        <a class="btn-pri" href="#">Start your intake</a>
+      </div>
+      <div class="mock-cards">
+        <div class="c"><div class="m"><iconify-icon icon="lucide:pill" aria-hidden="true"></iconify-icon></div><div class="i"><div class="nm">Testosterone</div><div class="pr">From $89/mo</div></div></div>
+        <div class="c"><div class="m"><iconify-icon icon="lucide:syringe" aria-hidden="true"></iconify-icon></div><div class="i"><div class="nm">GLP-1</div><div class="pr">From $199/mo</div></div></div>
+        <div class="c"><div class="m"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon></div><div class="i"><div class="nm">NAD+</div><div class="pr">From $129/mo</div></div></div>
+      </div>
+      <div class="mock-cta">
+        <h2>Health that keeps up</h2>
+        <a class="btn-sec-inv" href="#">Join the waitlist</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{position:relative;background:var(--surface-dark);color:#fff;padding:72px 40px 110px;overflow:hidden;box-shadow:rgba(0,0,0,.14) 0 -6px 28px 0;}
+#footer .fwrap{position:relative;z-index:2;max-width:1280px;margin:0 auto;}
+#footer .logo{font-family:var(--font-display);font-size:32px;text-transform:uppercase;letter-spacing:-.03em;margin-bottom:16px;}
+#footer .src{font-family:var(--font-label);font-size:14px;color:rgba(255,255,255,.7);}
+#footer .src a{color:var(--accent);}
+#footer .by{font-family:var(--font-label);font-size:13px;color:rgba(255,255,255,.5);margin-top:24px;}
+#footer .ghost{position:absolute;left:0;bottom:-30px;z-index:1;font-family:var(--font-display);font-size:26vw;line-height:.8;text-transform:uppercase;color:rgba(255,255,255,.05);white-space:nowrap;letter-spacing:-.04em;}
+</style>
+<footer id="footer">
+  <div class="fwrap">
+    <div class="logo">ReadyRx</div>
+    <p class="src">Condensed Clinical Warmth · <a href="https://readyrx.com/">readyrx.com</a></p>
+    <p class="by">Design system captured and rendered by r3xdec.design</p>
+  </div>
+  <div class="ghost" aria-hidden="true">ReadyRx</div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('[data-motion]').forEach(function(card){
+  function go(){card.classList.remove('go');void card.offsetWidth;card.classList.add('go');}
+  card.addEventListener('click',go);
+  var hint=card.querySelector('.hint');
+  if(hint){hint.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});}
+});
+</script>
+</body>
+</html>

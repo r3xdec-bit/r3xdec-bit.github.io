@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strange Attractor Fluid Swarm — r3xdec 3D</title>
+  <script type="importmap">
+  { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #04050a; font-family: ui-monospace, monospace; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+    .dock { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .dock button { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.18); background: rgba(12,14,22,0.8); color: #cbd5e1; font-family: inherit; font-size: 11px; cursor: pointer; }
+    .dock button.active { background: rgba(16,185,129,0.24); border-color: #34d399; color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="dock">
+    <button class="active" data-a="lorenz">LORENZ</button>
+    <button data-a="thomas">THOMAS</button>
+  </div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x04050a, 1);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(48, window.innerWidth / window.innerHeight, 0.1, 140);
+    camera.position.set(0, 2, 11);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    const N = 4200;
+    const pos = new Float32Array(N * 3);
+    const col = new Float32Array(N * 3);
+    const pts = [];
+    let mode = 'lorenz';
+
+    function seed() {
+      pts.length = 0;
+      for (let i = 0; i < N; i++) {
+        const p = mode === 'lorenz'
+          ? { x: (Math.random()-0.5)*20, y: (Math.random()-0.5)*20, z: 15 + (Math.random()-0.5)*15 }
+          : { x: (Math.random()-0.5)*4, y: (Math.random()-0.5)*4, z: (Math.random()-0.5)*4 };
+        pts.push(p);
+        const c = new THREE.Color().setHSL(0.45 + (i / N) * 0.35, 0.9, 0.62);
+        col[i*3] = c.r; col[i*3+1] = c.g; col[i*3+2] = c.b;
+      }
+    }
+    seed();
+
+    const geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    geo.setAttribute('color', new THREE.BufferAttribute(col, 3));
+    const swarm = new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.085, vertexColors: true, transparent: true, opacity: 0.88, blending: THREE.AdditiveBlending }));
+    scene.add(swarm);
+
+    document.querySelectorAll('.dock button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.dock button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active'); mode = b.dataset.a; seed();
+    }));
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate(ms) {
+      if (mode === 'lorenz') {
+        const dt = 0.0055, s = 10, r = 28, b = 8 / 3;
+        for (let i = 0; i < N; i++) {
+          const p = pts[i];
+          const dx = s * (p.y - p.x), dy = p.x * (r - p.z) - p.y, dz = p.x * p.y - b * p.z;
+          p.x += dx * dt; p.y += dy * dt; p.z += dz * dt;
+          if (!isFinite(p.x) || Math.abs(p.x) > 80) { p.x = 1; p.y = 1; p.z = 20; }
+          pos[i*3] = p.x * 0.18; pos[i*3+1] = (p.z - 25) * 0.18; pos[i*3+2] = p.y * 0.18;
+        }
+      } else {
+        const dt = 0.055, b = 0.19;
+        for (let i = 0; i < N; i++) {
+          const p = pts[i];
+          const dx = Math.sin(p.y) - b * p.x, dy = Math.sin(p.z) - b * p.y, dz = Math.sin(p.x) - b * p.z;
+          p.x += dx * dt; p.y += dy * dt; p.z += dz * dt;
+          pos[i*3] = p.x * 1.45; pos[i*3+1] = p.y * 1.45; pos[i*3+2] = p.z * 1.45;
+        }
+      }
+      geo.attributes.position.needsUpdate = true;
+      swarm.rotation.y = ms * 0.00025;
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

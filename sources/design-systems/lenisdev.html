@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blackletter Ember — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@400;700;900&family=Oswald:wght@400;500;700&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:#181818;
+  --ember-wash:#301818;
+  --text-primary:#EFEFEF;
+  --text-secondary:#8C8C8C;
+  --text-ink-on-accent:#000000;
+  --accent:#FF98A2;
+  --base:16px;
+  --gap:32px;
+  --section-padding:427px;
+  --r-control:16px;
+  --r-card:11px;
+  --r-pill:9999px;
+  --ease:cubic-bezier(0.19,1,0.22,1);
+  --dur:0.6s;
+  --font-display:"Roboto",sans-serif;
+  --font-headline:"Oswald","Anton",sans-serif;
+  --font-body:"Anton",sans-serif;
+  --font-label:"Oswald",sans-serif;
+  --font-blackletter:"UnifrakturCook","Anton",serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--background);color:var(--text-primary);
+  font-family:var(--font-body);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;}
+h1,h2,h3,p{margin:0;}
+:focus-visible{outline:2px solid var(--text-primary);outline-offset:3px;}
+.starfield{
+  position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(239,239,239,.5) 50%, transparent),
+    radial-gradient(1px 1px at 60% 70%, rgba(239,239,239,.35) 50%, transparent),
+    radial-gradient(1px 1px at 80% 20%, rgba(239,239,239,.4) 50%, transparent),
+    radial-gradient(1px 1px at 35% 85%, rgba(239,239,239,.3) 50%, transparent),
+    radial-gradient(1px 1px at 90% 55%, rgba(239,239,239,.4) 50%, transparent),
+    radial-gradient(1px 1px at 12% 62%, rgba(239,239,239,.3) 50%, transparent),
+    radial-gradient(1px 1px at 48% 12%, rgba(239,239,239,.35) 50%, transparent);
+  background-size:600px 600px;
+}
+.inset{padding-left:6vw;padding-right:6vw;}
+/* HERO */
+#hero{
+  position:relative;min-height:100vh;display:flex;flex-direction:column;
+  justify-content:flex-start;overflow:hidden;background:var(--background);
+}
+.hero-glow{
+  position:absolute;left:0;right:0;bottom:0;height:33%;z-index:1;pointer-events:none;
+  background:
+    radial-gradient(60% 100% at 50% 100%, rgba(255,152,162,.22), transparent 70%),
+    radial-gradient(30% 90% at 35% 100%, rgba(72,48,48,.7), transparent 75%),
+    radial-gradient(30% 90% at 68% 100%, rgba(48,24,24,.7), transparent 75%);
+}
+.hero-inner{position:relative;z-index:2;padding-top:8vh;}
+.hero-wordmark{
+  font-family:var(--font-blackletter);
+  color:var(--accent);
+  font-size:clamp(80px,22vw,300px);
+  line-height:.9;font-weight:700;
+  letter-spacing:-.01em;margin:0;
+  text-shadow:0 0 40px rgba(255,152,162,.15);
+}
+.hero-sub{
+  font-family:var(--font-headline);font-weight:700;
+  font-size:clamp(28px,6vw,69px);line-height:.9;
+  color:var(--text-primary);margin-top:.4em;max-width:14ch;text-transform:uppercase;
+}
+.hero-sub em{color:var(--accent);font-style:normal;}
+.hero-spacer{flex:1;min-height:120px;}
+/* bottom utility band */
+.util-band{
+  position:relative;z-index:3;height:66px;display:flex;align-items:center;
+  gap:24px;background:transparent;margin-bottom:24px;flex-wrap:wrap;
+}
+.util-scroll{font-family:var(--font-label);text-transform:uppercase;
+  letter-spacing:.15em;font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;}
+.util-credit{font-family:var(--font-label);font-size:13px;color:var(--text-secondary);letter-spacing:.05em;}
+.util-actions{margin-left:auto;display:flex;gap:12px;}
+.pill-coral{
+  height:66px;border-radius:var(--r-control);padding:0 22px;border:none;
+  background:var(--accent);color:var(--text-ink-on-accent);
+  font-family:var(--font-headline);font-weight:700;text-transform:uppercase;
+  font-size:15px;letter-spacing:.05em;display:inline-flex;align-items:center;gap:10px;
+  cursor:pointer;transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.pill-coral:hover{transform:translateY(-2px);background:#ffb0b8;}
+.pill-coral .ico{
+  width:34px;height:34px;border-radius:12px;background:var(--text-ink-on-accent);
+  color:var(--accent);display:grid;place-items:center;font-size:18px;
+}
+.pill-dark{
+  height:66px;border-radius:var(--r-control);padding:0 22px;
+  background:var(--background);color:var(--text-primary);
+  border:1px solid var(--accent);font-family:var(--font-headline);font-weight:700;
+  text-transform:uppercase;font-size:15px;letter-spacing:.05em;
+  display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+  transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease);
+}
+.pill-dark:hover{transform:translateY(-2px);background:var(--surface);}
+@media(max-width:640px){
+  .util-band{height:auto;padding:16px 0;}
+  .util-credit{display:none;}
+}
+</style>
+</head>
+<body>
+
+<main>
+<section id="hero" aria-label="Blackletter Ember hero">
+  <div class="starfield" aria-hidden="true"></div>
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-inner inset" data-tier-a-component="hero-wordmark">
+    <h1 class="hero-wordmark">Ember</h1>
+    <p class="hero-sub">Type on the <em>void</em>. Nothing else.</p>
+  </div>
+  <div class="hero-spacer" aria-hidden="true"></div>
+  <div class="util-band inset" data-tier-a-component="nav-utility-band">
+    <span class="util-scroll"><iconify-icon icon="lucide:mouse" aria-hidden="true"></iconify-icon>Scroll to explore</span>
+    <span class="util-credit">A design system captured by r3xdec.design</span>
+    <div class="util-actions">
+      <button class="pill-coral" type="button" data-tier-a-component="button-hero-cta">
+        <span class="ico" aria-hidden="true"><iconify-icon icon="lucide:arrow-down"></iconify-icon></span>
+        Get started
+      </button>
+      <button class="pill-dark" type="button">Documentation</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{padding:120px 0;position:relative;background:var(--background);}
+.sec-head{font-family:var(--font-headline);text-transform:uppercase;font-weight:700;
+  font-size:clamp(36px,6vw,69px);line-height:.9;margin-bottom:.4em;}
+.sec-head .rule{display:inline-block;width:3px;height:.85em;background:var(--accent);
+  margin-right:.35em;vertical-align:-.05em;}
+.sec-kicker{font-family:var(--font-display);font-weight:900;font-size:19px;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--accent);margin-bottom:16px;}
+.sec-lede{font-family:var(--font-label);font-size:18px;color:var(--text-secondary);
+  max-width:52ch;line-height:1.4;margin-bottom:56px;}
+.pal-group{margin-bottom:48px;}
+.pal-group h3{font-family:var(--font-label);text-transform:uppercase;letter-spacing:.1em;
+  font-size:14px;color:var(--text-secondary);margin-bottom:20px;}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.swatch{border:1px solid #2a2a2a;border-radius:var(--r-card);overflow:hidden;background:var(--surface);}
+.swatch .chip{height:110px;display:block;}
+.swatch .meta{padding:14px 16px;}
+.swatch .nm{font-family:var(--font-label);font-size:15px;font-weight:700;letter-spacing:.03em;}
+.swatch .val{font-family:var(--font-display);font-size:13px;color:var(--text-secondary);margin-top:2px;}
+.swatch .use{font-family:var(--font-label);font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.35;}
+.checker{background-image:
+  linear-gradient(45deg,#333 25%,transparent 25%),
+  linear-gradient(-45deg,#333 25%,transparent 25%),
+  linear-gradient(45deg,transparent 75%,#333 75%),
+  linear-gradient(-45deg,transparent 75%,#333 75%);
+  background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;}
+</style>
+<section id="palette" class="inset">
+  <p class="sec-kicker">01 — Palette</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>Ink, void, ember</h2>
+  <p class="sec-lede">Black first — ninety-five percent of the frame. Warm greys for the text. A single coral, rationed so tightly it becomes the only signal that matters.</p>
+
+  <div class="pal-group">
+    <h3>Surfaces</h3>
+    <div class="pal-grid">
+      <div class="swatch"><span class="chip" style="background:#000000"></span><div class="meta"><div class="nm">background</div><div class="val">#000000</div><div class="use">The void. Flat black across ~95% of every screen.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#181818"></span><div class="meta"><div class="nm">surface</div><div class="val">#181818</div><div class="use">Raised utility surfaces and spec cards.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#301818"></span><div class="meta"><div class="nm">ember-wash</div><div class="val">#301818</div><div class="use">Warm glow confined to the hero's lower third only.</div></div></div>
+    </div>
+  </div>
+
+  <div class="pal-group">
+    <h3>Text</h3>
+    <div class="pal-grid">
+      <div class="swatch"><span class="chip" style="background:#EFEFEF"></span><div class="meta"><div class="nm">text-primary</div><div class="val">#EFEFEF</div><div class="use">Near-white, warmer than pure. Headlines and body.</div></div></div>
+      <div class="swatch"><span class="chip" style="background:#8C8C8C"></span><div class="meta"><div class="nm">text-secondary</div><div class="val">#8C8C8C</div><div class="use">Muted supporting paragraphs and captions.</div></div></div>
+      <div class="swatch"><span class="chip checker" style="position:relative"><span style="position:absolute;inset:0;background:#000000"></span></span><div class="meta"><div class="nm">text-ink-on-accent</div><div class="val">#000000</div><div class="use">Ink sitting on coral fills.</div></div></div>
+    </div>
+  </div>
+
+  <div class="pal-group">
+    <h3>Accent</h3>
+    <div class="pal-grid">
+      <div class="swatch"><span class="chip" style="background:#FF98A2"></span><div class="meta"><div class="nm">accent</div><div class="val">#FF98A2</div><div class="use">Coral-pink. Wordmark, keyword highlights, rules, pill fills only.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:120px 0;background:var(--background);}
+.spec-row{border-top:1px solid #2a2a2a;padding:40px 0;display:grid;grid-template-columns:1fr;gap:16px;}
+.spec-row .live{overflow:hidden;}
+.spec-meta{font-family:var(--font-display);font-size:13px;color:var(--text-secondary);
+  letter-spacing:.05em;display:flex;flex-wrap:wrap;gap:18px;}
+.spec-meta b{color:var(--text-primary);font-weight:900;}
+.t-display{font-family:var(--font-display);font-weight:900;font-size:19px;line-height:1.14;text-transform:uppercase;letter-spacing:.1em;}
+.t-headline{font-family:var(--font-headline);font-weight:700;font-size:clamp(40px,8vw,69px);line-height:.9;text-transform:uppercase;}
+.t-body{font-family:var(--font-body);font-weight:400;font-size:clamp(22px,4vw,32px);line-height:1;}
+.t-label{font-family:var(--font-label);font-weight:700;font-size:clamp(24px,4.5vw,37px);line-height:1;text-transform:uppercase;}
+.t-accent{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1;}
+.t-word{font-family:var(--font-blackletter);color:var(--accent);font-size:clamp(70px,18vw,220px);line-height:.9;}
+</style>
+<section id="type-scale" class="inset">
+  <p class="sec-kicker">02 — Type scale</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>Scale is the hierarchy</h2>
+  <p class="sec-lede">Four families, each locked to a role. Weight stays heavy throughout — importance is signalled by scale alone, from 16px up to a wordmark well beyond 200px.</p>
+
+  <div class="spec-row">
+    <div class="live"><span class="t-word">Ember</span></div>
+    <div class="spec-meta"><span>Cracked blackletter wordmark</span><b>200px+</b><span>weight 700</span><span>solid coral</span></div>
+  </div>
+  <div class="spec-row">
+    <div class="live"><span class="t-headline">Momentum, smoothed to a settle</span></div>
+    <div class="spec-meta"><span>headline-md · Panchang</span><b>69px</b><span>weight 700</span><span>line-height 0.9</span></div>
+  </div>
+  <div class="spec-row">
+    <div class="live"><span class="t-label">One statement per scroll</span></div>
+    <div class="spec-meta"><span>label-md · Panchang</span><b>37px</b><span>weight 700</span><span>line-height 1</span></div>
+  </div>
+  <div class="spec-row">
+    <div class="live"><span class="t-body">The condensed workhorse — built for scale, high x-height, ultra-condensed and unafraid of the void behind it.</span></div>
+    <div class="spec-meta"><span>body-md · Anton</span><b>32px</b><span>weight 400</span><span>line-height 1</span></div>
+  </div>
+  <div class="spec-row">
+    <div class="live"><span class="t-display">Dense heavy-weight eyebrow / utility label</span></div>
+    <div class="spec-meta"><span>display-lg · Roboto</span><b>19px</b><span>weight 900</span><span>line-height 1.14</span></div>
+  </div>
+  <div class="spec-row">
+    <div class="live"><span class="t-accent">Small accent register at sixteen pixels</span></div>
+    <div class="spec-meta"><span>accent · Anton</span><b>16px</b><span>weight 400</span><span>line-height 1</span></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:120px 0;background:var(--background);}
+.comp-block{margin-bottom:96px;}
+.comp-title{font-family:var(--font-label);text-transform:uppercase;letter-spacing:.06em;
+  font-size:26px;font-weight:700;margin-bottom:6px;display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;}
+.comp-count{font-family:var(--font-display);font-size:12px;color:var(--accent);letter-spacing:.15em;font-weight:900;}
+.comp-desc{font-family:var(--font-label);font-size:15px;color:var(--text-secondary);max-width:60ch;line-height:1.4;margin-bottom:28px;}
+.spec-card{font-family:var(--font-display);font-size:12px;line-height:1.7;color:var(--text-secondary);
+  background:var(--surface);border-left:2px solid var(--accent);padding:14px 18px;margin-top:24px;letter-spacing:.02em;}
+.spec-card b{color:var(--text-primary);font-weight:900;}
+/* matrix */
+.matrix{width:100%;border-collapse:collapse;font-family:var(--font-label);}
+.matrix th,.matrix td{border:1px solid #2a2a2a;padding:18px;text-align:center;vertical-align:middle;}
+.matrix th{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--text-secondary);font-weight:700;}
+.matrix td .rl{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--text-secondary);text-align:left;}
+/* button samples */
+.b-ghost{background:transparent;color:var(--text-primary);border:none;height:37px;border-radius:0;padding:0;
+  font-family:var(--font-label);font-weight:700;text-transform:uppercase;letter-spacing:.06em;font-size:15px;
+  cursor:pointer;text-decoration:underline;text-underline-offset:5px;
+  transition:color var(--dur) var(--ease),opacity var(--dur) var(--ease);}
+.b-ghost:hover{color:var(--accent);}
+.b-sec{background:transparent;color:var(--text-primary);border:1px solid var(--text-primary);
+  height:66px;border-radius:var(--r-control);padding:0 24px;font-family:var(--font-headline);font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;font-size:15px;cursor:pointer;
+  transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease),color var(--dur) var(--ease);}
+.b-sec:hover{background:var(--text-primary);color:var(--background);}
+.b-prim{background:var(--background);color:var(--text-primary);border:1px solid var(--accent);
+  height:66px;border-radius:var(--r-control);padding:0 16px;font-family:var(--font-headline);font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;gap:12px;
+  transition:transform var(--dur) var(--ease),background-color var(--dur) var(--ease);}
+.b-prim:hover{background:var(--surface);}
+.b-prim .ico{width:34px;height:34px;border-radius:12px;background:var(--accent);color:var(--text-ink-on-accent);display:grid;place-items:center;font-size:18px;}
+button:disabled{opacity:.4;cursor:not-allowed;transform:none!important;}
+.state-hover{transform:translateY(-2px);}
+.b-prim.state-hover{background:var(--surface);}
+.b-sec.state-hover{background:var(--text-primary);color:var(--background);}
+.b-ghost.state-hover{color:var(--accent);}
+/* media bleed */
+.media-bleed{width:100%;height:340px;border-radius:0;
+  background:linear-gradient(120deg,#181818,#301818 60%,#000);position:relative;overflow:hidden;display:flex;align-items:flex-start;}
+.media-bleed .frame{position:absolute;inset:0;background:
+  radial-gradient(40% 60% at 50% 100%,rgba(255,152,162,.18),transparent 70%);}
+.media-bleed .badge{position:relative;margin:20px;font-family:var(--font-display);font-size:12px;
+  letter-spacing:.15em;color:var(--text-secondary);text-transform:uppercase;
+  backdrop-filter:blur(5px);background:rgba(24,24,24,.5);padding:8px 12px;border-radius:var(--r-card);}
+/* body text block */
+.body-block{display:flex;gap:20px;max-width:65%;margin-bottom:56px;}
+.body-block .brule{width:3px;background:var(--accent);flex:none;border-radius:0;}
+.body-block h4{font-family:var(--font-headline);font-weight:700;text-transform:uppercase;
+  font-size:clamp(30px,5vw,69px);line-height:.9;margin-bottom:16px;}
+.body-block h4 em{color:var(--accent);font-style:normal;}
+.body-block p{font-family:var(--font-body);font-size:clamp(18px,2.4vw,22px);line-height:1.15;color:var(--text-primary);}
+.body-block p span{color:var(--accent);}
+@media(max-width:768px){.body-block{max-width:100%;}}
+/* triptych */
+.triptych{display:flex;gap:var(--gap);flex-wrap:wrap;margin-bottom:var(--gap);}
+.triptych .item{flex:1 1 30%;min-width:200px;background:transparent;border-radius:0;}
+.triptych .item .ic{font-size:34px;color:var(--accent);}
+.triptych .item h5{font-family:var(--font-label);font-weight:700;text-transform:uppercase;font-size:22px;margin:14px 0 8px;}
+.triptych .item p{font-family:var(--font-label);font-size:14px;color:var(--text-secondary);line-height:1.4;}
+.triptych.trailing .item{flex:1 1 100%;border-top:1px solid #2a2a2a;padding-top:20px;}
+/* full bleed panels */
+.fb-panel{width:100vw;margin-left:calc(-6vw);height:280px;border-radius:0;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.fb-panel h4{font-family:var(--font-headline);font-weight:700;text-transform:uppercase;font-size:clamp(30px,7vw,69px);line-height:.9;text-align:center;z-index:1;}
+.fb-panel h4 em{color:var(--accent);font-style:normal;}
+.fb-1{background:linear-gradient(180deg,#000,#181818);}
+.fb-2{background:linear-gradient(180deg,#181818,#301818);}
+.fb-3{background:linear-gradient(180deg,#301818,#000);}
+</style>
+<section id="components" class="inset">
+  <p class="sec-kicker">03 — Components</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>The inventory</h2>
+  <p class="sec-lede">Structure comes from type and whitespace, not chrome. Panels stay hard-edged; rounding belongs only to the controls you can press.</p>
+
+  <!-- Utility band -->
+  <div class="comp-block" data-tier-a-component="nav-utility-band">
+    <div class="comp-title">Navbar / Utility Band <span class="comp-count">×2</span></div>
+    <p class="comp-desc">Two full-width transparent panels pinned at top and bottom of the first screen — not a conventional fixed nav. Each is a single ~66px row: scroll cue, credit line, two pill CTAs.</p>
+    <div style="background:transparent;border:1px dashed #2a2a2a;padding:0 20px;">
+      <div class="util-band" style="margin:0;">
+        <span class="util-scroll"><iconify-icon icon="lucide:mouse" aria-hidden="true"></iconify-icon>Scroll to explore</span>
+        <span class="util-credit">Captured by r3xdec.design</span>
+        <div class="util-actions">
+          <button class="pill-coral" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:sparkles"></iconify-icon></span>Sponsor</button>
+          <button class="pill-dark" type="button">GitHub</button>
+        </div>
+      </div>
+    </div>
+    <div style="background:transparent;border:1px dashed #2a2a2a;padding:0 20px;margin-top:16px;">
+      <div class="util-band" style="margin:0;">
+        <span class="util-scroll"><iconify-icon icon="lucide:arrow-up" aria-hidden="true"></iconify-icon>Back to top</span>
+        <span class="util-credit">Blackletter Ember</span>
+        <div class="util-actions">
+          <button class="pill-coral" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:download"></iconify-icon></span>Install</button>
+          <button class="pill-dark" type="button">Docs</button>
+        </div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <b>--nav-band</b> · fill transparent · height <b>66</b> · text util-scroll text-secondary · CTA button-hero-cta + button-primary · motion ease-out 0.6s
+    </div>
+  </div>
+
+  <!-- Button matrix -->
+  <div class="comp-block" data-tier-a-component="button-hero-cta">
+    <div class="comp-title">Buttons — variant × state</div>
+    <p class="comp-desc">Every documented fill against every source-supported state. Hover replays the slow ease-out settle; disabled drops to the lowest opacity step. No focus ring is authored beyond the browser's native indicator.</p>
+    <div style="overflow-x:auto;">
+    <table class="matrix">
+      <thead><tr><th></th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="rl">Hero CTA<br>coral pill</span></td>
+          <td><button class="pill-coral" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span>Start</button></td>
+          <td><button class="pill-coral state-hover" type="button" style="background:#ffb0b8"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span>Start</button></td>
+          <td><button class="pill-coral" type="button" disabled><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span>Start</button></td>
+        </tr>
+        <tr>
+          <td><span class="rl">Primary<br>bordered dark</span></td>
+          <td><button class="b-prim" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:heart"></iconify-icon></span>Sponsor</button></td>
+          <td><button class="b-prim state-hover" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:heart"></iconify-icon></span>Sponsor</button></td>
+          <td><button class="b-prim" type="button" disabled><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:heart"></iconify-icon></span>Sponsor</button></td>
+        </tr>
+        <tr>
+          <td><span class="rl">Secondary<br>outline</span></td>
+          <td><button class="b-sec" type="button">Learn more</button></td>
+          <td><button class="b-sec state-hover" type="button">Learn more</button></td>
+          <td><button class="b-sec" type="button" disabled>Learn more</button></td>
+        </tr>
+        <tr>
+          <td><span class="rl">Ghost<br>text</span></td>
+          <td><button class="b-ghost" type="button">View changelog</button></td>
+          <td><button class="b-ghost state-hover" type="button">View changelog</button></td>
+          <td><button class="b-ghost" type="button" disabled>View changelog</button></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <!-- Ghost buttons -->
+  <div class="comp-block" data-tier-a-component="button-ghost">
+    <div class="comp-title">Button — Ghost / Text <span class="comp-count">×8</span></div>
+    <p class="comp-desc">Sharp 0px radius, 37px tall, no padding. Inline utility actions — the face of footer link lists.</p>
+    <div style="display:flex;gap:28px;flex-wrap:wrap;">
+      <button class="b-ghost" type="button">Documentation</button>
+      <button class="b-ghost" type="button">Examples</button>
+      <button class="b-ghost" type="button">Changelog</button>
+      <button class="b-ghost" type="button">GitHub</button>
+    </div>
+    <div class="spec-card"><b>--button-ghost</b> · fill transparent · text text-primary · radius <b>0</b> · height <b>37</b> · padding 0 · type label-md · motion ease-out 0.6s</div>
+  </div>
+
+  <!-- Secondary -->
+  <div class="comp-block" data-tier-a-component="button-secondary">
+    <div class="comp-title">Button — Secondary Outline <span class="comp-count">×4</span></div>
+    <p class="comp-desc">Rounded 16px, 66px tall — the unfilled companion that sits beside a primary pill.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <button class="b-sec" type="button">Learn more</button>
+      <button class="b-sec" type="button">See examples</button>
+    </div>
+    <div class="spec-card"><b>--button-secondary</b> · fill transparent · text text-primary · radius <b>r-control 16</b> · height <b>66</b> · type headline-md · motion ease-out 0.6s</div>
+  </div>
+
+  <!-- Primary -->
+  <div class="comp-block" data-tier-a-component="button-primary">
+    <div class="comp-title">Button — Primary / Bordered Dark <span class="comp-count">×4</span></div>
+    <p class="comp-desc">Black fill with a 1px coral border, square icon-in-pill at left, label at right. The secondary-emphasis CTA — e.g. a sponsor action.</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;">
+      <button class="b-prim" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:heart"></iconify-icon></span>Sponsor us</button>
+      <button class="b-prim" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:star"></iconify-icon></span>Star on GitHub</button>
+    </div>
+    <div class="spec-card"><b>--button-primary</b> · fill background · border 1px accent · text text-primary · icon-chip accent · radius <b>16</b> · height <b>66</b> · padding <b>16</b> · type headline-md</div>
+  </div>
+
+  <!-- Media bleed -->
+  <div class="comp-block" data-tier-a-component="card-media-bleed">
+    <div class="comp-title">Media / Screenshot Card <span class="comp-count">×1</span></div>
+    <p class="comp-desc">Full-bleed top-anchored media, edge-to-edge in its column. No card chrome — transparent, 0px radius, 0px padding. Standing in for the live product frame.</p>
+    <div class="media-bleed">
+      <div class="frame" aria-hidden="true"></div>
+      <span class="badge">Live product frame — static substitution</span>
+    </div>
+    <div class="spec-card"><b>--card-media-bleed</b> · fill transparent · radius <b>0</b> · padding <b>0</b> · no elevation · blur(5px) on badge chip only</div>
+  </div>
+
+  <!-- Body text blocks -->
+  <div class="comp-block" data-tier-a-component="body-text-block">
+    <div class="comp-title">Body-Text Block Family <span class="comp-count">×5</span></div>
+    <p class="comp-desc">The page's primary narrative rhythm — five rows at ~65% width, each a thin coral rule beside a huge headline and a paragraph.</p>
+
+    <div class="body-block"><div class="brule" aria-hidden="true"></div><div><h4>Smooth by <em>default</em></h4><p>Momentum-smoothed scroll is the system's core interaction signature — <span>inertial</span>, weighted, never snappy.</p></div></div>
+    <div class="body-block"><div class="brule" aria-hidden="true"></div><div><h4>Type on the void</h4><p>Ninety-five percent flat black. Depth comes from <span>z-layering</span> type over a star-field, not from elevation.</p></div></div>
+    <div class="body-block"><div class="brule" aria-hidden="true"></div><div><h4>Rationed <em>coral</em></h4><p>One decisive hue, held back until it counts — the wordmark, a keyword, a rule, a pill fill. Nothing else carries color.</p></div></div>
+    <div class="body-block"><div class="brule" aria-hidden="true"></div><div><h4>Scale as hierarchy</h4><p>Weight stays heavy throughout, so <span>scale alone</span> signals importance — sixteen pixels to a wordmark beyond two hundred.</p></div></div>
+    <div class="body-block"><div class="brule" aria-hidden="true"></div><div><h4>Whitespace as structure</h4><p>Enormous section gaps produce a slow, spacious rhythm — <span>negative space</span> treated as a structural device.</p></div></div>
+    <div class="spec-card"><b>--card-body-text</b> · fill transparent · radius <b>0</b> · rule accent 3px · headline headline-md · body body-md · width 65%</div>
+  </div>
+
+  <!-- Triptych -->
+  <div class="comp-block" data-tier-a-component="triptych-card-row">
+    <div class="comp-title">Triptych Card Row <span class="comp-count">×2</span></div>
+    <p class="comp-desc">Repeating rows of three equal ~32%-width items at 32px gutter, plus a trailing single. No border, no fill — separated purely by gutter.</p>
+    <div class="triptych">
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:gauge"></iconify-icon></span><h5>Inertial</h5><p>Momentum-smoothed scroll across the whole page.</p></div>
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:type"></iconify-icon></span><h5>Type-led</h5><p>Condensed grotesques stacked at extreme scale contrast.</p></div>
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:sparkle"></iconify-icon></span><h5>Rationed</h5><p>A single coral signal against near-black.</p></div>
+    </div>
+    <div class="triptych">
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:layers"></iconify-icon></span><h5>Flat depth</h5><p>Z-layering over the star-field, no drop shadows.</p></div>
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:square"></iconify-icon></span><h5>Hard edges</h5><p>Panels stay 0px; rounding is for controls only.</p></div>
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:flame"></iconify-icon></span><h5>Ember</h5><p>Warm glow confined to the hero's lower third.</p></div>
+    </div>
+    <div class="triptych trailing">
+      <div class="item"><span class="ic" aria-hidden="true"><iconify-icon icon="lucide:git-branch"></iconify-icon></span><h5>Open</h5><p>Built entirely from documented tokens.</p></div>
+    </div>
+    <div class="spec-card"><b>--triptych-row</b> · fill transparent · radius <b>0</b> · gap <b>32</b> · icon accent · label label-md</div>
+  </div>
+
+  <!-- Full-bleed stacked panels -->
+  <div class="comp-block" data-tier-a-component="full-bleed-stacked-panels">
+    <div class="comp-title">Full-Bleed Stacked Panels <span class="comp-count">×3</span></div>
+    <p class="comp-desc">Three 100%-width transparent bands stacked directly — no gutter. One statement per scroll.</p>
+    <div class="fb-panel fb-1"><h4>Scroll is the <em>signature</em></h4></div>
+    <div class="fb-panel fb-2"><h4>Void first, always</h4></div>
+    <div class="fb-panel fb-3"><h4>One <em>coral</em> to signal</h4></div>
+    <div class="spec-card"><b>--panel-full-width</b> · fill transparent · radius <b>0</b> · padding <b>0</b> · no gutter · headline headline-md</div>
+  </div>
+
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:120px 0;background:var(--background);}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);}
+.depth-card{background:var(--surface);padding:28px;min-height:180px;display:flex;flex-direction:column;justify-content:space-between;}
+.depth-card h4{font-family:var(--font-label);text-transform:uppercase;font-size:20px;font-weight:700;}
+.depth-card p{font-family:var(--font-display);font-size:12px;color:var(--text-secondary);letter-spacing:.05em;}
+.d-0{border-radius:0;}
+.d-11{border-radius:var(--r-card);}
+.d-16{border-radius:var(--r-control);}
+.d-pill{border-radius:var(--r-pill);}
+</style>
+<section id="surface-depth" class="inset">
+  <p class="sec-kicker">04 — Surface &amp; depth</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>Radii, no shadow</h2>
+  <p class="sec-lede">Elevation is nearly absent — no drop shadows anywhere. Corners are the only surface signal, and rounding stays on interactive controls.</p>
+  <div class="depth-grid">
+    <div class="depth-card d-0"><h4>Panels</h4><p>radius 0 · hard edge · transparent in situ</p></div>
+    <div class="depth-card d-11"><h4>Card</h4><p>r-card · 11px</p></div>
+    <div class="depth-card d-16"><h4>Control</h4><p>r-control · 16px</p></div>
+    <div class="depth-card d-pill"><h4>Pill</h4><p>r-pill · 9999px</p></div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:120px 0;background:var(--background);}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--gap);}
+.motion-card{background:var(--surface);padding:28px;border-radius:var(--r-card);}
+.motion-card h4{font-family:var(--font-label);text-transform:uppercase;font-size:18px;font-weight:700;margin-bottom:16px;}
+.motion-card .meta{font-family:var(--font-display);font-size:12px;color:var(--text-secondary);letter-spacing:.05em;margin-top:16px;}
+.mover{width:44px;height:44px;background:var(--accent);border-radius:var(--r-control);}
+.demo-ease .mover{transition:transform var(--dur) var(--ease);}
+.demo-ease.run .mover{transform:translateX(160px);}
+.demo-scale .mover{transition:transform var(--dur) var(--ease);}
+.demo-scale.run .mover{transform:scale(1.6);}
+.demo-fade .mover{transition:opacity var(--dur) var(--ease);}
+.demo-fade.run .mover{opacity:.2;}
+.replay{margin-top:20px;}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+<section id="motion" class="inset">
+  <p class="sec-kicker">05 — Motion</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>Slow, weighted settle</h2>
+  <p class="sec-lede">One curve governs everything — color, transform, background, opacity — at 0.6s cubic-bezier(0.19, 1, 0.22, 1). Deliberate, never snappy. Click to replay.</p>
+  <div class="motion-grid">
+    <div class="motion-card demo-ease" data-motion><h4>Ease-out translate</h4><div class="mover"></div><div class="meta">0.6s · cubic-bezier(0.19,1,0.22,1)</div><button class="b-sec replay" type="button" data-replay>Replay</button></div>
+    <div class="motion-card demo-scale" data-motion><h4>Scale settle</h4><div class="mover"></div><div class="meta">0.6s · cubic-bezier(0.19,1,0.22,1)</div><button class="b-sec replay" type="button" data-replay>Replay</button></div>
+    <div class="motion-card demo-fade" data-motion><h4>Opacity fade</h4><div class="mover"></div><div class="meta">0.6s · cubic-bezier(0.19,1,0.22,1)</div><button class="b-sec replay" type="button" data-replay>Replay</button></div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:120px 0;background:var(--background);}
+.mock{border:1px solid #2a2a2a;background:var(--background);overflow:hidden;position:relative;}
+.mock .stars{position:absolute;inset:0;opacity:.6;}
+.mock-nav{position:relative;z-index:2;height:66px;display:flex;align-items:center;gap:20px;padding:0 28px;}
+.mock-logo{font-family:var(--font-blackletter);color:var(--accent);font-size:32px;line-height:1;}
+.mock-nav .grow{flex:1;}
+.mock-hero{position:relative;z-index:2;padding:80px 28px 40px;}
+.mock-hero .word{font-family:var(--font-blackletter);color:var(--accent);font-size:clamp(60px,14vw,140px);line-height:.9;}
+.mock-hero .sub{font-family:var(--font-headline);font-weight:700;text-transform:uppercase;font-size:clamp(22px,4vw,37px);margin-top:.3em;}
+.mock-cards{position:relative;z-index:2;display:flex;gap:var(--gap);flex-wrap:wrap;padding:24px 28px 40px;}
+.mock-card{flex:1 1 240px;}
+.mock-card .brule{width:3px;height:100%;background:var(--accent);float:left;margin-right:16px;}
+.mock-card h5{font-family:var(--font-label);text-transform:uppercase;font-size:22px;font-weight:700;margin-bottom:10px;}
+.mock-card p{font-family:var(--font-body);font-size:18px;line-height:1.1;color:var(--text-primary);}
+.mock-cta{position:relative;z-index:2;padding:0 28px 60px;}
+.mock-glow{position:absolute;left:0;right:0;bottom:0;height:40%;z-index:1;pointer-events:none;
+  background:radial-gradient(50% 100% at 50% 100%,rgba(255,152,162,.18),transparent 70%),
+  radial-gradient(40% 90% at 50% 100%,rgba(48,24,24,.7),transparent 75%);}
+</style>
+<section id="composition" class="inset">
+  <p class="sec-kicker">06 — In composition</p>
+  <h2 class="sec-head"><span class="rule" aria-hidden="true"></span>It holds together</h2>
+  <p class="sec-lede">A single screen built entirely from the tokens above — nav, hero fragment, three body cards, one CTA.</p>
+  <div class="mock">
+    <div class="stars starfield" aria-hidden="true"></div>
+    <div class="mock-glow" aria-hidden="true"></div>
+    <nav class="mock-nav" aria-label="Mock navigation">
+      <span class="mock-logo">E</span>
+      <span class="grow"></span>
+      <button class="b-ghost" type="button">Docs</button>
+      <button class="pill-coral" type="button" style="height:44px;padding:0 18px;font-size:13px"><span class="ico" style="width:26px;height:26px;font-size:14px" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span>Start</button>
+    </nav>
+    <div class="mock-hero">
+      <div class="word">Ember</div>
+      <div class="sub">Smooth scroll. Nothing else.</div>
+    </div>
+    <div class="mock-cards">
+      <div class="mock-card"><div class="brule" aria-hidden="true"></div><h5>Inertial</h5><p>Momentum smoothing across every scroll.</p></div>
+      <div class="mock-card"><div class="brule" aria-hidden="true"></div><h5>Type-led</h5><p>Condensed grotesques at extreme scale.</p></div>
+      <div class="mock-card"><div class="brule" aria-hidden="true"></div><h5>Rationed</h5><p>One coral signal against the void.</p></div>
+    </div>
+    <div class="mock-cta">
+      <button class="b-prim" type="button"><span class="ico" aria-hidden="true"><iconify-icon icon="lucide:heart"></iconify-icon></span>Sponsor the project</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:120px 0 80px;background:var(--background);position:relative;}
+.foot-head{font-family:var(--font-headline);font-weight:700;text-transform:uppercase;
+  font-size:clamp(40px,10vw,120px);line-height:.9;margin-bottom:56px;}
+.foot-head .white{color:var(--text-primary);display:block;}
+.foot-head .coral{color:var(--accent);display:block;}
+.foot-links{display:flex;gap:32px;flex-wrap:wrap;border-top:1px solid #2a2a2a;padding-top:28px;}
+.foot-credit{font-family:var(--font-display);font-size:12px;color:var(--text-secondary);
+  letter-spacing:.08em;margin-top:40px;line-height:1.7;}
+.foot-credit a{color:var(--accent);text-decoration:none;}
+</style>
+<footer id="footer" class="inset">
+  <div class="foot-head">
+    <span class="white">Type on the void.</span>
+    <span class="coral">Nothing else.</span>
+  </div>
+  <nav class="foot-links" aria-label="Footer">
+    <button class="b-ghost" type="button">Documentation</button>
+    <button class="b-ghost" type="button">Examples</button>
+    <button class="b-ghost" type="button">Changelog</button>
+    <button class="b-ghost" type="button">GitHub</button>
+    <button class="b-ghost" type="button">Twitter</button>
+    <button class="b-ghost" type="button">Sponsor</button>
+    <button class="b-ghost" type="button">License</button>
+  </nav>
+  <p class="foot-credit">
+    Blackletter Ember — <a href="https://lenis.dev/">lenis.dev</a><br>
+    Design system captured and rendered by r3xdec.design
+  </p>
+</footer>
+</main>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-replay]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('[data-motion]');
+      card.classList.remove('run');
+      void card.offsetWidth;
+      card.classList.add('run');
+    });
+  });
+})();
+</script>
+</body>
+</html>

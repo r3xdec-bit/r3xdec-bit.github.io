@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Violet Ledger Interface — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;700&family=Inter:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#000000; font-family:'Inter',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Sora',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Sora',sans-serif; font-size: 22px; border-bottom: 1px solid #E6E7EA; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#0D162F; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#0D162F; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #E6E7EA; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#0D162F; }
+  .swatch-meta p { color:#0D162F; font-size: 12px; }
+  .specimen { border: 1px solid #E6E7EA; border-radius:12px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#0D162F; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#0D162F; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #E6E7EA; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:6px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #E6E7EA; padding-top: 20px; font-size: 13px; color:#0D162F; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from relevanceai.com · light mode</div>
+    <h1>Violet Ledger Interface</h1>
+    <p class="tagline">White-dominant enterprise SaaS system built on dense data tables and flow diagrams, with a single rationed indigo gradient carrying every primary action and a corner-washed hero.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F8FAFC"></div>
+        <div class="swatch-meta"><strong>surface-tint</strong><code>#F8FAFC</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F3F3F4"></div>
+        <div class="swatch-meta"><strong>surface-panel</strong><code>#F3F3F4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0D162F"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#0D162F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#868A97"></div>
+        <div class="swatch-meta"><strong>text-muted</strong><code>#868A97</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E6E7EA"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#E6E7EA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6056FF"></div>
+        <div class="swatch-meta"><strong>accent-primary</strong><code>#6056FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#4B40D6"></div>
+        <div class="swatch-meta"><strong>accent-primary-deep</strong><code>#4B40D6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0E9384"></div>
+        <div class="swatch-meta"><strong>accent-teal</strong><code>#0E9384</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1A192B"></div>
+        <div class="swatch-meta"><strong>ink-dark</strong><code>#1A192B</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Sora',sans-serif;font-size:48px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Sora · 48px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Sora',sans-serif;font-size:36px;font-weight:400;line-height:1.35">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Sora · 36px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:20px;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Inter · 20px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono-data · Inter · 14px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap-tight · 6px</span>
+        <div class="bar" style="width:min(6px, 100%)"></div></div>
+<div class="bar-row"><span>gap-control · 10px</span>
+        <div class="bar" style="width:min(10px, 100%)"></div></div>
+<div class="bar-row"><span>gap-standard · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>gap-loose · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div>
+<div class="bar-row"><span>container-max · 80px</span>
+        <div class="bar" style="width:min(80px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div>
+<div class="radius-chip" style="border-radius:6px">control<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:5px">nav-cta<br><code>5px</code></div>
+<div class="radius-chip" style="border-radius:8px">card-tight<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:12px">card<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:16px">card-loose<br><code>16px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#0D162F;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

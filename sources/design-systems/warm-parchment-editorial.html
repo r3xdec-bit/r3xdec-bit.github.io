@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Warm parchment editorial — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Meraki:wght@400;500;700&family=LBFP+Sohne:wght@400;500;700&family=Sohne+Buch:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFAEB; color:#1B1C15; font-family:'LBFP Sohne',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Meraki',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Meraki',sans-serif; font-size: 22px; border-bottom: 1px solid #191919; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#646464; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#646464; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FBFBF8; border: 1px solid #191919; border-radius:7px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#646464; }
+  .swatch-meta p { color:#646464; font-size: 12px; }
+  .specimen { border: 1px solid #191919; border-radius:7px; padding: 20px; background:#FBFBF8; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#646464; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#646464; }
+  .bar { height: 10px; background:#1B1C15; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #1B1C15; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FBFBF8; border: 1px solid #191919; border-radius:7px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #1B1C15; }
+  .btn-primary { background:#1B1C15; color:#FFFAEB; }
+  .btn-secondary { background: transparent; color:#1B1C15; }
+  footer { border-top: 1px solid #191919; padding-top: 20px; font-size: 13px; color:#646464; }
+  footer a { color:#1B1C15; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from littlebird.ai · light mode</div>
+    <h1>Warm parchment editorial</h1>
+    <p class="tagline">Cream-and-ink light system with a serif display face for oversized headlines, forest-green rationed accent, glass-free flat cards, and application windows rendered as the only illustrative device.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFAEB"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFAEB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FBFBF8"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FBFBF8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F1EEE4"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#F1EEE4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1B1C15"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#1B1C15</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#646464"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#646464</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#202020"></div>
+        <div class="swatch-meta"><strong>text-ink</strong><code>#202020</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#00694E"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#00694E</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#3DBE6A"></div>
+        <div class="swatch-meta"><strong>accent-bright</strong><code>#3DBE6A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#191919"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#191919</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0000EE"></div>
+        <div class="swatch-meta"><strong>link</strong><code>#0000EE</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Meraki',sans-serif;font-size:72px;font-weight:400;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Meraki · 72px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Meraki',sans-serif;font-size:48px;font-weight:400;line-height:1.06">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Meraki · 48px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'LBFP Sohne',sans-serif;font-size:23px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · LBFP Sohne · 23px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'LBFP Sohne',sans-serif;font-size:15px;font-weight:500;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · LBFP Sohne · 15px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'LBFP Sohne',sans-serif;font-size:17px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-default · LBFP Sohne · 17px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Sohne Buch',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Sohne Buch ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 2px</span>
+        <div class="bar" style="width:min(2px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>card-padding · 14px 18px 15px</span>
+        <div class="bar" style="width:min(14px 18px 15px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 136px</span>
+        <div class="bar" style="width:min(136px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap-lg · 792px</span>
+        <div class="bar" style="width:min(792px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap-md · 526px</span>
+        <div class="bar" style="width:min(526px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:7px">card<br><code>7px</code></div>
+<div class="radius-chip" style="border-radius:50px">nav-cta<br><code>50px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#646464;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

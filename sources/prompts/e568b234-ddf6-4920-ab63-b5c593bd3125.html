@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Outfit:wght@300;400;500;600;700;800&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"><style>body { margin: 0; background-color: #0F172A; font-family: 'Plus Jakarta Sans', sans-serif; } .comparison-container { display: grid; grid-template-columns: repeat(3, 375px); gap: 48px; padding: 48px; width: fit-content; margin: 0 auto; } .concept-frame { width: 375px; height: 812px; border-radius: 40px; overflow: hidden; background: #fff; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5); position: relative; } .scroll-hide::-webkit-scrollbar { display: none; } .scroll-hide { -ms-overflow-style: none; scrollbar-width: none; } .concept-label { margin-bottom: 16px; text-align: center; } .concept-label h2 { color: #fff; font-size: 18px; font-weight: 700; margin: 0; text-transform: uppercase; letter-spacing: 0.05em; } .concept-label p { color: #94A3B8; font-size: 14px; margin-top: 4px; }</style>
+<meta name="preview-version" content="e607c6f7-26cd-4f41-885f-d622857c3e8f" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.905Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "e607c6f7-26cd-4f41-885f-d622857c3e8f");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "e607c6f7-26cd-4f41-885f-d622857c3e8f",
+      timestamp: "2026-11-20T00:19:42.905Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "e607c6f7-26cd-4f41-885f-d622857c3e8f";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head><body><div class="min-h-screen py-12 px-8" data-sd-id="1"><div class="max-w-7xl mx-auto mb-16 text-center" data-sd-id="2"><h1 class="text-4xl font-extrabold text-white mb-4" data-sd-id="3">FEEDO Design Concepts</h1><p class="text-slate-400 max-w-2xl mx-auto" data-sd-id="4">A side-by-side comparison of 6 distinct visual directions for the next-generation FEEDO delivery platform.</p></div><div class="comparison-container" data-sd-id="5"><!-- CONCEPT 1: PREMIUM ORANGE --><div class="flex flex-col" data-sd-id="6"><div class="concept-label" data-sd-id="7"><h2 data-sd-id="8">Concept 1: Premium Orange</h2><p data-sd-id="9">Modern • Bold • Vibrant</p></div><div class="concept-frame bg-white" data-sd-id="10"><div class="w-full h-full flex flex-col relative" data-sd-id="11"><header class="pt-14 px-5 bg-white shrink-0" data-sd-id="12"><div class="flex items-center justify-between mb-4" data-sd-id="13"><div class="flex items-center gap-2" data-sd-id="14"><iconify-icon icon="lucide:map-pin" class="text-[#F4511E] text-lg"></iconify-icon><div data-sd-id="15"><p class="text-[10px] text-gray-400 font-bold uppercase tracking-wider" data-sd-id="16">Delivery to</p><p class="text-sm font-bold flex items-center gap-1" data-sd-id="17">Skyview Heights <iconify-icon icon="lucide:chevron-down" class="text-xs text-[#F4511E]"></iconify-icon></p></div></div><div class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center" data-sd-id="18"><iconify-icon icon="lucide:user" class="text-gray-600"></iconify-icon></div></div><div class="relative mb-4" data-sd-id="19"><div class="absolute inset-y-0 left-4 flex items-center" data-sd-id="20"><iconify-icon icon="lucide:search" class="text-gray-400"></iconify-icon></div><input type="text" placeholder="Search food, grocery, meat..." class="w-full bg-gray-100 border-none rounded-xl py-3 pl-11 pr-4 text-sm focus:ring-2 focus:ring-[#F4511E]" data-sd-id="21"></div></header><main class="flex-1 overflow-y-auto scroll-hide px-5 pb-10" data-sd-id="22"><div class="flex gap-3 mb-6 overflow-x-auto scroll-hide" data-sd-id="23"><div class="shrink-0 w-72 h-36 rounded-2xl bg-gradient-to-r from-[#F4511E] to-[#FF8A65] p-5 flex flex-col justify-between text-white" data-sd-id="24"><p class="text-lg font-extrabold leading-tight" data-sd-id="25">Get 50% OFF<br>on your first order</p><button class="bg-white text-[#F4511E] px-4 py-1.5 rounded-lg text-xs font-bold w-max" data-sd-id="26">ORDER NOW</button></div></div><div class="grid grid-cols-3 gap-3 mb-8" data-sd-id="27"><div class="flex flex-col items-center gap-2 text-center" data-sd-id="28"><div class="w-full aspect-square rounded-2xl bg-[#FFF5F2] flex items-center justify-center border border-[#F4511E]/10" data-sd-id="29"><iconify-icon icon="lucide:utensils" class="text-[#F4511E] text-2xl"></iconify-icon></div><span class="text-xs font-bold" data-sd-id="30">Food</span></div><div class="flex flex-col items-center gap-2 text-center" data-sd-id="31"><div class="w-full aspect-square rounded-2xl bg-[#FFF5F2] flex items-center justify-center border border-[#F4511E]/10" data-sd-id="32"><iconify-icon icon="lucide:shopping-bag" class="text-[#F4511E] text-2xl"></iconify-icon></div><span class="text-xs font-bold" data-sd-id="33">Mart</span></div><div class="flex flex-col items-center gap-2 text-center" data-sd-id="34"><div class="w-full aspect-square rounded-2xl bg-[#FFF5F2] flex items-center justify-center border border-[#F4511E]/10" data-sd-id="35"><iconify-icon icon="lucide:drumstick" class="text-[#F4511E] text-2xl"></iconify-icon></div><span class="text-xs font-bold" data-sd-id="36">Meat</span></div></div><div class="flex items-center justify-between mb-4" data-sd-id="37"><h3 class="text-lg font-extrabold" data-sd-id="38">Top Restaurants</h3><span class="text-[#F4511E] text-xs font-bold" data-sd-id="39">View all</span></div><div class="space-y-6" data-sd-id="40"><div class="rounded-2xl overflow-hidden shadow-sm border border-gray-100" data-sd-id="41"><div class="h-40 bg-gray-200 relative" data-sd-id="42"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=400&amp;h=200&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="43" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1a1a1a/888?text=Image';"><div class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded-lg flex items-center gap-1 text-[10px] font-bold" data-sd-id="44"><iconify-icon icon="lucide:star" class="text-yellow-500"></iconify-icon> 4.5 • 25-30 min</div></div><div class="p-3 bg-white" data-sd-id="45"><p class="font-bold" data-sd-id="46">Saffron Indian Kitchen</p><p class="text-xs text-gray-500" data-sd-id="47">North Indian • Kebabs • Desserts</p></div></div></div></main><footer class="shrink-0 pb-[34px] px-8 bg-white border-t border-gray-100 flex justify-between pt-4" data-sd-id="48"><div class="flex flex-col items-center gap-1 text-[#F4511E]" data-sd-id="49"><iconify-icon icon="lucide:home" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="50">Home</span></div><div class="flex flex-col items-center gap-1 text-gray-400" data-sd-id="51"><iconify-icon icon="lucide:search" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="52">Search</span></div><div class="flex flex-col items-center gap-1 text-gray-400" data-sd-id="53"><iconify-icon icon="lucide:shopping-cart" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="54">Cart</span></div><div class="flex flex-col items-center gap-1 text-gray-400" data-sd-id="55"><iconify-icon icon="lucide:user" class="text-2xl"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="56">Account</span></div></footer></div></div></div><!-- CONCEPT 2: MINIMAL WHITE --><div class="flex flex-col" data-sd-id="57"><div class="concept-label" data-sd-id="58"><h2 data-sd-id="59">Concept 2: Minimal White</h2><p data-sd-id="60">Clean • Spacious • Zen</p></div><div class="concept-frame bg-[#F8F8F8]" data-sd-id="61"><div class="w-full h-full flex flex-col relative font-['Inter']" data-sd-id="62"><header class="pt-14 px-6 shrink-0" data-sd-id="63"><div class="flex flex-col gap-1 mb-6" data-sd-id="64"><p class="text-xs text-gray-400" data-sd-id="65">Deliver to</p><p class="text-base font-semibold" data-sd-id="66">124 Business Park Ave <iconify-icon icon="lucide:chevron-down" class="text-xs text-gray-400"></iconify-icon></p></div><div class="bg-white rounded-full shadow-sm flex items-center px-5 py-3 gap-3 mb-6" data-sd-id="67"><iconify-icon icon="lucide:search" class="text-gray-400"></iconify-icon><span class="text-gray-300 text-sm" data-sd-id="68">What are you looking for?</span></div></header><main class="flex-1 overflow-y-auto scroll-hide px-6 pb-10" data-sd-id="69"><div class="w-full h-44 rounded-3xl bg-white shadow-sm mb-8 flex items-center justify-center p-6" data-sd-id="70"><div class="w-1/2" data-sd-id="71"><p class="text-xs uppercase tracking-widest text-[#F4511E] font-bold mb-2" data-sd-id="72">Weekly Special</p><p class="text-xl font-light leading-snug" data-sd-id="73">Fresh Produce<br><span class="font-bold" data-sd-id="74">Delivered Fast</span></p></div><div class="w-1/2 h-full flex items-center justify-end" data-sd-id="75"><div class="w-24 h-24 rounded-full bg-gray-50 flex items-center justify-center" data-sd-id="76"><iconify-icon icon="lucide:leaf" class="text-3xl text-green-500"></iconify-icon></div></div></div><div class="flex justify-between items-center mb-6" data-sd-id="77"><h3 class="text-sm font-bold uppercase tracking-wider text-gray-400" data-sd-id="78">Categories</h3></div><div class="flex gap-4 overflow-x-auto scroll-hide mb-8" data-sd-id="79"><div class="shrink-0 w-24 flex flex-col items-center gap-3" data-sd-id="80"><div class="w-20 h-20 rounded-full bg-white shadow-sm flex items-center justify-center" data-sd-id="81"><iconify-icon icon="lucide:chef-hat" class="text-2xl text-gray-700"></iconify-icon></div><span class="text-[11px] font-medium" data-sd-id="82">Restaurants</span></div><div class="shrink-0 w-24 flex flex-col items-center gap-3" data-sd-id="83"><div class="w-20 h-20 rounded-full bg-white shadow-sm flex items-center justify-center" data-sd-id="84"><iconify-icon icon="lucide:store" class="text-2xl text-gray-700"></iconify-icon></div><span class="text-[11px] font-medium" data-sd-id="85">Groceries</span></div><div class="shrink-0 w-24 flex flex-col items-center gap-3" data-sd-id="86"><div class="w-20 h-20 rounded-full bg-white shadow-sm flex items-center justify-center" data-sd-id="87"><iconify-icon icon="lucide:fish" class="text-2xl text-gray-700"></iconify-icon></div><span class="text-[11px] font-medium" data-sd-id="88">Seafood</span></div></div><div class="bg-white rounded-[32px] p-2 mb-6 shadow-sm" data-sd-id="89"><div class="w-full aspect-video rounded-[24px] bg-gray-100 overflow-hidden mb-4" data-sd-id="90"><img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&amp;h=300&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="91" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1a1a1a/888?text=Image';"></div><div class="px-4 pb-4" data-sd-id="92"><p class="text-lg font-bold" data-sd-id="93">Garden Bowls</p><p class="text-xs text-gray-400" data-sd-id="94">Healthy • Organic • Salad</p></div></div></main><footer class="shrink-0 pb-[34px] px-10 bg-white flex justify-between pt-6 border-t border-gray-50" data-sd-id="95"><iconify-icon icon="lucide:home" class="text-xl text-[#F4511E]"></iconify-icon><iconify-icon icon="lucide:compass" class="text-xl text-gray-300"></iconify-icon><iconify-icon icon="lucide:heart" class="text-xl text-gray-300"></iconify-icon><iconify-icon icon="lucide:user" class="text-xl text-gray-300"></iconify-icon></footer></div></div></div><!-- CONCEPT 3: BOLD DARK --><div class="flex flex-col" data-sd-id="96"><div class="concept-label" data-sd-id="97"><h2 data-sd-id="98">Concept 3: Bold Dark</h2><p data-sd-id="99">Sophisticated • High-Contrast • Luxe</p></div><div class="concept-frame bg-[#121212]" data-sd-id="100"><div class="w-full h-full flex flex-col relative text-white font-['Outfit']" data-sd-id="101"><header class="pt-14 px-5 shrink-0" data-sd-id="102"><div class="flex items-center justify-between mb-8" data-sd-id="103"><div class="flex flex-col" data-sd-id="104"><div class="flex items-center gap-1 text-[10px] text-[#F4511E] font-bold tracking-[0.2em] uppercase" data-sd-id="105"><iconify-icon icon="lucide:navigation"></iconify-icon> Active Location</div><p class="text-sm" data-sd-id="106">Central Park South <iconify-icon icon="lucide:chevron-down"></iconify-icon></p></div><div class="w-10 h-10 rounded-xl bg-[#1A1A1A] border border-white/10 flex items-center justify-center" data-sd-id="107"><iconify-icon icon="lucide:bell"></iconify-icon></div></div><div class="flex items-center gap-4 mb-8" data-sd-id="108"><div class="flex-1 bg-[#1A1A1A] border border-white/5 rounded-2xl p-4 flex items-center gap-3" data-sd-id="109"><iconify-icon icon="lucide:search" class="text-white/40"></iconify-icon><span class="text-sm text-white/30" data-sd-id="110">Find your craving...</span></div><div class="w-14 h-14 bg-[#F4511E] rounded-2xl flex items-center justify-center shadow-[0_0_20px_rgba(244,81,30,0.3)]" data-sd-id="111"><iconify-icon icon="lucide:sliders-horizontal" class="text-xl"></iconify-icon></div></div></header><main class="flex-1 overflow-y-auto scroll-hide px-5 pb-10" data-sd-id="112"><div class="flex gap-4 mb-8 overflow-x-auto scroll-hide" data-sd-id="113"><div class="shrink-0 w-80 h-44 rounded-3xl bg-[#1A1A1A] border border-white/10 relative overflow-hidden flex flex-col justify-center p-8" data-sd-id="114"><div class="absolute top-0 right-0 w-32 h-full bg-gradient-to-l from-orange-500/20 to-transparent" data-sd-id="115"></div><h2 class="text-2xl font-bold leading-tight mb-2" data-sd-id="116">Gourmet Night<br><span class="text-[#FFB84D]" data-sd-id="117">30% Reserved</span></h2><p class="text-xs text-white/40 mb-4" data-sd-id="118">Only for FEEDO Elite members</p><button class="bg-white text-black px-6 py-2 rounded-xl text-xs font-bold w-max" data-sd-id="119">UPGRADE</button></div></div><h3 class="text-xl font-bold mb-6" data-sd-id="120">Premium Picks</h3><div class="grid grid-cols-2 gap-4 mb-8" data-sd-id="121"><div class="bg-[#1A1A1A] rounded-[24px] border border-white/5 overflow-hidden p-2" data-sd-id="122"><div class="aspect-square rounded-[18px] bg-gray-800 mb-3 overflow-hidden" data-sd-id="123"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=300&amp;h=300&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="124" onerror="this.onerror=null;this.src='https://placehold.co/300x400/1a1a1a/888?text=Image';"></div><div class="px-2 pb-2" data-sd-id="125"><p class="font-bold" data-sd-id="126">Wagyu Steak</p><p class="text-[10px] text-white/40 mb-2" data-sd-id="127">The Prime Meat Co.</p><div class="flex items-center justify-between" data-sd-id="128"><span class="text-xs font-bold" data-sd-id="129">$85.00</span><span class="text-[10px] bg-[#F4511E] px-2 py-0.5 rounded-md" data-sd-id="130">HOT</span></div></div></div><div class="bg-[#1A1A1A] rounded-[24px] border border-white/5 overflow-hidden p-2" data-sd-id="131"><div class="aspect-square rounded-[18px] bg-gray-800 mb-3 overflow-hidden" data-sd-id="132"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=300&amp;h=300&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="133" onerror="this.onerror=null;this.src='https://placehold.co/300x400/1a1a1a/888?text=Image';"></div><div class="px-2 pb-2" data-sd-id="134"><p class="font-bold" data-sd-id="135">Blue Fin Tuna</p><p class="text-[10px] text-white/40 mb-2" data-sd-id="136">Ocean Harvest</p><div class="flex items-center justify-between" data-sd-id="137"><span class="text-xs font-bold" data-sd-id="138">$120.00</span><span class="text-[10px] bg-cyan-500 px-2 py-0.5 rounded-md" data-sd-id="139">TOP</span></div></div></div></div></main><footer class="shrink-0 pb-[34px] px-8 bg-[#121212] flex justify-between items-center h-20 border-t border-white/5" data-sd-id="140"><div class="p-2 rounded-full bg-[#F4511E] shadow-[0_0_15px_rgba(244,81,30,0.4)]" data-sd-id="141"><iconify-icon icon="lucide:layout-grid" class="text-xl"></iconify-icon></div><iconify-icon icon="lucide:search" class="text-xl text-white/40"></iconify-icon><iconify-icon icon="lucide:shopping-bag" class="text-xl text-white/40"></iconify-icon><iconify-icon icon="lucide:user" class="text-xl text-white/40"></iconify-icon></footer></div></div></div><!-- CONCEPT 4: MODERN GRADIENT --><div class="flex flex-col" data-sd-id="142"><div class="concept-label" data-sd-id="143"><h2 data-sd-id="144">Concept 4: Modern Gradient</h2><p data-sd-id="145">Energetic • Playful • Fluid</p></div><div class="concept-frame bg-[#FFF9F5]" data-sd-id="146"><div class="w-full h-full flex flex-col relative font-['Plus Jakarta Sans']" data-sd-id="147"><div class="absolute top-0 left-0 w-full h-80 bg-gradient-to-b from-[#FFF2E9] to-transparent -z-10" data-sd-id="148"></div><header class="pt-14 px-5 shrink-0" data-sd-id="149"><div class="flex items-center justify-between mb-6" data-sd-id="150"><div class="flex items-center gap-2" data-sd-id="151"><div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-[#F4511E] to-[#FFB84D] flex items-center justify-center shadow-lg shadow-orange-200 text-white font-black text-xs" data-sd-id="152">F</div><h1 class="text-xl font-extrabold tracking-tight" data-sd-id="153">FEEDO</h1></div><div class="flex items-center gap-1 bg-white/60 backdrop-blur px-3 py-1.5 rounded-full border border-orange-100" data-sd-id="154"><iconify-icon icon="lucide:zap" class="text-[#F4511E] text-xs"></iconify-icon><span class="text-[11px] font-bold" data-sd-id="155">15-20m</span></div></div><div class="bg-white rounded-2xl shadow-xl shadow-orange-100/50 p-4 flex items-center justify-between mb-8" data-sd-id="156"><div class="flex items-center gap-3" data-sd-id="157"><iconify-icon icon="lucide:search" class="text-gray-400"></iconify-icon><span class="text-sm text-gray-400 font-medium" data-sd-id="158">Cravings this morning?</span></div><iconify-icon icon="lucide:mic" class="text-[#F4511E]"></iconify-icon></div></header><main class="flex-1 overflow-y-auto scroll-hide px-5 pb-10" data-sd-id="159"><div class="flex gap-4 mb-8 overflow-x-auto scroll-hide" data-sd-id="160"><div class="shrink-0 w-40 h-48 rounded-[32px] bg-gradient-to-br from-[#F4511E] to-[#FF8A65] p-5 flex flex-col justify-end text-white shadow-lg shadow-orange-200" data-sd-id="161"><iconify-icon icon="lucide:pizza" class="text-3xl mb-auto opacity-40"></iconify-icon><p class="text-sm font-bold" data-sd-id="162">Pizza<br>Party</p><p class="text-[10px] opacity-70" data-sd-id="163">Start from $9.99</p></div><div class="shrink-0 w-40 h-48 rounded-[32px] bg-gradient-to-br from-[#FFB84D] to-[#FF8A65] p-5 flex flex-col justify-end text-white shadow-lg shadow-orange-100" data-sd-id="164"><iconify-icon icon="lucide:ice-cream" class="text-3xl mb-auto opacity-40"></iconify-icon><p class="text-sm font-bold" data-sd-id="165">Cool<br>Treats</p><p class="text-[10px] opacity-70" data-sd-id="166">Up to 40% OFF</p></div></div><h3 class="text-lg font-bold mb-6" data-sd-id="167">Daily Essentials</h3><div class="grid grid-cols-4 gap-4 mb-8" data-sd-id="168"><div class="flex flex-col items-center gap-2" data-sd-id="169"><div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center" data-sd-id="170"><iconify-icon icon="lucide:milk" class="text-blue-400"></iconify-icon></div><span class="text-[10px] font-bold" data-sd-id="171">Milk</span></div><div class="flex flex-col items-center gap-2" data-sd-id="172"><div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center" data-sd-id="173"><iconify-icon icon="lucide:apple" class="text-red-400"></iconify-icon></div><span class="text-[10px] font-bold" data-sd-id="174">Fruits</span></div><div class="flex flex-col items-center gap-2" data-sd-id="175"><div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center" data-sd-id="176"><iconify-icon icon="lucide:egg" class="text-yellow-400"></iconify-icon></div><span class="text-[10px] font-bold" data-sd-id="177">Eggs</span></div><div class="flex flex-col items-center gap-2" data-sd-id="178"><div class="w-14 h-14 rounded-2xl bg-white shadow-md flex items-center justify-center" data-sd-id="179"><iconify-icon icon="lucide:coffee" class="text-orange-900"></iconify-icon></div><span class="text-[10px] font-bold" data-sd-id="180">Coffee</span></div></div><div class="rounded-3xl bg-white p-4 shadow-xl shadow-gray-100 flex items-center gap-4 border border-gray-50" data-sd-id="181"><div class="w-24 h-24 rounded-2xl bg-gray-100 overflow-hidden shrink-0" data-sd-id="182"><img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200&amp;h=200&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="183" onerror="this.onerror=null;this.src='https://placehold.co/200x400/1a1a1a/888?text=Image';"></div><div class="flex-1" data-sd-id="184"><div class="flex justify-between items-start" data-sd-id="185"><p class="font-bold text-sm" data-sd-id="186">Mama's Pizza Hub</p><span class="bg-green-50 text-green-600 px-2 py-0.5 rounded text-[10px] font-bold" data-sd-id="187">4.8</span></div><p class="text-[11px] text-gray-400 mb-2" data-sd-id="188">Italian • Fast Food</p><div class="flex items-center gap-1 text-[10px] font-bold text-[#F4511E]" data-sd-id="189"><iconify-icon icon="lucide:clock"></iconify-icon> 22 MIN</div></div></div></main><nav class="shrink-0 h-20 bg-white/80 backdrop-blur-xl px-10 flex justify-between items-center border-t border-orange-50 pb-[34px]" data-sd-id="190"><iconify-icon icon="lucide:home" class="text-2xl text-[#F4511E]"></iconify-icon><iconify-icon icon="lucide:heart" class="text-2xl text-gray-300"></iconify-icon><div class="w-12 h-12 rounded-full bg-gradient-to-br from-[#F4511E] to-[#FFB84D] -mt-10 border-4 border-white flex items-center justify-center text-white shadow-lg" data-sd-id="191"><iconify-icon icon="lucide:plus" class="text-2xl"></iconify-icon></div><iconify-icon icon="lucide:shopping-cart" class="text-2xl text-gray-300"></iconify-icon><iconify-icon icon="lucide:user" class="text-2xl text-gray-300"></iconify-icon></nav></div></div></div><!-- CONCEPT 5: PREMIUM COMMERCE --><div class="flex flex-col" data-sd-id="192"><div class="concept-label" data-sd-id="193"><h2 data-sd-id="194">Concept 5: Premium Commerce</h2><p data-sd-id="195">Organized • Structured • Trust</p></div><div class="concept-frame bg-[#F5F5F5]" data-sd-id="196"><div class="w-full h-full flex flex-col relative text-[#2C3E50] font-['Space Grotesk']" data-sd-id="197"><header class="pt-14 px-4 bg-[#2C3E50] shrink-0 text-white pb-6" data-sd-id="198"><div class="flex items-center justify-between mb-4" data-sd-id="199"><div class="flex items-center gap-2" data-sd-id="200"><iconify-icon icon="lucide:map-pin" class="text-orange-400"></iconify-icon><span class="text-xs font-medium" data-sd-id="201">Office • Sector 45, HQ</span></div><iconify-icon icon="lucide:menu-scale" class="text-xl"></iconify-icon></div><div class="bg-white rounded-lg flex items-center px-4 py-2 gap-3" data-sd-id="202"><iconify-icon icon="lucide:search" class="text-gray-400"></iconify-icon><span class="text-gray-400 text-sm font-medium" data-sd-id="203">Search by store or product...</span></div></header><main class="flex-1 overflow-y-auto scroll-hide pb-10" data-sd-id="204"><div class="bg-white px-4 py-6 mb-4 flex gap-4 overflow-x-auto scroll-hide" data-sd-id="205"><div class="shrink-0 flex flex-col items-center gap-2" data-sd-id="206"><div class="w-16 h-16 rounded-xl bg-[#F4511E]/10 flex items-center justify-center" data-sd-id="207"><iconify-icon icon="lucide:truck" class="text-2xl text-[#F4511E]"></iconify-icon></div><span class="text-[11px] font-bold uppercase" data-sd-id="208">Food</span></div><div class="shrink-0 flex flex-col items-center gap-2" data-sd-id="209"><div class="w-16 h-16 rounded-xl bg-blue-100 flex items-center justify-center" data-sd-id="210"><iconify-icon icon="lucide:boxes" class="text-2xl text-blue-600"></iconify-icon></div><span class="text-[11px] font-bold uppercase" data-sd-id="211">Mart</span></div><div class="shrink-0 flex flex-col items-center gap-2" data-sd-id="212"><div class="w-16 h-16 rounded-xl bg-red-100 flex items-center justify-center" data-sd-id="213"><iconify-icon icon="lucide:beef" class="text-2xl text-red-600"></iconify-icon></div><span class="text-[11px] font-bold uppercase" data-sd-id="214">Meat</span></div><div class="shrink-0 flex flex-col items-center gap-2" data-sd-id="215"><div class="w-16 h-16 rounded-xl bg-orange-100 flex items-center justify-center" data-sd-id="216"><iconify-icon icon="lucide:wine" class="text-2xl text-orange-600"></iconify-icon></div><span class="text-[11px] font-bold uppercase" data-sd-id="217">Drinks</span></div></div><div class="px-4 mb-6" data-sd-id="218"><div class="flex items-center justify-between mb-4" data-sd-id="219"><h3 class="text-base font-bold uppercase tracking-tight" data-sd-id="220">Top Retailers</h3><p class="text-xs font-bold text-[#F4511E]" data-sd-id="221">EXPLORE</p></div><div class="grid grid-cols-2 gap-3" data-sd-id="222"><div class="bg-white border border-gray-100 rounded-lg p-3" data-sd-id="223"><div class="h-24 bg-gray-50 rounded mb-2 overflow-hidden" data-sd-id="224"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?w=200&amp;h=150&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="225" onerror="this.onerror=null;this.src='https://placehold.co/200x400/1a1a1a/888?text=Image';"></div><p class="text-xs font-bold" data-sd-id="226">Fresh Mart Plus</p><p class="text-[10px] text-gray-400" data-sd-id="227">Grocery • 30 mins</p></div><div class="bg-white border border-gray-100 rounded-lg p-3" data-sd-id="228"><div class="h-24 bg-gray-50 rounded mb-2 overflow-hidden" data-sd-id="229"><img src="https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?w=200&amp;h=150&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="230" onerror="this.onerror=null;this.src='https://placehold.co/200x400/1a1a1a/888?text=Image';"></div><p class="text-xs font-bold" data-sd-id="231">Ocean Bites</p><p class="text-[10px] text-gray-400" data-sd-id="232">Seafood • 45 mins</p></div></div></div><div class="px-4" data-sd-id="233"><div class="w-full h-28 bg-[#2C3E50] rounded-xl flex items-center p-6 text-white relative overflow-hidden" data-sd-id="234"><div class="flex-1 relative z-10" data-sd-id="235"><p class="text-[10px] font-bold uppercase text-orange-400 mb-1" data-sd-id="236">Premium Member</p><p class="text-sm font-bold" data-sd-id="237">Free delivery on all orders above $20</p></div><iconify-icon icon="lucide:shield-check" class="text-6xl absolute -right-4 -bottom-4 text-white/10"></iconify-icon></div></div></main><footer class="shrink-0 bg-white border-t border-gray-200 pb-[34px] h-20 px-8 flex justify-between items-center" data-sd-id="238"><div class="flex flex-col items-center gap-1" data-sd-id="239"><iconify-icon icon="lucide:home" class="text-lg text-[#F4511E]"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="240">HOME</span></div><div class="flex flex-col items-center gap-1 text-gray-300" data-sd-id="241"><iconify-icon icon="lucide:search" class="text-lg"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="242">DISCOVER</span></div><div class="flex flex-col items-center gap-1 text-gray-300" data-sd-id="243"><iconify-icon icon="lucide:history" class="text-lg"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="244">ORDERS</span></div><div class="flex flex-col items-center gap-1 text-gray-300" data-sd-id="245"><iconify-icon icon="lucide:user" class="text-lg"></iconify-icon><span class="text-[10px] font-bold" data-sd-id="246">PROFILE</span></div></footer></div></div></div><!-- CONCEPT 6: NEXT-GENERATION --><div class="flex flex-col" data-sd-id="247"><div class="concept-label" data-sd-id="248"><h2 data-sd-id="249">Concept 6: Next-Gen</h2><p data-sd-id="250">Futuristic • Tech • Dynamic</p></div><div class="concept-frame bg-[#0A0D10]" data-sd-id="251"><div class="w-full h-full flex flex-col relative text-white font-['Space Grotesk']" data-sd-id="252"><div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-orange-500/10 via-transparent to-transparent opacity-50" data-sd-id="253"></div><header class="pt-14 px-6 shrink-0 z-10" data-sd-id="254"><div class="flex items-center justify-between mb-8" data-sd-id="255"><div class="w-12 h-12 rounded-full border-2 border-white/10 p-0.5" data-sd-id="256"><div class="w-full h-full rounded-full bg-gradient-to-tr from-[#FF6B35] to-[#00D9FF]" data-sd-id="257"></div></div><div class="flex flex-col items-end" data-sd-id="258"><div class="bg-white/5 backdrop-blur-md px-4 py-1.5 rounded-full border border-white/10 flex items-center gap-2" data-sd-id="259"><span class="w-2 h-2 rounded-full bg-[#00D9FF] animate-pulse" data-sd-id="260"></span><span class="text-[10px] font-bold tracking-widest" data-sd-id="261">LIVE TRACKING</span></div></div></div><h1 class="text-4xl font-light mb-8" data-sd-id="262">Feed your<br><span class="font-bold text-[#FF6B35]" data-sd-id="263">Future.</span></h1></header><main class="flex-1 overflow-y-auto scroll-hide px-6 pb-10 z-10" data-sd-id="264"><div class="relative mb-8" data-sd-id="265"><div class="absolute -inset-1 bg-gradient-to-r from-[#FF6B35] to-[#00D9FF] rounded-2xl blur opacity-20" data-sd-id="266"></div><div class="relative bg-[#11161D] rounded-2xl p-4 flex items-center gap-3 border border-white/10" data-sd-id="267"><iconify-icon icon="lucide:search" class="text-[#00D9FF]"></iconify-icon><input type="text" placeholder="Hyper-search anything..." class="bg-transparent border-none text-sm w-full focus:ring-0" data-sd-id="268"></div></div><div class="flex gap-6 mb-12 overflow-x-auto scroll-hide" data-sd-id="269"><div class="shrink-0 flex flex-col items-center gap-4" data-sd-id="270"><div class="w-16 h-24 rounded-full bg-gradient-to-b from-[#FF6B35]/20 to-transparent border border-[#FF6B35]/30 flex flex-col items-center justify-center gap-2" data-sd-id="271"><iconify-icon icon="lucide:pizza" class="text-2xl text-[#FF6B35]"></iconify-icon></div><span class="text-[10px] font-bold tracking-widest opacity-50 uppercase" data-sd-id="272">FOOD</span></div><div class="shrink-0 flex flex-col items-center gap-4" data-sd-id="273"><div class="w-16 h-24 rounded-full bg-gradient-to-b from-[#00D9FF]/20 to-transparent border border-[#00D9FF]/30 flex flex-col items-center justify-center gap-2" data-sd-id="274"><iconify-icon icon="lucide:package" class="text-2xl text-[#00D9FF]"></iconify-icon></div><span class="text-[10px] font-bold tracking-widest opacity-50 uppercase" data-sd-id="275">MART</span></div><div class="shrink-0 flex flex-col items-center gap-4" data-sd-id="276"><div class="w-16 h-24 rounded-full bg-gradient-to-b from-white/10 to-transparent border border-white/20 flex flex-col items-center justify-center gap-2" data-sd-id="277"><iconify-icon icon="lucide:flame" class="text-2xl text-white"></iconify-icon></div><span class="text-[10px] font-bold tracking-widest opacity-50 uppercase" data-sd-id="278">MEAT</span></div></div><div class="bg-[#11161D] rounded-3xl p-6 border border-white/5 relative overflow-hidden" data-sd-id="279"><div class="absolute -right-8 -top-8 w-32 h-32 bg-[#FF6B35]/20 blur-[50px]" data-sd-id="280"></div><div class="flex justify-between items-start mb-6" data-sd-id="281"><h3 class="text-lg font-bold" data-sd-id="282">Trending Now</h3><iconify-icon icon="lucide:arrow-right-circle" class="text-[#00D9FF] text-2xl"></iconify-icon></div><div class="aspect-video rounded-2xl bg-gray-900 mb-4 overflow-hidden grayscale hover:grayscale-0 transition-all duration-500" data-sd-id="283"><img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&amp;h=300&amp;fit=crop" class="w-full h-full object-cover" data-sd-id="284" onerror="this.onerror=null;this.src='https://placehold.co/400x400/1a1a1a/888?text=Image';"></div><p class="font-bold" data-sd-id="285">Cyber Burgers X</p><div class="flex items-center gap-4 mt-2" data-sd-id="286"><span class="text-xs text-[#00D9FF] font-bold" data-sd-id="287">3.2km away</span><span class="text-xs text-white/40" data-sd-id="288">$0 delivery fee</span></div></div></main><nav class="shrink-0 h-24 bg-black/40 backdrop-blur-3xl px-8 flex justify-between items-center pb-[34px] z-20 border-t border-white/5" data-sd-id="289"><div class="flex flex-col items-center gap-1 text-[#FF6B35]" data-sd-id="290"><iconify-icon icon="lucide:grid" class="text-2xl"></iconify-icon><div class="w-1 h-1 rounded-full bg-[#FF6B35]" data-sd-id="291"></div></div><iconify-icon icon="lucide:search" class="text-2xl text-white/20"></iconify-icon><div class="relative" data-sd-id="292"><iconify-icon icon="lucide:shopping-cart" class="text-2xl text-white/20"></iconify-icon><span class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-[#00D9FF] text-[8px] flex items-center justify-center text-black font-bold" data-sd-id="293">3</span></div><iconify-icon icon="lucide:user" class="text-2xl text-white/20"></iconify-icon></nav></div></div></div></div></div></body></html>

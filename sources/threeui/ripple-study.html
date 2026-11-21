@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ripple — r3xdec 3D</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #09090b;
+      color: #fafafa;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      overflow: hidden;
+      position: relative;
+    }
+    .ambient-glow {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, rgba(99, 102, 241, 0.08) 50%, transparent 70%);
+      filter: blur(40px);
+      pointer-events: none;
+      animation: pulse 8s ease-in-out infinite alternate;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.9) translate(-20px, -20px); opacity: 0.6; }
+      100% { transform: scale(1.1) translate(20px, 20px); opacity: 0.9; }
+    }
+    .card {
+      position: relative;
+      z-index: 10;
+      max-width: 560px;
+      width: 100%;
+      background: rgba(24, 24, 27, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 32px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      margin-bottom: 16px;
+    }
+    h1 { font-size: 24px; font-weight: 700; margin-bottom: 8px; color: #fff; }
+    p { font-size: 14px; line-height: 1.6; color: #a1a1aa; margin-bottom: 20px; }
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+    }
+    .meta-item { display: flex; flex-direction: column; gap: 4px; }
+    .meta-label { color: #71717a; text-transform: uppercase; font-size: 10px; font-weight: 600; }
+    .meta-val { color: #e4e4e7; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow"></div>
+  <div class="card">
+    <span class="badge">Text Animation</span>
+    <h1>Ripple</h1>
+    <p>A full-frame 24 × 24 glyph field where clicks send weighted typographic wavefronts through the seeded character grid on synchronized light and dark surfaces.</p>
+    <div class="meta">
+      <div class="meta-item">
+        <span class="meta-label">Runtime</span>
+        <span class="meta-val">Canvas 2D</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Interaction</span>
+        <span class="meta-val">Click-triggered overlapping ripples with optional scale and palette</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1125 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ARGOS — Record Label</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=Syne:wght@600;800&display=swap');
+
+    :root {
+      --ground: #0A0C0E;
+      --ground-secondary: #101317;
+      --ink: #EDE7DC;
+      --ink-secondary: #9EA5A8;
+      --muted: #6C7378;
+      --amber: #E8913C;
+      --teal: #2E6B72;
+      --hairline: rgba(237, 231, 220, 0.13);
+    }
+
+    body {
+      background-color: var(--ground);
+      color: var(--ink);
+      font-family: 'Sora', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .display-face {
+      font-family: 'Syne', sans-serif;
+      letter-spacing: -0.03em;
+    }
+
+    .label-text {
+      font-size: 10.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-weight: 600;
+    }
+
+    .portal-stage {
+      height: 250vh;
+    }
+
+    .sticky-viewport {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .portal-panel {
+      background: var(--ground);
+      z-index: 30;
+    }
+
+    .hero-image {
+      transform: scale(1.15);
+      transition: transform 0.1s linear;
+    }
+
+    .accent-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--amber);
+      border-radius: 50%;
+      position: absolute;
+      z-index: 40;
+    }
+
+    .outline-text {
+      -webkit-text-stroke: 1px var(--hairline);
+      color: transparent;
+    }
+
+    .deck-container {
+      perspective: 1000px;
+    }
+
+    .deck-card {
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      cursor: grab;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      background: var(--ground-secondary);
+      border: 1px solid var(--hairline);
+    }
+
+    .deck-card:active {
+      cursor: grabbing;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-anim {
+        transition: none !important;
+      }
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(14px);
+      background: rgba(10, 12, 14, 0.7);
+    }
+
+    .footer-wordmark {
+      font-size: 20vw;
+      line-height: 0.8;
+      transform: translateY(20%);
+      opacity: 0.8;
+    }
+  </style>
+
+<meta name="preview-version" content="d70c1cae-0f9d-4dd2-9715-65141880d38a" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.384Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "d70c1cae-0f9d-4dd2-9715-65141880d38a");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "d70c1cae-0f9d-4dd2-9715-65141880d38a",
+      timestamp: "2026-11-20T00:19:43.384Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "d70c1cae-0f9d-4dd2-9715-65141880d38a";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+  <div class="relative min-h-screen w-full" data-sd-id="1">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full h-[58px] z-[100] border-b border-[rgba(237,231,220,0.13)] nav-blur flex items-center justify-between px-6 md:px-12" data-sd-id="2">
+      <a href="#" id="nav-logo" class="display-face text-[15px] font-extrabold tracking-tighter" data-sd-id="3">
+        ARGOS<span class="text-[#E8913C]" data-sd-id="4">.</span>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-10" data-sd-id="5">
+        <a href="#catalog" id="nav-link-catalog" class="label-text hover:text-[#E8913C] transition-colors" data-sd-id="6">Catalogue</a>
+        <a href="#roster" id="nav-link-roster" class="label-text hover:text-[#E8913C] transition-colors" data-sd-id="7">Roster</a>
+        <a href="#dates" id="nav-link-dates" class="label-text hover:text-[#E8913C] transition-colors" data-sd-id="8">Dates</a>
+      </div>
+
+      <button class="px-6 py-2 border border-[#EDE7DC] rounded-full label-text hover:bg-[#EDE7DC] hover:text-[#0A0C0E] transition-all" data-sd-id="9">
+        Newsletter
+      </button>
+    </nav>
+
+    <!-- Section 1: Portal Hero -->
+    <section class="portal-stage" data-sd-id="10">
+      <div class="sticky-viewport" id="portal-viewport" data-sd-id="11">
+        <!-- Background Layer -->
+        <div class="absolute inset-0 bg-black" data-sd-id="12">
+          <video autoplay muted loop playsinline id="hero-img" class="w-full h-full object-cover hero-image" data-sd-id="13">
+            <source src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/generations/b9588cc6-8bf8-4603-ad1d-426646a77a51/output.mp4" type="video/mp4">
+          </video>
+          <div id="hero-duotone" class="absolute inset-0 mix-blend-overlay pointer-events-none opacity-0" style="background: linear-gradient(45deg, var(--teal), var(--amber));" data-sd-id="14"></div>
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.6)_100%)] pointer-events-none" data-sd-id="15"></div>
+        </div>
+
+        <!-- Panels -->
+        <div id="panel-left" class="portal-panel absolute top-0 left-0 w-[50.5%] h-full" data-sd-id="16"></div>
+        <div id="panel-right" class="portal-panel absolute top-0 right-0 w-[50.5%] h-full" data-sd-id="17"></div>
+
+        <!-- Center Accents -->
+        <div id="dot-1" class="accent-dot left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" data-sd-id="18"></div>
+        <div id="dot-2" class="accent-dot left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2" data-sd-id="19"></div>
+
+        <!-- Hero Content (Floating) -->
+        <div class="absolute inset-0 flex items-center justify-center z-40" data-sd-id="20">
+          <h1 id="portal-title" class="display-face text-6xl md:text-[8vw] font-black uppercase flex gap-x-0 leading-none" data-sd-id="21">
+            <span id="title-arg" class="inline-block" data-sd-id="22">ARG</span>
+            <span id="title-os" class="inline-block" data-sd-id="23">OS</span>
+          </h1>
+        </div>
+
+        <!-- Corner Metadata -->
+        <div class="absolute top-24 left-12 label-text z-50 text-[var(--muted)]" data-sd-id="24">
+          Argos Music Group<br>[EST 2024]
+        </div>
+        <div class="absolute bottom-12 right-12 label-text z-50 text-[var(--muted)] flex items-center gap-4" data-sd-id="25">
+          <span class="w-8 h-[1px] bg-[var(--hairline)]" data-sd-id="26"></span>
+          Scroll to expand
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Statement Fold -->
+    <section class="min-h-screen flex flex-col justify-center px-6 md:px-24 py-32 relative overflow-hidden" data-sd-id="27">
+      <span class="label-text text-[var(--amber)] mb-8" data-sd-id="28">Foundational Ethos</span>
+      <div class="max-w-4xl" data-sd-id="29">
+        <h2 class="display-face text-4xl md:text-[clamp(24px,3.6vw,52px)] leading-[1.1] font-bold" data-sd-id="30">
+          We operate at the intersection of <span class="text-[var(--amber)]" data-sd-id="31">timeless structure</span> and chaotic innovation. Argos is not just a label; it is a repository for the sounds that define the next decade of sonic architecture.
+        </h2>
+      </div>
+      <span class="absolute top-1/2 right-12 outline-text display-face text-[20vw] leading-none opacity-20 select-none" data-sd-id="32">01</span>
+      
+      <!-- Floating Circular Element -->
+      <div id="floating-circle" class="absolute -right-24 top-1/4 w-96 h-96 rounded-full border border-[var(--hairline)] opacity-30 pointer-events-none" data-sd-id="33">
+        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f19efa62-f2bb-4263-9fa3-41cc72cb590f/1788935317016-215353d5/download__1_.jpeg" class="w-full h-full object-cover rounded-full p-8 grayscale" data-sd-id="34" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+      </div>
+    </section>
+
+    <!-- Section 3: Releases (Throwable Deck) -->
+    <section id="catalog" class="min-h-screen py-24 px-6 md:px-24 border-t border-[var(--hairline)]" data-sd-id="35">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-20" data-sd-id="36">
+        <div class="flex flex-col justify-center" data-sd-id="37">
+          <span class="label-text mb-6" data-sd-id="38">Catalogue</span>
+          <h3 class="display-face text-5xl font-bold mb-8" data-sd-id="39">Selected Works.</h3>
+          <p class="text-[var(--ink-secondary)] text-lg mb-10 max-w-md" data-sd-id="40">
+            A physical archive of our sonic output. From experimental ambient to hyper-modern industrial rhythms.
+          </p>
+          <div class="flex gap-6" data-sd-id="41">
+            <button class="label-text pb-2 border-b-2 border-[var(--teal)]" data-sd-id="42">View Archive</button>
+            <button class="label-text pb-2 text-[var(--muted)] hover:text-[var(--ink)] transition-colors" data-sd-id="43">Shop Physical</button>
+          </div>
+        </div>
+
+        <div class="relative h-[500px] md:h-[600px] flex items-center justify-center" data-sd-id="44">
+          <div id="card-deck" class="relative w-[320px] h-[320px] md:w-[450px] md:h-[450px] deck-container" data-sd-id="45">
+            <!-- Cards will be dynamically enhanced, but standard stack for now -->
+            <div class="deck-card absolute inset-0 rotate-[-4deg] -translate-x-8 -translate-y-4 p-4" data-sd-id="46">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f19efa62-f2bb-4263-9fa3-41cc72cb590f/1788935317016-215353d5/download__1_.jpeg" class="w-full h-full object-cover" data-sd-id="47" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              <div class="absolute bottom-8 left-8 text-white font-bold" data-sd-id="48">ARG-001 / VORTEX</div>
+            </div>
+            <div class="deck-card absolute inset-0 rotate-[2deg] translate-x-4 translate-y-2 p-4" data-sd-id="49">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f19efa62-f2bb-4263-9fa3-41cc72cb590f/1788935317016-215353d5/download__1_.jpeg" class="w-full h-full object-cover" data-sd-id="50" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              <div class="absolute bottom-8 left-8 text-white font-bold" data-sd-id="51">ARG-002 / KINETIC</div>
+            </div>
+            <div class="deck-card absolute inset-0 rotate-[-1deg] translate-x-0 translate-y-0 p-4" data-sd-id="52">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/f19efa62-f2bb-4263-9fa3-41cc72cb590f/1788935317016-215353d5/download__1_.jpeg" class="w-full h-full object-cover" data-sd-id="53" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              <div class="absolute bottom-8 left-8 text-white font-bold" data-sd-id="54">ARG-003 / STATIC</div>
+            </div>
+          </div>
+          <div class="absolute bottom-0 w-full flex flex-col items-center gap-4" data-sd-id="55">
+            <div class="h-[1px] w-48 bg-[var(--hairline)] relative" data-sd-id="56">
+              <div id="deck-progress" class="absolute left-0 top-0 h-full w-1/3 bg-[var(--amber)]" data-sd-id="57"></div>
+            </div>
+            <span class="label-text text-[var(--muted)]" data-sd-id="58">Drag cards to flip</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Roster & Dates -->
+    <section id="roster" class="py-24 px-6 md:px-24 border-t border-[var(--hairline)]" data-sd-id="59">
+      <div class="flex justify-between items-end mb-16" data-sd-id="60">
+        <h3 class="display-face text-4xl font-bold" data-sd-id="61">Roster</h3>
+        <span class="label-text text-[var(--muted)]" data-sd-id="62">Twelve Active Artists</span>
+      </div>
+      
+      <div class="space-y-0" data-sd-id="63">
+        <div class="group border-t border-[var(--hairline)] py-10 flex justify-between items-center hover:bg-[var(--ground-secondary)] transition-colors px-4 -mx-4" data-sd-id="64">
+          <div class="flex items-center gap-6" data-sd-id="65">
+            <span class="label-text text-[var(--teal)]" data-sd-id="66">01</span>
+            <span class="display-face text-3xl" data-sd-id="67">Aurelius Noir</span>
+          </div>
+          <span class="label-text text-[var(--muted)] group-hover:text-[var(--ink)]" data-sd-id="68">4 Releases</span>
+        </div>
+        <div class="group border-t border-[var(--hairline)] py-10 flex justify-between items-center hover:bg-[var(--ground-secondary)] transition-colors px-4 -mx-4" data-sd-id="69">
+          <div class="flex items-center gap-6" data-sd-id="70">
+            <span class="label-text text-[var(--teal)]" data-sd-id="71">02</span>
+            <span class="display-face text-3xl" data-sd-id="72">Signal Decay</span>
+          </div>
+          <span class="label-text text-[var(--muted)] group-hover:text-[var(--ink)]" data-sd-id="73">7 Releases</span>
+        </div>
+        <div class="group border-t border-[var(--hairline)] py-10 flex justify-between items-center hover:bg-[var(--ground-secondary)] transition-colors px-4 -mx-4" data-sd-id="74">
+          <div class="flex items-center gap-6" data-sd-id="75">
+            <span class="label-text text-[var(--teal)]" data-sd-id="76">03</span>
+            <span class="display-face text-3xl" data-sd-id="77">Hecate</span>
+          </div>
+          <span class="label-text text-[var(--muted)] group-hover:text-[var(--ink)]" data-sd-id="78">2 Releases</span>
+        </div>
+      </div>
+
+      <div id="dates" class="mt-32" data-sd-id="79">
+        <div class="grid grid-cols-2 md:grid-cols-4 border-b border-[var(--hairline)] pb-4" data-sd-id="80">
+          <span class="label-text" data-sd-id="81">Date</span>
+          <span class="label-text" data-sd-id="82">Artist</span>
+          <span class="label-text hidden md:block" data-sd-id="83">Venue</span>
+          <span class="label-text text-right" data-sd-id="84">City</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 border-b border-[var(--hairline)] py-6 items-center" data-sd-id="85">
+          <span class="text-[var(--ink-secondary)]" data-sd-id="86">12 Oct 2024</span>
+          <span class="display-face" data-sd-id="87">Aurelius Noir</span>
+          <span class="text-[var(--ink-secondary)] hidden md:block" data-sd-id="88">Berghain</span>
+          <span class="text-right" data-sd-id="89">Berlin</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 border-b border-[var(--hairline)] py-6 items-center" data-sd-id="90">
+          <span class="text-[var(--ink-secondary)]" data-sd-id="91">24 Oct 2024</span>
+          <span class="display-face" data-sd-id="92">Signal Decay</span>
+          <span class="text-[var(--ink-secondary)] hidden md:block" data-sd-id="93">Village Underground</span>
+          <span class="text-right" data-sd-id="94">London</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 border-b border-[var(--hairline)] py-6 items-center" data-sd-id="95">
+          <span class="text-[var(--ink-secondary)]" data-sd-id="96">02 Nov 2024</span>
+          <span class="display-face" data-sd-id="97">Hecate</span>
+          <span class="text-[var(--ink-secondary)] hidden md:block" data-sd-id="98">Primavera Sound</span>
+          <span class="text-right" data-sd-id="99">Barcelona</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Close -->
+    <footer class="pt-32 pb-0 px-6 md:px-24 bg-[var(--ground-secondary)] overflow-hidden" data-sd-id="100">
+      <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-24" data-sd-id="101">
+        <div class="max-w-md" data-sd-id="102">
+          <h4 class="display-face text-4xl font-bold mb-6 italic" data-sd-id="103">Join the archive.</h4>
+          <p class="text-[var(--muted)] uppercase tracking-widest text-[10px] leading-relaxed" data-sd-id="104">
+            Our monthly briefing on new material, archival restorations, and clandestine events. Private access only.
+          </p>
+        </div>
+        <div class="flex flex-col gap-4 items-end" data-sd-id="105">
+          <button class="px-8 py-3 border border-[var(--amber)] label-text text-[var(--amber)]" data-sd-id="106">Subscribe</button>
+          <div class="flex gap-6 mt-4" data-sd-id="107">
+            <iconify-icon icon="lucide:instagram" class="text-xl opacity-60 hover:opacity-100 cursor-pointer"></iconify-icon>
+            <iconify-icon icon="lucide:twitter" class="text-xl opacity-60 hover:opacity-100 cursor-pointer"></iconify-icon>
+            <iconify-icon icon="lucide:music" class="text-xl opacity-60 hover:opacity-100 cursor-pointer"></iconify-icon>
+          </div>
+        </div>
+      </div>
+      
+      <div class="border-t border-[var(--hairline)] py-8 flex justify-between label-text text-[var(--muted)] text-[8px]" data-sd-id="108">
+        <span data-sd-id="109">© 2024 ARGOS RECORDS</span>
+        <span data-sd-id="110">IMPRESSUM // PRIVACY</span>
+        <span data-sd-id="111">DESIGN BY ARGOS LABS</span>
+      </div>
+
+      <div class="footer-wordmark display-face font-black text-center whitespace-nowrap pointer-events-none" data-sd-id="112">
+        ARGOS
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Scroll Logic for Portal
+    const viewport = document.getElementById('portal-viewport');
+    const panelLeft = document.getElementById('panel-left');
+    const panelRight = document.getElementById('panel-right');
+    const heroVideo = document.getElementById('hero-img');
+    const titleArg = document.getElementById('title-arg');
+    const titleOs = document.getElementById('title-os');
+    const titleContainer = document.getElementById('portal-title');
+    const dot1 = document.getElementById('dot-1');
+    const dot2 = document.getElementById('dot-2');
+    const duotone = document.getElementById('hero-duotone');
+    const floatingCircle = document.getElementById('floating-circle');
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const vh = window.innerHeight;
+      
+      // Hero Portal Logic (0 to 1.5vh)
+      let portalProgress = Math.min(scrollY / (vh * 1.5), 1);
+      
+      // Panels opening
+      panelLeft.style.transform = `translateX(${-portalProgress * 105}%)`;
+      panelRight.style.transform = `translateX(${portalProgress * 105}%)`;
+      
+      // Image zoom out
+      heroVideo.style.transform = `scale(${1.15 - (portalProgress * 0.15)})`;
+      duotone.style.opacity = portalProgress * 0.3;
+
+      // Wordmark Logic
+      // Growing & tightening tracking
+      const scale = 1 + (portalProgress * 0.4);
+      const tracking = -0.03 - (portalProgress * 0.15);
+      titleContainer.style.transform = `scale(${scale})`;
+      titleContainer.style.letterSpacing = `${tracking}em`;
+      
+      // Spans splitting
+      const splitDist = portalProgress * 150; // pixels
+      titleArg.style.transform = `translateX(${-splitDist}px)`;
+      titleOs.style.transform = `translateX(${splitDist}px)`;
+
+      // Accent dots
+      dot1.style.transform = `translate(${-portalProgress * 45}vw, ${-portalProgress * 45}vh)`;
+      dot2.style.transform = `translate(${portalProgress * 45}vw, ${portalProgress * 45}vh)`;
+
+      // Statement Fold Parallax
+      if (scrollY > vh) {
+        const stmtProgress = (scrollY - vh) / vh;
+        floatingCircle.style.transform = `translateY(${stmtProgress * -100}px) rotate(${stmtProgress * 45}deg)`;
+      }
+    });
+
+    // Throwable Card Deck Logic
+    const deck = document.getElementById('card-deck');
+    const cards = Array.from(deck.querySelectorAll('.deck-card'));
+    let isDragging = false;
+    let startX = 0;
+    let currentX = 0;
+    let activeCardIndex = cards.length - 1;
+
+    deck.addEventListener('mousedown', (e) => {
+      if (activeCardIndex < 0) return;
+      isDragging = true;
+      startX = e.clientX;
+      const card = cards[activeCardIndex];
+      card.style.transition = 'none';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      currentX = e.clientX - startX;
+      const card = cards[activeCardIndex];
+      const rotation = currentX * 0.1;
+      const scale = 1 + Math.abs(currentX) * 0.0005;
+      card.style.transform = `translate(${currentX}px, 0) rotate(${rotation}deg) scale(${scale})`;
+    });
+
+    window.addEventListener('mouseup', () => {
+      if (!isDragging) return;
+      isDragging = false;
+      const card = cards[activeCardIndex];
+      const threshold = deck.offsetWidth * 0.2;
+
+      if (Math.abs(currentX) > threshold) {
+        // Throw card
+        const direction = currentX > 0 ? 1 : -1;
+        card.style.transition = 'all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        card.style.transform = `translate(${direction * 1000}px, -200px) rotate(${direction * 90}deg)`;
+        card.style.opacity = '0';
+        card.style.pointerEvents = 'none';
+        
+        activeCardIndex--;
+        if (activeCardIndex < 0) {
+          setTimeout(() => resetDeck(), 1000);
+        }
+      } else {
+        // Reset card
+        card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        card.style.transform = `translate(0, 0) rotate(0deg) scale(1)`;
+      }
+      currentX = 0;
+    });
+
+    function resetDeck() {
+      activeCardIndex = cards.length - 1;
+      cards.forEach((card, i) => {
+        card.style.transition = 'all 0.5s ease-out';
+        card.style.transform = '';
+        card.style.opacity = '1';
+        card.style.pointerEvents = 'auto';
+      });
+    }
+
+    // Keyboard Navigation for Deck
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        if (activeCardIndex >= 0) {
+          currentX = e.key === 'ArrowRight' ? 300 : -300;
+          isDragging = true;
+          window.dispatchEvent(new Event('mouseup'));
+        }
+      }
+    });
+  </script>
+
+</body></html>

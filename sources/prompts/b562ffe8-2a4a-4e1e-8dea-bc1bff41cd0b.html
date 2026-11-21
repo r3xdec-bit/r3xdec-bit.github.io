@@ -1,0 +1,1061 @@
+<!DOCTYPE html><html lang="ru"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AegisWAF - Dashboard with Top IP Widget</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #050505;
+            --bg-card: #0c0c0c;
+            --border: rgba(255, 255, 255, 0.08);
+            --accent-blue: #3b82f6;
+            --accent-purple: #a855f7;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: #e5e7eb;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .glass-card {
+            background: rgba(18, 18, 18, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .bar-gradient {
+            background: linear-gradient(90deg, #3b82f6, #60a5fa);
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.2);
+        }
+
+        .metric-pulse {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            margin-right: 8px;
+            box-shadow: 0 0 8px #ef4444;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .rotate-hover:hover {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+    </style>
+
+<meta name="preview-version" content="d84b5307-b214-4d5e-b574-ae176ef7b895" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.637Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "d84b5307-b214-4d5e-b574-ae176ef7b895");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "d84b5307-b214-4d5e-b574-ae176ef7b895",
+      timestamp: "2026-11-20T00:19:43.637Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "d84b5307-b214-4d5e-b574-ae176ef7b895";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <div class="min-h-screen p-6 max-w-[1920px] mx-auto" data-sd-id="1">
+        <!-- Top Header -->
+        <header class="flex items-center justify-between mb-8 px-2" data-sd-id="2">
+            <div class="flex items-center gap-3" data-sd-id="3">
+                <h1 class="text-2xl font-bold tracking-tight" data-sd-id="4">Панель мониторинга</h1>
+            </div>
+            <div class="flex items-center gap-3" data-sd-id="5">
+                <div class="flex items-center bg-[#111] border border-white/5 rounded-lg px-2 py-1.5" data-sd-id="6">
+                    <button class="px-3 py-1 text-xs text-gray-400 hover:text-white transition-colors border-r border-white/5" data-sd-id="7">7д <iconify-icon icon="lucide:chevron-down" class="text-[10px]"></iconify-icon></button>
+                    <button class="px-3 py-1 text-xs text-gray-400 hover:text-white transition-colors border-r border-white/5 flex items-center gap-2" data-sd-id="8"><iconify-icon icon="lucide:calendar"></iconify-icon> Выбрать диапазон</button>
+                    <div class="px-3 flex items-center gap-2" data-sd-id="9">
+                        <span class="text-[10px] text-gray-500 font-bold uppercase tracking-wider" data-sd-id="10">Период обновления:</span>
+                        <button class="text-xs text-gray-300 hover:text-white" data-sd-id="11">Отключено <iconify-icon icon="lucide:chevron-down" class="text-[10px]"></iconify-icon></button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="grid grid-cols-12 gap-5" data-sd-id="12">
+            
+            <!-- Left Blocked Attacks (Image Reference 1) -->
+            <div class="col-span-3 glass-card p-6" data-sd-id="13">
+                <div class="flex items-center justify-between mb-4" data-sd-id="14">
+                    <div class="flex items-center" data-sd-id="15">
+                        <span class="metric-pulse" data-sd-id="16"></span>
+                        <span class="text-[10px] font-black uppercase text-gray-400 tracking-widest" data-sd-id="17">Заблокированные атаки</span>
+                    </div>
+                </div>
+                <div class="text-4xl font-black mb-4" data-sd-id="18">2</div>
+                <div class="space-y-4" data-sd-id="19">
+                    <div class="flex flex-col gap-1" data-sd-id="20">
+                        <div class="flex justify-between text-[10px] uppercase text-gray-500 font-bold tracking-tighter" data-sd-id="21">
+                            <span data-sd-id="22">Эффективность блокировки</span>
+                            <span data-sd-id="23">100%</span>
+                        </div>
+                        <div class="h-[2px] w-full bg-white/5 overflow-hidden" data-sd-id="24">
+                            <div class="h-full bg-red-500 w-full" data-sd-id="25"></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-8 text-[10px] uppercase text-gray-500 font-bold tracking-tighter" data-sd-id="26">
+                        <div class="flex flex-col gap-1" data-sd-id="27">
+                            <span data-sd-id="28">Уник. IP-Адреса</span>
+                            <span class="text-white text-base" data-sd-id="29">1</span>
+                        </div>
+                        <div class="flex flex-col gap-1" data-sd-id="30">
+                            <span data-sd-id="31">Пиковый RPS</span>
+                            <span class="text-white text-base" data-sd-id="32">0/c</span>
+                        </div>
+                        <div class="flex flex-col gap-1" data-sd-id="33">
+                            <span data-sd-id="34">Типы атак</span>
+                            <span class="text-white text-base" data-sd-id="35">1 категория</span>
+                        </div>
+                        <div class="flex flex-col gap-1" data-sd-id="36">
+                            <span data-sd-id="37">Эффективность блокировки</span>
+                            <span class="text-white text-base" data-sd-id="38">100%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 text-[9px] text-gray-600 uppercase font-black flex items-center gap-2" data-sd-id="39">
+                    <span class="w-1 h-1 rounded-full bg-red-500" data-sd-id="40"></span> Защита в реальном времени активна
+                </div>
+            </div>
+
+            <!-- Requests per Second Center (Image Reference 2) -->
+            <div class="col-span-6 glass-card p-6 flex flex-col" data-sd-id="41">
+                <div class="flex items-center justify-between mb-6" data-sd-id="42">
+                    <div class="flex items-center gap-2" data-sd-id="43">
+                        <iconify-icon icon="lucide:zap" class="text-blue-500"></iconify-icon>
+                        <span class="text-[10px] font-black uppercase tracking-widest" data-sd-id="44">Запросов в секунду</span>
+                    </div>
+                    <div class="flex items-center gap-2" data-sd-id="45">
+                        <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse" data-sd-id="46"></span>
+                        <span class="text-[9px] text-blue-500 font-black uppercase" data-sd-id="47">LIVE</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-3 gap-3 mb-6" data-sd-id="48">
+                    <div class="bg-blue-500/5 border border-blue-500/10 p-3 rounded-lg" data-sd-id="49">
+                        <div class="text-[9px] text-blue-400 uppercase font-black" data-sd-id="50">Текущий RPS</div>
+                        <div class="text-xl font-bold" data-sd-id="51">0</div>
+                    </div>
+                    <div class="bg-white/5 border border-white/5 p-3 rounded-lg" data-sd-id="52">
+                        <div class="text-[9px] text-gray-500 uppercase font-black" data-sd-id="53">Ср. значение</div>
+                        <div class="text-xl font-bold" data-sd-id="54">0</div>
+                    </div>
+                    <div class="bg-purple-500/5 border border-purple-500/10 p-3 rounded-lg" data-sd-id="55">
+                        <div class="text-[9px] text-purple-400 uppercase font-black" data-sd-id="56">Лимит лицензии</div>
+                        <div class="text-xl font-bold" data-sd-id="57">0.0%</div>
+                    </div>
+                </div>
+                <div class="flex-1 flex flex-col justify-center border-t border-white/5 pt-6" data-sd-id="58">
+                    <div class="flex justify-between text-[10px] text-gray-600 uppercase font-bold mb-2" data-sd-id="59">
+                        <span data-sd-id="60">Использование лицензии</span>
+                        <span data-sd-id="61">0 / 1,000</span>
+                    </div>
+                    <div class="h-1 bg-white/5 rounded-full overflow-hidden" data-sd-id="62">
+                        <div class="h-full bg-blue-500/40 w-0" data-sd-id="63"></div>
+                    </div>
+                    <div class="flex-1 mt-10 opacity-20 bg-[radial-gradient(circle_at_bottom,rgba(59,130,246,0.1)_0%,transparent_70%)] rounded-xl" data-sd-id="64">
+                        <!-- Empty chart space placeholder as per image -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Attack Map (Image Reference 3) -->
+            <div class="col-span-3 glass-card p-6" data-sd-id="65">
+                <div class="flex items-center justify-between mb-4" data-sd-id="66">
+                    <div class="flex items-center gap-2" data-sd-id="67">
+                        <iconify-icon icon="lucide:globe" class="text-green-500"></iconify-icon>
+                        <span class="text-[10px] font-black uppercase tracking-widest" data-sd-id="68">Карта атак в реальном времени</span>
+                    </div>
+                    <div class="flex flex-col items-end" data-sd-id="69">
+                        <span class="text-[9px] text-gray-600 uppercase font-bold" data-sd-id="70">Всего атак</span>
+                        <span class="text-xl font-black text-green-500" data-sd-id="71">2</span>
+                    </div>
+                </div>
+                <div class="aspect-square relative mt-4 opacity-60 flex items-center justify-center grayscale" data-sd-id="72">
+                     <iconify-icon icon="lucide:map" class="text-[180px] text-white/10"></iconify-icon>
+                     <div class="absolute w-2 h-2 bg-green-500 rounded-full shadow-[0_0_10px_#22c55e] animate-ping top-1/2 left-1/3" data-sd-id="73"></div>
+                </div>
+                <div class="flex justify-end mt-4" data-sd-id="74">
+                    <button class="p-2 hover:bg-white/5 rounded-lg text-gray-500 transition-all" data-sd-id="75">
+                        <iconify-icon icon="lucide:maximize-2"></iconify-icon>
+                    </button>
+                </div>
+            </div>
+
+            <!-- SECOND ROW -->
+            
+            <!-- Top Threat Vectors Split Row -->
+            <div class="col-span-6 grid grid-cols-2 gap-5" data-sd-id="76">
+                <!-- Left Half: Top Threat Vectors -->
+                <div class="glass-card p-6" data-sd-id="77">
+                    <div class="flex items-center justify-between mb-6" data-sd-id="78">
+                        <div class="flex items-center gap-2" data-sd-id="79">
+                            <iconify-icon icon="lucide:bar-chart-3" class="text-orange-500"></iconify-icon>
+                            <span class="text-[10px] font-black uppercase tracking-widest text-gray-400" data-sd-id="80">Топ векторов угроз</span>
+                        </div>
+                    </div>
+                    <div class="space-y-6" data-sd-id="81">
+                        <div class="group" data-sd-id="82">
+                             <div class="flex justify-between text-[11px] mb-2" data-sd-id="83">
+                                <span class="text-gray-300 font-medium truncate pr-4" data-sd-id="84">Remote Command Execution: Unix Shell Code</span>
+                                <span class="text-gray-500 mono" data-sd-id="85">2 (100.0%)</span>
+                             </div>
+                             <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden" data-sd-id="86">
+                                <div class="h-full bg-orange-500 w-full shadow-[0_0_8px_rgba(249,115,22,0.4)]" data-sd-id="87"></div>
+                             </div>
+                        </div>
+                        <div class="group opacity-40" data-sd-id="88">
+                             <div class="flex justify-between text-[11px] mb-2" data-sd-id="89">
+                                <span class="text-gray-500 font-medium truncate pr-4" data-sd-id="90">SQL Injection: Union Based Pattern</span>
+                                <span class="text-gray-600 mono" data-sd-id="91">0 (0.0%)</span>
+                             </div>
+                             <div class="h-1.5 w-full bg-white/5 rounded-full overflow-hidden" data-sd-id="92">
+                                <div class="h-full bg-orange-500 w-0" data-sd-id="93"></div>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Half: NEW TOP IP WIDGET -->
+                <div class="glass-card p-5 flex flex-col" data-sd-id="94">
+                    <div class="flex items-center justify-between mb-5 px-1" data-sd-id="95">
+                        <div class="flex items-center gap-2" data-sd-id="96">
+                            <iconify-icon icon="lucide:shield-alert" class="text-blue-500"></iconify-icon>
+                            <h3 class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400" data-sd-id="97">Top Attack IPs</h3>
+                        </div>
+                        <button class="p-1 text-gray-600 hover:text-blue-400 transition-colors group" data-sd-id="98">
+                            <iconify-icon icon="lucide:rotate-cw" class="rotate-hover text-sm"></iconify-icon>
+                        </button>
+                    </div>
+                    
+                    <div class="flex-1 space-y-1.5" data-sd-id="99">
+                        <!-- IP Row 1 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer" data-sd-id="100">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="101">192.168.1.45</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden relative" data-sd-id="102">
+                                <div class="h-full bar-gradient rounded-full w-[100%] transition-all duration-1000" data-sd-id="103"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="104">245</span>
+                        </div>
+                        <!-- IP Row 2 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer bg-white/[0.015]" data-sd-id="105">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="106">10.0.0.127</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden" data-sd-id="107">
+                                <div class="h-full bar-gradient rounded-full w-[76%] transition-all duration-1000" data-sd-id="108"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="109">187</span>
+                        </div>
+                        <!-- IP Row 3 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer" data-sd-id="110">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="111">172.16.254.1</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden" data-sd-id="112">
+                                <div class="h-full bar-gradient rounded-full w-[58%] transition-all duration-1000" data-sd-id="113"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="114">142</span>
+                        </div>
+                        <!-- IP Row 4 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer bg-white/[0.015]" data-sd-id="115">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="116">203.45.67.89</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden" data-sd-id="117">
+                                <div class="h-full bar-gradient rounded-full w-[40%] transition-all duration-1000" data-sd-id="118"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="119">98</span>
+                        </div>
+                        <!-- IP Row 5 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer" data-sd-id="120">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="121">10.20.30.40</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden" data-sd-id="122">
+                                <div class="h-full bar-gradient rounded-full w-[26%] transition-all duration-1000" data-sd-id="123"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="124">64</span>
+                        </div>
+                        <!-- IP Row 6 -->
+                        <div class="flex items-center gap-4 px-2 py-1 rounded-lg hover:bg-white/[0.04] transition-all group cursor-pointer bg-white/[0.015]" data-sd-id="125">
+                            <span class="mono text-[11px] text-gray-200 w-[110px]" data-sd-id="126">192.0.2.50</span>
+                            <div class="flex-1 h-2.5 bg-white/[0.03] rounded-full overflow-hidden" data-sd-id="127">
+                                <div class="h-full bar-gradient rounded-full w-[14%] transition-all duration-1000" data-sd-id="128"></div>
+                            </div>
+                            <span class="text-[11px] font-bold text-white w-[30px] text-right" data-sd-id="129">34</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-3 border-t border-white/5 flex items-center justify-between" data-sd-id="130">
+                        <span class="text-[9px] text-gray-600 font-bold uppercase tracking-tighter" data-sd-id="131">Total sources found: 184</span>
+                        <a href="#" class="text-[9px] text-blue-500 font-black uppercase tracking-widest hover:underline" data-sd-id="132">View Details</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Blocking Coefficient (Image Reference 4) -->
+            <div class="col-span-3 glass-card p-6 flex flex-col items-center justify-center" data-sd-id="133">
+                <div class="self-start flex items-center gap-2 mb-6" data-sd-id="134">
+                    <iconify-icon icon="lucide:pie-chart" class="text-purple-500"></iconify-icon>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-400" data-sd-id="135">Коэффициент блокировки</span>
+                </div>
+                <div class="relative flex items-center justify-center mb-4" data-sd-id="136">
+                    <svg class="w-36 h-36 rotate-[-90deg]" data-sd-id="137">
+                        <circle cx="72" cy="72" r="60" stroke="currentColor" stroke-width="12" fill="transparent" class="text-white/5"></circle>
+                        <circle cx="72" cy="72" r="60" stroke="currentColor" stroke-width="12" fill="transparent" stroke-dasharray="377" stroke-dashoffset="0" class="text-purple-600"></circle>
+                    </svg>
+                    <div class="absolute flex flex-col items-center" data-sd-id="138">
+                        <span class="text-3xl font-black leading-none" data-sd-id="139">100%</span>
+                        <span class="text-[8px] font-black uppercase text-gray-500 mt-1 tracking-tighter" data-sd-id="140">заблок.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- System Metrics (Image Reference 5) -->
+            <div class="col-span-3 glass-card p-6" data-sd-id="141">
+                <div class="flex items-center gap-2 mb-8" data-sd-id="142">
+                    <iconify-icon icon="lucide:activity" class="text-blue-400"></iconify-icon>
+                    <span class="text-[10px] font-black uppercase tracking-widest text-gray-400" data-sd-id="143">Системные метрики</span>
+                </div>
+                <div class="space-y-6" data-sd-id="144">
+                    <div class="flex flex-col gap-2" data-sd-id="145">
+                        <div class="flex justify-between text-[10px] uppercase font-bold tracking-tight" data-sd-id="146">
+                            <span class="text-gray-400" data-sd-id="147">CPU Usage</span>
+                            <span class="text-white" data-sd-id="148">1.0%</span>
+                        </div>
+                        <div class="h-12 w-full flex items-end gap-[2px] opacity-60" data-sd-id="149">
+                            <div class="bg-blue-500/30 flex-1 h-[10%]" data-sd-id="150"></div>
+                            <div class="bg-blue-500/30 flex-1 h-[12%]" data-sd-id="151"></div>
+                            <div class="bg-blue-500/30 flex-1 h-[10%]" data-sd-id="152"></div>
+                            <div class="bg-blue-500/30 flex-1 h-[11%]" data-sd-id="153"></div>
+                            <div class="bg-blue-500/30 flex-1 h-[14%]" data-sd-id="154"></div>
+                            <div class="bg-blue-500 flex-1 h-[10%]" data-sd-id="155"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2" data-sd-id="156">
+                        <div class="flex justify-between text-[10px] uppercase font-bold tracking-tight" data-sd-id="157">
+                            <span class="text-gray-400" data-sd-id="158">Memory Usage</span>
+                            <span class="text-white" data-sd-id="159">16.0%</span>
+                        </div>
+                        <div class="h-[2px] w-full bg-white/5" data-sd-id="160">
+                            <div class="h-full bg-purple-500 w-[16%]" data-sd-id="161"></div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-2" data-sd-id="162">
+                        <div class="flex justify-between text-[10px] uppercase font-bold tracking-tight" data-sd-id="163">
+                            <span class="text-gray-400" data-sd-id="164">Disk Free</span>
+                            <span class="text-white" data-sd-id="165">79.0%</span>
+                        </div>
+                        <div class="h-[2px] w-full bg-white/5" data-sd-id="166">
+                            <div class="h-full bg-teal-500 w-[79%]" data-sd-id="167"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Footer Sticky Note (Optional dashboard element) -->
+        <footer class="mt-12 text-[10px] text-gray-700 font-bold uppercase tracking-[0.3em] text-center" data-sd-id="168">
+            Aegis Intelligence Dashboard • System Status: Optimal
+        </footer>
+    </div>
+
+</body></html>

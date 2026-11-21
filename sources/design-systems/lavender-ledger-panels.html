@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lavender Ledger Panels — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#F5F5F7;
+  --surface-alt:#D5BFD7;
+  --text-primary:#000000;
+  --text-secondary:#575763;
+  --text-inverse:#F0F0F2;
+  --accent:#3957BD;
+  --accent-hover:#3552B5;
+  --warning-tint:#FFF8E6;
+  --warning-ink:#F2C037;
+  --border:#D7D7DD;
+  --night-panel:#000D38;
+  --panel-lavender:#D5BFD7;
+  --panel-pink:#F3D9E0;
+  --panel-sage:#DCE4D2;
+  --panel-cream:#F3EDDD;
+  --panel-peri:#C9CEEA;
+  --r-control:8px;
+  --r-card:16px;
+  --r-pill:100px;
+  --gap-sm:8px;
+  --gap-md:16px;
+  --gap-lg:24px;
+  --gap-xl:32px;
+  --content-max:1344px;
+  --shadow-card:rgba(95,99,120,0.12) 0px 4px 4px 0px, rgba(95,99,120,0.12) 0px 8px 16px 0px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --font:"Baloo 2","Oatmeal",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{font-family:var(--font);background:var(--background);color:var(--text-primary);-webkit-font-smoothing:antialiased;line-height:1.6}
+img{max-width:100%;display:block}
+a{color:var(--accent);text-decoration:none}
+a:hover{color:var(--accent-hover)}
+.wrap{max-width:var(--content-max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4,p{margin:0}
+.display{font-size:47px;font-weight:600;line-height:1;letter-spacing:-0.9px}
+.headline{font-size:36px;font-weight:600;line-height:1;letter-spacing:-0.7px}
+.body-md{font-size:15px;font-weight:600;line-height:1.6}
+.body-reg{font-size:15px;font-weight:400;line-height:1.6}
+.eyebrow{font-size:11px;font-weight:700;line-height:1;letter-spacing:0.08em;text-transform:uppercase}
+.caption{font-size:13px;font-weight:400;color:var(--text-secondary)}
+/* navbar */
+.nav{position:sticky;top:0;z-index:50;width:100%;height:80px;background:#FFFFFF;border-bottom:1px solid var(--border);display:flex;align-items:center}
+.nav-inner{max-width:var(--content-max);margin:0 auto;width:100%;padding:0 24px;display:flex;align-items:center;gap:8px}
+.logo{display:flex;align-items:center;gap:8px;font-size:24px;font-weight:700;color:var(--accent);letter-spacing:-0.5px}
+.nav-items{display:flex;align-items:center;gap:4px;margin-left:32px;flex:1;flex-wrap:wrap}
+.nav-item{background:transparent;border:0;color:#000;height:48px;padding:16px;font-family:var(--font);font-size:15px;font-weight:400;display:inline-flex;align-items:center;gap:4px;cursor:pointer;transition:background-color .15s var(--ease)}
+.nav-item:hover{background:rgba(227,227,231,0.5)}
+.nav-signin{margin-left:auto;background:transparent;border:0;color:#000;height:48px;padding:16px;font-family:var(--font);font-size:15px;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:pointer;transition:background-color .15s var(--ease)}
+.nav-signin:hover{background:rgba(227,227,231,0.5)}
+/* hero */
+.hero{position:relative;overflow:hidden;background:#fff}
+.hero-grid{display:grid;grid-template-columns:minmax(0,420px) 1fr;min-height:560px}
+.hero-photo{position:relative;background:linear-gradient(135deg,#3957BD,#000D38)}
+.hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.75),rgba(0,0,0,0) 48%)}
+.hero-left{display:flex;align-items:center;padding:48px 0 48px 24px;background:#fff}
+.search-card{background:#fff;border-radius:16px;padding:24px;box-shadow:var(--shadow-card);width:100%;position:relative;z-index:2}
+.seg{display:inline-flex;background:var(--surface);border-radius:100px;padding:4px;margin-bottom:24px}
+.seg button{border:0;background:transparent;font-family:var(--font);font-weight:600;font-size:15px;height:40px;padding:0 20px;border-radius:100px;cursor:pointer;color:#000}
+.seg button[aria-selected="true"]{background:#fff;box-shadow:var(--shadow-card);color:var(--accent)}
+.tabrow{display:flex;gap:4px;margin:16px 0 24px}
+.btn-ghost{background:transparent;color:#000;border:0;height:40px;padding:0 12px;border-radius:100px;font-family:var(--font);font-weight:600;font-size:15px;cursor:pointer;transition:background-color .15s var(--ease)}
+.btn-ghost:hover{background:rgba(227,227,231,0.5)}
+.btn-ghost[aria-selected="true"]{background:var(--surface-alt)}
+.field{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:8px;padding:0 16px;height:48px;margin-bottom:16px}
+.field iconify-icon{color:var(--text-secondary);font-size:20px}
+.field .f-text{display:flex;flex-direction:column}
+.field .f-label{font-size:11px;color:var(--text-secondary);font-weight:600}
+.field .f-val{font-size:15px;font-weight:600;color:#000}
+.btn-hero{width:100%;background:var(--accent);color:var(--text-inverse);border:0;border-radius:100px;height:56px;padding:16px 24px;font-family:var(--font);font-weight:600;font-size:16px;cursor:pointer;transition:background-color .15s var(--ease);display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn-hero:hover{background:var(--accent-hover)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-photo{min-height:220px}.hero-left{padding:24px}}
+@media(max-width:640px){.display{font-size:34px}.headline{font-size:28px}.nav-items{display:none}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo" aria-label="Lavender Ledger">
+      <iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon>
+      Ledger
+    </div>
+    <nav class="nav-items" aria-label="Principal">
+      <button class="nav-item">Alugar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Comprar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Anunciar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Financiar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Assessoria <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Ajuda <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-item">Blog</button>
+    </nav>
+    <button class="nav-signin"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon> Entrar</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="hero" aria-label="Destaque">
+  <div class="hero-grid">
+    <div class="hero-left">
+      <div class="search-card" data-tier-a-component="card-search-panel">
+        <div class="seg" role="tablist" aria-label="Modo">
+          <button role="tab" aria-selected="true">Buscar</button>
+          <button role="tab" aria-selected="false">Anunciar</button>
+        </div>
+        <h1 class="display">O lar certo,<br>com calma e clareza.</h1>
+        <div class="tabrow" role="tablist" aria-label="Tipo">
+          <button class="btn-ghost" role="tab" aria-selected="true">Alugar</button>
+          <button class="btn-ghost" role="tab" aria-selected="false">Comprar</button>
+          <button class="btn-ghost" role="tab" aria-selected="false">Lançamentos</button>
+        </div>
+        <div class="field"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Cidade</span><span class="f-val">São Paulo</span></div></div>
+        <div class="field"><iconify-icon icon="lucide:map" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Bairro</span><span class="f-val">Pinheiros</span></div></div>
+        <div class="field"><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Valor total</span><span class="f-val">Até R$ 3.500</span></div></div>
+        <div class="field"><iconify-icon icon="lucide:bed" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Quartos</span><span class="f-val">2+</span></div></div>
+        <button class="btn-hero" data-tier-a-component="button-primary-hero"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon> Buscar Imóveis</button>
+      </div>
+    </div>
+    <div class="hero-photo" role="img" aria-label="Interior iluminado de apartamento"></div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+.band{padding:96px 0}
+.band-head{margin-bottom:48px}
+.band-head .eyebrow{color:var(--accent);margin-bottom:12px}
+.band-head p{color:var(--text-secondary);max-width:56ch;margin-top:12px}
+.pal-group{margin-bottom:48px}
+.pal-group h3{font-size:18px;font-weight:600;margin-bottom:16px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.swatch{border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.sw-chip{height:96px}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0px}
+.sw-meta{padding:12px 14px}
+.sw-name{font-weight:600;font-size:14px}
+.sw-val{font-size:12px;color:var(--text-secondary);font-family:monospace;margin-top:2px}
+.sw-note{font-size:12px;color:var(--text-secondary);margin-top:6px;line-height:1.5}
+</style>
+<section id="palette" class="band" aria-label="Paleta">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Cores</div>
+      <h2 class="headline">Branco dominante, indigo racionado</h2>
+      <p class="body-reg">Uma tela cor de papel interrompida por painéis pastel. O indigo é a única cor saturada da marca — reservado a links e botões-pílula, nunca a fundos.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Superfícies</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="sw-chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="sw-meta"><div class="sw-name">background</div><div class="sw-val">#FFFFFF</div><div class="sw-note">A tela base — ~76% dos pixels.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#F5F5F7"></div><div class="sw-meta"><div class="sw-name">surface</div><div class="sw-val">#F5F5F7</div><div class="sw-note">Rodapé e uma faixa de diretório.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#D5BFD7"></div><div class="sw-meta"><div class="sw-name">surface-alt</div><div class="sw-val">#D5BFD7</div><div class="sw-note">Lavanda dos painéis editoriais.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#000D38"></div><div class="sw-meta"><div class="sw-name">night-panel</div><div class="sw-val">#000D38</div><div class="sw-note">Painel navy de promoção.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#D7D7DD"></div><div class="sw-meta"><div class="sw-name">border</div><div class="sw-val">#D7D7DD</div><div class="sw-note">Fios de divisão de um pixel.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Texto</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="sw-chip" style="background:#000000"></div><div class="sw-meta"><div class="sw-name">text-primary</div><div class="sw-val">#000000</div><div class="sw-note">Tinta pura em painéis claros.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#575763"></div><div class="sw-meta"><div class="sw-name">text-secondary</div><div class="sw-val">#575763</div><div class="sw-note">Legendas e texto de apoio.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#000D38"><span style="color:#F0F0F2;padding:12px;display:inline-block;font-size:12px">F0F0F2</span></div><div class="sw-meta"><div class="sw-name">text-inverse</div><div class="sw-val">#F0F0F2</div><div class="sw-note">Off-white sobre navy.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Acento e estado</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="sw-chip" style="background:#3957BD"></div><div class="sw-meta"><div class="sw-name">accent</div><div class="sw-val">#3957BD</div><div class="sw-note">Preenche pílulas e links.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#3552B5"></div><div class="sw-meta"><div class="sw-name">accent-hover</div><div class="sw-val">#3552B5</div><div class="sw-note">Estado hover do indigo.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#FFF8E6"></div><div class="sw-meta"><div class="sw-name">warning-tint</div><div class="sw-val">#FFF8E6</div><div class="sw-note">Fundo creme do selo promo.</div></div></div>
+        <div class="swatch"><div class="sw-chip" style="background:#FFF8E6"><span style="color:#B07E00;padding:12px;display:inline-block;font-weight:700;font-size:14px">F2C037</span></div><div class="sw-meta"><div class="sw-name">warning-ink</div><div class="sw-val">#F2C037</div><div class="sw-note">Âmbar do numeral do selo.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+.spec-row{border-top:1px solid var(--border);padding:32px 0;display:grid;grid-template-columns:1fr 240px;gap:32px;align-items:baseline}
+.spec-meta{font-size:12px;color:var(--text-secondary);font-family:monospace;line-height:1.8}
+.weights{display:flex;gap:32px;flex-wrap:wrap;margin-top:16px;border-top:1px solid var(--border);padding-top:32px}
+.weights div{text-align:center}
+.weights .wsample{font-size:40px;line-height:1}
+.weights .wlabel{font-size:12px;color:var(--text-secondary);margin-top:8px}
+@media(max-width:640px){.spec-row{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" class="band" style="background:var(--surface)" aria-label="Tipografia">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Tipografia</div>
+      <h2 class="headline">Uma família condensada e arredondada</h2>
+      <p class="body-reg">Tudo roda em "Oatmeal". A hierarquia vem só de escala e entrelinha — sem serifa, sem mono, apenas um selo em caixa-alta distinto por tamanho.</p>
+    </div>
+    <div class="spec-row">
+      <div class="display">Encontre seu próximo lar</div>
+      <div class="spec-meta">display-lg<br>47px · 600 · lh 1 · -0.9px</div>
+    </div>
+    <div class="spec-row">
+      <div class="headline">Imóveis selecionados para você</div>
+      <div class="spec-meta">headline-md<br>36px · 600 · lh 1 · -0.7px</div>
+    </div>
+    <div class="spec-row">
+      <div class="body-md">Texto de ênfase para rótulos e destaques curtos dentro de painéis.</div>
+      <div class="spec-meta">body-md<br>15px · 600 · lh 1.6</div>
+    </div>
+    <div class="spec-row">
+      <div class="body-reg">Texto corrido para parágrafos editoriais. A entrelinha generosa de 1,6 cria respiro contra os títulos de entrelinha fechada.</div>
+      <div class="spec-meta">body-regular<br>15px · 400 · lh 1.6</div>
+    </div>
+    <div class="spec-row">
+      <div class="eyebrow" style="color:var(--accent)">Black Friday</div>
+      <div class="spec-meta">accent-eyebrow-mono<br>11px · 700 · caixa-alta</div>
+    </div>
+    <div class="weights">
+      <div><div class="wsample" style="font-weight:400">Aa</div><div class="wlabel">Regular 400</div></div>
+      <div><div class="wsample" style="font-weight:500">Aa</div><div class="wlabel">Medium 500</div></div>
+      <div><div class="wsample" style="font-weight:600">Aa</div><div class="wlabel">Semibold 600</div></div>
+      <div><div class="wsample" style="font-weight:700">Aa</div><div class="wlabel">Bold 700</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+.comp-block{margin-bottom:80px}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;margin-bottom:24px;flex-wrap:wrap}
+.comp-head h3{font-size:24px;font-weight:600;letter-spacing:-0.4px}
+.badge-count{font-size:12px;font-weight:700;color:var(--accent);background:var(--surface);border-radius:100px;padding:4px 12px}
+.spec-card{background:var(--surface);border-radius:8px;padding:16px;font-family:monospace;font-size:12px;color:var(--text-secondary);line-height:1.8;margin-top:24px}
+.spec-card b{color:#000;font-weight:700}
+.btn-compact{background:var(--accent);color:#fff;border:0;border-radius:9999px;height:40px;padding:12px 16px;font-family:var(--font);font-weight:600;font-size:15px;cursor:pointer;transition:background-color .15s var(--ease);display:inline-flex;align-items:center}
+.btn-compact:hover{background:var(--accent-hover)}
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{border:1px solid var(--border);padding:16px;text-align:left;vertical-align:middle}
+.matrix th{font-size:12px;color:var(--text-secondary);font-weight:600}
+.matrix td:first-child{font-size:13px;font-weight:600}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+/* panels */
+.twoup{display:grid;grid-template-columns:1fr 1fr;width:93%;margin:0 auto 24px;min-height:320px}
+.twoup .media{min-height:260px;position:relative;display:flex;align-items:center;justify-content:center;color:var(--text-inverse)}
+.twoup .txt{padding:16px;display:flex;flex-direction:column;justify-content:center;gap:16px}
+.twoup .txt .headline{font-size:30px}
+.twoup .txt p{color:inherit}
+.carousel-ctrl{position:absolute;top:50%;transform:translateY(-50%);width:40px;height:40px;border-radius:9999px;background:#fff;box-shadow:var(--shadow-card);border:0;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000}
+.carousel-ctrl.prev{left:12px}.carousel-ctrl.next{right:12px}
+.progress-bar{position:absolute;bottom:0;left:0;right:0;height:4px;background:rgba(255,255,255,0.4)}
+.progress-bar i{display:block;height:100%;width:40%;background:#fff}
+.on-navy{background:var(--night-panel);color:var(--text-inverse)}
+.link-cta{color:var(--accent);font-weight:600;font-size:15px;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.on-navy .link-cta{color:#C9CEEA}
+/* directory */
+.directory{width:93%;margin:0 auto;background:#fff}
+.dir-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0}
+.dir-col{padding:16px 32px}
+.dir-col h4{color:var(--accent);font-size:20px;font-weight:600;margin-bottom:12px}
+.dir-col a{display:block;color:#000;font-size:15px;padding:4px 0}
+.dir-col a:hover{color:var(--accent)}
+.dir-pag{display:flex;gap:12px;justify-content:flex-end;padding:16px 32px}
+.pag-btn{width:40px;height:40px;border-radius:9999px;border:1px solid var(--border);background:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#000}
+.pag-btn:hover{background:rgba(227,227,231,0.5)}
+/* city rows */
+.city-row{background:#fff;padding:16px 32px;border-bottom:1px solid var(--border)}
+.city-row .headline{font-size:28px}
+/* callout */
+.callout{border:1px solid var(--border);background:var(--surface-alt);padding:24px}
+.callout h4{font-size:20px;font-weight:600;margin-bottom:16px}
+.callout .links{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.callout .links a{color:#000;font-size:15px}
+.callout .links a:hover{color:var(--accent)}
+/* small promo asym */
+.promo-asym{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:auto auto;gap:16px;width:93%;margin:0 auto}
+.promo-asym .tall{grid-row:1/3}
+.pa-block{padding:24px;border-radius:0;color:#000;display:flex;flex-direction:column;justify-content:flex-end;min-height:120px}
+.pa-block .headline{font-size:24px}
+/* promo banner */
+.promo-banner{width:93%;margin:0 auto;background:var(--night-panel);color:var(--text-inverse);padding:16px;display:flex;align-items:center;gap:24px;flex-wrap:wrap}
+.promo-badge{background:var(--warning-tint);color:#B07E00;border-radius:9999px;padding:8px 16px;font-weight:700;font-size:15px}
+@media(max-width:768px){.twoup{grid-template-columns:1fr}.promo-asym{grid-template-columns:1fr}.promo-asym .tall{grid-row:auto}}
+</style>
+<section id="components" class="band" aria-label="Componentes">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Componentes</div>
+      <h2 class="headline">O inventário que constrói a página</h2>
+      <p class="body-reg">Barra plana, pílulas indigo, o cartão de busca flutuante e o ritmo de painéis dois-a-dois — cada peça com seus tokens medidos.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="badge-count">×1</span></div>
+      <div style="border:1px solid var(--border)">
+        <div style="height:80px;background:#fff;display:flex;align-items:center;padding:0 24px;gap:8px">
+          <div class="logo"><iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon> Ledger</div>
+          <button class="nav-item" style="margin-left:24px">Alugar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+          <button class="nav-item">Comprar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+          <button class="nav-item">Anunciar <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+          <button class="nav-signin" style="margin-left:auto"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon> Entrar</button>
+        </div>
+      </div>
+      <div class="spec-card">barra <b>80px</b> · fundo <b>#FFFFFF</b> · raio <b>0/0/0/0</b> · edge-to-edge sticky<br>nav-item: transparente · altura <b>48px</b> · padding <b>16px</b> · hover <b>rgba(227,227,231,0.5)</b></div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block">
+      <div class="comp-head"><h3>Botões</h3><span class="badge-count">variante × estado</span></div>
+      <table class="matrix">
+        <thead><tr><th>Variante</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr data-tier-a-component="button-primary-hero">
+            <td>Hero Primary<br><span style="font-weight:400;color:var(--text-secondary);font-size:12px">56px / 100px</span></td>
+            <td><button class="btn-hero" style="width:auto">Buscar Imóveis</button></td>
+            <td><button class="btn-hero" style="width:auto;background:var(--accent-hover)">Buscar Imóveis</button></td>
+            <td><button class="btn-hero" style="width:auto;opacity:.4" disabled>Buscar Imóveis</button></td>
+          </tr>
+          <tr data-tier-a-component="button-primary-compact">
+            <td>Compact Pill<br><span style="font-weight:400;color:var(--text-secondary);font-size:12px">40px / 9999px</span></td>
+            <td><button class="btn-compact">Ver apartamentos</button></td>
+            <td><button class="btn-compact" style="background:var(--accent-hover)">Ver apartamentos</button></td>
+            <td><button class="btn-compact" style="opacity:.4" disabled>Ver apartamentos</button></td>
+          </tr>
+          <tr data-tier-a-component="button-ghost-light">
+            <td>Ghost Text<br><span style="font-weight:400;color:var(--text-secondary);font-size:12px">40px / 100px</span></td>
+            <td><button class="btn-ghost">Alugar</button></td>
+            <td><button class="btn-ghost" style="background:rgba(227,227,231,0.5)">Alugar</button></td>
+            <td><button class="btn-ghost" style="opacity:.4" disabled>Alugar</button></td>
+          </tr>
+          <tr>
+            <td>Nav Item<br><span style="font-weight:400;color:var(--text-secondary);font-size:12px">48px / 0px</span></td>
+            <td><button class="nav-item">Entrar</button></td>
+            <td><button class="nav-item" style="background:rgba(227,227,231,0.5)">Entrar</button></td>
+            <td><button class="nav-item" style="opacity:.4" disabled>Entrar</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spec-card">hero: fill <b>accent #3957BD</b> · text <b>#F0F0F2</b> · radius <b>100px</b> · height <b>56px</b> · pad <b>16px 24px</b> · hover <b>#3552B5</b><br>compact: radius <b>9999px</b> · height <b>40px</b> · pad <b>12px 16px</b> · ghost: hover <b>rgba(227,227,231,0.5)</b> · motion <b>150ms</b></div>
+    </div>
+
+    <!-- SEARCH CARD -->
+    <div class="comp-block" data-tier-a-component="card-search-panel">
+      <div class="comp-head"><h3>Cartão de busca / filtro</h3><span class="badge-count">×1</span></div>
+      <div style="max-width:420px">
+        <div class="search-card" style="box-shadow:var(--shadow-card)">
+          <div class="seg"><button aria-selected="true">Buscar</button><button aria-selected="false">Anunciar</button></div>
+          <h4 class="display" style="font-size:36px">Alugar em São Paulo</h4>
+          <div class="tabrow"><button class="btn-ghost" aria-selected="true">Alugar</button><button class="btn-ghost">Comprar</button><button class="btn-ghost">Lançamentos</button></div>
+          <div class="field"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Cidade</span><span class="f-val">São Paulo</span></div></div>
+          <div class="field"><iconify-icon icon="lucide:bed" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Quartos</span><span class="f-val">2+</span></div></div>
+          <button class="btn-hero"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon> Buscar Imóveis</button>
+        </div>
+      </div>
+      <div class="spec-card">fill <b>#FFFFFF</b> · radius <b>16px</b> · pad <b>24px</b> · shadow <b>rgba(95,99,120,0.12) 0 4 4, 0 8 16</b> · field stack <b>24/16/8px</b></div>
+    </div>
+
+    <!-- EDITORIAL TWO-UP -->
+    <div class="comp-block" data-tier-a-component="editorial-two-up-panel">
+      <div class="comp-head"><h3>Painel editorial dois-a-dois</h3><span class="badge-count">×6</span></div>
+
+      <div class="twoup" style="background:var(--panel-lavender)">
+        <div class="media" style="background:#c6a9c9" role="img" aria-label="Ilustração de chaves"><iconify-icon icon="lucide:key-round" style="font-size:72px;color:#fff" aria-hidden="true"></iconify-icon></div>
+        <div class="txt"><h4 class="headline">Alugue sem fiador</h4><p class="body-reg">Sem burocracia e sem complicação. A gente simplifica cada etapa do aluguel para você.</p><a class="link-cta">Conhecer <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+      </div>
+
+      <div class="twoup" style="background:var(--panel-pink)">
+        <div class="txt"><h4 class="headline">Venda com assessoria</h4><p class="body-reg">Especialistas acompanham a sua venda do anúncio à assinatura, com dados reais do bairro.</p><a class="link-cta">Conhecer a assessoria <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+        <div class="media" style="background:#e3b9c8" role="img" aria-label="Foto de sala de estar"></div>
+      </div>
+
+      <div class="twoup" style="background:var(--panel-sage)">
+        <div class="media" style="background:#bcc9ac" role="img" aria-label="Carrossel de imóveis">
+          <button class="carousel-ctrl prev" aria-label="Anterior"><iconify-icon icon="lucide:chevron-left" aria-hidden="true"></iconify-icon></button>
+          <button class="carousel-ctrl next" aria-label="Próximo"><iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+          <div class="progress-bar"><i></i></div>
+        </div>
+        <div class="txt"><h4 class="headline">Lançamentos à vista</h4><p class="body-reg">Plantas, preços e prazos reunidos. Compare empreendimentos novos em poucos toques.</p><a class="link-cta">Ver apartamentos <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+      </div>
+
+      <div class="twoup" style="background:var(--panel-cream)">
+        <div class="txt"><h4 class="headline">Financiamento claro</h4><p class="body-reg">Simule parcelas com clareza e descubra o quanto cabe no seu orçamento, sem surpresas.</p><a class="link-cta">Simular agora <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+        <div class="media" style="background:#e6ddc4" role="img" aria-label="Ilustração de calculadora"><iconify-icon icon="lucide:calculator" style="font-size:72px;color:#575763" aria-hidden="true"></iconify-icon></div>
+      </div>
+
+      <div class="twoup on-navy">
+        <div class="media" style="background:#001a5c" role="img" aria-label="Foto noturna de prédio"></div>
+        <div class="txt"><h4 class="headline">Assessoria premium</h4><p class="body-reg">Atendimento dedicado para imóveis de alto padrão, com curadoria e discrição.</p><a class="link-cta">Conhecer <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+      </div>
+
+      <div class="twoup" style="background:var(--panel-peri)">
+        <div class="txt"><h4 class="headline">Anuncie em minutos</h4><p class="body-reg">Publique seu imóvel com fotos e dados automáticos. Nós cuidamos das visitas.</p><a class="link-cta">Anunciar imóvel <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+        <div class="media" style="background:#b3b9df" role="img" aria-label="Ilustração de celular"><iconify-icon icon="lucide:smartphone" style="font-size:72px;color:#3957BD" aria-hidden="true"></iconify-icon></div>
+      </div>
+
+      <div class="spec-card">fundo <b>hue do painel contido</b> · radius <b>0px</b> · pad painel <b>0px</b> · pad texto <b>16px</b> · largura <b>93%</b> · ink <b>#000</b> / navy <b>#F0F0F2</b> · sem hue adjacente repetido</div>
+    </div>
+
+    <!-- PROMO BANNER -->
+    <div class="comp-block" data-tier-a-component="promo-countdown-banner">
+      <div class="comp-head"><h3>Banner promocional / contagem</h3><span class="badge-count">×1</span></div>
+      <div class="promo-banner">
+        <div><div class="eyebrow" style="color:#C9CEEA">Black Friday</div><h4 class="headline" style="margin-top:8px">Até R$ 2.000 de desconto no aluguel</h4></div>
+        <span class="promo-badge">-30%</span>
+      </div>
+      <div class="spec-card">fundo <b>night-panel #000D38</b> · text <b>#F0F0F2</b> · badge fill <b>#FFF8E6</b> ink <b>#F2C037</b> · eyebrow <b>11px / 700 / caixa-alta</b></div>
+    </div>
+
+    <!-- DIRECTORY -->
+    <div class="comp-block" data-tier-a-component="city-region-link-directory">
+      <div class="comp-head"><h3>Diretório de cidades / regiões</h3><span class="badge-count">×1 · 9 colunas</span></div>
+      <div class="directory" style="border:1px solid var(--border)">
+        <div class="dir-grid">
+          <div class="dir-col"><h4>São Paulo</h4><a>Pinheiros</a><a>Vila Mariana</a><a>Moema</a><a>Tatuapé</a><a>Santana</a></div>
+          <div class="dir-col"><h4>Rio</h4><a>Copacabana</a><a>Botafogo</a><a>Tijuca</a><a>Barra</a><a>Flamengo</a></div>
+          <div class="dir-col"><h4>Belo Horizonte</h4><a>Savassi</a><a>Lourdes</a><a>Funcionários</a><a>Buritis</a><a>Pampulha</a></div>
+          <div class="dir-col"><h4>Curitiba</h4><a>Batel</a><a>Água Verde</a><a>Centro</a><a>Portão</a><a>Cabral</a></div>
+          <div class="dir-col"><h4>Porto Alegre</h4><a>Moinhos</a><a>Menino Deus</a><a>Cidade Baixa</a><a>Petrópolis</a><a>Bela Vista</a></div>
+          <div class="dir-col"><h4>Brasília</h4><a>Asa Sul</a><a>Asa Norte</a><a>Lago Sul</a><a>Sudoeste</a><a>Noroeste</a></div>
+          <div class="dir-col"><h4>Salvador</h4><a>Pituba</a><a>Barra</a><a>Graça</a><a>Itaigara</a><a>Ondina</a></div>
+          <div class="dir-col"><h4>Recife</h4><a>Boa Viagem</a><a>Casa Forte</a><a>Espinheiro</a><a>Graças</a><a>Pina</a></div>
+          <div class="dir-col"><h4>Fortaleza</h4><a>Meireles</a><a>Aldeota</a><a>Cocó</a><a>Dionísio</a><a>Varjota</a></div>
+        </div>
+        <div class="dir-pag"><button class="pag-btn" aria-label="Anterior"><iconify-icon icon="lucide:chevron-left" aria-hidden="true"></iconify-icon></button><button class="pag-btn" aria-label="Próximo"><iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button></div>
+      </div>
+      <div class="spec-card">linhas brancas sem moldura · radius <b>0px</b> · pad <b>16px 32px</b> · título <b>accent #3957BD</b> · sem card chrome</div>
+    </div>
+
+    <!-- CITY LINK ROWS -->
+    <div class="comp-block" data-tier-a-component="city-link-block-row">
+      <div class="comp-head"><h3>Linhas brancas só de título</h3><span class="badge-count">×3</span></div>
+      <div style="border:1px solid var(--border)">
+        <div class="city-row"><h4 class="headline">Imóveis para alugar em São Paulo</h4></div>
+        <div class="city-row"><h4 class="headline">Apartamentos à venda no Rio de Janeiro</h4></div>
+        <div class="city-row" style="border-bottom:0"><h4 class="headline">Lançamentos em Belo Horizonte</h4></div>
+      </div>
+      <div class="spec-card">fundo <b>#FFFFFF</b> · radius <b>0px</b> · pad <b>16px 32px</b> · linhas de lista planas, não caixas</div>
+    </div>
+
+    <!-- POPULAR SEARCHES CALLOUT -->
+    <div class="comp-block" data-tier-a-component="popular-searches-callout">
+      <div class="comp-head"><h3>Bloco de buscas populares</h3><span class="badge-count">×1</span></div>
+      <div class="callout">
+        <h4>Buscas populares</h4>
+        <div class="links">
+          <a>Studios em Pinheiros</a><a>2 quartos em Moema</a><a>Casas na Barra</a><a>Cobertura no Batel</a>
+          <a>Aluguel no Centro</a><a>Mobiliado na Savassi</a><a>Pet friendly</a><a>Com varanda</a>
+          <a>Próximo ao metrô</a><a>Até R$ 2.000</a><a>Lançamentos 2025</a><a>Com garagem</a>
+        </div>
+      </div>
+      <div class="spec-card">fundo <b>surface-alt #D5BFD7</b> · radius <b>0px</b> · borda <b>1px #D7D7DD</b> · grade densa de links</div>
+    </div>
+
+    <!-- SMALL PROMO ASYM -->
+    <div class="comp-block" data-tier-a-component="small-promo-row">
+      <div class="comp-head"><h3>Linha promocional assimétrica</h3><span class="badge-count">×1 · 3 itens</span></div>
+      <div class="promo-asym">
+        <div class="pa-block tall" style="background:var(--panel-lavender)"><h4 class="headline">App Ledger</h4><p class="body-reg">Visitas, propostas e contrato no seu bolso.</p><a class="link-cta" style="margin-top:12px">Baixar <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+        <div class="pa-block" style="background:var(--panel-sage)"><h4 class="headline" style="font-size:20px">Indique e ganhe</h4></div>
+        <div class="pa-block" style="background:var(--panel-cream)"><h4 class="headline" style="font-size:20px">Central de ajuda</h4></div>
+      </div>
+      <div class="spec-card">grade assimétrica <b>2 col / 3 itens</b> · bloco alto + dois curtos · radius <b>0px</b> · hues contidos</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:32px}
+.depth-card{background:#fff;padding:24px;border:1px solid var(--border)}
+.depth-card .label{font-size:13px;color:var(--text-secondary);margin-top:16px;font-family:monospace}
+.depth-card h4{font-weight:600;font-size:17px}
+</style>
+<section id="surface-depth" class="band" style="background:var(--surface)" aria-label="Superfície e profundidade">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Superfície</div>
+      <h2 class="headline">Cantos e elevação</h2>
+      <p class="body-reg">Painéis são planos e sem raio; o arredondamento pertence só ao cartão flutuante, às pílulas e às avatares. Sombras são suaves e cor-fria.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:8px"><h4>Controle</h4><p class="body-reg" style="color:var(--text-secondary)">Campos e inputs.</p><div class="label">radius 8px · sem sombra</div></div>
+      <div class="depth-card" style="border-radius:16px;box-shadow:var(--shadow-card);border:0"><h4>Cartão flutuante</h4><p class="body-reg" style="color:var(--text-secondary)">O cartão de busca.</p><div class="label">radius 16px · dual shadow</div></div>
+      <div class="depth-card" style="border-radius:100px;border:0;background:var(--accent);color:var(--text-inverse);display:flex;align-items:center;justify-content:center"><h4 style="color:var(--text-inverse)">Pílula 100px</h4></div>
+      <div class="depth-card" style="border-radius:0"><h4>Painel editorial</h4><p class="body-reg" style="color:var(--text-secondary)">Borda reta, sem chrome.</p><div class="label">radius 0px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.motion-card{border:1px solid var(--border);border-radius:8px;padding:24px}
+.motion-card h4{font-weight:600;margin-bottom:16px}
+.motion-dot{width:48px;height:48px;border-radius:9999px;background:var(--accent);transition:transform .3s var(--ease),background-color .15s var(--ease)}
+.motion-card:hover .motion-dot{transform:translateX(120px);background:var(--accent-hover)}
+.motion-ghost{display:inline-block;padding:10px 20px;border-radius:100px;background:transparent;transition:background-color .15s var(--ease)}
+.motion-card:hover .motion-ghost{background:rgba(227,227,231,0.5)}
+.motion-card .label{font-family:monospace;font-size:12px;color:var(--text-secondary);margin-top:16px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="band" aria-label="Movimento">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Movimento</div>
+      <h2 class="headline">Rápido e utilitário</h2>
+      <p class="body-reg">Transições curtas e discretas, nada de atmosfera. Passe o cursor sobre os cartões para replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card"><h4>Hover de fundo</h4><span class="motion-ghost body-md">Entrar</span><div class="label">background-color · 150ms · cubic-bezier(0.4,0,0.2,1)</div></div>
+      <div class="motion-card"><h4>Feedback de ícone</h4><div class="motion-dot"></div><div class="label">transform · 300ms · ease</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+.mock{border:1px solid var(--border);overflow:hidden;background:#fff}
+.mock-nav{height:64px;display:flex;align-items:center;padding:0 24px;gap:16px;border-bottom:1px solid var(--border)}
+.mock-hero{display:grid;grid-template-columns:minmax(0,320px) 1fr}
+.mock-hero .photo{background:linear-gradient(135deg,#3957BD,#000D38);position:relative;min-height:300px}
+.mock-hero .photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0.75),rgba(0,0,0,0) 48%)}
+.mock-hero .left{padding:24px}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr;width:93%;margin:0 auto}
+@media(max-width:768px){.mock-hero{grid-template-columns:1fr}.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" class="band" style="background:var(--surface)" aria-label="Em composição">
+  <div class="wrap">
+    <div class="band-head">
+      <div class="eyebrow">Em composição</div>
+      <h2 class="headline">O sistema montado</h2>
+      <p class="body-reg">Barra plana, hero dividido, painéis dois-a-dois e um CTA — tudo com os mesmos tokens.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="logo" style="font-size:20px"><iconify-icon icon="lucide:house" aria-hidden="true"></iconify-icon> Ledger</div>
+        <button class="nav-item" style="height:40px;padding:8px 12px">Alugar</button>
+        <button class="nav-item" style="height:40px;padding:8px 12px">Comprar</button>
+        <button class="nav-signin" style="margin-left:auto;height:40px;padding:8px 12px"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon> Entrar</button>
+      </div>
+      <div class="mock-hero">
+        <div class="left">
+          <div class="search-card" style="box-shadow:var(--shadow-card)">
+            <h3 class="display" style="font-size:30px">Encontre seu lar</h3>
+            <div class="tabrow"><button class="btn-ghost" aria-selected="true">Alugar</button><button class="btn-ghost">Comprar</button></div>
+            <div class="field"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon><div class="f-text"><span class="f-label">Cidade</span><span class="f-val">São Paulo</span></div></div>
+            <button class="btn-hero"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon> Buscar Imóveis</button>
+          </div>
+        </div>
+        <div class="photo" role="img" aria-label="Interior de apartamento"></div>
+      </div>
+      <div class="mock-cards">
+        <div class="twoup" style="width:100%;margin:0;background:var(--panel-lavender);min-height:220px">
+          <div class="media" style="background:#c6a9c9" role="img" aria-label="Ilustração"><iconify-icon icon="lucide:key-round" style="font-size:56px;color:#fff" aria-hidden="true"></iconify-icon></div>
+          <div class="txt"><h4 class="headline" style="font-size:24px">Sem fiador</h4><p class="body-reg">Aluguel simples, sem burocracia.</p><a class="link-cta">Conhecer <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+        </div>
+        <div class="twoup on-navy" style="width:100%;margin:0;min-height:220px">
+          <div class="txt"><h4 class="headline" style="font-size:24px">Black Friday</h4><p class="body-reg">Até 30% de desconto.</p><button class="btn-compact" style="align-self:flex-start">Ver ofertas</button></div>
+          <div class="media" style="background:#001a5c;align-items:center;justify-content:center"><span class="promo-badge">-30%</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface);padding:80px 0 48px}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px}
+.foot-col h4{font-size:15px;font-weight:700;margin-bottom:16px}
+.foot-col a{display:block;color:#000;font-size:14px;padding:4px 0}
+.foot-col a:hover{color:var(--accent)}
+.foot-info{background:var(--night-panel);color:var(--text-inverse);padding:24px;border-radius:16px;align-self:start}
+.foot-info h4{font-size:18px;font-weight:600;margin-bottom:12px}
+.foot-info a{color:#C9CEEA;font-weight:600}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);gap:16px;flex-wrap:wrap}
+.foot-badges{display:flex;gap:12px;align-items:center}
+.foot-badges .store{border:1px solid var(--border);border-radius:8px;padding:8px 14px;display:flex;align-items:center;gap:8px;font-size:13px;background:#fff}
+.foot-social{display:flex;gap:8px}
+.foot-social a{width:40px;height:40px;border-radius:9999px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;background:#fff;color:#000}
+.foot-social a:hover{background:rgba(227,227,231,0.5)}
+</style>
+<footer id="footer" aria-label="Rodapé">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col"><h4>Para você</h4><a>Alugar imóvel</a><a>Comprar imóvel</a><a>Lançamentos</a><a>Financiamento</a><a>Simulador</a><a>Buscas populares</a><a>App Ledger</a></div>
+      <div class="foot-col"><h4>Anuncie</h4><a>Anunciar imóvel</a><a>Assessoria</a><a>Parcerias</a><a>Imobiliárias</a><a>Vender</a><a>Avaliar imóvel</a><a>Corretores</a></div>
+      <div class="foot-col"><h4>Institucional</h4><a>Sobre nós</a><a>Carreiras</a><a>Blog</a><a>Imprensa</a><a>Ajuda</a><a>Termos</a><a>Privacidade</a><a>Segurança</a></div>
+      <div class="foot-info">
+        <h4>Precisa de ajuda?</h4>
+        <p class="body-reg" style="color:var(--text-inverse)">Nossa central responde em minutos, todos os dias.</p>
+        <a style="margin-top:16px;display:inline-flex;align-items:center;gap:6px">Falar com a gente <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="foot-badges">
+        <span class="store"><iconify-icon icon="lucide:apple" aria-hidden="true"></iconify-icon> App Store</span>
+        <span class="store"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon> Google Play</span>
+      </div>
+      <div class="foot-social">
+        <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+        <a href="#" aria-label="Facebook"><iconify-icon icon="lucide:facebook" aria-hidden="true"></iconify-icon></a>
+        <a href="#" aria-label="YouTube"><iconify-icon icon="lucide:youtube" aria-hidden="true"></iconify-icon></a>
+        <a href="#" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+      </div>
+    </div>
+    <div style="margin-top:32px;font-size:13px;color:var(--text-secondary)">
+      <strong style="color:#000">Lavender Ledger Panels</strong> · <a href="https://www.quintoandar.com.br/">quintoandar.com.br</a><br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('[role="tablist"]').forEach(function(tl){
+  tl.addEventListener('click',function(e){
+    var b=e.target.closest('[role="tab"]');
+    if(!b)return;
+    tl.querySelectorAll('[role="tab"]').forEach(function(t){t.setAttribute('aria-selected','false')});
+    b.setAttribute('aria-selected','true');
+  });
+});
+</script>
+</body>
+</html>

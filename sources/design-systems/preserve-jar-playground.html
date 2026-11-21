@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Preserve-jar playground — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ginkatrial:wght@400;500;700&family=Instrument+Sans:wght@400;500;700&family=webflow-icons:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F0ECE0; color:#353148; font-family:'Instrument Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Ginkatrial',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Ginkatrial',sans-serif; font-size: 22px; border-bottom: 1px solid #353148; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#353148; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#353148; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#F5F5F5; border: 1px solid #353148; border-radius:25px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#353148; }
+  .swatch-meta p { color:#353148; font-size: 12px; }
+  .specimen { border: 1px solid #353148; border-radius:25px; padding: 20px; background:#F5F5F5; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#353148; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#353148; }
+  .bar { height: 10px; background:#353148; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #353148; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#F5F5F5; border: 1px solid #353148; border-radius:25px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:20px; font-size: 14px; border: 1px solid #353148; }
+  .btn-primary { background:#353148; color:#F0ECE0; }
+  .btn-secondary { background: transparent; color:#353148; }
+  footer { border-top: 1px solid #353148; padding-top: 20px; font-size: 13px; color:#353148; }
+  footer a { color:#353148; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from jamm.co · light mode</div>
+    <h1>Preserve-jar playground</h1>
+    <p class="tagline">Cream-and-ink flat-illustration system with bouncing mascot characters, a deep-plum footer band, and one saturated pink-red rationed to buttons and outlines.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F0ECE0"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F0ECE0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5F5F5"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#F5F5F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#353148"></div>
+        <div class="swatch-meta"><strong>surface-inverse</strong><code>#353148</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#353148"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#353148</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5F5F5"></div>
+        <div class="swatch-meta"><strong>text-on-dark</strong><code>#F5F5F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EE4D87"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#EE4D87</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#CBC7C2"></div>
+        <div class="swatch-meta"><strong>border-hairline</strong><code>#CBC7C2</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#9B9B9B"></div>
+        <div class="swatch-meta"><strong>neutral-muted</strong><code>#9B9B9B</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Ginkatrial',sans-serif;font-size:98px;font-weight:700;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Ginkatrial · 98px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Ginkatrial',sans-serif;font-size:98px;font-weight:700;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Ginkatrial · 98px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Instrument Sans',sans-serif;font-size:24px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Instrument Sans · 24px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Ginkatrial',sans-serif;font-size:18px;font-weight:700;line-height:1.33">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Ginkatrial · 18px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Instrument Sans',sans-serif;font-size:18px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-copy · Instrument Sans · 18px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'webflow-icons',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-icon · webflow-icons ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 25px</span>
+        <div class="bar" style="width:min(25px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 100px</span>
+        <div class="bar" style="width:min(100px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap · 90px</span>
+        <div class="bar" style="width:min(90px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:20px">control<br><code>20px</code></div>
+<div class="radius-chip" style="border-radius:25px">card<br><code>25px</code></div>
+<div class="radius-chip" style="border-radius:30px">card-lg<br><code>30px</code></div>
+<div class="radius-chip" style="border-radius:100px">pill<br><code>100px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#353148;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

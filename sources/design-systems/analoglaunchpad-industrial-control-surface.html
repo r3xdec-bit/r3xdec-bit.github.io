@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>AnalogLaunchpad — Industrial Control Surface — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#D2C9BD; color:#EEF0E9; font-family:'DM Mono',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'DM Mono',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'DM Mono',sans-serif; font-size: 22px; border-bottom: 1px solid #373A3B; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#272A2D; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#272A2D; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#333842; border: 1px solid #373A3B; border-radius:50px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#272A2D; }
+  .swatch-meta p { color:#272A2D; font-size: 12px; }
+  .specimen { border: 1px solid #373A3B; border-radius:50px; padding: 20px; background:#333842; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#272A2D; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#272A2D; }
+  .bar { height: 10px; background:#EEF0E9; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #EEF0E9; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#333842; border: 1px solid #373A3B; border-radius:50px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:50px; font-size: 14px; border: 1px solid #EEF0E9; }
+  .btn-primary { background:#EEF0E9; color:#D2C9BD; }
+  .btn-secondary { background: transparent; color:#EEF0E9; }
+  footer { border-top: 1px solid #373A3B; padding-top: 20px; font-size: 13px; color:#272A2D; }
+  footer a { color:#EEF0E9; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>AnalogLaunchpad — Industrial Control Surface</h1>
+    <p class="tagline">A hardware-panel skeuomorphism system: warm cream chassis housing dark steel-gradient rack modules, mono-spaced label type, and glowing CRT-style waveform traces standing in for content media.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#D2C9BD"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#D2C9BD</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#333842"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#333842</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#252A32"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#252A32</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EEF0E9"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#EEF0E9</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#272A2D"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#272A2D</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#32E68A"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#32E68A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF5042"></div>
+        <div class="swatch-meta"><strong>accent-alert</strong><code>#FF5042</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#12151A"></div>
+        <div class="swatch-meta"><strong>ink</strong><code>#12151A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#373A3B"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#373A3B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#171A1F"></div>
+        <div class="swatch-meta"><strong>border-dark</strong><code>#171A1F</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:24px;font-weight:700;line-height:1.33">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · DM Mono · 24px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:18px;font-weight:700;line-height:1.56">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · DM Mono · 18px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:10px;font-weight:400;line-height:2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · DM Mono · 10px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:24px;font-weight:700;line-height:1.33">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · DM Mono · 24px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:16px;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-mode · DM Mono · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Mono',sans-serif;font-size:10px;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono-label · DM Mono · 10px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 28px</span>
+        <div class="bar" style="width:min(28px, 100%)"></div></div>
+<div class="bar-row"><span>small-gap · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:50px">control<br><code>50px</code></div>
+<div class="radius-chip" style="border-radius:50px">card<br><code>50px</code></div>
+<div class="radius-chip" style="border-radius:50px">pill<br><code>50px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#272A2D;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>CMI Foundational Components Library — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F2F2F2; color:#1C1C1C; font-family:'Inter',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Inter',sans-serif; font-size: 22px; border-bottom: 1px solid #7D7D7D; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#7D7D7D; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#7D7D7D; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #7D7D7D; border-radius:16px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#7D7D7D; }
+  .swatch-meta p { color:#7D7D7D; font-size: 12px; }
+  .specimen { border: 1px solid #7D7D7D; border-radius:16px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#7D7D7D; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#7D7D7D; }
+  .bar { height: 10px; background:#1C1C1C; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #1C1C1C; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #7D7D7D; border-radius:16px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:12px; font-size: 14px; border: 1px solid #1C1C1C; }
+  .btn-primary { background:#1C1C1C; color:#F2F2F2; }
+  .btn-secondary { background: transparent; color:#1C1C1C; }
+  footer { border-top: 1px solid #7D7D7D; padding-top: 20px; font-size: 13px; color:#7D7D7D; }
+  footer a { color:#1C1C1C; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>CMI Foundational Components Library</h1>
+    <p class="tagline">A light, near-white component ledger built on flat filled and outlined controls, a rationed blue/red/green semantic trio, and small-caps section labels organized in a dense vertical catalog rhythm.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F2F2F2"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F2F2F2</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1C1C1C"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#1C1C1C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#7D7D7D"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#7D7D7D</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1E6FB9"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#1E6FB9</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#155490"></div>
+        <div class="swatch-meta"><strong>accent-deep</strong><code>#155490</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D64545"></div>
+        <div class="swatch-meta"><strong>danger</strong><code>#D64545</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2E7D5B"></div>
+        <div class="swatch-meta"><strong>success</strong><code>#2E7D5B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFF4DD"></div>
+        <div class="swatch-meta"><strong>warning-tint</strong><code>#FFF4DD</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E8F5EF"></div>
+        <div class="swatch-meta"><strong>success-tint</strong><code>#E8F5EF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EAF3FB"></div>
+        <div class="swatch-meta"><strong>info-tint</strong><code>#EAF3FB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E6E6E6"></div>
+        <div class="swatch-meta"><strong>border-default</strong><code>#E6E6E6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1E6FB9"></div>
+        <div class="swatch-meta"><strong>border-accent</strong><code>#1E6FB9</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:28px;font-weight:600;line-height:1.25">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Inter · 28px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:600;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Inter · 18px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:600;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Inter · 16px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:13px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-sm · Inter · 13px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:12px;font-weight:600;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-caps-mono · Inter · 12px / w600</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 591px</span>
+        <div class="bar" style="width:min(591px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:12px">control<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:16px">card<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#7D7D7D;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

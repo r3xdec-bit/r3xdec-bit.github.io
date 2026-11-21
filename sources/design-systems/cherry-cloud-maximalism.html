@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Cherry Cloud Maximalism — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Commissioner:wght@400;500;700&family=Helvetica+Neue:wght@400;500;700&family=Lucida+Console:wght@400;500;700&family=webflow-icons:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#000000; font-family:'Commissioner',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Commissioner',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Commissioner',sans-serif; font-size: 22px; border-bottom: 1px solid #A3A3A3; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#A3A3A3; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#A3A3A3; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#EBEBEB; border: 1px solid #A3A3A3; border-radius:40px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#A3A3A3; }
+  .swatch-meta p { color:#A3A3A3; font-size: 12px; }
+  .specimen { border: 1px solid #A3A3A3; border-radius:40px; padding: 20px; background:#EBEBEB; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#A3A3A3; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#A3A3A3; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#EBEBEB; border: 1px solid #A3A3A3; border-radius:40px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:4px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #A3A3A3; padding-top: 20px; font-size: 13px; color:#A3A3A3; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from loko.delivery · light mode</div>
+    <h1>Cherry Cloud Maximalism</h1>
+    <p class="tagline">White-dominant, hand-inked maximalist system built on a single saturated cherry-pink hue, an oversized black-weight display face, and a cloud-shaped illustrative mascot carrying the hero.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EBEBEB"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#EBEBEB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DDDDDD"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#DDDDDD</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#A3A3A3"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#A3A3A3</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FB395F"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#FB395F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>footer-bg</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#595959"></div>
+        <div class="swatch-meta"><strong>footer-text-dim</strong><code>#595959</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Commissioner',sans-serif;font-size:52px;font-weight:900;line-height:0.96">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Commissioner · 52px / w900</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Commissioner',sans-serif;font-size:52px;font-weight:900;line-height:0.96">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Commissioner · 52px / w900</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Commissioner',sans-serif;font-size:18px;font-weight:500;line-height:1.38">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Commissioner · 18px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Commissioner',sans-serif;font-size:32px;font-weight:900;line-height:1.06">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Commissioner · 32px / w900</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Helvetica Neue',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-utility · Helvetica Neue ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Lucida Console',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono · Lucida Console ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'webflow-icons',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">icon-face · webflow-icons ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>inset · 28px</span>
+        <div class="bar" style="width:min(28px, 100%)"></div></div>
+<div class="bar-row"><span>inset-lg · 43px</span>
+        <div class="bar" style="width:min(43px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 166px</span>
+        <div class="bar" style="width:min(166px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:4px">control<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:40px">card<br><code>40px</code></div>
+<div class="radius-chip" style="border-radius:12px">card-sm<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:16px">panel<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:50px">pill<br><code>50px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#A3A3A3;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aureon Crystal Prism — r3xdec 3D</title>
+  <script type="importmap">
+  { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 45%, #12172a, #04050a 75%); }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.3;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 60);
+    camera.position.set(0, 0.8, 5.4);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    const l1 = new THREE.PointLight(0x38bdf8, 18, 16); l1.position.set(3.2, 2.5, 3); scene.add(l1);
+    const l2 = new THREE.PointLight(0xc084fc, 16, 16); l2.position.set(-3.2, -1.8, 2); scene.add(l2);
+    const l3 = new THREE.PointLight(0x34d399, 12, 16); l3.position.set(0, 3.5, -3); scene.add(l3);
+
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: 0xdbeafe,
+      metalness: 0.05,
+      roughness: 0.06,
+      transmission: 0.92,
+      thickness: 1.8,
+      ior: 1.68,
+      iridescence: 1.0,
+      iridescenceIOR: 1.45,
+      clearcoat: 1.0,
+      flatShading: true,
+    });
+
+    const outerCrystal = new THREE.Mesh(new THREE.OctahedronGeometry(1.45, 0), glassMat);
+    outerCrystal.scale.set(0.85, 1.32, 0.85);
+    scene.add(outerCrystal);
+
+    const wireEdges = new THREE.LineSegments(
+      new THREE.EdgesGeometry(new THREE.OctahedronGeometry(1.48, 0)),
+      new THREE.LineBasicMaterial({ color: 0x93c5fd, transparent: true, opacity: 0.55 })
+    );
+    wireEdges.scale.copy(outerCrystal.scale);
+    scene.add(wireEdges);
+
+    const innerCore = new THREE.Mesh(
+      new THREE.IcosahedronGeometry(0.56, 1),
+      new THREE.MeshStandardMaterial({ color: 0x60a5fa, emissive: 0x4f46e5, emissiveIntensity: 2.2, roughness: 0.2, metalness: 0.5, wireframe: false })
+    );
+    scene.add(innerCore);
+
+    const shards = [];
+    const shardGeo = new THREE.OctahedronGeometry(0.16, 0);
+    for (let i = 0; i < 18; i++) {
+      const m = new THREE.Mesh(shardGeo, glassMat);
+      const ang = (i / 18) * Math.PI * 2;
+      const rad = 2.05 + (i % 3) * 0.35;
+      m.userData = { ang, rad, yOff: (Math.random() - 0.5) * 1.8, spd: 0.35 + Math.random() * 0.4 };
+      scene.add(m);
+      shards.push(m);
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate(ms) {
+      const t = ms * 0.001;
+      outerCrystal.rotation.y = t * 0.45;
+      outerCrystal.rotation.x = Math.sin(t * 0.6) * 0.18;
+      outerCrystal.position.y = Math.sin(t * 1.2) * 0.14;
+      wireEdges.rotation.copy(outerCrystal.rotation);
+      wireEdges.position.copy(outerCrystal.position);
+
+      innerCore.rotation.y = -t * 0.9;
+      innerCore.rotation.z = t * 0.6;
+      innerCore.position.y = outerCrystal.position.y;
+
+      shards.forEach((s, i) => {
+        const u = s.userData;
+        const a = u.ang + t * u.spd;
+        s.position.set(Math.cos(a) * u.rad, u.yOff + Math.sin(t * 1.5 + i) * 0.22, Math.sin(a) * u.rad);
+        s.rotation.set(t + i, t * 0.8, 0);
+      });
+
+      l1.position.x = Math.cos(t * 0.7) * 3.8;
+      l2.position.x = Math.sin(t * 0.6) * -3.8;
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

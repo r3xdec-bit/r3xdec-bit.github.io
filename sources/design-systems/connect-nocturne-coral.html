@@ -1,0 +1,747 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Connect Nocturne Coral — Sistema de Diseño</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background-primary:#0B132B;
+  --surface-card:#1C2541;
+  --surface-card-hover:#222C4D;
+  --surface-elevated:#0F172A;
+  --surface-accent-cool:#3A506B;
+  --accent-coral:#FF5A5F;
+  --accent-coral-hover:#E0484D;
+  --accent-coral-tint:rgba(255,90,95,0.12);
+  --accent-coral-glow:rgba(255,90,95,0.25);
+  --accent-whatsapp:#25D366;
+  --accent-whatsapp-hover:#20BA58;
+  --accent-success:#10B981;
+  --accent-warning:#F59E0B;
+  --text-primary:#FFFFFF;
+  --text-secondary:#CBD5E1;
+  --text-muted:#94A3B8;
+  --text-dark-contrast:#0B132B;
+  --border-subtle:#1E293B;
+  --border-card:#334155;
+  --border-interactive:rgba(255,90,95,0.5);
+  --r-pill:9999px;
+  --r-button:12px;
+  --r-card:16px;
+  --r-modal:20px;
+  --section-py:48px;
+  --container:1280px;
+  --display:'Oswald','Roboto Condensed',sans-serif;
+  --body:'Open Sans',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--background-primary);color:var(--text-secondary);
+  font-family:var(--body);font-size:16px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+h1,h2,h3{font-family:var(--display);color:var(--text-primary);letter-spacing:0.02em;margin:0}
+h1{font-size:48px;font-weight:700;line-height:1.15}
+h2{font-size:36px;font-weight:700;line-height:1.2}
+h3{font-size:20px;font-weight:700;line-height:1.3}
+p{margin:0 0 1rem}
+a{color:var(--accent-coral)}
+.container{max-width:var(--container);margin:0 auto;padding:0 16px}
+@media(min-width:640px){.container{padding:0 24px}}
+@media(min-width:1024px){.container{padding:0 32px}}
+section{padding:var(--section-py) 0;position:relative}
+.band{border-top:1px solid var(--border-subtle)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  background:var(--border-subtle);border:1px solid var(--border-card);
+  color:var(--accent-coral);font-size:12px;font-weight:600;
+  letter-spacing:0.05em;text-transform:uppercase;line-height:1;
+  height:28px;padding:6px 14px;border-radius:var(--r-pill);margin-bottom:20px;
+}
+.eyebrow iconify-icon{font-size:14px}
+.lead{color:var(--text-secondary);max-width:68ch}
+.muted{color:var(--text-muted)}
+.glow{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0}
+.iso{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:44px;height:44px;border-radius:50%;background:var(--accent-coral);flex:0 0 auto;
+}
+.iso svg{width:26px;height:26px}
+/* nav */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;height:68px;
+  background:rgba(11,19,43,0.95);backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(51,65,85,0.5);
+}
+.nav-inner{max-width:var(--container);margin:0 auto;height:68px;padding:0 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px}
+.nav-brand{display:flex;align-items:center;gap:12px;font-family:var(--display);
+  font-weight:700;color:var(--text-primary);font-size:20px;letter-spacing:0.02em}
+.nav-links{display:none;gap:24px;align-items:center}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{
+  display:inline-flex;align-items:center;white-space:nowrap;
+  background:var(--accent-coral);color:#fff;height:44px;padding:10px 20px;
+  border-radius:var(--r-pill);font-weight:600;font-size:14px;border:none;cursor:pointer;
+  box-shadow:0 10px 15px -3px var(--accent-coral-glow);
+}
+.nav-cta:hover{background:var(--accent-coral-hover)}
+.hamburger{background:none;border:none;color:var(--text-primary);font-size:26px;cursor:pointer;display:flex}
+@media(min-width:1024px){.nav-links{display:flex}.hamburger{display:none}}
+body{padding-top:68px}
+/* hero */
+#hero{padding:96px 0 80px;overflow:hidden}
+.hero-badges{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0}
+.trust{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  background:var(--surface-card);border:1px solid var(--border-card);
+  color:var(--text-secondary);font-size:14px;padding:8px 14px;border-radius:var(--r-pill)}
+.trust iconify-icon{color:var(--accent-coral);font-size:16px}
+.hero-h1 .c{color:var(--accent-coral)}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  background:var(--accent-coral);color:#fff;height:48px;padding:12px 24px;
+  border-radius:var(--r-button);font-weight:600;font-size:16px;border:none;cursor:pointer;
+  box-shadow:0 10px 15px -3px var(--accent-coral-glow);
+  transition:transform .2s ease,background .2s ease;
+}
+.btn-primary:hover{background:var(--accent-coral-hover);transform:translateY(-2px)}
+.btn-outline{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+  background:rgba(30,41,59,0.8);color:var(--text-secondary);height:44px;padding:10px 20px;
+  border-radius:var(--r-button);font-weight:600;font-size:14px;border:1px solid var(--border-card);cursor:pointer;
+  transition:background .2s ease,color .2s ease;
+}
+.btn-outline:hover{background:var(--border-card);color:#fff}
+.hero-metric{margin-top:36px;display:flex;align-items:baseline;gap:12px}
+.hero-metric strong{font-family:var(--display);font-size:36px;color:var(--accent-coral)}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Principal">
+  <div class="nav-inner">
+    <a class="nav-brand" href="#hero" style="text-decoration:none">
+      <span class="iso" aria-hidden="true">
+        <svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Connect Class
+    </a>
+    <div class="nav-links">
+      <a href="#hero">Inicio</a>
+      <a href="#palette">Nosotros</a>
+      <a href="#components">Metodología</a>
+      <a href="#composition">Precios</a>
+      <a href="#type-scale">¿Preguntas?</a>
+      <a href="#footer">Contacto</a>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button class="nav-cta">Evaluación rápida</button>
+      <button class="hamburger" aria-label="Abrir menú"><iconify-icon icon="lucide:menu"></iconify-icon></button>
+    </div>
+  </div>
+</nav>
+
+<header id="hero">
+  <div class="glow" style="width:600px;height:600px;background:rgba(255,90,95,0.05);top:-200px;right:-150px"></div>
+  <div class="glow" style="width:520px;height:520px;background:rgba(58,80,107,0.2);bottom:-220px;left:-160px"></div>
+  <div class="container" style="position:relative;z-index:1">
+    <span class="eyebrow"><iconify-icon icon="lucide:compass"></iconify-icon>Inglés personalizado · 100% online</span>
+    <h1 class="hero-h1">Aprende inglés <span class="c">uno a uno</span><br>con un método que <span class="c">se adapta a ti</span></h1>
+    <p class="lead" style="margin-top:20px;font-size:18px">Clases interactivas en vivo, diseñadas alrededor de tu objetivo real. Sin plantillas, sin aulas saturadas: solo tú, tu profesor y un plan claro para avanzar.</p>
+    <div class="hero-badges">
+      <span class="trust"><iconify-icon icon="lucide:user"></iconify-icon>1 a 1</span>
+      <span class="trust"><iconify-icon icon="lucide:wifi"></iconify-icon>100% online</span>
+      <span class="trust"><iconify-icon icon="lucide:clock"></iconify-icon>Horarios flexibles</span>
+    </div>
+    <div class="hero-actions">
+      <button class="btn-primary">Agenda tu clase de prueba <iconify-icon icon="lucide:arrow-right"></iconify-icon></button>
+      <button class="btn-outline">Ver metodología</button>
+    </div>
+    <div class="hero-metric">
+      <strong>2016</strong>
+      <span class="muted">Formando estudiantes con trayectoria comprobada desde entonces</span>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .role-title{font-family:var(--display);font-size:20px;color:var(--text-primary);margin:32px 0 16px;letter-spacing:0.02em}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.swatch{background:var(--surface-card);border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);overflow:hidden}
+.swatch .chip{height:88px;position:relative}
+.checker{background-image:linear-gradient(45deg,#334155 25%,transparent 25%),linear-gradient(-45deg,#334155 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#334155 75%),linear-gradient(-45deg,transparent 75%,#334155 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.swatch .meta{padding:14px 16px}
+.swatch .name{color:var(--text-primary);font-size:14px;font-weight:600;margin-bottom:4px}
+.swatch .val{color:var(--text-muted);font-size:12px;font-family:monospace}
+.swatch .note{color:var(--text-secondary);font-size:12px;margin-top:8px;line-height:1.4}
+</style>
+<section id="palette" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:palette"></iconify-icon>Paleta</span>
+    <h2>Un lienzo nocturno, dosificado en coral</h2>
+    <p class="lead" style="margin-top:16px">Azul marino profundo domina el 65% del área visible. El coral es un acento racionado: aparece solo donde debe capturar la mirada.</p>
+
+    <div class="role-title">Superficies</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#0B132B;border-bottom:1px solid var(--border-card)"></div><div class="meta"><div class="name">Navy Dark</div><div class="val">#0B132B</div><div class="note">Fondo estructural absoluto: página, header, modales y footer.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1C2541"></div><div class="meta"><div class="name">Navy Surface</div><div class="val">#1C2541</div><div class="note">Tarjetas de contenido y pasos metodológicos. +8% de luminosidad.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#222C4D"></div><div class="meta"><div class="name">Navy Hover</div><div class="val">#222C4D</div><div class="note">Estado activo al pasar el cursor sobre tarjetas interactivas.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#0F172A"></div><div class="meta"><div class="name">Slate 900</div><div class="val">#0F172A</div><div class="note">Micro-ilustraciones, badges de código y marcos tecnológicos.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#3A506B"></div><div class="meta"><div class="name">Accent Cool</div><div class="val">#3A506B</div><div class="note">Superficie fría auxiliar para separación de planos.</div></div></div>
+    </div>
+
+    <div class="role-title">Acentos</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#FF5A5F"></div><div class="meta"><div class="name">Coral Main</div><div class="val">#FF5A5F</div><div class="note">Botones primarios, isotipo, viñetas activas y bordes de enfoque.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#E0484D"></div><div class="meta"><div class="name">Coral Hover</div><div class="val">#E0484D</div><div class="note">Tono más profundo para interacciones de clic y hover.</div></div></div>
+      <div class="swatch"><div class="chip checker"><div style="position:absolute;inset:0;background:rgba(255,90,95,0.12)"></div></div><div class="meta"><div class="name">Coral Tint</div><div class="val">rgba(255,90,95,.12)</div><div class="note">Fondo de píldoras, números de paso e íconos de énfasis.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#25D366"></div><div class="meta"><div class="name">WhatsApp Green</div><div class="val">#25D366</div><div class="note">Exclusivo del botón flotante y enlaces directos a chat.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#10B981"></div><div class="meta"><div class="name">Success</div><div class="val">#10B981</div><div class="note">Checkmarks que confirman atributos pedagógicos.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F59E0B"></div><div class="meta"><div class="name">Warning</div><div class="val">#F59E0B</div><div class="note">Reservado para señales de atención puntuales.</div></div></div>
+    </div>
+
+    <div class="role-title">Texto y bordes</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><div class="name">Text Primary</div><div class="val">#FFFFFF</div><div class="note">Titulares, nombres de producto y estados destacados.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#CBD5E1"></div><div class="meta"><div class="name">Text Secondary</div><div class="val">#CBD5E1</div><div class="note">Párrafos descriptivos y características de clase.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#94A3B8"></div><div class="meta"><div class="name">Text Muted</div><div class="val">#94A3B8</div><div class="note">Subtítulos auxiliares, notas al pie y textos de ayuda.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#334155"></div><div class="meta"><div class="name">Border Card</div><div class="val">#334155</div><div class="note">Delimitación matemática de tarjetas de 1px.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1E293B"></div><div class="meta"><div class="name">Border Subtle</div><div class="val">#1E293B</div><div class="note">Separadores sutiles sin ruido visual.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+.spec-row{border-top:1px solid var(--border-subtle);padding:28px 0;display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:768px){.spec-row{grid-template-columns:1fr 260px;align-items:center}}
+.spec-meta{color:var(--text-muted);font-size:12px;font-family:monospace;line-height:1.7}
+.spec-meta span{color:var(--accent-coral)}
+.weight-ramp{display:flex;flex-wrap:wrap;gap:24px;margin-top:24px}
+.weight-ramp div{font-family:var(--display);font-size:40px;color:var(--text-primary)}
+.weight-ramp small{display:block;font-family:var(--body);font-size:12px;color:var(--text-muted)}
+</style>
+<section id="type-scale" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:type"></iconify-icon>Escala tipográfica</span>
+    <h2>Solidez condensada, lectura humanista</h2>
+    <p class="lead" style="margin-top:16px">Oswald para titulares con presencia arquitectónica; Open Sans para todo el contenido narrativo y estructurado.</p>
+
+    <div class="spec-row">
+      <div style="font-family:var(--display);font-weight:700;font-size:48px;line-height:1.15;letter-spacing:0.02em;color:#fff">Aprende inglés a tu ritmo</div>
+      <div class="spec-meta">display-hero<br><span>Oswald</span> · 48px · 700 · lh 1.15 · tracking .02em</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--display);font-weight:700;font-size:36px;line-height:1.2;letter-spacing:0.02em;color:#fff">Metodología en seis pasos</div>
+      <div class="spec-meta">display-section<br><span>Oswald</span> · 36px · 700 · lh 1.2 · tracking .02em</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--display);font-weight:700;font-size:20px;line-height:1.3;color:#fff">Clase Normal 45 min</div>
+      <div class="spec-meta">display-card<br><span>Oswald</span> · 20px · 700 · lh 1.3</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--body);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--accent-coral)">Metodología · Sección</div>
+      <div class="spec-meta">label-badge<br><span>Open Sans</span> · 12px · 600 · uppercase · tracking .05em</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--body);font-size:16px;line-height:1.6;color:var(--text-secondary);max-width:65ch">Cada clase se construye alrededor de tu objetivo real. Trabajamos con material vivo y conversación guiada para que avances con seguridad y constancia.</div>
+      <div class="spec-meta">body-regular<br><span>Open Sans</span> · 16px · 400 · lh 1.6</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--body);font-size:14px;line-height:1.5;color:var(--text-secondary)">Incluye seguimiento de progreso, material descargable y flexibilidad total de horarios.</div>
+      <div class="spec-meta">body-compact<br><span>Open Sans</span> · 14px · 400 · lh 1.5</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--body);font-size:12px;line-height:1.4;color:var(--text-muted)">Los precios pueden variar según el plan seleccionado y la frecuencia semanal.</div>
+      <div class="spec-meta">body-caption<br><span>Open Sans</span> · 12px · 400 · lh 1.4</div>
+    </div>
+
+    <div class="weight-ramp">
+      <div style="font-weight:400">Aa<small>Regular 400</small></div>
+      <div style="font-weight:600">Aa<small>Semibold 600</small></div>
+      <div style="font-weight:700">Aa<small>Bold 700</small></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+.comp-block{border-top:1px solid var(--border-subtle);padding:40px 0}
+.comp-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:24px}
+.comp-head h3{font-size:24px}
+.count{color:var(--text-muted);font-size:12px;font-family:monospace}
+.comp-layout{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:900px){.comp-layout{grid-template-columns:1fr 300px}}
+.demo{background:var(--surface-card);border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);padding:24px;display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.spec-card{background:var(--surface-elevated);border:1px solid var(--border-card);border-radius:var(--r-button);padding:16px;font-family:monospace;font-size:12px;line-height:1.9;color:var(--text-muted);height:fit-content}
+.spec-card b{color:var(--accent-coral);font-weight:400}
+.spec-card .tok{color:var(--text-secondary)}
+/* pills */
+.sec-pill{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;background:var(--border-subtle);border:1px solid var(--border-card);color:var(--accent-coral);font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;line-height:1;height:28px;padding:6px 14px;border-radius:var(--r-pill)}
+.sec-pill iconify-icon{font-size:14px}
+/* button matrix */
+.matrix{width:100%;border-collapse:separate;border-spacing:12px}
+.matrix th{color:var(--text-muted);font-size:11px;text-transform:uppercase;letter-spacing:0.05em;text-align:left;font-weight:600}
+.matrix td{vertical-align:middle}
+.btn-pill-cta{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;background:var(--accent-coral);color:#fff;height:44px;padding:10px 20px;border-radius:var(--r-pill);font-weight:600;font-size:14px;border:none;cursor:pointer;box-shadow:0 10px 15px -3px var(--accent-coral-glow);transition:background .2s ease}
+.btn-pill-cta:hover{background:var(--accent-coral-hover)}
+.st-hover{background:var(--accent-coral-hover)!important}
+.st-hover-o{background:var(--border-card)!important;color:#fff!important}
+.is-disabled{opacity:.45;cursor:not-allowed;box-shadow:none!important;transform:none!important}
+/* dark cards grid */
+.card-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.card-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.card-grid{grid-template-columns:1fr 1fr 1fr}}
+.dcard{background:rgba(28,37,65,0.9);border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);padding:24px;transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease}
+.dcard:hover{border-color:var(--border-interactive);box-shadow:0 20px 25px -5px rgba(255,90,95,0.05);transform:translateY(-2px)}
+.num-badge{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:var(--accent-coral-tint);color:var(--accent-coral);font-family:var(--display);font-weight:700;font-size:18px;margin-bottom:16px}
+.dcard h4{margin:0 0 8px;font-family:var(--display);color:#fff;font-size:20px;font-weight:700}
+.dcard p{color:var(--text-secondary);font-size:14px;line-height:1.5;margin:0 0 16px}
+.check-foot{display:flex;align-items:center;gap:8px;color:var(--accent-success);font-size:14px;font-weight:600}
+/* methodology */
+.steps{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:768px){.steps{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.steps{grid-template-columns:1fr 1fr 1fr}}
+.step{position:relative;background:#1C2541;border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);padding:24px}
+.step .connector{position:absolute;top:50%;right:-14px;color:var(--accent-coral);font-size:20px;z-index:2}
+@media(max-width:1023px){.step .connector{display:none}}
+.step .num-badge{margin-bottom:12px}
+.step h4{margin:0 0 6px;font-family:var(--display);color:#fff;font-size:18px}
+.step p{margin:0;font-size:14px;color:var(--text-secondary)}
+/* pricing */
+.plans{display:grid;grid-template-columns:1fr;gap:24px;align-items:stretch}
+@media(min-width:1024px){.plans{grid-template-columns:1fr 1fr 1fr}}
+.plan{background:rgba(28,37,65,0.9);border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);padding:24px;display:flex;flex-direction:column}
+.plan .price{font-family:var(--display);font-size:36px;color:#fff;margin:12px 0}
+.plan ul{list-style:none;padding:0;margin:0 0 24px;flex:1}
+.plan li{display:flex;gap:8px;align-items:flex-start;font-size:14px;color:var(--text-secondary);padding:6px 0}
+.plan li iconify-icon{color:var(--accent-success);margin-top:2px;flex:0 0 auto}
+.plan-hl{position:relative;background:#fff;color:#0B132B;border:2px solid var(--accent-coral);border-radius:var(--r-card);padding:28px;box-shadow:0 0 0 4px rgba(255,90,95,0.10),0 20px 25px -5px rgba(255,90,95,0.15);display:flex;flex-direction:column}
+.plan-hl .price{color:#0B132B}
+.plan-hl h4{color:#0B132B}
+.plan-hl li{color:#334155}
+.plan-hl .tag{position:absolute;top:-14px;left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--accent-coral);color:#fff;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:6px 16px;border-radius:var(--r-pill)}
+.plan h4{font-family:var(--display);font-size:20px;font-weight:700;margin:0}
+/* faq */
+.faq{border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);overflow:hidden;background:rgba(28,37,65,0.9)}
+.faq details{border-bottom:1px solid var(--border-subtle)}
+.faq details:last-child{border-bottom:none}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#fff;font-weight:600;font-size:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary iconify-icon{color:var(--accent-coral);transition:transform .3s ease}
+.faq details[open] summary iconify-icon{transform:rotate(180deg)}
+.faq .ans{padding:0 24px 20px;color:var(--text-secondary);font-size:14px;line-height:1.6}
+/* form */
+.cform{max-width:560px;background:rgba(28,37,65,0.9);border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-card);padding:24px}
+.field{margin-bottom:18px}
+.field label{display:block;font-size:14px;font-weight:600;color:#fff;margin-bottom:8px}
+.field .req{color:var(--accent-coral)}
+.field input,.field select,.field textarea{width:100%;background:var(--surface-elevated);border:1px solid var(--border-card);border-radius:var(--r-button);color:#fff;font-family:var(--body);font-size:14px;padding:12px 14px;height:48px}
+.field textarea{height:auto;min-height:96px;resize:vertical}
+.field input::placeholder,.field textarea::placeholder{color:var(--text-muted)}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--accent-coral);box-shadow:0 0 0 2px var(--accent-coral)}
+/* modal previews */
+.modal-prev{background:#0B132B;border:1px solid rgba(51,65,85,0.8);border-radius:var(--r-modal);box-shadow:0 25px 50px -12px rgba(0,0,0,0.7);max-width:520px;overflow:hidden}
+.modal-prev .mhead{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--border-subtle)}
+.modal-prev .mhead h4{margin:0;font-family:var(--display);color:#fff;font-size:20px}
+.modal-prev .close{background:none;border:none;color:var(--text-muted);cursor:pointer;font-size:22px;display:flex}
+.modal-prev .mbody{padding:20px 24px}
+.mstep{display:flex;align-items:center;gap:12px;background:rgba(30,41,59,0.8);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.mstep iconify-icon{color:var(--accent-coral);font-size:20px;flex:0 0 auto}
+.mstep span{font-size:14px;color:var(--text-secondary)}
+.cefr-grid{display:flex;flex-wrap:wrap;gap:8px}
+.cefr-grid span{background:var(--surface-card);border:1px solid var(--border-card);border-radius:12px;padding:8px 14px;color:#fff;font-weight:600;font-size:14px}
+/* floating utilities demo */
+.float-demo{position:relative;height:220px;background:var(--surface-elevated);border:1px solid var(--border-card);border-radius:var(--r-card);overflow:hidden}
+.fab-wa{position:absolute;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;background:var(--accent-whatsapp);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px rgba(11,19,43,0.4);z-index:50;font-size:28px;transition:transform .2s ease,background .2s ease}
+.fab-wa:hover{background:var(--accent-whatsapp-hover);transform:scale(1.05)}
+.fab-wa::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--accent-whatsapp);animation:wa-ping 1.4s cubic-bezier(0,0,.2,1) infinite}
+@keyframes wa-ping{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+.scroll-top{position:absolute;bottom:88px;right:30px;width:44px;height:44px;border-radius:50%;background:var(--surface-card);border:1px solid var(--border-card);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:40;font-size:20px}
+.wa-tip{position:absolute;bottom:38px;right:92px;background:var(--surface-card);border:1px solid var(--border-card);color:var(--text-secondary);font-size:13px;padding:8px 12px;border-radius:12px;white-space:nowrap}
+</style>
+<section id="components" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:component"></iconify-icon>Componentes</span>
+    <h2>El inventario completo del sistema</h2>
+    <p class="lead" style="margin-top:16px">Cada pieza construida con los mismos tokens de superficie, radio y acento. Interactúa con los ejemplos vivos.</p>
+
+    <!-- isotype -->
+    <div class="comp-block" data-tier-a-component="brand-isotype">
+      <div class="comp-head"><h3>Isotipo Oficial Vectorial</h3><span class="count">×2 · header + footer</span></div>
+      <div class="comp-layout">
+        <div class="demo">
+          <div style="display:flex;align-items:center;gap:24px">
+            <span class="iso" style="width:40px;height:40px"><svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="iso" style="width:44px;height:44px"><svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </div>
+        </div>
+        <div class="spec-card"><span class="tok">--accent-coral</span> · fill <b>#FF5A5F</b><br><span class="tok">ribbons</span> <b>#FFFFFF</b><br><span class="tok">radius</span> r-pill 9999px<br><span class="tok">size</span> 40 / 44px<br><span class="tok">viewBox</span> 0 0 100 100</div>
+      </div>
+    </div>
+
+    <!-- navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar (Sticky Header)</h3><span class="count">×1 · fixed</span></div>
+      <div class="comp-layout">
+        <div class="demo" style="padding:0;overflow:hidden">
+          <div style="width:100%;background:rgba(11,19,43,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(51,65,85,0.5);height:68px;padding:0 20px;display:flex;align-items:center;justify-content:space-between">
+            <div style="display:flex;align-items:center;gap:10px"><span class="iso" style="width:36px;height:36px"><svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg></span><span style="font-family:var(--display);font-weight:700;color:#fff">Connect Class</span></div>
+            <div style="display:none;gap:18px" class="nav-links"></div>
+            <button class="btn-pill-cta">Evaluación rápida</button>
+          </div>
+        </div>
+        <div class="spec-card"><span class="tok">bg</span> <b>#0B132B</b> /95<br><span class="tok">blur</span> backdrop-md 10px<br><span class="tok">border-b</span> #334155/50<br><span class="tok">height</span> 68px<br><span class="tok">links</span> Inicio · Nosotros · Metodología · Precios · ¿Preguntas? · Contacto</div>
+      </div>
+    </div>
+
+    <!-- pill badges -->
+    <div class="comp-block" data-tier-a-component="pill-badge-section">
+      <div class="comp-head"><h3>Pill Badges de Sección</h3><span class="count">×3</span></div>
+      <div class="comp-layout">
+        <div class="demo">
+          <span class="sec-pill"><iconify-icon icon="lucide:compass"></iconify-icon>Metodología</span>
+          <span class="sec-pill"><iconify-icon icon="lucide:sparkles"></iconify-icon>Diferenciación</span>
+          <span class="sec-pill"><iconify-icon icon="lucide:clock"></iconify-icon>Horarios</span>
+        </div>
+        <div class="spec-card"><span class="tok">bg</span> <b>#1E293B</b><br><span class="tok">text</span> coral <b>#FF5A5F</b><br><span class="tok">border</span> 1px #334155<br><span class="tok">radius</span> r-pill · <span class="tok">h</span> 28px<br><span class="tok">type</span> label-badge 12px uppercase<br><span class="tok">wrap</span> whitespace-nowrap</div>
+      </div>
+    </div>
+
+    <!-- buttons matrix -->
+    <div class="comp-block" data-tier-a-component="button-primary-coral">
+      <div class="comp-head"><h3>Botones — matriz de variantes × estados</h3><span class="count">solid · pill · outline</span></div>
+      <div class="comp-layout">
+        <div class="demo" style="align-items:stretch">
+          <table class="matrix">
+            <thead><tr><th></th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+            <tbody>
+              <tr>
+                <th>Primario Coral<br>48px · r 12</th>
+                <td><button class="btn-primary">Agenda ahora</button></td>
+                <td><button class="btn-primary st-hover">Agenda ahora</button></td>
+                <td><button class="btn-primary is-disabled" disabled>Agenda ahora</button></td>
+              </tr>
+              <tr>
+                <th>Pill CTA<br>44px · r pill</th>
+                <td><button class="btn-pill-cta">Prueba diagnóstica</button></td>
+                <td><button class="btn-pill-cta st-hover">Prueba diagnóstica</button></td>
+                <td><button class="btn-pill-cta is-disabled" disabled>Prueba diagnóstica</button></td>
+              </tr>
+              <tr>
+                <th>Secundario Outline<br>44px · r 12</th>
+                <td><button class="btn-outline">Ver metodología</button></td>
+                <td><button class="btn-outline st-hover-o">Ver metodología</button></td>
+                <td><button class="btn-outline is-disabled" disabled>Ver metodología</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec-card"><span class="tok">--btn-primary</span> fill <b>#FF5A5F</b> · text #FFF<br>hover <b>#E0484D</b> · translateY(-2px)<br>shadow coral-glow /.2 · h 48 · r-button 12<br><span class="tok">--btn-pill</span> r-pill · h 44 · glow /.25<br><span class="tok">--btn-outline</span> bg slate/.8 · text #CBD5E1<br>border #334155 · hover #334155/#FFF<br><span class="tok">motion</span> ease-in-out 200ms</div>
+      </div>
+    </div>
+
+    <!-- dark surface cards -->
+    <div class="comp-block" data-tier-a-component="card-dark-surface">
+      <div class="comp-head"><h3>Tarjetas de Superficie Oscura</h3><span class="count">×6 · grid responsive</span></div>
+      <div class="card-grid">
+        <div class="dcard"><span class="num-badge">01</span><h4>Clases uno a uno</h4><p>Atención completa del profesor en cada sesión, sin compartir tiempo con otros alumnos.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Atención personalizada</div></div>
+        <div class="dcard"><span class="num-badge">02</span><h4>100% online interactivo</h4><p>Videollamada en vivo con material compartido, sin desplazamientos ni horarios rígidos.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Desde donde estés</div></div>
+        <div class="dcard"><span class="num-badge">03</span><h4>Plan por objetivo</h4><p>Diseñamos el temario según tu meta: trabajo, viaje, certificación o conversación fluida.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>A tu medida</div></div>
+        <div class="dcard"><span class="num-badge">04</span><h4>Horarios flexibles</h4><p>Agenda y reagenda tus clases según tu semana, sin penalizaciones inesperadas.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Flexibilidad real</div></div>
+        <div class="dcard"><span class="num-badge">05</span><h4>Seguimiento continuo</h4><p>Registro de avance clase a clase para que veas resultados concretos con el tiempo.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Progreso medible</div></div>
+        <div class="dcard"><span class="num-badge">06</span><h4>Profesores expertos</h4><p>Equipo con trayectoria comprobada desde 2016 formando estudiantes de todos los niveles.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Experiencia real</div></div>
+      </div>
+      <div class="spec-card" style="margin-top:20px"><span class="tok">--card-surface-dark</span> bg <b>#1C2541</b>/.9 · r-card 16<br>border #334155/.8 · pad 24 · hover-border coral/.5<br>hover-shadow coral/.05 · num r 12 coral-tint · check #10B981</div>
+    </div>
+
+    <!-- methodology -->
+    <div class="comp-block" data-tier-a-component="methodology-step-grid">
+      <div class="comp-head"><h3>Proceso Metodológico — 6 pasos</h3><span class="count">×6 · conectores direccionales</span></div>
+      <div class="steps">
+        <div class="step"><iconify-icon class="connector" icon="lucide:arrow-right"></iconify-icon><span class="num-badge">1</span><h4>Diagnóstico</h4><p>Evaluamos tu nivel real con una prueba CEFR breve.</p></div>
+        <div class="step"><iconify-icon class="connector" icon="lucide:arrow-right"></iconify-icon><span class="num-badge">2</span><h4>Objetivo</h4><p>Definimos tu meta y el formato de clase ideal.</p></div>
+        <div class="step"><span class="num-badge">3</span><h4>Plan</h4><p>Armamos un temario personalizado a tu ritmo.</p></div>
+        <div class="step"><iconify-icon class="connector" icon="lucide:arrow-right"></iconify-icon><span class="num-badge">4</span><h4>Clases en vivo</h4><p>Sesiones uno a uno con material interactivo.</p></div>
+        <div class="step"><iconify-icon class="connector" icon="lucide:arrow-right"></iconify-icon><span class="num-badge">5</span><h4>Seguimiento</h4><p>Registramos tu avance clase a clase.</p></div>
+        <div class="step"><span class="num-badge">6</span><h4>Resultados</h4><p>Consolidas tu fluidez y alcanzas tu objetivo.</p></div>
+      </div>
+      <div style="margin-top:24px"><button class="btn-outline" data-open="modal-como">Cómo funciona <iconify-icon icon="lucide:arrow-up-right"></iconify-icon></button></div>
+    </div>
+
+    <!-- pricing -->
+    <div class="comp-block" data-tier-a-component="pricing-plan-cards">
+      <div class="comp-head"><h3>Tarjetas de Planes y Precios</h3><span class="count">×3 · items-stretch</span></div>
+      <div class="plans">
+        <div class="plan">
+          <h4>Quick Class 30 min</h4>
+          <div class="price">$</div>
+          <ul>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Sesión ágil de refuerzo</li>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Ideal para práctica breve</li>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Material de apoyo incluido</li>
+          </ul>
+          <button class="btn-outline" style="width:100%;justify-content:center">Elegir formato</button>
+        </div>
+        <div class="plan-hl" data-tier-a-component="pricing-plan-highlighted">
+          <span class="tag">Recomendado</span>
+          <h4>Clase Normal 45 min</h4>
+          <div class="price">$$</div>
+          <ul>
+            <li><iconify-icon icon="lucide:check" style="color:#FF5A5F;margin-top:2px;flex:0 0 auto"></iconify-icon>Duración óptima de aprendizaje</li>
+            <li><iconify-icon icon="lucide:check" style="color:#FF5A5F;margin-top:2px;flex:0 0 auto"></iconify-icon>Seguimiento de progreso</li>
+            <li><iconify-icon icon="lucide:check" style="color:#FF5A5F;margin-top:2px;flex:0 0 auto"></iconify-icon>Material personalizado</li>
+          </ul>
+          <button class="btn-primary" style="width:100%;justify-content:center">Elegir este plan</button>
+        </div>
+        <div class="plan">
+          <h4>Clase Doble 90 min</h4>
+          <div class="price">$$$</div>
+          <ul>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Inmersión profunda</li>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Máximo avance por sesión</li>
+            <li><iconify-icon icon="lucide:check"></iconify-icon>Ideal para intensivos</li>
+          </ul>
+          <button class="btn-outline" style="width:100%;justify-content:center">Elegir formato</button>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:20px"><span class="tok">--card-format-highlighted</span> bg <b>#FFFFFF</b> · text #0B132B<br>border 2px coral · ring-4 coral/.10 · r-card 16 · pad 28<br>shadow coral/.15 · tag pill coral · regular plans dark #1C2541</div>
+    </div>
+
+    <!-- faq -->
+    <div class="comp-block" data-tier-a-component="faq-accordion">
+      <div class="comp-head"><h3>Preguntas Frecuentes</h3><span class="count">×1 · acordeón</span></div>
+      <div class="faq">
+        <details open><summary>¿Las clases son realmente uno a uno? <iconify-icon icon="lucide:chevron-down"></iconify-icon></summary><div class="ans">Sí. Cada sesión es individual: tú y tu profesor, con atención completa a tu ritmo y objetivo.</div></details>
+        <details><summary>¿Puedo cambiar mi horario? <iconify-icon icon="lucide:chevron-down"></iconify-icon></summary><div class="ans">Los horarios son flexibles y puedes reagendar según tu semana dentro de los plazos acordados.</div></details>
+        <details><summary>¿Cómo sé qué nivel tengo? <iconify-icon icon="lucide:chevron-down"></iconify-icon></summary><div class="ans">Realizamos una prueba diagnóstica CEFR breve al inicio para ubicar tu nivel exacto.</div></details>
+        <details><summary>¿Qué formato me conviene? <iconify-icon icon="lucide:chevron-down"></iconify-icon></summary><div class="ans">Depende de tu objetivo y disponibilidad. Te orientamos en la evaluación inicial sin compromiso.</div></details>
+      </div>
+    </div>
+
+    <!-- contact form -->
+    <div class="comp-block" data-tier-a-component="contact-form">
+      <div class="comp-head"><h3>Módulo de Contacto Multifásico</h3><span class="count">×1 · validación en vivo</span></div>
+      <div class="comp-layout">
+        <form class="cform" onsubmit="return false">
+          <div class="field"><label>Nombre <span class="req">*</span></label><input type="text" placeholder="Tu nombre completo" required></div>
+          <div class="field"><label>Correo <span class="req">*</span></label><input type="email" placeholder="tucorreo@ejemplo.com" required></div>
+          <div class="field"><label>Formato de interés</label><select><option>Quick Class 30 min</option><option selected>Clase Normal 45 min</option><option>Clase Doble 90 min</option></select></div>
+          <div class="field"><label>Tu objetivo <span class="req">*</span></label><textarea placeholder="Cuéntanos qué quieres lograr con tu inglés" required></textarea></div>
+          <button class="btn-primary" style="width:100%;justify-content:center">Enviar y agendar</button>
+        </form>
+        <div class="spec-card"><span class="tok">input</span> h 48 · r-button 12 · bg #0F172A<br>border #334155 · text #FFF · placeholder #94A3B8<br><span class="tok">focus</span> ring-2 coral <b>#FF5A5F</b><br><span class="tok">req</span> asterisco coral · labels visibles<br>recuerda plan/objetivo seleccionado</div>
+      </div>
+    </div>
+
+    <!-- modal como funciona -->
+    <div class="comp-block" data-tier-a-component="modal-como-funciona">
+      <div class="comp-head"><h3>Modal “Cómo funciona”</h3><span class="count">×1 · 5 pasos</span></div>
+      <div class="modal-prev">
+        <div class="mhead"><h4>¿Cómo funciona Connect Class?</h4><button class="close" aria-label="Cerrar"><iconify-icon icon="lucide:x"></iconify-icon></button></div>
+        <div class="mbody">
+          <div class="mstep"><iconify-icon icon="lucide:clipboard-check"></iconify-icon><span>Realizas tu diagnóstico de nivel.</span></div>
+          <div class="mstep"><iconify-icon icon="lucide:target"></iconify-icon><span>Definimos tu objetivo y formato.</span></div>
+          <div class="mstep"><iconify-icon icon="lucide:calendar"></iconify-icon><span>Agendas tus clases uno a uno.</span></div>
+          <div class="mstep"><iconify-icon icon="lucide:video"></iconify-icon><span>Aprendes en sesiones en vivo.</span></div>
+          <div class="mstep"><iconify-icon icon="lucide:trending-up"></iconify-icon><span>Sigues tu progreso hasta tu meta.</span></div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:20px"><span class="tok">--modal-dialog</span> bg <b>#0B132B</b> · r-modal 20<br>border #334155/.8 · shadow black/.7 · backdrop-blur 8px<br>steps bg slate/.8 r 12 · X close · Esc · scroll lock</div>
+    </div>
+
+    <!-- modal CEFR -->
+    <div class="comp-block" data-tier-a-component="modal-diagnostic-cefr">
+      <div class="comp-head"><h3>Modal Diagnóstico de Nivel (CEFR)</h3><span class="count">×1</span></div>
+      <div class="modal-prev">
+        <div class="mhead"><h4>Diagnóstico de nivel</h4><button class="close" aria-label="Cerrar"><iconify-icon icon="lucide:x"></iconify-icon></button></div>
+        <div class="mbody">
+          <p style="color:var(--text-secondary);font-size:14px;margin-bottom:16px">Selecciona el nivel que mejor te representa para comenzar tu evaluación.</p>
+          <div class="cefr-grid"><span>A1</span><span>A2</span><span>B1</span><span>B2</span><span>C1</span><span>C2</span></div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:20px"><span class="tok">container</span> bg #0B132B · r-modal 20<br>border #334155/.8 · shadow black/.7<br>backdrop slate-950/.8 blur-sm · Esc + scroll lock</div>
+    </div>
+
+    <!-- floating utilities -->
+    <div class="comp-block" data-tier-a-component="fab-whatsapp">
+      <div class="comp-head"><h3>Botón Flotante de WhatsApp (FAB)</h3><span class="count">×1 · z-50</span></div>
+      <div class="float-demo" data-tier-a-component="scroll-to-top">
+        <button class="scroll-top" aria-label="Volver arriba"><iconify-icon icon="lucide:arrow-up"></iconify-icon></button>
+        <div class="wa-tip">¿Consultas? Escríbenos a WhatsApp</div>
+        <button class="fab-wa" aria-label="Escríbenos por WhatsApp"><iconify-icon icon="lucide:message-circle"></iconify-icon></button>
+      </div>
+      <div class="spec-card" style="margin-top:20px"><span class="tok">--fab-whatsapp</span> bg <b>#25D366</b> · 56×56 · r-pill<br>hover #20BA58 · scale 1.05 · shadow navy/.4 · ping pulse · z-50<br><span class="tok">--scroll-top</span> 44px · surface-card · z-40 (bajo FAB)</div>
+    </div>
+
+    <!-- hero component -->
+    <div class="comp-block" data-tier-a-component="hero-section">
+      <div class="comp-head"><h3>Hero Section</h3><span class="count">×1</span></div>
+      <div class="demo" style="flex-direction:column;align-items:flex-start;gap:14px">
+        <span class="sec-pill"><iconify-icon icon="lucide:sparkles"></iconify-icon>Desde 2016</span>
+        <div style="font-family:var(--display);font-size:32px;font-weight:700;color:#fff;line-height:1.2">Inglés <span style="color:var(--accent-coral)">a tu medida</span></div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px">
+          <span class="trust"><iconify-icon icon="lucide:user"></iconify-icon>1 a 1</span>
+          <span class="trust"><iconify-icon icon="lucide:wifi"></iconify-icon>100% online</span>
+          <span class="trust"><iconify-icon icon="lucide:clock"></iconify-icon>Horarios flexibles</span>
+        </div>
+        <button class="btn-primary">Agenda tu clase de prueba</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+.depth-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:640px){.depth-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1024px){.depth-grid{grid-template-columns:repeat(4,1fr)}}
+.depth-card{background:var(--surface-card);border:1px solid var(--border-card);padding:24px;color:var(--text-secondary)}
+.depth-card .lbl{font-family:monospace;font-size:12px;color:var(--text-muted);margin-top:12px}
+.depth-card h4{font-family:var(--display);color:#fff;font-size:18px;margin:0 0 8px}
+.elev-1{background:#0B132B}.elev-2{background:#1C2541}.elev-3{background:#222C4D}
+</style>
+<section id="surface-depth" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:layers"></iconify-icon>Superficie y profundidad</span>
+    <h2>Radios anidados, elevación por luminosidad</h2>
+    <p class="lead" style="margin-top:16px">La profundidad se enfatiza aclarando el plano de fondo y priorizando bordes matemáticos de 1px sobre sombras artificiales.</p>
+    <div class="depth-grid" style="margin-top:32px">
+      <div class="depth-card" style="border-radius:9999px;text-align:center"><h4>Pill</h4><p style="font-size:13px">Botones y badges primarios.</p><div class="lbl">r-pill 9999px</div></div>
+      <div class="depth-card" style="border-radius:12px"><h4>Button</h4><p style="font-size:13px">Botones y hijos interiores.</p><div class="lbl">r-button 12px</div></div>
+      <div class="depth-card" style="border-radius:16px"><h4>Card</h4><p style="font-size:13px">Tarjetas de contenido.</p><div class="lbl">r-card 16px</div></div>
+      <div class="depth-card" style="border-radius:20px"><h4>Modal</h4><p style="font-size:13px">Superposiciones flotantes.</p><div class="lbl">r-modal 20px</div></div>
+    </div>
+    <div class="depth-grid" style="margin-top:24px;grid-template-columns:1fr 1fr 1fr">
+      <div class="depth-card elev-1" style="border-radius:16px"><h4>Plano base</h4><div class="lbl">#0B132B</div></div>
+      <div class="depth-card elev-2" style="border-radius:16px"><h4>+8% luminosidad</h4><div class="lbl">#1C2541</div></div>
+      <div class="depth-card elev-3" style="border-radius:16px"><h4>Hover activo</h4><div class="lbl">#222C4D</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+.motion-grid{display:grid;grid-template-columns:1fr;gap:24px}
+@media(min-width:768px){.motion-grid{grid-template-columns:1fr 1fr}}
+.motion-card{background:var(--surface-card);border:1px solid var(--border-card);border-radius:var(--r-card);padding:24px}
+.motion-card h4{font-family:var(--display);color:#fff;margin:0 0 16px}
+.mbox{width:56px;height:56px;border-radius:12px;background:var(--accent-coral)}
+.reveal-demo.play{animation:revealUp .7s ease-out}
+@keyframes revealUp{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:translateY(0)}}
+.hover-demo{transition:transform .2s ease-in-out,box-shadow .2s ease-in-out}
+.hover-demo:hover{transform:translateY(-2px);box-shadow:0 20px 25px -5px rgba(255,90,95,0.15)}
+.replay{margin-top:16px}
+.motion-meta{font-family:monospace;font-size:12px;color:var(--text-muted);margin-top:16px}
+</style>
+<section id="motion" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:play"></iconify-icon>Movimiento</span>
+    <h2>Entradas suaves, micro-respuestas táctiles</h2>
+    <p class="lead" style="margin-top:16px">Cada sección monta con una transición de entrada desde abajo; los controles responden con micro-elevación de 2 píxeles.</p>
+    <div class="motion-grid" style="margin-top:32px">
+      <div class="motion-card">
+        <h4>RevealOnScroll</h4>
+        <div class="reveal-demo mbox"></div>
+        <div class="motion-meta">translate-y-8 → 0 · opacity 0 → 1 · 700ms · ease-out</div>
+        <button class="btn-outline replay" data-replay="reveal">Reproducir</button>
+      </div>
+      <div class="motion-card">
+        <h4>Micro-Hover</h4>
+        <div class="hover-demo mbox" style="cursor:pointer"></div>
+        <div class="motion-meta">-translate-y-0.5 · shadow coral · 200ms · ease-in-out</div>
+        <span class="muted" style="font-size:13px;display:block;margin-top:8px">Pasa el cursor sobre el bloque.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+.mock{background:var(--background-primary);border:1px solid var(--border-card);border-radius:var(--r-card);overflow:hidden;position:relative}
+.mock .glow{width:400px;height:400px;background:rgba(255,90,95,0.05);top:-120px;right:-80px}
+.mock .mnav{background:rgba(11,19,43,0.95);backdrop-filter:blur(10px);border-bottom:1px solid rgba(51,65,85,0.5);height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.mock .mhero{padding:40px 24px;position:relative;z-index:1}
+.mock .mcards{display:grid;grid-template-columns:1fr;gap:16px;padding:0 24px 24px;position:relative;z-index:1}
+@media(min-width:768px){.mock .mcards{grid-template-columns:1fr 1fr 1fr}}
+.mock .mcta{padding:32px 24px;text-align:center;border-top:1px solid var(--border-subtle);position:relative;z-index:1}
+</style>
+<section id="composition" class="band">
+  <div class="container">
+    <span class="eyebrow"><iconify-icon icon="lucide:layout-template"></iconify-icon>En composición</span>
+    <h2>El sistema, ensamblado</h2>
+    <p class="lead" style="margin-top:16px">Una pantalla real construida enteramente con los tokens anteriores.</p>
+    <div class="mock" style="margin-top:32px">
+      <div class="glow"></div>
+      <div class="mnav">
+        <div style="display:flex;align-items:center;gap:10px"><span class="iso" style="width:32px;height:32px"><svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg></span><span style="font-family:var(--display);font-weight:700;color:#fff">Connect Class</span></div>
+        <button class="btn-pill-cta">Evaluación rápida</button>
+      </div>
+      <div class="mhero">
+        <span class="sec-pill"><iconify-icon icon="lucide:compass"></iconify-icon>100% online</span>
+        <div style="font-family:var(--display);font-size:32px;font-weight:700;color:#fff;line-height:1.2;margin:16px 0 12px">Inglés uno a uno,<br><span style="color:var(--accent-coral)">a tu ritmo</span></div>
+        <p style="color:var(--text-secondary);max-width:52ch">Clases en vivo diseñadas alrededor de tu objetivo real, con seguimiento constante desde 2016.</p>
+        <button class="btn-primary" style="margin-top:8px">Agenda tu clase de prueba</button>
+      </div>
+      <div class="mcards">
+        <div class="dcard"><span class="num-badge">01</span><h4>Personalizado</h4><p>Un plan diseñado alrededor de tu meta.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>A tu medida</div></div>
+        <div class="dcard"><span class="num-badge">02</span><h4>Flexible</h4><p>Agenda tus clases según tu semana.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Sin rigidez</div></div>
+        <div class="dcard"><span class="num-badge">03</span><h4>Comprobado</h4><p>Profesores con trayectoria desde 2016.</p><div class="check-foot"><iconify-icon icon="lucide:check-circle"></iconify-icon>Experiencia real</div></div>
+      </div>
+      <div class="mcta">
+        <h3 style="margin-bottom:16px">¿Listo para empezar?</h3>
+        <button class="btn-primary">Solicita tu diagnóstico gratuito</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{border-top:1px solid var(--border-subtle);padding:64px 0}
+.foot-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px}
+.foot-links{display:flex;flex-wrap:wrap;gap:24px}
+.foot-links a{color:var(--text-secondary);text-decoration:none;font-size:14px}
+.foot-links a:hover{color:#fff}
+.foot-bottom{margin-top:40px;padding-top:24px;border-top:1px solid var(--border-subtle);color:var(--text-muted);font-size:13px}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="foot-inner">
+      <div style="max-width:320px">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><span class="iso"><svg viewBox="0 0 100 100" fill="none"><path d="M20 30 L50 60 L80 30" stroke="#fff" stroke-width="10" stroke-linecap="round"/><path d="M20 55 L50 85 L80 55" stroke="#fff" stroke-width="10" stroke-linecap="round"/></svg></span><span style="font-family:var(--display);font-weight:700;color:#fff;font-size:20px">Connect Class</span></div>
+        <p class="muted" style="font-size:14px">Inglés personalizado uno a uno, 100% online e interactivo. Formando estudiantes desde 2016.</p>
+      </div>
+      <div class="foot-links">
+        <a href="#hero">Inicio</a><a href="#palette">Nosotros</a><a href="#components">Metodología</a><a href="#composition">Precios</a><a href="#type-scale">¿Preguntas?</a><a href="#footer">Contacto</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>Connect Nocturne Coral — <a href="https://connectacademy.cl">connectacademy.cl</a></div>
+      <div style="margin-top:6px">Design system captured and rendered by r3xdec.design</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-replay="reveal"]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=btn.closest('.motion-card').querySelector('.reveal-demo');
+    el.classList.remove('play');void el.offsetWidth;el.classList.add('play');
+  });
+});
+document.querySelectorAll('.hamburger').forEach(function(b){
+  b.addEventListener('click',function(){
+    var l=document.querySelector('.nav .nav-links');
+    if(l)l.style.display=l.style.display==='flex'?'none':'flex';
+  });
+});
+</script>
+</body>
+</html>

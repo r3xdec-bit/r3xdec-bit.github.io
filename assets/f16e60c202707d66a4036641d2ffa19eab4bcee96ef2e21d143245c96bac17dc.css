@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/dfd8bfa490bf2100bf3ef27aabffdf341d2d2c6f3d91af120eb525542756e842.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/ccce59465ae5c61930ada5453834f60500fbd95084d85db63e0e65fad0125455.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/a8eefb873ba9c9020665f8a98302697ce1f3b79ab2deef6ee508c0ca6a82e876.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/7022da390e9b401ea35b722f8ed2376948e70add10954bc798839b4bfe17ef3f.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist Mono';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/5c1b7b77c2d6132460f03b60c175adc80da1ebd0b418c785135b1aed27a28b30.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/fecf4861d5202405b8bd45c683858b6870642a026784fe0dbf88ff55dedee8a0.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/a99e3db50076202713812ed541feeb23ffeebb61db1fa6b1cf48fe590d37ef18.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Saira Stencil One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/9ccc16c39f501db43f06566718046691435b8dab94658c3486c5370803d7d04a.ttf) format('truetype');
+}

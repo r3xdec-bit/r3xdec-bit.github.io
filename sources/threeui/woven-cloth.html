@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parametric Ribbon Choreography — r3xdec 3D</title>
+  <script type="importmap">
+  { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #05050a; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+  </style>
+</head>
+<body>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setClearColor(0x05050a, 1);
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 80);
+    camera.position.set(0, 1.5, 8.2);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    const uTime = { value: 0 };
+    const group = new THREE.Group();
+    scene.add(group);
+
+    for (let k = 0; k < 5; k++) {
+      const pts = [];
+      for (let i = 0; i <= 180; i++) {
+        const a = (i / 180) * Math.PI * 2;
+        const x = Math.sin(a * 2 + k * 0.5) * 2.8 + Math.cos(a * 3) * 0.55;
+        const y = Math.cos(a * 3 + k * 0.7) * 1.9;
+        const z = Math.sin(a * 5 + k * 0.4) * 1.5;
+        pts.push(new THREE.Vector3(x, y, z));
+      }
+      const curve = new THREE.CatmullRomCurve3(pts, true);
+      const geo = new THREE.TubeGeometry(curve, 240, 0.055 + k * 0.008, 12, true);
+      const mat = new THREE.ShaderMaterial({
+        uniforms: { uTime, uOffset: { value: k * 0.2 } },
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+        fragmentShader: `
+          uniform float uTime, uOffset; varying vec2 vUv;
+          void main(){
+            float p = fract(vUv.x * 3.0 - uTime * 0.45 + uOffset);
+            float pulse = smoothstep(0.0, 0.2, p) * smoothstep(0.65, 0.2, p);
+            vec3 col = 0.52 + 0.48 * cos(6.2831 * (vUv.x + uOffset + uTime * 0.12 + vec3(0.0, 0.33, 0.67)));
+            gl_FragColor = vec4(col * (0.45 + pulse * 1.35), 1.0);
+          }
+        `,
+      });
+      group.add(new THREE.Mesh(geo, mat));
+    }
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight; camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+    function animate(ms) {
+      const t = ms * 0.001;
+      uTime.value = t;
+      group.rotation.y = t * 0.28;
+      group.rotation.x = Math.sin(t * 0.4) * 0.24;
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

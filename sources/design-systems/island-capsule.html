@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Island Capsule — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=-apple-system:wght@400;500;700&family=Instrument+Serif:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#000000; color:#1D1D1F; font-family:'-apple-system',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'-apple-system',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'-apple-system',sans-serif; font-size: 22px; border-bottom: 1px solid #56565C; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#56565C; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#56565C; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #56565C; border-radius:24px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#56565C; }
+  .swatch-meta p { color:#56565C; font-size: 12px; }
+  .specimen { border: 1px solid #56565C; border-radius:24px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#56565C; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#56565C; }
+  .bar { height: 10px; background:#1D1D1F; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #1D1D1F; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #56565C; border-radius:24px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:7px; font-size: 14px; border: 1px solid #1D1D1F; }
+  .btn-primary { background:#1D1D1F; color:#000000; }
+  .btn-secondary { background: transparent; color:#1D1D1F; }
+  footer { border-top: 1px solid #56565C; padding-top: 20px; font-size: 13px; color:#56565C; }
+  footer a { color:#1D1D1F; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from notchbay.com · dark mode</div>
+    <h1>Island Capsule</h1>
+    <p class="tagline">A light-dominant editorial system interrupted by near-black mid-page bands, built around a single floating pill-shaped bar, rationed coral accents, and italic serif headline cadences.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ECECEE"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#ECECEE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#101014"></div>
+        <div class="swatch-meta"><strong>surface-dark</strong><code>#101014</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1D1D1F"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#1D1D1F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#56565C"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#56565C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#86868B"></div>
+        <div class="swatch-meta"><strong>text-faint</strong><code>#86868B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>line</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F34B38"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#F34B38</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>on-dark-bg</strong><code>#000000</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:84px;font-weight:700;line-height:1.02">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · -apple-system · 84px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:52px;font-weight:700;line-height:1.05">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · -apple-system · 52px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:16px;font-weight:400;line-height:1.65">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · -apple-system · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:15px;font-weight:700;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · -apple-system · 15px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Instrument Serif',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Instrument Serif ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 6px</span>
+        <div class="bar" style="width:min(6px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 14px</span>
+        <div class="bar" style="width:min(14px, 100%)"></div></div>
+<div class="bar-row"><span>card-gap · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 96px</span>
+        <div class="bar" style="width:min(96px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap · 648px</span>
+        <div class="bar" style="width:min(648px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:7px">control<br><code>7px</code></div>
+<div class="radius-chip" style="border-radius:100px">pill<br><code>100px</code></div>
+<div class="radius-chip" style="border-radius:50px">pill-lg<br><code>50px</code></div>
+<div class="radius-chip" style="border-radius:24px">card<br><code>24px</code></div>
+<div class="radius-chip" style="border-radius:2px">sharp<br><code>2px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#56565C;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

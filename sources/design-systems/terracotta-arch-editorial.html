@@ -1,0 +1,760 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terracotta Arch Editorial — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#EEEDEA;
+  --surface:#111111;
+  --text-primary:#111111;
+  --text-secondary:#DCD8D5;
+  --accent:#413936;
+  --border-dark:#14372D;
+  --border-light:#EBF0EB;
+  --r-control:8px;
+  --r-pill:9999px;
+  --r-card:16px;
+  --r-sharp:4px;
+  --r-panel-top:40px;
+  --gap:16px;
+  --base:8px;
+  --section-padding:156px;
+  --ease-snap:cubic-bezier(0.645,0.045,0.355,1);
+  --font-sans:"Instrument Sans",system-ui,sans-serif;
+  --font-serif:"Lora",Georgia,serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  font-weight:500;
+  font-size:16px;
+  line-height:1;
+  background:var(--background);
+  color:var(--text-primary);
+  -webkit-font-smoothing:antialiased;
+}
+.i{font-style:italic;font-family:var(--font-serif);}
+.wrap{max-width:1560px;margin:0 auto;padding-left:40px;padding-right:40px;}
+h1,h2,h3{font-weight:500;letter-spacing:-1.5px;line-height:1.1;}
+a{color:inherit;text-decoration:none;}
+iconify-icon{display:inline-block;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--background);
+  border:1px solid var(--border-dark);
+  border-radius:var(--r-pill);
+  padding:8px 16px;font-size:14px;font-weight:500;
+  color:var(--text-primary);
+}
+.section-head{text-align:center;max-width:760px;margin:0 auto 64px;}
+.section-head h2{font-size:48px;letter-spacing:-1.5px;margin:20px 0 16px;}
+.section-head p{font-size:16px;color:#3a3a3a;line-height:1.5;}
+
+/* HERO */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(circle at 50% 100%, rgba(29,22,13,0.7) 10%, rgba(13,29,25,0) 35%, rgba(13,29,25,0) 70%, rgba(29,23,13,0.7) 90%),
+    linear-gradient(160deg,#301818,#483018 45%,#784830 80%);
+  color:#EEEDEA;
+  overflow:hidden;
+}
+.nav{
+  position:sticky;top:0;z-index:50;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:rgba(17,17,17,0.35);
+  border-bottom:1px solid rgba(235,240,235,0.12);
+}
+.nav-inner{display:flex;align-items:center;gap:32px;height:72px;}
+.logo{font-size:20px;font-weight:600;letter-spacing:-1px;color:#EEEDEA;display:flex;align-items:center;gap:8px;}
+.nav-links{display:flex;gap:28px;margin-left:16px;}
+.nav-links a{font-size:16px;color:#EAEEED;transition:color 0.1s ease;height:48px;display:flex;align-items:center;}
+.nav-links a:hover{color:#fff;}
+.nav-cta{
+  margin-left:auto;
+  background:var(--accent);color:#EEEDEA;
+  border:none;border-radius:1600px;height:48px;padding:14px 20px;
+  font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;
+  transition:background-color 0.4s var(--ease-snap);
+}
+.nav-cta:hover{background:#111111;}
+.hero-body{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding-bottom:120px;}
+.hero-content{max-width:900px;}
+.hero-content .eyebrow{background:rgba(17,17,17,0.4);border-color:rgba(235,240,235,0.3);color:#EEEDEA;margin-bottom:28px;}
+.hero-content h1{
+  font-size:64px;letter-spacing:-2.5px;line-height:1.1;color:#fff;
+  text-shadow:0 2px 30px rgba(29,22,13,0.6);
+  margin-bottom:32px;
+}
+.hero-cta{
+  background:#111111;color:#DCD8D5;
+  border:none;border-radius:16px 16px 0 0;height:43px;padding:9.6px 16px;
+  font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;
+  transition:background-color 0.4s var(--ease-snap);
+}
+.hero-cta:hover{background:#000;}
+.menu-btn{display:none;}
+@media(max-width:1024px){
+  .hero-content h1{font-size:48px;letter-spacing:-1.5px;}
+}
+@media(max-width:768px){
+  .wrap{padding-left:24px;padding-right:24px;}
+  .nav-links{display:none;}
+  .hero-content h1{font-size:38px;letter-spacing:-1px;}
+  .section-head h2{font-size:34px;letter-spacing:-1px;}
+}
+@media(max-width:640px){
+  .hero-content h1{font-size:32px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+  html{scroll-behavior:auto;}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <nav class="nav" aria-label="Primary">
+    <div class="wrap nav-inner">
+      <span class="logo"><iconify-icon icon="lucide:archway" aria-hidden="true"></iconify-icon>Archscale</span>
+      <div class="nav-links">
+        <a href="#components">Work</a>
+        <a href="#type-scale">Studio</a>
+        <a href="#palette">Journal</a>
+        <a href="#surface-depth">Services</a>
+        <a href="#composition">Contact</a>
+      </div>
+      <button class="nav-cta">Start a project</button>
+    </div>
+  </nav>
+  <div class="wrap hero-body">
+    <div class="hero-content">
+      <span class="eyebrow"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon>Architectural design studio</span>
+      <h1>Spaces that hold light and <span class="i">stillness</span>, drawn one archway at a time.</h1>
+      <button class="hero-cta">See the portfolio</button>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{padding:var(--section-padding) 0;background:var(--background);}
+.pal-group{margin-bottom:72px;}
+.pal-group h3{font-size:32px;letter-spacing:-1px;margin-bottom:8px;}
+.pal-group>p{font-size:15px;color:#3a3a3a;margin-bottom:28px;}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+.swatch{border:1px solid var(--border-light);border-radius:var(--r-card);overflow:hidden;}
+.swatch .chip{height:120px;position:relative;}
+.check{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+.swatch .meta{padding:14px 16px;background:#fff;}
+.swatch .meta .name{font-size:15px;font-weight:600;}
+.swatch .meta .val{font-size:13px;color:#555;font-family:ui-monospace,monospace;margin:4px 0 6px;}
+.swatch .meta .note{font-size:13px;color:#555;line-height:1.4;}
+</style>
+<section id="palette" aria-labelledby="pal-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon>Palette</span>
+      <h2 id="pal-h">Stone, ink, and one <span class="i">rationed</span> brown.</h2>
+      <p>Warmth lives in the photograph. Everything else is neutral, flat, and deliberate.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <p>The stone canvas carries the body; near-black anchors the panels.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#EEEDEA;border-bottom:1px solid var(--border-light)"></div><div class="meta"><div class="name">Background</div><div class="val">#EEEDEA</div><div class="note">Dominant off-white stone field, all body sections.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">Surface</div><div class="val">#111111</div><div class="note">Warm near-black; panels, footer, inverted cards.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <p>Ink on stone, muted stone on ink.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">Text primary</div><div class="val">#111111</div><div class="note">Display and body ink on the light canvas.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#DCD8D5"></div><div class="meta"><div class="name">Text secondary</div><div class="val">#DCD8D5</div><div class="note">Muted copy on dark surfaces.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents &amp; borders</h3>
+      <p>The brown appears on one control at a time; borders are near-invisible dividers.</p>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#413936"></div><div class="meta"><div class="name">Accent brown</div><div class="val">#413936</div><div class="note">Navbar CTA pill and its hover states only.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#14372D"></div><div class="meta"><div class="name">Border dark</div><div class="val">#14372D</div><div class="note">Hairline divider on light surfaces.</div></div></div>
+        <div class="swatch"><div class="chip check"><div style="position:absolute;inset:0;background:#EBF0EB"></div></div><div class="meta"><div class="name">Border light</div><div class="val">#EBF0EB</div><div class="note">Near-white hairline, dividers not statements.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:var(--section-padding) 0;background:var(--background);border-top:1px solid var(--border-light);}
+.spec{border-top:1px solid var(--border-light);padding:40px 0;display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:baseline;}
+.spec:last-child{border-bottom:1px solid var(--border-light);}
+.spec .specimen{overflow:hidden;}
+.spec .metrics{font-size:13px;color:#555;font-family:ui-monospace,monospace;line-height:1.7;}
+.d-lg{font-size:64px;font-weight:500;letter-spacing:-2.5px;line-height:1.1;}
+.h-md{font-size:48px;font-weight:500;letter-spacing:-1.5px;line-height:1.1;}
+.l-md{font-size:32px;font-weight:500;letter-spacing:-1px;line-height:1.2;}
+.b-md{font-size:16px;font-weight:500;line-height:1;}
+@media(max-width:768px){
+  .spec{grid-template-columns:1fr;gap:16px;}
+  .d-lg{font-size:40px;letter-spacing:-1.5px;}
+  .h-md{font-size:32px;letter-spacing:-1px;}
+  .l-md{font-size:26px;}
+}
+</style>
+<section id="type-scale" aria-labelledby="type-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon>Type scale</span>
+      <h2 id="type-h">One medium weight, one <span class="i">italic</span> interruption.</h2>
+      <p>Instrument Sans at 500 throughout, with a single Lora italic clause per headline.</p>
+    </div>
+    <div class="spec">
+      <div class="specimen"><div class="d-lg">Light and <span class="i">shadow</span></div></div>
+      <div class="metrics">display-lg<br>Instrument Sans · 64px<br>weight 500 · lh 1.1<br>tracking -2.5px</div>
+    </div>
+    <div class="spec">
+      <div class="specimen"><div class="h-md">Drawn in <span class="i">stone</span></div></div>
+      <div class="metrics">headline-md<br>Instrument Sans · 48px<br>weight 500 · lh 1.1<br>tracking -1.5px</div>
+    </div>
+    <div class="spec">
+      <div class="specimen"><div class="l-md">Section marker &amp; numerals</div></div>
+      <div class="metrics">label-md<br>Instrument Sans · 32px<br>weight 500 · lh 1.2<br>tracking -1px</div>
+    </div>
+    <div class="spec">
+      <div class="specimen"><div class="b-md" style="max-width:520px">Body copy sits small, flat and unindented — set close at sixteen pixels, medium weight, line-height one, letting the negative space do the breathing.</div></div>
+      <div class="metrics">body-md<br>Instrument Sans · 16px<br>weight 500 · lh 1</div>
+    </div>
+    <div class="spec">
+      <div class="specimen"><div class="h-md i" style="font-family:var(--font-serif)">interruption</div></div>
+      <div class="metrics">accent-serif<br>Lora · italic<br>word-level accent<br>matches neighbour size</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:var(--section-padding) 0;background:var(--background);border-top:1px solid var(--border-light);}
+.cmp{margin-bottom:96px;}
+.cmp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;border-bottom:1px solid var(--border-light);padding-bottom:16px;flex-wrap:wrap;}
+.cmp-head h3{font-size:32px;letter-spacing:-1px;}
+.cmp-head .count{font-size:13px;color:#555;font-family:ui-monospace,monospace;}
+.speccard{font-size:12.5px;color:#555;font-family:ui-monospace,monospace;line-height:1.7;background:#fff;border:1px solid var(--border-light);border-radius:var(--r-control);padding:14px 16px;margin-top:24px;}
+.speccard b{color:#111;font-weight:600;}
+
+/* buttons */
+.matrix{display:grid;grid-template-columns:140px repeat(3,1fr);gap:16px;align-items:center;}
+.matrix .rh{font-size:13px;color:#555;font-family:ui-monospace,monospace;}
+.matrix .ch{font-size:12px;color:#555;font-family:ui-monospace,monospace;text-align:center;text-transform:uppercase;letter-spacing:.5px;}
+.btn-nav{background:var(--accent);color:#EEEDEA;border:none;border-radius:1600px;height:48px;padding:14px 20px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;transition:background-color .4s var(--ease-snap);}
+.btn-nav:hover,.btn-nav.h{background:#111;}
+.btn-nav.a{background:#000;}
+.btn-nav.d{opacity:.45;cursor:not-allowed;}
+.on-dark-cell{background:#111;border-radius:var(--r-control);padding:12px;display:flex;justify-content:center;}
+.btn-hero{background:#111;color:#DCD8D5;border:none;border-radius:16px 16px 0 0;height:43px;padding:9.6px 16px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;transition:background-color .4s var(--ease-snap);}
+.btn-hero:hover,.btn-hero.h{background:#000;}
+.btn-hero.d{opacity:.45;cursor:not-allowed;}
+.btn-out{background:transparent;color:#111;border:1px solid var(--border-dark);border-radius:var(--r-pill);height:48px;padding:14px 20px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;transition:background-color .4s var(--ease-snap),color .4s var(--ease-snap);}
+.btn-out:hover,.btn-out.h{background:#111;color:#EEEDEA;}
+.btn-out.d{opacity:.45;cursor:not-allowed;}
+.btn-ghost{background:transparent;color:#EAEEED;border:none;border-radius:1600px;height:37px;padding:9.6px 13.6px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;transition:background-color .1s ease;}
+.btn-ghost:hover,.btn-ghost.h{background:rgba(255,255,255,.1);}
+.btn-pair{display:flex;gap:16px;flex-wrap:wrap;}
+
+/* stat row */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.stat .num{font-size:32px;font-weight:500;letter-spacing:-1px;line-height:1.2;}
+.stat .cap{font-size:16px;color:#3a3a3a;margin-top:8px;}
+
+/* checklist rows */
+.check-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center;padding:0 32px 32px;border-bottom:1px solid var(--border-light);margin-bottom:32px;}
+.check-row.rev .txt{order:2;}
+.check-row .txt h4{font-size:32px;letter-spacing:-1px;font-weight:500;margin:12px 0 12px;}
+.check-row .txt p{font-size:16px;color:#3a3a3a;line-height:1.5;max-width:420px;margin-bottom:20px;}
+.check-row .media{aspect-ratio:16/10;border-radius:0;overflow:hidden;}
+.ph{background:linear-gradient(150deg,#301818,#483018 50%,#784830);width:100%;height:100%;}
+.ico-chip{width:44px;height:44px;border-radius:var(--r-control);background:#111;color:#EEEDEA;display:flex;align-items:center;justify-content:center;font-size:22px;}
+
+/* mosaic */
+.mosaic66{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:16px;}
+.mosaic33{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.mcard .mimg{aspect-ratio:4/3;overflow:hidden;}
+.mcard .mcap{font-size:16px;font-weight:500;margin-top:12px;}
+
+/* dark inverted */
+.dark-card{background:#111;color:#DCD8D5;border-radius:16px;padding:24px 24px 28px;max-width:400px;}
+.dark-card .ico-chip{background:#EEEDEA;color:#111;margin-bottom:20px;}
+.dark-card p{font-size:16px;color:#EEEDEA;line-height:1.5;margin-bottom:20px;}
+.dark-card .btn-hero{color:#DCD8D5;}
+
+/* quote panel */
+.quote-panel{background:#111;color:#EEEDEA;padding:96px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center;}
+.quote-panel .eyebrow{background:transparent;border-color:rgba(235,240,235,.3);color:#EEEDEA;margin-bottom:24px;}
+.quote-panel .q{font-size:32px;letter-spacing:-1px;line-height:1.25;font-weight:500;}
+.quote-panel .side{font-size:16px;color:#DCD8D5;line-height:1.6;}
+.quote-panel .side .btn-hero{margin-top:20px;}
+
+/* testimonial rail */
+.rail-head{display:flex;justify-content:flex-end;gap:12px;margin-bottom:24px;}
+.arrow{width:44px;height:44px;border-radius:var(--r-pill);border:1px solid var(--border-dark);background:transparent;color:#111;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;transition:background-color .4s var(--ease-snap),color .4s var(--ease-snap);}
+.arrow:hover{background:#111;color:#EEEDEA;}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;}
+.tcard{flex:0 0 280px;scroll-snap-align:start;}
+.tcard .timg{aspect-ratio:3/4;overflow:hidden;}
+.tcard .tfoot{background:#111;color:#EEEDEA;padding:16px;font-size:16px;}
+.tcard .tfoot span{display:block;color:#DCD8D5;font-size:13px;margin-top:4px;}
+
+/* closing band */
+.closing{position:relative;padding:140px 40px 200px;text-align:center;color:#EEEDEA;border-radius:0;overflow:hidden;background:linear-gradient(150deg,#301818,#483018 55%,#784830);}
+.closing::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(13,29,25,0) 25%,rgb(17,17,17));pointer-events:none;}
+.closing>*{position:relative;z-index:2;}
+.closing .eyebrow{background:rgba(17,17,17,.4);border-color:rgba(235,240,235,.3);color:#EEEDEA;margin-bottom:24px;}
+.closing h3{font-size:48px;letter-spacing:-1.5px;margin-bottom:32px;line-height:1.1;}
+.closing .btn-out{color:#EEEDEA;border-color:rgba(238,237,234,.5);}
+.closing .btn-out:hover{background:#EEEDEA;color:#111;}
+
+@media(max-width:768px){
+  .matrix{grid-template-columns:1fr;}
+  .stat-row{grid-template-columns:repeat(2,1fr);}
+  .check-row{grid-template-columns:1fr;padding:0 0 24px;}
+  .check-row.rev .txt{order:0;}
+  .mosaic66,.mosaic33{grid-template-columns:1fr;}
+  .quote-panel{grid-template-columns:1fr;padding:48px 24px;}
+  .cmp-head h3{font-size:26px;}
+}
+</style>
+<section id="components" aria-labelledby="cmp-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:layout-grid" aria-hidden="true"></iconify-icon>Components</span>
+      <h2 id="cmp-h">The full <span class="i">inventory</span>.</h2>
+      <p>Every control, card, and panel the system ships — rendered from its own tokens.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="cmp" data-tier-a-component="navbar">
+      <div class="cmp-head"><h3>Navbar (glass)</h3><span class="count">×1</span></div>
+      <div style="background:linear-gradient(150deg,#301818,#483018 50%,#784830);border-radius:var(--r-card);overflow:hidden;">
+        <div style="backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(17,17,17,.35);border-bottom:1px solid rgba(235,240,235,.12);">
+          <div style="display:flex;align-items:center;gap:28px;height:72px;padding:0 24px;">
+            <span class="logo"><iconify-icon icon="lucide:archway" aria-hidden="true"></iconify-icon>Archscale</span>
+            <div class="nav-links" style="display:flex;gap:24px;margin-left:8px;">
+              <a href="#components" style="color:#EAEEED;font-size:16px;">Work</a>
+              <a href="#components" style="color:#EAEEED;font-size:16px;">Studio</a>
+              <a href="#components" style="color:#EAEEED;font-size:16px;">Journal</a>
+              <a href="#components" style="color:#EAEEED;font-size:16px;">Services</a>
+              <a href="#components" style="color:#EAEEED;font-size:16px;">Contact</a>
+            </div>
+            <button class="btn-nav" style="margin-left:auto;">Start a project</button>
+          </div>
+        </div>
+        <div style="padding:16px 24px;display:flex;gap:12px;">
+          <button class="btn-ghost"><iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon> Pages</button>
+          <button class="btn-ghost">Utility</button>
+        </div>
+      </div>
+      <div class="speccard"><b>--button-nav-cta</b> · fill accent #413936 · text background #EEEDEA · radius 1600px · height 48 · padding 14/20 · hover #111111 · motion ease-snap 0.4s<br><b>--button-nav-ghost</b> · transparent · text #EAEEED · height 37 · hover rgba(255,255,255,0.1) · motion 0.1s<br><b>--button-nav-link</b> · transparent · text #111111 · height 48 · type body-md</div>
+    </div>
+
+    <!-- HERO PRIMARY CTA -->
+    <div class="cmp" data-tier-a-component="hero-primary-cta">
+      <div class="cmp-head"><h3>Hero primary CTA</h3><span class="count">×1</span></div>
+      <div style="background:linear-gradient(150deg,#301818,#483018 50%,#784830);border-radius:var(--r-card);padding:48px;">
+        <button class="btn-hero">See the portfolio</button>
+      </div>
+      <div class="speccard"><b>--button-primary-hero</b> · fill #111111 · text #DCD8D5 · radius 16/16/0/0 · height 43 · padding 9.6/16 · type body-md · motion ease-snap 0.4s <br><span style="color:#900">distinct from nav brown pill — top-rounded #111111 only</span></div>
+    </div>
+
+    <!-- SECONDARY OUTLINE -->
+    <div class="cmp" data-tier-a-component="secondary-outline-button">
+      <div class="cmp-head"><h3>Secondary / outline button</h3><span class="count">×2 · always paired</span></div>
+      <div class="btn-pair">
+        <button class="btn-hero">Explore templates</button>
+        <button class="btn-out">Browse the archive</button>
+      </div>
+      <div class="btn-pair" style="margin-top:16px;">
+        <button class="btn-hero">Book a walkthrough</button>
+        <button class="btn-out">View floorplans</button>
+      </div>
+      <div class="speccard"><b>--secondary-outline</b> · transparent fill · border-dark #14372D · text #111111 · radius pill 9999px · height 48 · type body-md · hover invert to #111111/#EEEDEA</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="cmp">
+      <div class="cmp-head"><h3>Button matrix</h3><span class="count">variant × state</span></div>
+      <div class="matrix">
+        <span></span><span class="ch">Rest</span><span class="ch">Hover</span><span class="ch">Disabled</span>
+        <span class="rh">Nav CTA</span>
+        <button class="btn-nav">Start</button>
+        <button class="btn-nav h">Start</button>
+        <button class="btn-nav d" disabled>Start</button>
+        <span class="rh">Hero primary</span>
+        <button class="btn-hero">Portfolio</button>
+        <button class="btn-hero h">Portfolio</button>
+        <button class="btn-hero d" disabled>Portfolio</button>
+        <span class="rh">Outline</span>
+        <button class="btn-out">Archive</button>
+        <button class="btn-out h">Archive</button>
+        <button class="btn-out d" disabled>Archive</button>
+      </div>
+      <div style="margin-top:24px;">
+        <div class="ch" style="text-align:left;margin-bottom:12px;">Ghost — on dark</div>
+        <div class="btn-pair" style="background:#111;padding:16px;border-radius:var(--r-control);">
+          <button class="btn-ghost">Pages</button>
+          <button class="btn-ghost h">Pages</button>
+        </div>
+      </div>
+      <div class="speccard"><b>states</b> derived from documented hovers only — nav→#111111, hero→#000, outline→invert, ghost→rgba(255,255,255,0.1). Disabled uses text-opacity ladder. No focus ring authored (none documented).</div>
+    </div>
+
+    <!-- EYEBROW CHIP -->
+    <div class="cmp" data-tier-a-component="eyebrow-chip">
+      <div class="cmp-head"><h3>Eyebrow chip</h3><span class="count">×1 per section</span></div>
+      <div style="display:flex;justify-content:center;">
+        <span class="eyebrow"><iconify-icon icon="lucide:compass" aria-hidden="true"></iconify-icon>Our approach</span>
+      </div>
+      <div class="speccard"><b>--eyebrow-chip</b> · fill background #EEEDEA · border-dark #14372D · radius pill 9999px · leading icon · type body-md · centered above headline</div>
+    </div>
+
+    <!-- STAT ROW -->
+    <div class="cmp" data-tier-a-component="stat-row">
+      <div class="cmp-head"><h3>Stat row</h3><span class="count">×4 · one row</span></div>
+      <div class="stat-row">
+        <div class="stat"><div class="num">148</div><div class="cap">Projects completed</div></div>
+        <div class="stat"><div class="num">32</div><div class="cap">Cities shaped</div></div>
+        <div class="stat"><div class="num">19</div><div class="cap">Years of practice</div></div>
+        <div class="stat"><div class="num">6</div><div class="cap">Design awards</div></div>
+      </div>
+      <div class="speccard"><b>--stat-row</b> · transparent · radius 0 · padding 0 · numeral type label-md 32/500 · caption body-md · four items across</div>
+    </div>
+
+    <!-- SERVICES CHECKLIST -->
+    <div class="cmp" data-tier-a-component="services-checklist-row">
+      <div class="cmp-head"><h3>Services list</h3><span class="count">×5 · alternating</span></div>
+
+      <div class="check-row">
+        <div class="txt"><div class="ico-chip"><iconify-icon icon="lucide:ruler" aria-hidden="true"></iconify-icon></div><h4>Residential <span class="i">form</span></h4><p>Homes drawn around daylight and quiet, where every archway frames a view worth pausing on.</p><button class="btn-out">Learn more</button></div>
+        <div class="media"><div class="ph"></div></div>
+      </div>
+      <div class="check-row rev">
+        <div class="txt"><div class="ico-chip"><iconify-icon icon="lucide:building-2" aria-hidden="true"></iconify-icon></div><h4>Commercial <span class="i">scale</span></h4><p>Workplaces and galleries built for movement, engineered so the structure disappears into the experience.</p><button class="btn-out">Learn more</button></div>
+        <div class="media"><div class="ph"></div></div>
+      </div>
+      <div class="check-row">
+        <div class="txt"><div class="ico-chip"><iconify-icon icon="lucide:trees" aria-hidden="true"></iconify-icon></div><h4>Landscape <span class="i">edges</span></h4><p>The threshold between built and grown, resolved with hairline precision and generous negative space.</p><button class="btn-out">Learn more</button></div>
+        <div class="media"><div class="ph"></div></div>
+      </div>
+      <div class="check-row rev">
+        <div class="txt"><div class="ico-chip"><iconify-icon icon="lucide:lightbulb" aria-hidden="true"></iconify-icon></div><h4>Interior <span class="i">light</span></h4><p>Materials chosen for how they hold a low sun — warm terracotta against cool stone.</p><button class="btn-out">Learn more</button></div>
+        <div class="media"><div class="ph"></div></div>
+      </div>
+      <div class="check-row">
+        <div class="txt"><div class="ico-chip"><iconify-icon icon="lucide:pen-tool" aria-hidden="true"></iconify-icon></div><h4>Restoration <span class="i">care</span></h4><p>Old walls given a second century, detailed so new and old read as one continuous line.</p><button class="btn-out">Learn more</button></div>
+        <div class="media"><div class="ph"></div></div>
+      </div>
+
+      <div class="speccard"><b>--card-checklist-row</b> · transparent · radius 0 · padding 0/32/32 · icon chip r-control · heading label-md · body-md · outline Learn More · media-bleed ~half row · alternating placement</div>
+    </div>
+
+    <!-- MOSAIC 66 -->
+    <div class="cmp" data-tier-a-component="media-mosaic-66">
+      <div class="cmp-head"><h3>Media mosaic — 66% pair</h3><span class="count">×2 · two-up</span></div>
+      <div class="mosaic66">
+        <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Courtyard house, dusk</div></div>
+        <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Gallery colonnade</div></div>
+      </div>
+      <div class="speccard"><b>--card-media-bleed</b> · transparent · radius 0 · padding 0 · full-bleed photo · caption body-md · 66% column, two per row</div>
+    </div>
+
+    <!-- MOSAIC 33 -->
+    <div class="cmp" data-tier-a-component="media-mosaic-33">
+      <div class="cmp-head"><h3>Media mosaic — 33% rail</h3><span class="count">×3 · three-up</span></div>
+      <div class="mosaic33">
+        <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Stair detail</div></div>
+        <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Archway study</div></div>
+        <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Threshold light</div></div>
+      </div>
+      <div class="speccard"><b>--card-media-bleed</b> · transparent · radius 0 · padding 0 · full-bleed photo · caption body-md · 33% width, three-plus per row</div>
+    </div>
+
+    <!-- DARK INVERTED CARD -->
+    <div class="cmp" data-tier-a-component="dark-inverted-card">
+      <div class="cmp-head"><h3>Dark inverted card</h3><span class="count">×1</span></div>
+      <div class="dark-card">
+        <div class="ico-chip"><iconify-icon icon="lucide:quote" aria-hidden="true"></iconify-icon></div>
+        <p>“We build the quiet before the light arrives.”</p>
+        <button class="btn-hero">Read the story</button>
+      </div>
+      <div class="speccard"><b>--card-dark-inverted</b> · fill #111111 · radius 16px · padding 24/24/28 · icon chip · statement text #EEEDEA · thin CTA · no shadow, flat contrast</div>
+    </div>
+
+    <!-- QUOTE PANEL -->
+    <div class="cmp" data-tier-a-component="quote-creator-panel">
+      <div class="cmp-head"><h3>Quote / creator panel</h3><span class="count">×1</span></div>
+      <div class="quote-panel">
+        <div>
+          <span class="eyebrow"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon>From the studio</span>
+          <p class="q">“A doorway is a <span class="i">decision</span>. We spend most of our time deciding what to leave out.”</p>
+        </div>
+        <div class="side">
+          Elena Márquez, founding principal. Nineteen years drawing archways that hold both light and stillness.
+          <div><button class="btn-hero">Meet the team</button></div>
+        </div>
+      </div>
+      <div class="speccard"><b>--card-full-panel</b> · fill #111111 · radius 0 · padding generous · eyebrow · quote label-md left · caption body-md + CTA right · two-column split</div>
+    </div>
+
+    <!-- TESTIMONIAL RAIL -->
+    <div class="cmp" data-tier-a-component="testimonial-rail">
+      <div class="cmp-head"><h3>Testimonial rail</h3><span class="count">×1</span></div>
+      <div class="rail-head">
+        <button class="arrow" aria-label="Previous testimonial"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+        <button class="arrow" aria-label="Next testimonial"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="rail">
+        <div class="tcard"><div class="timg"><div class="ph"></div></div><div class="tfoot">“They found light we didn't know the site had.”<span>M. Okafor · Homeowner</span></div></div>
+        <div class="tcard"><div class="timg"><div class="ph"></div></div><div class="tfoot">“Precise, patient, uncompromising.”<span>L. Fenn · Developer</span></div></div>
+        <div class="tcard"><div class="timg"><div class="ph"></div></div><div class="tfoot">“Every threshold feels inevitable now.”<span>R. Adeyemi · Curator</span></div></div>
+        <div class="tcard"><div class="timg"><div class="ph"></div></div><div class="tfoot">“The stillness was the brief. They nailed it.”<span>S. Vela · Gallery director</span></div></div>
+      </div>
+      <div class="speccard"><b>testimonial-rail</b> · equal-width portrait cards · photo top-bleed · footer #111111/#EEEDEA · circular arrow controls border-dark, radius pill · horizontal scroll</div>
+    </div>
+
+    <!-- CLOSING CTA BAND -->
+    <div class="cmp" data-tier-a-component="closing-cta-band">
+      <div class="cmp-head"><h3>Closing CTA band</h3><span class="count">×1</span></div>
+      <div class="closing">
+        <span class="eyebrow"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon>Start here</span>
+        <h3>Let's draw the <span class="i">threshold</span><br>your space is missing.</h3>
+        <div class="btn-pair" style="justify-content:center;">
+          <button class="btn-hero">Start a project</button>
+          <button class="btn-out">Book a call</button>
+        </div>
+      </div>
+      <div class="speccard"><b>closing-cta-band</b> · scrim-darkened photographic (video stand-in) · eyebrow + two-line headline w/ italic accent · dark-solid pill + light-outline pill · bottom linear-fade into #111111</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:var(--section-padding) 0;background:var(--background);border-top:1px solid var(--border-light);}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;}
+.dcard{background:#fff;border:1px solid var(--border-light);padding:28px;}
+.dcard .lab{font-size:13px;color:#555;font-family:ui-monospace,monospace;margin-top:16px;}
+.dcard h4{font-size:20px;letter-spacing:-.5px;font-weight:500;}
+.dcard p{font-size:15px;color:#3a3a3a;line-height:1.4;margin-top:6px;}
+</style>
+<section id="surface-depth" aria-labelledby="depth-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon>Surface &amp; depth</span>
+      <h2 id="depth-h">No shadows — only <span class="i">contrast</span>.</h2>
+      <p>Separation comes from flat black-on-stone and hairline borders. Four radii, nothing more.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="dcard" style="border-radius:var(--r-sharp)"><h4>Sharp</h4><p>Photo blocks and media bleeds.</p><div class="lab">radius 4px · --sharp</div></div>
+      <div class="dcard" style="border-radius:var(--r-control)"><h4>Control</h4><p>Inputs and default controls.</p><div class="lab">radius 8px · --control</div></div>
+      <div class="dcard" style="border-radius:var(--r-card)"><h4>Card</h4><p>Dark inverted cards, panels.</p><div class="lab">radius 16px · --card</div></div>
+      <div class="dcard" style="border-radius:var(--r-panel-top) var(--r-panel-top) 0 0"><h4>Panel top</h4><p>Top-rounded feature edges.</p><div class="lab">radius 40px · --panel-top</div></div>
+      <div class="dcard" style="border-radius:var(--r-pill);text-align:center"><h4>Pill</h4><p>Every CTA and chip.</p><div class="lab">radius 9999px · --pill</div></div>
+      <div class="dcard" style="background:#111;border-color:#111;color:#EEEDEA;border-radius:var(--r-card)"><h4 style="color:#EEEDEA">Elevation via ink</h4><p style="color:#DCD8D5">The one dark card floats simply by being darker than the stone beneath it.</p><div class="lab" style="color:#DCD8D5">#111111 on #EEEDEA · no shadow</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:var(--section-padding) 0;background:var(--background);border-top:1px solid var(--border-light);}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;}
+.mo{background:#fff;border:1px solid var(--border-light);border-radius:var(--r-card);padding:28px;}
+.mo h4{font-size:20px;font-weight:500;letter-spacing:-.5px;margin-bottom:16px;}
+.mo .demo{height:80px;border-radius:var(--r-control);background:#EEEDEA;display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden;}
+.mo .lab{font-size:13px;color:#555;font-family:ui-monospace,monospace;line-height:1.6;}
+.dot{width:40px;height:40px;border-radius:var(--r-pill);background:#413936;}
+.play{background:#111;color:#DCD8D5;border:none;border-radius:16px 16px 0 0;height:43px;padding:9.6px 16px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;}
+.slide-run{animation:slideRun .4s var(--ease-snap);}
+.fade-run{animation:fadeRun .3s var(--ease-snap);}
+.snap-run{animation:snapRun .4s var(--ease-snap);}
+@keyframes slideRun{from{transform:translateX(-60px)}to{transform:translateX(0)}}
+@keyframes fadeRun{from{opacity:.15}to{opacity:1}}
+@keyframes snapRun{from{background:#413936}50%{background:#000}to{background:#413936}}
+.spin-ico{font-size:32px;color:#111;}
+.spin-run{animation:spin 1s linear;}
+@keyframes spin{to{transform:rotate(360deg)}}
+</style>
+<section id="motion" aria-labelledby="motion-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon>Motion</span>
+      <h2 id="motion-h">Quick, mechanical, <span class="i">settled</span>.</h2>
+      <p>A snap-then-settle curve for surfaces, an instant curve for links. Click any demo to replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="mo">
+        <h4>Surface snap</h4>
+        <div class="demo"><div class="dot" id="d-slide"></div></div>
+        <button class="btn-out" data-play="d-slide" data-anim="slide-run">Replay</button>
+        <div class="lab" style="margin-top:12px;">0.4s · cubic-bezier(.645,.045,.355,1)<br>button backgrounds, borders, padding</div>
+      </div>
+      <div class="mo">
+        <h4>Opacity fade</h4>
+        <div class="demo"><span class="b-md" id="d-fade">Section reveal</span></div>
+        <button class="btn-out" data-play="d-fade" data-anim="fade-run">Replay</button>
+        <div class="lab" style="margin-top:12px;">0.3s · cubic-bezier(.645,.045,.355,1)<br>section reveals, scrim crossfades</div>
+      </div>
+      <div class="mo">
+        <h4>Hover snap</h4>
+        <div class="demo"><div class="dot" id="d-snap"></div></div>
+        <button class="btn-out" data-play="d-snap" data-anim="snap-run">Replay</button>
+        <div class="lab" style="margin-top:12px;">0.4s · snap-then-settle<br>accent CTA hover to #111</div>
+      </div>
+      <div class="mo">
+        <h4>Spin</h4>
+        <div class="demo"><iconify-icon class="spin-ico" id="d-spin" icon="lucide:loader" aria-hidden="true"></iconify-icon></div>
+        <button class="btn-out" data-play="d-spin" data-anim="spin-run">Replay</button>
+        <div class="lab" style="margin-top:12px;">1s · linear<br>loading / icon rotation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:var(--section-padding) 0;background:var(--background);border-top:1px solid var(--border-light);}
+.mock{border:1px solid var(--border-light);border-radius:var(--r-card);overflow:hidden;background:#fff;}
+.mock-hero{position:relative;background:linear-gradient(150deg,#301818,#483018 50%,#784830);color:#EEEDEA;}
+.mock-hero .barn{backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);background:rgba(17,17,17,.35);display:flex;align-items:center;gap:24px;height:64px;padding:0 24px;border-bottom:1px solid rgba(235,240,235,.12);}
+.mock-hero .barn a{color:#EAEEED;font-size:15px;}
+.mock-hero .htext{padding:72px 32px;}
+.mock-hero .htext h3{font-size:48px;letter-spacing:-1.5px;max-width:640px;margin-bottom:24px;}
+.mock-body{padding:48px 32px;}
+.mock-cards{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:32px;}
+.mock-cards .mimg{aspect-ratio:16/10;overflow:hidden;}
+.mock-cards .mcap{font-size:16px;font-weight:500;margin-top:12px;}
+.mock-cta{background:#111;color:#EEEDEA;text-align:center;padding:64px 32px;}
+.mock-cta h3{font-size:32px;letter-spacing:-1px;margin-bottom:24px;}
+@media(max-width:768px){
+  .mock-hero .barn a{display:none;}
+  .mock-hero .htext h3{font-size:30px;letter-spacing:-1px;}
+  .mock-cards{grid-template-columns:1fr;}
+}
+</style>
+<section id="composition" aria-labelledby="comp-h">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:frame" aria-hidden="true"></iconify-icon>In composition</span>
+      <h2 id="comp-h">The system, <span class="i">assembled</span>.</h2>
+      <p>Nav, hero fragment, an asymmetric card pair, and a closing CTA — built only from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div class="barn">
+          <span class="logo" style="font-size:18px;"><iconify-icon icon="lucide:archway" aria-hidden="true"></iconify-icon>Archscale</span>
+          <a href="#composition">Work</a><a href="#composition">Studio</a><a href="#composition">Journal</a>
+          <button class="btn-nav" style="margin-left:auto;height:40px;padding:8px 16px;">Enquire</button>
+        </div>
+        <div class="htext">
+          <span class="eyebrow" style="background:rgba(17,17,17,.4);border-color:rgba(235,240,235,.3);color:#EEEDEA;margin-bottom:20px;"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon>New commission</span>
+          <h3>An archway for the <span class="i">morning</span> light.</h3>
+          <button class="btn-hero">See the portfolio</button>
+        </div>
+      </div>
+      <div class="mock-body">
+        <span class="eyebrow"><iconify-icon icon="lucide:compass" aria-hidden="true"></iconify-icon>Selected work</span>
+        <h3 style="font-size:32px;letter-spacing:-1px;margin-top:16px;">Two projects, one <span class="i">language</span>.</h3>
+        <div class="mock-cards">
+          <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Courtyard house — 66% column</div></div>
+          <div class="mcard"><div class="mimg"><div class="ph"></div></div><div class="mcap">Stair study — 33%</div></div>
+        </div>
+        <div class="btn-pair" style="margin-top:32px;">
+          <button class="btn-hero">View all projects</button>
+          <button class="btn-out">Read the journal</button>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <span class="eyebrow" style="background:transparent;border-color:rgba(235,240,235,.3);color:#EEEDEA;margin-bottom:20px;"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon>Start here</span>
+        <h3>Let's draw your <span class="i">threshold</span>.</h3>
+        <button class="btn-hero">Start a project</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#111;color:#DCD8D5;padding:96px 0 48px;}
+#footer .ftop{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;}
+#footer .logo{color:#EEEDEA;margin-bottom:20px;}
+#footer address{font-style:normal;font-size:15px;line-height:1.7;color:#DCD8D5;margin-bottom:24px;}
+#footer .capture{display:flex;gap:8px;max-width:340px;}
+#footer .capture input{flex:1;background:#111;border:1px solid #333;color:#EEEDEA;border-radius:var(--r-pill);height:48px;padding:0 20px;font-family:var(--font-sans);font-size:16px;}
+#footer .capture input::placeholder{color:#8a8a8a;}
+#footer .capture button{background:var(--accent);color:#EEEDEA;border:none;border-radius:var(--r-pill);height:48px;padding:0 20px;font-family:var(--font-sans);font-size:16px;font-weight:500;cursor:pointer;transition:background-color .4s var(--ease-snap);}
+#footer .capture button:hover{background:#000;}
+#footer h5{color:#EEEDEA;font-size:15px;font-weight:600;margin-bottom:16px;}
+#footer ul{list-style:none;}
+#footer li{margin-bottom:10px;}
+#footer li a{font-size:15px;color:#DCD8D5;}
+#footer li a:hover{color:#EEEDEA;}
+#footer .legal{border-top:1px solid #2a2a2a;margin-top:64px;padding-top:24px;font-size:14px;color:#DCD8D5;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+#footer .legal a{color:#DCD8D5;}
+@media(max-width:768px){#footer .ftop{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){#footer .ftop{grid-template-columns:1fr;}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="ftop">
+      <div>
+        <span class="logo"><iconify-icon icon="lucide:archway" aria-hidden="true"></iconify-icon>Archscale</span>
+        <address>14 Colonnade Row<br>Studio 3, Lisbon<br>hello@archscale.studio</address>
+        <form class="capture" onsubmit="return false">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button type="submit">Join us</button>
+        </form>
+      </div>
+      <div>
+        <h5>Main Pages</h5>
+        <ul><li><a href="#hero">Home</a></li><li><a href="#components">Work</a></li><li><a href="#type-scale">Studio</a></li><li><a href="#palette">Journal</a></li></ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul><li><a href="#composition">About</a></li><li><a href="#components">Services</a></li><li><a href="#surface-depth">Process</a></li><li><a href="#motion">Careers</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact &amp; Utility</h5>
+        <ul><li><a href="#footer">Enquire</a></li><li><a href="#footer">Press</a></li><li><a href="#footer">Privacy</a></li><li><a href="#footer">Terms</a></li></ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2024 Archscale. All rights reserved.</span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-play]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.play);
+    var cls=btn.dataset.anim;
+    el.classList.remove(cls);
+    void el.offsetWidth;
+    el.classList.add(cls);
+  });
+});
+</script>
+</body>
+</html>

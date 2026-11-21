@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alpine Circuit Green — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:rgba(255,255,255,0.05);
+  --text-primary:#F2F2F4;
+  --text-secondary:#A3A3A3;
+  --text-tertiary:#71717A;
+  --accent:#00E68A;
+  --accent-bright:#5CFFB3;
+  --border-hairline:rgba(255,255,255,0.1);
+  --border-accent:#00E78B;
+  --r-control:10px;
+  --r-card:12px;
+  --r-chip:10px;
+  --r-pill:9999px;
+  --r-badge:30px;
+  --base:8px;
+  --gap-sm:12px;
+  --gap-md:20px;
+  --gap-lg:64px;
+  --section-padding:96px;
+  --section-gap-sm:91px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --shadow-mint:rgba(0,214,140,0.55) 0px 30px 80px -40px;
+  --shadow-chip:rgba(16,24,40,0.12) 0px 8px 30px -14px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Geist",-apple-system,system-ui,sans-serif;
+  font-size:16px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.page-glow{
+  position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(80% 50% at 50% -10%, rgba(0,214,140,0.1), rgba(0,0,0,0) 60%),
+    radial-gradient(60% 40% at 50% 120%, rgba(0,214,140,0.06), rgba(0,0,0,0) 60%);
+}
+main{position:relative;z-index:1}
+.band{padding:var(--section-padding) 24px;position:relative}
+.wrap{max-width:1120px;margin:0 auto}
+.measure{max-width:672px}
+.eyebrow{
+  font-family:"Geist Mono",monospace;font-size:13px;font-weight:500;
+  letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);
+}
+.section-title{
+  font-family:-apple-system,"Geist",sans-serif;font-size:54px;font-weight:600;
+  line-height:1.05;letter-spacing:-2.2px;color:var(--text-primary);
+}
+.section-sub{color:var(--text-secondary);font-size:16px;margin-top:16px;max-width:560px}
+.caption{font-family:"Geist Mono",monospace;font-size:13px;letter-spacing:0.08em;color:var(--text-tertiary);text-transform:uppercase}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;left:0;width:100%;height:104px;z-index:50;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;border-radius:0;background:transparent;
+  transition:background-color 0.3s var(--ease);
+}
+.nav.scrolled{background:rgba(0,0,0,0.6);backdrop-filter:blur(20px) saturate(1.4)}
+.nav-left{display:flex;align-items:center;gap:14px}
+.nav-badge{width:36px;height:36px;border-radius:9999px;background:var(--surface);border:1px solid var(--border-hairline);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.nav-word{font-weight:600;font-size:18px;letter-spacing:-0.6px}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-size:15px;display:flex;align-items:center;gap:4px;transition:color 0.15s var(--ease)}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{
+  height:36px;padding:0 18px;border-radius:9999px;background:var(--accent);
+  color:#000;font-weight:600;font-size:14px;border:none;display:inline-flex;
+  align-items:center;cursor:pointer;transition:background-color 0.15s var(--ease);
+}
+.nav-cta:hover{background:var(--accent-bright)}
+@media(max-width:768px){.nav-links{display:none}.nav{padding:0 20px}}
+
+/* HERO */
+#hero{
+  min-height:88vh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;
+  background-image:
+    linear-gradient(rgba(10,10,10,0.1) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(10,10,10,0.1) 1px,transparent 1px);
+  background-size:44px 44px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;padding:8px 16px;
+  border-radius:30px;background:var(--surface);border:1px solid var(--border-hairline);
+  margin-bottom:32px;
+}
+.dot{width:7px;height:7px;border-radius:9999px;background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.hero-h1{
+  font-family:"Geist",sans-serif;font-size:74px;font-weight:600;line-height:0.98;
+  letter-spacing:-2.9px;max-width:14ch;margin:0 auto;
+}
+.hero-sub{color:var(--text-secondary);font-size:18px;max-width:520px;margin:28px auto 0;line-height:1.6}
+.cta-row{display:flex;gap:14px;justify-content:center;margin-top:40px;flex-wrap:wrap}
+.btn-primary{
+  height:44px;padding:0 8px 0 22px;border-radius:9999px;background:var(--accent);
+  color:#000;font-weight:600;font-size:15px;border:none;display:inline-flex;
+  align-items:center;gap:14px;cursor:pointer;transition:background-color 0.15s var(--ease);
+}
+.btn-primary:hover{background:var(--accent-bright)}
+.btn-secondary{
+  height:44px;padding:0 8px 0 22px;border-radius:9999px;background:#000;
+  color:var(--text-primary);font-weight:600;font-size:15px;
+  border:1px solid rgba(255,255,255,0.15);display:inline-flex;align-items:center;
+  gap:14px;cursor:pointer;transition:border-color 0.15s var(--ease);
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,0.35)}
+.arrow-disc{width:30px;height:30px;border-radius:9999px;background:#000;color:var(--accent);display:inline-flex;align-items:center;justify-content:center}
+.btn-secondary .arrow-disc{background:var(--surface);color:var(--text-primary)}
+.hero-device{
+  margin-top:80px;width:100%;max-width:640px;height:280px;border-radius:12px;
+  border:1px solid var(--border-hairline);
+  background:
+    linear-gradient(115deg,rgba(255,255,255,0.035) 1px,transparent 1px) 0 0/40px 40px,
+    linear-gradient(150deg, rgba(0,230,138,0.16) 0px, rgba(255,255,255,0.02) 55%);
+  position:relative;box-shadow:var(--shadow-mint);
+  display:flex;align-items:center;justify-content:center;color:var(--accent);
+}
+.hero-device::before{
+  content:"";position:absolute;inset:-40px -20px 0;z-index:-1;
+  background:radial-gradient(60% 42% at 50% 0px, rgba(0,230,138,0.18), rgba(0,0,0,0) 68%);
+}
+@media(max-width:768px){.hero-h1{font-size:44px;letter-spacing:-1.6px}.section-title{font-size:36px;letter-spacing:-1.4px}}
+@media(max-width:640px){.hero-h1{font-size:34px;letter-spacing:-1.2px}}
+</style>
+</head>
+<body>
+<div class="page-glow" aria-hidden="true"></div>
+
+<header class="nav" id="nav">
+  <div class="nav-left">
+    <span class="nav-badge" aria-hidden="true"><iconify-icon icon="lucide:circuit-board"></iconify-icon></span>
+    <span class="nav-word">Skyline Automations</span>
+  </div>
+  <nav class="nav-links" aria-label="Primary">
+    <a href="#components">Platform</a>
+    <a href="#composition">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+    <a href="#palette">Integrations</a>
+    <a href="#motion">Pricing</a>
+  </nav>
+  <button class="nav-cta" type="button">Book a demo</button>
+</header>
+
+<main>
+<section id="hero" class="band" aria-labelledby="hero-h">
+  <span class="hero-eyebrow"><span class="dot" aria-hidden="true"></span><span class="eyebrow">Automation, engineered</span></span>
+  <h1 class="hero-h1" id="hero-h">Ship the systems that run your operation.</h1>
+  <p class="hero-sub">A near-black control surface with one signal color. Every integration, every workflow, every proof — wired together and running quietly in the background.</p>
+  <div class="cta-row">
+    <button class="btn-primary" type="button">Start building <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button>
+    <button class="btn-secondary" type="button">Book a discovery call <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button>
+  </div>
+  <div class="hero-device" role="img" aria-label="Hardware control unit illustration backlit by a mint radial glow">
+    <iconify-icon icon="lucide:cpu" style="font-size:64px" aria-hidden="true"></iconify-icon>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+#palette .role-group h3{font-family:"Geist Mono",monospace;font-size:13px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:16px}
+.swatch{border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;margin-bottom:14px;background:var(--background)}
+.swatch .chip{height:84px;position:relative}
+.checker{background-image:linear-gradient(45deg,#1a1a1a 25%,transparent 25%),linear-gradient(-45deg,#1a1a1a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a1a1a 75%),linear-gradient(-45deg,transparent 75%,#1a1a1a 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.swatch .meta{padding:12px 14px}
+.swatch .val{font-family:"Geist Mono",monospace;font-size:13px;color:var(--text-primary)}
+.swatch .note{font-size:13px;color:var(--text-secondary);margin-top:4px;line-height:1.4}
+@media(max-width:768px){#palette .grid{grid-template-columns:1fr}}
+</style>
+<section id="palette" class="band" aria-labelledby="palette-h">
+  <div class="wrap">
+    <span class="eyebrow">01 — Palette</span>
+    <h2 class="section-title" id="palette-h" style="margin-top:16px">One signal in the dark.</h2>
+    <p class="section-sub">True black dominates the field. Mint is rationed to dots, glyphs, borders, and a single button.</p>
+    <div class="grid">
+      <div class="role-group">
+        <h3>Surfaces</h3>
+        <div class="swatch"><div class="chip" style="background:#000000"></div><div class="meta"><div class="val">#000000</div><div class="note">Flat canvas across 90%+ of the field.</div></div></div>
+        <div class="swatch"><div class="chip checker"><div style="position:absolute;inset:0;background:rgba(255,255,255,0.05)"></div></div><div class="meta"><div class="val">rgba(255,255,255,0.05)</div><div class="note">Glass chips, footer, eyebrow wash.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:linear-gradient(rgb(7,7,8),rgb(14,14,18),rgb(7,7,8))"></div><div class="meta"><div class="val">panel-band gradient</div><div class="note">Full-bleed dark proof bands.</div></div></div>
+      </div>
+      <div class="role-group">
+        <h3>Text</h3>
+        <div class="swatch"><div class="chip" style="background:#F2F2F4"></div><div class="meta"><div class="val" style="color:var(--text-primary)">#F2F2F4</div><div class="note">Primary body ink and headlines.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#A3A3A3"></div><div class="meta"><div class="val">#A3A3A3</div><div class="note">Secondary supporting copy.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#71717A"></div><div class="meta"><div class="val">#71717A</div><div class="note">Tertiary and muted labels.</div></div></div>
+      </div>
+      <div class="role-group">
+        <h3>Accents</h3>
+        <div class="swatch"><div class="chip" style="background:#00E68A"></div><div class="meta"><div class="val" style="color:var(--accent)">#00E68A</div><div class="note">Icons, dots, borders, one CTA. Never a wash.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#5CFFB3"></div><div class="meta"><div class="val" style="color:var(--accent-bright)">#5CFFB3</div><div class="note">Brighter hover state for the mint pill.</div></div></div>
+        <div class="swatch"><div class="chip checker"><div style="position:absolute;inset:0;background:rgba(0,231,139,0.4)"></div></div><div class="meta"><div class="val" style="color:var(--accent)">#00E78B border</div><div class="note">Hairline accent borders at low opacity.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid var(--border-hairline);padding:40px 0;display:grid;grid-template-columns:1fr 260px;gap:40px;align-items:baseline}
+#type-scale .metrics{font-family:"Geist Mono",monospace;font-size:12px;letter-spacing:0.06em;color:var(--text-tertiary);line-height:2;text-transform:uppercase}
+.sp-display{font-family:"Geist",sans-serif;font-size:74px;font-weight:600;line-height:0.98;letter-spacing:-2.9px}
+.sp-headline{font-family:-apple-system,"Geist",sans-serif;font-size:54px;font-weight:600;line-height:1.05;letter-spacing:-2.2px}
+.sp-label{font-family:-apple-system,"Geist",sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.6px;line-height:1.33}
+.sp-body{font-family:"Geist",sans-serif;font-size:16px;font-weight:400;line-height:1.5;color:var(--text-secondary)}
+.sp-mono{font-family:"Geist Mono",monospace;font-size:13px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:768px){#type-scale .spec{grid-template-columns:1fr;gap:16px}.sp-display{font-size:44px;letter-spacing:-1.6px}.sp-headline{font-size:34px;letter-spacing:-1.2px}}
+</style>
+<section id="type-scale" class="band" aria-labelledby="type-h">
+  <div class="wrap">
+    <span class="eyebrow">02 — Type scale</span>
+    <h2 class="section-title" id="type-h" style="margin-top:16px">Compressed, technical, calm.</h2>
+    <div class="spec"><div class="sp-display">Systems that run themselves</div><div class="metrics">display-lg<br>Geist · 74px · 600<br>lh 0.98 · ls -2.9px</div></div>
+    <div class="spec"><div class="sp-headline">Wired for scale</div><div class="metrics">headline-md<br>System · 54px · 600<br>lh 1.5 · ls -2.2px</div></div>
+    <div class="spec"><div class="sp-label">Feature card heading</div><div class="metrics">label-md<br>System · 24px · 600<br>lh 1.33 · ls -0.6px</div></div>
+    <div class="spec"><div class="sp-body">Body copy sits quietly at secondary gray, carrying detail without competing with the display type. It runs at a comfortable measure and a relaxed line height for extended reading.</div><div class="metrics">body-md<br>Geist · 16px · 400<br>lh 1.5</div></div>
+    <div class="spec"><div class="sp-mono">[ 01 ] Automation runtime</div><div class="metrics">label-mono<br>Geist Mono · 13px · 500<br>ls 0.08em · uppercase</div></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .fam{border-top:1px solid var(--border-hairline);padding:56px 0}
+#components .fam-head{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+#components .fam-head h3{font-family:-apple-system,"Geist",sans-serif;font-size:28px;font-weight:600;letter-spacing:-1px}
+#components .fam-head p{color:var(--text-secondary);font-size:15px;max-width:440px;margin-top:8px}
+.spec-card{font-family:"Geist Mono",monospace;font-size:11.5px;line-height:1.9;letter-spacing:0.04em;color:var(--text-tertiary);background:var(--surface);border:1px solid var(--border-hairline);border-radius:10px;padding:14px 16px;max-width:340px}
+.spec-card b{color:var(--accent);font-weight:500}
+.demo{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.count{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-tertiary);letter-spacing:0.06em}
+/* button matrix */
+.matrix{width:100%;border-collapse:separate;border-spacing:14px}
+.matrix th{font-family:"Geist Mono",monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;color:var(--text-tertiary);text-align:left;font-weight:500}
+.matrix td{vertical-align:middle}
+.btn-primary:disabled,.btn-secondary:disabled,.nav-cta:disabled{opacity:0.4;cursor:not-allowed}
+/* chips */
+.marquee{overflow:hidden;width:100%;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marquee-track{display:flex;gap:16px;width:max-content;animation:marquee 32s linear infinite}
+.marquee-track.rev{animation-direction:reverse;margin-top:16px}
+@keyframes marquee{to{transform:translateX(-50%)}}
+.int-chip{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid var(--border-hairline);border-radius:10px;padding:14px 20px;box-shadow:rgba(16,24,40,0.12) 0px 8px 30px -14px;white-space:nowrap;font-size:14px;font-weight:600}
+/* bento */
+.bento{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.glow-card{background:linear-gradient(150deg,rgba(0,230,138,0.16) 0px,rgba(255,255,255,0.02) 55%);border:1px solid var(--border-hairline);border-radius:12px;padding:28px;box-shadow:rgba(0,214,140,0.55) 0px 30px 80px -40px;position:relative;overflow:hidden}
+.glow-card .sweep{position:absolute;inset:0;background:linear-gradient(120deg,transparent 40%,rgba(255,255,255,0.06) 50%,transparent 60%);transform:translateX(-100%);transition:transform 0.6s var(--ease)}
+.glow-card:hover .sweep{transform:translateX(100%)}
+.icon-chip{width:44px;height:44px;border:1px solid var(--border-hairline);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px}
+.glow-card hr{border:none;border-top:1px solid var(--border-hairline);margin:20px 0}
+.glow-card h4{font-family:-apple-system,"Geist",sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.6px;line-height:1.33}
+.glow-card p{color:var(--text-secondary);font-size:15px;margin-top:8px}
+.wide{grid-column:span 2}
+/* capability row */
+.cap{display:grid;grid-template-columns:39fr 56fr;gap:64px;align-items:center}
+.cap .stepnum{font-family:"Geist Mono",monospace;font-size:13px;letter-spacing:0.08em;color:var(--accent);text-transform:uppercase}
+.cap h4{font-family:-apple-system,"Geist",sans-serif;font-size:36px;font-weight:600;letter-spacing:-1.4px;margin-top:16px;line-height:1.1}
+.cap p{color:var(--text-secondary);margin-top:16px}
+/* panel band */
+.panel-band{background:linear-gradient(rgb(7,7,8),rgb(14,14,18),rgb(7,7,8));border-radius:0;padding:96px 24px;text-align:center;margin:20px 0}
+.panel-band iconify-icon{font-size:32px;color:var(--accent)}
+.panel-band h4{font-family:-apple-system,"Geist",sans-serif;font-size:36px;font-weight:600;letter-spacing:-1.4px;margin-top:16px}
+.panel-band p{color:var(--text-secondary);margin:16px auto 0;max-width:560px}
+/* plain block */
+.plain-block{background:transparent;border-radius:0}
+.plain-block iconify-icon{font-size:22px;color:var(--accent)}
+.plain-block h4{font-family:-apple-system,"Geist",sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.6px;margin:12px 0 8px}
+.plain-block p{color:var(--text-secondary);font-size:15px}
+.plain-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px}
+/* mini footer demo */
+.footer-demo{background:rgba(255,255,255,0.05);border-radius:0;padding:40px 32px;display:flex;flex-wrap:wrap;gap:12px 28px}
+.footer-demo a{color:var(--text-secondary);text-decoration:none;font-size:13px;transition:color 0.15s var(--ease)}
+.footer-demo a:hover{color:var(--text-primary)}
+.eyebrow-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:30px;background:rgba(255,255,255,0.05);border:1px solid var(--border-hairline)}
+@media(max-width:768px){.bento{grid-template-columns:1fr}.wide{grid-column:span 1}.cap{grid-template-columns:1fr;gap:32px}.plain-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.plain-grid{grid-template-columns:1fr}}
+</style>
+<section id="components" class="band" aria-labelledby="comp-h">
+  <div class="wrap">
+    <span class="eyebrow">03 — Components</span>
+    <h2 class="section-title" id="comp-h" style="margin-top:16px">The full inventory.</h2>
+    <p class="section-sub">Every measured family, rendered live at its documented values.</p>
+
+    <!-- NAVBAR -->
+    <div class="fam" data-tier-a-component="navbar">
+      <div class="fam-head">
+        <div><h3>Navbar</h3><p>Edge-to-edge flat strip, 104px tall, 0px radius on all corners. Never inset, never rounded.</p></div>
+        <div class="spec-card">--nav · height <b>104</b> · radius <b>0</b><br>badge r-pill · nav-cta height <b>36</b><br>fill accent · motion ease 0.3s</div>
+      </div>
+      <div style="border:1px solid var(--border-hairline);border-radius:0;overflow:hidden">
+        <div style="height:104px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;background:rgba(0,0,0,0.6);backdrop-filter:blur(20px) saturate(1.4)">
+          <div class="nav-left"><span class="nav-badge" aria-hidden="true"><iconify-icon icon="lucide:circuit-board"></iconify-icon></span><span class="nav-word">Skyline Automations</span></div>
+          <nav class="nav-links" aria-label="Navbar demo"><a href="#components">Platform</a><a href="#components">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a><a href="#components">Integrations</a><a href="#components">Pricing</a></nav>
+          <button class="nav-cta" type="button">Book a demo</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="fam" data-tier-a-component="button-primary" id="btn-primary-fam">
+      <div class="fam-head">
+        <div><h3>Buttons</h3><p>Solid mint pill, outline pill, and the 36px nav CTA. Variants down, states across.</p></div>
+        <div class="spec-card">--btn-primary · fill <b>accent</b> · text <b>#000</b><br>radius r-pill · height <b>44</b><br>--btn-secondary · fill #000 · border rgba(255,255,255,0.15)<br>motion color 0.15s ease</div>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="matrix">
+          <thead><tr><th></th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <th>Primary (44px)</th>
+              <td><button class="btn-primary" type="button">Start <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-primary" type="button" style="background:var(--accent-bright)">Start <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-primary" type="button" style="background:var(--accent-bright);filter:brightness(0.9)">Start <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-primary" type="button" disabled>Start <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+            </tr>
+            <tr data-tier-a-component="button-secondary">
+              <th>Secondary (44px)</th>
+              <td><button class="btn-secondary" type="button">Discovery call <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-secondary" type="button" style="border-color:rgba(255,255,255,0.35)">Discovery call <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-secondary" type="button" style="border-color:rgba(255,255,255,0.35);background:#0a0a0a">Discovery call <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+              <td><button class="btn-secondary" type="button" disabled>Discovery call <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button></td>
+            </tr>
+            <tr>
+              <th>Nav CTA (36px)</th>
+              <td><button class="nav-cta" type="button">Book a demo</button></td>
+              <td><button class="nav-cta" type="button" style="background:var(--accent-bright)">Book a demo</button></td>
+              <td><button class="nav-cta" type="button" style="background:var(--accent-bright);filter:brightness(0.9)">Book a demo</button></td>
+              <td><button class="nav-cta" type="button" disabled>Book a demo</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- EYEBROW BADGE -->
+    <div class="fam" data-tier-a-component="badge-eyebrow">
+      <div class="fam-head">
+        <div><h3>Eyebrow badge</h3><p>Translucent pill with a mint status dot and a mono uppercase label. Sits above the headline.</p></div>
+        <div class="spec-card">--badge-eyebrow · radius <b>30</b><br>fill surface · border hairline<br>dot accent · type label-mono</div>
+      </div>
+      <div class="demo">
+        <span class="eyebrow-badge"><span class="dot" aria-hidden="true"></span><span class="eyebrow">Automation, engineered</span></span>
+        <span class="eyebrow-badge"><span class="dot" aria-hidden="true"></span><span class="eyebrow">Now live in production</span></span>
+      </div>
+    </div>
+
+    <!-- INTEGRATION CHIPS -->
+    <div class="fam" data-tier-a-component="integration-chip">
+      <div class="fam-head">
+        <div><h3>Integration chips <span class="count">×16 · 2 rows</span></h3><p>Glass pills in a continuously scrolling marquee. Brand icons are the only other saturated color on the page.</p></div>
+        <div class="spec-card">--card-integration-chip · radius <b>10</b><br>fill surface · pad <b>14/20</b><br>shadow chip · motion marquee</div>
+      </div>
+      <div class="marquee" aria-label="Integration partners">
+        <div class="marquee-track">
+          <span class="int-chip"><iconify-icon icon="lucide:slack" style="color:#E01E5A" aria-hidden="true"></iconify-icon>Slack</span>
+          <span class="int-chip"><iconify-icon icon="lucide:github" style="color:#F2F2F4" aria-hidden="true"></iconify-icon>GitHub</span>
+          <span class="int-chip"><iconify-icon icon="lucide:figma" style="color:#A259FF" aria-hidden="true"></iconify-icon>Figma</span>
+          <span class="int-chip"><iconify-icon icon="lucide:database" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Postgres</span>
+          <span class="int-chip"><iconify-icon icon="lucide:cloud" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>AWS</span>
+          <span class="int-chip"><iconify-icon icon="lucide:zap" style="color:#00E68A" aria-hidden="true"></iconify-icon>Zapier</span>
+          <span class="int-chip"><iconify-icon icon="lucide:box" style="color:#E01E5A" aria-hidden="true"></iconify-icon>Linear</span>
+          <span class="int-chip"><iconify-icon icon="lucide:send" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Twilio</span>
+          <span class="int-chip"><iconify-icon icon="lucide:slack" style="color:#E01E5A" aria-hidden="true"></iconify-icon>Slack</span>
+          <span class="int-chip"><iconify-icon icon="lucide:github" style="color:#F2F2F4" aria-hidden="true"></iconify-icon>GitHub</span>
+          <span class="int-chip"><iconify-icon icon="lucide:figma" style="color:#A259FF" aria-hidden="true"></iconify-icon>Figma</span>
+          <span class="int-chip"><iconify-icon icon="lucide:database" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Postgres</span>
+        </div>
+        <div class="marquee-track rev">
+          <span class="int-chip"><iconify-icon icon="lucide:cpu" style="color:#00E68A" aria-hidden="true"></iconify-icon>Edge Runtime</span>
+          <span class="int-chip"><iconify-icon icon="lucide:server" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Kubernetes</span>
+          <span class="int-chip"><iconify-icon icon="lucide:webhook" style="color:#A259FF" aria-hidden="true"></iconify-icon>Webhooks</span>
+          <span class="int-chip"><iconify-icon icon="lucide:mail" style="color:#E01E5A" aria-hidden="true"></iconify-icon>Resend</span>
+          <span class="int-chip"><iconify-icon icon="lucide:credit-card" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Stripe</span>
+          <span class="int-chip"><iconify-icon icon="lucide:file-text" style="color:#F2F2F4" aria-hidden="true"></iconify-icon>Notion</span>
+          <span class="int-chip"><iconify-icon icon="lucide:bar-chart" style="color:#00E68A" aria-hidden="true"></iconify-icon>Metrics</span>
+          <span class="int-chip"><iconify-icon icon="lucide:shield" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Auth0</span>
+          <span class="int-chip"><iconify-icon icon="lucide:cpu" style="color:#00E68A" aria-hidden="true"></iconify-icon>Edge Runtime</span>
+          <span class="int-chip"><iconify-icon icon="lucide:server" style="color:#4B8BF5" aria-hidden="true"></iconify-icon>Kubernetes</span>
+          <span class="int-chip"><iconify-icon icon="lucide:webhook" style="color:#A259FF" aria-hidden="true"></iconify-icon>Webhooks</span>
+          <span class="int-chip"><iconify-icon icon="lucide:mail" style="color:#E01E5A" aria-hidden="true"></iconify-icon>Resend</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE GLOW CARDS BENTO -->
+    <div class="fam" data-tier-a-component="feature-glow-card">
+      <div class="fam-head">
+        <div><h3>Feature-glow cards <span class="count">×10 · bento</span></h3><p>Asymmetric row map: wide-narrow / three-even / three-even / narrow-wide. Mint-tinted shadow, spotlight sweep on hover.</p></div>
+        <div class="spec-card">--card-feature-glow · radius <b>12</b><br>pad <b>28</b> · fill mint-gradient<br>shadow mint · motion spotlight</div>
+      </div>
+      <div class="bento">
+        <div class="glow-card wide"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:workflow" aria-hidden="true"></iconify-icon></div><hr><h4>Orchestrated workflows</h4><p>Route work across every connected system with deterministic, observable pipelines that never drop a step.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></div><hr><h4>Real-time telemetry</h4><p>Live signal from the floor.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon></div><hr><h4>Hardened access</h4><p>Scoped roles by default.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon></div><hr><h4>Versioned config</h4><p>Roll forward, roll back.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:bell" aria-hidden="true"></iconify-icon></div><hr><h4>Smart alerts</h4><p>Only the signal, never the noise.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></div><hr><h4>Uptime SLAs</h4><p>Engineered for continuity.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:plug" aria-hidden="true"></iconify-icon></div><hr><h4>Open integrations</h4><p>Connect anything with an API.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon></div><hr><h4>Edge compute</h4><p>Run close to the hardware.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></div><hr><h4>Composable stacks</h4><p>Build once, reuse everywhere.</p></div>
+        <div class="glow-card wide"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon></div><hr><h4>Compliance-ready audit trails</h4><p>Every action logged, immutable, and exportable — closing the loop between automation and accountability.</p></div>
+      </div>
+    </div>
+
+    <!-- NUMBERED CAPABILITY ROW -->
+    <div class="fam" data-tier-a-component="numbered-capability-row">
+      <div class="fam-head">
+        <div><h3>Numbered capability row</h3><p>Asymmetric 39/56 split with a 64px gap — narrower text opposite a glowing feature card.</p></div>
+        <div class="spec-card">grid 39/56 · gap <b>64</b><br>step type label-mono · headline<br>paired with card-feature-glow</div>
+      </div>
+      <div class="cap">
+        <div>
+          <div class="stepnum">[ 01 ] — Deploy runtime</div>
+          <h4>Wire your systems into one runtime.</h4>
+          <p>Connect hardware, services, and data sources into a single orchestration layer. No glue code, no brittle scripts — just declarative pipelines that run themselves.</p>
+        </div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon></div><hr><h4>Runtime console</h4><p>Every connected node, its health, and its throughput — visible on one dark control surface.</p></div>
+      </div>
+    </div>
+
+    <!-- PANEL BANDS -->
+    <div class="fam" data-tier-a-component="panel-band">
+      <div class="fam-head">
+        <div><h3>Dark panel bands <span class="count">×3</span></h3><p>Full-bleed single-column spanners, 0px radius, 96px vertical padding — proof bands between grids.</p></div>
+        <div class="spec-card">--card-panel-band · radius <b>0</b><br>pad <b>96/0</b> · fill panel-gradient<br>icon accent · type headline-md</div>
+      </div>
+      <div class="panel-band"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon><h4>Built to keep running.</h4><p>99.99% orchestration uptime across every deployment, measured on our own runtime.</p></div>
+      <div class="panel-band"><iconify-icon icon="lucide:trending-up" aria-hidden="true"></iconify-icon><h4>Scales with the floor.</h4><p>From a single line to a global operation — the same runtime, no rewrites.</p></div>
+      <div class="panel-band"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon><h4>Trusted in production.</h4><p>Operations teams run their critical automations here, every shift, every day.</p></div>
+    </div>
+
+    <!-- PLAIN TEXT BLOCKS -->
+    <div class="fam" data-tier-a-component="plain-text-block">
+      <div class="fam-head">
+        <div><h3>Plain text blocks <span class="count">×4</span></h3><p>Transparent background, 0px radius. Lighter list-style content stacks.</p></div>
+        <div class="spec-card">--card-plain-block · radius <b>0</b><br>fill transparent · pad 0 / 96·24<br>icon accent · type body-md</div>
+      </div>
+      <div class="plain-grid">
+        <div class="plain-block"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon><h4>Faster setup</h4><p>Go from connection to live workflow in under an afternoon.</p></div>
+        <div class="plain-block"><iconify-icon icon="lucide:git-merge" aria-hidden="true"></iconify-icon><h4>Zero rewrites</h4><p>Compose from existing systems instead of replacing them.</p></div>
+        <div class="plain-block"><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon><h4>Full visibility</h4><p>Every step observable, from trigger to completion.</p></div>
+        <div class="plain-block"><iconify-icon icon="lucide:life-buoy" aria-hidden="true"></iconify-icon><h4>Real support</h4><p>Engineers who know your stack, on call when it matters.</p></div>
+      </div>
+    </div>
+
+    <!-- FOOTER FAMILY -->
+    <div class="fam" data-tier-a-component="footer">
+      <div class="fam-head">
+        <div><h3>Footer</h3><p>Dense flat link directory on a faint white-wash surface, 0px radius.</p></div>
+        <div class="spec-card">--footer · radius <b>0</b> · fill surface<br>links type body-md · muted secondary</div>
+      </div>
+      <div class="footer-demo" aria-label="Footer link directory demo">
+        <a href="#components">Platform</a><a href="#components">Runtime</a><a href="#components">Workflows</a><a href="#components">Integrations</a><a href="#components">Telemetry</a><a href="#components">Access</a><a href="#components">Pricing</a><a href="#components">Docs</a><a href="#components">API</a><a href="#components">Status</a><a href="#components">Changelog</a><a href="#components">Security</a><a href="#components">Compliance</a><a href="#components">About</a><a href="#components">Careers</a><a href="#components">Blog</a><a href="#components">Contact</a><a href="#components">Support</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.depth-card{padding:28px;background:var(--surface);border:1px solid var(--border-hairline)}
+.depth-card .lbl{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-tertiary);letter-spacing:0.06em;margin-top:16px;text-transform:uppercase}
+.depth-card h4{font-family:-apple-system,"Geist",sans-serif;font-size:20px;font-weight:600;letter-spacing:-0.6px}
+@media(max-width:768px){#surface-depth .cards{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth" class="band" aria-labelledby="depth-h">
+  <div class="wrap">
+    <span class="eyebrow">04 — Surface & depth</span>
+    <h2 class="section-title" id="depth-h" style="margin-top:16px">Radii and mint-tinted shadow.</h2>
+    <div class="cards">
+      <div class="depth-card" style="border-radius:10px"><h4>Control radius</h4><div class="lbl">r-control · 10px</div></div>
+      <div class="depth-card" style="border-radius:12px;box-shadow:rgba(0,214,140,0.55) 0px 30px 80px -40px;background:linear-gradient(150deg,rgba(0,230,138,0.16) 0px,rgba(255,255,255,0.02) 55%)"><h4>Glow-card radius</h4><div class="lbl">r-card · 12px · mint shadow</div></div>
+      <div class="depth-card" style="border-radius:9999px;padding:20px 28px;text-align:center"><h4>Pill radius</h4><div class="lbl">r-pill · 9999px</div></div>
+      <div class="depth-card" style="border-radius:30px"><h4>Badge radius</h4><div class="lbl">r-badge · 30px</div></div>
+      <div class="depth-card" style="border-radius:10px;box-shadow:rgba(16,24,40,0.12) 0px 8px 30px -14px"><h4>Chip shadow</h4><div class="lbl">chip · 0 8px 30px -14px</div></div>
+      <div class="depth-card" style="border-radius:0"><h4>Flat spanner</h4><div class="lbl">panel / nav / footer · 0px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .curves{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.curve{border:1px solid var(--border-hairline);border-radius:12px;padding:28px;cursor:pointer;background:var(--surface)}
+.curve .ball{width:24px;height:24px;border-radius:9999px;background:var(--accent);box-shadow:0 0 12px var(--accent);transition:transform 0.3s var(--ease)}
+.curve.fast .ball{transition:transform 0.15s var(--ease)}
+.curve.go .ball{transform:translateX(calc(100% + 180px))}
+.curve .lbl{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-tertiary);letter-spacing:0.06em;margin-top:24px}
+.curve h4{font-family:-apple-system,"Geist",sans-serif;font-size:18px;font-weight:600;letter-spacing:-0.6px;margin-bottom:20px}
+@media(max-width:768px){#motion .curves{grid-template-columns:1fr}}
+</style>
+<section id="motion" class="band" aria-labelledby="motion-h">
+  <div class="wrap">
+    <span class="eyebrow">05 — Motion</span>
+    <h2 class="section-title" id="motion-h" style="margin-top:16px">One curve, momentum-eased.</h2>
+    <p class="section-sub">Click a card to replay. Every transition rides the same cubic-bezier.</p>
+    <div class="curves">
+      <div class="curve fast" tabindex="0" role="button" aria-label="Replay micro state motion"><h4>Micro state</h4><div class="ball" aria-hidden="true"></div><div class="lbl">0.15s · cubic-bezier(0.4,0,0.2,1)</div></div>
+      <div class="curve" tabindex="0" role="button" aria-label="Replay surface transition motion"><h4>Surface transition</h4><div class="ball" aria-hidden="true"></div><div class="lbl">0.3s · cubic-bezier(0.4,0,0.2,1)</div></div>
+      <div class="curve" tabindex="0" role="button" aria-label="Replay marquee drift"><h4>Marquee drift</h4><div class="ball" aria-hidden="true"></div><div class="lbl">32s linear · continuous rail</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid var(--border-hairline);border-radius:12px;overflow:hidden;margin-top:48px;background:#000}
+.mock-nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border-hairline)}
+.mock-hero{text-align:center;padding:64px 24px;background:radial-gradient(60% 42% at 50% 0px, rgba(0,230,138,0.18), rgba(0,0,0,0) 68%)}
+.mock-hero h3{font-family:"Geist",sans-serif;font-size:44px;font-weight:600;letter-spacing:-1.8px;line-height:0.98}
+.mock-hero p{color:var(--text-secondary);margin:16px auto 24px;max-width:420px}
+.mock-cards{display:grid;grid-template-columns:2fr 1fr;gap:20px;padding:0 24px 24px}
+.mock-cta{margin:0 24px 32px;padding:40px;text-align:center;background:linear-gradient(rgb(7,7,8),rgb(14,14,18),rgb(7,7,8))}
+.mock-cta h4{font-family:-apple-system,"Geist",sans-serif;font-size:28px;font-weight:600;letter-spacing:-1px;margin-bottom:20px}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:32px;letter-spacing:-1.2px}}
+</style>
+<section id="composition" class="band" aria-labelledby="comp2-h">
+  <div class="wrap">
+    <span class="eyebrow">06 — In composition</span>
+    <h2 class="section-title" id="comp2-h" style="margin-top:16px">The system, assembled.</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="nav-left"><span class="nav-badge" aria-hidden="true"><iconify-icon icon="lucide:circuit-board"></iconify-icon></span><span class="nav-word">Skyline</span></div>
+        <button class="nav-cta" type="button">Book a demo</button>
+      </div>
+      <div class="mock-hero">
+        <span class="eyebrow-badge" style="margin-bottom:24px"><span class="dot" aria-hidden="true"></span><span class="eyebrow">Runtime online</span></span>
+        <h3>Automation that runs itself.</h3>
+        <p>One dark control surface for every system you operate.</p>
+        <button class="btn-primary" type="button">Start building <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button>
+      </div>
+      <div class="mock-cards">
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:workflow" aria-hidden="true"></iconify-icon></div><hr><h4>Orchestrated pipelines</h4><p>Deterministic, observable, and always on.</p></div>
+        <div class="glow-card"><span class="sweep" aria-hidden="true"></span><div class="icon-chip"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></div><hr><h4>Live telemetry</h4><p>Signal from the floor.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h4>Ready to wire it together?</h4>
+        <div class="cta-row" style="margin-top:0">
+          <button class="btn-primary" type="button">Get started <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button>
+          <button class="btn-secondary" type="button">Talk to us <span class="arrow-disc" aria-hidden="true"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:rgba(255,255,255,0.05);border-radius:0;padding:64px 24px}
+#footer .wrap{display:flex;flex-direction:column;gap:16px}
+#footer .brand{font-family:-apple-system,"Geist",sans-serif;font-size:24px;font-weight:600;letter-spacing:-0.6px;display:flex;align-items:center;gap:12px}
+#footer a{color:var(--accent);text-decoration:none}
+#footer a:hover{color:var(--accent-bright)}
+#footer .credit{color:var(--text-secondary);font-size:14px}
+</style>
+<footer id="footer" aria-labelledby="footer-h">
+  <div class="wrap">
+    <div class="brand" id="footer-h"><span class="nav-badge" aria-hidden="true"><iconify-icon icon="lucide:circuit-board"></iconify-icon></span>Skyline Automations</div>
+    <a href="https://www.skylineautomationsllc.com/">www.skylineautomationsllc.com</a>
+    <div class="credit">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+</main>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>40);},{passive:true});
+  document.querySelectorAll('#motion .curve').forEach(function(c){
+    function go(){c.classList.remove('go');void c.offsetWidth;c.classList.add('go');setTimeout(function(){c.classList.remove('go');},1200);}
+    c.addEventListener('click',go);
+    c.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();go();}});
+  });
+})();
+</script>
+</body>
+</html>

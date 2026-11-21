@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terracotta Arch Editorial — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Lora:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#EEEDEA;
+  --surface:#111111;
+  --text-primary:#111111;
+  --text-secondary:#DCD8D5;
+  --accent:#413936;
+  --border-dark:#14372D;
+  --border-light:#EBF0EB;
+  --r-control:8px;
+  --r-pill:9999px;
+  --r-card:16px;
+  --r-sharp:4px;
+  --r-panel-top:40px;
+  --base:8px;
+  --gap:16px;
+  --section-padding:156px;
+  --ease-snap:cubic-bezier(0.645,0.045,0.355,1);
+  --maxw:1560px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-weight:500;
+  font-size:16px;
+  line-height:1;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+.serif{font-family:"Lora",Georgia,serif;font-style:italic}
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:40px;padding-right:40px}
+.band{padding-top:var(--section-padding);padding-bottom:var(--section-padding)}
+iconify-icon{display:inline-block}
+h1,h2,h3,p{margin:0}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--background);
+  border:1px solid var(--border-light);
+  border-radius:var(--r-pill);
+  padding:8px 16px;font-size:14px;color:var(--text-primary);
+}
+.section-head{text-align:center;max-width:820px;margin:0 auto 64px}
+.section-head h2{font-size:48px;font-weight:500;line-height:1.1;letter-spacing:-1.5px;margin-top:24px}
+.section-head p{margin-top:20px;font-size:16px;line-height:1.5;color:#3a3a3a}
+
+/* HERO */
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden;background:#301818}
+.hero-media{position:absolute;inset:0;background:
+  radial-gradient(circle at 50% 100%, rgba(29,22,13,0.7) 10%, rgba(13,29,25,0) 35%, rgba(13,29,25,0) 70%, rgba(29,23,13,0.7) 90%),
+  linear-gradient(135deg,#301818 0%,#483018 45%,#784830 75%,#301818 100%);
+  background-size:cover}
+.hero-media::after{content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 40% 70% at 30% 40%,rgba(255,235,200,0.28),transparent 60%),
+    radial-gradient(ellipse 30% 55% at 72% 55%,rgba(255,220,170,0.22),transparent 60%);
+}
+.navbar{position:relative;z-index:5;margin:16px;border-radius:var(--r-card);
+  background:rgba(17,17,17,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  display:flex;align-items:center;gap:24px;padding:12px 20px;border:1px solid rgba(255,255,255,0.08)}
+.navbar .logo{font-size:20px;font-weight:600;letter-spacing:-0.5px;color:#EEEDEA}
+.nav-links{display:flex;gap:4px;margin-left:16px}
+.nav-links a{height:48px;display:inline-flex;align-items:center;padding:0 14px;color:#EAEEED;
+  text-decoration:none;font-size:15px;transition:color 0.1s ease}
+.nav-links a:hover{color:#fff}
+.nav-cta{margin-left:auto;background:var(--accent);color:#EEEDEA;border:none;
+  border-radius:var(--r-pill);height:48px;padding:14px 20px;font-family:inherit;font-weight:500;
+  font-size:15px;cursor:pointer;transition:background-color 0.4s var(--ease-snap)}
+.nav-cta:hover{background:#111111}
+.hero-inner{position:relative;z-index:4;flex:1;display:flex;flex-direction:column;
+  justify-content:flex-end;align-items:center;text-align:center;padding:0 40px 120px}
+.hero-inner h1{color:#EEEDEA;font-size:64px;font-weight:500;line-height:1.1;letter-spacing:-2.5px;max-width:14ch}
+.hero-sub{color:var(--text-secondary);font-size:16px;line-height:1.5;margin-top:24px;max-width:44ch}
+.hero-cta-row{margin-top:40px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:center}
+.btn-hero-primary{background:#111111;color:#DCD8D5;border:none;border-radius:16px 16px 0 0;
+  height:43px;padding:9.6px 16px;font-family:inherit;font-weight:500;font-size:15px;cursor:pointer;
+  transition:background-color 0.4s var(--ease-snap)}
+.btn-hero-primary:hover{background:#000}
+.btn-outline{background:transparent;color:#EEEDEA;border:1px solid rgba(255,255,255,0.5);
+  border-radius:var(--r-pill);height:43px;padding:0 20px;font-family:inherit;font-weight:500;
+  font-size:15px;cursor:pointer;transition:background-color 0.4s var(--ease-snap)}
+.btn-outline:hover{background:rgba(255,255,255,0.1)}
+@media(max-width:768px){
+  .hero-inner h1{font-size:40px;letter-spacing:-1.5px}
+  .nav-links{display:none}
+  .section-head h2{font-size:32px;letter-spacing:-1px}
+  .band{padding-top:80px;padding-bottom:80px}
+  .wrap{padding-left:20px;padding-right:20px}
+}
+@media(max-width:640px){.hero-inner h1{font-size:32px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-media" role="img" aria-label="Full-bleed warm architectural photograph of glowing terracotta archways"></div>
+  <nav class="navbar" aria-label="Primary">
+    <span class="logo">Archscale</span>
+    <div class="nav-links">
+      <a href="#components">Studio</a>
+      <a href="#components">Projects</a>
+      <a href="#components">Services</a>
+      <a href="#composition">Journal</a>
+      <a href="#footer">Contact</a>
+    </div>
+    <button class="nav-cta">Start a project</button>
+  </nav>
+  <div class="hero-inner">
+    <h1>Architecture that holds <span class="serif">warmth</span></h1>
+    <p class="hero-sub">A stone-grey editorial system where photography carries the color and typography carries everything else.</p>
+    <div class="hero-cta-row">
+      <button class="btn-hero-primary">View the collection</button>
+      <button class="btn-outline">Templates</button>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.role-group h3{font-size:20px;font-weight:600;margin-bottom:20px;letter-spacing:-0.5px}
+.swatch{border:1px solid var(--border-light);border-radius:var(--r-card);overflow:hidden;margin-bottom:16px}
+.swatch .chip{height:88px}
+.swatch .meta{padding:14px 16px;background:#fff}
+.swatch .name{font-size:15px;font-weight:600}
+.swatch .val{font-size:13px;color:#555;margin-top:4px;font-variant-numeric:tabular-nums}
+.swatch .note{font-size:13px;color:#555;margin-top:8px;line-height:1.4}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+@media(max-width:768px){#palette .roles{grid-template-columns:1fr}}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon> Palette</span>
+      <h2>Stone, ink, and one <span class="serif">rationed</span> brown</h2>
+      <p>Color is spent on the photograph. Everything structural runs achromatic across surfaces, text, and a single accent held for one control at a time.</p>
+    </div>
+    <div class="roles">
+      <div class="role-group">
+        <h3>Surfaces</h3>
+        <div class="swatch"><div class="chip" style="background:#EEEDEA;border-bottom:1px solid var(--border-light)"></div><div class="meta"><div class="name">background</div><div class="val">#EEEDEA</div><div class="note">Dominant off-white stone canvas across all body sections.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">surface</div><div class="val">#111111</div><div class="note">Warm near-black for dark cards, quote panel, and footer.</div></div></div>
+      </div>
+      <div class="role-group">
+        <h3>Text</h3>
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">text-primary</div><div class="val">#111111</div><div class="note">Display and body ink on the stone canvas.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#DCD8D5"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#DCD8D5</div><div class="note">Muted light-brown, used on dark surfaces only.</div></div></div>
+      </div>
+      <div class="role-group">
+        <h3>Accents &amp; borders</h3>
+        <div class="swatch"><div class="chip" style="background:#413936"></div><div class="meta"><div class="name">accent</div><div class="val">#413936</div><div class="note">Brown reserved for the navbar CTA pill and its hover.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#14372D"></div><div class="meta"><div class="name">border-dark</div><div class="val">#14372D</div><div class="note">Hairline divider, near-invisible green-brown.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#EBF0EB"></div><div class="meta"><div class="name">border-light</div><div class="val">#EBF0EB</div><div class="note">Hairline divider on light surfaces.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .specimen{border-top:1px solid var(--border-light);padding:36px 0;display:grid;grid-template-columns:1fr 240px;gap:32px;align-items:baseline}
+#type-scale .specimen:last-child{border-bottom:1px solid var(--border-light)}
+.spec-metrics{font-size:13px;color:#555;line-height:1.6;font-variant-numeric:tabular-nums}
+.spec-metrics span{display:block}
+.s-display{font-size:64px;font-weight:500;line-height:1.1;letter-spacing:-2.5px}
+.s-headline{font-size:48px;font-weight:500;line-height:1.1;letter-spacing:-1.5px}
+.s-label{font-size:32px;font-weight:500;line-height:1.2;letter-spacing:-1px}
+.s-body{font-size:16px;font-weight:500;line-height:1}
+@media(max-width:768px){#type-scale .specimen{grid-template-columns:1fr}.s-display{font-size:40px;letter-spacing:-1.5px}.s-headline{font-size:32px;letter-spacing:-1px}.s-label{font-size:24px}}
+</style>
+<section id="type-scale" class="band" style="background:#fff">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon> Type scale</span>
+      <h2>Instrument Sans, one <span class="serif">italic</span> interruption</h2>
+      <p>Every role runs at medium weight 500. A single Lora italic clause per headline is the only serif and the only italic in the system.</p>
+    </div>
+    <div class="specimen">
+      <div class="s-display">Warm <span class="serif">arches</span></div>
+      <div class="spec-metrics"><span>display-lg</span><span>64px / 500</span><span>lh 1.1 · ls -2.5px</span><span>Instrument Sans</span></div>
+    </div>
+    <div class="specimen">
+      <div class="s-headline">Built to <span class="serif">endure</span></div>
+      <div class="spec-metrics"><span>headline-md</span><span>48px / 500</span><span>lh 1.1 · ls -1.5px</span><span>Instrument Sans</span></div>
+    </div>
+    <div class="specimen">
+      <div class="s-label">128 projects</div>
+      <div class="spec-metrics"><span>label-md</span><span>32px / 500</span><span>lh 1.2 · ls -1px</span><span>section headers &amp; stat numerals</span></div>
+    </div>
+    <div class="specimen">
+      <div class="s-body">Set close and unindented, body copy stays small and flat — never a regular or light weight anywhere in the system.</div>
+      <div class="spec-metrics"><span>body-md</span><span>16px / 500</span><span>lh 1</span><span>Instrument Sans</span></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid var(--border-light);padding:72px 0}
+.comp-grid{display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+.comp h3{font-size:24px;font-weight:600;letter-spacing:-0.5px;margin-bottom:8px}
+.comp .lead{font-size:15px;color:#555;line-height:1.5;margin-bottom:32px;max-width:60ch}
+.spec-card{background:#111;color:#DCD8D5;border-radius:var(--r-card);padding:20px;font-size:12.5px;line-height:1.7;font-variant-numeric:tabular-nums}
+.spec-card b{color:#EEEDEA;font-weight:600}
+.spec-card .tok{color:#DCD8D5}
+.demo{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+
+/* buttons */
+.btn-matrix{display:grid;grid-template-columns:auto repeat(4,1fr);gap:14px;align-items:center;font-size:13px}
+.btn-matrix .col-h{color:#555;font-size:12px;text-align:center}
+.btn-matrix .row-h{color:#555;font-size:12px}
+.b-nav-cta{background:#413936;color:#EEEDEA;border:none;border-radius:var(--r-pill);height:48px;padding:14px 20px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+.b-nav-cta.hov{background:#111}
+.b-nav-cta.dis{opacity:.4;cursor:not-allowed}
+.b-hero{background:#111;color:#DCD8D5;border:none;border-radius:16px 16px 0 0;height:43px;padding:9.6px 16px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+.b-hero.hov{background:#000}
+.b-hero.dis{opacity:.4;cursor:not-allowed}
+.b-out{background:transparent;color:#111;border:1px solid #111;border-radius:var(--r-pill);height:43px;padding:0 18px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+.b-out.hov{background:#111;color:#EEEDEA}
+.b-out.dis{opacity:.4;cursor:not-allowed}
+.b-ghost{background:transparent;color:#111;border:1px solid var(--border-light);border-radius:var(--r-pill);height:37px;padding:9.6px 13.6px;font-family:inherit;font-weight:500;font-size:13px;cursor:pointer}
+.b-ghost.hov{background:rgba(17,17,17,0.08)}
+.b-ghost.dis{opacity:.4;cursor:not-allowed}
+.on-dark{background:#111;border-radius:var(--r-card);padding:24px}
+.on-dark .b-ghost{color:#EAEEED;border-color:rgba(255,255,255,0.2)}
+.on-dark .b-ghost.hov{background:rgba(255,255,255,0.1)}
+
+/* eyebrow */
+.chip-eyebrow{display:inline-flex;align-items:center;gap:8px;background:#EEEDEA;border:1px solid var(--border-light);border-radius:var(--r-pill);padding:8px 16px;font-size:14px}
+
+/* stat row */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.stat{background:transparent;border-radius:0;padding:0}
+.stat .num{font-size:32px;font-weight:500;line-height:1.2;letter-spacing:-1px}
+.stat .cap{font-size:14px;color:#555;margin-top:8px}
+
+/* checklist rows */
+.check-row{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;padding:0 32px 32px;background:transparent;border-radius:0}
+.check-row.rev .txt{order:2}
+.check-row .txt .ico{font-size:24px;color:#111;margin-bottom:12px}
+.check-row .txt h4{font-size:32px;font-weight:500;letter-spacing:-1px;line-height:1.2;margin-bottom:12px}
+.check-row .txt p{font-size:15px;color:#555;line-height:1.5;margin-bottom:20px}
+.check-media{aspect-ratio:16/10;border-radius:0;background:linear-gradient(135deg,#301818,#784830)}
+.check-row + .check-row{border-top:1px solid var(--border-light);padding-top:32px}
+
+/* mosaic */
+.mosaic-two{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.mosaic-three{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:16px}
+.mcard{background:transparent;border-radius:0}
+.mcard .ph{aspect-ratio:4/3;background:linear-gradient(135deg,#483018,#784830)}
+.mosaic-three .ph{aspect-ratio:1/1}
+.mcard .cap{font-size:15px;font-weight:500;margin-top:12px}
+
+/* dark inverted card */
+.dark-card{background:#111;color:#DCD8D5;border-radius:16px;padding:24px 24px 28px;max-width:360px}
+.dark-card .icc{width:40px;height:40px;border-radius:var(--r-control);background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;color:#EEEDEA;font-size:20px;margin-bottom:16px}
+.dark-card h4{color:#EEEDEA;font-size:20px;font-weight:600;line-height:1.2;margin-bottom:20px}
+.dc-btn{background:transparent;color:#DCD8D5;border:1px solid rgba(255,255,255,0.25);border-radius:var(--r-pill);height:37px;padding:0 16px;font-family:inherit;font-weight:500;font-size:13px;cursor:pointer}
+
+/* quote panel */
+.quote-panel{background:#111;color:#DCD8D5;border-radius:0;padding:80px 40px;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+.quote-panel .chip-eyebrow{background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12);color:#EEEDEA;margin-bottom:24px}
+.quote-panel .big{color:#EEEDEA;font-size:32px;font-weight:500;letter-spacing:-1px;line-height:1.2}
+.quote-panel .side .cap{font-size:14px;color:#DCD8D5;line-height:1.5;margin-bottom:20px}
+.qp-btn{background:transparent;color:#EEEDEA;border:1px solid rgba(255,255,255,0.3);border-radius:var(--r-pill);height:43px;padding:0 20px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+
+/* testimonial rail */
+.rail-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.rail-ctrls{display:flex;gap:8px}
+.rail-arrow{width:44px;height:44px;border-radius:var(--r-pill);border:1px solid var(--border-light);background:#fff;color:#111;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px}
+.rail-arrow:hover{background:rgba(17,17,17,0.06)}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;padding-bottom:8px}
+.tcard{flex:0 0 300px;background:transparent}
+.tcard .ph{aspect-ratio:3/4;background:linear-gradient(135deg,#301818,#483018)}
+.tcard .foot{background:#111;color:#DCD8D5;padding:16px}
+.tcard .foot .q{font-size:14px;line-height:1.5;margin-bottom:12px;color:#EEEDEA}
+.tcard .foot .n{font-size:13px;color:#DCD8D5}
+
+/* closing cta */
+.closing{position:relative;border-radius:0;overflow:hidden;text-align:center;padding:120px 40px}
+.closing .bg{position:absolute;inset:0;background:
+  linear-gradient(rgba(13,29,25,0) 25%, rgb(17,17,17)),
+  linear-gradient(135deg,#301818,#784830 60%,#301818)}
+.closing .inner{position:relative;z-index:2}
+.closing .chip-eyebrow{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.15);color:#EEEDEA;margin-bottom:24px}
+.closing h4{color:#EEEDEA;font-size:48px;font-weight:500;letter-spacing:-1.5px;line-height:1.1;max-width:16ch;margin:0 auto 32px}
+.closing .row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.c-dark{background:#111;color:#DCD8D5;border:none;border-radius:var(--r-pill);height:43px;padding:0 20px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+.c-light{background:transparent;color:#EEEDEA;border:1px solid rgba(255,255,255,0.5);border-radius:var(--r-pill);height:43px;padding:0 20px;font-family:inherit;font-weight:500;font-size:14px;cursor:pointer}
+
+@media(max-width:768px){
+  .comp-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:repeat(2,1fr)}
+  .check-row,.check-row.rev .txt{grid-template-columns:1fr;order:0}
+  .mosaic-two,.mosaic-three{grid-template-columns:1fr}
+  .quote-panel{grid-template-columns:1fr;padding:48px 24px}
+  .btn-matrix{grid-template-columns:1fr;gap:20px}
+  .closing h4{font-size:32px;letter-spacing:-1px}
+}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:layout-grid" aria-hidden="true"></iconify-icon> Components</span>
+      <h2>The full <span class="serif">inventory</span></h2>
+      <p>Every family, built from the system's own tokens. Flat contrast and hairline borders do all the separation — no drop shadows anywhere.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-grid">
+        <div>
+          <h3>Navbar — glass over hero</h3>
+          <p class="lead">Edge-to-edge dark-tinted glass bar with a three-zone layout: logo left, five text links, and one solid brown pill CTA far right. Includes the ghost utility button family.</p>
+          <div style="background:linear-gradient(135deg,#301818,#784830);border-radius:var(--r-card);padding:16px">
+            <div style="background:rgba(17,17,17,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-card);display:flex;align-items:center;gap:20px;padding:10px 16px;flex-wrap:wrap">
+              <span style="color:#EEEDEA;font-weight:600;font-size:18px;letter-spacing:-0.5px">Archscale</span>
+              <div class="nav-links" style="display:flex;gap:2px">
+                <a href="#components" style="color:#EAEEED;height:40px;display:inline-flex;align-items:center;padding:0 10px;text-decoration:none;font-size:14px">Studio</a>
+                <a href="#components" style="color:#EAEEED;height:40px;display:inline-flex;align-items:center;padding:0 10px;text-decoration:none;font-size:14px">Projects</a>
+                <a href="#components" style="color:#EAEEED;height:40px;display:inline-flex;align-items:center;padding:0 10px;text-decoration:none;font-size:14px">Services</a>
+                <a href="#components" style="color:#EAEEED;height:40px;display:inline-flex;align-items:center;padding:0 10px;text-decoration:none;font-size:14px">Journal</a>
+                <a href="#components" style="color:#EAEEED;height:40px;display:inline-flex;align-items:center;padding:0 10px;text-decoration:none;font-size:14px">Contact</a>
+              </div>
+              <button class="b-nav-cta" style="margin-left:auto">Start a project</button>
+            </div>
+          </div>
+          <div class="on-dark" style="margin-top:16px;display:flex;gap:12px;align-items:center">
+            <button class="b-ghost">Pages <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <span style="color:#DCD8D5;font-size:13px">Ghost utility · 37px · hover rgba(255,255,255,0.1)</span>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>navbar</b><br>
+          bg <span class="tok">glass rgba(17,17,17,0.55)</span><br>
+          blur <span class="tok">backdrop 12–20px</span><br>
+          cta <span class="tok">button-nav-cta</span><br>
+          fill <span class="tok">accent #413936</span><br>
+          text <span class="tok">background #EEEDEA</span><br>
+          radius <span class="tok">pill 9999px</span><br>
+          height <span class="tok">48px</span> · pad <span class="tok">14px 20px</span><br>
+          hover <span class="tok">surface #111111</span><br>
+          motion <span class="tok">ease-snap 0.4s</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp" data-tier-a-component="button-primary-hero">
+      <div class="comp-grid">
+        <div>
+          <h3>Buttons — variant × state</h3>
+          <p class="lead">Hero primary is the top-rounded #111111 rectangle — distinct from the navbar brown pill. Outline pairs sit beside it in twos. States are derived from the documented hover ladder.</p>
+          <div class="btn-matrix">
+            <span></span>
+            <span class="col-h">Rest</span><span class="col-h">Hover</span><span class="col-h">Active</span><span class="col-h">Disabled</span>
+            <span class="row-h">Nav CTA</span>
+            <button class="b-nav-cta">Start</button>
+            <button class="b-nav-cta hov">Start</button>
+            <button class="b-nav-cta hov">Start</button>
+            <button class="b-nav-cta dis" disabled>Start</button>
+            <span class="row-h">Hero primary</span>
+            <button class="b-hero">View</button>
+            <button class="b-hero hov">View</button>
+            <button class="b-hero hov">View</button>
+            <button class="b-hero dis" disabled>View</button>
+            <span class="row-h">Secondary outline</span>
+            <button class="b-out">Templates</button>
+            <button class="b-out hov">Templates</button>
+            <button class="b-out hov">Templates</button>
+            <button class="b-out dis" disabled>Templates</button>
+            <span class="row-h">Ghost</span>
+            <button class="b-ghost">Pages</button>
+            <button class="b-ghost hov">Pages</button>
+            <button class="b-ghost hov">Pages</button>
+            <button class="b-ghost dis" disabled>Pages</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>button-primary-hero</b><br>
+          fill <span class="tok">surface #111111</span><br>
+          text <span class="tok">text-secondary #DCD8D5</span><br>
+          radius <span class="tok">16px 16px 0 0</span><br>
+          height <span class="tok">43px</span> · pad <span class="tok">9.6px 16px</span><br><br>
+          <b>button-secondary-outline</b><br>
+          fill <span class="tok">transparent</span> · border <span class="tok">text-primary</span><br>
+          radius <span class="tok">pill 9999px</span><br><br>
+          <b>button-nav-ghost</b><br>
+          radius <span class="tok">pill</span> · height <span class="tok">37px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECONDARY OUTLINE explicit -->
+    <div class="comp" data-tier-a-component="button-secondary-outline">
+      <div class="comp-grid">
+        <div>
+          <h3>Secondary / outline button</h3>
+          <p class="lead">Transparent, thin-bordered pills always appearing in twos beside a dark primary throughout mid-page sections.</p>
+          <div class="demo">
+            <button class="b-hero">Get started</button>
+            <button class="b-out">Templates</button>
+            <button class="b-out">Portfolio</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>button-secondary-outline</b><br>
+          fill <span class="tok">transparent</span><br>
+          border <span class="tok">text-primary #111111</span><br>
+          text <span class="tok">text-primary #111111</span><br>
+          radius <span class="tok">pill 9999px</span><br>
+          count <span class="tok">×2 (always paired)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- EYEBROW CHIP -->
+    <div class="comp" data-tier-a-component="eyebrow-chip">
+      <div class="comp-grid">
+        <div>
+          <h3>Eyebrow chip</h3>
+          <p class="lead">A small pill with a leading icon glyph, centered above every major section headline.</p>
+          <div class="demo">
+            <span class="chip-eyebrow"><iconify-icon icon="lucide:sparkle" aria-hidden="true"></iconify-icon> Our services</span>
+            <span class="chip-eyebrow"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon> Recent work</span>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>eyebrow-chip</b><br>
+          fill <span class="tok">background #EEEDEA</span><br>
+          border <span class="tok">border-light #EBF0EB</span><br>
+          radius <span class="tok">pill 9999px</span><br>
+          type <span class="tok">body-md 16px/500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- STAT ROW -->
+    <div class="comp" data-tier-a-component="stat-row">
+      <div class="comp-grid">
+        <div>
+          <h3>Stat row — numeral card family</h3>
+          <p class="lead">One row of four transparent, chromeless items. Oversized numerals at label-md scale over a small caption.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="num">128</div><div class="cap">Projects delivered</div></div>
+            <div class="stat"><div class="num">24</div><div class="cap">Years of practice</div></div>
+            <div class="stat"><div class="num">17</div><div class="cap">Awards received</div></div>
+            <div class="stat"><div class="num">96%</div><div class="cap">Client retention</div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>stat-row</b><br>
+          bg <span class="tok">transparent</span> · radius <span class="tok">0px</span><br>
+          pad <span class="tok">0px</span> · count <span class="tok">×4</span><br>
+          numeral <span class="tok">label-md 32px/500</span><br>
+          caption <span class="tok">body-md 16px/500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SERVICES CHECKLIST -->
+    <div class="comp" data-tier-a-component="services-checklist-row">
+      <div class="comp-grid">
+        <div>
+          <h3>Services list — checklist rows</h3>
+          <p class="lead">Five full-width rows alternating text-left/media-right and media-left/text-right. Each carries an icon, heading, body, an outline "Learn More" pill, and a media-bleed image.</p>
+          <div class="check-row">
+            <div class="txt"><div class="ico"><iconify-icon icon="lucide:ruler" aria-hidden="true"></iconify-icon></div><h4>Design &amp; <span class="serif">planning</span></h4><p>From first sketch to permitted drawings, we shape space around light and material.</p><button class="b-out">Learn more</button></div>
+            <div class="check-media" role="img" aria-label="Terracotta archway interior"></div>
+          </div>
+          <div class="check-row rev">
+            <div class="txt"><div class="ico"><iconify-icon icon="lucide:hammer" aria-hidden="true"></iconify-icon></div><h4>Build <span class="serif">management</span></h4><p>We stay on site through delivery, protecting the detail that carries the concept.</p><button class="b-out">Learn more</button></div>
+            <div class="check-media" role="img" aria-label="Warm masonry detail"></div>
+          </div>
+          <div class="check-row">
+            <div class="txt"><div class="ico"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon></div><h4>Interior <span class="serif">warmth</span></h4><p>Palettes drawn from stone and clay, staged for how a room feels at dusk.</p><button class="b-out">Learn more</button></div>
+            <div class="check-media" role="img" aria-label="Interior in warm light"></div>
+          </div>
+          <div class="check-row rev">
+            <div class="txt"><div class="ico"><iconify-icon icon="lucide:trees" aria-hidden="true"></iconify-icon></div><h4>Landscape <span class="serif">continuity</span></h4><p>Outside and inside written as one gesture, from threshold to garden.</p><button class="b-out">Learn more</button></div>
+            <div class="check-media" role="img" aria-label="Courtyard archway"></div>
+          </div>
+          <div class="check-row">
+            <div class="txt"><div class="ico"><iconify-icon icon="lucide:file-text" aria-hidden="true"></iconify-icon></div><h4>Consulting &amp; <span class="serif">review</span></h4><p>A second set of eyes for practices refining an existing scheme.</p><button class="b-out">Learn more</button></div>
+            <div class="check-media" role="img" aria-label="Drafting table detail"></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>card-checklist-row</b><br>
+          bg <span class="tok">transparent</span> · radius <span class="tok">0px</span><br>
+          pad <span class="tok">0px 32px 32px</span><br>
+          count <span class="tok">×5 alternating</span><br>
+          heading <span class="tok">label-md 32px/500</span><br>
+          cta <span class="tok">button-secondary-outline</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOSAIC TWO-UP -->
+    <div class="comp" data-tier-a-component="media-mosaic-two-up">
+      <div class="comp-grid">
+        <div>
+          <h3>Media mosaic — 66% two-up</h3>
+          <p class="lead">Two chromeless image cards per row at 66% column width, each a full-bleed photograph with a heading caption below.</p>
+          <div class="mosaic-two">
+            <div class="mcard"><div class="ph" role="img" aria-label="Sunlit terracotta arcade"></div><div class="cap">Casa Terra — Andalusia</div></div>
+            <div class="mcard"><div class="ph" role="img" aria-label="Warm stone stair"></div><div class="cap">Stair House — Lisbon</div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>card-media-bleed (66%)</b><br>
+          bg <span class="tok">transparent</span> · radius <span class="tok">0px</span><br>
+          pad <span class="tok">0px</span> · width <span class="tok">66% × 2</span><br>
+          caption <span class="tok">body-md 16px/500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOSAIC THREE-UP -->
+    <div class="comp" data-tier-a-component="media-mosaic-three-up">
+      <div class="comp-grid">
+        <div>
+          <h3>Media mosaic — 33% three-up rail</h3>
+          <p class="lead">A denser three-plus rail at 33% item width, distinct from the 66% two-up mosaic.</p>
+          <div class="mosaic-three">
+            <div class="mcard"><div class="ph" role="img" aria-label="Clay vault"></div><div class="cap">Vault Study</div></div>
+            <div class="mcard"><div class="ph" role="img" aria-label="Arched window"></div><div class="cap">Window Study</div></div>
+            <div class="mcard"><div class="ph" role="img" aria-label="Courtyard detail"></div><div class="cap">Courtyard</div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>card-media-bleed (33%)</b><br>
+          bg <span class="tok">transparent</span> · radius <span class="tok">0px</span><br>
+          pad <span class="tok">0px</span> · width <span class="tok">33% × 3+</span><br>
+          gutter <span class="tok">gap 16px</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- DARK CARD -->
+    <div class="comp" data-tier-a-component="card-dark-inverted">
+      <div class="comp-grid">
+        <div>
+          <h3>Dark inverted card</h3>
+          <p class="lead">A compact mid-page callout on the light canvas — flat contrast, no shadow, 16px radius.</p>
+          <div class="dark-card">
+            <div class="icc"><iconify-icon icon="lucide:quote" aria-hidden="true"></iconify-icon></div>
+            <h4>Photograph once, typography everywhere else.</h4>
+            <button class="dc-btn">Read the principle</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>card-dark-inverted</b><br>
+          fill <span class="tok">surface #111111</span><br>
+          text <span class="tok">text-secondary #DCD8D5</span><br>
+          radius <span class="tok">card 16px</span><br>
+          pad <span class="tok">24px 24px 28px</span><br>
+          shadow <span class="tok">none — flat contrast</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUOTE PANEL -->
+    <div class="comp" data-tier-a-component="quote-creator-panel">
+      <div class="comp-grid">
+        <div>
+          <h3>Quote / creator panel</h3>
+          <p class="lead">A single full-width #111111 rectangle, no radius, split two columns inside: quote left, caption and CTA right.</p>
+          <div class="quote-panel">
+            <div>
+              <span class="chip-eyebrow"><iconify-icon icon="lucide:message-square-quote" aria-hidden="true"></iconify-icon> In their words</span>
+              <p class="big">They gave us a house that keeps its <span class="serif">warmth</span> long after the sun has gone.</p>
+            </div>
+            <div class="side">
+              <p class="cap">— Marià &amp; Elena Roig<br>Casa Terra, Andalusia</p>
+              <button class="qp-btn">Read case study</button>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>card-full-panel</b><br>
+          fill <span class="tok">surface #111111</span><br>
+          radius <span class="tok">0px</span><br>
+          pad <span class="tok">section-padding 156px 40px</span><br>
+          quote <span class="tok">label-md 32px/500</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIAL RAIL -->
+    <div class="comp" data-tier-a-component="testimonial-rail">
+      <div class="comp-grid">
+        <div>
+          <h3>Testimonial rail</h3>
+          <p class="lead">Horizontal scroll of equal-width portrait cards, photo top-bleed over a dark caption footer, with circular controls floating top-right.</p>
+          <div class="rail-head">
+            <span class="chip-eyebrow"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon> Clients</span>
+            <div class="rail-ctrls">
+              <button class="rail-arrow" data-rail="prev" aria-label="Previous testimonials"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+              <button class="rail-arrow" data-rail="next" aria-label="Next testimonials"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+          <div class="rail" id="testRail">
+            <div class="tcard"><div class="ph" role="img" aria-label="Portrait of a client"></div><div class="foot"><p class="q">Every detail felt considered — nothing was accidental.</p><p class="n">A. Vidal · Homeowner</p></div></div>
+            <div class="tcard"><div class="ph" role="img" aria-label="Portrait of a client"></div><div class="foot"><p class="q">The light changes the rooms all day. We never tire of it.</p><p class="n">S. Marín · Developer</p></div></div>
+            <div class="tcard"><div class="ph" role="img" aria-label="Portrait of a client"></div><div class="foot"><p class="q">A studio that listens first and draws second.</p><p class="n">J. Costa · Restaurateur</p></div></div>
+            <div class="tcard"><div class="ph" role="img" aria-label="Portrait of a client"></div><div class="foot"><p class="q">Warm, precise, and calm from brief to handover.</p><p class="n">L. Ferrer · Curator</p></div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>testimonial-rail</b><br>
+          layout <span class="tok">horizontal scroll</span><br>
+          card <span class="tok">card-media-bleed + footer</span><br>
+          footer <span class="tok">surface #111111</span><br>
+          arrows <span class="tok">pill 9999px · 44px</span><br>
+          border <span class="tok">border-light #EBF0EB</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING CTA -->
+    <div class="comp" data-tier-a-component="closing-cta-band">
+      <div class="comp-grid">
+        <div>
+          <h3>Closing CTA band</h3>
+          <p class="lead">A full-bleed scrim-darkened photographic panel, centered, with a two-line headline and paired pill buttons — fading into the footer at the base.</p>
+          <div class="closing">
+            <div class="bg" aria-hidden="true"></div>
+            <div class="inner">
+              <span class="chip-eyebrow"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon> Start</span>
+              <h4>Let's build something that <span class="serif">lasts</span></h4>
+              <div class="row">
+                <button class="c-dark">Book a consultation</button>
+                <button class="c-light">See the portfolio</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>closing-cta-band</b><br>
+          media <span class="tok">scrim photograph</span><br>
+          fade <span class="tok">linear-gradient → #111111</span><br>
+          headline <span class="tok">headline-md 48px/500</span><br>
+          accent <span class="tok">Lora italic ×1 word</span><br>
+          buttons <span class="tok">c-dark + c-light pills</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:#fff}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.depth{border:1px solid var(--border-light);overflow:hidden}
+.depth .body{padding:24px}
+.depth .body h4{font-size:18px;font-weight:600;margin-bottom:8px}
+.depth .body p{font-size:13px;color:#555;line-height:1.5}
+.d-sharp{border-radius:var(--r-sharp)}
+.d-control{border-radius:var(--r-control)}
+.d-card{border-radius:var(--r-card)}
+.d-panel{border-radius:var(--r-panel-top) var(--r-panel-top) 0 0}
+.d-dark{background:#111;color:#DCD8D5;border-radius:var(--r-card);border:none}
+.d-dark h4{color:#EEEDEA}
+.d-dark p{color:#DCD8D5}
+.d-cap{height:96px;background:linear-gradient(135deg,#483018,#784830)}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:layers-2" aria-hidden="true"></iconify-icon> Surface &amp; depth</span>
+      <h2>Radii, no <span class="serif">shadows</span></h2>
+      <p>Elevation is expressed only by dark cards on the stone canvas. Separation comes from flat contrast and hairline borders — never a drop shadow.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth d-sharp"><div class="d-cap"></div><div class="body"><h4>Sharp — 4px</h4><p>Softest possible corner on photo blocks and dividers.</p></div></div>
+      <div class="depth d-control"><div class="d-cap"></div><div class="body"><h4>Control — 8px</h4><p>Default control corner for inputs and utility surfaces.</p></div></div>
+      <div class="depth d-card"><div class="d-cap"></div><div class="body"><h4>Card — 16px</h4><p>Dark inverted cards and glass navbar shell.</p></div></div>
+      <div class="depth d-panel"><div class="d-cap"></div><div class="body"><h4>Panel top — 40px</h4><p>Top-rounded panel treatment for lifted surfaces.</p></div></div>
+      <div class="depth d-dark"><div class="body"><h4>Flat contrast</h4><p>A #111111 card on #EEEDEA — the only elevation the system uses.</p></div></div>
+      <div class="depth" style="border-radius:9999px;display:flex;align-items:center;justify-content:center;min-height:180px"><div class="body" style="text-align:center"><h4>Pill — 9999px</h4><p>CTA pills and eyebrow chips.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.motion-card{border:1px solid var(--border-light);border-radius:var(--r-card);padding:28px;text-align:center}
+.motion-card h4{font-size:16px;font-weight:600;margin-bottom:6px}
+.motion-card .m-meta{font-size:12.5px;color:#555;margin-bottom:24px;font-variant-numeric:tabular-nums}
+.m-dot{width:44px;height:44px;border-radius:var(--r-pill);background:#111;margin:0 auto}
+.m-snap.play{animation:mSnap 0.4s cubic-bezier(0.645,0.045,0.355,1)}
+.m-quick.play{animation:mQuick 0.1s ease}
+.m-fade.play{animation:mFade 0.3s cubic-bezier(0.645,0.045,0.355,1)}
+@keyframes mSnap{0%{transform:translateX(-60px)}100%{transform:translateX(60px)}}
+@keyframes mQuick{0%{background:#111}100%{background:#413936}}
+@keyframes mFade{0%{opacity:0}100%{opacity:1}}
+.replay{margin-top:24px;background:transparent;border:1px solid #111;border-radius:var(--r-pill);height:37px;padding:0 16px;font-family:inherit;font-weight:500;font-size:13px;cursor:pointer}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr}}
+</style>
+<section id="motion" class="band" style="background:#fff">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon> Motion</span>
+      <h2>Quick and <span class="serif">mechanical</span></h2>
+      <p>Instant hover feedback on links, a snap-then-settle curve for surfaces, and soft fades for reveals.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card"><h4>Snap surface</h4><div class="m-meta">0.4s · cubic-bezier(.645,.045,.355,1)</div><div class="m-dot m-snap"></div><button class="replay" data-anim="m-snap">Replay</button></div>
+      <div class="motion-card"><h4>Quick color</h4><div class="m-meta">0.1s · ease</div><div class="m-dot m-quick"></div><button class="replay" data-anim="m-quick">Replay</button></div>
+      <div class="motion-card"><h4>Reveal fade</h4><div class="m-meta">0.3s · cubic-bezier(.645,.045,.355,1)</div><div class="m-dot m-fade"></div><button class="replay" data-anim="m-fade">Replay</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+.mock{max-width:1100px;margin:0 auto;border:1px solid var(--border-light);border-radius:var(--r-card);overflow:hidden;background:#EEEDEA}
+.mock-hero{position:relative;min-height:360px;display:flex;flex-direction:column}
+.mock-hero .bg{position:absolute;inset:0;background:
+  radial-gradient(circle at 50% 100%, rgba(29,22,13,0.7) 10%, rgba(13,29,25,0) 40%, rgba(29,23,13,0.6) 92%),
+  linear-gradient(135deg,#301818,#784830 60%,#301818)}
+.mock-nav{position:relative;z-index:2;margin:12px;background:rgba(17,17,17,0.55);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.08);border-radius:var(--r-card);display:flex;align-items:center;gap:16px;padding:10px 16px}
+.mock-nav .logo{color:#EEEDEA;font-weight:600;letter-spacing:-0.5px}
+.mock-nav a{color:#EAEEED;font-size:13px;text-decoration:none;margin-left:8px}
+.mock-hero .inner{position:relative;z-index:2;margin-top:auto;padding:32px;text-align:center}
+.mock-hero h3{color:#EEEDEA;font-size:40px;font-weight:500;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
+.mock-body{padding:48px 32px}
+.mock-cards{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-top:32px}
+.mock-cards .ph{aspect-ratio:16/10;background:linear-gradient(135deg,#483018,#784830)}
+.mock-cta{margin-top:48px;background:#111;border-radius:var(--r-card);padding:48px 32px;text-align:center}
+.mock-cta h4{color:#EEEDEA;font-size:32px;font-weight:500;letter-spacing:-1px;margin-bottom:24px}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:28px}}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow"><iconify-icon icon="lucide:panels-top-left" aria-hidden="true"></iconify-icon> In composition</span>
+      <h2>The system, <span class="serif">assembled</span></h2>
+      <p>A screen built entirely from the tokens above — glass nav over a photograph, then flat neutral sections and a single dark CTA.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div class="bg" aria-hidden="true"></div>
+        <div class="mock-nav">
+          <span class="logo">Archscale</span>
+          <a href="#composition">Projects</a><a href="#composition">Studio</a>
+          <button class="b-nav-cta" style="margin-left:auto;height:40px;padding:10px 16px;font-size:13px">Start</button>
+        </div>
+        <div class="inner">
+          <h3>Homes that keep their <span class="serif">warmth</span></h3>
+          <button class="btn-hero-primary">View the collection</button>
+        </div>
+      </div>
+      <div class="mock-body">
+        <div style="text-align:center">
+          <span class="chip-eyebrow"><iconify-icon icon="lucide:sparkle" aria-hidden="true"></iconify-icon> Selected work</span>
+          <h3 style="font-size:32px;font-weight:500;letter-spacing:-1px;margin-top:16px">A quiet <span class="serif">confidence</span></h3>
+        </div>
+        <div class="mock-cards">
+          <div class="mcard"><div class="ph" role="img" aria-label="Arched living space"></div><div class="cap" style="font-size:15px;font-weight:500;margin-top:12px">Casa Terra — Andalusia</div></div>
+          <div class="mcard"><div class="ph" role="img" aria-label="Stone stair detail"></div><div class="cap" style="font-size:15px;font-weight:500;margin-top:12px">Stair House</div></div>
+        </div>
+        <div class="mock-cta">
+          <h4>Let's build something that <span class="serif">lasts</span></h4>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+            <button class="c-dark">Book a consultation</button>
+            <button class="c-light">See the portfolio</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#111;color:#DCD8D5;padding-top:96px;padding-bottom:48px}
+.foot-top{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px;margin-bottom:56px}
+#footer .logo{color:#EEEDEA;font-size:22px;font-weight:600;letter-spacing:-0.5px;margin-bottom:20px}
+.foot-addr{font-size:14px;line-height:1.7;color:#DCD8D5}
+.foot-capture{margin-top:24px;display:flex;gap:8px;max-width:340px}
+.foot-capture input{flex:1;background:#1b1b1b;border:1px solid rgba(255,255,255,0.12);border-radius:var(--r-pill);height:48px;padding:0 18px;color:#EEEDEA;font-family:inherit;font-size:14px}
+.foot-capture input::placeholder{color:#DCD8D5}
+.foot-join{background:#EEEDEA;color:#111;border:none;border-radius:var(--r-pill);height:48px;padding:0 20px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer}
+#footer h5{color:#EEEDEA;font-size:14px;font-weight:600;margin-bottom:16px}
+#footer ul{list-style:none;margin:0;padding:0}
+#footer li{margin-bottom:12px}
+#footer li a{color:#DCD8D5;text-decoration:none;font-size:14px}
+#footer li a:hover{color:#EEEDEA}
+.foot-legal{border-top:1px solid rgba(255,255,255,0.12);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:#DCD8D5}
+.foot-legal a{color:#DCD8D5}
+@media(max-width:768px){.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.foot-top{grid-template-columns:1fr}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="logo">Archscale</div>
+        <p class="foot-addr">Warm-neutral editorial studio.<br>Carrer de la Volta 12<br>Barcelona, Spain</p>
+        <form class="foot-capture" onsubmit="return false">
+          <input type="email" placeholder="Your email" aria-label="Email address">
+          <button class="foot-join" type="submit">Join Us</button>
+        </form>
+      </div>
+      <div>
+        <h5>Main Pages</h5>
+        <ul><li><a href="#hero">Home</a></li><li><a href="#components">Projects</a></li><li><a href="#composition">Studio</a></li><li><a href="#components">Services</a></li></ul>
+      </div>
+      <div>
+        <h5>Company</h5>
+        <ul><li><a href="#footer">About</a></li><li><a href="#footer">Journal</a></li><li><a href="#footer">Careers</a></li><li><a href="#footer">Press</a></li></ul>
+      </div>
+      <div>
+        <h5>Contact &amp; Utility</h5>
+        <ul><li><a href="#footer">hello@archscale.studio</a></li><li><a href="#footer">Instagram</a></li><li><a href="#footer">Terms</a></li><li><a href="#footer">Privacy</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© Terracotta Arch Editorial — <a href="https://archscale.webflow.io/">archscale.webflow.io</a></span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.replay').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var dot=btn.parentElement.querySelector('.'+btn.dataset.anim);
+    if(!dot)return;
+    dot.classList.remove('play');void dot.offsetWidth;dot.classList.add('play');
+  });
+});
+var rail=document.getElementById('testRail');
+document.querySelectorAll('[data-rail]').forEach(function(b){
+  b.addEventListener('click',function(){
+    if(!rail)return;
+    rail.scrollBy({left:b.dataset.rail==='next'?332:-332,behavior:'smooth'});
+  });
+});
+</script>
+</body>
+</html>

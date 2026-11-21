@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Type-Foundry Ledger — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Satoshi+Variable:wght@400;500;700&family=Passenger+Sans:wght@400;500;700&family=Clash+Display+Variable:wght@400;500;700&family=General+Sans+Variable:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFE3; color:#10100E; font-family:'Passenger Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Passenger Sans',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Passenger Sans',sans-serif; font-size: 22px; border-bottom: 1px solid #30302B; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#C0C0AB; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#C0C0AB; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#10100E; border: 1px solid #30302B; border-radius:9999px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#C0C0AB; }
+  .swatch-meta p { color:#C0C0AB; font-size: 12px; }
+  .specimen { border: 1px solid #30302B; border-radius:9999px; padding: 20px; background:#10100E; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#C0C0AB; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#C0C0AB; }
+  .bar { height: 10px; background:#10100E; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #10100E; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#10100E; border: 1px solid #30302B; border-radius:9999px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:9999px; font-size: 14px; border: 1px solid #10100E; }
+  .btn-primary { background:#10100E; color:#FFFFE3; }
+  .btn-secondary { background: transparent; color:#10100E; }
+  footer { border-top: 1px solid #30302B; padding-top: 20px; font-size: 13px; color:#C0C0AB; }
+  footer a { color:#10100E; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from fontshare.com · light mode</div>
+    <h1>Type-Foundry Ledger</h1>
+    <p class="tagline">Cream-paper, ink-black type-catalog system: an edge-to-edge blackout navbar block, a repeating full-bleed specimen-row list, and giant single-word display specimens set in the very families the page ships.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFE3"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFE3</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#10100E"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#10100E</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#10100E"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#10100E</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#C0C0AB"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#C0C0AB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#30302B"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#30302B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#C0C0AB"></div>
+        <div class="swatch-meta"><strong>border-subtle</strong><code>#C0C0AB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#C4FDC7"></div>
+        <div class="swatch-meta"><strong>accent-mint</strong><code>#C4FDC7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFCFCF"></div>
+        <div class="swatch-meta"><strong>accent-blush</strong><code>#FFCFCF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFF1B5"></div>
+        <div class="swatch-meta"><strong>accent-amber</strong><code>#FFF1B5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#3C81F5"></div>
+        <div class="swatch-meta"><strong>accent-focus-ring</strong><code>#3C81F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F8F8DD"></div>
+        <div class="swatch-meta"><strong>footer-bg</strong><code>#F8F8DD</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Satoshi Variable',sans-serif;font-size:210px;font-weight:700;line-height:1.0">Aa — The quick brown fox</div>
+        <div class="specimen-meta">specimen-display · Satoshi Variable · 210px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Passenger Sans',sans-serif;font-size:16px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Passenger Sans · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Passenger Sans',sans-serif;font-size:13px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · Passenger Sans · 13px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Clash Display Variable',sans-serif;font-size:56px;font-weight:600;line-height:1.05">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Clash Display Variable · 56px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'General Sans Variable',sans-serif;font-size:40px;font-weight:500;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-grotesk · General Sans Variable · 40px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 5px</span>
+        <div class="bar" style="width:min(5px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 40px</span>
+        <div class="bar" style="width:min(40px, 100%)"></div></div>
+<div class="bar-row"><span>hairline · 2px</span>
+        <div class="bar" style="width:min(2px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:9999px">control<br><code>9999px</code></div>
+<div class="radius-chip" style="border-radius:9999px">card<br><code>9999px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#C0C0AB;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,2943 @@
+<!doctype html>
+<html lang="en">
+<head><script>function __threeuiStorageImage(...args){const image=new Image(...args);const property=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");Object.defineProperty(image,"src",{configurable:true,get(){return property.get.call(this)},set(value){try{const url=new URL(value,document.baseURI);if(this.crossOrigin===null&&(url.href.startsWith("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/")||url.origin===new URL(document.baseURI).origin))this.crossOrigin="anonymous"}catch{}property.set.call(this,value)}});return image;}
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hanami — The Blossom Almanac</title>
+<meta name="description" content="A cherry-blossom front almanac and a slow week in Japan, timed to the petals rather than the calendar.">
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f%5B%5D=general-sans@400,500,600&display=swap">
+<style>
+/* ============================ tokens ============================ */
+:root{
+  --paper:#f5ece6;        /* washi */
+  --paper-2:#ece0da;
+  --rose:#b5808e;         /* dusty blossom — card fields */
+  --ink:#3f2c33;          /* plum ink — body copy */
+  --heading:#8a5f6c;      /* soft plum */
+  --night:#1e1319;        /* night plum — hero fade, logo band */
+  --blush:#e6c3c7;
+  --pad:1.88rem;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{
+  font-size:clamp(11.5px,.96vw,16px);
+  -webkit-text-size-adjust:100%;
+  background:var(--night);
+}
+body{
+  font-family:'General Sans','Aeonik',-apple-system,'Helvetica Neue',Arial,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  overflow-x:clip;
+  font-synthesis:none;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--rose);color:var(--paper)}
+
+/* ============================ type ============================ */
+.t100{font-size:6.25rem;line-height:.95;font-weight:400;letter-spacing:-.022em}
+.t60{font-size:3.75rem;line-height:.9;font-weight:400;letter-spacing:-.02em}
+.t50{font-size:3.6rem;line-height:.93;font-weight:500;letter-spacing:-.03em}
+.t36{font-size:2.05rem;line-height:1.02;font-weight:500;letter-spacing:-.022em}
+.t24{font-size:1.62rem;line-height:1.08;font-weight:500;letter-spacing:-.018em}
+.caps{
+  font-size:max(11.5px,1rem);line-height:1.3;text-transform:uppercase;
+  letter-spacing:.005em;font-weight:400;
+}
+.caps-sm{font-size:max(11px,.9rem);line-height:1.36;text-transform:uppercase;letter-spacing:.02em}
+.mono-num{font-size:3.05rem;line-height:1.02;font-weight:400;letter-spacing:-.028em}
+
+/* scroll wipe reveal on headings */
+.wipe{
+  --p:0%;--on:var(--heading);--off:rgba(138,95,108,.26);
+  background-image:linear-gradient(100deg,var(--on) 0 var(--p),var(--off) calc(var(--p) + 24%) 100%);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+  will-change:background-image;
+}
+.wipe.on-dark{--on:var(--paper);--off:rgba(245,236,230,.3)}
+.wipe.on-green{--on:var(--paper);--off:rgba(245,236,230,.26)}
+
+/* ---- ink-sweep reveal: a ragged wet edge travels across the plate ---- */
+.inked{
+  --ink:0%;--edge:linear-gradient(#000,#000);
+  -webkit-mask-image:var(--inkmask),var(--edge);mask-image:var(--inkmask),var(--edge);
+  -webkit-mask-size:300% 100%,100% 100%;mask-size:300% 100%,100% 100%;
+  -webkit-mask-repeat:no-repeat,no-repeat;mask-repeat:no-repeat,no-repeat;
+  -webkit-mask-position:var(--ink) 50%,50% 50%;mask-position:var(--ink) 50%,50% 50%;
+  -webkit-mask-composite:source-in;mask-composite:intersect;
+}
+.inked.vert{
+  -webkit-mask-image:var(--inkmaskv),var(--edge);mask-image:var(--inkmaskv),var(--edge);
+  -webkit-mask-size:100% 300%,100% 100%;mask-size:100% 300%,100% 100%;
+  -webkit-mask-position:50% var(--ink),50% 50%;mask-position:50% var(--ink),50% 50%;
+}
+/* the wet bloom that trails the edge while it moves */
+.inkwrap{position:relative;overflow:hidden}
+.inkwrap>.inkbleed{position:absolute;inset:-2%;pointer-events:none;z-index:4;
+  background:radial-gradient(60% 70% at var(--bx,50%) 50%,rgba(63,44,51,.30),rgba(63,44,51,0) 68%);
+  opacity:var(--bo,0);mix-blend-mode:multiply;transition:opacity .5s linear}
+
+/* ---- word-by-word text ---- */
+.w{display:inline-block;overflow:hidden;vertical-align:top}
+.w>i{display:inline-block;font-style:inherit;transform:translateY(115%) rotate(2deg);
+  transition:transform .95s cubic-bezier(.19,1,.22,1)}
+.on .w>i{transform:none}
+
+/* generic fade/rise reveal */
+.rv{opacity:0;transform:translateY(1.4rem) scale(.985);transform-origin:left bottom;
+  transition:opacity .95s var(--ease),transform 1.15s var(--ease),filter .95s var(--ease);filter:blur(2px)}
+.rv.in{opacity:1;transform:none;filter:none}
+.rv[data-d="1"]{transition-delay:.08s}.rv[data-d="2"]{transition-delay:.16s}
+.rv[data-d="3"]{transition-delay:.24s}.rv[data-d="4"]{transition-delay:.32s}
+
+/* ============================ chrome ============================ */
+#gl{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block;pointer-events:none}
+#glp{position:fixed;inset:0;width:100vw;height:100vh;z-index:45;display:block;pointer-events:none;
+  opacity:0;transition:opacity .8s var(--ease)}
+/* woven canvas + wet paint, composited over the page */
+#weave{position:fixed;inset:0;width:100vw;height:100vh;z-index:58;display:block;pointer-events:none;
+  mix-blend-mode:overlay;opacity:.62}
+@media (prefers-reduced-motion:reduce){#weave{opacity:.34}}
+.no-webgl .hero-stage{background:
+  radial-gradient(70% 55% at 52% 6%,rgba(255,244,221,.72),transparent 62%),
+  linear-gradient(160deg,#1d2609 0%,#4f5d2c 42%,#78885a 62%,#25300f 100%)}
+.no-webgl .capsule .sticky{background:linear-gradient(#8ab265,#5e7638)}
+.no-webgl #glprod{display:none}
+#grain{
+  position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.11;
+  mix-blend-mode:overlay;background-repeat:repeat;background-size:180px 180px;
+}
+#vig{position:fixed;inset:0;z-index:59;pointer-events:none;opacity:0;transition:opacity .6s linear;
+  background:radial-gradient(120% 88% at 50% 42%,transparent 38%,rgba(12,18,4,.5) 100%)}
+
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:72;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.7rem var(--pad);
+  color:var(--paper);
+  transition:color .45s var(--ease),text-shadow .45s var(--ease);
+}
+.menu[hidden]{display:none}
+.menu{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;
+  background:rgba(30,19,25,.55);backdrop-filter:blur(10px) saturate(1.05);
+  -webkit-backdrop-filter:blur(10px) saturate(1.05);
+  opacity:0;transition:opacity .5s var(--ease)}
+.menu.open{opacity:1}
+.menu-sheet{width:100%;background:var(--paper);color:var(--ink);
+  padding:6.4rem var(--pad) 2.6rem;
+  transform:translateY(-100%);transition:transform .72s cubic-bezier(.66,0,.2,1)}
+.menu.open .menu-sheet{transform:translateY(0)}
+.menu-cols{display:grid;grid-template-columns:repeat(3,minmax(0,15rem)) 1fr;gap:2rem;
+  padding-bottom:3.4rem;border-bottom:1px solid rgba(138,95,108,.24)}
+.menu-col h4{font-size:max(11px,.9rem);text-transform:uppercase;letter-spacing:.06em;
+  color:rgba(138,95,108,.7);font-weight:400;margin-bottom:1.1rem}
+.menu-col a{display:block;font-size:2.05rem;line-height:1.24;letter-spacing:-.02em;
+  color:var(--heading);opacity:0;transform:translateY(.9rem);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),color .3s}
+.menu.open .menu-col a{opacity:1;transform:none}
+.menu-col a:hover{color:var(--ink)}
+.menu-cols .menu-col:nth-child(1) a{transition-delay:.16s}
+.menu-cols .menu-col:nth-child(2) a{transition-delay:.22s}
+.menu-cols .menu-col:nth-child(3) a{transition-delay:.28s}
+.menu-foot{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;
+  flex-wrap:wrap;padding-top:2rem}
+.menu-big{font-size:5.4rem;line-height:.94;letter-spacing:-.035em;color:var(--ink);
+  opacity:0;transform:translateY(1.2rem);transition:opacity .6s var(--ease) .3s,transform .6s var(--ease) .3s}
+.menu.open .menu-big{opacity:1;transform:none}
+.menu-big:hover{color:var(--rose)}
+.menu-meta{display:flex;flex-direction:column;align-items:flex-end;gap:.4rem;
+  color:rgba(138,95,108,.85);opacity:0;transition:opacity .6s var(--ease) .38s}
+.menu.open .menu-meta{opacity:1}
+body.menu-open{overflow:hidden}
+.nav #menuBtn .mkico{transition:transform .55s var(--ease)}
+.nav.menu-live #menuBtn .mkico{transform:rotate(135deg) scale(.92)}
+@media (max-width:900px){
+  .menu-sheet{padding:5.4rem var(--pad) 2rem}
+  .menu-cols{grid-template-columns:1fr 1fr;gap:1.4rem;padding-bottom:2rem}
+  .menu-col a{font-size:1.5rem}
+  .menu-big{font-size:2.8rem}
+  .menu-meta{align-items:flex-start}
+}
+.nav.on-art{text-shadow:0 1px 14px rgba(30,19,25,.55)}
+.nav.on-art svg{filter:drop-shadow(0 1px 10px rgba(30,19,25,.55))}
+.nav a,.nav button{font-size:max(11px,.94rem);text-transform:uppercase;letter-spacing:.045em;
+  background:none;border:0;color:inherit;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:.6rem}
+.nav .brand{position:absolute;left:50%;top:1.15rem;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.18rem;transition:color .45s var(--ease)}
+.nav .brand svg{width:1.85rem;height:auto;display:block}
+.nav .brand span{font-size:max(11px,.84rem);letter-spacing:.005em;font-weight:500;text-transform:none}
+.mkico{width:.78rem;height:auto;display:block}
+
+/* buttons */
+.btn{
+  --fill:var(--paper);--fg:var(--ink);--mx:50%;--my:50%;
+  display:inline-flex;align-items:center;gap:.85rem;
+  padding:.9rem 1.45rem;border:1px solid currentColor;border-radius:2px;
+  font-size:max(11px,.92rem);text-transform:uppercase;letter-spacing:.045em;
+  position:relative;overflow:hidden;z-index:0;will-change:transform;
+  transition:color .38s var(--ease),border-color .38s var(--ease),
+             transform .55s cubic-bezier(.19,1,.22,1);
+}
+/* the ink blooms out of the pointer as a true circle, with a ragged wet edge */
+.btn::before{content:"";position:absolute;z-index:0;background:var(--fill);
+  left:var(--mx);top:var(--my);width:var(--d,10rem);height:var(--d,10rem);
+  border-radius:50%;margin:calc(var(--d,10rem) / -2) 0 0 calc(var(--d,10rem) / -2);
+  transform:scale(0);
+  transition:transform .58s cubic-bezier(.19,1,.22,1);
+  -webkit-mask-image:var(--inkmask);mask-image:var(--inkmask);
+  -webkit-mask-size:230% 230%;mask-size:230% 230%;
+  -webkit-mask-position:66% 50%;mask-position:66% 50%;
+  -webkit-mask-repeat:no-repeat;mask-repeat:no-repeat}
+.btn:hover::before,.btn:focus-visible::before{transform:scale(1)}
+.btn>*{position:relative;z-index:1}
+.btn .lbl{position:relative;z-index:1;display:inline-block;overflow:hidden;vertical-align:middle}
+.btn .lbl span{display:block;transition:transform .5s cubic-bezier(.19,1,.22,1)}
+.btn .lbl span+span{position:absolute;left:0;top:0;transform:translateY(115%)}
+.btn:hover .lbl span{transform:translateY(-115%)}
+.btn:hover .lbl span+span{transform:translateY(0)}
+.btn .dot{width:.3rem;height:.3rem;border-radius:50%;background:currentColor;flex:none;
+  transition:transform .55s cubic-bezier(.19,1,.22,1),opacity .4s}
+.btn:hover .dot:first-child{transform:translateX(.34rem) scale(.6);opacity:.5}
+.btn:hover .dot:last-child{transform:translateX(-.34rem) scale(1.7)}
+.btn-light{color:var(--paper);--fill:var(--paper);--fg:var(--ink)}
+.btn-dark{color:var(--ink);--fill:var(--ink);--fg:var(--paper)}
+.btn:hover,.btn:focus-visible{color:var(--fg)}
+
+/* ============================ hero ============================ */
+.hero{position:relative;z-index:2}
+.hero-stage{position:relative;height:100svh;min-height:38rem}
+.hero-copy{position:absolute;inset:0;padding:0 var(--pad);pointer-events:none}
+.hero h1{position:absolute;left:var(--pad);top:14.5%;pointer-events:auto}
+.hero .h2wrap{position:absolute;right:var(--pad);bottom:22%;width:34rem;max-width:44vw;pointer-events:auto}
+.hero .h2wrap h2{margin-bottom:1.9rem}
+.hero .hero-desc{max-width:20rem;color:var(--paper);margin-bottom:1.5rem}
+.hero-fade{position:absolute;left:0;right:0;bottom:0;height:9rem;pointer-events:none;
+  background:linear-gradient(rgba(30,19,25,0),rgba(30,19,25,.30))}
+.logos{
+  position:relative;background:var(--night);padding:7.4rem var(--pad) 5.6rem;
+  display:flex;align-items:center;justify-content:space-between;gap:2rem;
+}
+/* the band is a torn strip of paper laid over the hero, not a fade into it */
+.logos::before{content:"";position:absolute;left:0;right:0;top:-5.4rem;height:5.5rem;
+  pointer-events:none;z-index:1;
+  background-image:var(--tearplate);background-size:100% 100%;background-repeat:no-repeat}
+.logos .lg{height:2.5rem;display:flex;align-items:center;color:var(--paper);opacity:.92}
+.logos .lg svg{height:100%;width:auto}
+
+/* scroll cue */
+.cue{position:absolute;left:50%;bottom:2.2rem;transform:translateX(-50%);z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;color:var(--paper);opacity:.55}
+.cue .bar{width:1px;height:2.4rem;background:linear-gradient(var(--paper),transparent);animation:cue 2.2s var(--ease) infinite}
+@keyframes cue{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}
+  55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.cue span{font-size:max(11px,.82rem);text-transform:uppercase;letter-spacing:.16em}
+
+/* ============================ split sections ============================ */
+.split{position:relative;z-index:2;background:var(--paper);display:grid;grid-template-columns:1fr 1fr;min-height:100svh}
+.split .media{position:relative;overflow:hidden;background:var(--ink)}
+.split .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scale(1.12);will-change:transform}
+.split .pane{padding:5.6rem var(--pad);display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.split .pane .top{max-width:38rem}
+.src{margin-top:1.5rem;font-size:max(11px,.94rem);color:rgba(138,95,108,.75)}
+.overlay-caps{position:absolute;left:var(--pad);top:5.6rem;max-width:23rem;color:var(--paper);z-index:3}
+.scrim{position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:linear-gradient(160deg,rgba(30,19,25,.72),rgba(30,19,25,.12) 46%,transparent 70%)}
+.leafart{position:absolute;right:-8rem;bottom:-6rem;width:42rem;pointer-events:none;
+  mix-blend-mode:multiply;opacity:.95;rotate:-4deg;
+  --edge:radial-gradient(closest-side at 50% 50%,#000 60%,transparent 97%)}
+
+/* ============================ capsule (scroll 3d) ============================ */
+.capsule{position:relative;z-index:2;height:420svh}
+.capsule .sticky{position:sticky;top:0;height:100svh;overflow:hidden}
+.capsule .bigword{
+  position:absolute;left:0;right:0;bottom:-1.2rem;text-align:left;padding:0 var(--pad);
+  font-size:15.5rem;line-height:.78;font-weight:400;letter-spacing:-.045em;white-space:nowrap;
+  color:rgba(245,236,230,.34);pointer-events:none;
+}
+.capsule .headline{position:absolute;left:var(--pad);top:19%;width:34rem;max-width:46vw;color:var(--paper)}
+.capsule .headline2{position:absolute;right:var(--pad);bottom:12%;width:26rem;max-width:40vw;color:var(--paper);text-align:left}
+.card{
+  position:absolute;width:21.5rem;max-width:34vw;border-radius:2px;overflow:hidden;
+  background:var(--paper);color:var(--ink);
+  opacity:0;transform:translateY(2.2rem);will-change:transform,opacity;
+}
+/* the plate is an ink drawing keyed to alpha over white, drawn as a plain <img>:
+   a CSS mask would be CORS-blocked when the page is opened over file:// */
+.card .art{position:relative;height:10.4rem;overflow:hidden;
+  border-bottom:1px solid rgba(138,95,108,.16)}
+.card .art img{position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:50% 48%;
+  opacity:.82;filter:invert(1)}                    /* white ink -> plum-black on paper */
+.card .body{padding:1.3rem 1.5rem 1.55rem}
+.card h3{margin-bottom:.72rem}
+.card.glass{background:rgba(124,78,92,.50);color:var(--paper);backdrop-filter:blur(16px) saturate(1.12);
+  -webkit-backdrop-filter:blur(16px) saturate(1.12);border:1px solid rgba(245,236,230,.20);
+  box-shadow:0 1.4rem 3.2rem rgba(30,19,25,.18)}
+.card.glass .art{border-bottom-color:rgba(245,236,230,.22)}
+.card.glass .art img{filter:none;opacity:.80}     /* left white on the glass panels */
+
+/* ============================ numbers ============================ */
+.stat{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2rem;
+  padding-bottom:.6rem;border-bottom:1px solid rgba(138,95,108,.35);margin-bottom:1.5rem}
+.stat .lbl{max-width:12.5rem;text-align:left;padding-bottom:.4rem}
+.note{font-size:max(11px,.9rem);line-height:1.4;text-transform:uppercase;color:rgba(138,95,108,.8);max-width:32rem;margin-top:1.2rem}
+
+/* ============================ products ============================ */
+.products{position:relative;z-index:2;background:var(--paper);padding:5.6rem 0 7rem;overflow:hidden}
+.products::before{content:"";position:absolute;left:0;right:0;bottom:0;height:78%;z-index:0;
+  background:url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/prod-backdrop.webp") center/cover no-repeat;
+  opacity:.55;mix-blend-mode:multiply;pointer-events:none;
+  -webkit-mask-image:linear-gradient(transparent,#000 16%,#000 82%,transparent);
+  mask-image:linear-gradient(transparent,#000 16%,#000 82%,transparent)}
+.products>*{position:relative;z-index:1}
+.products h2{padding:0 var(--pad);margin-bottom:15rem}
+.prod-stage{position:relative;padding:0 var(--pad)}
+#glprod{position:absolute;left:0;right:0;top:-14.5rem;bottom:0;width:100%;height:auto;z-index:3;pointer-events:none}
+.prod-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,1fr);gap:1.9rem;align-items:start}
+.pcard{background:var(--rose);color:var(--paper);padding:1.5rem;border-radius:2px;position:relative;
+  transition:transform .6s var(--ease)}
+.pcard:hover{transform:translateY(-.5rem)}
+.pcard .arrow{position:absolute;right:0;top:0;width:3.3rem;height:3.3rem;display:grid;place-items:center;
+  background:rgba(245,236,230,.14)}
+.pcard .arrow svg{width:.9rem;height:.9rem}
+.pcard h3{margin-bottom:.75rem;padding-right:3.6rem}
+.pcard .pad{height:12.4rem}
+.prod-grid>*:nth-child(2){margin-top:5.4rem}
+.prod-grid>*:nth-child(3){margin-top:10.4rem}
+
+/* ============================ trials ============================ */
+.mapcard{position:relative;z-index:1;margin-top:2rem;width:min(100%,38rem);
+  background:var(--paper);padding:1.3rem 1.3rem 1rem;
+  box-shadow:0 2rem 4.4rem rgba(12,6,10,.46);
+  transform:scale(var(--mz,1));transform-origin:32% 45%;
+  transition:transform .12s linear}
+.mapcard .cap{display:flex;justify-content:space-between;gap:1rem;color:rgba(138,95,108,.85);
+  font-size:max(11px,.88rem);text-transform:uppercase;letter-spacing:.05em;margin-top:.5rem}
+.map{position:relative;width:100%;aspect-ratio:1/1;margin-top:0}
+.map img{width:100%;height:100%;object-fit:contain;mix-blend-mode:multiply;
+  --edge:radial-gradient(closest-side at 50% 50%,#000 78%,transparent 100%)}
+#stations .pane{justify-content:flex-start;color:var(--paper);background:
+  radial-gradient(120% 80% at 15% 0%,rgba(122,78,92,.42),transparent 62%),
+  linear-gradient(168deg,#2a1a21 0%,#1e1319 58%,#241820 100%)}
+#stations .pane .wipe{--on:var(--paper);--off:rgba(245,236,230,.26)}
+#stations .pane .caps{color:rgba(245,236,230,.86)}
+#stations .pane::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/prod-backdrop.webp") center/cover no-repeat;
+  opacity:.10;mix-blend-mode:screen}
+#stations .pane>*{position:relative;z-index:1}
+.map svg{width:100%;height:auto;display:block}
+.map .land{fill:none;stroke:rgba(138,95,108,.78);stroke-width:.75;stroke-dasharray:1.4 2.1;stroke-linecap:round}
+.stn{position:absolute;width:0;height:0;z-index:2}
+.stn i{position:absolute;left:-.2rem;top:-.2rem;width:.4rem;height:.4rem;border-radius:50%;
+  background:var(--rose);box-shadow:0 0 0 .2rem rgba(181,128,142,.20);
+  transition:transform .3s var(--ease),background .3s}
+.stn s{position:absolute;left:.62rem;top:50%;transform:translateY(-50%);text-decoration:none;
+  display:flex;flex-direction:column;line-height:1.14;white-space:nowrap}
+.stn.l s{left:auto;right:.62rem;align-items:flex-end}
+.stn b{font-weight:500;font-size:max(10.5px,.84rem);letter-spacing:.005em;color:var(--ink);
+  text-shadow:0 0 .5rem rgba(245,236,230,.95);transition:color .3s}
+.stn em{font-style:normal;font-size:max(10px,.74rem);letter-spacing:.05em;text-transform:uppercase;
+  color:#8a5f6c;text-shadow:0 0 .5rem rgba(245,236,230,.9)}
+.stn:hover i{transform:scale(2);background:var(--ink)}
+.stn:hover b{color:var(--rose)}
+
+/* ============================ cta / footer ============================ */
+.cta{position:relative;z-index:2;color:var(--paper);padding:5.6rem var(--pad) 6rem;overflow:hidden;min-height:88svh;
+  background:var(--rose)}
+.cta::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/footer-fuji.webp") center 42%/cover no-repeat}
+.cta::after{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:linear-gradient(105deg,rgba(63,44,51,.82) 0%,rgba(63,44,51,.56) 36%,rgba(140,92,106,.26) 66%,rgba(30,19,25,.46) 100%)}
+.cta>*{position:relative;z-index:1}
+.collage{position:absolute;inset:0;pointer-events:none}
+.collage>*{position:absolute}
+.plate{background:var(--paper);padding:.55rem .55rem 1.6rem;
+  box-shadow:0 1.6rem 3.4rem rgba(30,19,25,.32);transform:rotate(2deg)}
+.plate img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+footer{position:relative;z-index:2;background:var(--paper);padding:4.4rem var(--pad) 2.2rem;overflow:hidden}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:26rem;z-index:0;pointer-events:none;
+  background:url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/footer-fuji.webp") center 34%/cover no-repeat;opacity:.20;
+  -webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+footer>*{position:relative;z-index:1}
+.fgrid{display:grid;grid-template-columns:repeat(5,1fr) 1.2fr;gap:2rem;margin-bottom:7rem}
+.fcol h4{font-size:max(11px,.94rem);text-transform:uppercase;letter-spacing:.03em;color:rgba(138,95,108,.6);margin-bottom:.9rem;font-weight:400}
+.fcol a{display:block;font-size:max(11px,.94rem);text-transform:uppercase;letter-spacing:.03em;margin-bottom:.42rem;
+  transition:opacity .3s}
+.fcol a:hover{opacity:.6}
+.fmark{display:block;width:5.6rem;margin:0 auto 1.5rem;color:var(--ink)}
+.fbot{display:flex;justify-content:space-between;align-items:center;font-size:max(11px,.9rem);text-transform:uppercase;
+  letter-spacing:.03em;color:rgba(138,95,108,.9);gap:2rem;flex-wrap:wrap}
+.fbot .r{display:flex;gap:1.6rem}
+
+/* ============================ ticker ============================ */
+.ticker{position:relative;z-index:2;background:var(--paper);border-top:1px solid rgba(138,95,108,.2);
+  border-bottom:1px solid rgba(138,95,108,.2);overflow:hidden;padding:1.4rem 0}
+.ticker .track{display:flex;gap:3.4rem;width:max-content;will-change:transform}
+.ticker .it{display:flex;align-items:center;gap:1.1rem;font-size:1.05rem;text-transform:uppercase;
+  letter-spacing:.03em;color:var(--heading);white-space:nowrap}
+.ticker .it svg{width:.85rem;flex:none;color:var(--rose)}
+
+/* ============================ preloader ============================ */
+#pre{position:fixed;inset:0;z-index:100;background:var(--night);display:grid;place-items:center;
+  transition:opacity .9s var(--ease),visibility .9s}
+#pre.done{opacity:0;visibility:hidden}
+#pre .wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem;color:var(--paper)}
+#pre svg{width:3.6rem}
+#pre .track{width:11rem;height:1px;background:rgba(245,236,230,.22);overflow:hidden}
+#pre .fill{height:100%;background:var(--paper);transform-origin:left;transform:scaleX(0);transition:transform .35s linear}
+#pre .pct{font-size:.85rem;letter-spacing:.2em;text-transform:uppercase}
+
+/* ============================ responsive ============================ */
+@media (max-width:900px){
+  html{font-size:clamp(12.5px,3.4vw,15px)}
+  .t100{font-size:3.5rem}.t60{font-size:2.5rem}.t50{font-size:2.4rem}.t36{font-size:1.7rem}
+  .hero h1{top:11%}
+  .hero .h2wrap{left:var(--pad);right:auto;bottom:16%;width:auto;max-width:80vw}
+  .split{grid-template-columns:1fr;min-height:0}
+  .split .media{height:58svh}
+  .split .pane{padding:3.6rem var(--pad) 4.2rem;gap:3rem}
+  .overlay-caps{top:auto;bottom:2.4rem;right:var(--pad);max-width:none}
+  .stat{margin-bottom:1.5rem}
+  .mono-num{font-size:3.2rem}
+  .map{margin-top:1.6rem}
+  .capsule{height:360svh}
+  .capsule .bigword{font-size:5.4rem}
+  .capsule .headline,.capsule .headline2{max-width:78vw;width:auto}
+  .card{width:15rem;max-width:68vw}
+  .card .art{height:6.2rem}
+  .card .body{padding:.9rem 1rem 1.05rem}
+  .card h3{font-size:1.32rem}
+  #c1{left:var(--pad)!important;right:auto!important;top:16%!important}
+  #c2{left:auto!important;right:var(--pad)!important;top:40%!important}
+  #c3{left:var(--pad)!important;right:auto!important;top:64%!important}
+  #c4{left:var(--pad)!important;right:auto!important;top:15%!important}
+  #c5{left:auto!important;right:var(--pad)!important;top:56%!important}
+  #c6{left:var(--pad)!important;right:auto!important;top:13%!important}
+  #c7{left:auto!important;right:var(--pad)!important;top:52%!important}
+  .prod-grid{grid-template-columns:1fr;gap:1.2rem}
+  .prod-grid>*:nth-child(2),.prod-grid>*:nth-child(3){margin-top:0}
+  .pcard .pad{height:8rem}
+  .fgrid{grid-template-columns:1fr 1fr;gap:1.6rem;margin-bottom:3.4rem}
+  .logos{flex-wrap:wrap;gap:1.6rem 2.4rem;justify-content:flex-start;padding-bottom:3rem}
+  .logos .lg{height:1.9rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .rv{transition:none;opacity:1;transform:none}
+  .cue .bar{animation:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="mk" viewBox="0 0 100 100">
+<path fill-rule="evenodd" d="M50,29.84C50.39,29.84 50.74,23.76 51.18,21.82C51.63,19.89 52.14,19.27 52.67,18.22C53.2,17.17 53.77,16.33 54.36,15.52C54.94,14.72 55.56,14.03 56.19,13.39C56.82,12.75 57.48,12.19 58.14,11.68C58.81,11.17 59.49,10.73 60.18,10.34C60.87,9.95 61.57,9.62 62.28,9.33C62.98,9.05 63.7,8.82 64.41,8.63C65.12,8.44 65.83,8.31 66.54,8.22C67.25,8.13 67.96,8.08 68.66,8.09C69.36,8.09 70.07,8.12 70.73,8.25C71.39,8.38 72.08,8.5 72.62,8.86C73.16,9.23 73.64,9.73 73.97,10.42C74.29,11.12 74.33,12.26 74.57,13.03C74.8,13.8 74.89,14.69 75.39,15.05C75.89,15.41 76.77,15.22 77.57,15.21C78.38,15.2 79.47,14.88 80.23,14.98C80.99,15.07 81.62,15.38 82.14,15.78C82.65,16.18 82.98,16.8 83.31,17.39C83.63,17.97 83.88,18.64 84.1,19.3C84.32,19.96 84.49,20.65 84.62,21.36C84.76,22.06 84.85,22.78 84.89,23.51C84.94,24.25 84.94,25 84.88,25.76C84.83,26.51 84.73,27.28 84.57,28.06C84.41,28.84 84.2,29.62 83.93,30.41C83.65,31.2 83.32,32 82.91,32.8C82.5,33.59 82.03,34.4 81.45,35.2C80.86,36.01 80.24,36.81 79.4,37.64C78.57,38.47 78.14,39.15 76.43,40.17C74.73,41.19 69.05,43.4 69.17,43.77C69.29,44.14 75.18,42.59 77.16,42.42C79.14,42.24 79.89,42.54 81.05,42.72C82.22,42.9 83.19,43.18 84.14,43.49C85.09,43.8 85.93,44.17 86.74,44.58C87.54,44.98 88.27,45.43 88.96,45.91C89.65,46.38 90.28,46.89 90.86,47.43C91.45,47.96 91.98,48.53 92.47,49.11C92.96,49.69 93.4,50.3 93.8,50.92C94.19,51.54 94.54,52.18 94.85,52.82C95.15,53.47 95.42,54.13 95.63,54.8C95.84,55.46 96.03,56.14 96.11,56.81C96.2,57.48 96.29,58.17 96.11,58.8C95.93,59.42 95.6,60.04 95.04,60.57C94.49,61.09 93.42,61.47 92.76,61.94C92.1,62.4 91.28,62.76 91.09,63.35C90.89,63.94 91.35,64.71 91.61,65.47C91.87,66.24 92.51,67.18 92.65,67.93C92.8,68.68 92.7,69.38 92.48,69.99C92.25,70.6 91.77,71.1 91.31,71.6C90.85,72.09 90.29,72.53 89.73,72.94C89.17,73.35 88.57,73.73 87.94,74.08C87.31,74.42 86.66,74.73 85.97,75C85.29,75.27 84.57,75.5 83.84,75.68C83.1,75.87 82.34,76.01 81.55,76.1C80.76,76.19 79.95,76.23 79.11,76.21C78.28,76.19 77.42,76.13 76.53,75.98C75.64,75.83 74.74,75.64 73.79,75.33C72.84,75.03 71.89,74.68 70.84,74.14C69.8,73.61 69.01,73.41 67.52,72.1C66.02,70.79 62.17,66.08 61.85,66.31C61.53,66.54 64.83,71.66 65.61,73.49C66.38,75.32 66.33,76.12 66.52,77.28C66.71,78.44 66.74,79.46 66.74,80.45C66.74,81.45 66.65,82.37 66.51,83.26C66.38,84.15 66.17,84.99 65.93,85.79C65.69,86.59 65.4,87.35 65.07,88.07C64.75,88.79 64.37,89.47 63.97,90.12C63.57,90.76 63.13,91.37 62.66,91.94C62.2,92.5 61.7,93.03 61.18,93.52C60.65,94.02 60.11,94.47 59.54,94.88C58.97,95.28 58.38,95.68 57.77,95.96C57.16,96.24 56.53,96.55 55.88,96.57C55.23,96.6 54.54,96.48 53.87,96.1C53.2,95.73 52.5,94.84 51.86,94.35C51.21,93.87 50.62,93.2 50,93.2C49.38,93.2 48.79,93.87 48.14,94.35C47.5,94.84 46.8,95.73 46.13,96.1C45.46,96.48 44.77,96.6 44.12,96.57C43.47,96.55 42.84,96.24 42.23,95.96C41.62,95.68 41.03,95.28 40.46,94.88C39.89,94.47 39.35,94.02 38.82,93.52C38.3,93.03 37.8,92.5 37.34,91.94C36.87,91.37 36.43,90.76 36.03,90.12C35.63,89.47 35.25,88.79 34.93,88.07C34.6,87.35 34.31,86.59 34.07,85.79C33.83,84.99 33.62,84.15 33.49,83.26C33.35,82.37 33.26,81.45 33.26,80.45C33.26,79.46 33.29,78.44 33.48,77.28C33.67,76.12 33.62,75.32 34.39,73.49C35.17,71.66 38.47,66.54 38.15,66.31C37.83,66.08 33.98,70.79 32.48,72.1C30.99,73.41 30.2,73.61 29.16,74.14C28.11,74.68 27.16,75.03 26.21,75.33C25.26,75.64 24.36,75.83 23.47,75.98C22.58,76.13 21.72,76.19 20.89,76.21C20.05,76.23 19.24,76.19 18.45,76.1C17.66,76.01 16.9,75.87 16.16,75.68C15.43,75.5 14.71,75.27 14.03,75C13.34,74.73 12.69,74.42 12.06,74.08C11.43,73.73 10.83,73.35 10.27,72.94C9.71,72.53 9.15,72.09 8.69,71.6C8.23,71.1 7.75,70.6 7.52,69.99C7.3,69.38 7.2,68.68 7.35,67.93C7.49,67.18 8.13,66.24 8.39,65.47C8.65,64.71 9.11,63.94 8.91,63.35C8.72,62.76 7.9,62.4 7.24,61.94C6.58,61.47 5.51,61.09 4.96,60.57C4.4,60.04 4.07,59.42 3.89,58.8C3.71,58.17 3.8,57.48 3.89,56.81C3.97,56.14 4.16,55.46 4.37,54.8C4.58,54.13 4.85,53.47 5.15,52.82C5.46,52.18 5.81,51.54 6.2,50.92C6.6,50.3 7.04,49.69 7.53,49.11C8.02,48.53 8.55,47.96 9.14,47.43C9.72,46.89 10.35,46.38 11.04,45.91C11.73,45.43 12.46,44.98 13.26,44.58C14.07,44.17 14.91,43.8 15.86,43.49C16.81,43.18 17.78,42.9 18.95,42.72C20.11,42.54 20.86,42.24 22.84,42.42C24.82,42.59 30.71,44.14 30.83,43.77C30.95,43.4 25.27,41.19 23.57,40.17C21.86,39.15 21.43,38.47 20.6,37.64C19.76,36.81 19.14,36.01 18.55,35.2C17.97,34.4 17.5,33.59 17.09,32.8C16.68,32 16.35,31.2 16.07,30.41C15.8,29.62 15.59,28.84 15.43,28.06C15.27,27.28 15.17,26.51 15.12,25.76C15.06,25 15.06,24.25 15.11,23.51C15.15,22.78 15.24,22.06 15.38,21.36C15.51,20.65 15.68,19.96 15.9,19.3C16.12,18.64 16.37,17.97 16.69,17.39C17.02,16.8 17.35,16.18 17.86,15.78C18.38,15.38 19.01,15.07 19.77,14.98C20.53,14.88 21.62,15.2 22.43,15.21C23.23,15.22 24.11,15.41 24.61,15.05C25.11,14.69 25.2,13.8 25.43,13.03C25.67,12.26 25.71,11.12 26.03,10.42C26.36,9.73 26.84,9.23 27.38,8.86C27.92,8.5 28.61,8.38 29.27,8.25C29.93,8.12 30.64,8.09 31.34,8.09C32.04,8.08 32.75,8.13 33.46,8.22C34.17,8.31 34.88,8.44 35.59,8.63C36.3,8.82 37.02,9.05 37.72,9.33C38.43,9.62 39.13,9.95 39.82,10.34C40.51,10.73 41.19,11.17 41.86,11.68C42.52,12.19 43.18,12.75 43.81,13.39C44.44,14.03 45.06,14.72 45.64,15.52C46.23,16.33 46.8,17.17 47.33,18.22C47.86,19.27 48.37,19.89 48.82,21.82C49.26,23.76 49.61,29.84 50,29.84ZM50,44.72C47.08,44.72 44.72,47.08 44.72,50C44.72,52.92 47.08,55.28 50,55.28C52.92,55.28 55.28,52.92 55.28,50C55.28,47.08 52.92,44.72 50,44.72Z"/>
+</symbol>
+<symbol id="x4" viewBox="0 0 100 100">
+<path fill-rule="evenodd" d="M50,29.84C50.39,29.84 50.74,23.76 51.18,21.82C51.63,19.89 52.14,19.27 52.67,18.22C53.2,17.17 53.77,16.33 54.36,15.52C54.94,14.72 55.56,14.03 56.19,13.39C56.82,12.75 57.48,12.19 58.14,11.68C58.81,11.17 59.49,10.73 60.18,10.34C60.87,9.95 61.57,9.62 62.28,9.33C62.98,9.05 63.7,8.82 64.41,8.63C65.12,8.44 65.83,8.31 66.54,8.22C67.25,8.13 67.96,8.08 68.66,8.09C69.36,8.09 70.07,8.12 70.73,8.25C71.39,8.38 72.08,8.5 72.62,8.86C73.16,9.23 73.64,9.73 73.97,10.42C74.29,11.12 74.33,12.26 74.57,13.03C74.8,13.8 74.89,14.69 75.39,15.05C75.89,15.41 76.77,15.22 77.57,15.21C78.38,15.2 79.47,14.88 80.23,14.98C80.99,15.07 81.62,15.38 82.14,15.78C82.65,16.18 82.98,16.8 83.31,17.39C83.63,17.97 83.88,18.64 84.1,19.3C84.32,19.96 84.49,20.65 84.62,21.36C84.76,22.06 84.85,22.78 84.89,23.51C84.94,24.25 84.94,25 84.88,25.76C84.83,26.51 84.73,27.28 84.57,28.06C84.41,28.84 84.2,29.62 83.93,30.41C83.65,31.2 83.32,32 82.91,32.8C82.5,33.59 82.03,34.4 81.45,35.2C80.86,36.01 80.24,36.81 79.4,37.64C78.57,38.47 78.14,39.15 76.43,40.17C74.73,41.19 69.05,43.4 69.17,43.77C69.29,44.14 75.18,42.59 77.16,42.42C79.14,42.24 79.89,42.54 81.05,42.72C82.22,42.9 83.19,43.18 84.14,43.49C85.09,43.8 85.93,44.17 86.74,44.58C87.54,44.98 88.27,45.43 88.96,45.91C89.65,46.38 90.28,46.89 90.86,47.43C91.45,47.96 91.98,48.53 92.47,49.11C92.96,49.69 93.4,50.3 93.8,50.92C94.19,51.54 94.54,52.18 94.85,52.82C95.15,53.47 95.42,54.13 95.63,54.8C95.84,55.46 96.03,56.14 96.11,56.81C96.2,57.48 96.29,58.17 96.11,58.8C95.93,59.42 95.6,60.04 95.04,60.57C94.49,61.09 93.42,61.47 92.76,61.94C92.1,62.4 91.28,62.76 91.09,63.35C90.89,63.94 91.35,64.71 91.61,65.47C91.87,66.24 92.51,67.18 92.65,67.93C92.8,68.68 92.7,69.38 92.48,69.99C92.25,70.6 91.77,71.1 91.31,71.6C90.85,72.09 90.29,72.53 89.73,72.94C89.17,73.35 88.57,73.73 87.94,74.08C87.31,74.42 86.66,74.73 85.97,75C85.29,75.27 84.57,75.5 83.84,75.68C83.1,75.87 82.34,76.01 81.55,76.1C80.76,76.19 79.95,76.23 79.11,76.21C78.28,76.19 77.42,76.13 76.53,75.98C75.64,75.83 74.74,75.64 73.79,75.33C72.84,75.03 71.89,74.68 70.84,74.14C69.8,73.61 69.01,73.41 67.52,72.1C66.02,70.79 62.17,66.08 61.85,66.31C61.53,66.54 64.83,71.66 65.61,73.49C66.38,75.32 66.33,76.12 66.52,77.28C66.71,78.44 66.74,79.46 66.74,80.45C66.74,81.45 66.65,82.37 66.51,83.26C66.38,84.15 66.17,84.99 65.93,85.79C65.69,86.59 65.4,87.35 65.07,88.07C64.75,88.79 64.37,89.47 63.97,90.12C63.57,90.76 63.13,91.37 62.66,91.94C62.2,92.5 61.7,93.03 61.18,93.52C60.65,94.02 60.11,94.47 59.54,94.88C58.97,95.28 58.38,95.68 57.77,95.96C57.16,96.24 56.53,96.55 55.88,96.57C55.23,96.6 54.54,96.48 53.87,96.1C53.2,95.73 52.5,94.84 51.86,94.35C51.21,93.87 50.62,93.2 50,93.2C49.38,93.2 48.79,93.87 48.14,94.35C47.5,94.84 46.8,95.73 46.13,96.1C45.46,96.48 44.77,96.6 44.12,96.57C43.47,96.55 42.84,96.24 42.23,95.96C41.62,95.68 41.03,95.28 40.46,94.88C39.89,94.47 39.35,94.02 38.82,93.52C38.3,93.03 37.8,92.5 37.34,91.94C36.87,91.37 36.43,90.76 36.03,90.12C35.63,89.47 35.25,88.79 34.93,88.07C34.6,87.35 34.31,86.59 34.07,85.79C33.83,84.99 33.62,84.15 33.49,83.26C33.35,82.37 33.26,81.45 33.26,80.45C33.26,79.46 33.29,78.44 33.48,77.28C33.67,76.12 33.62,75.32 34.39,73.49C35.17,71.66 38.47,66.54 38.15,66.31C37.83,66.08 33.98,70.79 32.48,72.1C30.99,73.41 30.2,73.61 29.16,74.14C28.11,74.68 27.16,75.03 26.21,75.33C25.26,75.64 24.36,75.83 23.47,75.98C22.58,76.13 21.72,76.19 20.89,76.21C20.05,76.23 19.24,76.19 18.45,76.1C17.66,76.01 16.9,75.87 16.16,75.68C15.43,75.5 14.71,75.27 14.03,75C13.34,74.73 12.69,74.42 12.06,74.08C11.43,73.73 10.83,73.35 10.27,72.94C9.71,72.53 9.15,72.09 8.69,71.6C8.23,71.1 7.75,70.6 7.52,69.99C7.3,69.38 7.2,68.68 7.35,67.93C7.49,67.18 8.13,66.24 8.39,65.47C8.65,64.71 9.11,63.94 8.91,63.35C8.72,62.76 7.9,62.4 7.24,61.94C6.58,61.47 5.51,61.09 4.96,60.57C4.4,60.04 4.07,59.42 3.89,58.8C3.71,58.17 3.8,57.48 3.89,56.81C3.97,56.14 4.16,55.46 4.37,54.8C4.58,54.13 4.85,53.47 5.15,52.82C5.46,52.18 5.81,51.54 6.2,50.92C6.6,50.3 7.04,49.69 7.53,49.11C8.02,48.53 8.55,47.96 9.14,47.43C9.72,46.89 10.35,46.38 11.04,45.91C11.73,45.43 12.46,44.98 13.26,44.58C14.07,44.17 14.91,43.8 15.86,43.49C16.81,43.18 17.78,42.9 18.95,42.72C20.11,42.54 20.86,42.24 22.84,42.42C24.82,42.59 30.71,44.14 30.83,43.77C30.95,43.4 25.27,41.19 23.57,40.17C21.86,39.15 21.43,38.47 20.6,37.64C19.76,36.81 19.14,36.01 18.55,35.2C17.97,34.4 17.5,33.59 17.09,32.8C16.68,32 16.35,31.2 16.07,30.41C15.8,29.62 15.59,28.84 15.43,28.06C15.27,27.28 15.17,26.51 15.12,25.76C15.06,25 15.06,24.25 15.11,23.51C15.15,22.78 15.24,22.06 15.38,21.36C15.51,20.65 15.68,19.96 15.9,19.3C16.12,18.64 16.37,17.97 16.69,17.39C17.02,16.8 17.35,16.18 17.86,15.78C18.38,15.38 19.01,15.07 19.77,14.98C20.53,14.88 21.62,15.2 22.43,15.21C23.23,15.22 24.11,15.41 24.61,15.05C25.11,14.69 25.2,13.8 25.43,13.03C25.67,12.26 25.71,11.12 26.03,10.42C26.36,9.73 26.84,9.23 27.38,8.86C27.92,8.5 28.61,8.38 29.27,8.25C29.93,8.12 30.64,8.09 31.34,8.09C32.04,8.08 32.75,8.13 33.46,8.22C34.17,8.31 34.88,8.44 35.59,8.63C36.3,8.82 37.02,9.05 37.72,9.33C38.43,9.62 39.13,9.95 39.82,10.34C40.51,10.73 41.19,11.17 41.86,11.68C42.52,12.19 43.18,12.75 43.81,13.39C44.44,14.03 45.06,14.72 45.64,15.52C46.23,16.33 46.8,17.17 47.33,18.22C47.86,19.27 48.37,19.89 48.82,21.82C49.26,23.76 49.61,29.84 50,29.84ZM50,44.72C47.08,44.72 44.72,47.08 44.72,50C44.72,52.92 47.08,55.28 50,55.28C52.92,55.28 55.28,52.92 55.28,50C55.28,47.08 52.92,44.72 50,44.72Z"/>
+</symbol>
+<symbol id="arr" viewBox="0 0 16 16"><path d="M4 12 12 4M6 4h6v6" fill="none" stroke="currentColor" stroke-width="1.4"/></symbol>
+</defs></svg>
+
+<div id="pre"><div class="wrap">
+  <svg viewBox="0 0 100 100" fill="currentColor"><use href="#mk"/></svg>
+  <div class="track"><div class="fill" id="preFill"></div></div>
+  <div class="pct" id="prePct">0%</div>
+</div></div>
+
+<canvas id="gl"></canvas>
+<canvas id="glp"></canvas>
+<canvas id="weave"></canvas>
+<div id="vig"></div>
+<div id="grain"></div>
+
+<div class="menu" id="menu" hidden>
+  <div class="menu-sheet">
+    <div class="menu-cols">
+      <div class="menu-col">
+        <h4>Season</h4>
+        <a href="#capsule">The front</a><a href="#stations">Bloom map</a><a href="#almanac">Almanac</a>
+      </div>
+      <div class="menu-col">
+        <h4>Travel</h4>
+        <a href="#capsule">Held weeks</a><a href="#quiet">Quiet routes</a><a href="#cta">Group of six</a>
+      </div>
+      <div class="menu-col">
+        <h4>Shop</h4>
+        <a href="#boxes">Sakura sencha</a><a href="#boxes">Yozakura incense</a><a href="#boxes">Hanashio petals</a>
+      </div>
+    </div>
+    <div class="menu-foot">
+      <a class="menu-big" href="#cta">Hold a week</a>
+      <div class="menu-meta">
+        <span class="caps-sm">Next call — mid-January</span>
+        <a class="caps-sm" href="mailto:hello@hanami.example">hello@hanami.example</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="nav" id="nav">
+  <button id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><svg class="mkico" viewBox="0 0 100 100" fill="currentColor"><use href="#x4"/></svg> <span class="mlabel">Menu</span></button>
+  <a class="brand" href="#top" style="color:var(--paper)">
+    <svg viewBox="0 0 100 100" fill="currentColor"><use href="#mk"/></svg>
+    <span>Hanami</span>
+  </a>
+  <a href="#cta">Contact us</a>
+</nav>
+
+<main id="top">
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="hero">
+  <div class="hero-stage">
+    <div class="hero-copy">
+      <h1 class="t100 wipe on-dark" data-wipe="hero">Blossom,<br>Forecast.</h1>
+      <div class="h2wrap">
+        <h2 class="t60 wipe on-dark" data-wipe="hero2">For One Week.<br>For One Lifetime.</h2>
+        <p class="caps hero-desc rv" data-d="2">A bloom-front almanac and a slow week in Japan, timed to the petals rather than the calendar.</p>
+        <a class="btn btn-light rv" data-d="3" href="#capsule"><span class="dot"></span><span class="lbl">See the season</span><span class="dot"></span></a>
+      </div>
+    </div>
+    <div class="cue"><span>Scroll</span><div class="bar"></div></div>
+    <div class="hero-fade"></div>
+  </div>
+  <div class="logos">
+    <div class="lg rv"><svg viewBox="0 0 172 34" fill="currentColor"><circle cx="15" cy="17" r="12" fill="none" stroke="currentColor" stroke-width="1.4"/><g transform="translate(15 17) scale(.15) translate(-50 -50)"><use href="#mk"/></g><text x="36" y="15" font-size="10.5" font-family="inherit" font-weight="600" letter-spacing="1.3">KYOTO GARDEN</text><text x="36" y="27" font-size="8" font-family="inherit" letter-spacing="2.6" opacity=".8">SOCIETY</text></svg></div>
+    <div class="lg rv" data-d="1"><svg viewBox="0 0 152 34" fill="currentColor"><text x="0" y="24" font-size="17" font-family="inherit" font-weight="300" letter-spacing="-.2">the</text><text x="30" y="24" font-size="17" font-family="inherit" font-weight="600" letter-spacing="-.4">SLOW ATLAS</text></svg></div>
+    <div class="lg rv" data-d="2"><svg viewBox="0 0 118 34" fill="currentColor"><text x="0" y="26" font-size="24" font-family="inherit" font-weight="500" letter-spacing="4.5">ORIORI</text><rect x="0" y="30" width="112" height="1.4"/></svg></div>
+    <div class="lg rv" data-d="3"><svg viewBox="0 0 168 34" fill="currentColor"><rect x="0" y="3" width="168" height="28" rx="1.5"/><g transform="translate(17 17) scale(.14) translate(-50 -50)" fill="#1e1319"><use href="#mk"/></g><text x="32" y="22" font-size="13.5" font-family="inherit" font-weight="600" fill="#1e1319">NIHON HANA</text><text x="129" y="22" font-size="9" font-family="inherit" fill="#1e1319" opacity=".75">KYOKAI</text></svg></div>
+    <div class="lg rv" data-d="4"><svg viewBox="0 0 96 34" fill="currentColor"><path d="M14 4a13 13 0 1 0 0 26 15.5 15.5 0 0 1 0-26Z"/><text x="26" y="26" font-size="22" font-family="inherit" font-weight="500" letter-spacing="2">TSUKI</text></svg></div>
+  </div>
+</section>
+
+<!-- ================= THE MISS ================= -->
+<section class="split" id="miss">
+  <div class="media" data-par="0.12">
+    <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/sec-bloom.webp" alt="Cherry blossoms in close-up, petals and stamens">
+    <div class="scrim"></div>
+    <div class="overlay-caps caps rv">Most people book the blossom by the calendar. The tree does not read one. It answers to warmth, to rain, to the fourteen days before — and then it is gone in seven.</div>
+  </div>
+  <div class="pane">
+    <div class="top">
+      <h2 class="t50 wipe" data-wipe="miss">Most people miss the bloom by four days.</h2>
+      <p class="src rv" data-d="2">Fifty-eight bloom stations, 2004–2025</p>
+    </div>
+    <img crossorigin="anonymous" class="leafart" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/art-branch.webp" alt="" aria-hidden="true" loading="lazy">
+  </div>
+</section>
+
+<!-- ================= THE FRONT (3D) ================= -->
+<section class="capsule" id="capsule">
+  <div class="sticky">
+    <h2 class="headline t50 wipe on-green" data-wipe="cap1">What if you arrived on the right morning?</h2>
+    <div class="headline2">
+      <h3 class="t50 wipe on-green" data-wipe="cap2" style="margin-bottom:1.4rem">We follow the front</h3>
+      <p class="caps rv" style="margin-bottom:1.5rem">Hanami reads the same warmth the tree does. Fifty-eight stations, twelve centuries of records, and one week held open until the front is called.</p>
+      <a class="btn btn-light rv" data-d="2" href="#stations"><span class="dot"></span><span class="lbl">Read the almanac</span><span class="dot"></span></a>
+    </div>
+    <div class="bigword" id="bigword">Hanami&nbsp;&nbsp;花見</div>
+
+    <div class="card" id="c1" style="left:var(--pad);top:50%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c1.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Shorter than a week</h3>
+      <p class="caps-sm">The window between first bloom and petal fall is seven days. We plan inside it, not around it.</p></div>
+    </div>    <div class="card" id="c2" style="left:34.5%;top:56%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c2.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Held, not booked</h3>
+      <p class="caps-sm">Your week stays open until the front is called. Then we place you where the petals actually are — no change fees, no calendar guesswork.</p></div>
+    </div>    <div class="card" id="c3" style="right:var(--pad);top:52%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c3.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Quiet by design</h3>
+      <p class="caps-sm">Same trees, different hour. We route you to the mornings nobody photographs.</p></div>
+    </div>    <div class="card glass" id="c4" style="left:9.5%;top:19%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c4.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Just look up</h3>
+      <p class="caps-sm">Nothing to memorise. A map, a time, and a bench that faces the right way.</p></div>
+    </div>    <div class="card glass" id="c5" style="right:9.5%;top:53%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c5.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Petals, then water</h3>
+      <p class="caps-sm">When the fall begins the river takes them. Hanaikada — the flower raft — lasts a single afternoon, and we plan for that afternoon too.</p></div>
+    </div>    <div class="card glass" id="c6" style="left:9.5%;top:16%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c6.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">One tree at a time</h3>
+      <p class="caps-sm">Fifty-eight stations, Kagoshima to Matsumae. The front climbs a hundred miles a week and we climb with it.</p></div>
+    </div>    <div class="card glass" id="c7" style="right:9.5%;top:23%">
+      <div class="art"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/card-c7.webp" alt="" loading="lazy"></div>
+      <div class="body"><h3 class="t24">Nothing to catch</h3>
+      <p class="caps-sm">Missed mornings replanned overnight. If the front moves, so do you.</p></div>
+    </div>  </div>
+</section>
+
+<!-- ================= NUMBERS AS WORDS ================= -->
+<section class="split" id="almanac">
+  <div class="media" data-par="0.1">
+    <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/sec-river.webp" alt="People sitting by a river under blossom trees">
+  </div>
+  <div class="pane">
+    <h2 class="t50 wipe" data-wipe="num" style="margin-bottom:auto">Read by the Petal.<br>Not the Calendar.</h2>
+    <div style="margin-top:3rem">
+      <div class="stat rv"><div class="mono-num">Seven days</div><div class="lbl caps">From first bloom to petal fall</div></div>
+      <div class="stat rv" data-d="1"><div class="mono-num">Fifty-eight</div><div class="lbl caps">Stations watched, Kagoshima to Matsumae</div></div>
+      <div class="stat rv" data-d="2"><div class="mono-num">Twelve centuries</div><div class="lbl caps">Of written blossom records to read from</div></div>
+      <div class="stat rv" data-d="3"><div class="mono-num">Two days</div><div class="lbl caps">The margin we plan around*</div></div>
+      <p class="note rv" data-d="4">*We hold your week unconfirmed until the front is called, then move you to the morning that blooms. Kyoto in 2025 opened four days early; everyone we held arrived on the third day of full bloom.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUIETER ROUTES ================= -->
+<section class="split" id="quiet">
+  <div class="pane">
+    <h2 class="t50 wipe" data-wipe="carb">Lighter on the Places That Let Us In</h2>
+    <div style="max-width:30rem">
+      <p class="caps rv" style="margin-bottom:1.4rem">The famous trees are photographed a thousand times an hour.</p>
+      <p class="caps rv" data-d="1" style="margin-bottom:1.9rem">We send you to the other ones — the temple courtyard two stops earlier, the riverbank that empties at nine, the avenue a town planted for itself. Same season, fewer shoulders, and a place that is glad you came.</p>
+      <a class="btn btn-dark rv" data-d="2" href="#stations"><span class="dot"></span><span class="lbl">How we route</span><span class="dot"></span></a>
+    </div>
+  </div>
+  <div class="media" data-par="0.14">
+    <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/sec-stone.webp" alt="Fallen cherry petals scattered across old stone paving">
+  </div>
+</section>
+
+<!-- ================= THE BOXES (3D) ================= -->
+<section class="products" id="boxes">
+  <h2 class="t50 wipe" data-wipe="prod">For the Week Away.<br>For the Months After.</h2>
+  <div class="prod-stage" id="prodStage">
+    <canvas id="glprod"></canvas>
+    <div class="prod-grid">
+      <a class="pcard rv" href="#cta">
+        <span class="arrow"><svg viewBox="0 0 16 16"><use href="#arr"/></svg></span>
+        <div class="pad"></div>
+        <h3 class="t24">Sakura Sencha</h3>
+        <p class="caps-sm">Cherry-leaf green tea, picked before the bloom and cured with the blossom. Twelve pressed cakes to a box.</p>
+      </a>
+      <a class="pcard rv" data-d="1" href="#cta">
+        <span class="arrow"><svg viewBox="0 0 16 16"><use href="#arr"/></svg></span>
+        <div class="pad"></div>
+        <h3 class="t24">Yozakura<br>Evening Incense</h3>
+        <p class="caps-sm">Blossom, cypress and a little smoke — the smell of a lantern-lit garden after ten, when the crowds have gone home.</p>
+      </a>
+      <a class="pcard rv" data-d="2" href="#cta">
+        <span class="arrow"><svg viewBox="0 0 16 16"><use href="#arr"/></svg></span>
+        <div class="pad"></div>
+        <h3 class="t24">Hanashio<br>Salted Petals</h3>
+        <p class="caps-sm">Salt-cured blossoms for tea, rice and the first warm day back home. One pouch keeps a season.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= STATIONS ================= -->
+<section class="split" id="stations">
+  <div class="pane">
+    <div class="top">
+      <h2 class="t50 wipe" data-wipe="trial">The Front,<br>This Season.</h2>
+      <p class="caps rv" data-d="1" style="margin-top:1.2rem;max-width:26rem">We read fifty-eight stations from Kagoshima to Matsumae. Twelve of them, and the morning each is expected to open.</p>
+    </div>
+    <div class="mapcard" id="mapcard">
+      <div class="map" id="map"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/map-japan.webp" alt="Bloom front across the Japanese archipelago" loading="lazy"></div>
+      <div class="cap"><span>First bloom — twelve of fifty-eight stations</span><span>2027 forecast</span></div>
+    </div>
+  </div>
+  <div class="media" data-par="0.1">
+    <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/sec-water.webp" alt="Fallen petals gathered on the surface of a river">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(30,19,25,.30),transparent 45%)"></div>
+    <div style="position:absolute;left:0;right:0;bottom:0;height:22rem;background:linear-gradient(rgba(30,19,25,0),rgba(30,19,25,.68))"></div>
+    <div class="card" style="position:absolute;right:var(--pad);top:2.6rem;opacity:1;transform:none;width:19rem">
+      <h3 class="caps" style="margin-bottom:.7rem;color:var(--heading)">Next call</h3>
+      <p class="caps-sm">Mid-January — the first long-range read for the 2027 front.</p>
+    </div>
+    <div class="card" style="position:absolute;right:var(--pad);top:12rem;opacity:1;transform:none;width:19rem">
+      <h3 class="t24" style="margin-bottom:2.2rem">Why we publish it</h3>
+      <p class="caps-sm">The front belongs to everyone. Follow it whether you travel with us or not.</p>
+    </div>
+    <div style="position:absolute;left:var(--pad);bottom:3rem;right:var(--pad);color:var(--paper);z-index:3">
+      <h3 class="t50 wipe on-green" data-wipe="trial2" style="margin-bottom:1.6rem">Hold a week for the 2027 front. Fifty places, called in January.</h3>
+      <a class="btn btn-light rv" href="#cta"><span class="dot"></span><span class="lbl">Hold a week</span><span class="dot"></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LANDSCAPE + TICKER ================= -->
+<section class="media" id="land" style="position:relative;z-index:2;height:56svh;overflow:hidden" data-par="0.16">
+  <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/band-fuji.webp" alt="Blossom trees along a lake below a snow-capped mountain" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:linear-gradient(rgba(30,19,25,.14),rgba(30,19,25,.46))"></div>
+</section>
+<div class="ticker" id="ticker"><div class="track" id="tickTrack"></div></div>
+
+<!-- ================= CTA ================= -->
+<section class="cta" id="cta">
+  <div class="collage" id="collage">
+    <figure class="plate" style="right:6%;top:22%;width:17rem">
+      <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/col-pagoda.webp" alt="A pagoda behind a branch of blossom">
+    </figure>
+    <figure class="plate" style="right:30%;top:8%;width:9rem;transform:rotate(-3deg)">
+      <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/0257e8aecce11bd2eb13b86a/col-canal.webp" alt="Petals drifting on a dark canal">
+    </figure>
+  </div>
+  <h2 class="t50 wipe on-green" data-wipe="cta" style="max-width:32rem">See It on the Right Morning</h2>
+  <p class="caps rv" style="max-width:34rem;margin-top:1.5rem">Tell us the two weeks you can move. We'll tell you where the petals will be — and hold a bench that faces the right way.</p>
+  <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:14rem">
+    <a class="btn btn-light rv" href="#"><span class="dot"></span><span class="lbl">Hold a week</span><span class="dot"></span></a>
+    <a class="btn btn-light rv" data-d="1" href="#"><span class="dot"></span><span class="lbl">Talk to us</span><span class="dot"></span></a>
+  </div>
+</section>
+
+<footer>
+  <div class="fgrid">
+    <div class="fcol"><h4>Season</h4><a href="#stations">The front</a><a href="#stations">Bloom map</a><a href="#almanac">Almanac</a></div>
+    <div class="fcol"><h4>Travel</h4><a href="#capsule">Held weeks</a><a href="#quiet">Quiet routes</a><a href="#quiet">Where we stay</a><a href="#cta">Group of six</a></div>
+    <div class="fcol"><h4>Shop</h4><a href="#boxes">Sakura sencha</a><a href="#boxes">Yozakura incense</a><a href="#boxes">Hanashio petals</a></div>
+    <div class="fcol"><h4>&nbsp;</h4><a href="#ticker">Journal</a><a href="#cta">Contact</a></div>
+    <div class="fcol"></div>
+    <div class="fcol" style="text-align:right">
+      <h4 style="text-align:right">If the front moves,<br>we will tell you first:</h4>
+      <a href="mailto:hello@hanami.example" style="font-size:1.62rem;text-transform:none;letter-spacing:-.01em;margin-top:1.4rem">hello@hanami.example</a>
+      <a href="#" style="margin-top:3.4rem">Instagram</a>
+    </div>
+  </div>
+  <svg class="fmark" viewBox="0 0 100 100" fill="currentColor"><use href="#mk"/></svg>
+  <div class="fbot">
+    <span>© 2026. Hanami.</span>
+    <span class="r"><a href="#">Privacy</a><a href="#">Terms</a><span style="opacity:.6">Built in Three.js</span></span>
+  </div>
+</footer>
+
+</main>
+
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script type="importmap">
+{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+
+/* ==================================================================
+   0 · small helpers
+   ================================================================== */
+const clamp=(v,a=0,b=1)=>v<a?a:v>b?b:v;
+const lerp=(a,b,t)=>a+(b-a)*t;
+const smooth=(e0,e1,x)=>{const t=clamp((x-e0)/(e1-e0));return t*t*(3-2*t)};
+const easeOut=t=>1-Math.pow(1-t,3);
+const easeInOut=t=>t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;
+const PI=Math.PI;
+function cv(w,h){const c=document.createElement('canvas');c.width=w;c.height=h;return c}
+/* WebGL cannot upload file:// images (SecurityError), so the textures ride inline */
+const ART_DATA={
+'lbl-tea.webp':'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/92573e5682abf0c4475b2455fb4baa05b02dcefc72cfca5b018fded3a022bcb4.webp',
+'lbl-incense.webp':'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/4ef6f25b2d83e8379056adbd1693b8182dcdaa24e34b19bfd8185edf6819d39d.webp',
+'lbl-salt.webp':'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/70f172722da2f4af8d0355bde6959f437b9c92b0f236f7c51b1d91327030fee4.webp',
+'hero-branch.webp':'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/ac7ea843833979555f9296d934acab409aa0a37ddaff01b664076c28cf0ecfb8.webp'
+};
+const ART='hanami-art/img/';
+function loadArt(src,cb){
+  const i=new __threeuiStorageImage();i.decoding='async';
+  i.onload=()=>cb(i);i.onerror=()=>{};
+  const key=src.split('/').pop();
+  i.src=ART_DATA[key]||src;
+}
+/* draw an image cropped to fill a rect, like object-fit:cover */
+function drawCover(x,img,dx,dy,dw,dh){
+  const s=Math.max(dw/img.width,dh/img.height);
+  const w=img.width*s,h=img.height*s;
+  x.drawImage(img,dx+(dw-w)/2,dy+(dh-h)/2,w,h);
+}
+function mulberry(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+
+/* logo mark → Path2D (read straight from the inline <symbol>) */
+const MARK_PATHS=[...document.querySelectorAll('#mk path')].map(p=>p.getAttribute('d'));
+const MARK_VB=[100,100];
+function drawMark(ctx,cx,cy,size){           /* size = target width */
+  const s=size/MARK_VB[0];
+  ctx.save();ctx.translate(cx-size/2,cy-MARK_VB[1]*s/2);ctx.scale(s,s);
+  for(const d of MARK_PATHS)ctx.fill(new Path2D(d),'evenodd');
+  ctx.restore();
+}
+
+/* value-noise → height → normal map (tiling) */
+function grainMaps(size=512,seed=7,cell=4,bump=2.6){
+  const rnd=mulberry(seed);
+  const N=size/cell|0, base=new Float32Array(N*N);
+  for(let i=0;i<N*N;i++)base[i]=rnd();
+  const at=(x,y)=>base[((y%N)+N)%N*N+((x%N)+N)%N];
+  const fade=t=>t*t*(3-2*t);
+  const val=(x,y)=>{const xi=Math.floor(x),yi=Math.floor(y),tx=fade(x-xi),ty=fade(y-yi);
+    return lerp(lerp(at(xi,yi),at(xi+1,yi),tx),lerp(at(xi,yi+1),at(xi+1,yi+1),tx),ty)};
+  const h=new Float32Array(size*size);
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+    let a=0,f=1,amp=.5,sum=0;
+    for(let o=0;o<4;o++){a+=val(x/cell*f,y/cell*f)*amp;sum+=amp;f*=2.13;amp*=.52}
+    h[y*size+x]=a/sum;
+  }
+  const nc=cv(size,size),nx=nc.getContext('2d'),nd=nx.createImageData(size,size);
+  const rc=cv(size,size),rx=rc.getContext('2d'),rd=rx.createImageData(size,size);
+  const H=(x,y)=>h[(((y%size)+size)%size)*size+(((x%size)+size)%size)];
+  for(let y=0;y<size;y++)for(let x=0;x<size;x++){
+    const dx=(H(x+1,y)-H(x-1,y))*bump, dy=(H(x,y+1)-H(x,y-1))*bump;
+    const l=Math.hypot(dx,dy,1), i=(y*size+x)*4;
+    nd.data[i]=(-dx/l*.5+.5)*255;nd.data[i+1]=(-dy/l*.5+.5)*255;nd.data[i+2]=(1/l*.5+.5)*255;nd.data[i+3]=255;
+    const v=H(x,y);
+    rd.data[i]=rd.data[i+1]=rd.data[i+2]=(.62+v*.34)*255;rd.data[i+3]=255;
+  }
+  nx.putImageData(nd,0,0);rx.putImageData(rd,0,0);
+  const mk=c=>{const t=new THREE.CanvasTexture(c);t.wrapS=t.wrapT=THREE.RepeatWrapping;t.anisotropy=4;return t};
+  return{normal:mk(nc),rough:mk(rc)};
+}
+
+/* ==================================================================
+   1 · pressed tea cake (squircle solid + debossed mon) — used on the shop shelf
+   ================================================================== */
+function tabletHeight(px=1024){           /* deboss height field + normal map */
+  const c=cv(px,px),x=c.getContext('2d');
+  x.fillStyle='#000';x.fillRect(0,0,px,px);
+  x.filter=`blur(${px*0.0026}px)`;
+  x.fillStyle='#fff';
+  drawMark(x,px*.5,px*.5,px*.60);
+  x.filter='none';
+  const img=x.getImageData(0,0,px,px).data;
+  const h=new Float32Array(px*px);
+  for(let i=0;i<px*px;i++)h[i]=img[i*4]/255;
+  /* normal map from the same field */
+  const nc=cv(px,px),nx=nc.getContext('2d'),nd=nx.createImageData(px,px);
+  const H=(a,b)=>h[clamp(b,0,px-1)*px+clamp(a,0,px-1)];
+  const k=px*0.052;
+  for(let y=0;y<px;y++)for(let x2=0;x2<px;x2++){
+    const dx=(H(x2+1,y)-H(x2-1,y))*k, dy=(H(x2,y+1)-H(x2,y-1))*k;
+    const l=Math.hypot(dx,dy,1),i=(y*px+x2)*4;
+    nd.data[i]=(dx/l*.5+.5)*255;nd.data[i+1]=(dy/l*.5+.5)*255;nd.data[i+2]=(1/l*.5+.5)*255;nd.data[i+3]=255;
+  }
+  nx.putImageData(nd,0,0);
+  /* diffuse/AO plate: white outside, dark inside the recess */
+  const dc=cv(px,px),dx=dc.getContext('2d'),dd=dx.createImageData(px,px);
+  for(let i=0;i<px*px;i++){
+    const v=Math.round(255*(1-0.58*h[i]));
+    dd.data[i*4]=dd.data[i*4+1]=dd.data[i*4+2]=v;dd.data[i*4+3]=255;
+  }
+  dx.putImageData(dd,0,0);
+  const t=new THREE.CanvasTexture(nc);t.anisotropy=8;
+  const dt=new THREE.CanvasTexture(dc);dt.anisotropy=8;dt.colorSpace=THREE.SRGBColorSpace;
+  return{field:h,px,tex:t,map:dt};
+}
+
+/* squircle plan radius, exponent p */
+function squircleR(th,p){
+  const c=Math.abs(Math.cos(th)),s=Math.abs(Math.sin(th));
+  return Math.pow(Math.pow(c,p)+Math.pow(s,p),-1/p);
+}
+
+function makeTablet(deboss){
+  const A=0.60;                 // half width
+  const h=0.395, rr=0.285;      // half height, fillet radius (units of half-width)
+  const p=4.4;                  // squircle exponent
+  const dome=0.052;             // extra centre height on the flat faces
+  /* --- profile: (u, z) from bottom centre → rim → top centre --- */
+  const prof=[];
+  const push=(u,z,flat)=>prof.push([u,z,flat]);
+  const NB=7,NF=16,NS=7,NT=26;
+  for(let i=0;i<NB;i++)push((1-rr)*(i/NB),-h,-1);
+  for(let i=0;i<=NF;i++){const a=-PI/2+(i/NF)*(PI/2);push(1-rr+rr*Math.cos(a),-h+rr+rr*Math.sin(a),0)}
+  for(let i=1;i<NS;i++)push(1,lerp(-h+rr,h-rr,i/NS),0);
+  for(let i=0;i<=NF;i++){const a=(i/NF)*(PI/2);push(1-rr+rr*Math.cos(a),h-rr+rr*Math.sin(a),0)}
+  for(let i=1;i<=NT;i++)push((1-rr)*(1-i/NT),h,1);
+  const NU=232, NV=prof.length;
+  const pos=[],uv=[],idx=[];
+  for(let j=0;j<NV;j++){
+    const [pu,pz,flat]=prof[j];
+    for(let i=0;i<=NU;i++){
+      const th=i/NU*PI*2, R=squircleR(th,p);
+      let u=pu, z=pz;
+      if(flat!==0)z+=flat*dome*(1-u*u)*(1-u*u);
+      let X=A*R*u*Math.cos(th), Y=A*R*u*Math.sin(th), Z=A*z;
+      /* deboss the top face */
+      if(flat===1||(j>NB+NF+NS+NF-3&&flat===0)){
+        const s=deboss.px, fx=(X/(A*1.02)*.5+.5)*s, fy=(-Y/(A*1.02)*.5+.5)*s;
+        const xi=clamp(fx|0,0,s-1),yi=clamp(fy|0,0,s-1);
+        Z-=deboss.field[yi*s+xi]*A*0.034;
+      }
+      pos.push(X,Y,Z);
+      uv.push(X/(A*1.02)*.5+.5, Y/(A*1.02)*.5+.5);
+    }
+  }
+  for(let j=0;j<NV-1;j++)for(let i=0;i<NU;i++){
+    const a=j*(NU+1)+i,b=a+1,c2=a+NU+1,d=c2+1;
+    idx.push(a,c2,b, b,c2,d);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
+  g.setIndex(idx);
+  g.computeVertexNormals();
+  /* weld the θ seam so the duplicated column doesn't crease */
+  const nrm=g.attributes.normal.array;
+  for(let j=0;j<NV;j++){
+    const a=(j*(NU+1))*3, b=(j*(NU+1)+NU)*3;
+    for(let k=0;k<3;k++){const v=(nrm[a+k]+nrm[b+k])*.5;nrm[a+k]=v;nrm[b+k]=v}
+    const l=Math.hypot(nrm[a],nrm[a+1],nrm[a+2])||1;
+    for(let k=0;k<3;k++){nrm[a+k]/=l;nrm[b+k]=nrm[a+k]}
+  }
+  g.attributes.normal.needsUpdate=true;
+  g.computeBoundingSphere();
+  return g;
+}
+
+const DEBOSS=tabletHeight(1024);
+const GRAIN=grainMaps(512,11,6.5,2.4);
+const TABGEO=makeTablet(DEBOSS);
+
+function tabletMaterial(col=0x454039){
+  const m=new THREE.MeshStandardMaterial({
+    color:col, roughness:.86, metalness:.05,
+    map:DEBOSS.map,
+    normalMap:DEBOSS.tex, normalScale:new THREE.Vector2(1.7,1.7),
+  });
+  const gn=GRAIN.normal.clone();gn.needsUpdate=true;gn.repeat.set(3.4,3.4);
+  m.roughnessMap=GRAIN.rough;m.roughnessMap.repeat?.set(3.4,3.4);
+  m.userData.grain=gn;
+  m.onBeforeCompile=s=>{
+    s.uniforms.uGrain={value:gn};
+    s.uniforms.uDissolve={value:0};
+    s.vertexShader='varying vec3 vObjP;varying vec3 vObjN;\n'+s.vertexShader
+      .replace('#include <begin_vertex>','#include <begin_vertex>\n  vObjP=position; vObjN=normal;');
+    s.fragmentShader='uniform sampler2D uGrain;uniform float uDissolve;varying vec3 vObjP;varying vec3 vObjN;\n'+s.fragmentShader
+      .replace('#include <normal_fragment_maps>', `#include <normal_fragment_maps>
+        { /* triplanar grain — planar UV degenerates on the rim and combs it */
+          vec3 bw = pow(abs(normalize(vObjN)), vec3(4.0)); bw /= (bw.x+bw.y+bw.z+1e-4);
+          const float K = 2.4;
+          vec3 gx = texture2D(uGrain, vObjP.yz*K).xyz*2.0-1.0;
+          vec3 gy = texture2D(uGrain, vObjP.xz*K).xyz*2.0-1.0;
+          vec3 gz = texture2D(uGrain, vObjP.xy*K).xyz*2.0-1.0;
+          vec3 g  = gx*bw.x + gy*bw.y + gz*bw.z;
+          vec3 N = normal;
+          vec3 T = normalize(cross(N, abs(N.z) < 0.9 ? vec3(0.0,0.0,1.0) : vec3(1.0,0.0,0.0)));
+          vec3 B = cross(N, T);
+          normal = normalize(N + (g.x*T + g.y*B)*1.15); }`)
+      .replace('#include <dithering_fragment>', `#include <dithering_fragment>
+        if(uDissolve>0.001){
+          float n=fract(sin(dot(floor(gl_FragCoord.xy*1.0),vec2(12.9898,78.233)))*43758.5453);
+          if(n<uDissolve) discard;
+        }`);
+    m.userData.shader=s;
+  };
+  return m;
+}
+
+/* ==================================================================
+   1b · the blossom — petals, stamens, wind-blown petal swarm
+   ================================================================== */
+function petalR(u){                       /* radius profile across one petal */
+  return .42 + .58*Math.pow(Math.sin(PI*u),.55) - .10*Math.exp(-Math.pow((u-.5)/.06,2));
+}
+/* one petal, base at the origin, growing along +Y, thin in Z */
+function petalSurface(NU,NT,seed){
+  const PHI=.74, RISE=.36, CUP=.15, TIPD=.17, VEIN=.016, RUF=.030;
+  const rnd=mulberry(seed||1);
+  const lean=(rnd()-.5)*.13, len=1+(rnd()-.5)*.08;
+  const pos=[],uvs=[],cols=[],idx=[],ang=[],tt=[];
+  const cBase=new THREE.Color(0xde8298), cTip=new THREE.Color(0xfff7f7);
+  for(let j=0;j<=NT;j++){
+    const t=j/NT;
+    for(let i=0;i<=NU;i++){
+      const u=i/NU, phi=(u*2-1)*PHI*(.30+.70*Math.pow(t,.5));
+      const r=t*petalR(u)*len;
+      const X=Math.sin(phi)*r, Y=Math.cos(phi)*r;
+      let Z=RISE*Math.pow(t,1.55) + CUP*Math.pow(u*2-1,2)*Math.pow(t,1.4)
+            - TIPD*smooth(.70,1,t) + VEIN*Math.sin(u*PI*7)*t
+            + RUF*Math.sin(u*PI*5.5+1.1)*smooth(.45,1,t)*(.35+.65*Math.abs(u*2-1));
+      Z+=lean*t*(u*2-1);
+      pos.push(X,Y,Z);uvs.push(u,t);ang.push(0);tt.push(t);
+      const k=smooth(.02,.62,t);
+      const c=cBase.clone().lerp(cTip,k);
+      c.lerp(cBase,.45*Math.exp(-Math.pow((u-.5)/.16,2))*(1-k*.75));
+      cols.push(c.r,c.g,c.b);
+    }
+  }
+  for(let j=0;j<NT;j++)for(let i=0;i<NU;i++){
+    const q=j*(NU+1)+i;idx.push(q,q+NU+1,q+1, q+1,q+NU+1,q+NU+2);
+  }
+  return{pos,uvs,cols,idx,ang,tt,n:(NT+1)*(NU+1)};
+}
+function makePetals(){
+  const NP=5,pos=[],uvs=[],cols=[],idx=[],ang=[],tt=[];
+  const rnd=mulberry(23);let v0=0;
+  for(let p=0;p<NP;p++){
+    const a0=p*PI*2/NP+(rnd()-.5)*.10, ca=Math.cos(a0), sa=Math.sin(a0);
+    const P=petalSurface(30,20,7+p*13);
+    for(let k=0;k<P.n;k++){
+      const X=P.pos[k*3],Y=P.pos[k*3+1],Z=P.pos[k*3+2];
+      pos.push(X*ca-Y*sa, X*sa+Y*ca, Z);
+      ang.push(a0+PI/2);tt.push(P.tt[k]);
+    }
+    uvs.push(...P.uvs);cols.push(...P.cols);
+    for(const q of P.idx)idx.push(q+v0);
+    v0+=P.n;
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));
+  g.setAttribute('color',new THREE.Float32BufferAttribute(cols,3));
+  g.setAttribute('aAng',new THREE.Float32BufferAttribute(ang,1));
+  g.setAttribute('aT',new THREE.Float32BufferAttribute(tt,1));
+  g.setIndex(idx);g.computeVertexNormals();g.computeBoundingSphere();
+  return g;
+}
+function singlePetalGeo(){
+  const P=petalSurface(16,12,4);
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(P.pos,3));
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(P.uvs,2));
+  g.setAttribute('color',new THREE.Float32BufferAttribute(P.cols,3));
+  g.setIndex(P.idx);g.computeVertexNormals();g.computeBoundingSphere();
+  g.translate(0,-.42,0);
+  return g;
+}
+const PETALGEO=makePetals();
+const ONEPETAL=singlePetalGeo();
+const FILGEO=new THREE.CylinderGeometry(.0042,.0072,1,5,1,true);
+const ANTGEO=new THREE.IcosahedronGeometry(.019,0);
+
+const NOISE_GLSL=`
+float h21(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+float vnoise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+  return mix(mix(h21(i),h21(i+vec2(1,0)),f.x),mix(h21(i+vec2(0,1)),h21(i+vec2(1,1)),f.x),f.y);}
+float fbm(vec2 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=vnoise(p)*a;p*=2.03;a*=.52;}return s;}
+`;
+/* ---- procedural surface noise: washi fibre, ceramic speckle ---- */
+function noisify(mat,o){
+  const p=Object.assign({scale:1.4,tint:.10,rough:.22,fibre:0,speck:0,warp:1},o||{});
+  const prev=mat.onBeforeCompile, prevKey=mat.customProgramCacheKey;
+  const key='nz'+[p.scale,p.tint,p.rough,p.fibre,p.speck].join('_');
+  mat.customProgramCacheKey=function(){return (prevKey?prevKey.call(this):'')+'|'+key};
+  mat.onBeforeCompile=sh=>{
+    if(prev)prev(sh);
+    sh.vertexShader='varying vec3 vNzP;\n'+sh.vertexShader
+      .replace('#include <begin_vertex>','#include <begin_vertex>\n  vNzP=(modelMatrix*vec4(transformed,1.0)).xyz;');
+    sh.fragmentShader='varying vec3 vNzP;\n'+NOISE_GLSL+'\n'+sh.fragmentShader
+      .replace('#include <color_fragment>',`#include <color_fragment>
+        { vec2 q = vNzP.xy*${p.scale.toFixed(3)} + vNzP.z*0.31;
+          float n = fbm(q);
+          float fib = ${p.fibre.toFixed(3)}*(fbm(vec2(q.x*0.35, q.y*7.5))-0.5);
+          float sp  = ${p.speck.toFixed(3)}*step(0.86, h21(floor(vNzP.xy*74.0+vNzP.z*17.0)));
+          diffuseColor.rgb *= 1.0 + ${p.tint.toFixed(3)}*(n-0.5) + fib + sp;
+        }`)
+      .replace('#include <roughnessmap_fragment>',`#include <roughnessmap_fragment>
+        roughnessFactor *= 1.0 + ${p.rough.toFixed(3)}*(fbm(vNzP.xy*${(p.scale*3.1).toFixed(3)})-0.5);`);
+  };
+  return mat;
+}
+/* ---- volumetric light: slat beams + a soft cone ---- */
+const SHAFT_VS=`varying vec2 vS;varying vec3 vW;
+void main(){vS=uv;vec4 w=modelMatrix*vec4(position,1.0);vW=w.xyz;
+gl_Position=projectionMatrix*viewMatrix*w;}`;
+function slatMaterial(col,seed,soft){
+  return new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uC:{value:new THREE.Color(col)},uA:{value:1},uS:{value:seed}},
+    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,toneMapped:false,
+    vertexShader:SHAFT_VS,
+    fragmentShader:NOISE_GLSL+`
+      varying vec2 vS;varying vec3 vW;uniform float uT,uA,uS;uniform vec3 uC;
+      void main(){
+        float across = 1.0 - abs(vS.x*2.0-1.0);
+        float e = pow(smoothstep(0.0,${soft.toFixed(2)},across),1.35);
+        float along = smoothstep(1.0,0.82,vS.y)*smoothstep(0.0,0.26,vS.y);
+        along *= mix(0.24,1.0,smoothstep(0.10,0.86,vS.y));
+        float dust = 0.62 + 0.38*fbm(vec2(vW.x*1.5+uS, vW.y*0.55 - uT*0.05));
+        float grain = 0.86 + 0.14*fbm(vec2(vW.x*9.0, vW.y*4.0 - uT*0.22));
+        float a = e*along*dust*grain*uA;
+        gl_FragColor = vec4(uC*a, a);
+      }`
+  });
+}
+function makeShafts(){
+  const g=new THREE.Group();
+  /* a shallow fan of beams, as if from a high window off to the right */
+  const S=[[-4.55, 1.5, 1.70, .90, 9.4,  .82],
+           [-3.20, 1.7,  .40, .50, 9.4,  .80],
+           [-2.15, 1.4, 2.10,1.05, 9.4,  .78],
+           [-1.10, 1.8, 1.15, .58, 9.4,  .55],
+           [ -.10, 1.6, -.55, .72, 9.6,  .40],
+           [ 1.00, 1.7, 1.00, .46, 9.4,  .34],
+           [ 2.05, 1.5, -.70, .95, 9.4,  .46],
+           [ 3.35, 1.6, 1.45, .62, 9.4,  .60],
+           [ 4.60, 1.7,  .20, .82, 9.4,  .70]];
+  g.userData.mats=[];
+  S.forEach((v,i)=>{
+    const[m,y,z,w,h,a]=v;
+    const mat=slatMaterial(0xffeed6,i*3.7,.30+(i%3)*.10);
+    mat.uniforms.uA.value=a;
+    const q=new THREE.Mesh(new THREE.PlaneGeometry(w,h),mat);
+    q.position.set(m,y,z);q.rotation.z=.055+m*.050;q.renderOrder=6;
+    g.add(q);g.userData.mats.push(mat);
+  });
+  /* soft cone falling on the podium — view-facing thickness */
+  const cm=new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uC:{value:new THREE.Color(0xfff0dc)},uA:{value:.38},uS:{value:9.1}},
+    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,toneMapped:false,
+    vertexShader:`varying vec2 vS;varying vec3 vW;varying vec3 vN;varying vec3 vE;
+      void main(){vS=uv;vec4 w=modelMatrix*vec4(position,1.0);vW=w.xyz;
+      vN=normalize(mat3(modelMatrix)*normal);
+      vE=normalize(cameraPosition-w.xyz);
+      gl_Position=projectionMatrix*viewMatrix*w;}`,
+    fragmentShader:NOISE_GLSL+`
+      varying vec2 vS;varying vec3 vW;varying vec3 vN;varying vec3 vE;
+      uniform float uT,uA,uS;uniform vec3 uC;
+      void main(){
+        float face=pow(abs(dot(normalize(vN),normalize(vE))),1.6);
+        float along=smoothstep(1.0,0.90,vS.y)*smoothstep(0.0,0.40,vS.y);
+        along*=mix(0.22,1.0,smoothstep(0.05,0.95,vS.y));
+        float dust=0.60+0.40*fbm(vec2(vW.x*1.7+uS, vW.y*0.6-uT*0.055));
+        float a=face*along*dust*uA;
+        gl_FragColor=vec4(uC*a,a);
+      }`
+  });
+  const cone=new THREE.Mesh(new THREE.CylinderGeometry(.34,1.75,6.4,44,1,true),cm);
+  cone.position.set(.10,1.85,1.30);cone.rotation.z=.055;cone.renderOrder=6;
+  g.add(cone);g.userData.mats.push(cm);
+  return g;
+}
+const ROT_GLSL=`
+vec3 rotAxis(vec3 v, vec3 k, float a){
+  float c=cos(a), s=sin(a);
+  return v*c + cross(k,v)*s + k*dot(k,v)*(1.0-c);
+}`;
+/* petal material: fold-open, sub-surface glow, fresnel rim, vein shading */
+function petalMaterial(fold){
+  const m=new THREE.MeshStandardMaterial({
+    vertexColors:true,roughness:.72,metalness:0,side:THREE.DoubleSide,
+    emissive:new THREE.Color(0xd4707f),emissiveIntensity:.07
+  });
+  m.userData.uni={
+    uOpen:{value:1},uSun:{value:new THREE.Vector3(0,1,0)},
+    uSunCol:{value:new THREE.Color(0xffe7d9)},uTrans:{value:1.15},uRim:{value:.16}
+  };
+  m.customProgramCacheKey=()=>'petal'+(fold?'F':'N');
+  m.onBeforeCompile=sh=>{
+    Object.assign(sh.uniforms,m.userData.uni);
+    sh.vertexShader='varying vec2 vPUv;\n'+sh.vertexShader
+      .replace('#include <uv_vertex>','#include <uv_vertex>\n  vPUv = uv;');
+    if(fold){
+      sh.vertexShader='attribute float aAng;attribute float aT;uniform float uOpen;\n'+ROT_GLSL+'\n'+sh.vertexShader
+        .replace('#include <beginnormal_vertex>','#include <beginnormal_vertex>\n  { float fa=(1.0-uOpen)*1.85*aT; vec3 k=vec3(cos(aAng),sin(aAng),0.0); objectNormal=rotAxis(objectNormal,k,fa); }')
+        .replace('#include <begin_vertex>','#include <begin_vertex>\n  { float fa=(1.0-uOpen)*1.85*aT; vec3 k=vec3(cos(aAng),sin(aAng),0.0); transformed=rotAxis(transformed,k,fa); transformed.xy*=mix(1.0,0.86,1.0-uOpen); }');
+    }
+    sh.fragmentShader='uniform vec3 uSun,uSunCol;uniform float uTrans,uRim;varying vec2 vPUv;\n'+sh.fragmentShader
+      .replace('#include <color_fragment>',`#include <color_fragment>
+        { float vein = sin(vPUv.x*PI2*4.5)*.5+.5;
+          diffuseColor.rgb *= 1.0 - vein*0.055*smoothstep(.05,.85,vPUv.y);
+          diffuseColor.rgb *= 0.965 + 0.07*fract(sin(dot(floor(vPUv*140.0),vec2(12.9898,78.233)))*43758.5453); }`)
+      .replace('#include <lights_fragment_end>',`#include <lights_fragment_end>
+        { vec3 N=normal;
+          float back=pow(clamp(dot(-N,uSun),0.0,1.0),2.2);
+          float wrap=clamp(dot(N,uSun)*0.5+0.5,0.0,1.0);
+          reflectedLight.directDiffuse += uSunCol*(back*1.9+wrap*0.20)*uTrans*diffuseColor.rgb;
+          float fres=pow(1.0-abs(dot(N,normalize(vViewPosition))),3.0);
+          reflectedLight.directSpecular += vec3(1.0,.96,.955)*fres*uRim; }`);
+    m.userData.shader=sh;
+  };
+  return m;
+}
+
+function makeBlossom(){
+  const g=new THREE.Group();
+  const pmat=petalMaterial(true);
+  const petals=new THREE.Mesh(PETALGEO,pmat);
+  petals.castShadow=true;
+  g.add(petals);
+  g.userData.pmat=pmat;
+
+  const N=34, dm=new THREE.Object3D(), up=new THREE.Vector3(0,1,0), dir=new THREE.Vector3();
+  const fil=new THREE.InstancedMesh(FILGEO,new THREE.MeshStandardMaterial({
+    color:0xfdf2ee,roughness:.6,metalness:0}),N+1);
+  const ant=new THREE.InstancedMesh(ANTGEO,new THREE.MeshStandardMaterial({
+    color:0xd9ab5c,roughness:.5,metalness:.08,emissive:new THREE.Color(0x3a2a10),emissiveIntensity:.35}),N+1);
+  const rnd=mulberry(77);
+  for(let i=0;i<=N;i++){
+    const pist=(i===N);
+    const a=i/N*PI*2+rnd()*.30, tilt=pist?.05:(.34+rnd()*.58);
+    const L=pist?.44:(.20+rnd()*.19);
+    dir.set(Math.cos(a)*Math.sin(tilt),Math.sin(a)*Math.sin(tilt),Math.cos(tilt));
+    dm.position.copy(dir).multiplyScalar(L*.5).setZ(dir.z*L*.5+.015);
+    dm.quaternion.setFromUnitVectors(up,dir);
+    dm.scale.set(1,L,1);dm.updateMatrix();fil.setMatrixAt(i,dm.matrix);
+    dm.position.copy(dir).multiplyScalar(L).setZ(dir.z*L+.015);
+    dm.quaternion.identity();dm.scale.set(.9+rnd()*.5,.62+rnd()*.4,.9+rnd()*.5);dm.updateMatrix();
+    ant.setMatrixAt(i,dm.matrix);
+  }
+  fil.instanceMatrix.needsUpdate=true;ant.instanceMatrix.needsUpdate=true;
+  g.add(fil,ant);
+
+  const cal=new THREE.Mesh(new THREE.SphereGeometry(.135,16,10,0,PI*2,PI*.52,PI*.48),
+    new THREE.MeshStandardMaterial({color:0xb15c6a,roughness:.66,metalness:0}));
+  cal.rotation.x=PI/2;cal.position.z=-.035;g.add(cal);
+  g.userData.petals=petals;
+  return g;
+}
+
+/* ---- wind-blown petals: real geometry, real occlusion, they land ---- */
+class PetalSwarm{
+  constructor(n,o){
+    this.n=n;this.o=Object.assign({box:[9,8,5],c:[0,0,0],size:.10,fall:.42,
+      respawn:-3.2,discs:[],floor:null,seed:9,restFlat:true,avoid:null},o);
+    this.mat=petalMaterial(false);
+    this.mat.userData.uni.uTrans.value=1.15;
+    this.mesh=new THREE.InstancedMesh(ONEPETAL,this.mat,n);
+    this.mesh.frustumCulled=false;
+    this.mesh.castShadow=false;
+    this.p=new Float32Array(n*3);this.v=new Float32Array(n*3);
+    this.r=new Float32Array(n*3);this.w=new Float32Array(n*3);
+    this.s=new Float32Array(n);this.ph=new Float32Array(n);this.rest=new Float32Array(n);
+    const rnd=mulberry(this.o.seed);this.rnd=rnd;
+    for(let i=0;i<n;i++)this.spawn(i,rnd()*this.o.box[1]);
+    this.dm=new THREE.Object3D();
+    this.q=new THREE.Quaternion();this.e=new THREE.Euler();
+  }
+  spawn(i,y){
+    const o=this.o,r=this.rnd;
+    this.p[i*3]  =o.c[0]+(r()-.5)*o.box[0];
+    this.p[i*3+1]=o.c[1]+(y!==undefined?y-o.box[1]*.5:o.box[1]*.5)+r()*.4;
+    this.p[i*3+2]=o.c[2]+(r()-.5)*o.box[2];
+    this.v[i*3]=(r()-.5)*.10;this.v[i*3+1]=-o.fall*(.6+r()*.8);this.v[i*3+2]=(r()-.5)*.06;
+    this.r[i*3]=r()*6.28;this.r[i*3+1]=r()*6.28;this.r[i*3+2]=r()*6.28;
+    this.w[i*3]=(r()-.5)*2.1;this.w[i*3+1]=(r()-.5)*2.4;this.w[i*3+2]=(r()-.5)*1.6;
+    this.s[i]=o.size*(.62+r()*.85);this.ph[i]=r()*6.28;this.rest[i]=0;
+  }
+  update(dt,t,wind){
+    const{p,v,r,w,s,ph,rest,n,o,dm}=this;
+    const gust=wind||{x:0,y:0,z:0,px:0,py:0,pz:0,pr:0,pw:0};
+    for(let i=0;i<n;i++){
+      const i3=i*3;
+      if(rest[i]<1){
+        /* flutter: petals scull side to side as they fall */
+        const f=Math.sin(t*1.7+ph[i])*.9+Math.sin(t*.77+ph[i]*2.3)*.5;
+        v[i3]  += (f*.34 + gust.x)*dt;
+        v[i3+2]+= (Math.cos(t*1.3+ph[i])*.22 + gust.z)*dt;
+        v[i3+1]+= (-.28 + gust.y)*dt;
+        /* pointer gust */
+        if(gust.pw>0){
+          const dx=p[i3]-gust.px, dy=p[i3+1]-gust.py, dz=p[i3+2]-gust.pz;
+          const d2=dx*dx+dy*dy+dz*dz;
+          const k=gust.pw*Math.exp(-d2/(gust.pr*gust.pr))*dt;
+          const inv=1/Math.max(.35,Math.sqrt(d2));
+          v[i3]+=dx*inv*k*2.4+gust.x*k*3.0;v[i3+1]+=(dy*inv*.5+.7)*k;v[i3+2]+=dz*inv*k*1.4;
+          rest[i]=Math.max(0,rest[i]-k*2.2);
+        }
+        /* drag */
+        const dr=Math.pow(.12,dt);
+        v[i3]*=dr;v[i3+2]*=dr;
+        v[i3+1]=Math.max(v[i3+1]*Math.pow(.5,dt),-o.fall*1.5);
+        p[i3]+=v[i3]*dt;p[i3+1]+=v[i3+1]*dt;p[i3+2]+=v[i3+2]*dt;
+        r[i3]+=w[i3]*dt;r[i3+1]+=w[i3+1]*dt;r[i3+2]+=w[i3+2]*dt;
+        /* deflect around the blossom */
+        const av=o.avoid;
+        if(av){
+          const dx=p[i3]-av.x,dy=p[i3+1]-av.y,dz=p[i3+2]-av.z;
+          const d2=dx*dx+dy*dy+dz*dz;
+          if(d2<av.r*av.r){
+            const d=Math.sqrt(d2)||1e-4, push=(av.r-d)/av.r;
+            p[i3]+=dx/d*push*av.r*.55;p[i3+1]+=dy/d*push*av.r*.35;p[i3+2]+=dz/d*push*av.r*.55;
+            v[i3]+=dx/d*push*1.4*dt*60*.016;v[i3+2]+=dz/d*push*1.4*dt*60*.016;
+            w[i3+1]+=push*dt*3.0;
+          }
+        }
+        /* landing */
+        let land=null;
+        for(const d of o.discs){
+          if(p[i3+1]<=d.y+.02&&p[i3+1]>d.y-.5){
+            const dx=p[i3]-d.x,dz=p[i3+2]-d.z;
+            if(dx*dx+dz*dz<d.r*d.r){land=d.y;break}
+          }
+        }
+        if(land===null&&o.floor!==null&&p[i3+1]<=o.floor)land=o.floor;
+        if(land!==null){p[i3+1]=land+.012;rest[i]=.001;v[i3]=v[i3+1]=v[i3+2]=0}
+        else if(p[i3+1]<o.respawn)this.spawn(i);
+      }else{
+        rest[i]=Math.min(1,rest[i]+dt*1.6);
+        if(o.restFlat){
+          r[i3]=lerp(r[i3],-PI/2,1-Math.pow(.02,dt));
+          r[i3+2]=lerp(r[i3+2],0,1-Math.pow(.05,dt));
+          r[i3+1]+=Math.sin(t*.6+ph[i])*.02*dt;
+        }else{
+          r[i3]=lerp(r[i3],-1.15,1-Math.pow(.10,dt));
+          r[i3+2]+=Math.sin(t*.9+ph[i])*.10*dt;
+          p[i3]+=Math.sin(t*.35+ph[i])*.045*dt;
+          p[i3+1]=o.floor+.012+Math.sin(t*1.4+ph[i]*3.1)*.012;
+        }
+      }
+      if(rest[i]>0&&rest[i]<1)rest[i]=Math.min(1,rest[i]+dt*1.6);
+      dm.position.set(p[i3],p[i3+1],p[i3+2]);
+      dm.rotation.set(r[i3],r[i3+1],r[i3+2]);
+      dm.scale.setScalar(s[i]);
+      dm.updateMatrix();
+      this.mesh.setMatrixAt(i,dm.matrix);
+    }
+    this.mesh.instanceMatrix.needsUpdate=true;
+  }
+}
+
+/* ==================================================================
+   2 · renderer (one context, two full-screen scenes)
+   ================================================================== */
+const canvas=document.getElementById('gl');
+let renderer;
+try{
+  renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:false,powerPreference:'high-performance'});
+}catch(e){
+  canvas.remove();
+  document.documentElement.classList.add('no-webgl');
+  document.getElementById('pre')?.classList.add('done');
+  throw e;
+}
+renderer.setClearColor(0x1f2509,1);
+renderer.outputColorSpace=THREE.SRGBColorSpace;
+renderer.toneMapping=THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure=.94;
+renderer.shadowMap.enabled=true;
+renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+let DPR=Math.min(devicePixelRatio||1,1.85);
+let VW=innerWidth,VH=innerHeight;
+let ZFIT=1;   /* camera pull-back for narrow viewports */
+
+/* ==================================================================
+   3 · HERO scene — tokonoma set, light shaft, blurred branches, blossom
+   ================================================================== */
+/* the painted branch was shot on a black sweep — key alpha from its own luminance */
+function paintedBranch(size,blurPx,crop,flip,onReady){
+  const c=cv(size,size),x=c.getContext('2d');
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;
+  loadArt(ART+'hero-branch.webp',img=>{
+    const w=img.width,h=img.height,s0=crop.s;
+    const sw=w*s0,sh=h*s0;
+    x.save();
+    if(flip){x.translate(size,0);x.scale(-1,1)}
+    x.drawImage(img,crop.x*(w-sw),crop.y*(h-sh),sw,sh,0,0,size,size);
+    x.restore();
+    /* luminance → alpha, so the black sweep disappears */
+    const d=x.getImageData(0,0,size,size),p=d.data;
+    for(let i=0;i<p.length;i+=4){
+      const l=(p[i]*.30+p[i+1]*.59+p[i+2]*.11)/255;
+      p[i+3]=Math.round(255*clamp((l-.045)/.30,0,1));
+    }
+    x.putImageData(d,0,0);
+    /* soft edge so the plane has no visible border, then defocus */
+    const o=cv(size,size),ox=o.getContext('2d');
+    ox.filter=`blur(${blurPx}px)`;ox.drawImage(c,0,0);ox.filter='none';
+    ox.globalCompositeOperation='destination-in';
+    /* the vignette must reach zero AT the plane border (r = size*.5), not past it —
+       an outer radius of .52 left ~15% alpha along each edge, which read as a straight cut */
+    const rg=ox.createRadialGradient(size*.5,size*.5,size*.10,size*.5,size*.5,size*.50);
+    rg.addColorStop(0,'rgba(0,0,0,1)');rg.addColorStop(.72,'rgba(0,0,0,.94)');rg.addColorStop(1,'rgba(0,0,0,0)');
+    ox.fillStyle=rg;ox.fillRect(0,0,size,size);
+    /* belt and braces: feather the four borders so no edge can ever carry alpha */
+    const f=size*.07;
+    [[0,0,f,0],[size,0,size-f,0],[0,0,0,f],[0,size,0,size-f]].forEach(([x0,y0,x1,y1])=>{
+      const lg=ox.createLinearGradient(x0,y0,x1,y1);
+      lg.addColorStop(0,'rgba(0,0,0,0)');lg.addColorStop(1,'rgba(0,0,0,1)');
+      ox.fillStyle=lg;ox.fillRect(0,0,size,size);
+    });
+    x.clearRect(0,0,size,size);x.drawImage(o,0,0);
+    t.needsUpdate=true;if(onReady)onReady();
+  });
+  return t;
+}
+function branchTexture(size,seed,bright,blurPx){
+  const c=cv(size,size),x=c.getContext('2d');
+  const rnd=mulberry(seed);
+  x.clearRect(0,0,size,size);
+  /* dark branches */
+  const limb=(x0,y0,x1,y1,w,d)=>{
+    x.strokeStyle=`rgba(${38+rnd()*22|0},${26+rnd()*16|0},${28+rnd()*16|0},.92)`;
+    x.lineWidth=w;x.lineCap='round';
+    const mx=(x0+x1)/2+(rnd()-.5)*size*.22, my=(y0+y1)/2+(rnd()-.5)*size*.22;
+    x.beginPath();x.moveTo(x0,y0);x.quadraticCurveTo(mx,my,x1,y1);x.stroke();
+    if(d>0)for(let i=0;i<2;i++){
+      const t=.35+rnd()*.5;
+      const bx=x0+(x1-x0)*t+(rnd()-.5)*size*.1, by=y0+(y1-y0)*t+(rnd()-.5)*size*.1;
+      limb(bx,by,bx+(rnd()-.5)*size*.7,by-rnd()*size*.5,w*.55,d-1);
+    }
+  };
+  for(let i=0;i<4;i++)
+    limb(-size*.15+rnd()*size*.35,size*(1.06+rnd()*.12),size*(.45+rnd()*.7),size*(.02+rnd()*.5),size*.048,3);
+  /* blossom clusters */
+  for(let i=0;i<86;i++){
+    const cx=rnd()*size, cy=rnd()*size*.92, r=size*(.020+rnd()*.034);
+    const t=rnd();
+    const R=bright?(238+rnd()*17|0):(196+rnd()*40|0);
+    const G=bright?(198+rnd()*32|0):(150+rnd()*45|0);
+    const B=bright?(202+rnd()*32|0):(158+rnd()*42|0);
+    x.fillStyle=`rgba(${R},${G},${B},${.55+t*.45})`;
+    x.beginPath();
+    for(let k=0;k<5;k++){
+      const a=k/5*Math.PI*2+rnd();
+      x.moveTo(cx,cy);
+      x.arc(cx+Math.cos(a)*r*.55,cy+Math.sin(a)*r*.55,r*.62,0,Math.PI*2);
+    }
+    x.fill();
+  }
+  const o=cv(size,size),ox=o.getContext('2d');
+  ox.filter=`blur(${blurPx}px)`;ox.drawImage(c,0,0);ox.filter='none';
+  ox.globalCompositeOperation='destination-in';
+  const rg=ox.createRadialGradient(size*.5,size*.5,size*.10,size*.5,size*.5,size*.50);
+  rg.addColorStop(0,'rgba(0,0,0,1)');rg.addColorStop(.62,'rgba(0,0,0,.92)');rg.addColorStop(1,'rgba(0,0,0,0)');
+  ox.fillStyle=rg;ox.fillRect(0,0,size,size);
+  ox.globalCompositeOperation='source-over';
+  const t=new THREE.CanvasTexture(o);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
+function wedgeTexture(size){
+  const c=cv(size,size),x=c.getContext('2d');
+  const g=x.createLinearGradient(0,0,0,size);
+  g.addColorStop(0,'rgba(255,244,226,.95)');g.addColorStop(.55,'rgba(255,240,222,.42)');
+  g.addColorStop(1,'rgba(255,240,222,0)');
+  x.fillStyle=g;
+  x.beginPath();x.moveTo(size*.44,0);x.lineTo(size*.56,0);x.lineTo(size*.90,size);x.lineTo(size*.10,size);x.closePath();x.fill();
+  const o=cv(size,size),ox=o.getContext('2d');
+  ox.filter=`blur(${size*.075}px)`;ox.drawImage(c,0,0);
+  const t=new THREE.CanvasTexture(o);t.colorSpace=THREE.SRGBColorSpace;return t;
+}
+
+/* screen-space dither dissolve, patched onto any lit material */
+function addDissolve(mat){
+  const prev=mat.onBeforeCompile, prevKey=mat.customProgramCacheKey;
+  mat.customProgramCacheKey=function(){return (prevKey?prevKey.call(this):'')+'|dissolve'};
+  mat.onBeforeCompile=sh=>{
+    if(prev)prev(sh);
+    sh.uniforms.uDissolve={value:0};
+    sh.fragmentShader='uniform float uDissolve;\n'+sh.fragmentShader
+      .replace('#include <dithering_fragment>',`#include <dithering_fragment>
+        if(uDissolve>0.001){
+          float n=fract(sin(dot(floor(gl_FragCoord.xy),vec2(12.9898,78.233)))*43758.5453);
+          if(n<uDissolve) discard;
+        }`);
+    mat.userData.shader=sh;
+  };
+  return mat;
+}
+function dissolveGroup(g,v){
+  g.traverse(o=>{const sh=o.material&&o.material.userData&&o.material.userData.shader;
+    if(sh)sh.uniforms.uDissolve.value=v;});
+}
+
+const hero={};
+{
+  const sc=new THREE.Scene();
+  sc.background=new THREE.Color(0x2b1f26);
+  sc.fog=new THREE.FogExp2(0x2b1f26,.018);
+  const cam=new THREE.PerspectiveCamera(34,1,.1,60);
+  cam.position.set(0,-.06,8.2);
+  cam.lookAt(0,.16,0);
+
+  const matPanel=(c,o)=>noisify(new THREE.MeshStandardMaterial({color:c,roughness:.88,metalness:0}),
+    Object.assign({scale:1.15,tint:.13,rough:.30,fibre:.030},o||{}));
+  const matCyl=noisify(new THREE.MeshPhysicalMaterial({
+    color:0xd8c8c3,roughness:.46,metalness:0,clearcoat:.24,clearcoatRoughness:.5,
+    sheen:.24,sheenColor:new THREE.Color(0xf3e6e2),sheenRoughness:.6
+  }),{scale:3.4,tint:.045,rough:.34,speck:.016});
+  const matCap=noisify(new THREE.MeshStandardMaterial({color:0xf2e7e1,roughness:.62,metalness:0}),
+    {scale:4.2,tint:.05,rough:.30,speck:.020});
+  const cylMats=[matCyl,matCap,matCap];
+
+  const back=new THREE.Mesh(new THREE.PlaneGeometry(60,40),matPanel(0x4a3840));
+  back.position.set(0,0,-9);back.receiveShadow=true;sc.add(back);
+  const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,40),matPanel(0x54424a));
+  floor.rotation.x=-PI/2;floor.position.set(0,-5.4,-2);floor.receiveShadow=true;sc.add(floor);
+
+  const mid=new THREE.Mesh(new THREE.BoxGeometry(2.8,14,.5),matPanel(0xcdb3af));
+  mid.position.set(.2,1.5,-2.2);mid.castShadow=true;mid.receiveShadow=true;sc.add(mid);
+  /* the pink runs out to the right edge — no dark block closing the frame */
+  const right=new THREE.Mesh(new THREE.BoxGeometry(11,14,.5),matPanel(0xbb9f9f));
+  right.position.set(7.0,1.5,-3.6);right.castShadow=true;right.receiveShadow=true;sc.add(right);
+  /* left panel runs under the mid slab, so there is no dark seam between them */
+  const left=new THREE.Mesh(new THREE.BoxGeometry(6.2,14,.5),matPanel(0x4d3740));
+  left.position.set(-4.0,1.5,-4.4);sc.add(left);   /* no receiveShadow: the mid slab's cast
+     shadow landed on it as a hard vertical bar, which read as a second seam */
+
+  const cylBack=new THREE.Mesh(new THREE.CylinderGeometry(.92,.92,5,80,1,false),cylMats);
+  cylBack.position.set(-2.42,-2.07,-.55);cylBack.castShadow=true;cylBack.receiveShadow=true;sc.add(cylBack);
+  const cylFront=new THREE.Mesh(new THREE.CylinderGeometry(1.08,1.08,4,96,1,false),cylMats);
+  cylFront.position.set(-.05,-3.24,1.4);cylFront.castShadow=true;cylFront.receiveShadow=true;sc.add(cylFront);
+
+  /* the blossom */
+  const bl=makeBlossom();
+  bl.traverse(o=>{if(o.material)addDissolve(o.material)});
+  bl.scale.setScalar(.88);
+  bl.position.set(0,.02,1.4);
+  bl.rotation.set(-.42,.16,-.22);
+  sc.add(bl);
+  hero.bl=bl;
+
+  /* decay:0 spots — intensity reads directly as irradiance */
+  sc.add(new THREE.HemisphereLight(0xe4bfc4,0x30222a,.62));
+  const key=new THREE.SpotLight(0xfff2e0,2.55,40,.60,.90,0);
+  key.position.set(.30,8.4,2.6);key.target.position.set(-.05,-1.7,.9);
+  key.castShadow=true;key.shadow.mapSize.set(1024,1024);
+  key.shadow.camera.near=1.5;key.shadow.camera.far=22;
+  key.shadow.bias=-.0008;key.shadow.normalBias=.03;
+  sc.add(key,key.target);
+  const gobo=new THREE.SpotLight(0xfff0dc,2.10,40,.26,.85,0);
+  gobo.position.set(.55,9.2,-.2);gobo.target.position.set(.4,-2.4,-2.1);
+  sc.add(gobo,gobo.target);
+  const wash=new THREE.SpotLight(0xf8efe6,1.45,44,.52,1,0);
+  wash.position.set(6.8,7.4,3.0);wash.target.position.set(3.4,.4,-3.5);
+  wash.castShadow=true;wash.shadow.mapSize.set(1024,1024);
+  wash.shadow.camera.near=2;wash.shadow.camera.far=26;wash.shadow.normalBias=.05;
+  sc.add(wash,wash.target);
+  const fill=new THREE.DirectionalLight(0xf6e5e2,1.55);
+  fill.position.set(-6.5,2.2,5.5);sc.add(fill);
+  const rim=new THREE.DirectionalLight(0xffeaea,.48);
+  rim.position.set(4.5,3.2,3.5);sc.add(rim);
+  const back2=new THREE.DirectionalLight(0xffd9df,.85);
+  back2.position.set(-1.2,2.4,-5.0);sc.add(back2);
+
+  const wedge=new THREE.Mesh(new THREE.PlaneGeometry(2.35,8.6),
+    new THREE.MeshBasicMaterial({map:wedgeTexture(512),transparent:true,opacity:.34,
+      blending:THREE.AdditiveBlending,depthWrite:false,toneMapped:false}));
+  wedge.position.set(.42,3.1,-1.85);sc.add(wedge);
+
+  const shafts=makeShafts();sc.add(shafts);hero.shafts=shafts;
+
+  const fol=[];
+  const addFol=(w,h,x,y,z,tex,op)=>{
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(w,h),
+      new THREE.MeshBasicMaterial({map:tex,transparent:true,opacity:op,depthWrite:false,toneMapped:false}));
+    m.position.set(x,y,z);sc.add(m);fol.push(m);return m;
+  };
+  addFol(3.4,3.4,-2.55,-.30,3.4,paintedBranch(768,6,{x:.15,y:.20,s:.60},false),1);
+  addFol(4.6,4.6,-3.35,.80,4.4,paintedBranch(768,13,{x:.72,y:.62,s:.52},true),.92);
+  /* right side gets its own out-of-focus sprays, so the frame is held on both sides */
+  addFol(3.6,3.6,2.60,-2.10,3.9,paintedBranch(640,12,{x:.42,y:.55,s:.44},true),.72);
+  addFol(2.6,2.6,2.00,1.28,4.1,paintedBranch(640,8,{x:.18,y:.16,s:.38},true),.85);
+  hero.fol=fol;
+
+  const pf=new PetalSwarm(130,{box:[11.5,9,5.4],c:[.2,1.4,1.9],size:.108,fall:.40,respawn:-3.5,
+    discs:[{x:-.05,z:1.4,r:1.02,y:-1.24},{x:-2.42,z:-.55,r:.86,y:.43}],seed:31,
+    avoid:{x:0,y:.02,z:1.4,r:.95}});
+  sc.add(pf.mesh);hero.petals=pf;
+
+  hero.scene=sc;hero.cam=cam;hero.key=key;hero.gobo=gobo;hero.wash=wash;hero.fill=fill;hero.rim=rim;
+  hero.hemi=sc.children.find(o=>o.isHemisphereLight);hero.mid=mid;hero.right=right;hero.cyl=matCyl;hero.wedge=wedge;
+}
+
+/* ==================================================================
+   4 · THE FRONT scene — a blossom dropped onto water (scroll scrubbed)
+   ================================================================== */
+const cap={};
+{
+  const sc=new THREE.Scene();
+  sc.fog=new THREE.FogExp2(0xc3aab0,0.0);   /* density rises once we are under */
+  const cam=new THREE.PerspectiveCamera(32,1,.1,60);
+  cam.position.set(0,0,6.4);
+  sc.add(cam);
+
+  const bgMat=new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uW:{value:1.6},uMix:{value:0},uAsp:{value:1}},
+    depthWrite:false,depthTest:false,toneMapped:false,
+    vertexShader:`varying vec2 vU;void main(){vU=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}`,
+    fragmentShader:NOISE_GLSL+`
+      varying vec2 vU;uniform float uT,uW,uMix,uAsp;
+      void main(){
+        vec2 p=vU;
+        /* act one: the still studio ground */
+        vec3 top=vec3(.925,.874,.874), bot=vec3(.784,.706,.718);
+        vec3 dry=mix(bot,top,smoothstep(.02,.92,p.y));
+        float m=fbm(vec2(p.x*2.4*uAsp,p.y*2.4)+vec2(uT*.012,0.));
+        dry*=.93+m*.15;
+
+        /* act two: open water — bright toward the surface, deep below */
+        vec3 shallow=vec3(.906,.855,.851), deep=vec3(.560,.480,.510);
+        float dep=smoothstep(1.02,-.06,p.y);
+        vec3 wet=mix(shallow,deep,pow(dep,1.35));
+        float col1=fbm(vec2(p.x*3.1*uAsp+uT*.03,p.y*.55));
+        wet+=vec3(1.,.96,.92)*pow(clamp(col1,0.,1.),2.4)*.13*(1.-dep*.75);
+        wet*=.97+.06*fbm(vec2(p.x*22.*uAsp,p.y*22.-uT*.06));
+
+        vec3 col=mix(dry,wet,uMix);
+        col*=1.0-0.26*smoothstep(.42,1.06,length((p-vec2(.5,.55))*vec2(uAsp,1.))*1.15);
+        gl_FragColor=vec4(col,1.);
+      }`
+  });
+  const bg=new THREE.Mesh(new THREE.PlaneGeometry(1,1),bgMat);
+  bg.position.z=-9;bg.renderOrder=-10;cam.add(bg);
+
+  /* ================= a real water surface =================
+     A ping-pong height field the pointer can stir, a displaced plane
+     seen from underneath, Snell's window in the middle and total
+     internal reflection toward the rim. */
+  const RS=256;
+  const rtOpt={type:THREE.HalfFloatType,format:THREE.RGBAFormat,
+    minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,depthBuffer:false,stencilBuffer:false};
+  let rtA=new THREE.WebGLRenderTarget(RS,RS,rtOpt), rtB=new THREE.WebGLRenderTarget(RS,RS,rtOpt);
+  const simScene=new THREE.Scene();
+  const simCam=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+  const simMat=new THREE.ShaderMaterial({
+    uniforms:{uState:{value:null},uTexel:{value:new THREE.Vector2(1/RS,1/RS)},
+      uDrop:{value:new THREE.Vector3(-9,-9,0)},uDamp:{value:.994},uSpread:{value:.35}},
+    vertexShader:`varying vec2 vU;void main(){vU=uv;gl_Position=vec4(position.xy,0.,1.);}`,
+    fragmentShader:`
+      varying vec2 vU;uniform sampler2D uState;uniform vec2 uTexel;
+      uniform vec3 uDrop;uniform float uDamp,uSpread;
+      void main(){
+        vec4 s=texture2D(uState,vU);
+        float h=s.r, hp=s.g;
+        float n=texture2D(uState,vU+vec2(0.,uTexel.y)).r
+               +texture2D(uState,vU-vec2(0.,uTexel.y)).r
+               +texture2D(uState,vU+vec2(uTexel.x,0.)).r
+               +texture2D(uState,vU-vec2(uTexel.x,0.)).r;
+        float nh=(2.0*h-hp)+uSpread*(n*0.25-h);     /* the wave equation */
+        nh*=uDamp;
+        float d=distance(vU,uDrop.xy);
+        nh+=uDrop.z*exp(-d*d*260.0);
+        gl_FragColor=vec4(nh,h,0.,1.);
+      }`
+  });
+  simScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),simMat));
+
+  const WATER_Y=1.15;
+  const waterMat=new THREE.ShaderMaterial({
+    uniforms:{
+      uT:{value:0},uH:{value:null},uMix:{value:0},uSun:{value:new THREE.Vector3(.25,1,.4).normalize()},
+      uDeep:{value:new THREE.Color(0xa89298)},uShallow:{value:new THREE.Color(0xe0cdd0)},
+      uSkyA:{value:new THREE.Color(0xfff6ee)},uSkyB:{value:new THREE.Color(0xf6d2d4)},
+      uCam:{value:new THREE.Vector3()},uSpan:{value:60}
+    },
+    transparent:true,side:THREE.DoubleSide,depthWrite:false,toneMapped:false,
+    vertexShader:`
+      varying vec3 vW; varying vec2 vH;
+      uniform sampler2D uH; uniform float uT,uSpan;
+      void main(){
+        vec3 p=position;
+        vec2 huv=uv;
+        float ripple=texture2D(uH,huv).r;
+        /* two long swells plus the interactive ripple */
+        float sw = sin(p.x*.42+uT*.55)*.055 + sin(p.y*.33-uT*.41)*.045
+                 + sin((p.x+p.y)*.9+uT*.9)*.018;
+        p.z += sw + ripple*1.15;
+        vH=huv;
+        vec4 w=modelMatrix*vec4(p,1.0);
+        vW=w.xyz;
+        gl_Position=projectionMatrix*viewMatrix*w;
+      }`,
+    fragmentShader:NOISE_GLSL+`
+      varying vec3 vW; varying vec2 vH;
+      uniform sampler2D uH; uniform float uT,uMix,uSpan;
+      uniform vec3 uSun,uDeep,uShallow,uSkyA,uSkyB,uCam;
+
+      vec3 skyLook(vec3 d){
+        float up=clamp(d.y*.5+.5,0.,1.);
+        vec3 c=mix(uSkyB,uSkyA,pow(up,.7));
+        float sun=pow(clamp(dot(d,uSun),0.,1.),220.0);
+        float halo=pow(clamp(dot(d,uSun),0.,1.),9.0);
+        c+=vec3(1.,.95,.86)*(sun*2.6+halo*.30);
+        /* a suggestion of blossom canopy near the horizon */
+        float canopy=smoothstep(.30,-.05,d.y)*smoothstep(.0,.6,fbm(vec2(d.x*3.4,d.z*3.4)));
+        c=mix(c,vec3(.86,.62,.66),canopy*.55);
+        return c;
+      }
+      void main(){
+        /* --- normal from the height field + fine chop --- */
+        vec2 tx=vec2(1.0/256.0);
+        float hL=texture2D(uH,vH-vec2(tx.x,0.)).r, hR=texture2D(uH,vH+vec2(tx.x,0.)).r;
+        float hD=texture2D(uH,vH-vec2(0.,tx.y)).r, hU=texture2D(uH,vH+vec2(0.,tx.y)).r;
+        vec2 rg=vec2(hR-hL,hU-hD)*22.0;
+        float sx=cos(vW.x*.42+uT*.55)*.42*.055 + cos((vW.x+vW.z)*.9+uT*.9)*.9*.018;
+        float sz=cos(vW.z*.33-uT*.41)*.33*.045 + cos((vW.x+vW.z)*.9+uT*.9)*.9*.018;
+        vec2 chop=vec2(fbm(vec2(vW.x*2.2+uT*.3,vW.z*2.2))-.5,
+                       fbm(vec2(vW.x*2.2+11.,vW.z*2.2-uT*.25))-.5)*.14;
+        vec3 N=normalize(vec3(-(sx+rg.x+chop.x),1.0,-(sz+rg.y+chop.y)));
+
+        vec3 V=normalize(vW-uCam);          /* from the eye to the surface */
+        float up=dot(V,N);                  /* >0 means we are underneath, looking up */
+
+        /* --- Snell's window: air only reaches us inside the critical cone --- */
+        float eta=1.0/1.333;
+        vec3 R=refract(V,-N,1.333);         /* water -> air */
+        float tir=step(length(R),0.0001);   /* total internal reflection outside the cone */
+
+        vec3 sky=skyLook(normalize(R+vec3(0.,1e-4,0.)));
+        /* what the underside mirrors: the deep, plus a blush where the blossom is */
+        vec3 mir=reflect(V,N);
+        float toCentre=pow(clamp(1.0-length(vW.xz)*.055,0.,1.),2.0);
+        vec3 below=mix(uDeep,uShallow,pow(clamp(mir.y*.5+.5,0.,1.),1.6));
+        below=mix(below,vec3(.86,.75,.77),toCentre*.30);
+        below=mix(below,vec3(.90,.83,.83),.22);   /* keep the mirrored side luminous */
+
+        float edge=smoothstep(0.0,0.46,length(R));   /* a wide, soft window rim */
+        vec3 col=mix(below,sky,edge*(1.0-tir));
+
+        /* the rim of the window flares, and disperses a little */
+        float rim=exp(-pow((length(R)-.30)/.30,2.));
+        col+=vec3(1.,.92,.86)*rim*.30;
+
+        /* specular glint of the sun on the underside */
+        float sp=pow(clamp(dot(reflect(V,N),uSun),0.,1.),90.0);
+        col+=vec3(1.,.96,.9)*sp*.85;
+
+        /* the surface thins out toward the far horizon */
+        float far=smoothstep(uSpan*.55,uSpan*.10,length(vW.xz-uCam.xz));
+        col=mix(col*1.06,vec3(.86,.78,.79),1.0-far);   /* the far surface hazes out */
+        float a=mix(.72,1.0,far);
+        gl_FragColor=vec4(col,a*uMix);
+      }`
+  });
+  const water=new THREE.Mesh(new THREE.PlaneGeometry(60,60,180,180),waterMat);
+  water.rotation.x=-PI/2;water.position.set(0,WATER_Y,0);water.renderOrder=18;
+  sc.add(water);
+
+  /* light shafts stabbing down from the surface */
+  const rayMat=new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uMix:{value:0}},
+    transparent:true,depthWrite:false,blending:THREE.AdditiveBlending,side:THREE.DoubleSide,toneMapped:false,
+    vertexShader:`varying vec2 vS;varying vec3 vW;void main(){vS=uv;vec4 w=modelMatrix*vec4(position,1.);vW=w.xyz;
+      gl_Position=projectionMatrix*viewMatrix*w;}`,
+    fragmentShader:NOISE_GLSL+`
+      varying vec2 vS;varying vec3 vW;uniform float uT,uMix;
+      void main(){
+        float across=1.0-abs(vS.x*2.0-1.0);
+        float e=pow(smoothstep(0.0,.55,across),1.6);
+        float down=smoothstep(1.0,.55,vS.y)*smoothstep(0.0,.30,vS.y);
+        float g=.55+.45*fbm(vec2(vW.x*1.3+uT*.12,vW.y*.5));
+        float a=e*down*g*.16*uMix;
+        gl_FragColor=vec4(vec3(1.,.95,.90)*a,a);
+      }`
+  });
+  const rays=new THREE.Group();
+  for(let i=0;i<7;i++){
+    const q=new THREE.Mesh(new THREE.PlaneGeometry(.5+((i*7)%5)*.22,7.5),rayMat);
+    q.position.set(-3.4+i*1.15,WATER_Y-3.6,-1.2+((i*3)%4)*.8);
+    q.rotation.z=.16+i*.012;q.renderOrder=17;
+    rays.add(q);
+  }
+  sc.add(rays);
+
+  const bl=makeBlossom();
+  bl.traverse(o=>{if(o.material)addDissolve(o.material)});
+  bl.scale.setScalar(.62);
+  sc.add(bl);
+
+  sc.add(new THREE.HemisphereLight(0xe6cdd0,0x4a3a40,1.05));
+  const k1=new THREE.DirectionalLight(0xfff3e6,3.0);k1.position.set(-1.8,4.6,3.8);sc.add(k1);
+  const k2=new THREE.DirectionalLight(0xf6e9e4,1.3);k2.position.set(3.8,1.0,2.6);sc.add(k2);
+  const k3=new THREE.DirectionalLight(0xe9d3d6,.65);k3.position.set(.2,-2.8,2.2);sc.add(k3);
+
+  /* petals: fall through the frame, then rest on the surface line */
+  const pf=new PetalSwarm(180,{box:[8.4,7.2,3.0],c:[0,.8,.6],size:.092,fall:.52,respawn:-3.0,seed:47,restFlat:false,
+    avoid:{x:0,y:0,z:0,r:.72}});
+  pf.mesh.visible=false;sc.add(pf.mesh);
+
+  /* bubbles at the moment of impact */
+  const NB=180,bp=new Float32Array(NB*3),bs=new Float32Array(NB),bo=new Float32Array(NB);
+  const rb=mulberry(5);
+  for(let i=0;i<NB;i++){
+    const a=rb()*PI*2,r=Math.pow(rb(),.55)*1.35;
+    bp[i*3]=Math.cos(a)*r*1.15;bp[i*3+1]=rb();bp[i*3+2]=Math.sin(a)*r*.6;
+    bs[i]=.016+Math.pow(rb(),2.2)*.075;bo[i]=rb();
+  }
+  const bg2=new THREE.BufferGeometry();
+  bg2.setAttribute('position',new THREE.Float32BufferAttribute(bp,3));
+  bg2.setAttribute('aSize',new THREE.Float32BufferAttribute(bs,1));
+  bg2.setAttribute('aOff',new THREE.Float32BufferAttribute(bo,1));
+  const bubMat=new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uProg:{value:0},uW:{value:0},uPix:{value:1},uOp:{value:0}},
+    transparent:true,depthWrite:false,
+    vertexShader:`
+      attribute float aSize,aOff;varying float vA;uniform float uT,uProg,uW,uPix,uOp;
+      void main(){
+        float sp=.30+aSize*7.0;
+        float y=mod(aOff+uProg*sp*.55+uT*.035*sp, 1.0);
+        vec3 p=position;
+        p.y = uW - 2.4 + y*2.6;
+        p.x += sin(uT*1.1+aOff*30.0)*0.05;
+        float above=smoothstep(uW-.28,uW+.02,p.y);
+        vA=(1.0-above)*smoothstep(0.,.12,y)*uOp;
+        vec4 mv=modelViewMatrix*vec4(p,1.0);
+        gl_PointSize=aSize*uPix*300.0/max(-mv.z,.001);
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`
+      varying float vA;
+      void main(){
+        vec2 c=gl_PointCoord*2.-1.;float r=length(c);
+        if(r>1.) discard;
+        float rim=smoothstep(.55,1.,r)*(1.-smoothstep(.95,1.,r));
+        float hi=smoothstep(.55,.0,length(c-vec2(-.32,.34)));
+        float a=(rim*.85+hi*.6+.10)*vA;
+        gl_FragColor=vec4(vec3(.97,.95,.95),a);
+      }`
+  });
+  const bub=new THREE.Points(bg2,bubMat);sc.add(bub);
+
+  const NS=120,sp2=new Float32Array(NS*3),sv=new Float32Array(NS*3),ss=new Float32Array(NS);
+  const rs=mulberry(17);
+  for(let i=0;i<NS;i++){
+    const a=rs()*PI*2,e=.35+rs()*1.15,m=.9+rs()*2.3;
+    sv[i*3]=Math.cos(a)*Math.cos(e)*m;sv[i*3+1]=Math.sin(e)*m*1.5;sv[i*3+2]=Math.sin(a)*Math.cos(e)*m*.5;
+    ss[i]=.02+Math.pow(rs(),2.)*.09;
+  }
+  const sg=new THREE.BufferGeometry();
+  sg.setAttribute('position',new THREE.Float32BufferAttribute(sp2,3));
+  sg.setAttribute('aVel',new THREE.Float32BufferAttribute(sv,3));
+  sg.setAttribute('aSize',new THREE.Float32BufferAttribute(ss,1));
+  const splMat=new THREE.ShaderMaterial({
+    uniforms:{uT:{value:0},uY:{value:0},uPix:{value:1}},
+    transparent:true,depthWrite:false,
+    vertexShader:`
+      attribute vec3 aVel;attribute float aSize;varying float vA;uniform float uT,uY,uPix;
+      void main(){
+        float t=uT*1.15;
+        vec3 p=vec3(0.,uY,0.)+aVel*t-vec3(0.,2.6*t*t,0.);
+        vA=(1.-smoothstep(.55,1.,uT))*step(.001,uT);
+        vec4 mv=modelViewMatrix*vec4(p,1.0);
+        gl_PointSize=aSize*uPix*300.0/max(-mv.z,.001);
+        gl_Position=projectionMatrix*mv;
+      }`,
+    fragmentShader:`varying float vA;void main(){vec2 c=gl_PointCoord*2.-1.;float r=length(c);
+      if(r>1.)discard;gl_FragColor=vec4(vec3(.99,.97,.97),(1.-smoothstep(.35,1.,r))*vA*.9);}`
+  });
+  const spl=new THREE.Points(sg,splMat);sc.add(spl);
+
+  Object.assign(cap,{scene:sc,cam,bl,bgMat,waterMat,bubMat,splMat,petals:pf,bg,water,bub,spl,
+    rays,rayMat,simScene,simCam,simMat,WATER_Y,
+    get rtA(){return rtA},get rtB(){return rtB},
+    swap(){const t=rtA;rtA=rtB;rtB=t}});
+}
+
+/* size the two camera-attached quads to exactly fill the frustum */
+function fitQuad(mesh,cam,dist){
+  const h=2*Math.tan(cam.fov*PI/360)*dist, w=h*cam.aspect;
+  mesh.scale.set(w,h,1);
+}
+
+/* ==================================================================
+   5 · PRODUCTS scene — three packages in their own small context
+   ================================================================== */
+/* A rounded box built by pushing a face grid onto a rounded surface.
+   The samples bunch into the fillet and are spaced evenly in fillet ANGLE:
+   a uniform grid puts less than one cell across a 3% radius, which renders
+   as a flat 45-degree chamfer instead of a curve. Build it at the box's real
+   proportions too — scaling a unit cube squashes the fillet on the short axis. */
+function roundedBox(w,h,d,r,N){
+  const H=[w/2,h/2,d/2];
+  r=Math.min(r,H[0]*.92,H[1]*.92,H[2]*.92);
+  const KE=Math.max(6,Math.round(N*.85));            /* segments across one fillet */
+  const axis=hx=>{
+    const flat=hx-r,out=[];
+    for(let i=KE;i>=1;i--)out.push(-(flat+r*Math.tan(i/KE*PI/4)));
+    for(let i=0;i<=N;i++)out.push(-flat+2*flat*(i/N));
+    for(let i=1;i<=KE;i++)out.push(flat+r*Math.tan(i/KE*PI/4));
+    return out;
+  };
+  const T=[axis(H[0]),axis(H[1]),axis(H[2])];
+  /* each face: the axis it is fixed on, then the two axes it runs along */
+  const F=[{ax:0,sg: 1,ua:2,ud: 1,va:1,vd: 1},
+           {ax:0,sg:-1,ua:2,ud:-1,va:1,vd: 1},
+           {ax:1,sg: 1,ua:0,ud: 1,va:2,vd: 1},
+           {ax:1,sg:-1,ua:0,ud: 1,va:2,vd:-1},
+           {ax:2,sg: 1,ua:0,ud: 1,va:1,vd: 1},
+           {ax:2,sg:-1,ua:0,ud:-1,va:1,vd: 1}];
+  const pos=[],nor=[],uvs=[],idx=[],groups=[];
+  const p=[0,0,0],q=[0,0,0],n=[0,0,0];
+  let base=0;
+  F.forEach((f,fi)=>{
+    const TU=T[f.ua],TV=T[f.va],NU=TU.length-1,NV=TV.length-1,start=idx.length;
+    for(let j=0;j<=NV;j++)for(let i=0;i<=NU;i++){
+      p[f.ax]=f.sg*H[f.ax];p[f.ua]=f.ud*TU[i];p[f.va]=f.vd*TV[j];
+      for(let k=0;k<3;k++)q[k]=clamp(p[k],-(H[k]-r),H[k]-r);
+      n[0]=p[0]-q[0];n[1]=p[1]-q[1];n[2]=p[2]-q[2];
+      const L=Math.hypot(n[0],n[1],n[2]);
+      if(L>1e-9){n[0]/=L;n[1]/=L;n[2]/=L}
+      else{n[0]=n[1]=n[2]=0;n[f.ax]=f.sg}
+      pos.push(q[0]+n[0]*r,q[1]+n[1]*r,q[2]+n[2]*r);nor.push(n[0],n[1],n[2]);
+      /* uv straight off the plan position, so the print never stretches */
+      uvs.push((TU[i]+H[f.ua])/(2*H[f.ua]),(TV[j]+H[f.va])/(2*H[f.va]));
+    }
+    const eu=[0,0,0];eu[f.ua]=f.ud;
+    const ev=[0,0,0];ev[f.va]=f.vd;
+    const cr=[eu[1]*ev[2]-eu[2]*ev[1],eu[2]*ev[0]-eu[0]*ev[2],eu[0]*ev[1]-eu[1]*ev[0]];
+    const flip=cr[f.ax]*f.sg<0;
+    for(let j=0;j<NV;j++)for(let i=0;i<NU;i++){
+      const a=base+j*(NU+1)+i,b=a+1,c=a+NU+1,e=c+1;
+      if(flip)idx.push(a,c,b, b,c,e); else idx.push(a,b,c, b,e,c);
+    }
+    groups.push([start,idx.length-start,fi]);
+    base+=(NU+1)*(NV+1);
+  });
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('normal',new THREE.Float32BufferAttribute(nor,3));
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(uvs,2));
+  g.setIndex(idx);
+  groups.forEach(([a,b,c])=>g.addGroup(a,b,c));
+  g.computeBoundingSphere();
+  return g;
+}
+/* the printed panel is a generated design — carton colour is sampled from its own edge */
+function panelTexture(file,fallback){
+  const W=1024,H=1024,c=cv(W,H),x=c.getContext('2d');
+  x.fillStyle=fallback;x.fillRect(0,0,W,H);
+  const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=8;
+  t.userData.side=new THREE.Color(fallback);
+  loadArt(ART+file,img=>{
+    c.width=img.width;c.height=img.height;
+    x.drawImage(img,0,0);
+    /* the board colour continues round the sides — take it from the panel's own corner */
+    try{
+      const d=x.getImageData(2,Math.round(img.height*.5),1,1).data;
+      t.userData.side.setRGB(Math.pow(d[0]/255,2.2),Math.pow(d[1]/255,2.2),Math.pow(d[2]/255,2.2));
+      if(t.userData.onSide)t.userData.onSide(t.userData.side);
+    }catch(e){}
+    t.needsUpdate=true;
+  });
+  return t;
+}
+function pouchGeometry(w,h,d){
+  const NU=72,NV=48,pos=[],uv=[],idx=[];
+  for(let j=0;j<=NV;j++){
+    const v=j/NV;
+    const pinch=1-smooth(.70,1.0,v)*.94;
+    const bell=1-smooth(.0,.14,v)*0+ (v<.12? (1-v/.12)*.06:0);
+    for(let i=0;i<=NU;i++){
+      const th=i/NU*PI*2, R=squircleR(th,3.0);
+      const X=Math.cos(th)*R*w*.5*(1+bell*.04)*(1-smooth(.86,1.,v)*.06);
+      const Z=Math.sin(th)*R*d*.5*pinch;
+      pos.push(X,(v-.5)*h,Z);
+      uv.push(.5+X/(w*1.02), v*.92+.04);
+    }
+  }
+  for(let j=0;j<NV;j++)for(let i=0;i<NU;i++){
+    const a=j*(NU+1)+i,b=a+1,c2=a+NU+1,d2=c2+1;idx.push(a,b,c2,b,d2,c2);
+  }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));
+  g.setIndex(idx);g.computeVertexNormals();return g;
+}
+
+const prod={enabled:false};
+(function(){
+  const pc=document.getElementById('glprod');
+  const r2=new THREE.WebGLRenderer({canvas:pc,antialias:true,alpha:true,powerPreference:'low-power'});
+  r2.setClearColor(0x000000,0);
+  r2.outputColorSpace=THREE.SRGBColorSpace;
+  r2.toneMapping=THREE.ACESFilmicToneMapping;r2.toneMappingExposure=1.0;
+  const sc=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(22,1,1,6000);
+  sc.add(new THREE.HemisphereLight(0xf6f1e6,0x8f8574,2.0));
+  const d1=new THREE.DirectionalLight(0xfff6e8,2.6);d1.position.set(-320,420,520);sc.add(d1);
+  const d2=new THREE.DirectionalLight(0xdfe6c8,1.0);d2.position.set(420,120,340);sc.add(d2);
+  const d3=new THREE.DirectionalLight(0xffffff,.5);d3.position.set(0,-260,300);sc.add(d3);
+
+  /* carton board: fine paper fibre in the normal + roughness, a little sheen */
+  const FIB=grainMaps(512,29,3.0,1.5);
+  const fibN=FIB.normal.clone();fibN.needsUpdate=true;fibN.repeat.set(5,5);
+  const fibR=FIB.rough.clone();fibR.needsUpdate=true;fibR.repeat.set(5,5);
+  /* metallised film: broad soft crinkles */
+  const CRN=grainMaps(512,53,34,3.4);
+  const crnN=CRN.normal.clone();crnN.needsUpdate=true;crnN.repeat.set(1.6,2.2);
+
+  const card=(o)=>new THREE.MeshPhysicalMaterial(Object.assign({
+    roughness:.80,metalness:0,
+    normalMap:fibN,normalScale:new THREE.Vector2(.32,.32),
+    roughnessMap:fibR,
+    sheen:.42,sheenRoughness:.85,sheenColor:new THREE.Color(0xfff3ec)
+  },o));
+  const boxMat=(tex,side)=>{
+    const m=[0,1,2,3,4,5].map(i=>card(i===4?{map:tex,roughness:.72}:{color:side}));
+    m[2].roughness=.74;                       /* the top flap catches a little more */
+    /* when the printed panel lands, carry its board colour round the sides */
+    tex.userData.onSide=col=>{m.forEach((mm,i)=>{if(i!==4)mm.color.copy(col)})};
+    if(tex.userData.side)tex.userData.onSide(tex.userData.side);
+    return m;
+  };
+  const g1=new THREE.Mesh(roundedBox(1,1,1,.030,10),boxMat(panelTexture('lbl-tea.webp','#e0b3ba'),0x9d6c79));
+  const g2=new THREE.Mesh(roundedBox(1,1,1,.030,10),boxMat(panelTexture('lbl-incense.webp','#efe7dc'),0xd9cec6));
+  const pouchTex=panelTexture('lbl-salt.webp','#2b1f26');
+  const g3=new THREE.Mesh(pouchGeometry(1,1,1),
+    new THREE.MeshPhysicalMaterial({map:pouchTex,roughness:.30,metalness:.55,
+      normalMap:crnN,normalScale:new THREE.Vector2(.55,.55),
+      clearcoat:.45,clearcoatRoughness:.35,side:THREE.DoubleSide}));
+  const items=[g1,g2,g3];items.forEach(o=>sc.add(o));
+
+  /* soft contact shadows so the packages sit on something */
+  const shTex=(()=>{
+    const S=256,c2=cv(S,S),x2=c2.getContext('2d');
+    const g2d=x2.createRadialGradient(S/2,S/2,0,S/2,S/2,S/2);
+    g2d.addColorStop(0,'rgba(62,40,48,.52)');g2d.addColorStop(.55,'rgba(62,40,48,.22)');
+    g2d.addColorStop(1,'rgba(62,40,48,0)');
+    x2.fillStyle=g2d;x2.fillRect(0,0,S,S);
+    const t2=new THREE.CanvasTexture(c2);t2.colorSpace=THREE.SRGBColorSpace;return t2;
+  })();
+  const shadows=items.map(()=>{
+    const m=new THREE.Mesh(new THREE.PlaneGeometry(1,1),
+      new THREE.MeshBasicMaterial({map:shTex,transparent:true,depthWrite:false,toneMapped:false,opacity:.9}));
+    m.renderOrder=-2;sc.add(m);return m;
+  });
+  prod.shadows=shadows;
+  /* a pressed tea cake leaning against the sencha box */
+  const cake=new THREE.Mesh(TABGEO,tabletMaterial(0x76835c));
+  sc.add(cake);
+  Object.assign(prod,{r2,sc,cam,items,cake,pc,shadows:prod.shadows});
+})();
+
+/* ==================================================================
+   5b · OVERLAY petals — the fall carries on over every section,
+        carried by scroll momentum and the pointer
+   ================================================================== */
+const over={on:false};
+(function(){
+  const c=document.getElementById('glp');
+  let r3;
+  try{ r3=new THREE.WebGLRenderer({canvas:c,antialias:true,alpha:true,powerPreference:'low-power'}); }
+  catch(e){ c.remove(); return; }
+  r3.setClearColor(0x000000,0);
+  r3.outputColorSpace=THREE.SRGBColorSpace;
+  r3.toneMapping=THREE.ACESFilmicToneMapping;
+  r3.toneMappingExposure=1.0;
+  const sc=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(34,1,.1,40);
+  cam.position.set(0,0,7.4);
+  sc.add(new THREE.HemisphereLight(0xfff3ee,0x6c5560,2.1));
+  const d1=new THREE.DirectionalLight(0xfff0e6,2.4);d1.position.set(-2,4.5,4);sc.add(d1);
+  const d2=new THREE.DirectionalLight(0xe9d6d8,.9);d2.position.set(3,-1,2.5);sc.add(d2);
+  const sw=new PetalSwarm(96,{box:[15,11,5],c:[0,1.2,1.2],size:.10,fall:.34,respawn:-4.6,seed:63});
+  sw.mat.userData.uni.uTrans.value=1.35;
+  sw.mesh.renderOrder=1;
+  sc.add(sw.mesh);
+  Object.assign(over,{r3,sc,cam,sw,el:c,wind:{x:0,y:0,z:0,px:0,py:0,pz:0,pr:3.1,pw:0}});
+})();
+
+/* ==================================================================
+   6 · page — scroll, reveals, scene direction, render loop
+   ================================================================== */
+/* --- torn paper edge: a ragged tear with the pale fibre core showing along it --- */
+(function(){
+  const W=2400,H=220,c=cv(W,H),x=c.getContext('2d'),d=x.createImageData(W,H);
+  const rnd=mulberry(23),M=512,tab=new Float32Array(M);
+  for(let i=0;i<M;i++)tab[i]=rnd();
+  const fd=t=>t*t*(3-2*t);
+  const n1=(a,seed)=>{const i=Math.floor(a),f=fd(a-i);
+    return lerp(tab[((i+seed)%M+M)%M],tab[((i+1+seed)%M+M)%M],f)};
+  const NIGHT=[30,19,25], CORE=[228,212,205];       /* band colour, and the paper it tore from */
+  const edge=new Float32Array(W);
+  for(let i=0;i<W;i++){
+    const u=i/W;
+    let y=H*.50;
+    y+=(n1(u*2.6,0)-.5)*H*.40;
+    y+=(n1(u*7,71)-.5)*H*.24;
+    y+=(n1(u*23,137)-.5)*H*.13;
+    y+=(n1(u*77,211)-.5)*H*.06;
+    y+=(n1(u*220,283)-.5)*H*.025;
+    /* the odd deeper bite, the way a tear jumps a fibre bundle */
+    const bite=n1(u*13,349);
+    if(bite>.80)y-=(bite-.80)*5*H*.10;
+    edge[i]=y;
+  }
+  const core=H*.048;
+  for(let i=0;i<W;i++){
+    const u=i/W;
+    const fib=Math.pow(n1(u*300,307),2.4)*H*.13+H*.010;   /* fibres standing proud */
+    for(let y=0;y<H;y++){
+      const k=(y*W+i)*4;
+      let a,r,g,b;
+      const t=(y-edge[i])/core;
+      if(t>=0){
+        const m=Math.min(1,t*t*(3-2*Math.min(t,1)));
+        r=lerp(CORE[0],NIGHT[0],m);g=lerp(CORE[1],NIGHT[1],m);b=lerp(CORE[2],NIGHT[2],m);
+        a=1;
+      }else{
+        const up=edge[i]-y;
+        a=up<fib?clamp(1-up/fib):0;
+        a*=a*(.55+.45*n1(u*640+y*.8,401));                /* thinned, uneven paper */
+        r=CORE[0];g=CORE[1];b=CORE[2];
+      }
+      d.data[k]=Math.round(r);d.data[k+1]=Math.round(g);d.data[k+2]=Math.round(b);
+      d.data[k+3]=Math.round(clamp(a)*255);
+    }
+  }
+  x.putImageData(d,0,0);
+  document.documentElement.style.setProperty('--tearplate',`url(${c.toDataURL()})`);
+})();
+
+/* --- film grain plate (one canvas bitmap, tiled by CSS) --- */
+(function(){
+  const S=180,c=cv(S,S),x=c.getContext('2d'),d=x.createImageData(S,S),r=mulberry(99);
+  for(let i=0;i<S*S;i++){const v=128+(r()-.5)*104;d.data[i*4]=d.data[i*4+1]=d.data[i*4+2]=v;d.data[i*4+3]=255}
+  x.putImageData(d,0,0);
+  document.getElementById('grain').style.backgroundImage=`url(${c.toDataURL()})`;
+})();
+
+/* --- dotted blossom-branch line art --- */
+(function(){
+  const svg=document.getElementById('leafart');if(!svg)return;
+  const r=mulberry(41),ns='http://www.w3.org/2000/svg';
+  const add=d=>{const p=document.createElementNS(ns,'path');p.setAttribute('d',d);svg.appendChild(p)};
+  const bloom=(cx,cy,s)=>{
+    for(let k=0;k<5;k++){
+      const a=k/5*Math.PI*2-Math.PI/2;
+      const x1=cx+Math.cos(a)*s*.34, y1=cy+Math.sin(a)*s*.34;
+      const nx=-Math.sin(a)*s*.42, ny=Math.cos(a)*s*.42;
+      add(`M${cx.toFixed(1)},${cy.toFixed(1)} C${(x1+nx).toFixed(1)},${(y1+ny).toFixed(1)} `+
+          `${(cx+Math.cos(a)*s+nx*.5).toFixed(1)},${(cy+Math.sin(a)*s+ny*.5).toFixed(1)} `+
+          `${(cx+Math.cos(a)*s).toFixed(1)},${(cy+Math.sin(a)*s).toFixed(1)} `+
+          `C${(cx+Math.cos(a)*s-nx*.5).toFixed(1)},${(cy+Math.sin(a)*s-ny*.5).toFixed(1)} `+
+          `${(x1-nx).toFixed(1)},${(y1-ny).toFixed(1)} ${cx.toFixed(1)},${cy.toFixed(1)}`);
+    }
+  };
+  const limb=(x0,y0,x1,y1,d)=>{
+    const mx=(x0+x1)/2+(r()-.5)*90, my=(y0+y1)/2-40-r()*60;
+    add(`M${x0.toFixed(0)},${y0.toFixed(0)} Q${mx.toFixed(0)},${my.toFixed(0)} ${x1.toFixed(0)},${y1.toFixed(0)}`);
+    if(d>0){
+      const bx=x0+(x1-x0)*.55, by=y0+(y1-y0)*.5-24;
+      limb(bx,by,bx+(r()-.5)*240,by-60-r()*90,d-1);
+    }
+    if(d<2)for(let i=0;i<3;i++)bloom(x1+(r()-.5)*46,y1+(r()-.5)*46,14+r()*12);
+  };
+  limb(-30,410,300,190,2);
+  limb(120,420,470,150,2);
+  limb(300,420,560,250,1);
+  for(let i=0;i<7;i++)bloom(60+r()*500,90+r()*280,11+r()*13);
+})();
+
+/* --- ticker --- */
+(function(){
+  const posts=[['The seven days nobody plans for'],['Hanaikada: the afternoon the river blooms'],
+               ['Why the front climbs a hundred miles a week'],['Reading a season in twelve centuries of diaries']];
+  const t=document.getElementById('tickTrack');
+  let html='';
+  for(let k=0;k<6;k++)for(const [p] of posts)
+    html+=`<span class="it"><svg viewBox="0 0 100 100" fill="currentColor"><use href="#x4"/></svg>${p}</span>`;
+  t.innerHTML=html;
+})();
+
+/* --- bloom stations --- */
+(function(){
+  const map=document.getElementById('map');if(!map)return;
+  /* placed against the painted archipelago, not a projection */
+  const sites=[['Kagoshima',.235,.858,'26 March','l'],['Fukuoka',.210,.762,'22 March','l'],
+    ['Kōchi',.402,.766,'21 March','r'],['Hiroshima',.368,.688,'25 March','l'],
+    ['Kyoto',.500,.672,'28 March','l'],['Nagoya',.586,.628,'26 March','r'],
+    ['Tokyo',.650,.596,'24 March','r'],['Kanazawa',.534,.540,'3 April','l'],
+    ['Sendai',.700,.420,'8 April','r'],['Hirosaki',.646,.346,'21 April','l'],
+    ['Matsumae',.664,.282,'28 April','r'],['Sapporo',.706,.166,'1 May','r']];
+  for(const [name,fx,fy,when,side] of sites){
+    const px=fx*100, py=fy*100;
+    const a=document.createElement('div');
+    a.className='stn'+(side==='l'?' l':'');
+    a.style.left=px+'%';a.style.top=py+'%';
+    a.innerHTML=`<i></i><s><b>${name}</b><em>${when}</em></s>`;
+    map.appendChild(a);
+  }
+})();
+
+const stagIO=new IntersectionObserver(es=>es.forEach(e=>{
+  if(e.isIntersecting){e.target.classList.add('on');stagIO.unobserve(e.target)}
+}),{rootMargin:'0px 0px -14% 0px',threshold:.05});
+/* --- the ink plate: a ragged wet edge baked into a 3x-long mask ---
+   Built twice. The sweep axis has to match the axis the mask is scrolled along,
+   or the ramp sits across the plate forever and permanently eats one edge. */
+(function(){
+  const rnd=mulberry(17), N=64, base=new Float32Array(N*N);
+  for(let i=0;i<N*N;i++)base[i]=rnd();
+  const at=(a,b)=>base[((b%N)+N)%N*N+((a%N)+N)%N];
+  const fd=t=>t*t*(3-2*t);
+  const val=(a,b)=>{const ai=Math.floor(a),bi=Math.floor(b),ta=fd(a-ai),tb=fd(b-bi);
+    return lerp(lerp(at(ai,bi),at(ai+1,bi),ta),lerp(at(ai,bi+1),at(ai+1,bi+1),ta),tb)};
+  const fbm2=(a,b)=>{let v=0,amp=.5,fq=1,sum=0;
+    for(let o=0;o<5;o++){v+=val(a*fq,b*fq)*amp;sum+=amp;fq*=2.07;amp*=.55}return v/sum};
+  const plate=(W,H,vertical)=>{
+    const c=cv(W,H),x=c.getContext('2d'),d=x.createImageData(W,H);
+    for(let y=0;y<H;y++)for(let xx=0;xx<W;xx++){
+      /* u runs along the sweep, v across it */
+      const u=vertical?y/H:xx/W, v=vertical?xx/W:y/H;
+      /* the warp fades out before the tail so the last third is solid ink */
+      const calm=1-smooth(.46,.60,u);
+      const warp=((fbm2(u*6.5,v*4.2)-.5)*.40+(fbm2(u*21,v*15)-.5)*.11)*calm;
+      const t=(u-.20)/.30+warp;
+      let a=clamp(t*3.4,0,1);
+      const sp=fbm2(u*38+11,v*30+7);                 /* droplets land ahead of the front */
+      if(sp>.64)a=Math.max(a,clamp((t+.17)*3.0,0,1)*smooth(.64,.77,sp));
+      if(u>.66)a=1;
+      const i=(y*W+xx)*4;
+      d.data[i]=d.data[i+1]=d.data[i+2]=255;d.data[i+3]=Math.round(a*255);
+    }
+    x.putImageData(d,0,0);return `url(${c.toDataURL()})`;
+  };
+  const rs=document.documentElement.style;
+  rs.setProperty('--inkmask',plate(768,256,false));
+  rs.setProperty('--inkmaskv',plate(256,768,true));
+})();
+
+/* --- every painted plate reveals through that edge, and drifts --- */
+const inked=[];
+(function(){
+  document.querySelectorAll('img[src*="hanami-art/img/"]').forEach((im,i)=>{
+    if(im.closest('#pre')||im.closest('.card'))return;   /* card plates are not painted plates */
+    im.classList.add('inked');
+    if(i%3===2)im.classList.add('vert');
+    const host=im.closest('[data-par]');
+    inked.push({el:im,host,own:!host,k:.05+(i%4)*.018});
+  });
+})();
+
+/* --- word-by-word text --- */
+(function(){
+  const sel=['.split .pane p.caps','.split .pane .src','.pcard h3','.stat .lbl',
+             '.cta p.caps','.card h3','#stations .caps'];
+  document.querySelectorAll(sel.join(',')).forEach(el=>{
+    if(el.dataset.split||el.children.length)return;
+    const words=el.textContent.split(/(\s+)/);
+    el.textContent='';
+    let n=0;
+    for(const w of words){
+      if(!w.trim()){el.appendChild(document.createTextNode(w));continue}
+      const sp=document.createElement('span');sp.className='w';
+      const it=document.createElement('i');it.textContent=w;
+      it.style.transitionDelay=(n*26)+'ms';
+      sp.appendChild(it);el.appendChild(sp);n++;
+    }
+    el.dataset.split='1';
+    stagIO.observe(el);
+  });
+})();
+
+/* --- buttons: magnetic, ink bloom from the pointer, label swap --- */
+(function(){
+  document.querySelectorAll('.btn').forEach(b=>{
+    const l=b.querySelector('.lbl');
+    if(l&&!l.dataset.dup){
+      const txt=l.textContent;
+      l.textContent='';
+      const a=document.createElement('span'),c2=document.createElement('span');
+      a.textContent=txt;c2.textContent=txt;
+      l.append(a,c2);l.dataset.dup='1';
+      l.style.height=''; 
+    }
+    b.addEventListener('pointermove',e=>{
+      const r=b.getBoundingClientRect();
+      const mx=e.clientX-r.left, my=e.clientY-r.top;
+      b.style.setProperty('--mx',mx.toFixed(1)+'px');
+      b.style.setProperty('--my',my.toFixed(1)+'px');
+      /* diameter that reaches the farthest corner, so the circle always covers */
+      const d=2*Math.hypot(Math.max(mx,r.width-mx),Math.max(my,r.height-my));
+      b.style.setProperty('--d',d.toFixed(1)+'px');
+      if(!REDUCED){
+        const dx=(e.clientX-r.left-r.width/2)/r.width, dy=(e.clientY-r.top-r.height/2)/r.height;
+        b.style.transform=`translate3d(${(dx*14).toFixed(1)}px,${(dy*9).toFixed(1)}px,0)`;
+      }
+    });
+    b.addEventListener('pointerleave',()=>{b.style.transform=''});
+  });
+})();
+
+/* --- menu --- */
+const menuEl=document.getElementById('menu'), menuBtn=document.getElementById('menuBtn');
+let menuOpen=false, menuT=null;
+function setMenu(v){
+  if(v===menuOpen)return;
+  menuOpen=v;clearTimeout(menuT);
+  menuBtn.setAttribute('aria-expanded',v?'true':'false');
+  menuBtn.querySelector('.mlabel').textContent=v?'Close':'Menu';
+  document.getElementById('nav').classList.toggle('menu-live',v);
+  document.body.classList.toggle('menu-open',v);
+  if(v){
+    menuEl.hidden=false;
+    requestAnimationFrame(()=>requestAnimationFrame(()=>menuEl.classList.add('open')));
+    lenis.stop();
+  }else{
+    menuEl.classList.remove('open');
+    menuT=setTimeout(()=>{menuEl.hidden=true},760);
+    lenis.start();
+  }
+}
+menuBtn.addEventListener('click',()=>setMenu(!menuOpen));
+menuEl.addEventListener('click',e=>{if(e.target===menuEl)setMenu(false)});
+menuEl.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape'&&menuOpen)setMenu(false)});
+
+/* --- reveals --- */
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},
+  {rootMargin:'0px 0px -12% 0px',threshold:.12});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+
+/* --- scroll plumbing --- */
+const wipes=[...document.querySelectorAll('.wipe')];
+const pars=[...document.querySelectorAll('[data-par]')].map(e=>({e,img:e.querySelector('img'),k:+e.dataset.par}));
+const cards=['c1','c2','c3','c4','c5','c6','c7'].map(id=>document.getElementById(id));
+const CARD_T=[[.120,.190,.375,.420],[.155,.225,.375,.420],[.190,.260,.375,.420],
+              [.480,.545,.680,.730],[.535,.600,.700,.750],[.690,.750,.865,.910],[.745,.805,.885,.930]];
+const bigword=document.getElementById('bigword');
+const capSec=document.getElementById('capsule');
+const heroSec=document.getElementById('hero');
+const nav=document.getElementById('nav');
+const vig=document.getElementById('vig');
+const NAV_DARK=['hero','capsule','land','cta'];
+
+let SY=0,intro=0,T0=performance.now();
+const lenis=new Lenis({duration:1.05,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true,touchMultiplier:1.6});
+lenis.on('scroll',({scroll})=>{SY=scroll});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',ev=>{
+  const t=document.querySelector(a.getAttribute('href'));if(!t)return;ev.preventDefault();lenis.scrollTo(t,{offset:-10})}));
+
+function resize(){
+  VW=innerWidth;VH=innerHeight;
+  DPR=Math.min(devicePixelRatio||1,VW<820?1.75:1.85);
+  renderer.setPixelRatio(DPR);renderer.setSize(VW,VH,false);
+  const asp=VW/VH;
+  ZFIT=1+clamp((1.42-asp)/1.42,0,1)*1.05;
+  hero.cam.aspect=asp;hero.cam.updateProjectionMatrix();
+  cap.cam.aspect=asp;cap.cam.updateProjectionMatrix();
+  fitQuad(cap.bg,cap.cam,9);
+  cap.bgMat.uniforms.uAsp.value=asp;
+  cap.bubMat.uniforms.uPix.value=DPR;cap.splMat.uniforms.uPix.value=DPR;
+  const lite=VW<820;
+  hero.petals.mesh.count=lite?60:hero.petals.n;
+
+  hero.shafts.visible=!REDUCED;
+  if(weaveFX)weaveFX.resize();
+  if(over.r3){
+    over.r3.setPixelRatio(Math.min(devicePixelRatio||1,1.7));
+    over.r3.setSize(VW,VH,false);
+    over.cam.aspect=asp;over.cam.updateProjectionMatrix();
+    over.sw.mesh.count=lite?44:over.sw.n;
+    const halfW=Math.tan(over.cam.fov*PI/360)*over.cam.position.z*asp;
+    over.sw.o.box[0]=Math.max(9,halfW*2.5);
+  }
+  layoutProd();
+}
+function layoutProd(){
+  const stage=document.getElementById('prodStage');if(!stage)return;
+  const pc=prod.pc, r=pc.getBoundingClientRect();
+  const w=Math.max(2,r.width),h=Math.max(2,r.height);
+  prod.enabled=w>2;
+  prod.r2.setPixelRatio(Math.min(devicePixelRatio||1,1.8));
+  prod.r2.setSize(w,h,false);
+  prod.cam.aspect=w/h;
+  prod.cam.position.set(0,0,(h/2)/Math.tan(prod.cam.fov*PI/360));
+  prod.cam.updateProjectionMatrix();
+  const cardsP=[...stage.querySelectorAll('.pcard')];
+  prod.items.forEach((o,i)=>{
+    const c=cardsP[i];if(!c)return;
+    const cr=c.getBoundingClientRect();
+    const cx=cr.left+cr.width/2-r.left-w/2;
+    const cy=-(cr.top-r.top)+h/2;
+    const bw=cr.width*(i===2?.325:.63);
+    const bh=cr.width*(i===2?.665:.555), bd=bw*(i===2?.36:.46);
+    if(i===2){o.scale.set(bw,bh,bd)}
+    else{
+      /* rebuild at true proportions so the edge break is the same radius on
+         all three axes — a scaled unit cube flattens it on the shallow one */
+      const key=`${bw.toFixed(1)}|${bh.toFixed(1)}|${bd.toFixed(1)}`;
+      if(o.userData.geoKey!==key){
+        o.userData.geoKey=key;
+        o.geometry.dispose();
+        o.geometry=roundedBox(bw,bh,bd,Math.min(bw,bh,bd)*.055,12);
+      }
+      o.scale.set(1,1,1);
+    }
+    o.rotation.set(i===2?.02:.045, i===2?-.20:-.27, 0);
+    o.position.set(cx-(i===2?0:bw*.02), cy+bh*.5-cr.width*(i===2?.20:.155), 0);
+    o.userData.baseY=o.position.y;o.userData.baseRY=o.rotation.y;
+    if(i===0&&prod.cake){
+      const k=cr.width*.155;
+      prod.cake.scale.setScalar(k);
+      prod.cake.position.set(o.position.x-bw*.30, o.position.y-bh*.50, bd*1.25);
+      prod.cake.rotation.set(-1.02,.18,-.24);
+      prod.cake.userData.baseY=prod.cake.position.y;prod.cake.userData.baseRY=prod.cake.rotation.y;
+    }
+    const sh=prod.shadows&&prod.shadows[i];
+    if(sh){
+      sh.scale.set(bw*2.5,bh*.60,1);
+      sh.position.set(o.position.x,o.position.y-bh*.50,-bd*.6);
+      sh.userData.baseY=sh.position.y;
+    }
+  });
+}
+addEventListener('resize',resize,{passive:true});
+
+/* pointer parallax + wind */
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const MO=REDUCED?0:1;   /* idle-motion multiplier */
+let px=0,py=0,tpx=0,tpy=0,lastTx=0,lastTy=0;
+const wind={x:0,y:0,z:0,px:0,py:0,pz:0,pr:3.1,pw:0};
+const _wv=new THREE.Vector3(),_wd=new THREE.Vector3();
+function updateWind(cam,dt,planeZ){
+  const idt=1/Math.max(dt,1/240);
+  const dx=(tpx-lastTx)*idt, dy=(tpy-lastTy)*idt;
+  lastTx=tpx;lastTy=tpy;
+  const sp=Math.min(6,Math.hypot(dx,dy));
+  const gustT=MO*Math.min(4.2,sp*1.05);
+  wind.pw=lerp(wind.pw,gustT,1-Math.pow(gustT>wind.pw?.0005:.40,dt));
+  wind.x=lerp(wind.x,MO*(clamp(dx,-5,5)*.30+Math.sin(performance.now()/5400)*.16),1-Math.pow(.05,dt));
+  wind.y=lerp(wind.y,MO*clamp(-dy,-5,5)*.10,1-Math.pow(.05,dt));
+  wind.z=lerp(wind.z,MO*Math.sin(performance.now()/7100)*.10,1-Math.pow(.1,dt));
+  _wv.set(tpx,-tpy,.5).unproject(cam);
+  _wd.copy(_wv).sub(cam.position).normalize();
+  const tt=(planeZ-cam.position.z)/(Math.abs(_wd.z)<1e-4?-1e-4:_wd.z);
+  wind.px=cam.position.x+_wd.x*tt;wind.py=cam.position.y+_wd.y*tt;wind.pz=planeZ;
+}
+const _sun=new THREE.Vector3();
+function setSun(mat,cam,wx,wy,wz){
+  if(!mat.userData.uni)return;
+  _sun.set(wx,wy,wz).normalize().transformDirection(cam.matrixWorldInverse);
+  mat.userData.uni.uSun.value.copy(_sun);
+}
+addEventListener('pointermove',e=>{tpx=(e.clientX/innerWidth-.5)*2;tpy=(e.clientY/innerHeight-.5)*2},{passive:true});
+
+/* which full-screen scene is on stage */
+let active='hero';
+function direct(){
+  const hb=heroSec.getBoundingClientRect(), cb=capSec.getBoundingClientRect();
+  active = (cb.top < VH*1.02 && cb.bottom > -VH*.02) ? 'capsule' : 'hero';
+
+  /* nav theme */
+  let dark=false;
+  for(const id of NAV_DARK){const el=document.getElementById(id);if(!el)continue;
+    const r=el.getBoundingClientRect();if(r.top<=54&&r.bottom>=54){dark=true;break}}
+  if(menuOpen)dark=true;
+  if(nav.__dark!==dark){
+    nav.__dark=dark;
+    const c=dark?'#f5ece6':'#3f2c33';
+    nav.style.color=c;nav.querySelector('.brand').style.color=c;
+    nav.classList.toggle('on-art',dark);
+  }
+  vig.style.opacity=(active==='hero'&&hb.bottom>0)?'1':'0';
+
+  /* headline wipes */
+  for(const el of wipes){
+    const r=el.getBoundingClientRect();
+    let p;
+    if(el.dataset.wipe==='hero'||el.dataset.wipe==='hero2')
+      p=clamp((intro-(el.dataset.wipe==='hero2'?.20:.02))/.70);
+    else p=clamp(1-(r.top-VH*.16)/(VH*.52));
+    const v=(p*128-14).toFixed(1)+'%';
+    if(el.__p!==v){el.__p=v;el.style.setProperty('--p',v)}
+  }
+  /* the bloom chart leans in as the section passes */
+  const mc=document.getElementById('mapcard');
+  if(mc){
+    const r=mc.getBoundingClientRect();
+    if(r.bottom>-200&&r.top<VH+200){
+      const q=clamp((VH*.98-r.top)/(VH*1.05));
+      const z=(1+easeOut(q)*.085).toFixed(4);
+      if(mc.__z!==z){mc.__z=z;mc.style.setProperty('--mz',z)}
+    }
+  }
+  /* ink sweep + a little drift on every painted plate */
+  for(const o of inked){
+    const r=o.el.getBoundingClientRect();
+    if(r.bottom<-200||r.top>VH+200)continue;
+    const p=clamp((VH*.94-r.top)/(VH*.60));
+    const v=(p*100).toFixed(1)+'%';
+    if(o.el.__ink!==v){o.el.__ink=v;o.el.style.setProperty('--ink',v)}
+    if(o.own){
+      const c=(r.top+r.height/2-VH/2)/VH;
+      const tf=`translate3d(0,${(-c*o.k*100).toFixed(1)}px,0)`;
+      if(o.el.__tf2!==tf){o.el.__tf2=tf;o.el.style.transform=tf}
+    }
+  }
+  /* media parallax */
+  for(const {e,img,k} of pars){
+    if(!img)continue;
+    const r=e.getBoundingClientRect();
+    if(r.bottom<-40||r.top>VH+40)continue;
+    const t=(r.top+r.height/2-VH/2)/VH;
+    const tf=`translate3d(0,${(-t*k*100).toFixed(1)}px,0) scale(1.13)`;
+    if(img.__tf!==tf){img.__tf=tf;img.style.transform=tf}
+  }
+  /* ticker */
+  const tk=document.getElementById('ticker');
+  if(tk){const r=tk.getBoundingClientRect();
+    if(r.bottom>-100&&r.top<VH+100){
+      const tr=document.getElementById('tickTrack');
+      const w=tr.scrollWidth/6;
+      tr.style.transform=`translate3d(${(-((SY*.22)%w)).toFixed(1)}px,0,0)`;
+    }}
+}
+
+/* ---------- HERO direction ---------- */
+function driveHero(t){
+  const p=clamp(SY/Math.max(VH,1));
+  const c=hero.cam;
+  c.position.x=lerp(c.position.x,px*.22,.05);
+  c.position.y=lerp(c.position.y,-.06+p*1.15-py*.14,.06);
+  c.position.z=(8.2-p*.7)*ZFIT;
+  c.lookAt(px*.06,.16+p*.9,0);
+  const bl=hero.bl;
+  const open=easeOut(clamp((intro-.14)/.80));
+  bl.userData.pmat.userData.uni.uOpen.value=open;
+  bl.scale.setScalar(.88*(.80+.20*open));
+  const sway=Math.sin(t*.42)*.055+Math.sin(t*.19+1.7)*.03;
+  bl.position.set(px*.05,.02+sway*MO+p*.55,1.4);
+  bl.rotation.x=-.42+Math.sin(t*.31)*.055*MO-p*.10-py*.05+wind.y*.05;
+  bl.rotation.y=.16+Math.sin(t*.23)*.12*MO+px*.13+(1-open)*.55+wind.x*.05;
+  bl.rotation.z=-.22+Math.cos(t*.27)*.05*MO-wind.x*.06;
+  dissolveGroup(bl,clamp(1-intro*2.9)*.92);
+  setSun(bl.userData.pmat,c,.30,8.4,2.6);
+  setSun(hero.petals.mat,c,.30,8.4,2.6);
+  updateWind(c,DT,2.3);
+  hero.petals.o.avoid.y=bl.position.y;
+  hero.petals.update(DT,t,wind);
+  for(const m of hero.shafts.userData.mats)m.uniforms.uT.value=t;
+  hero.shafts.rotation.z=Math.sin(t*.13)*.012+wind.x*.012;
+  hero.fol[0].position.x=-2.55+px*.16;
+  hero.fol[1].position.x=-3.30+px*.26;
+  hero.fol[2].position.x=2.60+px*.20;
+  hero.fol[3].position.x=2.00+px*.28;
+}
+
+/* ---------- THE FRONT direction ---------- */
+const WATER_SCREEN=.84;                        /* 0 = bottom, 1 = top */
+/* ---------- the water simulation ---------- */
+const _drop={x:-9,y:-9,s:0};
+function waterDrop(u,v,amp){_drop.x=u;_drop.y=v;_drop.s=amp}
+const _wray=new THREE.Raycaster(), _wnd=new THREE.Vector2();
+function stepWater(){
+  if(!cap.water.visible)return;
+  cap.simMat.uniforms.uState.value=cap.rtA.texture;
+  cap.simMat.uniforms.uDrop.value.set(_drop.x,_drop.y,_drop.s);
+  const prev=renderer.getRenderTarget();
+  renderer.setRenderTarget(cap.rtB);
+  renderer.render(cap.simScene,cap.simCam);
+  renderer.setRenderTarget(prev);
+  cap.swap();
+  cap.waterMat.uniforms.uH.value=cap.rtA.texture;
+  _drop.s=0;                       /* one impulse per drop */
+}
+/* the pointer stirs the surface */
+function pointerRipple(){
+  if(!cap.water.visible||REDUCED)return;
+  _wnd.set(tpx,-tpy);
+  _wray.setFromCamera(_wnd,cap.cam);
+  const hit=_wray.intersectObject(cap.water,false)[0];
+  if(!hit||!hit.uv)return;
+  const moved=Math.hypot(tpx-(cap.__lx??tpx),tpy-(cap.__ly??tpy));
+  cap.__lx=tpx;cap.__ly=tpy;
+  if(moved<0.0015&&cap.__firstRipple)return;
+  cap.__firstRipple=1;
+  waterDrop(hit.uv.x,hit.uv.y,Math.min(.42,.09+moved*9.0));
+}
+
+/* act-two framing. Snell's window sits at a fixed 41.4 deg elevation, so how much of it
+   is in frame — and how close the sunk blossom reads to it — is set entirely by these. */
+const CAP2={down:1.95, look:1.72, drift:.55, zNear:3.90,
+             /* act two puts the blossom in a column nearer the eye: from an underwater
+                camera the surface hides anything above it, so the whole fall has to happen
+                below the water line — and that only reads from the top of the frame if the
+                blossom is close enough to sit under the surface directly overhead. */
+             zBl:1.90, from:.30, rest:-1.69, act1Y:.62, act1S:.52, act2S:.266};
+window.__cap2=CAP2;
+const T_GAP0=.415,T_GAP1=.470;                 /* dissolve between the two acts */
+const T_FALL0=.452,T_FALL1=.620;               /* the drop */
+function driveCap(t){
+  const rect=capSec.getBoundingClientRect();
+  const s=clamp(-rect.top/Math.max(capSec.offsetHeight-VH,1));
+  const c=cap.cam;
+  const under=smooth(T_GAP0,T_GAP1,s);          /* act two puts the eye under the surface */
+  /* act one keeps its framing; only act two closes in, so the sunk blossom reads
+     against Snell's window instead of sitting a whole frame below it */
+  c.position.z=(lerp(6.3,5.35,easeInOut(smooth(.02,.34,s)))-under*(5.35-CAP2.zNear)-smooth(.55,1,s)*.22)*ZFIT;
+  c.position.x=lerp(c.position.x,px*.13,.06);
+  c.position.y=lerp(c.position.y,-py*.09-under*CAP2.down-smooth(.62,1,s)*CAP2.drift,.06);
+  c.lookAt(0,c.position.y*.16+under*CAP2.look,0);
+
+  const wy=cap.WATER_Y;                          /* the surface is a real plane now */
+  const bl=cap.bl;
+  bl.userData.pmat.userData.uni.uOpen.value=1;
+
+  const act2=s>=(T_GAP0+T_GAP1)/2;
+  const fall=clamp((s-T_FALL0)/(T_FALL1-T_FALL0));
+  /* act one sits the blossom higher and smaller, so the card row below stays clear of it.
+     The step happens inside the dissolve, where the blossom is not on screen. */
+  bl.scale.setScalar(act2?CAP2.act2S:CAP2.act1S);
+  let y,rx,ry,rz;
+  if(!act2){
+    y=CAP2.act1Y+Math.sin(t*.5)*.055*MO;
+    rx=-.42+Math.sin(t*.33)*.09*MO;
+    ry=-.16+Math.sin(t*.21)*.22*MO+smooth(0,.42,s)*.30;
+    rz=-.16+Math.cos(t*.29)*.06*MO;
+  }else{
+    const rest=smooth(T_FALL1,1,s);
+    /* starts clear of the top edge so the drop is a fall into frame, not an appearance */
+    y=wy+CAP2.from-(CAP2.from-CAP2.rest)*fall*fall+Math.sin(t*.9)*.02*rest*MO;
+    const k=fall*.55;
+    rx=-.42+k*.90+rest*.22;  ry=-.16+k*.75+Math.sin(t*.24)*.10*rest*MO;  rz=-.16-k*.45;
+  }
+  const blZ=act2?CAP2.zBl:0;
+  bl.position.set(px*.08,y,blZ);
+  bl.rotation.set(rx,ry,rz);
+  /* splash and bubble columns follow the blossom's column */
+  cap.spl.position.set(bl.position.x,0,blZ);
+  cap.bub.position.set(bl.position.x,0,blZ);
+
+  const gap=smooth(T_GAP0,(T_GAP0+T_GAP1)/2,s)*(1-smooth((T_GAP0+T_GAP1)/2,T_GAP1,s));
+  dissolveGroup(bl,Math.max(gap*.98,smooth(.965,1,s)*.92));
+
+  const mix=smooth(T_GAP0+.005,T_GAP1,s);
+  cap.bgMat.uniforms.uMix.value=mix;
+  cap.bgMat.uniforms.uW.value=.86;
+  cap.bgMat.uniforms.uT.value=t;
+  cap.water.visible=mix>.01;cap.rays.visible=mix>.01;
+  cap.scene.fog.density=mix*(.028+smooth(.62,1,s)*.042);
+  cap.waterMat.uniforms.uMix.value=mix;
+  cap.waterMat.uniforms.uT.value=t;
+  cap.waterMat.uniforms.uCam.value.copy(c.position);
+  cap.rayMat.uniforms.uT.value=t;cap.rayMat.uniforms.uMix.value=mix*(1-smooth(.93,1,s));
+
+  /* the ring lands when the blossom actually reaches the surface: fall^2 = from/(from-rest) */
+  const tCross=T_FALL0+(T_FALL1-T_FALL0)*Math.sqrt(CAP2.from/(CAP2.from-CAP2.rest));
+  const splash=clamp((s-tCross)/.075);
+  cap.splMat.uniforms.uT.value=splash;
+  cap.splMat.uniforms.uY.value=wy;
+  /* the blossom drops a ring into the height field on the way through */
+  if(splash>0&&splash<1&&!cap.__rang){cap.__rang=1;waterDrop(.5+bl.position.x/60,.5-blZ/60,.65)}
+  if(splash<=0)cap.__rang=0;
+  pointerRipple();
+  stepWater();
+  cap.bubMat.uniforms.uT.value=t;
+  cap.bubMat.uniforms.uProg.value=(s-tCross)*2.6;
+  cap.bubMat.uniforms.uW.value=wy;
+  cap.bubMat.uniforms.uOp.value=smooth(tCross,tCross+.05,s)*(1-smooth(tCross+.10,tCross+.26,s));
+
+  /* petals fall through act one, then raft on the water line */
+  const pf=cap.petals;
+  pf.mesh.visible=s>.04&&s<.99;
+  pf.o.avoid.y=bl.position.y;
+  pf.mesh.count=Math.round(pf.n*(VW<820?.45:1)*(.34+.66*smooth(.28,.62,s)));
+  pf.o.floor=mix>.5?wy-.02:null;
+  pf.o.respawn=mix>.5?wy-2.6:-3.0;
+  setSun(pf.mat,c,-1.8,4.6,3.8);
+  setSun(bl.userData.pmat,c,-1.8,4.6,3.8);
+  updateWind(c,DT,.4);
+  if(pf.mesh.visible)pf.update(DT,t,wind);
+
+  const set=(el,o,ty,sc)=>{el.style.opacity=o.toFixed(3);
+    el.style.transform=`translate3d(0,${ty.toFixed(1)}px,0) scale(${sc.toFixed(4)})`};
+  cards.forEach((el,i)=>{
+    if(!el)return;const[a,b,c2,d]=CARD_T[i];
+    const inn=smooth(a,b,s), out=smooth(c2,d,s);
+    set(el,inn*(1-out),(1-inn)*34-out*24,.972+.028*inn-out*.02);
+  });
+  const h1=capSec.querySelector('.headline'),h2=capSec.querySelector('.headline2');
+  const o1=1-smooth(.10,.17,s), o2=smooth(.02,.09,s)*(1-smooth(.10,.17,s));
+  h1.style.opacity=o1.toFixed(3);h1.style.transform=`translate3d(0,${(-(1-o1)*40).toFixed(1)}px,0)`;
+  h2.style.opacity=o2.toFixed(3);h2.style.transform=`translate3d(0,${((1-o2)*40).toFixed(1)}px,0)`;
+  const bw=smooth(.47,.60,s)*(1-smooth(.955,1,s));
+  bigword.style.opacity=(bw*.9).toFixed(3);
+  bigword.style.transform=`translate3d(0,${((1-bw)*70).toFixed(1)}px,0)`;
+}
+
+/* ---------- products ---------- */
+function driveProd(t){
+  const stage=document.getElementById('prodStage');
+  const r=stage.getBoundingClientRect();
+  if(r.bottom<-120||r.top>VH+120)return false;
+  const k=clamp((VH-r.top)/(VH+r.height));
+  if(prod.shadows)prod.shadows.forEach(sh=>{sh.position.y=sh.userData.baseY+(0.5-k)*44});
+  prod.items.concat(prod.cake?[prod.cake]:[]).forEach((o,i)=>{
+    o.position.y=o.userData.baseY+Math.sin(t*.5+i*1.7)*4+(0.5-k)*44;
+    o.rotation.y=o.userData.baseRY+Math.sin(t*.28+i)*.06+px*.10;
+    o.rotation.x=(i===2?.02:(i===3?-.34:.045))-py*.04;
+  });
+  prod.r2.render(prod.sc,prod.cam);
+  return true;
+}
+
+/* ---------- loop ---------- */
+let last=performance.now(),acc=0,frames=0,slow=0,DT=1/60;
+function frame(now){
+  requestAnimationFrame(frame);
+  const dt=Math.min(.05,(now-last)/1000);last=now;DT=dt;
+  const t=now/1000;
+  lenis.raf(now);
+  px=lerp(px,tpx,.07);py=lerp(py,tpy,.07);
+  intro=clamp((now-T0-520)/2750);   /* wall-clock: survives a backgrounded load */
+  direct();
+  if(active==='hero'){driveHero(t);renderer.render(hero.scene,hero.cam)}
+  else{driveCap(t);renderer.render(cap.scene,cap.cam)}
+  if(prod.enabled)driveProd(t);
+  driveOverlay(dt,t);
+  if(weaveFX)weaveFX.frame(dt,now);
+  /* perf governor */
+  acc+=dt;frames++;
+  if(acc>1.2){
+    const fps=frames/acc;acc=0;frames=0;
+    if(fps<44&&DPR>1){slow++;if(slow>1){DPR=Math.max(1,DPR-.25);renderer.setPixelRatio(DPR);slow=0}}
+    else if(fps>57)slow=0;
+  }
+}
+
+/* ---------- overlay petals: scroll momentum ---------- */
+let lastSY=0,scrollV=0;
+function driveOverlay(dt,t){
+  if(!over.r3)return;
+  /* scroll speed in world units/sec at the petal plane */
+  const halfH=Math.tan(over.cam.fov*PI/360)*over.cam.position.z;
+  const raw=(SY-lastSY)/Math.max(dt,1/240);lastSY=SY;
+  scrollV=lerp(scrollV,raw,1-Math.pow(.0007,dt));          /* the momentum: eases in, coasts out */
+  const svW=scrollV/Math.max(VH,1)*halfH*2;
+  const heroBottom=heroSec.getBoundingClientRect().bottom;
+  const want=REDUCED?0:clamp((VH*.55-heroBottom)/(VH*.5))*.85;
+  if(Math.abs((over.el.__o||0)-want)>.01){over.el.__o=want;over.el.style.opacity=want.toFixed(2)}
+  if(want<.01){over.sw.mesh.visible=false;return}
+  over.sw.mesh.visible=true;
+  const w=over.wind;
+  w.y=-svW*.62;                       /* the page drags the air with it */
+  w.x=lerp(w.x,MO*(Math.sin(t*.19)*.20+wind.x*.5),1-Math.pow(.05,dt));
+  w.z=wind.z*.5;
+  w.pw=wind.pw*.8;w.pr=wind.pr;
+  /* the pointer plane for the overlay camera */
+  _wv.set(tpx,-tpy,.5).unproject(over.cam);
+  _wd.copy(_wv).sub(over.cam.position).normalize();
+  const tt=(1.2-over.cam.position.z)/(Math.abs(_wd.z)<1e-4?-1e-4:_wd.z);
+  w.px=over.cam.position.x+_wd.x*tt;w.py=over.cam.position.y+_wd.y*tt;w.pz=1.2;
+  setSun(over.sw.mat,over.cam,-2,4.5,4);
+  over.sw.update(dt,t,w);
+  over.r3.render(over.sc,over.cam);
+}
+
+/* ==================================================================
+   7 · woven canvas + wet paint  (Canvas UI, adapted)
+   The page is painted onto artist canvas: threads, grain, a halftone
+   screen, and a brush that leaves ridges of wet paint which catch the
+   light and level off as they dry.  Composited with `overlay`, so it
+   needs no DOM read-back — mid grey is a no-op, darker is a seam or a
+   paint shadow, brighter is gloss.
+   ================================================================== */
+const weaveFX=(function(){
+  const cnv=document.getElementById('weave');
+  const gl=cnv.getContext('webgl2',{alpha:true,depth:false,stencil:false,antialias:false,premultipliedAlpha:false});
+  if(!gl){cnv.remove();return null}
+
+  const CFG={threadSize:2,threadWidth:.2,texture:1,grain:.5,halftone:.10,dotSize:6,
+             relief:.45,gloss:.35,bristle:.4,dry:2.5,radius:.08,followSpeed:3,strength:1};
+
+  const VERT=`#version 300 es
+  precision highp float;layout(location=0) in vec2 aPos;out vec2 vUv;
+  void main(){vUv=aPos*.5+.5;gl_Position=vec4(aPos,0.,1.);}`;
+
+  /* the loaded brush: deposit along the segment travelled, then level and dry */
+  const FRAG_PAINT=`#version 300 es
+  precision highp float;in vec2 vUv;out vec4 o;
+  uniform sampler2D uState;uniform vec2 uTexel,uShift,uPoint,uPrev;
+  uniform float uAspect,uRadius,uDeposit,uBristle,uLevel,uDecay,uDry;
+  float sdSeg(vec2 p,vec2 a,vec2 b){vec2 pa=p-a,ba=b-a;
+    float h=clamp(dot(pa,ba)/max(dot(ba,ba),1e-6),0.,1.);return length(pa-ba*h);}
+  void main(){
+    vec2 src=vUv+uShift;
+    float inside=step(0.,src.x)*step(src.x,1.)*step(0.,src.y)*step(src.y,1.);
+    vec4 prev=texture(uState,src);
+    float h=prev.r*inside, wet=prev.g*inside;
+    float around=(texture(uState,src+vec2(uTexel.x,0.)).r+texture(uState,src-vec2(uTexel.x,0.)).r
+                 +texture(uState,src+vec2(0.,uTexel.y)).r+texture(uState,src-vec2(0.,uTexel.y)).r)*.25*inside;
+    h=mix(h,around,uLevel*(.15+.85*wet));
+    h*=uDecay; wet*=uDry;
+    vec2 p=vUv*vec2(uAspect,1.), a=uPrev*vec2(uAspect,1.), b=uPoint*vec2(uAspect,1.);
+    float r=max(uRadius,1e-4), d=sdSeg(p,a,b);
+    float dome=1.-smoothstep(r*.2,r,d); dome*=dome;
+    float lip=(1.-smoothstep(r*.55,r,d))*smoothstep(r*.1,r*.6,d);
+    vec2 tr=b-a; float len=length(tr);
+    vec2 ax=len>1e-5?tr/len:vec2(1.,0.); vec2 pe=vec2(-ax.y,ax.x);
+    float comb=.5+.5*cos(dot(p-a,pe)/r*18.);
+    float br=mix(1.,.3+.7*comb,clamp(uBristle,0.,1.));
+    float add=(dome+lip*.55)*br*uDeposit;
+    h=clamp(h+add,0.,1.); wet=clamp(max(wet,add*5.),0.,1.);
+    o=vec4(h,wet,0.,1.);
+  }`;
+
+  const FRAG=`#version 300 es
+  precision highp float;in vec2 vUv;out vec4 o;
+  uniform sampler2D uPaint;uniform vec2 uRes,uPaintTexel,uScroll;
+  uniform float uThreadSize,uThreadWidth,uTexture,uGrain,uHalftone,uDotSize,
+                uRelief,uGloss,uStrength,uIntro;
+  #define S(a,b,t) smoothstep(a,b,t)
+  float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453123);}
+  float edges(vec2 st,float w){return 1.-S(0.,w,st.x)+S(1.-w,1.,st.x);}
+  float oval(vec2 st,float r){return S(r-.1,r+.9,1.-length(st-.5));}
+  vec2 weave(vec2 frag){
+    vec2 st=frag/max(uThreadSize,1.); st.x*=.5;
+    if(mod(floor(st.y),2.)==1.) st.x-=.5;
+    vec2 f=fract(st);
+    float e=edges(f,max(uThreadWidth,.001)), b=oval(f,.5);
+    return vec2(clamp(1.-e*.4+b*.22,.45,1.3),b);
+  }
+  void main(){
+    vec2 uv=vUv;
+    vec2 st=texture(uPaint,uv).rg;
+    float thick=st.r, wet=st.g;
+    float hL=texture(uPaint,uv-vec2(uPaintTexel.x,0.)).r, hR=texture(uPaint,uv+vec2(uPaintTexel.x,0.)).r;
+    float hD=texture(uPaint,uv-vec2(0.,uPaintTexel.y)).r, hU=texture(uPaint,uv+vec2(0.,uPaintTexel.y)).r;
+    vec2 slope=vec2(hR-hL,hU-hD)*.5;
+
+    vec2 frag=uv*uRes, cloth=frag+uScroll;
+    vec2 fib=weave(cloth);
+    float gn=hash(floor(cloth));
+
+    /* start from overlay-neutral grey and push either way */
+    float v=.5;
+    v+=(fib.x-1.)*.5*clamp(uTexture,0.,1.)*(1.-.55*thick*uRelief);
+    v+=(gn-.5)*uGrain*.10;
+
+    /* halftone screen, 45 degrees */
+    float dp=max(uDotSize,2.);
+    mat2 rot=mat2(.7071,-.7071,.7071,.7071);
+    vec2 hf=rot*cloth;
+    vec2 hc=(floor(hf/dp)+.5)*dp;
+    float dm=1.-S(.26,.40,length((hf-hc)/dp));
+    v-=dm*uHalftone*.16;
+
+    /* wet paint, lit in 3D */
+    vec3 n=normalize(vec3(-slope*uRelief*18.,1.));
+    vec3 L=normalize(vec3(-.55,.62,.56));
+    float pres=S(0.,.12,thick);
+    v+=(clamp(dot(n,L),0.,1.)-L.z)*.55*pres;
+    vec3 hv=normalize(L+vec3(0.,0.,1.));
+    float sp=max(pow(clamp(dot(n,hv),0.,1.),48.)-pow(clamp(hv.z,0.,1.),48.),0.);
+    v+=sp*clamp(uGloss,0.,1.)*(.3+.7*wet)*pres*1.4;
+
+    float a=clamp(uStrength,0.,1.)*clamp(uIntro,0.,1.);
+    o=vec4(vec3(clamp(v,0.,1.)),a);
+  }`;
+
+  function sh(t,src){const x=gl.createShader(t);gl.shaderSource(x,src);gl.compileShader(x);
+    if(!gl.getShaderParameter(x,gl.COMPILE_STATUS))console.error('weave',gl.getShaderInfoLog(x));return x}
+  const vs=sh(gl.VERTEX_SHADER,VERT);
+  const prog=gl.createProgram();gl.attachShader(prog,vs);gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,FRAG));gl.linkProgram(prog);
+  const pprog=gl.createProgram();gl.attachShader(pprog,vs);gl.attachShader(pprog,sh(gl.FRAGMENT_SHADER,FRAG_PAINT));gl.linkProgram(pprog);
+  const U=p=>{const m={},n=gl.getProgramParameter(p,gl.ACTIVE_UNIFORMS);
+    for(let i=0;i<n;i++){const q=gl.getActiveUniform(p,i);m[q.name]=gl.getUniformLocation(p,q.name)}return m};
+  const uni=U(prog), puni=U(pprog);
+
+  const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,1,-1,-1,1,1,1]),gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(0);gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  const hf=!!gl.getExtension('EXT_color_buffer_float');
+
+  function target(w,h){
+    const t=gl.createTexture();gl.bindTexture(gl.TEXTURE_2D,t);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+    gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+    gl.texImage2D(gl.TEXTURE_2D,0,hf?gl.RGBA16F:gl.RGBA8,w,h,0,gl.RGBA,hf?gl.HALF_FLOAT:gl.UNSIGNED_BYTE,null);
+    const f=gl.createFramebuffer();gl.bindFramebuffer(gl.FRAMEBUFFER,f);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0,gl.TEXTURE_2D,t,0);
+    gl.viewport(0,0,w,h);gl.clearColor(0,0,0,0);gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+    return{f,t};
+  }
+  let A=null,B=null,PW=0,PH=0;
+  function sizeTargets(){
+    const sc=Math.min(1,1024/Math.max(cnv.clientWidth,cnv.clientHeight,1));
+    const w=Math.max(1,Math.round(cnv.clientWidth*.5*sc)), h=Math.max(1,Math.round(cnv.clientHeight*.5*sc));
+    if(w===PW&&h===PH)return;
+    PW=w;PH=h;A=target(w,h);B=target(w,h);
+  }
+  function resizeFX(){
+    const dpr=Math.min(devicePixelRatio||1,1.6);
+    const w=Math.max(1,Math.round(cnv.clientWidth*dpr)), h=Math.max(1,Math.round(cnv.clientHeight*dpr));
+    if(cnv.width!==w||cnv.height!==h){cnv.width=w;cnv.height=h}
+    sizeTargets();
+  }
+  resizeFX();
+
+  const pt={x:.5,y:.5,tx:.5,ty:.5,on:0,want:0};
+  let prevX=.5,prevY=.5,lastScroll=0,until=0,t0=performance.now();
+  addEventListener('pointermove',e=>{
+    pt.tx=e.clientX/Math.max(innerWidth,1);
+    pt.ty=1-e.clientY/Math.max(innerHeight,1);
+    pt.want=1;
+  },{passive:true});
+  addEventListener('pointerleave',()=>{pt.want=0},{passive:true});
+
+  function step(dt,now){
+    if(!A||!B)return;
+    const dry=Math.max(CFG.dry,.05);
+    const travel=Math.hypot(pt.x-prevX,pt.y-prevY);
+    const stroke=Math.min(travel/Math.max(CFG.radius*.6,1e-4),1.5);
+    const dep=(pt.on>.02&&!REDUCED)?Math.min(stroke*.32,.45):0;
+    if(dep>1e-4)until=now+dry*1000+400;
+    gl.useProgram(pprog);
+    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.t);
+    gl.uniform1i(puni.uState,0);
+    gl.uniform2f(puni.uTexel,1/PW,1/PH);
+    gl.uniform2f(puni.uShift,0,(SY-lastScroll)/Math.max(innerHeight,1));
+    gl.uniform2f(puni.uPoint,pt.x,pt.y);
+    gl.uniform2f(puni.uPrev,prevX,prevY);
+    gl.uniform1f(puni.uAspect,cnv.clientWidth/Math.max(cnv.clientHeight,1));
+    gl.uniform1f(puni.uRadius,CFG.radius);
+    gl.uniform1f(puni.uDeposit,dep);
+    gl.uniform1f(puni.uBristle,CFG.bristle);
+    gl.uniform1f(puni.uLevel,1-Math.exp(-dt*2));
+    gl.uniform1f(puni.uDecay,Math.exp(-dt/dry*3));
+    gl.uniform1f(puni.uDry,Math.exp(-dt/(dry*.6)*3));
+    gl.bindFramebuffer(gl.FRAMEBUFFER,B.f);gl.viewport(0,0,PW,PH);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+    gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+    const s2=A;A=B;B=s2;
+    lastScroll=SY;prevX=pt.x;prevY=pt.y;
+  }
+  function draw(now){
+    gl.useProgram(prog);
+    gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,A.t);
+    gl.uniform1i(uni.uPaint,0);
+    const dpr=cnv.width/Math.max(cnv.clientWidth,1);
+    gl.uniform2f(uni.uRes,cnv.width,cnv.height);
+    gl.uniform2f(uni.uPaintTexel,1/PW,1/PH);
+    gl.uniform2f(uni.uScroll,0,-SY*dpr);
+    gl.uniform1f(uni.uThreadSize,Math.max(CFG.threadSize,1)*dpr);
+    gl.uniform1f(uni.uThreadWidth,CFG.threadWidth);
+    gl.uniform1f(uni.uTexture,CFG.texture);
+    gl.uniform1f(uni.uGrain,CFG.grain);
+    gl.uniform1f(uni.uHalftone,CFG.halftone);
+    gl.uniform1f(uni.uDotSize,Math.max(CFG.dotSize,1.5)*dpr);
+    gl.uniform1f(uni.uRelief,CFG.relief);
+    gl.uniform1f(uni.uGloss,CFG.gloss);
+    gl.uniform1f(uni.uStrength,CFG.strength);
+    gl.uniform1f(uni.uIntro,clamp((now-t0-400)/1600));
+    gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+    gl.viewport(0,0,cnv.width,cnv.height);
+    gl.drawArrays(gl.TRIANGLE_STRIP,0,4);
+  }
+  return {
+    resize:resizeFX,
+    frame(dt,now){
+      const ease=REDUCED?1:1-Math.exp(-dt*CFG.followSpeed);
+      pt.x+=(pt.tx-pt.x)*ease;pt.y+=(pt.ty-pt.y)*ease;pt.on+=(pt.want-pt.on)*ease;
+      step(dt,now);draw(now);
+    }
+  };
+})();
+
+/* ---------- boot ---------- */
+window.lenis=lenis;
+window.__dbg={hero,cap,prod,renderer,THREE,wind,get s(){const r=capSec.getBoundingClientRect();return clamp(-r.top/Math.max(capSec.offsetHeight-VH,1))}};
+resize();
+requestAnimationFrame(frame);
+
+(function preload(){
+  const imgs=[...document.images];
+  let done=0;const total=Math.max(1,imgs.length);
+  const bar=document.getElementById('preFill'),pct=document.getElementById('prePct');
+  const tick=()=>{const k=Math.min(1,done/total);bar.style.transform=`scaleX(${.08+k*.92})`;pct.textContent=Math.round((.08+k*.92)*100)+'%'};
+  imgs.forEach(im=>{if(im.complete)done++;else im.addEventListener('load',()=>{done++;tick()},{once:true}),im.addEventListener('error',()=>{done++;tick()},{once:true})});
+  tick();
+  const finish=()=>{
+    if(document.getElementById('pre').classList.contains('done'))return;
+    bar.style.transform='scaleX(1)';pct.textContent='100%';
+    setTimeout(()=>{document.getElementById('pre').classList.add('done');resize();layoutProd()},260);
+  };
+  const poll=setInterval(()=>{if(done>=total){clearInterval(poll);finish()}},120);
+  setTimeout(()=>{clearInterval(poll);finish()},4200);
+})();
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(()=>{resize();layoutProd()});
+setTimeout(layoutProd,900);
+</script>
+</body>
+</html>

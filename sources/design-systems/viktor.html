@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm-linen violet dispatch — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600&family=Lato:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FAF5F1;
+  --surface:#FFFFFF;
+  --surface-gradient-violet:#9E84FF;
+  --text-primary:#1A182B;
+  --text-secondary:#716F7E;
+  --text-muted:#9693A3;
+  --accent:#6E47FF;
+  --accent-deep:#150079;
+  --accent-peach:#FFBB98;
+  --border:#1A182B;
+  --r-control:14px;
+  --r-card:32px;
+  --r-card-lg:36.4px;
+  --r-pill:9999px;
+  --base:8px;
+  --gap:20px;
+  --section-pad:112px;
+  --grad-feature:radial-gradient(210.1% 116.78% at 39.65% 0%, rgb(158,132,255) 0%, rgb(110,71,255) 36.52%, rgb(21,0,121) 100%);
+  --grad-cta:radial-gradient(145.58% 104.75% at 52.06% -4.35%, rgb(255,187,152) 0%, rgb(255,187,152) 6.43%, rgb(158,132,255) 50.71%, rgb(110,71,255) 80.36%, rgb(21,0,121) 100%);
+  --grad-peach:radial-gradient(108.79% 100% at 50% 0%, rgba(255,187,152,0.2) 0%, rgba(255,187,152,0) 100%);
+  --ease-fast:cubic-bezier(0.4,0,0.2,1);
+  --ease-press:cubic-bezier(0,0,0.2,1);
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --sh-feature:rgba(26,24,43,0.12) 0px 20px 48px 0px;
+  --sh-white:rgba(0,0,0,0.05) 0px 3.863px 17.769px 0px;
+  --sh-panel:rgba(46,30,107,0.04) 0px 0px 15.451px 7.725px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Inter",sans-serif;
+  font-size:18px;
+  font-weight:500;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:"Rubik",sans-serif;margin:0}
+p{margin:0}
+a{color:inherit}
+.display{
+  font-family:"Rubik",sans-serif;
+  font-weight:700;
+  letter-spacing:-4.8px;
+  line-height:1.1;
+  font-size:80px;
+}
+.accent-italic{font-family:"Lato",serif;font-style:italic;font-weight:400;letter-spacing:-1px}
+.grad-text{
+  background:var(--grad-feature);
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.band{padding:var(--section-pad) 0}
+.eyebrow{
+  font-family:"Rubik",sans-serif;font-weight:500;font-size:20px;
+  letter-spacing:-0.5px;color:var(--accent);margin-bottom:12px;
+}
+.sec-caption{color:var(--text-secondary);font-size:18px;max-width:640px;margin-top:16px}
+/* nav */
+.nav{
+  position:sticky;top:0;z-index:50;
+  height:65px;width:100%;border-radius:0;
+  background:transparent;
+  transition:background .15s var(--ease-fast),backdrop-filter .15s var(--ease-fast);
+}
+.nav.scrolled{
+  background:rgba(250,245,241,0.7);
+  backdrop-filter:blur(21.389px);-webkit-backdrop-filter:blur(21.389px);
+}
+.nav-inner{max-width:1280px;margin:0 auto;height:65px;display:flex;align-items:center;gap:24px;padding:0 32px}
+.wordmark{font-family:"Rubik",sans-serif;font-weight:700;font-size:24px;letter-spacing:-1.4px;display:flex;align-items:center;gap:4px}
+.wordmark .dot{width:9px;height:9px;border-radius:9999px;background:var(--accent);display:inline-block;margin-top:-10px}
+.nav-links{display:flex;gap:22px;align-items:center;margin:0 auto;font-family:"Inter";font-size:16px;font-weight:500;color:var(--text-primary)}
+.nav-links a{text-decoration:none;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.nav-links a:hover{color:var(--accent)}
+.nav-actions{display:flex;gap:12px;align-items:center}
+.btn-nav-outline{
+  height:40px;padding:0 24px;border-radius:9999px;
+  background:transparent;color:var(--text-primary);
+  border:1px solid rgb(26,24,43);
+  font-family:"Inter";font-weight:500;font-size:15px;cursor:pointer;
+  display:inline-flex;align-items:center;transition:opacity .15s var(--ease-fast);
+}
+.btn-nav-cta{
+  height:40px;padding:0 24px;border-radius:9999px;
+  background:#1A182B;color:#FFFFFF;border:1px solid rgb(26,24,43);
+  font-family:"Inter";font-weight:500;font-size:15px;cursor:pointer;
+  display:inline-flex;align-items:center;transition:opacity .15s var(--ease-fast);
+}
+.btn-nav-cta:hover{opacity:.83}
+.btn-nav-outline:hover{opacity:.7}
+@media(max-width:1024px){.nav-links{display:none}}
+/* hero */
+#hero{position:relative;overflow:hidden;padding-top:48px}
+#hero::before{content:"";position:absolute;inset:0 0 auto 0;height:520px;background:var(--grad-peach);pointer-events:none}
+.hero-inner{position:relative;text-align:center}
+.stars{display:inline-flex;align-items:center;gap:8px;color:var(--accent-deep);font-size:15px;font-weight:600;font-family:"Inter";margin-bottom:28px;padding:8px 16px;border-radius:9999px}
+.stars .row{display:flex;color:#6E47FF}
+.hero-head-block{display:flex;gap:40px;align-items:flex-end;justify-content:center;text-align:left;flex-wrap:wrap;margin-bottom:40px}
+.hero-head-block h1{max-width:760px}
+.hero-sub{max-width:300px;color:var(--text-secondary);font-size:18px;font-weight:500;padding-bottom:10px}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  height:56px;padding:0 40px;border-radius:9999px;
+  background:#1A182B;color:#FFFFFF;border:1px solid rgb(26,24,43);
+  font-family:"Inter";font-weight:600;font-size:17px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:opacity .15s var(--ease-fast);
+}
+.btn-primary:hover{opacity:.8}
+.btn-secondary{
+  height:56px;padding:0 40px;border-radius:9999px;
+  background:transparent;color:#1A182B;border:1px solid rgb(26,24,43);
+  font-family:"Inter";font-weight:600;font-size:17px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:opacity .15s var(--ease-fast);
+}
+.btn-secondary:hover{opacity:.7}
+.app-panel{
+  margin:72px auto 0;max-width:1040px;background:#FFFFFF;border-radius:32px;
+  box-shadow:var(--sh-panel);overflow:hidden;text-align:left;
+}
+.app-top{height:44px;border-bottom:1px solid #f0ebe6;display:flex;align-items:center;gap:8px;padding:0 18px}
+.app-top .d{width:11px;height:11px;border-radius:9999px;background:#e6e0da}
+.app-chips{margin-left:16px;display:flex;gap:8px}
+.chip-glass{
+  height:31px;padding:0 10.983px 0 13.18px;border-radius:6.59px;
+  background:linear-gradient(to right in oklab, rgba(158,132,255,0) 0%, rgba(158,132,255,0.24) 100%);
+  color:#1A182B;font-size:13px;font-weight:600;font-family:"Inter";
+  display:inline-flex;align-items:center;gap:6px;border:none;cursor:pointer;
+}
+.app-body{padding:28px;display:grid;grid-template-columns:200px 1fr;gap:24px}
+.app-side{display:flex;flex-direction:column;gap:10px}
+.app-row{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary);font-family:"Inter";font-weight:500}
+.app-row .ic{width:32px;height:32px;border-radius:10px;background:var(--background);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.app-main{background:var(--background);border-radius:20px;padding:22px;min-height:220px;display:flex;flex-direction:column;gap:14px}
+.app-msg{background:#fff;border-radius:16px;padding:14px 16px;box-shadow:var(--sh-white);font-family:"Inter";font-size:14px;color:var(--text-primary)}
+.app-msg .who{font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px;font-family:"Rubik"}
+@media(max-width:768px){
+  .display{font-size:48px;letter-spacing:-2.4px}
+  .band{padding:72px 0}
+  .app-body{grid-template-columns:1fr}
+  .app-side{flex-direction:row;flex-wrap:wrap}
+}
+@media(max-width:640px){.display{font-size:38px;letter-spacing:-1.6px}}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <div class="wordmark">viktor<span class="dot"></span></div>
+    <div class="nav-links">
+      <a href="#">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+      <a href="#">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+      <a href="#">Integrations</a>
+      <a href="#">Pricing</a>
+      <a href="#">Docs</a>
+    </div>
+    <div class="nav-actions">
+      <button class="btn-nav-outline">Book a Demo</button>
+      <button class="btn-nav-cta">Get started</button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="band" aria-label="Hero">
+  <div class="wrap hero-inner">
+    <div class="stars">
+      <span class="row" aria-label="5 out of 5 stars">
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+        <iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon>
+      </span>
+      Loved by 2,000+ teams shipping faster
+    </div>
+    <div class="hero-head-block">
+      <h1 class="display">
+        Your inbox,<br>
+        <span class="grad-text">answered</span> <span class="accent-italic grad-text">before you ask</span>
+      </h1>
+      <p class="hero-sub">Viktor drafts, routes and closes the loop across every tool your team already lives in — quietly, in the background.</p>
+    </div>
+    <div class="hero-cta">
+      <button class="btn-primary">Start free <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      <button class="btn-secondary">Book a call</button>
+    </div>
+
+    <div class="app-panel" role="img" aria-label="Viktor app interface mockup">
+      <div class="app-top">
+        <span class="d"></span><span class="d"></span><span class="d"></span>
+        <div class="app-chips">
+          <button class="chip-glass">With Teams</button>
+          <button class="chip-glass">On Slack</button>
+        </div>
+      </div>
+      <div class="app-body">
+        <div class="app-side">
+          <div class="app-row"><span class="ic"><iconify-icon icon="lucide:inbox" aria-hidden="true"></iconify-icon></span>Dispatch</div>
+          <div class="app-row"><span class="ic"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></span>Drafts</div>
+          <div class="app-row"><span class="ic"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon></span>Team</div>
+          <div class="app-row"><span class="ic"><iconify-icon icon="lucide:settings" aria-hidden="true"></iconify-icon></span>Settings</div>
+        </div>
+        <div class="app-main">
+          <div class="app-msg"><div class="who">Viktor · APP</div>Drafted a reply to Acme's renewal thread — tone matched, links attached.</div>
+          <div class="app-msg"><div class="who">Viktor · APP</div>Routed 3 support tickets to the right owner and flagged one as urgent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);margin-top:40px}
+.role-title{font-family:"Rubik";font-weight:600;font-size:20px;letter-spacing:-0.5px;margin:44px 0 4px}
+.swatch{background:#fff;border-radius:20px;overflow:hidden;box-shadow:var(--sh-white)}
+.swatch .chip{height:110px}
+.swatch .meta{padding:16px 18px}
+.swatch .name{font-family:"Rubik";font-weight:600;font-size:16px}
+.swatch .val{font-family:"Inter";font-size:13px;color:var(--text-secondary);letter-spacing:.4px;margin-top:2px}
+.swatch .note{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.35}
+.checker{background-image:linear-gradient(45deg,#e6e0da 25%,transparent 25%),linear-gradient(-45deg,#e6e0da 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e6e0da 75%),linear-gradient(-45deg,transparent 75%,#e6e0da 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" class="band" aria-label="Palette">
+  <div class="wrap">
+    <div class="eyebrow">The palette</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px">Linen, ink &amp; a rationed violet</h2>
+    <p class="sec-caption">Everything sits calm on warm linen. Saturated colour is a moment, not a wall — it only appears where Viktor is speaking.</p>
+
+    <div class="role-title">Surfaces</div>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:#FAF5F1;border-bottom:1px solid #eee"></div><div class="meta"><div class="name">background</div><div class="val">#FAF5F1</div><div class="note">Warm linen field — the true page, ~94% of the surface.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #eee"></div><div class="meta"><div class="name">surface</div><div class="val">#FFFFFF</div><div class="note">App-panels, FAQ cards and the nav CTA text-plate.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:var(--grad-feature)"></div><div class="meta"><div class="name">surface-gradient-violet</div><div class="val">#9E84FF → #150079</div><div class="note">Feature-card fill and the logo band.</div></div></div>
+    </div>
+
+    <div class="role-title">Text</div>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:#1A182B"></div><div class="meta"><div class="name">text-primary / ink</div><div class="val">#1A182B</div><div class="note">Headlines, borders, button fills — a brand-ink, never pure black.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#716F7E"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#716F7E</div><div class="note">Supporting body and card sub-lines.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#9693A3"></div><div class="meta"><div class="name">text-muted</div><div class="val">#9693A3</div><div class="note">Quiet captions and metadata.</div></div></div>
+    </div>
+
+    <div class="role-title">Accents</div>
+    <div class="grid">
+      <div class="swatch"><div class="chip" style="background:#6E47FF"></div><div class="meta"><div class="name">accent</div><div class="val">#6E47FF</div><div class="note">Ghost-link text, headline gradient word, interactive highlight.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#150079"></div><div class="meta"><div class="name">accent-deep</div><div class="val">#150079</div><div class="note">The deep terminus of every violet gradient.</div></div></div>
+      <div class="swatch"><div class="chip checker"><div style="height:100%;background:var(--grad-peach)"></div></div><div class="meta"><div class="name">accent-peach (wash)</div><div class="val">rgba(255,187,152,0.2)</div><div class="note">Faint top-of-hero tint behind the star rating.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid #e8e2dc;padding:32px 0;display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:end}
+#type-scale .metrics{font-family:"Inter";font-size:13px;color:var(--text-secondary);line-height:1.7;letter-spacing:.3px}
+#type-scale .metrics b{color:var(--text-primary);font-weight:600}
+.ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:24px}
+.ramp span{font-family:"Rubik";font-size:40px;letter-spacing:-2px}
+@media(max-width:768px){#type-scale .spec{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" class="band" aria-label="Type scale">
+  <div class="wrap">
+    <div class="eyebrow">The type</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px">Big, rounded, tightly tracked</h2>
+    <p class="sec-caption">UlmGrotesk carries display and label duty; Gellix does the reading; Lato slips in for a two-word italic aside.</p>
+
+    <div class="spec">
+      <div class="display">Dispatch, handled</div>
+      <div class="metrics"><b>display-lg</b><br>UlmGrotesk · 80px<br>weight 700 · lh 1.1<br>tracking −4.8px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:'Rubik';font-weight:500;font-size:20px;letter-spacing:-0.5px;line-height:1.4">Connect your stack</div>
+      <div class="metrics"><b>label-md</b><br>UlmGrotesk · 20px<br>weight 500 · lh 1.4</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:'Inter';font-weight:500;font-size:18px;line-height:1.4;max-width:560px">Viktor watches every thread and drafts the reply before it's even on your list — you approve, it sends.</div>
+      <div class="metrics"><b>body-md</b><br>Gellix · 18px<br>weight 500 · lh 1.4</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:'Inter';font-weight:400;font-size:16px;line-height:1.5;color:var(--text-secondary);max-width:560px">A lighter supporting line that sits beside the headline block.</div>
+      <div class="metrics"><b>headline-md</b><br>Gellix · 16px<br>weight 400 · lh 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="accent-italic" style="font-size:40px">before you ask</div>
+      <div class="metrics"><b>accent-script</b><br>Lato · italic 400<br>headline aside only</div>
+    </div>
+
+    <div class="role-title" style="font-family:'Rubik';font-weight:600;font-size:20px;margin-top:48px">Weight ramp — UlmGrotesk</div>
+    <div class="ramp">
+      <span style="font-weight:400">Aa 400</span>
+      <span style="font-weight:500">Aa 500</span>
+      <span style="font-weight:600">Aa 600</span>
+      <span style="font-weight:700">Aa 700</span>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .eyebrow-lg{margin-bottom:56px}
+.comp-block{margin-bottom:80px}
+.comp-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:6px}
+.comp-head h3{font-family:"Rubik";font-weight:600;font-size:28px;letter-spacing:-1px}
+.comp-head .count{font-family:"Inter";font-size:12px;font-weight:600;color:var(--accent);background:rgba(110,71,255,.09);padding:4px 10px;border-radius:9999px}
+.comp-desc{color:var(--text-secondary);font-size:16px;max-width:680px;margin-bottom:24px}
+.spec-card{
+  font-family:"Inter";font-size:12.5px;line-height:1.7;color:var(--text-secondary);
+  background:#fff;border-radius:16px;box-shadow:var(--sh-white);padding:16px 18px;margin-top:22px;letter-spacing:.2px;
+}
+.spec-card b{color:var(--text-primary);font-weight:600}
+.demo{background:#fff;border-radius:24px;box-shadow:var(--sh-white);padding:32px;margin-top:8px}
+/* button matrix */
+.matrix{width:100%;border-collapse:separate;border-spacing:0 14px}
+.matrix th{font-family:"Inter";font-size:12px;font-weight:600;color:var(--text-muted);text-align:left;padding:0 18px;text-transform:uppercase;letter-spacing:.6px}
+.matrix td{padding:0 18px;vertical-align:middle}
+.matrix .rl{font-family:"Rubik";font-weight:600;font-size:14px;white-space:nowrap}
+.state-hover{opacity:.8}
+.state-active{opacity:.8;transform:translateY(1px)}
+.state-disabled{opacity:.4;cursor:not-allowed}
+.btn-ghost-link{
+  height:62px;padding:16px 24px;border-radius:14px;border:1px solid rgba(0,0,0,0);
+  background:transparent;color:#6E47FF;font-family:"Inter";font-weight:600;font-size:16px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s var(--ease-fast);
+}
+.btn-ghost-link:hover{opacity:.8}
+/* feature grid */
+.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.feat-card{border-radius:32px;box-shadow:var(--sh-feature);background:var(--grad-feature);overflow:hidden}
+.feat-illus{padding:22px 22px 0;min-height:200px;display:flex;flex-direction:column;gap:12px}
+.feat-eyebrow{font-family:"Rubik";font-size:12px;font-weight:600;color:#fff;opacity:.85;display:flex;align-items:center;gap:6px}
+.feat-chat{color:#fff;font-family:"Inter";font-size:14px;font-weight:500;line-height:1.4;opacity:.95;max-width:90%}
+.feat-notif{margin:8px auto 22px;width:82%;background:rgba(255,255,255,.13);backdrop-filter:blur(6px);border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;color:#fff}
+.feat-notif .badge{width:38px;height:38px;border-radius:12px;background:#fff;color:var(--accent);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.feat-notif .fill{height:8px;border-radius:9999px;background:rgba(255,255,255,.4)}
+.feat-white{background:#fff;padding:22px 24px 26px}
+.feat-white h4{font-family:"Rubik";font-weight:600;font-size:19px;letter-spacing:-.5px}
+.feat-white p{color:var(--text-secondary);font-size:15px;margin-top:6px}
+@media(max-width:768px){.feat-grid{grid-template-columns:1fr}}
+/* how it works */
+.hiw{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.hiw-card{border-radius:32px;overflow:hidden;display:flex;flex-direction:column}
+.hiw-white{background:#fff;box-shadow:var(--sh-panel)}
+.hiw-grad{background:var(--grad-feature)}
+.hiw-top{min-height:180px;padding:20px;display:flex;flex-direction:column;gap:10px}
+.hiw-white .conn-row{display:flex;align-items:center;gap:10px;background:var(--background);border-radius:12px;padding:10px 12px;font-family:"Inter";font-size:13px;font-weight:500}
+.hiw-white .conn-row .g{width:26px;height:26px;border-radius:8px;background:#fff;box-shadow:var(--sh-white);display:flex;align-items:center;justify-content:center;color:var(--accent)}
+.hiw-white .conn-row .st{margin-left:auto;color:var(--accent);font-size:12px;font-weight:600}
+.node-net{flex:1;display:flex;align-items:center;justify-content:center;color:#fff}
+.hiw-cap{padding:22px 22px 26px;background:#fff}
+.hiw-grad .hiw-cap{background:var(--grad-feature)}
+.hiw-badge{width:30px;height:30px;border-radius:9999px;background:#1A182B;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-family:"Rubik";font-weight:700;font-size:14px}
+.hiw-grad .hiw-badge{background:#fff;color:var(--accent-deep)}
+.hiw-cap h4{font-family:"Rubik";font-weight:600;font-size:18px;margin:12px 0 4px}
+.hiw-grad .hiw-cap h4{color:#fff}
+.hiw-cap p{color:var(--text-secondary);font-size:14px}
+.hiw-grad .hiw-cap p{color:rgba(255,255,255,.85)}
+@media(max-width:768px){.hiw{grid-template-columns:1fr}}
+/* faq + cta */
+.faq-band{display:grid;grid-template-columns:1fr 1fr;gap:80px}
+.faq-card{background:#fff;border-radius:36.4px;box-shadow:var(--sh-white);padding:14px 8px}
+.faq-item{border-bottom:1px solid #efe9e3;padding:22px 24px;cursor:pointer}
+.faq-item:last-child{border-bottom:none}
+.faq-q{display:flex;align-items:center;justify-content:space-between;font-family:"Rubik";font-weight:600;font-size:17px;gap:12px}
+.faq-item[open] .faq-q,.faq-item.open .faq-q{color:var(--accent)}
+.faq-a{color:var(--text-secondary);font-size:15px;line-height:1.5;margin-top:12px;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item .chev{transition:transform .2s var(--ease-press)}
+.faq-item.open .chev{transform:rotate(180deg);color:var(--accent)}
+.faq-showall{margin:16px 0 8px 24px;height:56px;padding:0 32px;border-radius:9999px;background:transparent;border:1px solid rgb(26,24,43);color:#1A182B;font-family:"Inter";font-weight:600;font-size:15px;cursor:pointer;transition:opacity .15s var(--ease-fast)}
+.faq-showall:hover{opacity:.7}
+.cta-side{background:var(--grad-cta);border-radius:32px;padding:44px;color:#fff;display:flex;flex-direction:column;gap:20px}
+.cta-side h3{font-family:"Rubik";font-weight:700;font-size:32px;letter-spacing:-1.5px;line-height:1.15}
+.cta-side p{color:rgba(255,255,255,.9);font-size:15px}
+.cta-side .btn-primary{background:#fff;color:#1A182B;border:1px solid #fff}
+@media(max-width:768px){.faq-band{grid-template-columns:1fr;gap:32px}}
+/* logo strip */
+.logo-band{background:var(--grad-feature);border-radius:32px;padding:40px 48px;color:#fff}
+.logo-band .lbl{font-family:"Rubik";font-size:13px;font-weight:600;opacity:.85;margin-bottom:20px;text-align:center}
+.logo-row{display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap}
+.logo-row span{font-family:"Rubik";font-weight:700;font-size:22px;letter-spacing:-1px;color:#fff;opacity:.9;display:flex;align-items:center;gap:8px}
+/* statement row */
+.stmt{text-align:center;display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px 0}
+.stmt .ic{width:56px;height:56px;border-radius:9999px;background:#fff;box-shadow:var(--sh-white);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:26px}
+/* cta band */
+.cta-full{background:var(--grad-cta);border-radius:32px;padding:56px;color:#fff;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:center}
+.cta-full h3{font-family:"Rubik";font-weight:700;font-size:44px;letter-spacing:-2.4px;line-height:1.1}
+.cta-full p{color:rgba(255,255,255,.9);font-size:16px;margin:18px 0 26px;max-width:440px}
+.cta-full .btns{display:flex;gap:14px;flex-wrap:wrap}
+.cta-full .btn-primary{background:#fff;color:#1A182B;border:1px solid #fff}
+.cta-full .btn-secondary{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.7)}
+.checklist{display:flex;flex-direction:column}
+.checklist .row{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.22);font-family:"Inter";font-weight:500}
+.checklist .row:last-child{border-bottom:none}
+.checklist .badge{width:30px;height:30px;border-radius:9999px;background:#fff;color:var(--accent-deep);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+@media(max-width:768px){.cta-full{grid-template-columns:1fr;padding:36px}.cta-full h3{font-size:32px;letter-spacing:-1.4px}}
+</style>
+<section id="components" class="band" aria-label="Components">
+  <div class="wrap">
+    <div class="eyebrow eyebrow-lg">The inventory</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px;margin-bottom:8px">Every piece Viktor is built from</h2>
+    <p class="sec-caption" style="margin-bottom:64px">Soft cards, hard pills. Ink on linen. Colour only where the product speaks.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Edge-to-edge flat navbar</h3><span class="count">×1</span></div>
+      <p class="comp-desc">A true full-bleed, transparent, square-cornered bar — never an inset capsule. Wordmark left, links centered, an outline demo button and an ink pill CTA on the right. On scroll it frosts with a backdrop blur.</p>
+      <div class="demo" style="padding:0;overflow:hidden">
+        <div style="background:var(--background);padding:0">
+          <div class="nav-inner" style="max-width:none">
+            <div class="wordmark">viktor<span class="dot"></span></div>
+            <div class="nav-links" style="display:flex">
+              <a href="#">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+              <a href="#">Solutions</a>
+              <a href="#">Pricing</a>
+            </div>
+            <div class="nav-actions">
+              <button class="btn-nav-outline">Book a Demo</button>
+              <button class="btn-nav-cta">Get started</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--navbar</b> · bg transparent → glass on scroll · <b>height 65</b> · radius 0 all corners · width 100% · <b>--btn-nav-cta</b> fill ink #1A182B · text #FFF · radius pill · height 40 · pad 0 24 · hover opacity .83</div>
+    </div>
+
+    <!-- BUTTONS MATRIX -->
+    <div class="comp-block" data-tier-a-component="button-primary">
+      <div class="comp-head"><h3>Buttons — variant × state</h3><span class="count">matrix</span></div>
+      <p class="comp-desc">Primary and secondary share geometry (56px pill, 0 40 padding) but never role. Hover drops opacity; there is no documented focus ring, so the native indicator stands.</p>
+      <div class="demo" style="overflow-x:auto">
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rl">Primary ink pill</td>
+              <td><button class="btn-primary">Start free</button></td>
+              <td><button class="btn-primary state-hover">Start free</button></td>
+              <td><button class="btn-primary state-active">Start free</button></td>
+              <td><button class="btn-primary state-disabled" disabled>Start free</button></td>
+            </tr>
+            <tr data-tier-a-component="button-secondary-outline">
+              <td class="rl">Secondary outline</td>
+              <td><button class="btn-secondary">Book a call</button></td>
+              <td><button class="btn-secondary state-hover">Book a call</button></td>
+              <td><button class="btn-secondary state-active">Book a call</button></td>
+              <td><button class="btn-secondary state-disabled" disabled>Book a call</button></td>
+            </tr>
+            <tr data-tier-a-component="button-ghost-link">
+              <td class="rl">Ghost link</td>
+              <td><button class="btn-ghost-link">Show more <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-ghost-link state-hover">Show more <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-ghost-link state-active">Show more <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-ghost-link state-disabled" disabled>Show more <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button></td>
+            </tr>
+            <tr data-tier-a-component="button-glass-utility">
+              <td class="rl">Glass utility chip</td>
+              <td><button class="chip-glass">With Teams</button></td>
+              <td><button class="chip-glass state-hover">With Teams</button></td>
+              <td><button class="chip-glass state-active">With Teams</button></td>
+              <td><button class="chip-glass state-disabled" disabled>With Teams</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card">
+        <b>--btn-primary</b> · fill ink #1A182B · text #FFF · radius pill · height 56 · pad 0 40 · border 1px ink · hover opacity .8<br>
+        <b>--btn-secondary-outline</b> · fill transparent · text ink · border 1px ink · radius pill · height 56 · pad 0 40<br>
+        <b>--btn-ghost-link</b> · fill transparent · text accent #6E47FF · radius r-control 14 · height 62 · pad 16 24<br>
+        <b>--btn-glass-utility</b> · fill violet gradient α · text ink · radius 6.59 · height 31 · pad 0 10.98 0 13.18<br>
+        motion ease-fast 0.15s
+      </div>
+    </div>
+
+    <!-- FEATURE CARD GRID -->
+    <div class="comp-block" data-tier-a-component="feature-card-grid">
+      <div class="comp-head"><h3>Gradient feature card grid</h3><span class="count">×4</span></div>
+      <p class="comp-desc">A uniform 2×2 of violet radial-gradient cards. Each carries a chat-style eyebrow, a line of message copy, a floating app-notification illustration, then a white zone with the heading and support line.</p>
+      <div class="feat-grid">
+        <div class="feat-card">
+          <div class="feat-illus">
+            <div class="feat-eyebrow"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Viktor · APP</div>
+            <div class="feat-chat">Drafted a renewal reply and matched Acme's tone.</div>
+            <div class="feat-notif"><div class="badge"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></div><div style="flex:1"><div class="fill" style="width:80%;margin-bottom:6px"></div><div class="fill" style="width:55%"></div></div></div>
+          </div>
+          <div class="feat-white"><h4>Auto-draft replies</h4><p>Every thread gets a ready-to-send answer in your voice.</p></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-illus">
+            <div class="feat-eyebrow"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon>Viktor · APP</div>
+            <div class="feat-chat">Routed 3 tickets to the right owner automatically.</div>
+            <div class="feat-notif"><div class="badge"><iconify-icon icon="lucide:route" aria-hidden="true"></iconify-icon></div><div style="flex:1"><div class="fill" style="width:65%;margin-bottom:6px"></div><div class="fill" style="width:40%"></div></div></div>
+          </div>
+          <div class="feat-white"><h4>Smart routing</h4><p>Work lands with whoever can close it fastest.</p></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-illus">
+            <div class="feat-eyebrow"><iconify-icon icon="lucide:bell" aria-hidden="true"></iconify-icon>Viktor · APP</div>
+            <div class="feat-chat">Flagged one thread as urgent before you saw it.</div>
+            <div class="feat-notif"><div class="badge"><iconify-icon icon="lucide:alert-circle" aria-hidden="true"></iconify-icon></div><div style="flex:1"><div class="fill" style="width:72%;margin-bottom:6px"></div><div class="fill" style="width:48%"></div></div></div>
+          </div>
+          <div class="feat-white"><h4>Priority signals</h4><p>The important things surface, the rest stays quiet.</p></div>
+        </div>
+        <div class="feat-card">
+          <div class="feat-illus">
+            <div class="feat-eyebrow"><iconify-icon icon="lucide:check-check" aria-hidden="true"></iconify-icon>Viktor · APP</div>
+            <div class="feat-chat">Closed the loop and logged it to your CRM.</div>
+            <div class="feat-notif"><div class="badge"><iconify-icon icon="lucide:database" aria-hidden="true"></iconify-icon></div><div style="flex:1"><div class="fill" style="width:88%;margin-bottom:6px"></div><div class="fill" style="width:60%"></div></div></div>
+          </div>
+          <div class="feat-white"><h4>Full paper trail</h4><p>Everything Viktor touches is logged where it belongs.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-feature-gradient</b> · fill violet radial-gradient · radius r-card 32 · shadow rgba(26,24,43,.12) 0 20 48 · white zone heading UlmGrotesk · support #716F7E · motion ease-settle 0.7s</div>
+    </div>
+
+    <!-- HOW IT WORKS -->
+    <div class="comp-block" data-tier-a-component="how-it-works-steps">
+      <div class="comp-head"><h3>How-it-works step cards</h3><span class="count">×3</span></div>
+      <p class="comp-desc">Three across. White app-panels flank a single violet node-network card. Each is capped by a numbered pill-badge, bold label and one-line description.</p>
+      <div class="hiw">
+        <div class="hiw-card hiw-white">
+          <div class="hiw-top">
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></span>Gmail<span class="st">Connected</span></div>
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:slack" aria-hidden="true"></iconify-icon></span>Slack<span class="st">Connected</span></div>
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:calendar" aria-hidden="true"></iconify-icon></span>Calendar<span class="st">Connect</span></div>
+          </div>
+          <div class="hiw-cap"><span class="hiw-badge">1</span><h4>Connect your stack</h4><p>OAuth into the tools your team already uses.</p></div>
+        </div>
+        <div class="hiw-card hiw-grad">
+          <div class="hiw-top"><div class="node-net"><iconify-icon icon="lucide:share-2" style="font-size:88px" aria-hidden="true"></iconify-icon></div></div>
+          <div class="hiw-cap"><span class="hiw-badge">2</span><h4>Viktor learns the map</h4><p>It connects the dots across every channel and owner.</p></div>
+        </div>
+        <div class="hiw-card hiw-white">
+          <div class="hiw-top">
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:send" aria-hidden="true"></iconify-icon></span>Draft sent<span class="st">Done</span></div>
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></span>Ticket routed<span class="st">Done</span></div>
+            <div class="conn-row"><span class="g"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Loop closed<span class="st">Done</span></div>
+          </div>
+          <div class="hiw-cap"><span class="hiw-badge">3</span><h4>You approve, it ships</h4><p>Watch the work close itself out, on autopilot.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-app-panel</b> (white) · radius r-card 32 · shadow rgba(46,30,107,.04) 0 0 15.45 7.72 · middle <b>violet gradient</b> · numbered pill-badge ink · label UlmGrotesk · desc #716F7E</div>
+    </div>
+
+    <!-- FAQ + CTA SIDE -->
+    <div class="comp-block" data-tier-a-component="faq-accordion">
+      <div class="comp-head"><h3>FAQ accordion &amp; CTA card</h3><span class="count">×1</span></div>
+      <p class="comp-desc">A left accordion of hairline-divided white rows paired with a right violet CTA card, across an asymmetric 80px gap. Expanded rows tint their heading violet and rotate the chevron up.</p>
+      <div class="faq-band">
+        <div class="faq-card">
+          <div class="faq-item open">
+            <div class="faq-q">Does Viktor send without me? <iconify-icon class="chev" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></div>
+            <div class="faq-a">Never by default — Viktor drafts and stages everything for your one-tap approval. You can enable auto-send per channel when you're ready.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">Which tools does it connect to? <iconify-icon class="chev" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></div>
+            <div class="faq-a">Gmail, Slack, Teams, your calendar and most major CRMs, connected over OAuth in a couple of clicks.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">How does it learn my tone? <iconify-icon class="chev" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></div>
+            <div class="faq-a">From your past threads, privately — the model stays scoped to your workspace and never trains a shared model.</div>
+          </div>
+          <button class="faq-showall">Show all questions</button>
+        </div>
+        <div class="cta-side" data-tier-a-component="cta-band">
+          <h3>Let Viktor take <span class="accent-italic">the first pass</span></h3>
+          <p>Start free today. Connect one tool and watch your first drafts appear.</p>
+          <div style="display:flex;gap:12px;flex-wrap:wrap">
+            <button class="btn-primary">Start free</button>
+            <button class="btn-secondary" style="color:#fff;border-color:rgba(255,255,255,.7)">Book a call</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-white-faq</b> · fill #FFF · radius card-lg 36.4 · shadow rgba(0,0,0,.05) 0 3.86 17.77 · collapsed rows hairline only · expanded heading accent #6E47FF · show-all pill outline ink</div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip-band">
+      <div class="comp-head"><h3>Logo strip gradient band</h3><span class="count">×1</span></div>
+      <p class="comp-desc">A full-bleed violet gradient band — one of the rationed colour moments — carrying a small label and a row of white wordmarks. No cards, no borders.</p>
+      <div class="logo-band">
+        <div class="lbl">Trusted by teams at</div>
+        <div class="logo-row">
+          <span><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon>Northwind</span>
+          <span><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon>Aperture</span>
+          <span><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon>Monodesk</span>
+          <span><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon>Blockline</span>
+          <span><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon>Facet</span>
+        </div>
+      </div>
+      <div class="spec-card"><b>--logo-band</b> · fill violet gradient · edge-inset padding · wordmarks #FFF · single horizontal row · no cards or borders</div>
+    </div>
+
+    <!-- STATEMENT CTA ROW -->
+    <div class="comp-block" data-tier-a-component="statement-cta-row">
+      <div class="comp-head"><h3>Statement + single CTA row</h3><span class="count">×1</span></div>
+      <p class="comp-desc">A calm centered band on linen — icon, a two-line display statement, and one black pill CTA. No gradient here.</p>
+      <div class="demo" style="background:var(--background);box-shadow:none;padding:56px 32px">
+        <div class="stmt">
+          <div class="ic"><iconify-icon icon="lucide:wand-sparkles" aria-hidden="true"></iconify-icon></div>
+          <h3 class="display" style="font-size:44px;letter-spacing:-2.2px;text-align:center">Stop triaging.<br>Start approving.</h3>
+          <button class="btn-primary">Get started</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--statement-row</b> · bg linen #FAF5F1 · statement UlmGrotesk display · single <b>--btn-primary</b> ink pill · ink-on-linen, no fill</div>
+    </div>
+
+    <!-- CTA BAND FULL -->
+    <div class="comp-block" data-tier-a-component="cta-band">
+      <div class="comp-head"><h3>Bottom CTA gradient band</h3><span class="count">×1</span></div>
+      <p class="comp-desc">The closing violet-to-peach radial band: italic-accented headline, a white pill primary, a ghost-outline secondary, and a right-aligned checklist of three white-badge rows.</p>
+      <div class="cta-full">
+        <div>
+          <h3>Your inbox runs itself, <span class="accent-italic">starting now</span></h3>
+          <p>Connect a tool, approve your first drafts, and hand the busywork to Viktor.</p>
+          <div class="btns">
+            <button class="btn-primary">Start free</button>
+            <button class="btn-secondary">Book a call</button>
+          </div>
+        </div>
+        <div class="checklist">
+          <div class="row"><span class="badge"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>No credit card required</div>
+          <div class="row"><span class="badge"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Connect in under two minutes</div>
+          <div class="row"><span class="badge"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Scoped to your workspace</div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--cta-band</b> · fill violet→peach radial-gradient · radius r-card 32 · italic Lato accent clause · white pill primary + ghost-outline secondary · checklist circular white check-chips + hairline dividers</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:40px}
+.depth-card{background:#fff;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:180px;justify-content:flex-end}
+.depth-card .lbl{font-family:"Rubik";font-weight:600;font-size:16px}
+.depth-card .v{font-family:"Inter";font-size:12.5px;color:var(--text-secondary);line-height:1.6}
+</style>
+<section id="surface-depth" class="band" aria-label="Surface and depth">
+  <div class="wrap">
+    <div class="eyebrow">Surface &amp; depth</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px">Soft cards, warm shadows</h2>
+    <p class="sec-caption">Radii stay large and soft on surfaces; shadows are warm-tinted, never neutral black. Controls stay hard pill — that contrast is load-bearing.</p>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:14px;box-shadow:var(--sh-white)"><div class="lbl">Control radius</div><div class="v">--r-control · 14px<br>ghost links &amp; utility surfaces</div></div>
+      <div class="depth-card" style="border-radius:32px;box-shadow:var(--sh-feature)"><div class="lbl">Feature card</div><div class="v">--r-card · 32px<br>shadow rgba(26,24,43,.12) 0 20 48</div></div>
+      <div class="depth-card" style="border-radius:32px;box-shadow:var(--sh-panel)"><div class="lbl">App panel</div><div class="v">--r-card · 32px<br>ambient rgba(46,30,107,.04) 0 0 15.45 7.72</div></div>
+      <div class="depth-card" style="border-radius:36.4px;box-shadow:var(--sh-white)"><div class="lbl">White / FAQ card</div><div class="v">--r-card-lg · 36.4px<br>shadow rgba(0,0,0,.05) 0 3.86 17.77</div></div>
+      <div class="depth-card" style="border-radius:9999px;box-shadow:none;border:1px solid var(--border);min-height:auto;padding:20px 28px"><div class="lbl">Pill control</div><div class="v">--r-pill · 9999px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-top:40px}
+.motion-card{background:#fff;border-radius:24px;box-shadow:var(--sh-white);padding:26px;display:flex;flex-direction:column;gap:18px}
+.motion-card .lbl{font-family:"Rubik";font-weight:600;font-size:16px}
+.motion-card .v{font-family:"Inter";font-size:12.5px;color:var(--text-secondary)}
+.motion-dot{width:44px;height:44px;border-radius:12px;background:var(--grad-feature)}
+.mplay .motion-dot{transform:translateX(140px)}
+.m-fast .motion-dot{transition:transform .15s var(--ease-fast)}
+.m-press .motion-dot{transition:transform .2s var(--ease-press)}
+.m-settle .motion-dot{transition:transform .7s var(--ease-settle)}
+.replay{align-self:flex-start;height:40px;padding:0 20px;border-radius:9999px;background:transparent;border:1px solid var(--border);font-family:"Inter";font-weight:600;font-size:13px;cursor:pointer}
+.spinner-demo{width:34px;height:34px;border-radius:9999px;border:3px solid rgba(110,71,255,.2);border-top-color:var(--accent);animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.spinner-demo{animation:none}}
+</style>
+<section id="motion" class="band" aria-label="Motion">
+  <div class="wrap">
+    <div class="eyebrow">Motion</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px">Fast on touch, springy on arrival</h2>
+    <p class="sec-caption">Colour shifts snap; presses ease; entrances settle. Click a curve to replay it.</p>
+    <div class="motion-grid">
+      <div class="motion-card m-fast"><div class="lbl">Interactive</div><div class="motion-dot"></div><button class="replay">Replay</button><div class="v">0.15s · cubic-bezier(0.4,0,0.2,1)<br>hover colour &amp; opacity shifts</div></div>
+      <div class="motion-card m-press"><div class="lbl">Press / micro-motion</div><div class="motion-dot"></div><button class="replay">Replay</button><div class="v">0.2s · cubic-bezier(0,0,0.2,1)<br>press states, icon nudges</div></div>
+      <div class="motion-card m-settle"><div class="lbl">Entrance / reveal</div><div class="motion-dot"></div><button class="replay">Replay</button><div class="v">0.7s · cubic-bezier(0.22,1,0.36,1)<br>cards &amp; illustrations settle in</div></div>
+      <div class="motion-card"><div class="lbl">Looping spinner</div><div class="spinner-demo" aria-hidden="true"></div><div class="v">spin · 1s linear infinite<br>illustration chip loader</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{background:var(--background);border-radius:32px;box-shadow:var(--sh-feature);overflow:hidden;margin-top:40px}
+.mock-nav{height:65px;display:flex;align-items:center;gap:20px;padding:0 28px}
+.mock-nav .nl{margin:0 auto;display:flex;gap:20px;font-family:"Inter";font-size:14px;color:var(--text-primary)}
+.mock-hero{text-align:center;padding:48px 28px 40px}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;padding:0 28px 40px}
+.mock-card{background:#fff;border-radius:24px;box-shadow:var(--sh-white);padding:22px}
+.mock-card.grad{background:var(--grad-feature);color:#fff}
+.mock-card h4{font-family:"Rubik";font-weight:600;font-size:16px;margin-bottom:6px}
+.mock-card p{font-size:13px;color:var(--text-secondary)}
+.mock-card.grad p{color:rgba(255,255,255,.85)}
+.mock-cta{background:var(--grad-cta);margin:0 28px 28px;border-radius:24px;padding:32px;text-align:center;color:#fff}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" class="band" aria-label="In composition">
+  <div class="wrap">
+    <div class="eyebrow">In composition</div>
+    <h2 class="display" style="font-size:56px;letter-spacing:-3px">It holds together</h2>
+    <p class="sec-caption">Nav, hero, cards and a closing CTA — assembled only from the tokens above.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="wordmark" style="font-size:20px">viktor<span class="dot" style="width:7px;height:7px;margin-top:-8px"></span></div>
+        <div class="nl"><span>Product</span><span>Solutions</span><span>Pricing</span></div>
+        <button class="btn-nav-cta">Get started</button>
+      </div>
+      <div class="mock-hero">
+        <div class="stars" style="margin-bottom:18px"><span class="row"><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon></span>Rated 5/5 by busy teams</div>
+        <h3 class="display" style="font-size:44px;letter-spacing:-2.2px">The inbox that <span class="grad-text accent-italic">runs itself</span></h3>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap">
+          <button class="btn-primary">Start free</button>
+          <button class="btn-secondary">Book a call</button>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><h4>Connect</h4><p>OAuth into Gmail, Slack and your calendar.</p></div>
+        <div class="mock-card grad"><h4>Draft</h4><p>Replies staged in your voice, ready to send.</p></div>
+        <div class="mock-card"><h4>Approve</h4><p>One tap and the loop closes itself.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3 style="font-family:'Rubik';font-weight:700;font-size:28px;letter-spacing:-1.4px">Try Viktor <span class="accent-italic">for free</span></h3>
+        <div style="margin-top:18px"><button class="btn-primary" style="background:#fff;color:#1A182B;border-color:#fff">Get started</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{position:relative;overflow:hidden;background:var(--background);padding-top:96px}
+.foot-top{display:grid;grid-template-columns:1.2fr 3fr;gap:48px}
+.foot-brand .wordmark{font-size:26px}
+.foot-social{display:flex;gap:10px;margin-top:20px}
+.foot-social a{width:40px;height:40px;border-radius:9999px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;color:var(--text-primary);text-decoration:none;transition:opacity .15s var(--ease-fast)}
+.foot-social a:hover{opacity:.6}
+.foot-cols{display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+.foot-col h5{font-family:"Rubik";font-weight:600;font-size:14px;margin-bottom:14px}
+.foot-col a{display:block;text-decoration:none;color:var(--text-secondary);font-size:14px;margin-bottom:10px}
+.foot-col a:hover{color:var(--text-primary)}
+.foot-divider{height:1px;background:#e8e2dc;margin:40px 0 24px}
+.lang-pill{height:40px;padding:0 18px;border-radius:9999px;border:1px solid var(--border);background:transparent;display:inline-flex;align-items:center;gap:8px;font-family:"Inter";font-weight:500;font-size:14px;cursor:pointer}
+.foot-meta{color:var(--text-muted);font-size:13px;margin:28px 0 8px}
+.foot-meta a{color:var(--accent)}
+.ghost-word{position:relative;text-align:center;font-family:"Rubik";font-weight:700;font-size:clamp(80px,20vw,260px);letter-spacing:-8px;color:transparent;-webkit-text-stroke:1.5px rgba(26,24,43,.16);margin:40px 0 -0.22em;line-height:.8;user-select:none}
+.ghost-glow{position:absolute;left:50%;top:-30px;transform:translateX(-50%);width:200px;height:200px;border-radius:9999px;background:radial-gradient(circle,rgba(255,187,152,.6),rgba(110,71,255,.35) 60%,transparent 75%);filter:blur(40px);pointer-events:none}
+@media(max-width:768px){.foot-top{grid-template-columns:1fr}.foot-cols{grid-template-columns:1fr 1fr}}
+</style>
+<footer id="footer" aria-label="Footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="wordmark">viktor<span class="dot"></span></div>
+        <p style="color:var(--text-secondary);font-size:14px;margin-top:14px;max-width:240px">The dispatch layer for your inbox, drafting and closing loops in the background.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Viktor on X"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Viktor on LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Viktor on GitHub"><iconify-icon icon="lucide:github" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h5>Product</h5><a href="#">Overview</a><a href="#">Drafts</a><a href="#">Routing</a><a href="#">Integrations</a></div>
+        <div class="foot-col"><h5>Compare</h5><a href="#">vs. Manual</a><a href="#">vs. Rules</a><a href="#">Migrate</a></div>
+        <div class="foot-col"><h5>Solutions</h5><a href="#">Support teams</a><a href="#">Sales</a><a href="#">Founders</a></div>
+        <div class="foot-col"><h5>About</h5><a href="#">Company</a><a href="#">Resources</a><a href="#">Terms</a></div>
+      </div>
+    </div>
+    <div class="foot-divider"></div>
+    <button class="lang-pill"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon>English</button>
+    <p class="foot-meta">Design system captured and rendered by <a href="https://r3xdec.design">r3xdec.design</a> · Source: <a href="https://viktor.com/">viktor.com</a></p>
+  </div>
+  <div class="ghost-word"><span class="ghost-glow"></span>viktor</div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  function onScroll(){if(window.scrollY>20)nav.classList.add('scrolled');else nav.classList.remove('scrolled');}
+  window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+  document.querySelectorAll('.faq-item').forEach(function(it){
+    it.addEventListener('click',function(){it.classList.toggle('open');});
+  });
+
+  document.querySelectorAll('.motion-card').forEach(function(card){
+    var btn=card.querySelector('.replay');
+    if(!btn)return;
+    btn.addEventListener('click',function(){
+      card.classList.remove('mplay');
+      void card.offsetWidth;
+      card.classList.add('mplay');
+      setTimeout(function(){card.classList.remove('mplay');},1200);
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1194 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DRYDOCK · Report No. 07</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   CANONICAL SCAFFOLD — prompt-library-slides (2026-07-29)
+   Derived from frontend-slides' viewport-base.css (Jason's chosen
+   reference contract, github.com/zarazhangrui/frontend-slides).
+   Builders: copy this file, replace DESIGN SYSTEM + slides + fonts.
+   Do NOT trim the scaffold blocks — every one closes a gap Jason
+   named on 2026-07-29 (motion, touch nav, print, letterbox field).
+   ============================================================ */
+
+/* ---- 1. Fixed 16:9 stage (letterbox, never reflow) ---- */
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --stage-bg:#27412F; /* deep pine — the deck's own ink, used flat as the letterbox field */
+  --controls-color:#8b9484; /* mid-sage: the pine-45-over-putty tone the ledger numerals
+                               already use, so the counter reads on BOTH grounds */
+  --slide-bg:#E5DCC8;
+  /* ---- reveal grammar knobs: warm-editorial-bold-crop ---- */
+  --reveal-duration:.56s;
+  --reveal-ease:cubic-bezier(.16,1,.3,1); /* ease-out-expo */
+  --reveal-distance:34px;                 /* vertical travel only, <= 40px */
+  --reveal-stagger:78ms;
+}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--stage-bg);}
+.deck-viewport{position:fixed;inset:0;overflow:hidden;background:var(--stage-bg);}
+.deck-stage{position:absolute;left:0;top:0;width:1920px;height:1080px;overflow:hidden;
+  transform-origin:0 0;background:var(--slide-bg);}
+.slide{position:absolute;inset:0;width:1920px;height:1080px;overflow:hidden;
+  visibility:hidden;opacity:0;pointer-events:none;background:var(--slide-bg);}
+.slide.active{visibility:visible;opacity:1;pointer-events:auto;z-index:1;}
+img,video,canvas,svg{max-width:100%;max-height:100%;}
+
+/* ---- 2. Entrance choreography (.reveal system) ----
+   Mark animating elements with class="reveal" and a stagger index:
+     <h1 class="reveal" style="--i:0">
+     <p  class="reveal" style="--i:1">
+   Register grammar (duration/ease/distance/stagger) comes from the
+   :root vars above. One orchestrated entrance per slide; no
+   hover-dependent effects (decks are presented, not browsed). */
+.slide .reveal{opacity:0;transform:translateY(var(--reveal-distance));}
+.slide.active .reveal{
+  opacity:1;transform:none;
+  transition:opacity var(--reveal-duration) var(--reveal-ease),
+             transform var(--reveal-duration) var(--reveal-ease);
+  transition-delay:calc(var(--i,0)*var(--reveal-stagger));
+}
+/* variants — use when the register's grammar calls for them.
+   warm-editorial-bold-crop uses NONE of these: vertical travel only,
+   no horizontal travel, no scale/pop. Kept for scaffold integrity. */
+.slide .reveal.from-left{transform:translateX(calc(-1*var(--reveal-distance)));}
+.slide .reveal.from-right{transform:translateX(var(--reveal-distance));}
+.slide .reveal.pop{transform:scale(.92);}
+
+/* ---- 3. Presentation chrome (outside the slide design system) ---- */
+.deck-controls{position:fixed;right:22px;bottom:16px;z-index:1000;
+  font:600 13px/1 system-ui,sans-serif;letter-spacing:.12em;
+  color:var(--controls-color,#8a8a8a);opacity:.55;
+  user-select:none;pointer-events:none;}
+
+/* ---- 4. Print: one slide per page (Print → Save as PDF just works) ---- */
+@media print{
+  html,body{width:1920px;height:auto;overflow:visible;background:#fff;}
+  .deck-viewport{position:static;overflow:visible;background:#fff;}
+  .deck-stage{position:static;width:auto;height:auto;transform:none!important;background:none;}
+  .slide{position:relative;visibility:visible!important;opacity:1!important;
+    pointer-events:auto!important;width:1920px;height:1080px;
+    break-after:page;page-break-after:always;}
+  .slide:last-child{break-after:auto;page-break-after:auto;}
+  .slide .reveal{opacity:1!important;transform:none!important;}
+  .deck-controls{display:none!important;}
+}
+
+/* ---- 5. Reduced motion: collapse choreography to a plain fade ---- */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.2s!important;
+    transition-delay:0ms!important;}
+  .slide .reveal{transform:none;}
+}
+
+/* ============================================================
+   DESIGN SYSTEM — putty ground + one deep pine ink, flat fields
+   only. Fixed internal measurements at 1920×1080; no clamp(), no
+   responsive breakpoints inside the stage.
+   ============================================================ */
+:root{
+  --putty:#E5DCC8;
+  --pine:#27412F;
+  --pine-70:rgba(39,65,47,0.70);
+  --pine-45:rgba(39,65,47,0.45);
+  --pine-22:rgba(39,65,47,0.22);
+  --putty-70:rgba(229,220,200,0.70);
+  --putty-45:rgba(229,220,200,0.45);
+  --putty-22:rgba(229,220,200,0.22);
+}
+.slide{background:var(--putty);color:var(--pine);font-family:'Instrument Sans',sans-serif;}
+
+.label{
+  position:absolute;font-size:18px;font-weight:600;letter-spacing:0.2em;
+  text-transform:uppercase;line-height:1;
+}
+.label.tl{top:64px;left:86px;}
+.label.tr{top:64px;right:86px;text-align:right;}
+.label.bl{bottom:60px;left:86px;}
+.label.br{bottom:60px;right:86px;text-align:right;font-variant-numeric:tabular-nums;}
+.on-pine .label{color:var(--putty);}
+.band .label{color:var(--putty);}
+
+.rule{position:absolute;height:1px;background:var(--pine);opacity:0.3;}
+
+/* the poster word — Bebas, condensed, sliced by a frame edge */
+.poster{
+  font-family:'Bebas Neue',sans-serif;font-weight:400;
+  letter-spacing:0.005em;line-height:0.78;white-space:nowrap;
+}
+
+/* ===== SLIDE 1 — cover: flat pine band on top, headline cut by BOTTOM edge ===== */
+.cover .band{position:absolute;left:0;top:0;width:1920px;height:648px;background:var(--pine);}
+
+/* harbour crane, pure SVG, sits inside the pine band */
+.cover .crane{position:absolute;right:110px;top:132px;width:660px;height:430px;}
+
+.cover .standfirst{
+  position:absolute;left:86px;top:392px;width:700px;
+  color:var(--putty);font-size:27px;line-height:1.5;font-weight:400;
+}
+.cover .kicker{
+  position:absolute;left:86px;top:312px;color:var(--putty);
+  font-size:19px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+}
+/* baseline pushed past the frame: the word is physically cut by the bottom edge */
+.cover .poster{
+  position:absolute;left:70px;bottom:-92px;
+  font-size:392px;color:var(--pine);
+}
+.cover .seal{
+  position:absolute;right:104px;bottom:104px;width:196px;height:196px;
+  border:1px solid var(--pine-45);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;text-align:center;
+  font-size:16px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;
+  line-height:1.5;color:var(--pine-70);
+}
+
+/* ===== SLIDE 2 — statement/stat: band re-cut as a LEFT COLUMN ===== */
+.stat .band{position:absolute;left:0;top:0;width:560px;height:1080px;background:var(--pine);}
+.stat .aside{
+  position:absolute;left:86px;top:730px;width:388px;
+  color:var(--putty-70);font-size:23px;line-height:1.55;
+}
+.stat .kicker{
+  position:absolute;left:660px;top:290px;
+  font-size:19px;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--pine-70);
+}
+.stat .poster{position:absolute;left:652px;top:352px;font-size:380px;color:var(--pine);}
+/* rule and the line under it both run the full measure out to the right margin
+   (1834) so the hairline terminates on the text block instead of in mid-air. */
+.stat .rule{left:660px;top:730px;width:1174px;}
+.stat .line{
+  position:absolute;left:660px;top:774px;width:1174px;
+  font-size:34px;line-height:1.45;color:var(--pine);
+}
+
+/* ===== SLIDE 3 — list: band re-cut as a THIN TOP RULE ===== */
+.list .band{position:absolute;left:0;top:0;width:1920px;height:148px;background:var(--pine);}
+.list .head{
+  position:absolute;left:86px;top:212px;
+  font-family:'Bebas Neue',sans-serif;font-size:132px;line-height:0.84;white-space:nowrap;
+}
+.list .intro{
+  position:absolute;left:86px;top:352px;width:880px;
+  font-size:22px;line-height:1.5;color:var(--pine-70);
+}
+.list .items{position:absolute;left:86px;right:86px;top:452px;}
+.list .row{
+  display:grid;grid-template-columns:128px 1fr;gap:34px;align-items:start;
+  padding:19px 0;border-top:1px solid var(--pine-22);
+}
+.list .row:last-child{border-bottom:1px solid var(--pine-22);}
+.list .row .no{
+  font-family:'Bebas Neue',sans-serif;font-size:74px;line-height:0.86;
+  color:var(--pine-45);font-variant-numeric:tabular-nums;
+}
+.list .row .body{padding-top:5px;}
+.list .row .name{font-size:40px;font-weight:600;letter-spacing:-0.01em;line-height:1.1;}
+.list .row .note{font-size:21px;line-height:1.45;color:var(--pine-70);max-width:1040px;margin-top:7px;}
+
+/* ===== SLIDE 4 — comparison: band re-cut as a RIGHT COLUMN ===== */
+.compare .band{position:absolute;right:0;top:0;width:960px;height:1080px;background:var(--pine);}
+.compare .col{position:absolute;top:220px;}
+.compare .col.a{left:86px;width:788px;}
+.compare .col.b{left:1046px;width:788px;}
+.compare .yr{font-family:'Bebas Neue',sans-serif;font-size:210px;line-height:0.84;
+  font-variant-numeric:tabular-nums;}
+/* optical: hang both numerals on their own margin. Bebas 1 carries ~16px of left
+   sidebearing at 210px, 2 carries ~8, so the mirrored pair disagreed by half a
+   stem. Pull each back to the same 1.5px ink inset the other Bebas heads use. */
+.compare .col.a .yr{margin-left:-15px;}
+.compare .col.b .yr{margin-left:-6.5px;}
+.compare .cap{font-size:20px;line-height:1.5;margin-top:26px;width:440px;color:var(--pine-70);}
+.compare .rows{margin-top:56px;}
+.compare .r{
+  display:grid;grid-template-columns:1fr 210px;gap:24px;align-items:baseline;
+  padding:16px 0;border-top:1px solid var(--pine-22);
+}
+.compare .rows .r:last-child{border-bottom:1px solid var(--pine-22);}
+.compare .r .k{font-size:22px;line-height:1.35;color:var(--pine-70);}
+.compare .r .v{
+  font-family:'Bebas Neue',sans-serif;font-size:54px;line-height:1;text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+.compare .col.b .yr{color:var(--putty);}
+.compare .col.b .cap{color:var(--putty-70);}
+.compare .col.b .r{border-top-color:var(--putty-22);}
+.compare .col.b .rows .r:last-child{border-bottom-color:var(--putty-22);}
+.compare .col.b .r .k{color:var(--putty-70);}
+.compare .col.b .r .v{color:var(--putty);}
+
+/* ===== SLIDE 5 — data/table: band inverted to the bottom, hairline berth ledger ===== */
+/* band cut from 180 to 148 so it matches slide 3's band depth, and the eyebrow
+   re-hung at 64 from the bottom (slide 3 hangs its label 64 from the band top) —
+   that lands the cap height optically centred instead of ~20px low. */
+.ledger .band{position:absolute;left:0;bottom:0;width:1920px;height:148px;background:var(--pine);}
+.ledger .band .label{bottom:65.5px;}
+.ledger .head{
+  position:absolute;left:86px;top:150px;
+  font-family:'Bebas Neue',sans-serif;font-size:150px;line-height:0.84;
+}
+/* optical: Bebas B carries ~4.5px more left sidebearing than T at 150px,
+   so BERTHS sat right of TWELVE. Pull it back onto the same ink edge. */
+.ledger .head span{display:block;color:var(--pine-45);margin-left:-4.5px;}
+.ledger .intro{
+  position:absolute;right:86px;top:172px;width:640px;text-align:right;
+  font-size:23px;line-height:1.55;color:var(--pine-70);
+}
+.ledger .table{position:absolute;left:86px;right:86px;top:440px;}
+/* note column widened from 380 to 560 (the name column had ~500px of dead slack)
+   so every description sets on one line: no one-word widows, and all five rows
+   are the same height. min-height locks the row rhythm even if copy changes. */
+.ledger .row{
+  display:grid;grid-template-columns:112px 1fr 560px 176px;
+  align-items:baseline;gap:34px;min-height:87px;
+  padding:17px 0;border-top:1px solid var(--pine-22);
+}
+.ledger .row:last-child{border-bottom:1px solid var(--pine-22);}
+.ledger .row .no{
+  font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;
+  color:var(--pine-45);font-variant-numeric:tabular-nums;
+}
+.ledger .row .name{font-size:31px;font-weight:600;letter-spacing:-0.01em;}
+.ledger .row .note{font-size:20px;color:var(--pine-70);line-height:1.4;}
+.ledger .row .fig{
+  font-family:'Bebas Neue',sans-serif;font-size:52px;line-height:1;text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ===== SLIDE 6 — quote: NO band, the field left open, hairline only ===== */
+.quote .rule{left:86px;top:308px;width:520px;}
+.quote .said{
+  position:absolute;left:86px;top:366px;width:1180px;
+  font-size:64px;line-height:1.34;font-weight:400;letter-spacing:-0.01em;color:var(--pine);
+}
+.quote .stamp{
+  position:absolute;right:86px;top:300px;width:600px;text-align:right;
+  font-family:'Bebas Neue',sans-serif;font-size:196px;line-height:0.86;color:var(--pine-22);
+}
+/* optical: Bebas H has a wider right sidebearing than 4, so MARCH hung short of
+   the margin the 14 above it sat flush on. Push the H's stem out to match. */
+.quote .stamp .opt-h{display:inline-block;margin-right:-5.5px;}
+.quote .who{position:absolute;left:86px;top:842px;width:900px;}
+.quote .who .nm{font-size:30px;font-weight:600;letter-spacing:-0.01em;}
+.quote .who .rl{font-size:21px;line-height:1.45;color:var(--pine-70);margin-top:9px;width:760px;}
+
+/* ===== SLIDE 7 — closer: full pine field, headline cut by the TOP edge ===== */
+.closer{background:var(--pine);color:var(--putty);}
+.closer .poster{
+  position:absolute;left:70px;top:-104px;font-size:392px;color:var(--putty);
+}
+.closer .body{
+  position:absolute;left:86px;top:404px;width:760px;
+  font-size:29px;line-height:1.56;color:var(--putty);opacity:0.88;
+}
+.closer .stamp{
+  position:absolute;right:86px;top:392px;width:640px;text-align:right;
+  font-family:'Bebas Neue',sans-serif;font-size:112px;line-height:0.9;color:var(--putty);opacity:0.34;
+}
+.closer .foot{
+  position:absolute;left:86px;bottom:150px;width:1000px;
+  font-size:20px;line-height:1.6;color:var(--putty);opacity:0.6;
+}
+/* colophon rule pulled from 90 to 86 — every other left-flush element in the
+   deck sits on 86, and the body/foot above move with it. */
+.closer .rule{background:var(--putty);opacity:0.28;left:86px;bottom:246px;width:300px;}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>window.tailwind=window.tailwind||{};window.tailwind.config={corePlugins:{preflight:false}};</script>
+
+<meta name="preview-version" content="ce7c29ba-7e8c-4b73-ade3-4f93244cda17" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:50.292Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "ce7c29ba-7e8c-4b73-ade3-4f93244cda17");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "ce7c29ba-7e8c-4b73-ade3-4f93244cda17",
+      timestamp: "2026-11-20T00:19:50.292Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "ce7c29ba-7e8c-4b73-ade3-4f93244cda17";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head><body>
+<div class="deck-viewport"><main class="deck-stage" id="deckStage">
+
+  <!-- 1 · COVER -->
+  <section class="slide cover active">
+    <div class="band">
+      <div class="label tl reveal" style="--i:4">Drydock · a report on working harbours</div>
+      <div class="label tr reveal" style="--i:4">Report No. 07</div>
+      <!-- Draw order is load-bearing: quay, backstay, mast, boom, falls, hanging
+           pair, THEN the container blocks, so the blocks occlude the mast. The
+           blocks are flat opaque tones (not cream-at-opacity) — that is what used
+           to let the mast read straight through the front block as a light stripe. -->
+      <svg class="crane reveal" style="--i:2" viewBox="0 0 660 430" fill="none">
+        <rect x="0" y="392" width="660" height="2" fill="#E5DCC8" opacity="0.5"/>
+        <path d="M126 96 L330 20 L330 34 L126 110 Z" fill="#E5DCC8" opacity="0.85"/>
+        <path d="M118 392 V96 H126 V392 Z" fill="#E5DCC8"/>
+        <path d="M126 104 H556 L556 118 H126 Z" fill="#E5DCC8"/>
+        <!-- matched pair: same fall length (78), same box (64x48), same tone,
+             each fall centred on its box and stopped dead on the top edge -->
+        <path d="M300 118 V196" stroke="#E5DCC8" stroke-width="3"/>
+        <path d="M470 118 V196" stroke="#E5DCC8" stroke-width="3"/>
+        <rect x="268" y="196" width="64" height="48" fill="#E5DCC8"/>
+        <rect x="438" y="196" width="64" height="48" fill="#E5DCC8"/>
+        <!-- two tones alternating; heights on a 14 step (5/3/4/2 units) -->
+        <rect x="60" y="322" width="150" height="70" fill="#77826F"/>
+        <rect x="216" y="350" width="150" height="42" fill="#556654"/>
+        <rect x="372" y="336" width="150" height="56" fill="#77826F"/>
+        <rect x="528" y="364" width="112" height="28" fill="#556654"/>
+        <!-- ring centre now sits on the boom axis (y=111) instead of floating -->
+        <circle cx="606" cy="111" r="34" stroke="#E5DCC8" stroke-width="2" opacity="0.5"/>
+      </svg>
+      <div class="kicker reveal" style="--i:1">Autumn 2026 · Tidal Basin Edition</div>
+      <div class="standfirst reveal" style="--i:2">Twelve berths, one estuary, and the slow argument about what a
+        port is for once the containers stop coming.</div>
+    </div>
+    <div class="poster reveal" style="--i:0">DRYDOCK</div>
+    <div class="seal reveal" style="--i:3">Surveyed<br>on foot<br>2026</div>
+  </section>
+
+  <!-- 2 · STATEMENT / STAT -->
+  <section class="slide stat">
+    <div class="band">
+      <div class="label tl reveal" style="--i:4">Drydock · No. 07</div>
+      <div class="aside reveal" style="--i:3">Counted out of the harbour office day book, the same
+        green ledger since 1974. A call is any vessel taking or landing cargo. Dredgers and
+        ferries do not count.</div>
+      <div class="label bl reveal" style="--i:4">Harbour office day book</div>
+    </div>
+    <div class="label tr reveal" style="--i:4">Calls · twelve months to March</div>
+    <div class="kicker reveal" style="--i:1">Of the berths surveyed</div>
+    <div class="poster reveal" style="--i:0">9 OF 12</div>
+    <div class="rule reveal" style="--i:2"></div>
+    <div class="line reveal" style="--i:2">berths took no commercial call in the twelve months to
+      March. The three that did were all taking timber.</div>
+    <div class="label br reveal" style="--i:4">02 / 07</div>
+  </section>
+
+  <!-- 3 · LIST -->
+  <section class="slide list">
+    <div class="band">
+      <div class="label tl reveal" style="--i:4.5">Drydock · Report No. 07</div>
+      <div class="label tr reveal" style="--i:4.5">Traffic · eight-week count</div>
+    </div>
+    <div class="head reveal" style="--i:0">WHAT STILL MOVES</div>
+    <div class="intro reveal" style="--i:1">Four things cross the harbour wall in commercial
+      quantity. Everything else on the water here is somebody's hobby, or ours.</div>
+    <div class="items">
+      <div class="row reveal" style="--i:2"><div class="no">01</div><div class="body">
+        <div class="name">Sawn larch</div>
+        <div class="note">Three barges a week off the upper river, made fast by the same two men since 1998.</div></div></div>
+      <div class="row reveal" style="--i:2.5"><div class="no">02</div><div class="body">
+        <div class="name">Scrap steel</div>
+        <div class="note">Skips out of the yard at Ropewalk, weighed on a bridge that reads forty kilos light.</div></div></div>
+      <div class="row reveal" style="--i:3"><div class="no">03</div><div class="body">
+        <div class="name">The foot ferry</div>
+        <div class="note">Eleven crossings a day, four in winter, free if you are carrying a bicycle.</div></div></div>
+      <div class="row reveal" style="--i:3.5"><div class="no">04</div><div class="body">
+        <div class="name">Dredge spoil</div>
+        <div class="note">Out to the licensed ground at Cleat Sand, and quietly back in on the flood.</div></div></div>
+    </div>
+    <div class="label bl reveal" style="--i:4.5">Counted February and March 2026</div>
+    <div class="label br reveal" style="--i:4.5">03 / 07</div>
+  </section>
+
+  <!-- 4 · COMPARISON / TWO-COLUMN -->
+  <section class="slide compare">
+    <div class="band">
+      <div class="label tr reveal" style="--i:4.5">Port authority returns</div>
+      <div class="label br reveal" style="--i:4.5">04 / 07</div>
+    </div>
+    <div class="label tl reveal" style="--i:4.5">Drydock · Report No. 07</div>
+    <div class="col a">
+      <div class="yr reveal" style="--i:0">1974</div>
+      <div class="cap reveal" style="--i:1">The last year the whole basin worked. Figures taken
+        from the annual return, unaudited.</div>
+      <div class="rows">
+        <div class="r reveal" style="--i:2"><div class="k">Berths taking cargo</div><div class="v">12</div></div>
+        <div class="r reveal" style="--i:2.5"><div class="k">Names on the harbour books</div><div class="v">1,410</div></div>
+        <div class="r reveal" style="--i:3"><div class="k">Deepest working water, metres</div><div class="v">11.80</div></div>
+        <div class="r reveal" style="--i:3.5"><div class="k">Calls in a normal week</div><div class="v">31</div></div>
+      </div>
+    </div>
+    <div class="col b">
+      <div class="yr reveal" style="--i:0">2026</div>
+      <div class="cap reveal" style="--i:1">Same return, same three columns, filled in by one
+        clerk on a Friday afternoon.</div>
+      <div class="rows">
+        <div class="r reveal" style="--i:2"><div class="k">Berths taking cargo</div><div class="v">3</div></div>
+        <div class="r reveal" style="--i:2.5"><div class="k">Names on the harbour books</div><div class="v">26</div></div>
+        <div class="r reveal" style="--i:3"><div class="k">Deepest working water, metres</div><div class="v">7.65</div></div>
+        <div class="r reveal" style="--i:3.5"><div class="k">Calls in a normal week</div><div class="v">4</div></div>
+      </div>
+    </div>
+    <div class="label bl reveal" style="--i:4.5">Port authority annual returns</div>
+  </section>
+
+  <!-- 5 · DATA / TABLE -->
+  <section class="slide ledger">
+    <div class="label tl reveal" style="--i:4.5">Drydock · Report No. 07</div>
+    <div class="label tr reveal" style="--i:4.5">Section 02 · The Berths</div>
+    <div class="head reveal" style="--i:0">TWELVE<span>BERTHS</span></div>
+    <div class="intro reveal" style="--i:1">Measured at low water over four mornings in March. Depth in metres,
+      last commercial call in brackets.</div>
+    <div class="table">
+      <div class="row reveal" style="--i:2"><div class="no">01</div><div class="name">Cormorant Quay</div><div class="note">Grain, then nothing. Silted since the barrage.</div><div class="fig">4.20</div></div>
+      <div class="row reveal" style="--i:2.4"><div class="no">02</div><div class="name">North Graving Dock</div><div class="note">Still gated. Pumps run one day a week.</div><div class="fig">9.10</div></div>
+      <div class="row reveal" style="--i:2.8"><div class="no">03</div><div class="name">Ropewalk Reach</div><div class="note">Timber. The only berth working full weeks.</div><div class="fig">7.65</div></div>
+      <div class="row reveal" style="--i:3.2"><div class="no">04</div><div class="name">Coalman's Stair</div><div class="note">Tidal steps, no crane. Used by the ferry trust.</div><div class="fig">2.40</div></div>
+      <div class="row reveal" style="--i:3.6"><div class="no">05</div><div class="name">Basin Head</div><div class="note">Dredged 2019, unused since. Deepest water here.</div><div class="fig">11.80</div></div>
+    </div>
+    <div class="band">
+      <div class="label bl reveal" style="--i:4.5">Depths in metres, chart datum</div>
+      <div class="label br reveal" style="--i:4.5">05 / 07</div>
+    </div>
+  </section>
+
+  <!-- 6 · QUOTE -->
+  <section class="slide quote">
+    <div class="label tl reveal" style="--i:3">Drydock · Report No. 07</div>
+    <div class="label tr reveal" style="--i:3">From the quayside</div>
+    <div class="rule reveal" style="--i:1"></div>
+    <div class="said reveal" style="--i:0">The barrage was sold to us as flood defence. It is a
+      very good flood defence. Nothing has come up the channel since, and nothing has flooded
+      either.</div>
+    <div class="stamp reveal" style="--i:1">14<br><span class="opt-h">MARCH</span></div>
+    <div class="who reveal" style="--i:2">
+      <div class="nm">Marian Culshaw</div>
+      <div class="rl">Harbourmaster from 1991 to 2014. Recorded standing on the Coalman's Stair,
+        two hours after high water.</div>
+    </div>
+    <div class="label bl reveal" style="--i:3">Interview 04 of 11</div>
+    <div class="label br reveal" style="--i:3">06 / 07</div>
+  </section>
+
+  <!-- 7 · CLOSER -->
+  <section class="slide closer on-pine">
+    <div class="poster reveal" style="--i:0">SLACK WATER</div>
+    <div class="stamp reveal" style="--i:1">NO. 08<br>SPRING</div>
+    <div class="body reveal" style="--i:2">The next report follows the dredgers south, to the four estuaries that
+      chose the opposite thing and built housing on the water instead.</div>
+    <div class="rule reveal" style="--i:2.5"></div>
+    <div class="foot reveal" style="--i:3">Drydock is surveyed and set by hand · Printed in an edition of six hundred<br>Correspondence to the harbour office, Tidal Basin</div>
+    <div class="label bl reveal" style="--i:4">Drydock · a report on working harbours</div>
+    <div class="label br reveal" style="--i:4">07 / 07</div>
+  </section>
+
+</main></div>
+<div class="deck-controls" id="deckControls">1 / 7</div>
+<script>
+/* Canonical Deck controller — keyboard + touch/swipe + wheel + click + counter.
+   shot_slides.py drives `.slide` + `.active` directly; keep that contract. */
+class Deck{
+  constructor(){
+    this.s=[...document.querySelectorAll('.slide')];this.i=0;
+    this.st=document.getElementById('deckStage');
+    this.ctl=document.getElementById('deckControls');
+    this.sc();addEventListener('resize',()=>this.sc());
+    addEventListener('keydown',e=>{
+      if(['ArrowRight',' ','PageDown'].includes(e.key))this.n();
+      if(['ArrowLeft','PageUp'].includes(e.key))this.p();
+      if(e.key==='Home')this.show(0);
+      if(e.key==='End')this.show(this.s.length-1);
+    });
+    /* wheel (throttled) */
+    this.wheelAt=0;
+    addEventListener('wheel',e=>{
+      const t=Date.now();if(t-this.wheelAt<450)return;this.wheelAt=t;
+      if(e.deltaY>12)this.n();else if(e.deltaY<-12)this.p();
+    },{passive:true});
+    /* touch swipe */
+    addEventListener('touchstart',e=>{this.tx=e.touches[0].clientX;},{passive:true});
+    addEventListener('touchend',e=>{
+      if(this.tx==null)return;
+      const dx=e.changedTouches[0].clientX-this.tx;this.tx=null;
+      if(dx<-40)this.n();else if(dx>40)this.p();
+    },{passive:true});
+    /* click: right 2/3 advances, left 1/3 goes back */
+    addEventListener('click',e=>{
+      if(getSelection().toString())return;
+      (e.clientX>innerWidth/3)?this.n():this.p();
+    });
+    this.show(0);
+  }
+  sc(){const f=Math.min(innerWidth/1920,innerHeight/1080);
+    this.st.style.transform=`translate(${(innerWidth-1920*f)/2}px,${(innerHeight-1080*f)/2}px) scale(${f})`;}
+  show(n){this.s.forEach((s,k)=>s.classList.toggle('active',k===n));this.i=n;
+    if(this.ctl)this.ctl.textContent=`${n+1} / ${this.s.length}`;}
+  n(){this.show(Math.min(this.i+1,this.s.length-1));}
+  p(){this.show(Math.max(this.i-1,0));}
+}
+const deck=new Deck();
+</script></body></html>

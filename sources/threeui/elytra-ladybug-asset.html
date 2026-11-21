@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ELYTRA Ladybug — r3xdec 3D</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 45%, #181a20, #08090c 75%); font-family: ui-sans-serif, system-ui, sans-serif; color: #f5f3ee; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .hud {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 14px; padding: 8px 18px; border-radius: 999px;
+      background: rgba(12, 14, 20, 0.82); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); pointer-events: auto;
+    }
+    .lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #a1a8b8; font-family: ui-monospace, monospace; white-space: nowrap; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px;
+      background: rgba(212, 175, 55, 0.15); border: 1px solid rgba(212, 175, 55, 0.3);
+      font-size: 10px; font-family: ui-monospace, monospace; color: #e5c365;
+    }
+    .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; }
+    .loader-overlay {
+      position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: #090a0f; z-index: 20; transition: opacity 0.4s ease; pointer-events: none;
+    }
+    .loader-overlay.hidden { opacity: 0; }
+    .spinner {
+      width: 32px; height: 32px; border: 2px solid rgba(255,255,255,0.1); border-top-color: #d4af37;
+      border-radius: 50%; animation: spin 0.8s linear infinite; margin-bottom: 12px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body>
+  <div id="loader" class="loader-overlay">
+    <div class="spinner"></div>
+    <div class="lbl">Loading ELYTRA 3D Model...</div>
+  </div>
+
+  <div class="hud">
+    <span class="lbl">ELYTRA · BIONIC LADYBUG</span>
+    <span class="badge"><span class="badge-dot"></span>PBR 60FPS</span>
+  </div>
+
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+
+    // Studio Environment map for authentic reflections
+    const pmremGenerator = new THREE.PMREMGenerator(renderer);
+    pmremGenerator.compileEquirectangularShader();
+    const roomEnv = new RoomEnvironment();
+    scene.environment = pmremGenerator.fromScene(roomEnv, 0.04).texture;
+    pmremGenerator.dispose();
+
+    const camera = new THREE.PerspectiveCamera(38, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 1.4, 3.6);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxDistance = 12;
+    controls.minDistance = 1.0;
+    controls.target.set(0, 0, 0);
+
+    // Studio Lighting Rig matching elytra-landing-page.html
+    const hemiLight = new THREE.HemisphereLight(0xa9c0fe, 0x14101a, 0.55);
+    scene.add(hemiLight);
+
+    const keyLight = new THREE.DirectionalLight(0xffdf88, 3.4);
+    keyLight.position.set(-5, 6, 6);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 2048;
+    keyLight.shadow.mapSize.height = 2048;
+    keyLight.shadow.bias = -0.0001;
+    scene.add(keyLight);
+
+    const rimLight = new THREE.DirectionalLight(0x8fbaff, 4.0);
+    rimLight.position.set(6, 3, -7);
+    scene.add(rimLight);
+
+    const fillLight = new THREE.DirectionalLight(0xffefdd, 1.0);
+    fillLight.position.set(1, 9, 2);
+    scene.add(fillLight);
+
+    // Shadow catcher floor
+    const floorGeo = new THREE.PlaneGeometry(30, 30);
+    const floorMat = new THREE.ShadowMaterial({ opacity: 0.35 });
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -0.92;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const root = new THREE.Group();
+    scene.add(root);
+
+    // Load authentic wing etch texture
+    const texLoader = new THREE.TextureLoader();
+    const wingEtchTex = texLoader.load('/models/elytra/wing_etch.png');
+    wingEtchTex.flipY = false;
+    wingEtchTex.colorSpace = THREE.NoColorSpace;
+    wingEtchTex.anisotropy = 8;
+
+    // Build authentic PBR materials
+    const colorFromRGB = (r, g, b) => new THREE.Color().setRGB(r, g, b, THREE.LinearSRGBColorSpace);
+
+    const rubyMaterial = new THREE.MeshPhysicalMaterial({
+      color: colorFromRGB(0.045, 0, 0.004),
+      metalness: 0,
+      roughness: 0.03,
+      clearcoat: 1,
+      clearcoatRoughness: 0.01,
+      envMapIntensity: 1.2,
+      emissive: colorFromRGB(0.18, 0, 0.02),
+      emissiveIntensity: 1,
+      specularIntensity: 1,
+      specularColor: colorFromRGB(1, 0.85, 0.85),
+    });
+    rubyMaterial.onBeforeCompile = (shader) => {
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', '#include <common>\n')
+        .replace(
+          '#include <emissivemap_fragment>',
+          `#include <emissivemap_fragment>
+          float ndv = clamp(dot(normal, normalize(vViewPosition)), 0., 1.);
+          totalEmissiveRadiance *= (0.01 + 1.7 * pow(ndv, 4.5) + 0.3 * pow(1. - ndv, 6.));
+          diffuseColor.rgb *= 0.35 + 0.65 * ndv;`
+        );
+    };
+
+    const glassMaterial = new THREE.MeshPhysicalMaterial({
+      color: 0x1a2436,
+      metalness: 0,
+      roughness: 0.03,
+      transparent: true,
+      premultipliedAlpha: true,
+      opacity: 0.94,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+      envMapIntensity: 1.2,
+      ior: 1.5,
+      specularIntensity: 1,
+      emissive: 0xfff0aa,
+      emissiveIntensity: 0.9,
+      emissiveMap: wingEtchTex,
+    });
+    glassMaterial.onBeforeCompile = (shader) => {
+      shader.fragmentShader = shader.fragmentShader
+        .replace('#include <common>', '#include <common>\nfloat gE, gFr;')
+        .replace(
+          '#include <emissivemap_fragment>',
+          `#include <emissivemap_fragment>
+          gE = emissiveColor.r;
+          float gNv = abs(dot(normal, normalize(vViewPosition)));
+          gFr = pow(1. - gNv, 3.);
+          float gEdge = smoothstep(.05, .32, gNv);
+          diffuseColor.a = (.14 + gE * .7 + gFr * .3) * gEdge;`
+        )
+        .replace(
+          'vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;',
+          `vec3 outgoingLight = totalDiffuse * diffuseColor.a + (min(totalSpecular * (.22 + .5 * gE), vec3(.45)) + totalEmissiveRadiance * .85 + vec3(.87, .91, 1.) * gFr * .3);`
+        );
+    };
+
+    const materials = {
+      gold: new THREE.MeshPhysicalMaterial({
+        color: colorFromRGB(0.95, 0.585, 0.27),
+        metalness: 1,
+        roughness: 0.1,
+        envMapIntensity: 1.35,
+      }),
+      gold_satin: new THREE.MeshPhysicalMaterial({
+        color: colorFromRGB(0.96, 0.62, 0.26),
+        metalness: 1,
+        roughness: 0.2,
+        envMapIntensity: 1.35,
+      }),
+      gold_dark: new THREE.MeshPhysicalMaterial({
+        color: colorFromRGB(0.5, 0.3, 0.12),
+        metalness: 1,
+        roughness: 0.3,
+        envMapIntensity: 1,
+      }),
+      ruby: rubyMaterial,
+      enamel: new THREE.MeshPhysicalMaterial({
+        color: colorFromRGB(0.003, 0.048, 0.018),
+        metalness: 0,
+        roughness: 0.55,
+        clearcoat: 0.45,
+        clearcoatRoughness: 0.05,
+        envMapIntensity: 0.25,
+        emissive: colorFromRGB(0, 0.006, 0.003),
+      }),
+      onyx: new THREE.MeshPhysicalMaterial({
+        color: colorFromRGB(0.004, 0.004, 0.006),
+        metalness: 0,
+        roughness: 0.05,
+        clearcoat: 1,
+        clearcoatRoughness: 0.02,
+        envMapIntensity: 1.4,
+      }),
+      glass: glassMaterial,
+    };
+
+    // Setup DRACO and GLTF Loader
+    const dracoLoader = new DRACOLoader();
+    dracoLoader.setDecoderPath('/vendor/three/libs/draco/gltf/');
+
+    const gltfLoader = new GLTFLoader();
+    gltfLoader.setDRACOLoader(dracoLoader);
+
+    const loaderOverlay = document.getElementById('loader');
+
+    gltfLoader.load(
+      '/models/elytra/ladybug.glb',
+      (gltf) => {
+        const model = gltf.scene;
+
+        // Auto-center and fit model
+        const box = new THREE.Box3().setFromObject(model);
+        const center = box.getCenter(new THREE.Vector3());
+        const size = box.getSize(new THREE.Vector3());
+
+        const maxDim = Math.max(size.x, size.y, size.z);
+        const scale = 2.1 / (maxDim || 1);
+        model.scale.setScalar(scale);
+
+        model.position.x = -center.x * scale;
+        model.position.y = -center.y * scale + 0.15;
+        model.position.z = -center.z * scale;
+
+        // Assign materials and enable shadows
+        model.traverse((child) => {
+          if (child.isMesh) {
+            child.castShadow = true;
+            child.receiveShadow = true;
+            child.frustumCulled = false;
+            const matName = (child.material && child.material.name ? child.material.name : '').replace(/\.\d+$/, '');
+            const targetMat = materials[matName] || materials.gold;
+            child.material = targetMat;
+            if (matName === 'glass') {
+              child.renderOrder = 2;
+            }
+          }
+        });
+
+        root.add(model);
+        if (loaderOverlay) {
+          loaderOverlay.classList.add('hidden');
+          setTimeout(() => loaderOverlay.remove(), 400);
+        }
+      },
+      undefined,
+      (err) => {
+        console.error('Error loading ladybug.glb:', err);
+        if (loaderOverlay) {
+          loaderOverlay.innerHTML = '<div class="lbl" style="color: #ef4444">Failed to load 3D model</div>';
+        }
+      }
+    );
+
+    let clock = new THREE.Clock();
+    let isInteracting = false;
+    controls.addEventListener('start', () => { isInteracting = true; });
+    controls.addEventListener('end', () => { isInteracting = false; });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      const time = clock.getElapsedTime();
+
+      // Idle rotation and floating when not interacting
+      if (!isInteracting) {
+        root.rotation.y += 0.005;
+        root.position.y = Math.sin(time * 1.2) * 0.04;
+      }
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

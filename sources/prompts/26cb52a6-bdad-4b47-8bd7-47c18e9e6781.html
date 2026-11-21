@@ -1,0 +1,1025 @@
+<!DOCTYPE html><html lang="zh-CN"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightFlow - 智能问数对话平台</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.cdnfonts.com/css/clash-grotesk');
+
+        :root {
+            --bg-deep: #f8f9fa;
+            --bg-surface: #ffffff;
+            --accent-primary: #6366f1;
+            --accent-secondary: #a855f7;
+            --accent-neon: #3b82f6;
+            --text-main: #1f2937;
+            --text-muted: #6b7280;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #4f46e5 0%, #9333ea 50%, #db2777 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .neon-glow:focus-within {
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.15);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .animated-mesh {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            overflow: hidden;
+            background: 
+                radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 0%, rgba(168, 85, 247, 0.05) 0px, transparent 50%);
+        }
+
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 5px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .chat-bubble-ai {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .chart-placeholder {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.02) 0%, rgba(99, 102, 241, 0.05) 100%);
+        }
+
+        @view-transition { navigation: auto; }
+    </style>
+
+<meta name="preview-version" content="88b42415-cd38-4f60-9db6-1fca72d2b866" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.744Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "88b42415-cd38-4f60-9db6-1fca72d2b866");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "88b42415-cd38-4f60-9db6-1fca72d2b866",
+      timestamp: "2026-11-20T00:19:43.744Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "88b42415-cd38-4f60-9db6-1fca72d2b866";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <div class="h-screen flex flex-col relative">
+        <div class="animated-mesh"></div>
+
+        <!-- Header -->
+        <header class="flex-none h-16 bg-[#ffffff] border-b border-gray-200 z-40 shadow-sm">
+            <div class="h-full px-6 flex items-center justify-between">
+                <div class="flex items-center gap-8">
+                    <div class="flex items-center gap-2">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-purple-500 flex items-center justify-center shadow-md">
+                            <iconify-icon icon="lucide:database" class="text-white text-xl"></iconify-icon>
+                        </div>
+                        <span class="text-lg font-bold tracking-tight text-gray-900">Insight<span class="text-indigo-600">Flow</span></span>
+                    </div>
+                    <nav class="hidden md:flex items-center gap-8 h-full">
+                        <a id="nav-dashboard" href="#" class="text-xs font-semibold text-gray-500 hover:text-indigo-600 transition-colors">仪表盘</a>
+                        <a id="nav-chat-active" href="#" class="text-xs font-semibold text-gray-900 relative flex items-center h-full border-b-2 border-indigo-600">问数</a>
+                        <a id="nav-sources" href="#" class="text-xs font-semibold text-gray-500 hover:text-indigo-600 transition-colors">数据源</a>
+                        <a id="nav-assistant" href="#" class="text-xs font-semibold text-gray-500 hover:text-indigo-600 transition-colors">小助手应用</a>
+                        <div class="relative group h-full flex items-center">
+                            <button id="nav-settings-dropdown" class="flex items-center gap-1 text-xs font-semibold text-gray-500 group-hover:text-indigo-600 transition-colors">
+                                <span>设置</span>
+                                <iconify-icon icon="lucide:chevron-down" class="text-[10px]"></iconify-icon>
+                            </button>
+                            <div class="absolute top-full left-0 w-48 mt-0 pt-0 hidden group-hover:block z-50">
+                                <div class="bg-white border border-gray-200 rounded-xl p-2 shadow-xl translate-y-1">
+                                    <a id="set-members" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-all">
+                                        <iconify-icon icon="lucide:users" class="text-sm text-indigo-500"></iconify-icon>
+                                        成员管理
+                                    </a>
+                                    <a id="set-permissions" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-all">
+                                        <iconify-icon icon="lucide:shield-check" class="text-sm text-indigo-500"></iconify-icon>
+                                        权限配置
+                                    </a>
+                                    <a id="set-glossary" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-all">
+                                        <iconify-icon icon="lucide:book-open" class="text-sm text-indigo-500"></iconify-icon>
+                                        术语配置
+                                    </a>
+                                    <a id="set-sql-library" href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-xs text-gray-600 hover:text-indigo-600 hover:bg-gray-50 transition-all">
+                                        <iconify-icon icon="lucide:code-2" class="text-sm text-indigo-500"></iconify-icon>
+                                        SQL 示例库
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-3 pl-4 border-l border-gray-200">
+                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Alex" alt="User" class="w-8 h-8 rounded-full border border-gray-200" onerror="this.onerror=null;this.src='https://placehold.co/32x32/1a1a1a/888?text=Image';">
+                        <iconify-icon icon="lucide:chevron-down" class="text-gray-400"></iconify-icon>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main 3-Column Layout -->
+        <div class="flex-1 flex overflow-hidden">
+            
+            <!-- Left: Chat History -->
+            <aside class="w-64 flex-none border-r border-gray-200 flex flex-col bg-white/50">
+                <div class="p-4 flex-none">
+                    <button id="btn-new-chat" class="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 shadow-sm transition-all text-sm font-medium text-gray-700">
+                        <iconify-icon icon="lucide:plus" class="text-indigo-600"></iconify-icon>
+                        <span>开启新会话</span>
+                    </button>
+                </div>
+                <div class="flex-1 overflow-y-auto custom-scrollbar px-2 space-y-1">
+                    <div class="px-3 py-2 text-[10px] uppercase tracking-widest text-gray-400 font-bold">最近会话</div>
+                    <a id="hist-1" href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl bg-indigo-50 text-indigo-700 font-medium">
+                        <iconify-icon icon="lucide:message-square" class="text-lg"></iconify-icon>
+                        <span class="text-sm truncate">2023 华东销售分析</span>
+                    </a>
+                    <a id="hist-2" href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-all">
+                        <iconify-icon icon="lucide:message-square" class="text-lg"></iconify-icon>
+                        <span class="text-sm truncate">客户留存率预测报告</span>
+                    </a>
+                    <a id="hist-3" href="#" class="flex items-center gap-3 px-3 py-3 rounded-xl hover:bg-gray-100 text-gray-500 hover:text-gray-900 transition-all">
+                        <iconify-icon icon="lucide:message-square" class="text-lg"></iconify-icon>
+                        <span class="text-sm truncate">库存周转异常监控</span>
+                    </a>
+                </div>
+                <div class="p-4 border-t border-gray-200 flex items-center gap-2 text-gray-400 text-xs">
+                    <iconify-icon icon="lucide:info"></iconify-icon>
+                    <span>已连接 3 个生产数据库</span>
+                </div>
+            </aside>
+
+            <!-- Middle: Main Dialog Area -->
+            <main class="flex-1 flex flex-col relative min-w-0 bg-[#f9fafb]">
+                <!-- Chat Flow -->
+                <div class="flex-1 overflow-y-auto custom-scrollbar">
+                    <div class="max-w-3xl mx-auto py-10 px-6 space-y-10">
+                        
+                        <!-- User Message -->
+                        <div class="flex flex-col items-end gap-3">
+                            <div class="max-w-[80%] bg-indigo-600 text-white px-5 py-3 rounded-2xl rounded-tr-none shadow-md">
+                                <p class="text-sm leading-relaxed">对比一下去年华东地区和华南地区 Q3 的销售趋势，并生成可视化对比图。</p>
+                            </div>
+                            <span class="text-[10px] text-gray-400 uppercase font-medium">刚刚 · 你</span>
+                        </div>
+
+                        <!-- AI Response Section -->
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-indigo-600 to-indigo-400 flex flex-none items-center justify-center shadow-md">
+                                    <iconify-icon icon="lucide:sparkles" class="text-white"></iconify-icon>
+                                </div>
+                                <div class="flex-1 space-y-6">
+                                    <!-- Thinking Process -->
+                                    <div class="chat-bubble-ai p-4 rounded-2xl border-l-4 border-l-indigo-500 bg-white">
+                                        <div class="flex items-center gap-2 mb-2">
+                                            <iconify-icon icon="lucide:terminal" class="text-indigo-600"></iconify-icon>
+                                            <span class="text-[10px] uppercase font-bold tracking-widest text-indigo-600">正在分析数据...</span>
+                                        </div>
+                                        <p class="text-xs text-gray-500 font-mono">SELECT region, date_trunc('month', sale_date) as month, SUM(revenue) FROM sales_master WHERE region IN ('East', 'South') AND sale_date BETWEEN '2023-07-01' AND '2023-09-30' GROUP BY 1, 2;</p>
+                                    </div>
+
+                                    <!-- Text Result -->
+                                    <div class="text-sm leading-relaxed text-gray-700">
+                                        分析完成。去年 Q3 华东地区表现稳健，7月达到峰值；而华南地区在8月经历了小幅下滑，但9月回升迅速，环比增长 <span class="text-emerald-600 font-bold">15.4%</span>。以下是具体的趋势对比图表：
+                                    </div>
+
+                                    <!-- Chart Card -->
+                                    <div class="glass-card rounded-2xl p-6 relative group overflow-hidden bg-white shadow-sm border border-gray-100">
+                                        <div class="flex items-center justify-between mb-6">
+                                            <div>
+                                                <h4 class="font-semibold text-gray-900">区域销售趋势对比 (Q3)</h4>
+                                                <p class="text-xs text-gray-500">单位: 百万元 (RMB)</p>
+                                            </div>
+                                            <div class="flex gap-2">
+                                                <button class="p-2 rounded-lg hover:bg-gray-50 text-gray-400 hover:text-gray-900 transition-all">
+                                                    <iconify-icon icon="lucide:download"></iconify-icon>
+                                                </button>
+                                                <button class="p-2 rounded-lg hover:bg-gray-50 text-gray-400 hover:text-gray-900 transition-all">
+                                                    <iconify-icon icon="lucide:maximize-2"></iconify-icon>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <!-- Visual Chart Simulation -->
+                                        <div class="h-64 chart-placeholder rounded-xl flex items-end justify-between px-6 pb-4 border border-indigo-50">
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-indigo-500 rounded-t-lg h-40 relative group-hover:bg-indigo-600 transition-all"></div>
+                                                <span class="text-[10px] text-gray-400">7月(东)</span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-purple-400 rounded-t-lg h-32"></div>
+                                                <span class="text-[10px] text-gray-400">7月(南)</span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-indigo-500 rounded-t-lg h-48"></div>
+                                                <span class="text-[10px] text-gray-400">8月(东)</span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-purple-400 rounded-t-lg h-24"></div>
+                                                <span class="text-[10px] text-gray-400">8月(南)</span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-indigo-500 rounded-t-lg h-44"></div>
+                                                <span class="text-[10px] text-gray-400">9月(东)</span>
+                                            </div>
+                                            <div class="flex flex-col items-center gap-2">
+                                                <div class="w-12 bg-purple-400 rounded-t-lg h-52"></div>
+                                                <span class="text-[10px] text-gray-400">9月(南)</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 text-xs text-gray-400">
+                                        <button class="flex items-center gap-1 hover:text-indigo-600 transition-colors"><iconify-icon icon="lucide:thumbs-up"></iconify-icon> 有用</button>
+                                        <button class="flex items-center gap-1 hover:text-pink-600 transition-colors"><iconify-icon icon="lucide:thumbs-down"></iconify-icon> 无效</button>
+                                        <button class="flex items-center gap-1 hover:text-gray-900 transition-colors"><iconify-icon icon="lucide:copy"></iconify-icon> 复制</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Input Area (Bottom) -->
+                <div class="p-6 bg-gradient-to-t from-[#f9fafb] via-[#f9fafb] to-transparent">
+                    <div class="max-w-3xl mx-auto">
+                        <div class="neon-glow bg-white rounded-2xl p-2 flex items-center gap-2 border border-gray-200 shadow-xl">
+                            <button class="p-3 text-gray-400 hover:text-gray-900 transition-colors">
+                                <iconify-icon icon="lucide:paperclip" class="text-xl"></iconify-icon>
+                            </button>
+                            <textarea placeholder="继续提问，例如：'华南地区8月下滑的原因是什么？'" class="flex-1 bg-transparent border-none focus:ring-0 text-gray-800 placeholder:text-gray-400 text-sm py-3 resize-none h-12 custom-scrollbar"></textarea>
+                            <button id="btn-send" class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-200 hover:scale-105 transition-all">
+                                <iconify-icon icon="lucide:arrow-up" class="text-white text-lg"></iconify-icon>
+                            </button>
+                        </div>
+                        <p class="mt-3 text-center text-[10px] text-gray-400 tracking-wide">InsightFlow 可能会产生误差，请核实关键财务数据。</p>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Right: Panel -->
+            <aside class="w-80 flex-none border-l border-gray-200 bg-white p-6 space-y-8 overflow-y-auto custom-scrollbar">
+                <!-- Current Source -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">当前数据源</h3>
+                    <div class="glass-card rounded-2xl p-4 bg-gray-50 border-gray-100">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-lg bg-indigo-50 flex items-center justify-center">
+                                <iconify-icon icon="logos:postgresql" class="text-xl"></iconify-icon>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-semibold text-gray-900">Analytics_Core</p>
+                                <div class="flex items-center gap-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    <span class="text-[10px] text-gray-500">运行中 · 延迟 24ms</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button id="btn-change-source" class="w-full mt-4 py-2 rounded-lg bg-white border border-gray-200 text-[10px] text-gray-700 font-bold hover:bg-gray-50 transition-all uppercase">
+                            更换数据源
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Suggested Actions -->
+                <div class="space-y-4">
+                    <h3 class="text-xs font-bold uppercase tracking-widest text-gray-400">推荐操作</h3>
+                    <div class="space-y-2">
+                        <button class="w-full text-left px-4 py-3 rounded-xl border border-gray-100 bg-white hover:border-indigo-200 hover:bg-indigo-50 transition-all text-xs group">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700 group-hover:text-indigo-700">导出为 PDF 简报</span>
+                                <iconify-icon icon="lucide:file-text" class="text-gray-300 group-hover:text-indigo-500"></iconify-icon>
+                            </div>
+                        </button>
+                        <button class="w-full text-left px-4 py-3 rounded-xl border border-gray-100 bg-white hover:border-indigo-200 hover:bg-indigo-50 transition-all text-xs group">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700 group-hover:text-indigo-700">创建自动化同步任务</span>
+                                <iconify-icon icon="lucide:clock" class="text-gray-300 group-hover:text-indigo-500"></iconify-icon>
+                            </div>
+                        </button>
+                        <button class="w-full text-left px-4 py-3 rounded-xl border border-gray-100 bg-white hover:border-indigo-200 hover:bg-indigo-50 transition-all text-xs group">
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-700 group-hover:text-indigo-700">分享至团队看板</span>
+                                <iconify-icon icon="lucide:share-2" class="text-gray-300 group-hover:text-indigo-500"></iconify-icon>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Semantic Graph -->
+                <div class="glass-card rounded-2xl p-4 bg-gray-50 border-gray-100">
+                    <h4 class="text-xs font-bold text-gray-500 mb-3">智能语义关联</h4>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-2 py-1 rounded-md bg-white text-[10px] text-gray-500 border border-gray-200">#销售趋势</span>
+                        <span class="px-2 py-1 rounded-md bg-white text-[10px] text-gray-500 border border-gray-200">#毛利模型</span>
+                        <span class="px-2 py-1 rounded-md bg-white text-[10px] text-gray-500 border border-gray-200">#华东大区</span>
+                        <span class="px-2 py-1 rounded-md bg-white text-[10px] text-gray-500 border border-gray-200">#Q3报告</span>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </div>
+</body></html>

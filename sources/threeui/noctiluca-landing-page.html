@@ -1,0 +1,1974 @@
+<!doctype html>
+<html lang="en">
+<head><script>function __threeuiStorageImage(...args){const image=new Image(...args);const property=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");Object.defineProperty(image,"src",{configurable:true,get(){return property.get.call(this)},set(value){try{const url=new URL(value,document.baseURI);if(this.crossOrigin===null&&(url.href.startsWith("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/")||url.origin===new URL(document.baseURI).origin))this.crossOrigin="anonymous"}catch{}property.set.call(this,value)}});return image;}
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Noctiluca — The dark is not empty</title>
+<meta name="description" content="A slow-media study of the midwater column. Eleven nights, no artificial light.">
+<style>
+@font-face{font-family:'Flex';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/robotoflex.woff2') format('woff2');
+  font-weight:100 1000;font-style:normal;font-display:block}
+@font-face{font-family:'Geist';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/a369fcf5628ea2aa4e1b9e2ec6a5b3624e365bda588e1f0f2f12b564f728fbb8.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:block}
+
+/* ---------------------------------------------------------------------
+   Alternate pairings, tried with ?type=1..6. @font-face is lazy — the
+   browser fetches a file only once a rule actually uses the family — so
+   declaring all of these costs the default page nothing.
+   --------------------------------------------------------------------- */
+@font-face{font-family:'Instr';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/60c06664b5a95c7de6cc3e00d1f9034d78bd1e40b564016b241674449a067d4d.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Instr';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/6ee678c33f388dd7ba59700ebea635deb98821baafd817b09891f7927177f702.woff2') format('woff2');
+  font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:'News';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/dcec2e68141a33903e3b6cc1/newsreader.woff2') format('woff2');
+  font-weight:200 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Lexend';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/1ec8f6ee2750554b4bc59ff0b507d316a82a7ba37e0e5bebc41d3bd9b9faad46.woff2') format('woff2');
+  font-weight:100 900;font-style:normal;font-display:swap}
+@font-face{font-family:'Onest';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/cbc780c47e7975372debee1cad74f54bc38a3d366840a74b0af33bdd9ce5e8cf.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Onest';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/21150b504f3aa78ba6dd04a6d11dd938fdc7c354f7e93ee2312fa18046d3aabd.woff2') format('woff2');
+  font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Mincho';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/mincho-400.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Mincho';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/mincho-700.woff2') format('woff2');
+  font-weight:500 700;font-style:normal;font-display:swap}
+@font-face{font-family:'Kaku';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/kaku-400.woff2') format('woff2');
+  font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'Kaku';src:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/kaku-500.woff2') format('woff2');
+  font-weight:500 700;font-style:normal;font-display:swap}
+
+:root{
+  --ink:#eef9fb;
+  --ink-2:rgba(224,244,248,.68);
+  --ink-3:rgba(206,234,240,.44);
+  --line:rgba(190,225,235,.20);
+  --rail:clamp(46px,4.4vw,74px);
+  --pad:clamp(20px,4.4vw,74px);
+  --gut:112px;                   /* the column the fixed depth ruler occupies */
+  --lead:calc(var(--rail) + clamp(20px,2.4vw,44px));
+  --trail:calc(var(--pad) + var(--gut));
+
+  /* 00 · Instrument — Roboto Flex at optical size 144 over Geist.
+     Technical and neutral; the hairline weight is what carries it. */
+  --fd:'Flex'; --fb:'Geist';
+  --h1-size:clamp(46px,7.7vw,138px); --h1-lh:.93; --h1-ls:-.015em;
+  --h2-size:clamp(34px,4.6vw,78px);  --h2-lh:.95; --h2-ls:-.015em;
+  --h1-case:uppercase; --name-style:italic; --name-family:var(--fb);
+}
+
+/* 01 · Plate — a high-contrast display serif over the same grotesque.
+   Museum label rather than instrument panel. */
+html[data-type="1"]{
+  --fd:'Instr'; --fb:'Geist';
+  --fd-h1:normal; --fd-h2:normal; --fd-h3:normal;
+  --fd-mark:normal; --fd-num:normal; --fd-big:normal;
+  --h1-size:clamp(52px,8.6vw,158px); --h1-lh:.90; --h1-ls:-.012em;
+  --h2-size:clamp(38px,5.2vw,88px);  --h2-lh:.92; --h2-ls:-.012em;
+  --h1-case:none; --name-family:'Instr';
+}
+/* 02 · Journal — an optically-sized literary serif over a geometric sans. */
+html[data-type="2"]{
+  --fd:'News'; --fb:'Onest';
+  --fd-h1:'opsz' 72,'wght' 300; --fd-h2:'opsz' 72,'wght' 320;
+  --fd-h3:'opsz' 36,'wght' 420; --fd-mark:'opsz' 14,'wght' 500;
+  --fd-num:'opsz' 36,'wght' 300; --fd-big:'opsz' 72,'wght' 240;
+  --h1-size:clamp(48px,8vw,146px); --h1-lh:.94; --h1-ls:-.018em;
+  --h2-size:clamp(36px,4.9vw,84px); --h2-lh:.96; --h2-ls:-.018em;
+  --h1-case:none; --name-family:'News';
+}
+/* 03 · Sumi — a Japanese old-style mincho over its gothic companion. */
+html[data-type="3"]{
+  --fd:'Mincho'; --fb:'Kaku';
+  --fd-h1:normal; --fd-h2:normal; --fd-h3:normal;
+  --fd-mark:normal; --fd-num:normal; --fd-big:normal;
+  --h1-size:clamp(44px,7.2vw,128px); --h1-lh:1.0; --h1-ls:.01em;
+  --h2-size:clamp(33px,4.4vw,74px); --h2-lh:1.02; --h2-ls:.01em;
+  --h1-case:uppercase; --name-family:'Mincho';
+}
+/* 04 · Signal — one humanist family doing both jobs. */
+html[data-type="4"]{
+  --fd:'Lexend'; --fb:'Lexend';
+  --fd-h1:'wght' 200; --fd-h2:'wght' 250; --fd-h3:'wght' 400;
+  --fd-mark:'wght' 500; --fd-num:'wght' 300; --fd-big:'wght' 180;
+  --fb-vs:'wght' 350;
+  --h1-size:clamp(42px,7vw,124px); --h1-lh:1.0; --h1-ls:-.02em;
+  --h2-size:clamp(32px,4.3vw,72px); --h2-lh:1.02; --h2-ls:-.02em;
+  --h1-case:uppercase; --name-family:var(--fb);
+}
+/* 05 · Beacon — the same display family, read as a heavy compact wordmark
+   instead of a hairline. No new bytes, a completely different voice. */
+html[data-type="5"]{
+  --fd:'Flex'; --fb:'Onest';
+  --fd-h1:'opsz' 144,'wght' 700; --fd-h2:'opsz' 144,'wght' 640;
+  --fd-h3:'opsz' 90,'wght' 600; --fd-mark:'opsz' 40,'wght' 700;
+  --fd-num:'opsz' 90,'wght' 500; --fd-big:'opsz' 144,'wght' 500;
+  --h1-size:clamp(42px,6.9vw,124px); --h1-lh:.90; --h1-ls:-.028em;
+  --h2-size:clamp(32px,4.3vw,72px); --h2-lh:.92; --h2-ls:-.028em;
+  --h1-case:uppercase; --name-family:var(--fb);
+}
+/* 06 · Vitrine — serif display, serif italic names, geometric body. */
+html[data-type="6"]{
+  --fd:'Instr'; --fb:'Onest';
+  --fd-h1:normal; --fd-h2:normal; --fd-h3:normal;
+  --fd-mark:normal; --fd-num:normal; --fd-big:normal;
+  --h1-size:clamp(52px,8.6vw,158px); --h1-lh:.90; --h1-ls:-.012em;
+  --h2-size:clamp(38px,5.2vw,88px); --h2-lh:.92; --h2-ls:-.012em;
+  --h1-case:none; --name-family:'Instr';
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:#03121a;
+  color:var(--ink);
+  font-family:var(--fb),-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  font-variation-settings:var(--fb-vs,normal);
+  font-weight:400;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(124,196,210,.3)}
+
+#gl{position:fixed;inset:0;width:100%;height:100%;display:block;z-index:0}
+
+/* ---------- the animal ----------
+   White-on-black footage screened over the water. That *is* premultiplied
+   alpha for a subject this gossamer, and it costs 420 KB of H.264 instead of
+   4.7 MB of alpha WebP — hair-fine tentacles are the worst case there is for
+   a per-frame codec. The blend has to live on this wrapper rather than the
+   <video>: an element blends with the backdrop of the stacking context it sits
+   in, and the wrapper is the thing that shares one with the canvas. */
+/* The drift lives on this wrapper, not on the <video>. Anything inside that
+   carries its own transform becomes a stacking context, and a blended child of
+   one blends against nothing — see .holoclip below. */
+.jelly{
+  position:fixed;top:50%;left:min(58%,calc(100% - 320px));
+  height:clamp(330px,74vh,880px);aspect-ratio:9/16;
+  transform:translate(-50%,-52%) var(--xf,translate3d(0,0,0));
+  z-index:1;pointer-events:none;mix-blend-mode:screen;
+  /* The contained video letterboxes by a couple of px inside this box, and the
+     film has nothing to blend against in that strip. An opaque black floor
+     guarantees a backdrop everywhere, and screens to precisely nothing. */
+  background:#000;
+}
+.jelly video,.jelly img{
+  width:100%;height:100%;object-fit:contain;display:block;
+  user-select:none;-webkit-user-drag:none;
+  /* The animal's finest tentacles run off the bottom of the source frame — the
+     last row still carries content — so the frame edge read as a hard cut
+     straight across them. Measured: the bright oral arms stop by 92% of the
+     height, everything past that is faint strand, so a short fade over the last
+     tenth hides the join without touching anything solid. */
+  -webkit-mask-image:linear-gradient(to bottom,#000 0%,#000 90%,transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 0%,#000 90%,transparent 100%);
+}
+.jelly img{position:absolute;inset:0}
+.jelly.playing img{opacity:0;transition:opacity .5s ease}
+
+/* The same iridescence the deck plates carry, on the animal.
+   `color` takes hue and saturation from this layer and luminosity from the
+   video underneath, so the black sweep stays black (luminosity 0 blends to
+   black whatever the source hue) and only the jelly is tinted. The clip box
+   matches the video exactly — let the gradient past it and it would be
+   blending against nothing, and paint a rainbow rectangle into the screen. */
+/* No transform here, deliberately. Giving the clip one makes it a stacking
+   context, the blend then resolves against its own empty backdrop instead of
+   the video, and the whole box paints as a flat pastel rectangle. The drift
+   is applied to .jelly above so clip and video move as one. */
+.jelly .holoclip{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.jelly .holo{
+  position:absolute;left:-62%;top:-62%;width:224%;height:224%;
+  mix-blend-mode:color;opacity:.58;will-change:transform;
+  background:linear-gradient(108deg,
+    #63e6ff 0%, #8f83ff 13%, #e079ff 26%, #74ffd8 39%,
+    #6ba6ff 52%, #b581ff 65%, #63e6ff 78%, #8f83ff 91%, #e079ff 100%);
+}
+
+/* a hairline of grain + vignette over the whole thing, sold cheap */
+#grain{position:fixed;inset:0;z-index:2;pointer-events:none;
+  background:radial-gradient(128% 96% at 50% 38%,transparent 52%,rgba(0,8,12,.40) 100%)}
+
+main{position:relative;z-index:3}
+
+/* =====================================================================
+   fixed chrome: the wordmark rail, the top bar, the depth ruler.
+   All three persist for the whole descent — they are the spine.
+   ===================================================================== */
+.chrome{position:fixed;inset:0;z-index:5;pointer-events:none}
+.chrome > *{pointer-events:auto}
+
+/* Once the hero is gone the top bar sits over live copy, so it earns a scrim.
+   The hero itself keeps its light — the scrim only fades in below the surface. */
+.chrome::before{content:'';position:absolute;left:0;right:0;top:0;height:186px;
+  background:linear-gradient(180deg,rgba(3,16,23,.97) 0%,rgba(3,16,23,.92) 32%,
+             rgba(3,16,23,.58) 66%,transparent 100%);
+  opacity:0;transition:opacity .9s ease;pointer-events:none}
+body.deep .chrome::before{opacity:1}
+
+.rail{position:absolute;left:var(--rail);top:0;bottom:0;width:1px;
+  background:linear-gradient(180deg,transparent,var(--line) 14%,var(--line) 86%,transparent)}
+
+.mark{
+  position:absolute;left:var(--rail);bottom:clamp(28px,4vh,56px);
+  transform:rotate(-90deg) translateX(0);transform-origin:0 100%;
+  margin-left:-14px;
+  font-family:var(--fd);font-variation-settings:var(--fd-mark,'opsz' 40,'wght' 500);
+  font-size:clamp(11px,.92vw,14px);letter-spacing:.46em;white-space:nowrap;color:var(--ink);
+}
+
+.topbar{
+  position:absolute;left:calc(var(--rail) + clamp(18px,2vw,34px));right:var(--pad);
+  top:clamp(24px,3.4vh,40px);
+  display:flex;align-items:baseline;gap:clamp(16px,3vw,48px);
+}
+.coord{font-size:clamp(10px,.82vw,12px);letter-spacing:.2em;color:var(--ink-3);white-space:nowrap}
+.coord b{font-weight:400;color:var(--ink-2)}
+nav{margin-left:auto;display:flex;gap:clamp(18px,2.6vw,44px);
+  font-size:clamp(10.5px,.88vw,13px);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
+nav a{color:rgba(224,244,248,.46);transition:color .4s ease}
+nav a.on,nav a:hover{color:var(--ink)}
+
+/* ---------- the depth ruler ---------- */
+.ruler{
+  position:absolute;right:var(--pad);top:clamp(96px,13vh,150px);bottom:clamp(84px,12vh,130px);
+  width:1px;background:linear-gradient(180deg,transparent,var(--line) 6%,var(--line) 94%,transparent);
+}
+.ruler .tk{position:absolute;right:0;height:1px;background:var(--line)}
+.ruler .tk.maj{width:20px}
+.ruler .tk.min{width:8px;background:rgba(190,225,235,.13)}
+.ruler .tl{position:absolute;right:30px;transform:translateY(-50%);white-space:nowrap;
+  font-size:10px;letter-spacing:.15em;color:rgba(206,234,240,.34);
+  font-variant-numeric:tabular-nums;transition:opacity .35s ease}
+.ruler .tl.hide{opacity:0}
+.ruler .cur{position:absolute;right:-6px;width:13px;height:13px;border-radius:50%;
+  border:1px solid rgba(224,248,252,.9);background:rgba(140,215,232,.22);
+  transform:translateY(-50%);
+  box-shadow:0 0 0 5px rgba(140,215,232,.07), 0 0 18px rgba(140,215,232,.4)}
+.ruler .read{position:absolute;right:26px;transform:translateY(-50%);text-align:right;white-space:nowrap}
+.ruler .read b{display:block;font-family:var(--fd);font-variation-settings:var(--fd-num,'opsz' 90,'wght' 300);
+  font-size:clamp(20px,2.1vw,34px);line-height:1;letter-spacing:-.01em;color:var(--ink);
+  font-variant-numeric:tabular-nums}
+.ruler .read small{display:block;font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ink-3);margin-top:6px}
+.ruler .zone{position:absolute;right:26px;transform:translateY(-50%);white-space:nowrap;
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(206,234,240,.5);
+  transition:opacity .5s ease}
+
+/* =====================================================================
+   hero
+   ===================================================================== */
+.hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;
+  padding:0 var(--trail) clamp(46px,8vh,96px) var(--lead)}
+
+.hero-copy{max-width:min(980px,64vw);position:relative}
+
+h1{
+  font-family:var(--fd);font-variation-settings:var(--fd-h1,'opsz' 144,'wght' 250);
+  font-size:var(--h1-size);line-height:var(--h1-lh);letter-spacing:var(--h1-ls);
+  text-transform:var(--h1-case);color:#f4fcfe;
+  text-shadow:0 6px 60px rgba(0,22,32,.55);
+}
+h1 span{display:block;overflow:hidden}
+h1 span i{display:block;font-style:normal}
+
+.cta{
+  display:inline-flex;align-items:center;gap:16px;margin-top:clamp(26px,4.2vh,48px);
+  padding-bottom:12px;border-bottom:1px solid rgba(215,240,246,.30);
+  font-size:clamp(13px,1.06vw,16px);letter-spacing:.05em;color:#dff2f6;
+  min-width:230px;transition:border-color .45s ease,color .45s ease;
+}
+.cta svg{margin-left:auto;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.cta:hover{border-color:rgba(215,240,246,.85);color:#fff}
+.cta:hover svg{transform:translateX(7px)}
+
+.note{
+  position:absolute;right:var(--trail);
+  bottom:clamp(46px,8vh,96px);width:min(268px,26vw);
+  font-size:clamp(12px,.94vw,13.6px);line-height:1.62;color:var(--ink-2);
+}
+.note u{display:block;text-decoration:none;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+
+.scrollcue{position:absolute;left:var(--lead);bottom:clamp(18px,2.6vh,30px);
+  font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:rgba(206,234,240,.34);
+  display:flex;align-items:center;gap:10px}
+.scrollcue i{display:block;width:34px;height:1px;background:rgba(206,234,240,.3);position:relative;overflow:hidden}
+.scrollcue i::after{content:'';position:absolute;inset:0;background:#cfeaf0;
+  animation:sweep 2.6s cubic-bezier(.6,0,.3,1) infinite}
+@keyframes sweep{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+
+/* =====================================================================
+   section 02 — the transect
+   ===================================================================== */
+.transect{
+  position:relative;
+  padding:clamp(90px,16vh,190px) var(--trail) clamp(80px,12vh,150px) var(--lead);
+  display:grid;grid-template-columns:minmax(280px,30%) 1fr;gap:clamp(34px,5vw,92px);
+  align-items:start;
+}
+.tleft{position:sticky;top:clamp(120px,17vh,190px)}
+.eyebrow{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-3);
+  display:flex;align-items:center;gap:12px;margin-bottom:clamp(20px,3vh,32px)}
+.eyebrow::after{content:'';flex:1;height:1px;background:var(--line);max-width:90px}
+
+h2{font-family:var(--fd);font-variation-settings:var(--fd-h2,'opsz' 144,'wght' 280);
+  font-size:var(--h2-size);line-height:var(--h2-lh);letter-spacing:var(--h2-ls);
+  text-transform:var(--h1-case);color:#f0fafc}
+.tleft p{margin-top:clamp(20px,3vh,30px);font-size:clamp(13px,1.02vw,15.5px);line-height:1.66;
+  color:var(--ink-2);max-width:38ch}
+.tleft .cta{margin-top:clamp(24px,3.6vh,40px);min-width:210px}
+
+/* ---- the ladder ---- */
+.strata{list-style:none;border-top:1px solid var(--line)}
+.strata li{
+  display:grid;grid-template-columns:auto 1fr;
+  gap:clamp(18px,2.4vw,40px);
+  padding:clamp(28px,4.4vh,52px) 0;border-bottom:1px solid var(--line);
+  opacity:0;transform:translateY(34px);
+  transition:opacity 1.05s cubic-bezier(.16,.84,.3,1),transform 1.05s cubic-bezier(.16,.84,.3,1);
+}
+.strata li.in{opacity:1;transform:none}
+
+/* No disc. A circular clip cut the tentacles off every specimen that had any,
+   and the ring read as a UI chip rather than an animal in open water. The only
+   frame now is the pool of its own light. */
+.thumb{position:relative;width:clamp(140px,15.5vw,236px);aspect-ratio:1;flex:none}
+.thumb::before{
+  content:'';position:absolute;left:50%;top:50%;width:164%;height:164%;
+  transform:translate(-50%,-50%);pointer-events:none;
+  background:radial-gradient(circle,
+    color-mix(in srgb,var(--acc) 30%,transparent) 0%,
+    color-mix(in srgb,var(--acc) 11%,transparent) 34%,
+    transparent 66%);
+  opacity:.72;transition:opacity .7s cubic-bezier(.2,.8,.2,1)}
+.strata li:hover .thumb::before{opacity:1}
+.thumb img,.thumb .film{position:absolute;inset:0;width:100%;height:100%}
+.thumb img{object-fit:contain;transition:opacity .5s ease}
+
+/* Each specimen is a horizontal strip of keyed frames, stepped with CSS.
+   `alternate` ping-pongs it, which is what a bell pulse does anyway — so the
+   loop is seamless without paying for cross-fade frames, and half the film
+   buys a full cycle. */
+.thumb .film{overflow:hidden;opacity:0;transition:opacity .6s ease}
+.thumb .film::before{
+  content:'';position:absolute;top:0;left:0;height:100%;
+  width:calc(var(--n)*100%);
+  background:var(--film) 0 0 / 100% 100% no-repeat;
+  animation:film calc(var(--n)*0.132s) steps(var(--n)) infinite alternate;
+}
+/* Translate, not background-position. A background-position percentage
+   resolves against (container − image), so stepping it 0→100% lands between
+   cells for every frame but the last. translateX percentages resolve against
+   the strip's own width, so k/N of -100% is exactly k cells. */
+@keyframes film{from{transform:translateX(0)}to{transform:translateX(-100%)}}
+.thumb.ready .film{opacity:1}
+.thumb.ready img{opacity:0}
+
+/* the whole animal drifts, film and glow together */
+.thumb{animation:hover 11s ease-in-out infinite}
+.strata li:nth-child(2) .thumb{animation-duration:13s;animation-delay:-3s}
+.strata li:nth-child(3) .thumb{animation-duration:9.5s;animation-delay:-6s}
+.strata li:nth-child(4) .thumb{animation-duration:15s;animation-delay:-2s}
+.strata li:nth-child(2) .thumb .film::before{animation-duration:calc(var(--n)*0.158s)}
+.strata li:nth-child(3) .thumb .film::before{animation-duration:calc(var(--n)*0.119s)}
+.strata li:nth-child(4) .thumb .film::before{animation-duration:calc(var(--n)*0.174s)}
+.strata li:hover .thumb{transform:scale(1.06);animation-play-state:paused}
+@keyframes hover{
+  0%,100%{transform:translate(0,0) rotate(0deg)}
+  33%{transform:translate(3%,-4%) rotate(1.8deg)}
+  66%{transform:translate(-2.4%,3%) rotate(-1.4deg)}
+}
+
+.srow{min-width:0}
+.shead{display:flex;align-items:baseline;gap:clamp(12px,1.6vw,26px);flex-wrap:wrap}
+.srange{font-size:11px;letter-spacing:.16em;color:color-mix(in srgb,var(--acc) 72%,transparent);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+.szone{font-family:var(--fd);font-variation-settings:var(--fd-h3,'opsz' 90,'wght' 380);
+  font-size:clamp(22px,2.5vw,40px);line-height:1;letter-spacing:.01em;text-transform:uppercase;
+  color:#eef9fb;text-shadow:0 0 30px color-mix(in srgb,var(--acc) 40%,transparent)}
+.slux{margin-left:auto;font-size:11px;letter-spacing:.13em;color:var(--ink-3);
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+
+.bar{position:relative;height:1px;background:rgba(190,225,235,.13);margin:clamp(16px,2.2vh,24px) 0}
+.bar i{position:absolute;left:0;top:-1px;height:3px;width:0;border-radius:2px;
+  background:linear-gradient(90deg,
+    color-mix(in srgb,var(--acc) 92%,white),
+    color-mix(in srgb,var(--acc) 60%,transparent));
+  box-shadow:0 0 16px -1px color-mix(in srgb,var(--acc) 75%,transparent);
+  transition:width 1.5s cubic-bezier(.16,.84,.3,1) .18s}
+.strata li.in .bar i{width:var(--w)}
+
+.sbody{display:flex;gap:clamp(16px,2.6vw,44px);align-items:baseline;flex-wrap:wrap}
+.sbody p{font-size:clamp(12.5px,.98vw,15px);line-height:1.64;color:var(--ink-2);max-width:44ch}
+.sbody em{display:block;font-style:italic;font-family:var(--name-family);
+  font-size:clamp(12.5px,.98vw,15px);color:var(--ink-3);
+  margin-bottom:7px;letter-spacing:.01em}
+
+/* =====================================================================
+   section 03 — the deck
+   ===================================================================== */
+.deck{position:relative;padding:clamp(80px,14vh,170px) var(--trail) clamp(70px,10vh,130px) var(--lead)}
+.dhead{max-width:900px;margin-bottom:clamp(38px,6vh,74px)}
+.dlede{margin-top:clamp(18px,2.6vh,28px);font-size:clamp(13px,1.02vw,15.5px);line-height:1.66;
+  color:var(--ink-2);max-width:52ch}
+.dhint{margin-top:clamp(16px,2.4vh,24px);font-size:10px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--ink-3);display:flex;align-items:center;gap:11px}
+.dhint::before{content:'';width:5px;height:5px;border-radius:50%;background:#8fe3ff;
+  box-shadow:0 0 10px 2px rgba(143,227,255,.75);animation:blink 3.2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:.35}50%{opacity:1}}
+
+.grid{position:relative;display:grid;gap:clamp(18px,2.2vw,32px);
+  grid-template-columns:repeat(3,1fr)}
+#deckgl{position:absolute;inset:0;width:100%;height:100%;display:block;
+  pointer-events:none;z-index:2;opacity:0;transition:opacity .8s ease}
+.grid.lit #deckgl{opacity:1}
+
+.card{position:relative;display:flex;flex-direction:column;
+  transform:translateY(30px);opacity:0;
+  transition:opacity 1s cubic-bezier(.16,.84,.3,1),transform 1s cubic-bezier(.16,.84,.3,1)}
+.card.in{opacity:1;transform:none}
+
+.plate{
+  position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:3px;
+  background:#03080c;
+  /* the card is a wet plate in the dark: a hairline edge, its own colour
+     bleeding out of it, and a pool of that colour under it */
+  box-shadow:
+    inset 0 0 0 1px rgba(190,225,235,.16),
+    0 0 0 1px rgba(0,0,0,.5),
+    0 18px 44px -14px rgba(0,0,0,.75),
+    0 0 34px -6px color-mix(in srgb,var(--acc) 32%,transparent);
+  transition:box-shadow .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1);
+}
+.card:hover .plate{
+  transform:translateY(-5px);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb,var(--acc) 55%,rgba(190,225,235,.2)),
+    0 0 0 1px rgba(0,0,0,.5),
+    0 26px 60px -16px rgba(0,0,0,.8),
+    0 0 66px -4px color-mix(in srgb,var(--acc) 60%,transparent);
+}
+.plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  transition:opacity .6s ease,transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.grid.lit .plate img{opacity:0}          /* the GL layer has taken over */
+.card:hover .plate img{transform:scale(1.03)}
+
+.cmeta{padding:clamp(14px,1.8vh,22px) 2px 0;position:relative}
+.cnum{font-size:10px;letter-spacing:.22em;color:var(--acc);opacity:.95}
+.cdep{float:right;font-size:10px;letter-spacing:.18em;color:var(--ink-3);
+  font-variant-numeric:tabular-nums}
+.cmeta h3{clear:both;font-family:var(--fd);font-variation-settings:var(--fd-h3,'opsz' 90,'wght' 330);
+  font-size:clamp(19px,1.85vw,27px);line-height:1.08;letter-spacing:-.005em;
+  text-transform:uppercase;color:#eef9fb;margin-top:9px;
+  text-shadow:0 0 26px color-mix(in srgb,var(--acc) 34%,transparent)}
+.cmeta em{display:block;font-style:italic;font-family:var(--name-family);
+  font-size:clamp(12px,.95vw,14px);
+  color:var(--ink-3);margin-top:5px;letter-spacing:.01em}
+.cmeta p{margin-top:11px;font-size:clamp(12px,.94vw,13.8px);line-height:1.6;color:var(--ink-2);
+  padding-top:11px;border-top:1px solid var(--line)}
+
+/* =====================================================================
+   closing
+   ===================================================================== */
+.floor{position:relative;padding:clamp(80px,14vh,170px) var(--trail) clamp(34px,5vh,62px) var(--lead)}
+.floor .big{font-family:var(--fd);font-variation-settings:var(--fd-big,'opsz' 144,'wght' 200);
+  font-size:clamp(52px,13vw,220px);line-height:.9;letter-spacing:.02em;
+  color:rgba(190,235,244,.14);text-transform:uppercase}
+.floor .fbar{display:flex;align-items:flex-end;gap:clamp(20px,4vw,70px);flex-wrap:wrap;
+  margin-top:clamp(34px,6vh,74px);padding-top:clamp(20px,3vh,30px);border-top:1px solid var(--line)}
+.floor .fbar p{font-size:11.5px;line-height:1.7;color:var(--ink-3);max-width:46ch}
+.floor .fbar a.up{margin-left:auto;display:inline-flex;align-items:center;gap:11px;
+  font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-2);
+  transition:color .4s ease}
+.floor .fbar a.up:hover{color:#fff}
+
+/* =====================================================================
+   intro
+   ===================================================================== */
+@keyframes rise{from{opacity:0;transform:translateY(1.1em)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+body:not(.ready) .chrome,body:not(.ready) .hero{opacity:0}
+/* the fade-in is JS-gated, so hand it back if scripts never run */
+.nojs .chrome,.nojs .hero{opacity:1 !important}
+body.ready h1 span i{animation:rise 1.5s cubic-bezier(.16,.84,.3,1) backwards}
+body.ready h1 span:nth-child(1) i{animation-delay:.30s}
+body.ready h1 span:nth-child(2) i{animation-delay:.42s}
+body.ready h1 span:nth-child(3) i{animation-delay:.54s}
+body.ready :is(.cta,.note,.scrollcue,.coord,nav,.mark,.ruler){animation:fade 1.5s ease backwards}
+body.ready .coord{animation-delay:.10s}
+body.ready .mark{animation-delay:.16s}
+body.ready nav{animation-delay:.22s}
+body.ready .ruler{animation-delay:.86s}
+body.ready .hero .cta{animation-delay:.72s}
+body.ready .note{animation-delay:.80s}
+body.ready .scrollcue{animation-delay:1.0s}
+body.ready .jelly{animation:fade 2.4s ease .1s backwards}
+
+/* ---------- the type switcher, only present with ?type= ---------- */
+.typechip{
+  position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:40;
+  display:none;align-items:center;gap:2px;padding:5px;
+  border:1px solid rgba(190,225,235,.22);border-radius:999px;
+  background:rgba(6,10,26,.86);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  font-family:'Geist',sans-serif;box-shadow:0 12px 34px -12px rgba(0,0,0,.8)}
+body[data-type] .typechip{display:flex}
+.typechip b{font-weight:400;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#eef9fb;padding:0 14px;min-width:132px;text-align:center;white-space:nowrap}
+.typechip b i{font-style:normal;color:rgba(206,234,240,.45);margin-right:8px}
+.typechip a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;
+  border-radius:50%;color:rgba(224,244,248,.7);transition:background-color .25s,color .25s}
+.typechip a:hover{background:rgba(190,225,235,.14);color:#fff}
+.typechip s{width:1px;height:18px;background:rgba(190,225,235,.18);margin:0 6px;text-decoration:none}
+.typechip u{text-decoration:none;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(206,234,240,.5);padding:0 12px 0 4px}
+
+body.still *,body.still *::after{animation:none !important;transition:none !important}
+body.still .strata li{opacity:1;transform:none}
+body.still .bar i{width:var(--w)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  body.ready :is(h1 span i,.cta,.note,.scrollcue,.coord,nav,.mark,.ruler,.jelly){animation:none}
+  .scrollcue i::after{animation:none;transform:translateX(-100%)}
+  .strata li{opacity:1;transform:none;transition:none}
+  .bar i{transition:none;width:var(--w)}
+  /* hold the still frame — the strip is never swapped in */
+  .thumb{animation:none}
+  .thumb .film::before{animation:none}
+  .thumb .film{opacity:0 !important}
+  .thumb img{opacity:1 !important}
+}
+
+/* =====================================================================
+   narrow
+   ===================================================================== */
+@media (max-width:900px){
+  :root{--rail:26px;--pad:22px;--gut:0px}
+  .ruler{display:none}
+  .mark{font-size:10px;letter-spacing:.4em}
+  nav{display:none}
+  .hero{flex-direction:column;align-items:stretch;justify-content:flex-end;
+    padding-bottom:clamp(40px,7vh,70px)}
+  .jelly{left:64%;top:38%;height:min(58vh,520px);opacity:.9}
+  .hero-copy{max-width:100%}
+  h1{font-size:clamp(40px,12.4vw,74px)}
+  .note{position:static;width:auto;max-width:34ch;margin-top:26px}
+  .scrollcue{display:none}
+  .transect{grid-template-columns:1fr;gap:clamp(38px,7vh,60px)}
+  .tleft{position:static}
+  .strata li{grid-template-columns:1fr;gap:20px}
+  .thumb{width:132px}
+  .shead{gap:10px}
+  .slux{margin-left:0;width:100%}
+  .grid{grid-template-columns:repeat(2,1fr);gap:16px}
+  .deck{padding-top:clamp(64px,10vh,110px)}
+}
+@media (max-width:560px){
+  .grid{grid-template-columns:1fr;gap:clamp(30px,5vh,44px)}
+}
+@media (min-width:901px) and (max-width:1180px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:520px){
+  .szone{font-size:26px}
+}
+</style>
+</head>
+<body>
+<script>
+/* Runs before any of the page is parsed: setting the pairing after first
+   paint means the browser has already started fetching the default display
+   face, and the headline visibly swaps once the real one arrives. */
+(function(){var t=new URLSearchParams(location.search).get('type');
+ if(t===null)return;
+ document.documentElement.dataset.type=Math.max(0,Math.min(6,parseInt(t,10)||0));})();
+</script>
+<noscript><style>body{}.chrome,.hero{opacity:1 !important}
+  body{background:linear-gradient(180deg,#0d3946,#03121a 60%)}</style></noscript>
+
+<canvas id="gl"></canvas>
+
+<div class="jelly" id="jellybox">
+  <img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/jelly-poster.webp" alt="" aria-hidden="true" draggable="false">
+  <video id="jelly" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/jelly.mp4"
+         autoplay muted loop playsinline preload="auto"
+         aria-label="A moon jellyfish drifting in dark open water"></video>
+  <div class="holoclip" aria-hidden="true"><i class="holo" id="holo"></i></div>
+</div>
+
+<div id="grain"></div>
+
+<div class="chrome">
+  <div class="rail"></div>
+  <div class="mark">NOCTILUCA</div>
+  <div class="topbar">
+    <div class="coord">N 24°18′ · W 77°02′ &nbsp;<b>TONGUE OF THE OCEAN</b></div>
+    <nav>
+      <a href="#transect" class="on">Expeditions</a>
+      <a href="#transect">Species</a>
+      <a href="#transect">Field notes</a>
+      <a href="#floor">Archive</a>
+    </nav>
+  </div>
+  <div class="ruler" id="ruler"></div>
+</div>
+
+<main>
+
+  <section class="hero">
+    <div class="hero-copy">
+      <h1><span><i>The dark</i></span><span><i>is not</i></span><span><i>empty</i></span></h1>
+      <a class="cta" href="#transect">Begin the descent
+        <svg width="21" height="10" viewBox="0 0 21 10" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 5h19M15.2 1.2 19 5l-3.8 3.8"/></svg>
+      </a>
+    </div>
+
+    <p class="note"><u>Field note 04</u>A slow-media study of the midwater column, recorded at
+      ambient pressure across eleven nights without a single artificial light.</p>
+
+    <div class="scrollcue"><i></i>Scroll to descend</div>
+  </section>
+
+  <section class="transect" id="transect">
+    <div class="tleft">
+      <div class="eyebrow">Transect 02</div>
+      <h2>Every light<br>down here<br>is alive</h2>
+      <p>Past two hundred metres the sun stops being a source. Everything below that line is
+         chemistry — one cell deciding to burn, and the whole column answering it.</p>
+      <a class="cta" href="#floor">Read the full transect
+        <svg width="21" height="10" viewBox="0 0 21 10" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M0 5h19M15.2 1.2 19 5l-3.8 3.8"/></svg>
+      </a>
+    </div>
+
+    <ol class="strata" id="strata">
+      <li style="--w:100%;--acc:#7fe6d4">
+        <div class="thumb" data-film="sp-sunlit"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/sp-sunlit.webp" alt="" aria-hidden="true"><i class="film" aria-hidden="true"></i></div>
+        <div class="srow">
+          <div class="shead"><span class="srange">0 — 200 m</span><span class="szone">Sunlit</span>
+            <span class="slux">1 200 lux</span></div>
+          <div class="bar"><i></i></div>
+          <div class="sbody"><p><em>Aurelia aurita</em>Photosynthesis still works at this depth.
+            It is the only part of the ocean that behaves like sky.</p></div>
+        </div>
+      </li>
+      <li style="--w:34%;--acc:#5aa0ff">
+        <div class="thumb" data-film="sp-twilight"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/sp-twilight.webp" alt="" aria-hidden="true"><i class="film" aria-hidden="true"></i></div>
+        <div class="srow">
+          <div class="shead"><span class="srange">200 — 1 000 m</span><span class="szone">Twilight</span>
+            <span class="slux">0.8 lux</span></div>
+          <div class="bar"><i></i></div>
+          <div class="sbody"><p><em>Periphylla periphylla</em>Red light never reaches this far down,
+            so an animal that is red is simply an animal that is not there.</p></div>
+        </div>
+      </li>
+      <li style="--w:12%;--acc:#b473ff">
+        <div class="thumb" data-film="sp-midnight"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/sp-midnight.webp" alt="" aria-hidden="true"><i class="film" aria-hidden="true"></i></div>
+        <div class="srow">
+          <div class="shead"><span class="srange">1 000 — 4 000 m</span><span class="szone">Midnight</span>
+            <span class="slux">0.000 1 lux</span></div>
+          <div class="bar"><i></i></div>
+          <div class="sbody"><p><em>Atolla wyvillei</em>Seized, it fires a rotating blue alarm —
+            a call for something large enough to take whatever has hold of it.</p></div>
+        </div>
+      </li>
+      <li style="--w:3%;--acc:#9ec6de">
+        <div class="thumb" data-film="sp-abyss"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/13e4d29ef85d4992260b4131/sp-abyss.webp" alt="" aria-hidden="true"><i class="film" aria-hidden="true"></i></div>
+        <div class="srow">
+          <div class="shead"><span class="srange">4 000 — 6 000 m</span><span class="szone">Abyss</span>
+            <span class="slux">no measurable sunlight</span></div>
+          <div class="bar"><i></i></div>
+          <div class="sbody"><p><em>Bathykorus bouilloni</em>Four stomach pouches, no eyes, and a
+            bell that has never once been warm.</p></div>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="deck" id="deck">
+    <div class="dhead">
+      <div class="eyebrow">The deck — 06 specimens</div>
+      <h2>Six ways<br>to make light</h2>
+      <p class="dlede">None of these animals is lit. Every colour you can see here is being
+         manufactured, on purpose, by the thing you are looking at.</p>
+      <p class="dhint" id="dhint">Move the light with your cursor</p>
+    </div>
+
+    <div class="grid" id="grid">
+      <canvas id="deckgl" aria-hidden="true"></canvas>
+
+      <article class="card" data-plate="c1-atolla" style="--acc:#3f8dff">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/7c24722e464eaeb9e209a2bc2e5ae45649496810d56ef9748d7fd7e40097b683.webp" alt="Atolla wyvillei firing its bioluminescent alarm ring"></div>
+        <div class="cmeta">
+          <span class="cnum">01</span><span class="cdep">1 000 m</span>
+          <h3>The alarm</h3><em>Atolla wyvillei</em>
+          <p>Grabbed, it fires a rotating blue wheel — not to get away, but to call in
+             something bigger than whatever has hold of it.</p>
+        </div>
+      </article>
+
+      <article class="card" data-plate="c2-comb" style="--acc:#c76bff">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/efd580e8259015bcbc2c7d87cae218c4a547058dd74858d8e2f881821e36f3c3.webp" alt="A comb jelly refracting light into moving rainbow bands"></div>
+        <div class="cmeta">
+          <span class="cnum">02</span><span class="cdep">800 m</span>
+          <h3>The prism</h3><em>Bathocyroe fosteri</em>
+          <p>It makes no colour at all. Eight rows of beating combs split whatever light
+             reaches them; the rainbow is a side effect of swimming.</p>
+        </div>
+      </article>
+
+      <article class="card" data-plate="c3-firefly" style="--acc:#3fe0ff">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/4355f02786218d9a1d491956322bad3f1cad7b6b441a915d21cfb4dc70f1f1bc.webp" alt="A firefly squid covered in electric blue photophores"></div>
+        <div class="cmeta">
+          <span class="cnum">03</span><span class="cdep">400 m</span>
+          <h3>The countershade</h3><em>Watasenia scintillans</em>
+          <p>It lights its own underside to match the surface above, so nothing hunting
+             from below is ever given a silhouette to aim at.</p>
+        </div>
+      </article>
+
+      <article class="card" data-plate="c4-angler" style="--acc:#c9e04a">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/9739a4893dbf69f7a7bad336ce05eb23d2e6cdcffae24e9a38f7deb61d4105e2.webp" alt="A black seadevil anglerfish with a glowing lure"></div>
+        <div class="cmeta">
+          <span class="cnum">04</span><span class="cdep">2 000 m</span>
+          <h3>The lure</h3><em>Melanocetus johnsonii</em>
+          <p>The light on the rod is not hers. It is a colony of bacteria she keeps —
+             housed and fed — and the glow is the rent.</p>
+        </div>
+      </article>
+
+      <article class="card" data-plate="c5-siphon" style="--acc:#3fffc4">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/2e006d6521d84f5036891ef1d2b045a5fe58b88fdd31a7105643b91825dae106.webp" alt="A siphonophore chain with a pulse of light running down it"></div>
+        <div class="cmeta">
+          <span class="cnum">05</span><span class="cdep">700 m</span>
+          <h3>The chain</h3><em>Praya dubia</em>
+          <p>Forty metres of linked clones, each one a specialist. The pulse travels the
+             whole length like a message being handed along.</p>
+        </div>
+      </article>
+
+      <article class="card" data-plate="c6-noctiluca" style="--acc:#5aa8ff">
+        <div class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/59cca4ea878b4c839f302205919cf0bbbdb81d02db1106f3ec6146fbd1d81c96.webp" alt="A bloom of Noctiluca scintillans, thousands of blue points"></div>
+        <div class="cmeta">
+          <span class="cnum">06</span><span class="cdep">Surface</span>
+          <h3>The bloom</h3><em>Noctiluca scintillans</em>
+          <p>Sea sparkle. Disturb the water at night and the whole surface answers — the
+             only one on this list you can meet from a beach.</p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <footer class="floor" id="floor">
+    <div class="big">Noctiluca</div>
+    <div class="fbar">
+      <p>Noctiluca is a fictional research programme, built as a motion study.
+         Specimens are rendered, not photographed. Depth readings are illustrative.</p>
+      <a class="up" href="#" id="up">Return to the surface
+        <svg width="10" height="21" viewBox="0 0 10 21" fill="none" stroke="currentColor" stroke-width="1.1"><path d="M5 21V2M1.2 5.8 5 2l3.8 3.8"/></svg>
+      </a>
+    </div>
+  </footer>
+
+</main>
+
+<script src="noctiluca-assets/jelly-lo.js"></script>
+<script src="noctiluca-assets/deck.js"></script>
+<script src="noctiluca-assets/three.min.js"></script>
+<script>
+(function () {
+'use strict';
+
+if (window.THREE && THREE.ColorManagement) THREE.ColorManagement.enabled = false;
+
+var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* the descent, in metres. The whole document maps onto this range, and the
+   ruler, the shader and the parallax all read from the same number. */
+var MAX_DEPTH = 1340;
+var SURF_MIN  = 42;           // metres of water above the camera at the very top
+
+/* =====================================================================
+   1 · the depth ruler  (pure DOM, no GL)
+   ===================================================================== */
+var ruler = document.getElementById('ruler');
+var curEl, readEl, readBox, zoneEl, tickEls = [];
+var ZONES = [
+  { to:  200, name: 'Sunlit'   },
+  { to: 1000, name: 'Twilight' },
+  { to: 4000, name: 'Midnight' }
+];
+function buildRuler() {
+  var h = '';
+  for (var i = 0; i <= 15; i++) {
+    var pct = i / 15 * 100, maj = i % 3 === 0;
+    h += '<div class="tk ' + (maj ? 'maj' : 'min') + '" style="top:' + pct + '%"></div>';
+    if (maj && i !== 0) h += '<div class="tl" style="top:' + pct + '%">' + (i * 100) + '</div>';
+  }
+  h += '<div class="tl" style="top:0%">0 m</div>';
+  h += '<div class="read"><b id="read">0</b><small>metres</small></div>';
+  h += '<div class="zone" id="zone">Sunlit</div>';
+  h += '<div class="cur" id="cur"></div>';
+  ruler.innerHTML = h;
+  curEl = document.getElementById('cur');
+  readEl = document.getElementById('read');
+  readBox = readEl.parentNode;
+  zoneEl = document.getElementById('zone');
+  // the live readout shares a column with the fixed tick labels, so remember
+  // where each one sits and duck the ones the marker is passing
+  tickEls = [].map.call(ruler.querySelectorAll('.tl'), function (el) {
+    return { el: el, at: parseFloat(el.style.top) };
+  });
+}
+
+var lastRead = -1;
+function paintRuler(depth) {
+  if (!curEl) return;
+  var pct = Math.min(1, depth / 1500) * 100;
+  curEl.style.top = pct + '%';
+  var readTop = Math.min(94, Math.max(3, pct));
+  readBox.style.top = readTop + '%';
+  zoneEl.style.top = (readTop + 8.5) + '%';
+  for (var k = 0; k < tickEls.length; k++) {
+    var d = tickEls[k].at - readTop;
+    tickEls[k].el.classList.toggle('hide', d > -5.5 && d < 13);
+  }
+  var r = Math.round(depth / 5) * 5;
+  if (r !== lastRead) {
+    lastRead = r;
+    readEl.textContent = r >= 1000 ? (Math.floor(r / 1000) + ' ' + String(r % 1000).padStart(3, '0')) : String(r);
+    var z = 'Abyss';
+    for (var i = 0; i < ZONES.length; i++) if (r < ZONES[i].to) { z = ZONES[i].name; break; }
+    zoneEl.textContent = z;
+  }
+}
+
+/* =====================================================================
+   2 · scroll → depth
+   ===================================================================== */
+var depth = 0, depthTarget = 0, scrollMax = 1, wasDeep = false;
+function measureScroll() {
+  scrollMax = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+}
+function readScroll() {
+  var p = Math.min(1, Math.max(0, window.scrollY / scrollMax));
+  depthTarget = p * MAX_DEPTH;
+}
+window.addEventListener('scroll', readScroll, { passive: true });
+
+/* =====================================================================
+   3 · the reveal of the strata rows
+   ===================================================================== */
+(function () {
+  var rows = document.querySelectorAll('.strata li');
+  if (!('IntersectionObserver' in window)) {
+    [].forEach.call(rows, function (r) { r.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      // anything already above the fold — a reload part-way down the page —
+      // has to be handed its end state, or it stays invisible for good
+      if (e.isIntersecting || e.boundingClientRect.top < 0) {
+        e.target.classList.add('in'); io.unobserve(e.target);
+      }
+    });
+  }, { rootMargin: '0px 0px -16% 0px', threshold: 0.15 });
+  [].forEach.call(rows, function (r, i) { r.style.transitionDelay = (i * 0.06) + 's'; io.observe(r); });
+})();
+
+/* =====================================================================
+   type pairings — ?type=0..6 swaps the display/body families and every
+   size, tracking and case token that has to move with them
+   ===================================================================== */
+var TYPES = [
+  ['Instrument', 'Roboto Flex · Geist'],
+  ['Plate',      'Instrument Serif · Geist'],
+  ['Journal',    'Newsreader · Onest'],
+  ['Sumi',       'Zen Old Mincho · Zen Kaku'],
+  ['Signal',     'Lexend · Lexend'],
+  ['Beacon',     'Roboto Flex Bold · Onest'],
+  ['Vitrine',    'Instrument Serif · Onest']
+];
+(function () {
+  var set = document.documentElement.dataset.type;   // written by the head script
+  if (set === undefined) return;
+  var i = +set;
+
+  function href(n) {
+    var u = new URLSearchParams(location.search);
+    u.set('type', (n + TYPES.length) % TYPES.length);
+    return location.pathname + '?' + u;
+  }
+  var chip = document.createElement('div');
+  chip.className = 'typechip';
+  chip.innerHTML =
+    '<a href="' + href(i - 1) + '" aria-label="Previous pairing">' +
+      '<svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 1 1.5 5.5 6 10"/></svg></a>' +
+    '<b><i>' + String(i).padStart(2, '0') + '</i>' + TYPES[i][0] + '</b>' +
+    '<a href="' + href(i + 1) + '" aria-label="Next pairing">' +
+      '<svg width="7" height="11" viewBox="0 0 7 11" fill="none" stroke="currentColor" stroke-width="1.3"><path d="m1 1 4.5 4.5L1 10"/></svg></a>' +
+    '<s></s><u>' + TYPES[i][1] + '</u>';
+  document.body.appendChild(chip);
+
+  // left / right arrows step through without reaching for the chip
+  addEventListener('keydown', function (e) {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'ArrowLeft') location.href = href(i - 1);
+    if (e.key === 'ArrowRight') location.href = href(i + 1);
+  });
+})();
+
+/* =====================================================================
+   the specimen film strips
+   Preloaded rather than declared in CSS so the static plate stays up until
+   the strip has actually decoded — otherwise the thumb blinks empty, and its
+   transparent frames would ghost against the still underneath.
+   ===================================================================== */
+(function () {
+  if (reduced) return;                       // the still is the reduced-motion state
+  var FRAMES = 12;
+  [].forEach.call(document.querySelectorAll('.thumb[data-film]'), function (thumb) {
+    var name = thumb.getAttribute('data-film');
+    var url = 'noctiluca-assets/' + name + '-film.webp';
+    var probe = new __threeuiStorageImage();
+    probe.onload = function () {
+      var film = thumb.querySelector('.film');
+      if (!film) return;
+      film.style.setProperty('--film', 'url("' + url + '")');
+      film.style.setProperty('--n', FRAMES);
+      thumb.classList.add('ready');
+    };
+    probe.src = url;
+  });
+})();
+
+document.getElementById('up').addEventListener('click', function (e) {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+});
+
+/* =====================================================================
+   4 · the water column
+   ===================================================================== */
+var canvas = document.getElementById('gl');
+var renderer, camera, snowScene, jellyScene, rtJelly, rtB1, rtB2, compMat, blurMat,
+    blurScene, compScene, quadCam, snowMat, jellyMat, jellyTex;
+var vw = 0, vh = 0, dpr = 1, quality = 1;
+var jellyBox = null, jellyVid = null, heroEl = null, holoEl = null;
+
+/* the bubble pool */
+var BUB = 170, bubGeo = null, bubMat = null, bubPoints = null, bubIdx = 0, bubLast = -1e3;
+var bubPos = new Float32Array(BUB * 3), bubBirth = new Float32Array(BUB),
+    bubSeed = new Float32Array(BUB), bubLife = new Float32Array(BUB);
+var LO = window.NOC_JELLY_LO || null;
+
+var FOV = 40;
+var PITCH = 8.0 * Math.PI / 180;      // looking slightly up, toward the surface
+
+function makeRT(w, h) {
+  return new THREE.WebGLRenderTarget(w, h, {
+    minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter,
+    format: THREE.RGBAFormat, depthBuffer: true, stencilBuffer: false
+  });
+}
+function quadPass(mat) { var m = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat); m.frustumCulled = false; return m; }
+
+function buildGL() {
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: false, powerPreference: 'high-performance' });
+  renderer.setClearColor(0x000000, 0);
+  renderer.autoClear = false;
+
+  camera = new THREE.PerspectiveCamera(FOV, 16 / 9, 0.1, 600);
+  camera.position.set(0, 0, 0);
+  camera.rotation.order = 'YXZ';
+  camera.rotation.x = PITCH;
+
+  /* ---- the low-res jelly stand-in, purely so the volume can bloom it ---- */
+  jellyScene = new THREE.Scene();
+  jellyTex = new THREE.Texture();
+  jellyTex.minFilter = THREE.LinearFilter;
+  jellyTex.magFilter = THREE.LinearFilter;
+  if (LO) {
+    var im = new __threeuiStorageImage();
+    im.onload = function () { jellyTex.image = im; jellyTex.needsUpdate = true; };
+    im.src = LO.src;
+  }
+  /* The sheet is the same white-on-black footage, so it is already
+     premultiplied and goes in additively — exactly how the DOM layer is
+     screened over the water. Only the halo it produces is ever composited. */
+  jellyMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, depthTest: false,
+    blending: THREE.AdditiveBlending,
+    uniforms: {
+      uMap:   { value: jellyTex },
+      uCell:  { value: new THREE.Vector4(0, 0, 1, 1) },   // ox, oy, sx, sy
+      uFade:  { value: 1 }
+    },
+    vertexShader:
+      'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+    fragmentShader: [
+      'uniform sampler2D uMap; uniform vec4 uCell; uniform float uFade; varying vec2 vUv;',
+      'void main(){',
+      '  vec2 uv = uCell.xy + vUv*uCell.zw;',
+      '  vec3 c = texture2D(uMap, uv).rgb;',
+      // only the brighter body should bloom; the tentacle haze must not fog the frame
+      '  c = max(c - 0.16, 0.0)*1.30;',
+      '  gl_FragColor = vec4(c*uFade, 1.0);',
+      '}'
+    ].join('\n')
+  });
+  var jq = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), jellyMat);
+  jq.frustumCulled = false;
+  jellyScene.add(jq);
+  window.__jq = jq;
+
+  /* ---- marine snow ---- */
+  var N = 520;
+  var pos = new Float32Array(N * 3), seed = new Float32Array(N);
+  for (var i = 0; i < N; i++) {
+    pos[i * 3]     = (Math.random() - 0.5) * 30;
+    pos[i * 3 + 1] = (Math.random() - 0.5) * 22;
+    pos[i * 3 + 2] = -1.5 - Math.random() * 24;
+    seed[i] = Math.random() * 100;
+  }
+  var g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  g.setAttribute('aSeed', new THREE.BufferAttribute(seed, 1));
+  snowMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, premultipliedAlpha: true,
+    uniforms: { uTime: { value: 0 }, uPix: { value: 1 }, uLight: { value: 1 } },
+    vertexShader: [
+      'uniform float uTime, uPix; attribute float aSeed; varying float vA; varying float vS;',
+      'void main(){',
+      '  vec3 p = position;',
+      // marine snow falls, slowly, and wanders
+      '  p.y = mod(p.y - uTime*(0.16 + 0.22*fract(aSeed*0.61)) + 11.0, 22.0) - 11.0;',
+      '  p.x += sin(uTime*0.11 + aSeed)*0.65;',
+      '  p.z += sin(uTime*0.07 + aSeed*1.9)*0.45;',
+      '  vec4 mv = viewMatrix*vec4(p,1.0);',
+      '  vS = fract(aSeed*0.37);',
+      '  vA = 0.22 + 0.78*fract(aSeed*7.13);',
+      '  gl_Position = projectionMatrix*mv;',
+      // near flakes get big and soft, far ones stay pinpoints — cheap bokeh
+      '  gl_PointSize = (1.6 + 7.0*vS)*uPix*(5.0/max(1.0,-mv.z));',
+      '}'
+    ].join('\n'),
+    fragmentShader: [
+      'varying float vA; varying float vS; uniform float uLight;',
+      'void main(){',
+      '  float d = length(gl_PointCoord - 0.5);',
+      '  float core = smoothstep(0.5, 0.02, d);',
+      '  float soft = smoothstep(0.5, 0.28, d);',
+      '  float a = mix(core, soft*0.55, vS)*vA*0.30*uLight;',
+      '  if (a < 0.002) discard;',
+      '  gl_FragColor = vec4(vec3(0.86,0.95,0.97)*a, a);',
+      '}'
+    ].join('\n')
+  });
+  snowScene = new THREE.Scene();
+  snowScene.add(new THREE.Points(g, snowMat));
+
+  /* ---- bubbles the pointer knocks loose ----
+     A fixed pool that lives entirely on the GPU: each slot stores where and
+     when it was released, and the vertex shader works out where it has risen
+     to. Spawning therefore writes one particle, never the whole buffer, and
+     nothing has to be simulated on the main thread. */
+  for (var b = 0; b < BUB; b++) { bubBirth[b] = -1e3; bubLife[b] = 1; }
+  bubGeo = new THREE.BufferGeometry();
+  bubGeo.setAttribute('position', new THREE.BufferAttribute(bubPos, 3));
+  bubGeo.setAttribute('aBirth', new THREE.BufferAttribute(bubBirth, 1));
+  bubGeo.setAttribute('aSeed', new THREE.BufferAttribute(bubSeed, 1));
+  bubGeo.setAttribute('aLife', new THREE.BufferAttribute(bubLife, 1));
+  bubGeo.boundingSphere = new THREE.Sphere(new THREE.Vector3(), 1e5);  // never cull
+  bubMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, premultipliedAlpha: true,
+    uniforms: { uTime: { value: 0 }, uPix: { value: 1 } },
+    vertexShader: [
+      'uniform float uTime, uPix;',
+      'attribute float aBirth, aSeed, aLife;',
+      'varying float vA; varying float vS;',
+      'void main(){',
+      '  float age = uTime - aBirth;',
+      '  float alive = step(0.0, age)*step(age, aLife);',
+      '  vec3 p = position;',
+      // buoyancy, and the slow spiral a small bubble takes on the way up
+      '  p.y += age*(0.42 + 0.85*fract(aSeed*7.13));',
+      '  p.x += sin(age*2.1 + aSeed*6.28)*0.13;',
+      '  p.z += cos(age*1.6 + aSeed*3.14)*0.10;',
+      '  vec4 mv = viewMatrix*vec4(p,1.0);',
+      '  vS = fract(aSeed*3.77);',
+      '  float fin  = clamp(age/0.28, 0.0, 1.0);',
+      '  float fout = clamp((aLife - age)/(aLife*0.5), 0.0, 1.0);',
+      '  vA = fin*fout*alive;',
+      '  gl_Position = projectionMatrix*mv;',
+      '  gl_PointSize = (5.0 + 11.5*vS)*uPix*(7.5/max(1.0,-mv.z))*alive;',
+      '}'
+    ].join('\n'),
+    fragmentShader: [
+      'varying float vA; varying float vS;',
+      'void main(){',
+      '  vec2 q = gl_PointCoord - 0.5;',
+      '  float d = length(q)*2.0;',
+      '  if (d > 1.05 || vA < 0.003) discard;',
+      // a bubble is mostly its rim, plus one hard little catchlight
+      '  float rim  = smoothstep(0.60, 0.95, d)*(1.0 - smoothstep(0.95, 1.04, d));',
+      '  float body = (1.0 - smoothstep(0.15, 1.0, d))*0.10;',
+      '  vec2 hp = q - vec2(-0.17, 0.16);',
+      '  float hi = exp(-dot(hp,hp)*46.0);',
+      '  float a = (rim*0.85 + body + hi*0.55)*vA*0.85;',
+      '  gl_FragColor = vec4(vec3(0.80,0.91,1.0)*a, a);',
+      '}'
+    ].join('\n')
+  });
+  bubPoints = new THREE.Points(bubGeo, bubMat);
+  bubPoints.visible = false;          // nothing to draw until the pointer stirs some up
+  snowScene.add(bubPoints);
+
+  rtJelly = makeRT(2, 2); rtB1 = makeRT(2, 2); rtB2 = makeRT(2, 2);
+  quadCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+  blurMat = new THREE.ShaderMaterial({
+    uniforms: { uTex: { value: null }, uDir: { value: new THREE.Vector2(1, 0) } },
+    vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.0,1.0); }',
+    fragmentShader: [
+      'uniform sampler2D uTex; uniform vec2 uDir; varying vec2 vUv;',
+      'void main(){',
+      '  vec4 s = vec4(0.0);',
+      '  float w[9];',
+      '  w[0]=0.0276; w[1]=0.0663; w[2]=0.1238; w[3]=0.1802; w[4]=0.2042;',
+      '  w[5]=0.1802; w[6]=0.1238; w[7]=0.0663; w[8]=0.0276;',
+      '  for(int i=0;i<9;i++){ s += texture2D(uTex, vUv + uDir*float(i-4)) * w[i]; }',
+      '  gl_FragColor = s;',
+      '}'
+    ].join('\n')
+  });
+  blurScene = new THREE.Scene(); blurScene.add(quadPass(blurMat));
+
+  compMat = new THREE.ShaderMaterial({
+    depthTest: false, depthWrite: false,
+    uniforms: {
+      uBloom:  { value: null },
+      uRes:    { value: new THREE.Vector2(1, 1) },
+      uTime:   { value: 0 },
+      uRight:  { value: new THREE.Vector3() },
+      uUp:     { value: new THREE.Vector3() },
+      uFwd:    { value: new THREE.Vector3() },
+      uTanHalf:{ value: 0.36 },
+      uAspect: { value: 16 / 9 },
+      uSurf:   { value: SURF_MIN },     // metres of water above the camera
+      uSteps:  { value: 20 },
+      /* attenuation per metre. Red dies first; this ratio is what makes the
+         column read as water rather than as blue fog. */
+      uSigma:  { value: new THREE.Vector3(0.0338, 0.0210, 0.0174) },
+      uGain:   { value: new THREE.Vector4(0.86, 0.40, 1.14, 6.0) },
+                                        // body, ceiling, rays, caustic contrast
+      /* march length, caustic cell scale, along-ray falloff, ceiling cell scale.
+         Shaft definition lives almost entirely in the first two: at the scale
+         this started on, one caustic cell was 200 m across against a 40 m-wide
+         frame, so every beam averaged out into flat haze. */
+      uRayP:   { value: new THREE.Vector4(18.0, 0.55, 0.025, 0.045) },
+      uDeep:   { value: new THREE.Color(0x0a0a24) },
+      uNear:   { value: new THREE.Color(0x1e2668) },
+      uCeil:   { value: new THREE.Color(0xb9c7ff) },
+      uRay:    { value: new THREE.Color(0x9b96ee) },
+      /* the column changes colour on the way down: sunlit teal, then cobalt,
+         then the violet of water that only ever sees animals making their own
+         light. Mixed in as a tint so the physics above stays untouched. */
+      uTint:   { value: new THREE.Color(0x1e2668) },
+      uTintAmt:{ value: 0 },
+      /* the dive lamp — xy in uv, z radius, w strength */
+      uLamp:   { value: new THREE.Vector4(0.5, 0.5, 0.34, 0) },
+      uLampCol:{ value: new THREE.Color(0xb49bff) }
+    },
+    vertexShader: 'varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.0,1.0); }',
+    fragmentShader: [
+      'uniform sampler2D uBloom;',
+      'uniform vec2 uRes;',
+      'uniform float uTime, uTanHalf, uAspect, uSurf, uSteps;',
+      'uniform vec3 uRight, uUp, uFwd, uDeep, uNear, uCeil, uRay, uSigma, uTint, uLampCol;',
+      'uniform vec4 uGain, uRayP, uLamp;',
+      'uniform float uTintAmt;',
+      'varying vec2 vUv;',
+
+      'float h21(vec2 p){ return fract(sin(dot(p, vec2(127.1,311.7)))*43758.5453); }',
+
+      /* the caustic net cast by the surface, evaluated in surface-plane
+         coordinates. Domain-warped twice so it never reads as a sine grid. */
+      'float caus(vec2 p, float t){',
+      '  vec2 w = p;',
+      '  float a = 0.0, amp = 1.0;',
+      '  for (int i = 0; i < 3; i++) {',
+      '    w += vec2(sin(w.y*1.27 + t*0.21), cos(w.x*1.13 - t*0.18))*0.55;',
+      '    float s = sin(w.x*0.92)*sin(w.y*0.88);',
+      '    a += amp*pow(abs(s), 2.4);',
+      '    amp *= 0.52; w *= 1.93;',
+      '  }',
+      '  return a;',
+      '}',
+
+      'void main(){',
+      '  vec2 ndc = vUv*2.0 - 1.0;',
+      '  vec3 rd = normalize(uRight*ndc.x*uTanHalf*uAspect + uUp*ndc.y*uTanHalf + uFwd);',
+      '  vec3 sun = normalize(vec3(0.20, 1.0, -0.30));',
+      '  float depthFade = exp(-uSurf*0.0016);',   // everything dies as the page sinks
+
+      /* ---- the body of water you are looking into ---- */
+      '  float up = clamp(rd.y*0.5 + 0.5, 0.0, 1.0);',
+      '  vec3 col = mix(uDeep, uNear, pow(up, 2.2))*uGain.x;',
+      '  col = mix(uDeep*0.55, col, depthFade);',
+
+      /* ---- the surface, far above, seen end-on through all that water ---- */
+      '  if (rd.y > 0.02) {',
+      '    float d = uSurf/rd.y;',                        // slant distance to the surface
+      '    float t = exp(-uSigma.b*d);',
+      '    vec2 q = rd.xz*d*uRayP.w;',
+      '    float c = pow(caus(q, uTime*0.5), uGain.w*0.35);',
+      '    col += uCeil*(0.18 + c*1.1)*t*uGain.y;',
+      '  }',
+
+      /* ---- god rays ----
+         March the view ray; at each sample, walk back up the sun direction to
+         the surface and ask what the caustic net was doing where that photon
+         went in. Shafts fall out of the geometry rather than being drawn. */
+      '  float N = uSteps;',
+      '  float dt = uRayP.x/N;',
+      '  float jit = h21(vUv*uRes + fract(uTime))*dt;',
+      '  float acc = 0.0, wsum = 1e-4;',
+      '  for (int i = 0; i < 32; i++) {',
+      '    if (float(i) >= N) break;',
+      '    float s = jit + float(i)*dt;',
+      '    vec3 p = rd*s;',                               // the camera sits at the origin
+      '    float above = uSurf - p.y;',                   // metres of water over this sample
+      '    if (above < 1.0) continue;',
+      '    vec2 e = (p + sun*(above/sun.y)).xz*uRayP.y;', // where that photon entered
+      '    float w = exp(-s*uRayP.z);',                   // near samples smear least
+      '    acc += pow(caus(e, uTime*0.5), uGain.w)*exp(-uSigma.g*above)*w;',
+      '    wsum += w;',
+      '  }',
+      '  col += uRay*(acc/wsum)*uGain.z;',
+
+      /* ---- the zone tint: the column turns cobalt, then violet ---- */
+      '  float lumB = dot(col, vec3(0.30,0.59,0.11));',
+      '  col = mix(col, uTint*(0.16 + lumB*3.6), uTintAmt);',
+
+      /* ---- the dive lamp ----
+         A pointer-carried light scattering in the water. It picks up the same
+         caustic field so it never reads as a flat CSS radial, and it is the
+         only thing still lighting the frame once the surface is gone. */
+      '  if (uLamp.w > 0.001) {',
+      '    vec2 lp = vUv - uLamp.xy;',
+      '    lp.x *= uAspect;',
+      '    float r = length(lp)/uLamp.z;',
+      '    float core = exp(-r*r*3.6);',
+      '    float halo = exp(-r*2.2)*0.22;',
+      '    float grain = 0.60 + 0.70*caus(rd.xz*7.0 + uTime*0.08, uTime*0.35);',
+      '    col += uLampCol*(core*grain + halo)*uLamp.w;',
+      '  }',
+
+      /* ---- the animal is a DOM layer above this canvas; only its glow is here ---- */
+      '  vec4 b = texture2D(uBloom, vUv);',
+      '  col += b.rgb*vec3(0.62,0.54,0.80)*max(0.25, depthFade);',
+
+      /* ---- finish ---- */
+      '  float g = h21(vUv*uRes + fract(uTime*1.7));',
+      '  col += (g - 0.5)*0.014;',
+      '  col = max(col, vec3(0.0));',
+      '  col = col/(col + 1.0)*1.18;',                    // shoulder, so shafts roll off
+      '  gl_FragColor = vec4(col, 1.0);',
+      '}'
+    ].join('\n')
+  });
+  compScene = new THREE.Scene();
+  compScene.add(quadPass(compMat));
+}
+
+/* ---- sizing ---- */
+function resize() {
+  vw = window.innerWidth; vh = window.innerHeight;
+  dpr = Math.min(window.devicePixelRatio || 1, 2) * quality;
+  renderer.setPixelRatio(dpr);
+  renderer.setSize(vw, vh, false);
+
+  camera.aspect = vw / vh;
+  camera.updateProjectionMatrix();
+
+  var w = Math.max(2, Math.floor(vw * dpr)), h = Math.max(2, Math.floor(vh * dpr));
+  // only the halo is ever composited, so the animal never needs full resolution
+  rtJelly.setSize(Math.max(2, w >> 1), Math.max(2, h >> 1));
+  var bw = Math.max(2, Math.floor(w / 6)), bh = Math.max(2, Math.floor(h / 6));
+  rtB1.setSize(bw, bh); rtB2.setSize(bw, bh);
+
+  compMat.uniforms.uRes.value.set(w, h);
+  compMat.uniforms.uTanHalf.value = Math.tan(camera.fov * Math.PI / 360);
+  compMat.uniforms.uAspect.value = camera.aspect;
+  snowMat.uniforms.uPix.value = dpr;
+  if (bubMat) bubMat.uniforms.uPix.value = dpr;
+
+  measureScroll();
+  readScroll();
+}
+window.addEventListener('resize', resize);
+
+/* ---- the colour of the column, by depth ----
+   Sunlit water is teal because that is what the sun leaves behind. Below the
+   photic zone the only light is made by animals, and it is bluer, then colder.
+   The stops are art direction, not physics — the physics is in the shader. */
+var TINTS = [
+  [0.00, 0x1e2668], [0.26, 0x2a2270], [0.58, 0x37206e], [1.00, 0x431a5c]
+];
+var _ca = new THREE.Color(), _cb = new THREE.Color();
+function zoneTint(p, out) {
+  p = Math.max(0, Math.min(1, p));
+  for (var i = 1; i < TINTS.length; i++) {
+    if (p <= TINTS[i][0] || i === TINTS.length - 1) {
+      var a = TINTS[i - 1], b = TINTS[i];
+      var f = (p - a[0]) / Math.max(1e-4, b[0] - a[0]);
+      _ca.setHex(a[1]); _cb.setHex(b[1]);
+      out.copy(_ca).lerp(_cb, Math.max(0, Math.min(1, f)));
+      return out;
+    }
+  }
+  return out;
+}
+
+/* ---- pointer parallax, the lamp, and the bubbles ---- */
+var tx = 0, ty = 0, px = 0, py = 0, lampX = 0.5, lampY = 0.5;
+var lastSpX = 0, lastSpY = 0, spInit = false;
+var _b = new THREE.Vector3();
+
+/* Release one bubble at a point on screen, unprojected onto a plane a few
+   metres out so it carries the same parallax as everything else. */
+function spawnBubble(cx, cy, jitter) {
+  if (!bubGeo || !compMat) return;
+  var dist = 6.5 + Math.random() * 5.5;
+  var halfH = compMat.uniforms.uTanHalf.value * dist;
+  var halfW = halfH * compMat.uniforms.uAspect.value;
+  var ndcX = (cx / vw) * 2 - 1, ndcY = 1 - (cy / vh) * 2;
+  _b.copy(camera.position)
+    .addScaledVector(mR, ndcX * halfW + (Math.random() - 0.5) * jitter)
+    .addScaledVector(mU, ndcY * halfH + (Math.random() - 0.5) * jitter)
+    .addScaledVector(mF, dist);
+  var i = bubIdx++ % BUB;
+  bubPos[i * 3] = _b.x; bubPos[i * 3 + 1] = _b.y; bubPos[i * 3 + 2] = _b.z;
+  bubBirth[i] = t;
+  bubSeed[i] = Math.random() * 100;
+  bubLife[i] = 2.2 + Math.random() * 2.8;
+  bubLast = t + bubLife[i];
+  bubGeo.attributes.position.needsUpdate = true;
+  bubGeo.attributes.aBirth.needsUpdate = true;
+  bubGeo.attributes.aSeed.needsUpdate = true;
+  bubGeo.attributes.aLife.needsUpdate = true;
+}
+
+window.addEventListener('pointermove', function (e) {
+  tx = e.clientX / window.innerWidth - 0.5;
+  ty = e.clientY / window.innerHeight - 0.5;
+  if (reduced || frozen !== null) return;
+  if (!spInit) { spInit = true; lastSpX = e.clientX; lastSpY = e.clientY; return; }
+  var dx = e.clientX - lastSpX, dy = e.clientY - lastSpY;
+  // spaced by distance, not by event, so a fast sweep leaves a longer trail
+  // and a slow drift does not pile bubbles on one spot
+  if (dx * dx + dy * dy < 250) return;
+  lastSpX = e.clientX; lastSpY = e.clientY;
+  spawnBubble(e.clientX, e.clientY, 0.45);
+  if (Math.random() < 0.45) spawnBubble(e.clientX, e.clientY, 1.1);
+}, { passive: true });
+
+/* ---- place the low-res copy exactly where the DOM image sits ---- */
+var _p = new THREE.Vector3(), mR = new THREE.Vector3(), mU = new THREE.Vector3(), mF = new THREE.Vector3();
+function placeJelly(dx, dy, rot, scale) {
+  if (!jellyBox) return;
+  var r = jellyBox.getBoundingClientRect();
+  var cx = r.left + r.width / 2 + dx;
+  var cy = r.top + r.height / 2 + dy;
+  var halfH = compMat.uniforms.uTanHalf.value * 9.0;
+  var halfW = halfH * compMat.uniforms.uAspect.value;
+  var ndcX = (cx / vw) * 2 - 1, ndcY = 1 - (cy / vh) * 2;
+  _p.set(0, 0, 0)
+    .addScaledVector(mR, ndcX * halfW)
+    .addScaledVector(mU, ndcY * halfH)
+    .addScaledVector(mF, 9.0);
+  window.__jq.position.copy(_p);
+  window.__jq.quaternion.copy(camera.quaternion);
+  window.__jq.rotateZ(-rot * Math.PI / 180);
+  window.__jq.scale.set(r.width / vw * 2 * halfW * scale, r.height / vh * 2 * halfH * scale, 1);
+}
+
+/* ---- the sprite-sheet clock for the bloom copy ----
+   Read off the clip's own currentTime rather than a private timer, so the halo
+   is locked to the frame actually on screen no matter how the video is paced. */
+function setCell(t) {
+  if (!LO) return;
+  var phase;
+  if (jellyVid && jellyVid.duration > 0) phase = (jellyVid.currentTime / jellyVid.duration) % 1;
+  else phase = (t / LO.seconds) % 1;
+  var f = Math.min(LO.frames - 1, Math.floor(phase * LO.frames));
+  var cx = f % LO.cols, cy = Math.floor(f / LO.cols);
+  jellyMat.uniforms.uCell.value.set(cx / LO.cols, 1 - (cy + 1) / LO.rows, 1 / LO.cols, 1 / LO.rows);
+}
+
+/* ---- adaptive resolution ----
+   Only the composite pass responds to this. When the real cost is elsewhere —
+   page compositing over the canvas, a decode — shrinking the buffer buys
+   nothing, so the floor sits at 0.6: below that the shafts visibly break up
+   and, measured, nothing gets faster. Windows are long because frame times on
+   a loaded machine are noisy enough to make short ones flap. */
+var perf = [], pIdx = 0, lastQ = 0;
+var Q_MIN = 0.6, WIN = 72;
+function governor(dt) {
+  if (frozen !== null) return;
+  perf[pIdx++ % WIN] = dt;
+  if (pIdx < WIN || pIdx - lastQ < WIN) return;
+  var s = perf.slice().sort(function (a, b) { return a - b; });
+  var med = s[s.length >> 1];
+  var next = quality;
+  if (med > 0.030 && quality > Q_MIN) next = Math.max(Q_MIN, quality - 0.2);
+  else if (med < 0.014 && quality < 1) next = Math.min(1, quality + 0.2);
+  if (next !== quality) {
+    quality = next;
+    lastQ = pIdx;
+    compMat.uniforms.uSteps.value = quality < 0.8 ? 14 : 20;
+    resize();
+  }
+}
+
+/* ---- loop ---- */
+var clock, t = 0, frozen = null, hidden = false;
+document.addEventListener('visibilitychange', function () {
+  hidden = document.hidden;
+  if (!hidden && frozen === null) { clock.getDelta(); requestAnimationFrame(frame); }
+});
+
+function frame() {
+  if (frozen === null) {
+    if (hidden) return;
+    requestAnimationFrame(frame);
+  }
+  var dt = Math.min(clock.getDelta(), 0.05);
+  governor(dt);
+  var lerp = frozen !== null ? 1 : 1 - Math.pow(0.001, dt);
+  t = frozen !== null ? frozen : t + (reduced ? dt * 0.3 : dt);
+
+  depth += (depthTarget - depth) * lerp;
+  px += (tx - px) * lerp * 0.55;
+  py += (ty - py) * lerp * 0.55;
+
+  var deep = depth > 55;
+  if (deep !== wasDeep) { wasDeep = deep; document.body.classList.toggle('deep', deep); }
+  paintRuler(depth);
+
+  /* the surface copy dissolves on the way down rather than sliding under the
+     masthead — the page is a descent, so anything from the surface should go */
+  if (heroEl) {
+    var hv = Math.max(0, Math.min(1, 1 - depth / 210));
+    heroEl.style.opacity = hv.toFixed(3);
+    heroEl.style.visibility = hv < 0.004 ? 'hidden' : '';
+  }
+
+  camera.position.set(px * 0.55, -py * 0.30, 0);
+  camera.rotation.set(PITCH - py * 0.030, -px * 0.052, px * 0.012);
+  camera.updateMatrixWorld();
+  camera.matrixWorld.extractBasis(mR, mU, mF);
+  mF.negate();
+
+  compMat.uniforms.uTime.value = t;
+  compMat.uniforms.uSurf.value = SURF_MIN + depth;
+  zoneTint(depth / MAX_DEPTH, compMat.uniforms.uTint.value);
+  compMat.uniforms.uTintAmt.value = Math.min(0.95, (depth / MAX_DEPTH) * 1.35);
+
+  /* the lamp: weak at the surface where the sun still does the work, and the
+     only light left by the time the column is black */
+  lampX += ((0.5 + px) - lampX) * lerp * 0.7;
+  lampY += ((0.5 + py) - lampY) * lerp * 0.7;
+  compMat.uniforms.uLamp.value.set(lampX, 1 - lampY, 0.20,
+    0.028 + 0.105 * Math.min(1, depth / (MAX_DEPTH * 0.55)));
+  compMat.uniforms.uRight.value.copy(mR);
+  compMat.uniforms.uUp.value.copy(mU);
+  compMat.uniforms.uFwd.value.copy(mF);
+  snowMat.uniforms.uTime.value = t;
+  bubMat.uniforms.uTime.value = t;
+  // skip the draw entirely once the last bubble has burst
+  if (bubPoints) bubPoints.visible = t < bubLast;
+  snowMat.uniforms.uLight.value = 0.30 + 0.70 * Math.exp(-depth * 0.0016);
+
+  /* the animal: drifts, and rises out of frame as the page descends */
+  var sw = reduced ? 0.25 : 1;
+  var dx = Math.sin(t * 0.17) * 13 * sw;
+  var dy = Math.sin(t * 0.29) * 17 * sw - depth * 0.85;
+  var rot = Math.sin(t * 0.23) * 1.6 * sw;
+  var fade = Math.max(0, 1 - depth / (MAX_DEPTH * 0.30));
+
+  /* the film over the animal: an oversized gradient sliding under a clip box,
+     so it is a compositor transform rather than a gradient repaint each frame */
+  if (holoEl) {
+    var hr = jellyBox.offsetWidth || 400;
+    holoEl.style.transform =
+      'translate3d(' + (-px * hr * 1.15 + Math.sin(t * 0.11) * hr * 0.09).toFixed(1) + 'px,' +
+      (-py * hr * 0.85 + Math.cos(t * 0.08) * hr * 0.07).toFixed(1) + 'px,0)';
+  }
+
+  if (jellyBox) {
+    var xf = 'translate3d(' + dx.toFixed(2) + 'px,' + dy.toFixed(2) + 'px,0) rotate(' + rot.toFixed(3) + 'deg)';
+    jellyBox.style.setProperty('--xf', xf);
+    jellyBox.style.opacity = fade.toFixed(3);
+    var gone = fade < 0.004;
+    jellyBox.style.visibility = gone ? 'hidden' : '';
+    // stop decoding once it has left the frame entirely
+    if (jellyVid && frozen === null) {
+      if (gone && !jellyVid.paused) jellyVid.pause();
+      else if (!gone && jellyVid.paused && !reduced) { var pp = jellyVid.play(); if (pp && pp.catch) pp.catch(function(){}); }
+    }
+  }
+  setCell(t);
+  jellyMat.uniforms.uFade.value = fade;
+  placeJelly(dx, dy, rot, 1);
+
+  // 1 · the animal, offscreen, only so it can be blurred
+  renderer.setRenderTarget(rtJelly);
+  renderer.setClearColor(0x000000, 0);
+  renderer.clear(true, true, false);
+  if (fade > 0.004 && jellyTex.image) renderer.render(jellyScene, camera);
+
+  // 2 · bloom
+  blurMat.uniforms.uTex.value = rtJelly.texture;
+  blurMat.uniforms.uDir.value.set(1.4 / rtB1.width, 0);
+  renderer.setRenderTarget(rtB1);
+  renderer.render(blurScene, quadCam);
+  blurMat.uniforms.uTex.value = rtB1.texture;
+  blurMat.uniforms.uDir.value.set(0, 1.4 / rtB2.height);
+  renderer.setRenderTarget(rtB2);
+  renderer.render(blurScene, quadCam);
+
+  // 3 · the column, then the snow additively over it
+  compMat.uniforms.uBloom.value = rtB2.texture;
+  renderer.setRenderTarget(null);
+  renderer.clear(true, true, false);
+  renderer.render(compScene, quadCam);
+  renderer.render(snowScene, camera);
+}
+
+/* =====================================================================
+   boot
+   ===================================================================== */
+function boot() {
+  buildRuler();
+  jellyBox = document.getElementById('jellybox');
+  jellyVid = document.getElementById('jelly');
+  heroEl = document.querySelector('.hero');
+  holoEl = document.getElementById('holo');
+
+  /* the poster carries the first frame until the clip is actually running, so
+     the hero is never an empty rectangle on a slow connection */
+  if (jellyVid) {
+    if (reduced) {
+      // hold on the still: an ambient loop is exactly what this setting asks about
+      jellyVid.removeAttribute('autoplay');
+      jellyVid.addEventListener('play', function () { jellyVid.pause(); });
+      jellyVid.pause();
+    } else {
+      jellyVid.addEventListener('playing', function () { jellyBox.classList.add('playing'); });
+      var kick = jellyVid.play();
+      if (kick && kick.catch) kick.catch(function () {});
+    }
+  }
+
+  var q = new URLSearchParams(location.search);
+
+  if (!window.THREE || !canvas.getContext) { document.body.classList.add('ready'); return; }
+  try { buildGL(); } catch (err) { document.body.classList.add('ready'); return; }
+
+  clock = new THREE.Clock();
+  resize();
+
+  if (q.has('scroll')) window.scrollTo(0, parseFloat(q.get('scroll')) * scrollMax);
+  readScroll();
+  depth = depthTarget;
+
+  if (q.has('t')) {
+    frozen = parseFloat(q.get('t')) || 0;
+    document.body.classList.add('still');
+    // pin the clip too, or "one deterministic frame" still has a moving animal
+    if (jellyVid) {
+      jellyVid.pause();
+      var park = function () { jellyVid.currentTime = frozen % (LO ? LO.seconds : 4.5); };
+      if (jellyVid.readyState >= 1) park(); else jellyVid.addEventListener('loadedmetadata', park);
+    }
+  }
+  if (q.has('bare')) { document.querySelector('main').style.visibility = 'hidden'; document.querySelector('.chrome').style.visibility = 'hidden'; }
+
+  frame();
+  document.body.classList.add('ready');
+
+  window.__noc = {
+    ready: true,
+    u: compMat.uniforms,
+    bubbles: function () {
+      var live = 0, n = 0;
+      for (var i = 0; i < BUB; i++) {
+        var age = t - bubBirth[i];
+        if (age >= 0 && age <= bubLife[i]) live++;
+        if (bubBirth[i] > -900) n++;
+      }
+      return { live: live, everSpawned: n, t: +t.toFixed(2), idx: bubIdx };
+    },
+    render: function (time) { frozen = time; frame(); },
+    seek: function (p) { window.scrollTo(0, p * scrollMax); readScroll(); depth = depthTarget; frame(); },
+    resize: resize
+  };
+}
+
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(boot, boot);
+else window.addEventListener('load', boot);
+})();
+
+
+/* =====================================================================
+   THE DECK
+   ---------------------------------------------------------------------
+   Each plate ships as one flat diffuse image. Normal, height and gloss are
+   derived from it in the browser, so the whole PBR set costs no extra bytes,
+   and a pointer-driven key light rakes across the relief. The animals supply
+   their own light on top of that — the emissive term is the artwork itself,
+   which is the entire point: these things are lit from inside.
+
+   It runs on its own small context over the grid rather than the page canvas,
+   because the background is allowed to drop resolution under load and card art
+   is not.
+   ===================================================================== */
+(function () {
+'use strict';
+
+var grid = document.getElementById('grid');
+var canvas = document.getElementById('deckgl');
+var PLATES = window.NOC_DECK || null;
+if (!grid || !canvas || !PLATES || !window.THREE) return;
+
+var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+var cards = [].slice.call(grid.querySelectorAll('.card'));
+var MAP_W = 460;              // relief is low-frequency; the maps never need more
+
+/* ---------------------------------------------------------------------
+   derive normal + height from the diffuse
+   Blur before the Sobel or webp block edges become a shimmering grid under
+   the specular. Canvas y runs down and the texture uploads flipped, so the
+   vertical derivative keeps its sign and the horizontal one inverts.
+   --------------------------------------------------------------------- */
+function deriveMaps(img) {
+  var w = MAP_W, h = Math.max(1, Math.round(MAP_W * img.height / img.width));
+  var c = document.createElement('canvas');
+  c.width = w; c.height = h;
+  var g = c.getContext('2d', { willReadFrequently: true });
+  g.drawImage(img, 0, 0, w, h);
+  var src = g.getImageData(0, 0, w, h).data;
+
+  var n = w * h, ht = new Float32Array(n), tmp = new Float32Array(n);
+  for (var i = 0; i < n; i++) {
+    var r = src[i * 4] / 255, gg = src[i * 4 + 1] / 255, b = src[i * 4 + 2] / 255;
+    var lum = 0.30 * r + 0.59 * gg + 0.11 * b;
+    ht[i] = Math.pow(lum, 0.85);
+  }
+  // separable 1-2-1, three passes
+  for (var pass = 0; pass < 3; pass++) {
+    for (var y = 0; y < h; y++) {
+      for (var x = 0; x < w; x++) {
+        var o = y * w + x;
+        var a = ht[y * w + (x > 0 ? x - 1 : 0)], cc = ht[o], d = ht[y * w + (x < w - 1 ? x + 1 : w - 1)];
+        tmp[o] = (a + 2 * cc + d) * 0.25;
+      }
+    }
+    for (var y2 = 0; y2 < h; y2++) {
+      for (var x2 = 0; x2 < w; x2++) {
+        var o2 = y2 * w + x2;
+        var a2 = tmp[(y2 > 0 ? y2 - 1 : 0) * w + x2], c2 = tmp[o2],
+            d2 = tmp[(y2 < h - 1 ? y2 + 1 : h - 1) * w + x2];
+        ht[o2] = (a2 + 2 * c2 + d2) * 0.25;
+      }
+    }
+  }
+
+  var out = new Uint8ClampedArray(n * 4);
+  var S = 3.4;                                   // relief strength
+  for (var y3 = 0; y3 < h; y3++) {
+    for (var x3 = 0; x3 < w; x3++) {
+      var o3 = y3 * w + x3;
+      var xl = ht[y3 * w + (x3 > 0 ? x3 - 1 : 0)], xr = ht[y3 * w + (x3 < w - 1 ? x3 + 1 : w - 1)];
+      var yu = ht[(y3 > 0 ? y3 - 1 : 0) * w + x3], yd = ht[(y3 < h - 1 ? y3 + 1 : h - 1) * w + x3];
+      var dx = (xr - xl) * S, dy = (yd - yu) * S;
+      var nx = -dx, ny = dy, nz = 1.0;
+      var inv = 1 / Math.sqrt(nx * nx + ny * ny + nz * nz);
+      out[o3 * 4]     = (nx * inv * 0.5 + 0.5) * 255;
+      out[o3 * 4 + 1] = (ny * inv * 0.5 + 0.5) * 255;
+      out[o3 * 4 + 2] = (nz * inv * 0.5 + 0.5) * 255;
+      out[o3 * 4 + 3] = ht[o3] * 255;            // height rides in alpha
+    }
+  }
+  var tex = new THREE.DataTexture(out, w, h, THREE.RGBAFormat);
+  tex.minFilter = THREE.LinearFilter;
+  tex.magFilter = THREE.LinearFilter;
+  tex.flipY = true;
+  tex.needsUpdate = true;
+  return tex;
+}
+
+/* --------------------------------------------------------------------- */
+var renderer, camera, scene, running = false, visible = false, built = 0;
+var W = 1, H = 1, dpr = 1;
+var lx = 0.5, ly = 0.35, tlx = 0.5, tly = 0.35, hasPointer = false;
+var items = [];
+
+var VERT = 'varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix*modelViewMatrix*vec4(position,1.0); }';
+var FRAG = [
+  'uniform sampler2D uDiff, uNrm;',
+  'uniform vec3 uAcc;',
+  'uniform vec2 uSize;',
+  'uniform vec3 uLight;',        // light in card-local px, z = height above the plate
+  'uniform float uHover, uTime, uEmis, uHolo;',
+  'varying vec2 vUv;',
+
+  /* Thin-film interference — the holographic layer over the plate.
+     The angle has to come off a near-geometric normal: drive it from the bump
+     normal and every micro-facet gets its own hue, which reads as watercolour
+     blotching rather than foil. Real foil shows its texture as brightness,
+     and its colour in smooth fields. */
+  'vec3 thinFilm(float cosT, float thick){',
+  '  float opd = 2.0*1.36*thick*cosT;',
+  '  vec3 lambda = vec3(612.0, 549.0, 464.0);',
+  '  vec3 ph = 6.2831853*opd/lambda + 0.60;',
+  '  vec3 f = 0.5 + 0.5*cos(ph);',
+  '  return 0.11 + 0.89*f;',           // substrate floor, or the film punches black holes
+  '}',
+
+  'void main(){',
+  '  vec2 p = (vUv - 0.5)*uSize;',                  // this fragment, in card px
+  '  vec3 L = normalize(vec3(uLight.xy - p, uLight.z));',
+  '  vec4 nh = texture2D(uNrm, vUv);',
+  '  vec3 n = normalize(nh.xyz*2.0 - 1.0);',
+  '  float h = nh.a;',
+  // height parallax: the relief leans away from the light, so it reads as solid
+  '  vec2 par = L.xy*(h - 0.42)*0.020*(0.35 + uHover);',
+  '  vec3 d = texture2D(uDiff, clamp(vUv + par, 0.001, 0.999)).rgb;',
+  '  float lum = dot(d, vec3(0.30,0.59,0.11));',
+  '  float mx = max(max(d.r,d.g),d.b), mn = min(min(d.r,d.g),d.b);',
+  '  float sat = mx - mn;',
+  '  float gloss = clamp(sat*1.5 + lum*0.55, 0.0, 1.0);',
+  '  float rough = 0.93 - gloss*0.74;',
+  '  vec3 V = vec3(0.0,0.0,1.0);',
+  '  vec3 Hv = normalize(L + V);',
+  '  float ndl = max(dot(n, L), 0.0);',
+  '  float ndh = max(dot(n, Hv), 0.0);',
+  '  float spec = pow(ndh, mix(10.0, 120.0, 1.0 - rough))*(1.0 - rough);',
+  // the animal is its own light source — that term never depends on the lamp
+  '  vec3 col = d*(0.88 + uEmis*0.30);',
+  '  col += d*ndl*(0.20 + 0.30*uHover);',
+  '  col += uAcc*spec*(0.55 + 0.70*uHover);',
+  // the plate itself: very slightly domed, so a broad sheen crosses the black
+  '  vec3 nc = normalize(vec3((vUv - 0.5)*0.30, 1.0));',
+  '  float varn = pow(max(dot(nc, Hv), 0.0), 30.0);',
+
+  /* ---- the hologram ----
+     A fine diffraction grating runs across the plate and modulates the film
+     thickness, so the interference lands as clean rainbow banding that sweeps
+     when the light moves. The angle is taken 28% of the way toward the relief
+     normal — enough that the animal disturbs the bands, not enough to mottle. */
+  '  vec3 nSmooth = normalize(mix(vec3(0.0,0.0,1.0), n, 0.28));',
+  '  float cosT = clamp(dot(nSmooth, Hv), 0.0, 1.0);',
+  /* Two scales, and the split matters. A warped low-frequency field gives the
+     broad smooth colour regions foil actually has; the fine grating is kept to
+     a low amplitude on top, so it reads as diffraction rather than scanlines. */
+  '  vec2 hw = vUv*vec2(2.6, 3.4);',
+  '  hw += vec2(sin(hw.y*2.1 + uTime*0.13), cos(hw.x*1.7 - uTime*0.11))*0.42;',
+  '  float field = 0.5 + 0.5*sin(hw.x*1.8)*sin(hw.y*1.35);',
+  '  float grate = 0.5 + 0.5*sin((vUv.x*0.86 + vUv.y*0.30)*430.0);',
+  /* Thickness — not the phase — is what picks the hue family. The viewing
+     angles across a card sweep cosT over ~0.55, and at 410 nm that is one whole
+     interference cycle, so every phase offset gives the same full primary
+     rainbow. 170 nm covers about a quarter of one, measured over the real cosT
+     range as 87 degrees of hue travel — enough to read as iridescent — with
+     only 6% of samples landing anywhere warm. */
+  '  vec3 film = thinFilm(cosT, 170.0*(0.72 + 0.52*field + 0.08*grate));',
+  '  float holo = uHolo*(0.45 + 0.55*uHover);',
+  /* Two lobes. The wide one is what makes the plate read as foil at a glance —
+     several hues present across it at once — and the tight one is the bright
+     band that sweeps as the light moves. One alone reads as either a flat
+     tint or a lone hotspot. */
+  '  float wide = pow(max(dot(nc, Hv), 0.0), 3.0);',
+  '  float sheen = pow(max(dot(nc, Hv), 0.0), 14.0);',
+  '  col += film*(0.30 + 0.70*wide)*(0.040 + 0.055*uHover)*holo;',
+  '  col += film*sheen*(0.07 + 0.11*uHover)*holo;',
+  '  col += film*spec*0.55*holo;',
+
+  '  col += vec3(0.42,0.60,0.70)*varn*(0.07 + 0.15*uHover)*(1.0 - 0.55*uHolo);',
+  // edge falloff and a hairline the light can catch
+  '  vec2 e = min(vUv, 1.0 - vUv);',
+  '  float edge = smoothstep(0.0, 0.035, min(e.x, e.y));',
+  '  col *= 0.55 + 0.45*edge;',
+  '  float rim = (1.0 - smoothstep(0.0, 0.006, min(e.x, e.y)));',
+  '  col += mix(vec3(0.30,0.42,0.48), uAcc, 0.45)*rim*(0.22 + 0.34*uHover);',
+  /* Soft knee. The plates carry their own light, so a lit specular on top of
+     an already-bright animal used to clip the bell to flat white. Everything
+     over 0.80 now rolls off asymptotically instead of stacking. */
+  '  vec3 over = max(col - 0.80, 0.0);',
+  '  col = min(col, vec3(0.80)) + over/(1.0 + over/0.20);',
+  '  gl_FragColor = vec4(col, 1.0);',
+  '}'
+].join('\n');
+
+function measure() {
+  var gr = grid.getBoundingClientRect();
+  W = Math.max(1, Math.round(gr.width));
+  H = Math.max(1, Math.round(gr.height));
+  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  renderer.setPixelRatio(dpr);
+  renderer.setSize(W, H, false);
+  var D = 2200;
+  camera.fov = 2 * Math.atan((H / 2) / D) * 180 / Math.PI;
+  camera.aspect = W / H;
+  camera.position.set(0, 0, D);
+  camera.updateProjectionMatrix();
+
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    var r = it.el.getBoundingClientRect();
+    it.x = r.left - gr.left + r.width / 2 - W / 2;
+    it.y = -(r.top - gr.top + r.height / 2 - H / 2);
+    it.w = r.width; it.h = r.height;
+    it.mesh.scale.set(r.width, r.height, 1);
+    it.mesh.material.uniforms.uSize.value.set(r.width, r.height);
+  }
+}
+
+function build() {
+  renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: false, alpha: true, powerPreference: 'high-performance' });
+  renderer.setClearColor(0x000000, 0);
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(30, 1, 10, 6000);
+  var geo = new THREE.PlaneGeometry(1, 1);
+
+  cards.forEach(function (card) {
+    var key = card.getAttribute('data-plate');
+    var el = card.querySelector('.plate');
+    var acc = new THREE.Color(getComputedStyle(card).getPropertyValue('--acc').trim() || '#8fd7e8');
+    var mat = new THREE.ShaderMaterial({
+      uniforms: {
+        uDiff:  { value: null },
+        uNrm:   { value: null },
+        uAcc:   { value: acc },
+        uSize:  { value: new THREE.Vector2(1, 1) },
+        uLight: { value: new THREE.Vector3(0, 0, 340) },
+        uHover: { value: 0 },
+        uTime:  { value: 0 },
+        uEmis:  { value: 0 },
+        uHolo:  { value: 1 }
+      },
+      vertexShader: VERT, fragmentShader: FRAG
+    });
+    var mesh = new THREE.Mesh(geo, mat);
+    mesh.visible = false;
+    scene.add(mesh);
+    items.push({ card: card, el: el, key: key, mesh: mesh, hover: 0, hoverT: 0, x: 0, y: 0, w: 1, h: 1, ready: false });
+    card.addEventListener('pointerenter', function () { this._it.hoverT = 1; }.bind(card));
+    card.addEventListener('pointerleave', function () { this._it.hoverT = 0; }.bind(card));
+    card._it = items[items.length - 1];
+  });
+
+  // load and derive one plate per frame, so nothing blocks the scroll
+  var q = 0;
+  function next() {
+    if (q >= items.length) { grid.classList.add('lit'); measure(); return; }
+    var it = items[q++];
+    var img = new __threeuiStorageImage();
+    img.onload = function () {
+      var diff = new THREE.Texture(img);
+      diff.minFilter = THREE.LinearMipmapLinearFilter;
+      diff.magFilter = THREE.LinearFilter;
+      diff.generateMipmaps = true;
+      diff.needsUpdate = true;
+      it.mesh.material.uniforms.uDiff.value = diff;
+      it.mesh.material.uniforms.uNrm.value = deriveMaps(img);
+      it.mesh.visible = true;
+      it.ready = true;
+      built++;
+      requestAnimationFrame(next);
+    };
+    img.onerror = function () { requestAnimationFrame(next); };
+    img.src = PLATES[it.key];
+  }
+  requestAnimationFrame(next);
+}
+
+var t0 = performance.now();
+function frame() {
+  if (!running) return;
+  requestAnimationFrame(frame);
+  var t = (performance.now() - t0) / 1000;
+
+  var k = reduced ? 1 : 0.10;
+  lx += (tlx - lx) * k;
+  ly += (tly - ly) * k;
+
+  // an idle drift stands in until the pointer says otherwise
+  var ix = hasPointer ? lx : 0.5 + Math.sin(t * 0.21) * 0.26;
+  var iy = hasPointer ? ly : 0.34 + Math.sin(t * 0.15) * 0.14;
+  var Lx = (ix - 0.5) * W, Ly = -(iy - 0.5) * H;
+
+  for (var i = 0; i < items.length; i++) {
+    var it = items[i];
+    if (!it.ready) continue;
+    it.hover += (it.hoverT - it.hover) * (reduced ? 1 : 0.11);
+    var u = it.mesh.material.uniforms;
+    u.uLight.value.set(Lx - it.x, Ly - it.y, 300 - 90 * it.hover);
+    u.uHover.value = it.hover;
+    u.uTime.value = t;
+    u.uEmis.value = 0.20 + 0.42 * it.hover +
+      (reduced ? 0 : Math.sin(t * 0.7 + i * 1.7) * 0.05);      // a slow living pulse
+    // the plate lifts and turns a few degrees toward the light
+    var lift = it.hover * 5;
+    it.mesh.position.set(it.x, it.y + lift, it.hover * 22);
+    var toX = (Lx - it.x) / Math.max(1, W) , toY = (Ly - it.y) / Math.max(1, H);
+    var sway = reduced ? 0 : Math.sin(t * 0.33 + i) * 0.010;
+    it.mesh.rotation.set(toY * 0.30 * it.hover + sway, toX * 0.34 * it.hover, 0);
+  }
+  renderer.render(scene, camera);
+}
+
+function start() { if (!running) { running = true; requestAnimationFrame(frame); } }
+function stop() { running = false; }
+
+/* only alive while the deck is on screen */
+var io = new IntersectionObserver(function (es) {
+  es.forEach(function (e) {
+    visible = e.isIntersecting;
+    if (visible) { if (!renderer) { build(); } measure(); start(); } else stop();
+  });
+}, { rootMargin: '300px 0px 300px 0px' });
+io.observe(grid);
+
+window.addEventListener('pointermove', function (e) {
+  var r = grid.getBoundingClientRect();
+  tlx = (e.clientX - r.left) / Math.max(1, r.width);
+  tly = (e.clientY - r.top) / Math.max(1, r.height);
+  hasPointer = true;
+}, { passive: true });
+
+var reflow;
+function relayout() { if (renderer) { clearTimeout(reflow); reflow = setTimeout(measure, 60); } }
+window.addEventListener('resize', relayout);
+window.addEventListener('scroll', function () { if (renderer && visible) measure(); }, { passive: true });
+
+/* reveal the cards on the way in */
+var cio = new IntersectionObserver(function (es) {
+  es.forEach(function (e) {
+    if (e.isIntersecting || e.boundingClientRect.top < 0) {
+      e.target.classList.add('in'); cio.unobserve(e.target);
+    }
+  });
+}, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+cards.forEach(function (c, i) { c.style.transitionDelay = (i % 3) * 0.08 + 's'; cio.observe(c); });
+
+window.__deck = { measure: function () { if (renderer) measure(); }, items: items };
+})();
+</script>
+</body>
+</html>

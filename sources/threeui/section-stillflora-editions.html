@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Stillflora — Editions · ThreeUI</title><style>:root{--ink:#f4dde8;--paper:#e3ebed;--blue:#183444;--muted:#b9c7cd;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Karla",Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:0px;background:var(--blue)}
+body{margin:0;background:var(--blue);color:var(--paper);font-family:var(--sans);font-size:16px;-webkit-font-smoothing:antialiased}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+button{border:0;cursor:pointer}
+button,a{touch-action:manipulation}
+button:focus-visible,a:focus-visible{outline:1px solid var(--ink);outline-offset:7px}
+::selection{background:#f4dde8;color:#183444}
+#world{position:fixed;inset:0;overflow:hidden;background:#183444;pointer-events:none}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(6,23,34,.05),transparent 30%,transparent 70%,rgba(8,26,38,.18))}
+main{position:relative;z-index:2}
+.chapter{min-height:760px;height:100svh;position:relative;isolation:isolate;scroll-margin-top:0}
+.story-cta{background:#f1f4f2;color:#243747;min-height:43px;display:inline-flex;align-items:center;justify-content:center;padding:0 19px;font-size:12px;text-transform:uppercase;transition:background .25s,transform .25s}
+.story-cta:hover{background:#f4dde8;transform:translateY(-2px)}
+.eyebrow{text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:#c6d2d7}
+.archive{padding:160px 12% 70px;min-height:850px;display:flex;flex-direction:column;justify-content:center;background:linear-gradient(180deg,transparent,#0b2332b3)}
+.archive-heading{font-family:var(--serif);font-weight:300;font-size:clamp(70px,9vw,130px);letter-spacing:-.07em;color:var(--ink);margin:15px 0 45px;line-height:.85}
+.archive-list{max-width:930px;width:100%;margin-left:auto}
+.archive-row{border-top:1px solid #bbced438;display:grid;grid-template-columns:55px 1fr auto 45px;align-items:center;gap:20px;padding:24px 0;width:100%;background:transparent;text-align:left;transition:padding .3s}
+.archive-row:last-child{border-bottom:1px solid #bbced438}
+.archive-row:hover{padding-left:12px}
+.archive-row span:first-child{font-family:var(--serif);font-size:18px;color:#c7c8ce}
+.archive-row h3{font-family:var(--serif);font-size:32px;font-weight:300;color:var(--ink);margin:0}
+.archive-row .category{text-transform:uppercase;font-size:12px;letter-spacing:.16em;color:#b7c8ce}
+.archive-row .arrow{font-size:25px;font-weight:400}
+.site-footer{display:flex;justify-content:space-between;gap:25px;margin-top:70px;font-size:12px;color:#bdc8cb}
+.site-footer a{text-decoration:underline;text-underline-offset:3px}
+dialog{border:1px solid #c0d1d347;padding:0;background:#193746;color:var(--paper);width:min(680px,calc(100% - 32px));max-height:86svh;overflow:auto;box-shadow:0 30px 150px #0008}
+dialog::backdrop{background:#071824b8;backdrop-filter:blur(14px)}
+.dialog-content{padding:65px 65px 55px}
+.dialog-close{position:absolute;top:20px;right:23px;background:none;padding:8px;width:36px;height:36px;font-size:23px;font-weight:400;line-height:1}
+.dialog-content h2{font-family:var(--serif);font-weight:300;font-size:67px;color:var(--ink);letter-spacing:-.05em;line-height:.9;margin:28px 0}
+.dialog-content .story-cta{margin-top:16px}
+@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{transform:scaleY(.7);opacity:.4}50%{transform:scaleY(1);opacity:.8}}
+@media (min-width:1600px){.story-cta{font-size:12px;min-height:48px}}
+@media (max-width:1100px){.chapter{min-height:700px}}
+@media (max-width:700px){.vignette{background:linear-gradient(90deg,#112c3e75,transparent 90%),linear-gradient(0deg,#102b3e 5%,#102b3ee8 22%,#102b3e88 42%,transparent 70%)}
+.archive{height:auto;min-height:790px;padding:125px 14% 80px 19%}
+.archive-heading{font-size:73px;margin-bottom:40px}
+.archive .eyebrow{font-size:12px;line-height:1.5}
+.archive-row{grid-template-columns:25px 1fr 22px;gap:10px;padding:22px 0}
+.archive-row h3{font-size:29px}
+.archive-row .category{display:none}
+.site-footer{margin-top:50px;flex-direction:column;font-size:12px;gap:12px}
+.dialog-content{padding:65px 30px 40px}
+.dialog-content h2{font-size:52px}}
+.model-credit{font-size:12px;line-height:1.8;opacity:.6;margin-top:22px}
+.model-credit a{text-decoration:underline;text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+*,*:before,*:after{animation:none!important;transition:none!important}}
+.archive-heading{font-size:clamp(100px,13vw,185px)}
+dialog{background:rgba(17,43,58,.49);backdrop-filter:blur(18px) saturate(1.05);-webkit-backdrop-filter:blur(18px) saturate(1.05);border-color:#dceef36b;box-shadow:inset 0 1px 0 #e9faff3b,0 30px 130px #0316236b}
+dialog::backdrop{background:#07182445;backdrop-filter:blur(2px)}
+.dialog-content{background:linear-gradient(140deg,#dff1f00d,transparent 55%)}
+.dialog-content h2{font-size:94px;line-height:.9}
+@media (max-width:700px){.dialog-content h2{font-size:67px}
+.archive-heading{font-size:95px}
+.eyebrow{font-size:12px}
+.site-footer{font-size:12px}}
+@media (max-width:370px){.dialog-content h2{font-size:58px}
+.dialog-content{padding-left:24px;padding-right:24px}}
+.model-credit{font-size:12px}
+.site-footer{font-size:12px}
+dialog{border-radius:28px;background:linear-gradient(135deg,#bce4ed20,#15394b55 48%,#c0e6f21b);backdrop-filter:blur(13px) saturate(1.25);-webkit-backdrop-filter:blur(13px) saturate(1.25);box-shadow:inset 1px 1px 2px #f0ffff91,inset -1px -1px 3px #d1f3ff38,0 35px 140px #03162370}
+html{height:auto!important;min-height:100%;overflow-x:hidden!important;overflow-y:auto!important;scroll-behavior:smooth}body{height:auto!important;min-height:100vh;margin:0;overflow-x:hidden!important;overflow-y:auto!important;cursor:auto!important}body>[data-section-ancestor],[data-section-ancestor]{height:auto!important;min-height:0!important;position:relative!important;inset:auto!important;transform:none!important;overflow:visible!important}[data-section-root]{position:relative!important;inset:auto!important;transform:none!important;margin-block:0!important}[data-section-root] :is(.reveal,.rv,[data-reveal],[data-io]){opacity:1!important;visibility:visible!important;clip-path:none!important;transform:none!important}a,button{cursor:pointer}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/63e313fb9c65b6b2e177222010bbea911bfc5c79bee0fb69f8246fcc4e08c93a.ttf) format('truetype');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/6d37a86241a25d63f8fe6018b4c083449886b7165c1acb15edd0f574f690ecf7.ttf) format('truetype');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/312f8ebaede0db3bb202ee6b116cbe0d467e109b69b93b1e8ff869fc76a210d1.ttf) format('truetype');}
+html{scrollbar-width:none;scrollbar-gutter:auto}html::-webkit-scrollbar{display:none}body{overflow:visible!important}#world{position:fixed;z-index:-2;inset:0}.vignette{position:fixed;z-index:-1;inset:0}.chapter>.model-credit{position:absolute;bottom:18px;left:4%;right:4%;margin:0;font-size:10px}.chapter.archive>.model-credit{position:static;font-size:12px;margin-top:22px}dialog{z-index:30}#world:before{content:"";position:absolute;inset:0;background:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/sections-release/0b79f0bbbad232cffe980867c2ea8c6a88b879f9e20b10c47e61e2329c57249f.webp') center/cover no-repeat}#world.ready:before{display:none}@media(max-width:700px){.chapter.manifesto{min-height:800px}.chapter.stories{min-height:1170px}.chapter.archive{min-height:790px}} body.dialog-open{overflow:hidden!important}.glass-type-ready .manifesto .section-heading{color:transparent;text-shadow:none}#world:not(.ready) canvas{visibility:hidden}.archive{background:none}.archive::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,#0b2332b3);z-index:-1;pointer-events:none}</style></head><body data-threeui-section="section-stillflora-editions"><main data-section-ancestor=""><section aria-labelledby="editions-heading" class="chapter archive" data-section-root="" id="editions"><span class="eyebrow">From the atelier / botanical studies</span><h2 class="archive-heading" id="editions-heading">The editions.</h2><div class="archive-list"><button class="archive-row" data-story="seed"><span>I</span><h3>A garden within</h3><span class="category">Glass</span><span aria-hidden="true" class="arrow">↗</span></button><button class="archive-row" data-story="tend"><span>II</span><h3>The considered stem</h3><span class="category">Arrangement</span><span aria-hidden="true" class="arrow">↗</span></button><button class="archive-row" data-story="observe"><span>III</span><h3>An atlas of small things</h3><span class="category">Detail</span><span aria-hidden="true" class="arrow">↗</span></button><button class="archive-row" data-story="petal"><span>IV</span><h3>Petal by petal</h3><span class="category">Botany</span><span aria-hidden="true" class="arrow">↗</span></button></div>
+<footer class="site-footer"><span>Stillflora — botanical studies in glass.</span><span>Art, nature &amp; the space between.</span><a href="https://threeui.com/landing-pages/stillflora-landing-page" rel="noopener noreferrer" target="_blank">Return to the garden ↑</a></footer><p class="model-credit"><a href="https://commons.wikimedia.org/wiki/File:Body_female_realistic_by_Dan_Ulrich_(CC0).stl" rel="noopener noreferrer" target="_blank">Female form by Dan Ulrich / Blender Studio</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer" target="_blank">CC0</a> · adapted for Stillflora.</p><div aria-hidden="true" id="world"></div><div aria-hidden="true" class="vignette"></div><dialog aria-labelledby="story-title" id="story-dialog"><button aria-label="Close note" class="dialog-close">×</button><article class="dialog-content"><span class="eyebrow" id="story-category"></span><h2 id="story-title"></h2><div id="story-body"></div><button class="story-cta dialog-done">Back to the page</button></article></dialog><link href="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/sections-release/ef0e54eb35f203196de2e5354a3728442c328e7f7705ab4bb78e612664d8ec12.txt" rel="license"/></section></main><script defer="" src="./runtime.js"></script><script>(()=>{const root=document.querySelector('[data-section-root]'),life=new AbortController();const listen=(target,type,fn,options={})=>target.addEventListener(type,fn,{...options,signal:life.signal});let dead=false;listen(window,'pagehide',()=>{dead=true;life.abort()},{once:true});
+const stories={"seed": {"category": "Garden / I", "title": "A garden within.", "paragraphs": ["Stillflora begins with a simple image: a garden held inside a clear glass form. Petals, leaves, and branching stems occupy the same space as reflections of the world outside.", "Look through the face and into the foliage. A pale blossom catches the light; a dark leaf falls back into shadow. Move a little, and the arrangement seems to change.", "This imagined atelier is a place to look slowly. Each study follows a different quality of the natural world, from the smallest vein in a leaf to the way glass holds the afternoon light."]}, "tend": {"category": "Practice / I", "title": "Grow with care.", "paragraphs": ["An arrangement starts with the space around it. Before adding another stem, pause to see what is already there: a line, a weight, a patch of light.", "Care lives in these small decisions. Turn a leaf to reveal its shape. Leave a little air between two blooms. Let the materials tell you when the piece is complete."]}, "observe": {"category": "Practice / II", "title": "Seek the small.", "paragraphs": ["At first, a blossom reads as a single shape. Closer up, it becomes a landscape of folds, fine veins, and tiny grains of pollen.", "Our studies begin at this scale. A curled edge or a broken line can give an entire composition its character. Looking closely is part of making."]}, "petal": {"category": "Field notes / III", "title": "Corolla", "paragraphs": ["A corolla is the ring of petals around a flower. In this study, pale folds open around a warm center, each one catching a slightly different amount of light.", "Some edges curl inward. Others become almost transparent. Together, those small variations give the blossom a softness that a perfect outline could never hold."]}};
+const dialog=document.getElementById('story-dialog');document.body.appendChild(dialog);let lastFocus=null;
+document.querySelectorAll('[data-story]').forEach(button=>listen(button,'click',()=>{const story=stories[button.dataset.story];lastFocus=button;document.getElementById('story-category').textContent=story.category;document.getElementById('story-title').textContent=story.title;const body=document.getElementById('story-body');body.replaceChildren(...story.paragraphs.map(text=>{const p=document.createElement('p');p.textContent=text;return p}));dialog.showModal();dialog.scrollTop=0;document.body.classList.add('dialog-open')}));
+document.querySelectorAll('.dialog-close,.dialog-done').forEach(button=>listen(button,'click',()=>dialog.close()));
+listen(dialog,'click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+listen(dialog,'close',()=>{document.body.classList.remove('dialog-open');lastFocus?.focus({preventScroll:true})});
+const load=src=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=reject;document.head.append(script)});
+(async()=>{try{await load('/sections/assets/stillflora-three-d2d0e68a41a8.js');if(dead)return;await load('/sections/assets/stillflora-geometry.js');if(dead)return;await load('/sections/assets/stillflora-scene.js');if(dead)return;window.mountThreeUIStillfloraScene(root,3)}catch(error){console.error("Stillflora scene unavailable; using its poster.",error)}})();})();
+</script></body></html>

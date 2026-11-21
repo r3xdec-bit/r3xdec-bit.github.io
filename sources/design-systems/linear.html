@@ -1,0 +1,900 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void Console — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;510;590;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#08090A;
+    --surface:#0F1011;
+    --surface-alt:#2C2D32;
+    --text-primary:#F7F8F8;
+    --text-secondary:#8A8F98;
+    --text-tertiary:#62666D;
+    --border-subtle:#23252A;
+    --border-hairline:rgba(255,255,255,0.08);
+    --accent-interactive:#5E6AD2;
+    --signal-green:#00FF05;
+    --signal-orange:#FF8849;
+    --signal-cyan:#74E3FF;
+    --signal-yellow:#F0BF00;
+    --signal-pink:#F79CE0;
+    --nav-fill:#E5E5E6;
+    --nav-fill-hover:#FFFFFF;
+    --glass-fill:rgba(255,255,255,0.05);
+    --r-control-sm:2px;
+    --r-control:6px;
+    --r-input:4px;
+    --r-card:12px;
+    --r-pill:9999px;
+    --sp-micro:4px;
+    --sp-base:8px;
+    --sp-tight:12px;
+    --sp-gap:22px;
+    --sp-section:24px;
+    --maxw:1436px;
+    --ease-out:cubic-bezier(0.25,0.46,0.45,0.94);
+    --display-mono:'JetBrains Mono','Berkeley Mono',ui-monospace,monospace;
+    --font:'Inter','Inter Variable',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--font);
+    font-size:15px;
+    line-height:1.6;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,p{margin:0;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:32px;padding-right:32px;}
+  .band{padding-block:96px;}
+  .display-lg{
+    font-size:64px;font-weight:510;line-height:1;letter-spacing:-1.4px;
+    color:var(--text-primary);
+  }
+  .headline-md{
+    font-size:48px;font-weight:510;line-height:1;letter-spacing:-1.1px;
+    color:var(--text-primary);
+  }
+  .label-md{font-size:16px;font-weight:590;line-height:1.5;}
+  .body-md{font-size:15px;font-weight:400;line-height:1.6;color:var(--text-secondary);}
+  .mono{font-family:var(--display-mono);font-size:13px;}
+  .eyebrow{
+    font-family:var(--display-mono);font-size:12px;letter-spacing:0.04em;
+    color:var(--text-tertiary);text-transform:uppercase;
+  }
+  /* Navbar */
+  .nav{
+    position:sticky;top:0;z-index:50;height:73px;
+    background:rgba(8,9,10,0.55);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    border-bottom:1px solid var(--border-hairline);
+  }
+  .nav-inner{max-width:var(--maxw);margin:0 auto;height:73px;display:flex;align-items:center;gap:32px;padding:0 32px;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:590;font-size:17px;letter-spacing:-0.4px;color:var(--text-primary);}
+  .logo-mark{width:22px;height:22px;display:block;}
+  .nav-links{display:flex;gap:24px;margin-left:8px;}
+  .nav-links a{font-size:16px;font-weight:590;color:var(--text-secondary);transition:color .1s ease;}
+  .nav-links a:hover{color:var(--text-primary);}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:18px;}
+  .nav-icons{display:flex;gap:14px;color:var(--text-secondary);}
+  .nav-icons button{background:none;border:none;color:inherit;cursor:pointer;padding:4px;display:inline-flex;}
+  .nav-icons button:hover{color:var(--text-primary);}
+  .nav-login{font-size:16px;font-weight:590;color:var(--text-secondary);transition:color .1s ease;}
+  .nav-login:hover{color:var(--text-primary);}
+  .nav-cta{
+    height:36px;padding:0 16px;border-radius:var(--r-pill);
+    background:var(--nav-fill);color:#08090A;font-weight:590;font-size:15px;
+    border:none;cursor:pointer;display:inline-flex;align-items:center;
+    transition:background .4s var(--ease-out);
+  }
+  .nav-cta:hover{background:var(--nav-fill-hover);}
+  /* Hero */
+  #hero{padding-top:120px;padding-bottom:64px;}
+  .hero-head{max-width:900px;}
+  .hero-sub-row{display:flex;align-items:flex-start;justify-content:space-between;gap:24px;margin-top:28px;flex-wrap:wrap;}
+  .hero-sub{color:var(--text-secondary);font-size:18px;max-width:520px;line-height:1.5;}
+  .text-link-util{
+    font-size:15px;color:var(--text-secondary);display:inline-flex;align-items:center;gap:6px;
+    white-space:nowrap;transition:color .1s ease;
+  }
+  .text-link-util strong{color:var(--text-primary);font-weight:590;}
+  .text-link-util:hover{color:var(--text-primary);}
+  @media(max-width:768px){
+    .display-lg{font-size:40px;letter-spacing:-1px;}
+    .headline-md{font-size:30px;letter-spacing:-0.8px;}
+    .band{padding-block:64px;}
+    .wrap,.nav-inner{padding-left:20px;padding-right:20px;}
+    .nav-links{display:none;}
+  }
+  @media(max-width:640px){
+    .display-lg{font-size:32px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#hero" class="logo" aria-label="Void Console home">
+      <svg class="logo-mark" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="none" stroke="#F7F8F8" stroke-width="1.6"/><path d="M6 15 L11 6 L16 15" fill="none" stroke="#F7F8F8" stroke-width="1.6"/></svg>
+      <span>Void Console</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#components">Product</a>
+      <a href="#type-scale">Method</a>
+      <a href="#composition">Customers</a>
+      <a href="#palette">Pricing</a>
+      <a href="#surface-depth">Company</a>
+      <a href="#motion">Changelog</a>
+      <a href="#footer">Docs</a>
+    </nav>
+    <div class="nav-right">
+      <div class="nav-icons">
+        <button aria-label="Search"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></button>
+        <button aria-label="Compose"><iconify-icon icon="lucide:pen-line" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <a href="#components" class="nav-login">Log in</a>
+      <button class="nav-cta">Sign up</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" data-tier-a-component="hero-void-headline">
+  <div class="wrap">
+    <div class="hero-head">
+      <h1 class="display-lg">The tool built for<br>how software gets shipped</h1>
+    </div>
+    <div class="hero-sub-row">
+      <p class="hero-sub">A near-black workspace for issues, pull requests, and agents — where real interface density does the talking, not decoration.</p>
+      <a href="#components" class="text-link-util"><strong>New</strong> · Coding Sessions <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="hero-proof">
+  .hero-proof{max-width:var(--maxw);margin:0 auto;padding:0 32px 64px;position:relative;}
+  .screenshot{
+    position:relative;background:var(--surface);border:1px solid var(--border-subtle);
+    border-radius:var(--r-card);overflow:hidden;
+  }
+  .ss-chrome{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid var(--border-subtle);}
+  .ss-dots{display:flex;gap:6px;}
+  .ss-dots span{width:11px;height:11px;border-radius:var(--r-pill);background:var(--surface-alt);}
+  .ss-path{font-family:var(--display-mono);font-size:12px;color:var(--text-tertiary);}
+  .ss-body{display:grid;grid-template-columns:200px 1fr;min-height:420px;}
+  .ss-side{border-right:1px solid var(--border-subtle);padding:16px;display:flex;flex-direction:column;gap:14px;}
+  .ss-side .grp{font-family:var(--display-mono);font-size:11px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;}
+  .ss-side a{font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px;}
+  .ss-main{padding:24px 28px;}
+  .ss-issue-head{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+  .status-dot{width:9px;height:9px;border-radius:var(--r-pill);display:inline-block;}
+  .issue-title{font-size:22px;font-weight:510;letter-spacing:-0.5px;}
+  .issue-meta{font-family:var(--display-mono);font-size:12px;color:var(--text-tertiary);margin-top:4px;}
+  .issue-rows{margin-top:22px;display:flex;flex-direction:column;gap:14px;}
+  .issue-row{display:flex;gap:10px;align-items:center;font-size:13px;color:var(--text-secondary);}
+  .chip{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:var(--r-control);font-family:var(--display-mono);font-size:11px;background:var(--surface-alt);color:var(--text-primary);}
+  .hero-scrim{position:absolute;left:0;right:0;bottom:0;height:34%;background:radial-gradient(52.53% 57.5% at 50% 100%, rgba(8,9,10,0) 0%, rgba(8,9,10,0.5) 100%);pointer-events:none;}
+  .glass-panel{
+    position:absolute;right:26px;bottom:26px;width:320px;max-width:80%;
+    background:var(--glass-fill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+    border-radius:var(--r-card);padding:14px;
+    box-shadow:rgba(255,255,255,0.03) 0 0 0 1px inset, rgba(255,255,255,0.04) 0 1px 0 0 inset, rgba(0,0,0,0.6) 0 0 0 1px, rgba(0,0,0,0.1) 0 4px 4px 0;
+  }
+  .glass-panel .gp-head{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:590;margin-bottom:10px;}
+  .gp-log{font-family:var(--display-mono);font-size:12px;line-height:1.7;color:var(--text-secondary);}
+  .gp-log .k{color:var(--signal-cyan);}
+  .gp-input{display:flex;gap:8px;margin-top:12px;align-items:center;}
+  .gp-input input{flex:1;background:rgba(255,255,255,0.04);border:1px solid var(--border-hairline);border-radius:var(--r-input);height:28px;color:var(--text-primary);font-family:var(--font);font-size:13px;padding:0 8px;}
+  .gp-send{height:28px;border-radius:var(--r-control);background:var(--accent-interactive);color:var(--text-primary);border:none;padding:0 10px;font-size:12px;font-weight:590;cursor:pointer;display:inline-flex;align-items:center;gap:5px;}
+  @media(max-width:768px){.ss-body{grid-template-columns:1fr;}.ss-side{display:none;}.glass-panel{position:static;width:auto;max-width:none;margin:16px;}}
+</style>
+
+<section aria-label="Product proof" data-tier-a-component="hero-product-screenshot">
+  <div class="hero-proof">
+    <div class="screenshot">
+      <div class="ss-chrome">
+        <div class="ss-dots"><span></span><span></span><span></span></div>
+        <span class="ss-path">void://workspace/ENG-482</span>
+      </div>
+      <div class="ss-body">
+        <aside class="ss-side" aria-label="Sidebar">
+          <span class="grp">Workspace</span>
+          <a href="#hero" onclick="return false"><iconify-icon icon="lucide:inbox"></iconify-icon> Inbox</a>
+          <a href="#hero" onclick="return false"><iconify-icon icon="lucide:circle-dot"></iconify-icon> My Issues</a>
+          <a href="#hero" onclick="return false"><iconify-icon icon="lucide:git-pull-request"></iconify-icon> Pull Requests</a>
+          <span class="grp">Cycles</span>
+          <a href="#hero" onclick="return false"><iconify-icon icon="lucide:activity"></iconify-icon> Active</a>
+          <a href="#hero" onclick="return false"><iconify-icon icon="lucide:archive"></iconify-icon> Backlog</a>
+        </aside>
+        <div class="ss-main">
+          <div class="ss-issue-head">
+            <span class="status-dot" style="background:var(--signal-orange)"></span>
+            <span class="issue-title">Rework agent scheduling loop</span>
+          </div>
+          <div class="issue-meta">ENG-482 · opened 3h ago · in progress</div>
+          <div class="issue-rows">
+            <div class="issue-row"><span class="chip"><span class="status-dot" style="background:var(--signal-green)"></span>In Review</span> assigned to @dana</div>
+            <div class="issue-row"><span class="chip"><span class="status-dot" style="background:var(--signal-yellow)"></span>Priority</span> targets cycle 14</div>
+            <div class="issue-row"><span class="chip"><span class="status-dot" style="background:var(--signal-cyan)"></span>CI</span> 3 checks passing</div>
+            <div class="issue-row"><span class="chip"><span class="status-dot" style="background:var(--signal-pink)"></span>Label</span> scheduler · perf</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-scrim"></div>
+      <div class="glass-panel" data-tier-a-component="glass-floating-panel">
+        <div class="gp-head"><iconify-icon icon="lucide:sparkles" style="color:var(--accent-interactive)"></iconify-icon> Agent</div>
+        <div class="gp-log">
+          <div><span class="k">$</span> analyze scheduler.ts</div>
+          <div><span class="k">→</span> found 2 blocking awaits</div>
+          <div><span class="k">→</span> drafting patch…</div>
+        </div>
+        <div class="gp-input">
+          <input type="text" aria-label="Message agent" placeholder="Ask the agent…">
+          <button class="gp-send" data-tier-a-component="mid-page-indigo-button">Send <iconify-icon icon="lucide:corner-down-left"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="credibility">
+  .cred{max-width:1000px;margin:0 auto;padding:0 32px;}
+  .cred-statement{font-size:36px;font-weight:510;line-height:1.25;letter-spacing:-0.9px;}
+  .cred-statement .lead{color:var(--text-primary);}
+  .cred-statement .cont{color:var(--text-secondary);}
+  .logo-strip{
+    display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:32px;
+    max-width:var(--maxw);margin:72px auto 0;padding:0 32px;
+  }
+  .logo-strip .wm{display:flex;align-items:center;gap:8px;color:var(--text-secondary);font-weight:590;font-size:16px;opacity:.85;}
+  .triptych{
+    max-width:var(--maxw);margin:72px auto 0;padding:0 32px;
+    display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  }
+  .triptych .slot{padding:0;border-radius:0;display:flex;justify-content:center;align-items:center;height:180px;border-left:1px solid var(--border-subtle);}
+  .triptych .slot:first-child{border-left:none;}
+  .triptych iconify-icon{font-size:56px;color:var(--text-secondary);}
+  @media(max-width:768px){.cred-statement{font-size:26px;}.triptych{grid-template-columns:1fr;}.triptych .slot{border-left:none;border-top:1px solid var(--border-subtle);}.triptych .slot:first-child{border-top:none;}}
+</style>
+
+<section class="band" aria-label="Credibility">
+  <div class="cred" data-tier-a-component="credibility-band">
+    <p class="cred-statement"><span class="lead">Void Console keeps the canvas black so the work stands out.</span> <span class="cont">Real issue trackers, PR diffs, and agent logs are the only imagery — density and legibility of actual interface is the selling point, never atmosphere.</span></p>
+  </div>
+  <div class="logo-strip" data-tier-a-component="logo-strip" aria-label="Trusted by">
+    <span class="wm"><iconify-icon icon="lucide:hexagon"></iconify-icon> Meridian</span>
+    <span class="wm"><iconify-icon icon="lucide:triangle"></iconify-icon> Northwind</span>
+    <span class="wm"><iconify-icon icon="lucide:circle"></iconify-icon> Orbital</span>
+    <span class="wm"><iconify-icon icon="lucide:square"></iconify-icon> Foundry</span>
+    <span class="wm"><iconify-icon icon="lucide:diamond"></iconify-icon> Vertex</span>
+    <span class="wm"><iconify-icon icon="lucide:pentagon"></iconify-icon> Cascade</span>
+    <span class="wm"><iconify-icon icon="lucide:octagon"></iconify-icon> Ridgeline</span>
+    <span class="wm"><iconify-icon icon="lucide:star"></iconify-icon> Halcyon</span>
+  </div>
+  <div class="triptych" data-tier-a-component="icon-triptych" aria-label="Capabilities">
+    <div class="slot"><iconify-icon icon="lucide:box" aria-label="Layered workspace"></iconify-icon></div>
+    <div class="slot"><iconify-icon icon="lucide:network" aria-label="Connected graph"></iconify-icon></div>
+    <div class="slot"><iconify-icon icon="lucide:layers" aria-label="Stacked surfaces"></iconify-icon></div>
+  </div>
+</section>
+
+<!-- PALETTE -->
+<style data-section-styles="palette">
+  #palette .head{margin-bottom:48px;}
+  #palette .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #palette .head p{color:var(--text-secondary);margin-top:12px;max-width:640px;}
+  .pal-group{margin-top:48px;}
+  .pal-group h3{font-family:var(--display-mono);font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-bottom:18px;}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+  .sw{border:1px solid var(--border-subtle);border-radius:var(--r-control);overflow:hidden;background:var(--surface);}
+  .sw .chip-lg{height:88px;}
+  .checker{background-image:linear-gradient(45deg,#1a1b1d 25%,transparent 25%),linear-gradient(-45deg,#1a1b1d 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a1b1d 75%),linear-gradient(-45deg,transparent 75%,#1a1b1d 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+  .sw .meta{padding:12px 14px;}
+  .sw .name{font-size:14px;font-weight:590;color:var(--text-primary);}
+  .sw .val{font-family:var(--display-mono);font-size:12px;color:var(--text-secondary);margin-top:2px;}
+  .sw .note{font-size:12.5px;color:var(--text-tertiary);margin-top:8px;line-height:1.5;}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>Colour is a signal, not decoration</h2>
+      <p>Everything is achromatic by default. A single indigo carries interaction; five signal hues stay locked inside product chrome.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip-lg" style="background:#08090A;border-bottom:1px solid var(--border-subtle)"></div><div class="meta"><div class="name">background</div><div class="val">#08090A</div><div class="note">Page/surface-0. Covers ~73% of every screen.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#0F1011"></div><div class="meta"><div class="name">surface</div><div class="val">#0F1011</div><div class="note">Lifted panel for screenshots and note cards.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#2C2D32"></div><div class="meta"><div class="name">surface-alt</div><div class="val">#2C2D32</div><div class="note">Chips and inner control fills.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip-lg" style="background:#F7F8F8"></div><div class="meta"><div class="name">text-primary</div><div class="val">#F7F8F8</div><div class="note">Headlines and active copy.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#8A8F98"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#8A8F98</div><div class="note">Body and subhead lines.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#62666D"></div><div class="meta"><div class="name">text-tertiary</div><div class="val">#62666D</div><div class="note">Labels, timestamps, deep-muted meta.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Borders</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip-lg" style="background:#23252A"></div><div class="meta"><div class="name">border-subtle</div><div class="val">#23252A</div><div class="note">Structural dividers.</div></div></div>
+        <div class="sw"><div class="chip-lg checker"><div style="height:100%;background:rgba(255,255,255,0.08)"></div></div><div class="meta"><div class="name">border-hairline</div><div class="val">rgba(255,255,255,0.08)</div><div class="note">Glass edges at near-zero opacity.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accent — rationed</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip-lg" style="background:#5E6AD2"></div><div class="meta"><div class="name">accent-interactive</div><div class="val">#5E6AD2</div><div class="note">Indigo. Small in-product controls only — never hero or footer.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Signal — product chrome only</h3>
+      <div class="swatches">
+        <div class="sw"><div class="chip-lg" style="background:#00FF05"></div><div class="meta"><div class="name">signal-green</div><div class="val">#00FF05</div><div class="note">Status dot: live / passing.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#FF8849"></div><div class="meta"><div class="name">signal-orange</div><div class="val">#FF8849</div><div class="note">In-progress state marker.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#74E3FF"></div><div class="meta"><div class="name">signal-cyan</div><div class="val">#74E3FF</div><div class="note">CI / info badges.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#F0BF00"></div><div class="meta"><div class="name">signal-yellow</div><div class="val">#F0BF00</div><div class="note">Priority indicator.</div></div></div>
+        <div class="sw"><div class="chip-lg" style="background:#F79CE0"></div><div class="meta"><div class="name">signal-pink</div><div class="val">#F79CE0</div><div class="note">Label chips inside chrome.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE SCALE -->
+<style data-section-styles="type-scale">
+  #type-scale .head{margin-bottom:56px;}
+  #type-scale .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #type-scale .head p{color:var(--text-secondary);margin-top:12px;max-width:640px;}
+  .spec{border-top:1px solid var(--border-subtle);padding:36px 0;display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:baseline;}
+  .spec .metrics{font-family:var(--display-mono);font-size:12px;color:var(--text-tertiary);line-height:1.8;}
+  .spec .metrics b{color:var(--text-secondary);font-weight:400;}
+  .weight-ramp{display:flex;flex-wrap:wrap;gap:28px;border-top:1px solid var(--border-subtle);padding-top:36px;margin-top:12px;}
+  .weight-ramp .w{font-size:34px;letter-spacing:-0.8px;}
+  .weight-ramp .lab{display:block;font-family:var(--display-mono);font-size:11px;color:var(--text-tertiary);margin-top:6px;letter-spacing:.04em;}
+  @media(max-width:768px){.spec{grid-template-columns:1fr;}}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>Inter, tightly tracked</h2>
+      <p>Two structural weights carry the system: 510 for oversized display at negative tracking, 400/590 for reading and labels. Berkeley Mono handles code and agent logs.</p>
+    </div>
+
+    <div class="spec">
+      <div class="display-lg">Ship faster on black</div>
+      <div class="metrics">display-lg<br><b>64px · weight 510 · lh 1 · -1.4px</b><br>Inter Variable</div>
+    </div>
+    <div class="spec">
+      <div class="headline-md">Direction, review, monitoring</div>
+      <div class="metrics">headline-md<br><b>48px · weight 510 · lh 1 · -1.1px</b><br>Inter Variable</div>
+    </div>
+    <div class="spec">
+      <div class="label-md">Product · Method · Customers</div>
+      <div class="metrics">label-md<br><b>16px · weight 590 · lh 1.5</b><br>Inter Variable</div>
+    </div>
+    <div class="spec">
+      <div style="font-size:16px;font-weight:400;line-height:1.6;color:var(--text-primary)">Body default — quiet, low-contrast paragraphs against near-white headlines keep the field calm and legible under real interface density.</div>
+      <div class="metrics">body-default<br><b>16px · weight 400 · lh 1.6</b><br>Inter Variable</div>
+    </div>
+    <div class="spec">
+      <div class="body-md">Body md — secondary-gray reading copy at fifteen pixels, the smallest sensible size the system runs long text at.</div>
+      <div class="metrics">body-md<br><b>15px · weight 400 · lh 1.6</b><br>Inter Variable</div>
+    </div>
+    <div class="spec">
+      <div class="mono" style="color:var(--text-primary);font-size:15px">scheduler.ts:42 → await queue.drain()</div>
+      <div class="metrics">accent-mono<br><b>Berkeley Mono</b><br>code · paths · agent logs</div>
+    </div>
+
+    <div class="weight-ramp">
+      <div><span class="w" style="font-weight:400">Aa</span><span class="lab">400 regular</span></div>
+      <div><span class="w" style="font-weight:510">Aa</span><span class="lab">510 display</span></div>
+      <div><span class="w" style="font-weight:590">Aa</span><span class="lab">590 label</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<style data-section-styles="components">
+  #components .head{margin-bottom:56px;}
+  #components .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #components .head p{color:var(--text-secondary);margin-top:12px;max-width:680px;}
+  .comp{border-top:1px solid var(--border-subtle);padding:48px 0;}
+  .comp-grid{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start;}
+  .comp-title{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+  .comp-title h3{font-size:22px;font-weight:510;letter-spacing:-0.4px;}
+  .comp-count{font-family:var(--display-mono);font-size:11px;color:var(--text-tertiary);border:1px solid var(--border-subtle);border-radius:var(--r-pill);padding:2px 8px;}
+  .comp-desc{color:var(--text-secondary);font-size:14px;margin-bottom:28px;max-width:560px;}
+  .speccard{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--r-control);padding:16px;font-family:var(--display-mono);font-size:12px;line-height:1.9;color:var(--text-secondary);}
+  .speccard .tok{color:var(--text-primary);}
+  .speccard .lbl{color:var(--text-tertiary);}
+  .demo{background:var(--background);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:32px;}
+  /* buttons */
+  .btn-nav{height:36px;padding:0 16px;border-radius:var(--r-pill);background:var(--nav-fill);color:#08090A;font-weight:590;font-size:15px;border:none;cursor:pointer;transition:background .4s var(--ease-out);}
+  .btn-nav:hover{background:var(--nav-fill-hover);}
+  .btn-primary-mid{height:28px;border-radius:var(--r-control);background:var(--accent-interactive);color:var(--text-primary);border:none;padding:0 12px;font-size:13px;font-weight:590;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:filter .1s ease;}
+  .btn-primary-mid:hover{filter:brightness(1.1);}
+  .btn-hero{height:44px;padding:0 20px;border-radius:var(--r-pill);background:var(--nav-fill);color:#08090A;font-weight:590;font-size:15px;border:1px solid rgb(229,229,230);cursor:pointer;box-shadow:rgba(0,0,0,0) 0 8px 2px 0, rgba(0,0,0,0.01) 0 5px 2px 0, rgba(0,0,0,0.04) 0 3px 2px 0, rgba(0,0,0,0.07) 0 1px 1px 0, rgba(0,0,0,0.08) 0 0 1px 0;transition:background .4s var(--ease-out);}
+  .btn-hero:hover{background:var(--nav-fill-hover);}
+  .btn-glass{height:44px;padding:0 20px;border-radius:var(--r-pill);background:var(--glass-fill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:var(--text-primary);font-weight:590;font-size:15px;border:none;cursor:pointer;box-shadow:rgba(255,255,255,0.03) 0 0 0 1px inset, rgba(255,255,255,0.04) 0 1px 0 0 inset, rgba(0,0,0,0.6) 0 0 0 1px, rgba(0,0,0,0.1) 0 4px 4px 0;transition:background .4s var(--ease-out);}
+  .btn-glass:hover{background:#191A1B;}
+  .btn-glass-util{height:32px;padding:0 12px;border-radius:var(--r-pill);background:var(--glass-fill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);color:var(--text-primary);font-weight:590;font-size:14px;border:none;cursor:pointer;box-shadow:rgba(255,255,255,0.03) 0 0 0 1px inset, rgba(255,255,255,0.04) 0 1px 0 0 inset, rgba(0,0,0,0.6) 0 0 0 1px, rgba(0,0,0,0.1) 0 4px 4px 0;transition:background .4s var(--ease-out);}
+  .btn-glass-util:hover{background:#191A1B;}
+  .btn-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+  /* matrix */
+  .matrix{width:100%;border-collapse:collapse;}
+  .matrix th{font-family:var(--display-mono);font-size:11px;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.05em;text-align:left;padding:0 16px 16px 0;font-weight:400;}
+  .matrix td{padding:12px 16px 12px 0;vertical-align:middle;}
+  .matrix .vlabel{font-family:var(--display-mono);font-size:12px;color:var(--text-secondary);}
+  .is-disabled{opacity:.4;pointer-events:none;}
+  .is-active{filter:brightness(.9);}
+  /* pairing */
+  .pair-void{background:var(--background);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:44px;text-align:center;}
+  .pair-void .hl{font-size:36px;font-weight:510;letter-spacing:-0.9px;margin-bottom:8px;}
+  .pair-void .sub{color:var(--text-secondary);margin-bottom:28px;}
+  /* feature band */
+  .fband{display:grid;grid-template-columns:280px 1fr;gap:40px;padding:32px 0;border-top:1px solid var(--border-subtle);}
+  .fband:first-of-type{border-top:none;}
+  .fig{font-family:var(--display-mono);font-size:12px;color:var(--text-tertiary);margin-bottom:12px;}
+  .fband h4{font-size:34px;font-weight:510;letter-spacing:-0.9px;line-height:1.05;}
+  .fband .body{color:var(--text-secondary);font-size:15px;max-width:440px;}
+  .fband .anchor{font-family:var(--display-mono);font-size:12px;color:var(--text-primary);display:inline-flex;gap:6px;margin-top:14px;}
+  .fband-media{grid-column:1/-1;margin-top:8px;}
+  .diagram{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--r-card);height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+  .dotgrid{display:grid;grid-template-columns:repeat(16,1fr);gap:14px;padding:28px;width:100%;}
+  .dotgrid span{width:6px;height:6px;border-radius:var(--r-pill);background:var(--surface-alt);}
+  /* feature-row list */
+  .frow-list{display:flex;flex-direction:column;gap:10px;max-width:520px;}
+  .frow{background:transparent;border-radius:var(--r-control);padding:8px;box-shadow:rgba(0,0,0,0.4) 0 2px 4px 0;display:flex;gap:12px;align-items:flex-start;}
+  .frow iconify-icon{font-size:20px;color:var(--text-primary);margin-top:2px;}
+  .frow .ft{font-size:14px;font-weight:590;color:var(--text-primary);}
+  .frow .fb{font-size:13px;color:var(--text-secondary);}
+  /* note card */
+  .note-card{background:var(--surface);border-radius:var(--r-control);box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;padding:12px 20px 16px 15px;max-width:440px;}
+  .note-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .note-head h4{font-size:16px;font-weight:590;}
+  .note-ctrl{display:flex;gap:8px;color:var(--text-secondary);}
+  .note-ctrl button{background:none;border:none;color:inherit;cursor:pointer;padding:2px;display:inline-flex;}
+  .note-ctrl button:hover{color:var(--text-primary);}
+  .status-row{padding:10px 0;border-top:1px solid var(--border-subtle);}
+  .status-row .top{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+  .status-row .attr{font-size:13px;color:var(--text-secondary);}
+  .status-row ul{margin:4px 0 0;padding-left:18px;color:var(--text-secondary);font-size:13px;}
+  @media(max-width:768px){.comp-grid{grid-template-columns:1fr;}.fband{grid-template-columns:1fr;}}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>The component inventory</h2>
+      <p>Every measured family, rendered exactly. Glass stays glass, indigo stays in-product, and the list rows never become a bento grid.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title"><h3>Sticky Glass Navbar</h3><span class="comp-count">×1 · 12 items</span></div>
+          <p class="comp-desc">73px transparent bar with blur(20px). Left logo + nav links, right Log in text link and Sign up pill CTA.</p>
+          <div class="demo" data-tier-a-component="navbar">
+            <div style="display:flex;align-items:center;gap:24px;background:rgba(8,9,10,0.55);backdrop-filter:blur(20px);border:1px solid var(--border-hairline);border-radius:var(--r-control);height:73px;padding:0 20px;">
+              <span class="logo" style="font-size:16px"><svg class="logo-mark" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="none" stroke="#F7F8F8" stroke-width="1.6"/><path d="M6 15 L11 6 L16 15" fill="none" stroke="#F7F8F8" stroke-width="1.6"/></svg>Void Console</span>
+              <span style="color:var(--text-secondary);font-weight:590;font-size:16px">Product</span>
+              <span style="color:var(--text-secondary);font-weight:590;font-size:16px">Method</span>
+              <div style="margin-left:auto;display:flex;align-items:center;gap:16px">
+                <iconify-icon icon="lucide:search" style="color:var(--text-secondary)" aria-label="Search"></iconify-icon>
+                <span style="color:var(--text-secondary);font-weight:590;font-size:16px">Log in</span>
+                <button class="btn-nav">Sign up</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="speccard">
+          <div><span class="lbl">height</span> <span class="tok">73px</span></div>
+          <div><span class="lbl">backdrop</span> <span class="tok">blur(20px)</span></div>
+          <div><span class="lbl">nav-label</span> <span class="tok">16px / 590</span></div>
+          <div><span class="lbl">cta fill</span> <span class="tok">#E5E5E6</span></div>
+          <div><span class="lbl">cta radius</span> <span class="tok">pill</span></div>
+          <div><span class="lbl">cta hover</span> <span class="tok">#FFFFFF</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp" data-tier-a-component="button-hero-primary">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title"><h3>Button variant × state</h3><span class="comp-count">4 variants</span></div>
+          <p class="comp-desc">The true primary/secondary pair is filled/glass, not filled/outline. Indigo is reserved for the compact in-product send control. The source records no focus treatment, so no focus column is shown.</p>
+          <div class="demo">
+            <table class="matrix" data-tier-a-component="button-secondary-glass">
+              <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td class="vlabel">hero-primary<br>44px · pill</td>
+                  <td><button class="btn-hero">Start building</button></td>
+                  <td><button class="btn-hero" style="background:#FFFFFF">Start building</button></td>
+                  <td><button class="btn-hero is-active">Start building</button></td>
+                  <td><button class="btn-hero is-disabled" disabled>Start building</button></td>
+                </tr>
+                <tr>
+                  <td class="vlabel">secondary-glass<br>44px · pill</td>
+                  <td><button class="btn-glass">Talk to sales</button></td>
+                  <td><button class="btn-glass" style="background:#191A1B">Talk to sales</button></td>
+                  <td><button class="btn-glass is-active">Talk to sales</button></td>
+                  <td><button class="btn-glass is-disabled" disabled>Talk to sales</button></td>
+                </tr>
+                <tr>
+                  <td class="vlabel">nav-cta<br>36px · pill</td>
+                  <td><button class="btn-nav">Sign up</button></td>
+                  <td><button class="btn-nav" style="background:#FFFFFF">Sign up</button></td>
+                  <td><button class="btn-nav is-active">Sign up</button></td>
+                  <td><button class="btn-nav is-disabled" disabled>Sign up</button></td>
+                </tr>
+                <tr>
+                  <td class="vlabel">glass-utility<br>32px · pill</td>
+                  <td><button class="btn-glass-util">Filter</button></td>
+                  <td><button class="btn-glass-util" style="background:#191A1B">Filter</button></td>
+                  <td><button class="btn-glass-util is-active">Filter</button></td>
+                  <td><button class="btn-glass-util is-disabled" disabled>Filter</button></td>
+                </tr>
+                <tr>
+                  <td class="vlabel">indigo-midpage<br>28px · r6 · in-product</td>
+                  <td><button class="btn-primary-mid" data-tier-a-component="mid-page-indigo-button">Send <iconify-icon icon="lucide:corner-down-left"></iconify-icon></button></td>
+                  <td><button class="btn-primary-mid" style="filter:brightness(1.1)">Send <iconify-icon icon="lucide:corner-down-left"></iconify-icon></button></td>
+                  <td><button class="btn-primary-mid is-active">Send <iconify-icon icon="lucide:corner-down-left"></iconify-icon></button></td>
+                  <td><button class="btn-primary-mid is-disabled" disabled>Send <iconify-icon icon="lucide:corner-down-left"></iconify-icon></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="speccard">
+          <div><span class="lbl">--btn-hero-primary</span></div>
+          <div>fill <span class="tok">#E5E5E6</span></div>
+          <div>text <span class="tok">#08090A</span></div>
+          <div>radius <span class="tok">pill</span> · h <span class="tok">44</span></div>
+          <div>hover <span class="tok">#FFFFFF</span></div>
+          <div style="margin-top:10px"><span class="lbl">--btn-secondary-glass</span></div>
+          <div>fill <span class="tok">rgba(255,255,255,.05)</span></div>
+          <div>backdrop <span class="tok">blur(4px)</span></div>
+          <div style="margin-top:10px"><span class="lbl">--btn-primary-midpage</span></div>
+          <div>fill <span class="tok">#5E6AD2</span> · h <span class="tok">28</span></div>
+          <div>radius <span class="tok">r-control 6</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURE CONTENT BAND ×4 -->
+    <div class="comp" data-tier-a-component="feature-content-band">
+      <div class="comp-title"><h3>Feature content band</h3><span class="comp-count">×4</span></div>
+      <p class="comp-desc">Numbered fragment label, asymmetric two-column split (left heading, right body + numbered anchor), full-bleed UI diagram below. Repeats across direction, review, monitoring, and scale.</p>
+      <div class="demo">
+        <div class="fband">
+          <div><div class="fig">FIG.01 — direction</div><h4>Set direction in one place</h4></div>
+          <div><p class="body">Roadmaps, cycles, and projects share one surface so the plan and the work never drift apart.</p><a class="anchor" href="#composition" onclick="return false">01 Read more <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+          <div class="fband-media"><div class="diagram"><div class="dotgrid" aria-hidden="true"></div></div></div>
+        </div>
+        <div class="fband">
+          <div><div class="fig">FIG.02 — review</div><h4>Review changes without leaving context</h4></div>
+          <div><p class="body">Pull-request diffs sit beside the issue that spawned them, keeping the whole thread in view.</p><a class="anchor" href="#composition" onclick="return false">02 Read more <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+          <div class="fband-media"><div class="diagram"><div class="dotgrid" aria-hidden="true"></div></div></div>
+        </div>
+        <div class="fband">
+          <div><div class="fig">FIG.03 — monitoring</div><h4>Monitor with real data density</h4></div>
+          <div><p class="body">Dot-plot charts and status streams read as live instruments, not marketing infographics.</p><a class="anchor" href="#composition" onclick="return false">03 Read more <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+          <div class="fband-media"><div class="diagram"><div class="dotgrid" aria-hidden="true"></div></div></div>
+        </div>
+        <div class="fband">
+          <div><div class="fig">FIG.04 — scale</div><h4>Scale to every team on one canvas</h4></div>
+          <div><p class="body">The same black field holds a single squad or an entire org — density scales, chrome stays quiet.</p><a class="anchor" href="#composition" onclick="return false">04 Read more <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+          <div class="fband-media"><div class="diagram"><div class="dotgrid" aria-hidden="true"></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CARD FEATURE ROW LIST -->
+    <div class="comp">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title"><h3>Card-feature-row list</h3><span class="comp-count">×5 · single column</span></div>
+          <p class="comp-desc">Transparent fill, 6px radius, 8px padding, soft drop shadow. A full-width vertical stack — never a multi-column bento grid.</p>
+          <div class="demo" data-tier-a-component="card-feature-row-list">
+            <div class="frow-list">
+              <div class="frow"><iconify-icon icon="lucide:keyboard"></iconify-icon><div><div class="ft">Keyboard-first</div><div class="fb">Every action reachable without leaving the keys.</div></div></div>
+              <div class="frow"><iconify-icon icon="lucide:git-branch"></iconify-icon><div><div class="ft">Git-native</div><div class="fb">Branches and PRs mirror your issues automatically.</div></div></div>
+              <div class="frow"><iconify-icon icon="lucide:zap"></iconify-icon><div><div class="ft">Instant sync</div><div class="fb">Local-first engine keeps state real-time across teams.</div></div></div>
+              <div class="frow"><iconify-icon icon="lucide:bot"></iconify-icon><div><div class="ft">Agent-ready</div><div class="fb">Delegate scoped tasks to agents inside the workspace.</div></div></div>
+              <div class="frow"><iconify-icon icon="lucide:shield-check"></iconify-icon><div><div class="ft">SOC 2 secure</div><div class="fb">Enterprise controls without enterprise friction.</div></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="speccard">
+          <div><span class="lbl">--card-feature-row</span></div>
+          <div>fill <span class="tok">transparent</span></div>
+          <div>radius <span class="tok">r-control 6</span></div>
+          <div>padding <span class="tok">8px</span></div>
+          <div>shadow <span class="tok">0 2px 4px rgba(0,0,0,.4)</span></div>
+          <div>type <span class="tok">body-md / label</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOTE CARD -->
+    <div class="comp">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-title"><h3>Note / annotation card</h3><span class="comp-count">×1</span></div>
+          <p class="comp-desc">A weekly-status panel: heading, a small play/rate control cluster, and two status rows with signal-colored chips confined to in-product chrome.</p>
+          <div class="demo" data-tier-a-component="note-annotation-card">
+            <div class="note-card">
+              <div class="note-head">
+                <h4>Weekly status</h4>
+                <div class="note-ctrl">
+                  <button aria-label="Play summary"><iconify-icon icon="lucide:play"></iconify-icon></button>
+                  <button aria-label="Rate summary"><iconify-icon icon="lucide:star"></iconify-icon></button>
+                </div>
+              </div>
+              <div class="status-row" style="border-top:none">
+                <div class="top"><span class="chip"><span class="status-dot" style="background:var(--signal-green)"></span>On track</span><span class="attr">Scheduler · @dana</span></div>
+                <ul><li>Blocking awaits removed, latency down 40%.</li><li>Patch merged to cycle 14.</li></ul>
+              </div>
+              <div class="status-row">
+                <div class="top"><span class="chip"><span class="status-dot" style="background:var(--signal-orange)"></span>At risk</span><span class="attr">Billing · @lee</span></div>
+                <ul><li>Awaiting review on the retry queue.</li></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="speccard">
+          <div><span class="lbl">--card-note-panel</span></div>
+          <div>surface <span class="tok">#0F1011</span></div>
+          <div>radius <span class="tok">r-control 6</span></div>
+          <div>padding <span class="tok">12 20 16 15</span></div>
+          <div>shadow <span class="tok">0 0 0 1px rgba(0,0,0,.2)</span></div>
+          <div>chips <span class="tok">signal · chrome only</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CLOSING GRADIENT BAND -->
+    <div class="comp" data-tier-a-component="closing-gradient-band">
+      <div class="comp-title"><h3>Closing dark-to-gray statement band</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">A functional panel transition — black fading into footer-adjacent gray. Not an atmospheric backdrop.</p>
+      <div class="demo" style="padding:0;overflow:hidden">
+        <div style="background:linear-gradient(rgb(8,9,10) 10%, rgb(208,214,224) 100%);min-height:260px;display:flex;align-items:flex-start;padding:44px;">
+          <div class="headline-md" style="color:var(--text-primary)">Built for the future</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SURFACE & DEPTH -->
+<style data-section-styles="surface-depth">
+  #surface-depth .head{margin-bottom:48px;}
+  #surface-depth .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #surface-depth .head p{color:var(--text-secondary);margin-top:12px;max-width:640px;}
+  .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;}
+  .depth-card{background:var(--surface);border:1px solid var(--border-subtle);padding:24px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between;}
+  .depth-card .cap{font-family:var(--display-mono);font-size:12px;color:var(--text-secondary);}
+  .depth-card .cap b{color:var(--text-primary);font-weight:400;}
+  .r-sm{border-radius:2px;} .r-ctrl{border-radius:6px;} .r-input{border-radius:4px;} .r-card{border-radius:12px;} .r-pill{border-radius:9999px;}
+  .sh-row{box-shadow:rgba(0,0,0,0.4) 0 2px 4px 0;}
+  .sh-hair{box-shadow:rgba(0,0,0,0.2) 0 0 0 1px;}
+  .sh-glass{box-shadow:rgba(255,255,255,0.03) 0 0 0 1px inset, rgba(255,255,255,0.04) 0 1px 0 0 inset, rgba(0,0,0,0.6) 0 0 0 1px, rgba(0,0,0,0.1) 0 4px 4px 0;background:var(--glass-fill);backdrop-filter:blur(4px);}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>Surface &amp; depth</h2>
+      <p>Radii run small and code-like; shadows exist only to cue elevation at close range. Five radius steps, three shadow treatments.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card r-sm"><span class="cap">radius <b>control-sm</b></span><span class="cap">2px</span></div>
+      <div class="depth-card r-ctrl"><span class="cap">radius <b>control</b></span><span class="cap">6px</span></div>
+      <div class="depth-card r-input"><span class="cap">radius <b>input</b></span><span class="cap">4px</span></div>
+      <div class="depth-card r-card"><span class="cap">radius <b>card</b></span><span class="cap">12px</span></div>
+      <div class="depth-card r-pill" style="min-height:64px;align-items:center;flex-direction:row;justify-content:center"><span class="cap">radius <b>pill</b> · 9999px</span></div>
+      <div class="depth-card r-ctrl sh-row"><span class="cap">shadow <b>list-row</b></span><span class="cap">0 2px 4px rgba(0,0,0,.4)</span></div>
+      <div class="depth-card r-ctrl sh-hair"><span class="cap">shadow <b>hairline</b></span><span class="cap">0 0 0 1px rgba(0,0,0,.2)</span></div>
+      <div class="depth-card r-card sh-glass"><span class="cap">shadow <b>glass stack</b></span><span class="cap">inset + ambient</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION -->
+<style data-section-styles="motion">
+  #motion .head{margin-bottom:48px;}
+  #motion .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #motion .head p{color:var(--text-secondary);margin-top:12px;max-width:640px;}
+  .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:22px;}
+  .motion-card{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:24px;}
+  .motion-card .lab{font-family:var(--display-mono);font-size:12px;color:var(--text-tertiary);margin-bottom:16px;}
+  .motion-card .lab b{color:var(--text-primary);font-weight:400;}
+  .mbox{height:56px;border-radius:var(--r-control);background:var(--surface-alt);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text-secondary);font-size:13px;}
+  .mbox.color-demo{transition:background .1s ease,color .1s ease;}
+  .mbox.color-demo.on{background:var(--nav-fill);color:#08090A;}
+  .mbox.fill-demo{transition:background .4s var(--ease-out);}
+  .mbox.fill-demo.on{background:var(--accent-interactive);color:var(--text-primary);}
+  .mbox.transform-demo{transition:transform .16s var(--ease-out),opacity .16s var(--ease-out);}
+  .mbox.transform-demo.on{transform:scale(1.06);}
+  .dotbob span{display:inline-block;width:8px;height:8px;border-radius:var(--r-pill);background:var(--text-secondary);margin:0 4px;}
+  .replay{margin-top:16px;font-family:var(--display-mono);font-size:11px;color:var(--text-tertiary);}
+  @keyframes gridDotUpDown{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+  .dotbob.play span{animation:gridDotUpDown 1.2s var(--ease-out) infinite;}
+  .dotbob.play span:nth-child(2){animation-delay:.15s}
+  .dotbob.play span:nth-child(3){animation-delay:.3s}
+  .dotbob.play span:nth-child(4){animation-delay:.45s}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>Fast, precise, no overshoot</h2>
+      <p>Motion matches the developer-tool register. Click a card to replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="lab">color transition<br><b>0.1s ease</b></div>
+        <div class="mbox color-demo" role="button" tabindex="0" data-motion="color">Toggle state</div>
+        <div class="replay">click to replay</div>
+      </div>
+      <div class="motion-card">
+        <div class="lab">background fill<br><b>0.4s ease-out</b></div>
+        <div class="mbox fill-demo" role="button" tabindex="0" data-motion="fill">Hover fill</div>
+        <div class="replay">click to replay</div>
+      </div>
+      <div class="motion-card">
+        <div class="lab">panel entrance<br><b>0.16s cubic-bezier(.25,.46,.45,.94)</b></div>
+        <div class="mbox transform-demo" role="button" tabindex="0" data-motion="transform">Scale in</div>
+        <div class="replay">click to replay</div>
+      </div>
+      <div class="motion-card">
+        <div class="lab">grid-dot bob<br><b>ambient keyframe</b></div>
+        <div class="mbox"><span class="dotbob" role="button" tabindex="0" data-motion="dot"><span></span><span></span><span></span><span></span></span></div>
+        <div class="replay">click to replay</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IN COMPOSITION -->
+<style data-section-styles="composition">
+  #composition .head{margin-bottom:48px;}
+  #composition .head h2{font-size:40px;font-weight:510;letter-spacing:-1px;}
+  #composition .head p{color:var(--text-secondary);margin-top:12px;max-width:640px;}
+  .mockscreen{border:1px solid var(--border-subtle);border-radius:var(--r-card);overflow:hidden;background:var(--background);}
+  .mock-nav{height:73px;display:flex;align-items:center;gap:24px;padding:0 24px;background:rgba(8,9,10,0.55);backdrop-filter:blur(20px);border-bottom:1px solid var(--border-hairline);}
+  .mock-nav .lk{color:var(--text-secondary);font-weight:590;font-size:15px;}
+  .mock-hero{padding:72px 40px 40px;}
+  .mock-hero .display-lg{font-size:48px;letter-spacing:-1.1px;}
+  .mock-hero .sub{color:var(--text-secondary);margin-top:20px;max-width:480px;}
+  .mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 40px 40px;}
+  .mock-card{background:var(--surface);border:1px solid var(--border-subtle);border-radius:var(--r-card);padding:24px;}
+  .mock-card iconify-icon{font-size:24px;color:var(--text-primary);}
+  .mock-card h5{font-size:17px;font-weight:590;margin:14px 0 6px;letter-spacing:-0.3px;}
+  .mock-card p{font-size:13px;color:var(--text-secondary);}
+  .mock-cta{padding:0 40px 56px;display:flex;gap:16px;}
+  @media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-hero .display-lg{font-size:32px;}}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <div class="head">
+      <h2>In composition</h2>
+      <p>Nav, void headline, three cards, and the filled/glass CTA pair — assembled entirely from the tokens above.</p>
+    </div>
+    <div class="mockscreen">
+      <div class="mock-nav">
+        <span class="logo" style="font-size:16px"><svg class="logo-mark" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="none" stroke="#F7F8F8" stroke-width="1.6"/><path d="M6 15 L11 6 L16 15" fill="none" stroke="#F7F8F8" stroke-width="1.6"/></svg>Void Console</span>
+        <span class="lk">Product</span><span class="lk">Method</span>
+        <span style="margin-left:auto"><button class="btn-nav">Sign up</button></span>
+      </div>
+      <div class="mock-hero">
+        <h3 class="display-lg">Everything the team<br>needs, on one black field</h3>
+        <p class="sub">Issues, reviews, and agents share a single quiet canvas.</p>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><iconify-icon icon="lucide:list-checks"></iconify-icon><h5>Track</h5><p>Every issue in one keyboard-driven queue.</p></div>
+        <div class="mock-card"><iconify-icon icon="lucide:git-merge"></iconify-icon><h5>Review</h5><p>Diffs beside the issues that started them.</p></div>
+        <div class="mock-card"><iconify-icon icon="lucide:gauge"></iconify-icon><h5>Monitor</h5><p>Live status streams, no infographic filler.</p></div>
+      </div>
+      <div class="mock-cta">
+        <button class="btn-hero">Start building</button>
+        <button class="btn-glass">Talk to sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECOND VOID HEADLINE -->
+<section class="band" aria-label="Closing headline" data-tier-a-component="hero-void-headline">
+  <div class="wrap">
+    <div class="hero-head">
+      <h2 class="display-lg">Built for how<br>software gets shipped</h2>
+    </div>
+    <div class="hero-sub-row">
+      <p class="hero-sub">Density and legibility of the real interface carry the credibility. Nothing decorative gets in the way.</p>
+      <a href="#components" class="text-link-util"><strong>New</strong> · Coding Sessions <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<style data-section-styles="footer">
+  #footer{border-top:1px solid var(--border-subtle);background:var(--background);padding:64px 0 40px;}
+  .foot-grid{display:grid;grid-template-columns:1.2fr repeat(5,1fr);gap:32px;}
+  .foot-brand{display:flex;align-items:center;gap:10px;font-weight:590;font-size:16px;}
+  .foot-col h4{font-family:var(--display-mono);font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-bottom:14px;font-weight:400;}
+  .foot-col a{display:block;font-size:13px;color:var(--text-secondary);padding:5px 0;transition:color .1s ease;}
+  .foot-col a:hover{color:var(--text-primary);}
+  .foot-legal{border-top:1px solid var(--border-subtle);margin-top:48px;padding-top:24px;display:flex;flex-wrap:wrap;gap:20px;align-items:center;}
+  .foot-legal a{font-size:12px;color:var(--text-tertiary);}
+  .foot-credit{margin-left:auto;font-size:12px;color:var(--text-tertiary);}
+  @media(max-width:768px){.foot-grid{grid-template-columns:1fr 1fr;}}
+</style>
+<footer id="footer" data-tier-a-component="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand"><svg class="logo-mark" viewBox="0 0 22 22" aria-hidden="true"><rect x="1" y="1" width="20" height="20" rx="5" fill="none" stroke="#F7F8F8" stroke-width="1.6"/><path d="M6 15 L11 6 L16 15" fill="none" stroke="#F7F8F8" stroke-width="1.6"/></svg>Void Console</div>
+      <div class="foot-col"><h4>Product</h4><a href="#components" onclick="return false">Issues</a><a href="#components" onclick="return false">Cycles</a><a href="#components" onclick="return false">Projects</a><a href="#components" onclick="return false">Agents</a><a href="#components" onclick="return false">Insights</a></div>
+      <div class="foot-col"><h4>Features</h4><a href="#components" onclick="return false">Reviews</a><a href="#components" onclick="return false">Roadmaps</a><a href="#components" onclick="return false">Automations</a><a href="#components" onclick="return false">Search</a><a href="#components" onclick="return false">Keyboard</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="#hero" onclick="return false">About</a><a href="#hero" onclick="return false">Careers</a><a href="#hero" onclick="return false">Blog</a><a href="#hero" onclick="return false">Brand</a><a href="#hero" onclick="return false">Press</a></div>
+      <div class="foot-col"><h4>Resources</h4><a href="#type-scale" onclick="return false">Docs</a><a href="#type-scale" onclick="return false">API</a><a href="#type-scale" onclick="return false">Status</a><a href="#type-scale" onclick="return false">Changelog</a><a href="#type-scale" onclick="return false">Community</a></div>
+      <div class="foot-col"><h4>Connect</h4><a href="#footer" onclick="return false">Contact</a><a href="#footer" onclick="return false">X</a><a href="#footer" onclick="return false">GitHub</a><a href="#footer" onclick="return false">Discord</a><a href="#footer" onclick="return false">YouTube</a></div>
+    </div>
+    <div class="foot-legal">
+      <a href="#footer" onclick="return false">Privacy</a>
+      <a href="#footer" onclick="return false">Terms</a>
+      <a href="#footer" onclick="return false">Security</a>
+      <a href="https://linear.app/" rel="noopener">linear.app</a>
+      <span class="foot-credit">Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // populate feature-band dot diagrams
+  document.querySelectorAll('.dotgrid').forEach(function(g){
+    for(var i=0;i<48;i++){g.appendChild(document.createElement('span'));}
+  });
+  // motion replay
+  function trigger(el){
+    var t=el.getAttribute('data-motion');
+    if(t==='dot'){el.classList.toggle('play');return;}
+    el.classList.add('on');
+    setTimeout(function(){el.classList.remove('on');},900);
+  }
+  document.querySelectorAll('[data-motion]').forEach(function(el){
+    el.addEventListener('click',function(){trigger(el);});
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();trigger(el);}});
+  });
+</script>
+</body>
+</html>

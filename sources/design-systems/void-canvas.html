@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void canvas — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#FFFFFF;
+  --text-primary:#000000;
+  --text-secondary:#000000;
+  --accent:#000000;
+  --body-size:16px;
+  --body-weight:400;
+  --body-lh:1.5;
+  --radius-control:0px;
+  --radius-card:0px;
+  --radius-pill:9999px;
+  --space-base:8px;
+  --font-body:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:var(--body-size);
+  font-weight:var(--body-weight);
+  line-height:var(--body-lh);
+  -webkit-font-smoothing:antialiased;
+}
+a{color:var(--accent)}
+h1,h2,h3{font-weight:600;line-height:1.1;margin:0}
+section{padding:96px 32px;border-bottom:1px solid #000000}
+.band-inner{max-width:1040px;margin:0 auto}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:24px}
+.caption{font-size:13px;font-weight:400;line-height:1.5}
+@keyframes rotateSpinner{to{transform:rotate(360deg)}}
+@keyframes fb_transform{from{transform:translateY(16px) scale(.98);opacity:.001}to{transform:translateY(0) scale(1);opacity:1}}
+@media (prefers-reduced-motion:reduce){*{animation:none !important}}
+
+/* hero */
+#hero{
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:var(--background);
+  border-bottom:1px solid #000000;
+  padding:120px 32px;
+}
+#hero .hero-inner{max-width:760px}
+#hero .spinner{
+  width:40px;height:40px;
+  border:3px solid #000000;
+  border-top-color:transparent;
+  border-radius:var(--radius-pill);
+  margin:0 auto 48px;
+  animation:rotateSpinner 1s linear infinite;
+}
+#hero h1{
+  font-size:clamp(40px,8vw,88px);
+  letter-spacing:-0.03em;
+  margin-bottom:24px;
+}
+#hero p{font-size:18px;line-height:1.5;max-width:520px;margin:0 auto 40px}
+.cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn{
+  font-family:var(--font-body);
+  font-size:15px;font-weight:500;
+  padding:14px 28px;
+  border-radius:var(--radius-control);
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  text-decoration:none;
+}
+.btn-primary{background:#000000;color:#FFFFFF;border:1px solid #000000}
+.btn-secondary{background:#FFFFFF;color:#000000;border:1px solid #000000}
+@media(max-width:640px){
+  section{padding:64px 20px}
+  #hero{padding:88px 20px}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-inner">
+    <div class="spinner" aria-label="Loading" role="status"></div>
+    <h1>Void canvas</h1>
+    <p>An unrendered field. Pure white, waiting — nothing paints until it is ready to be seen.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#components">View the system</a>
+      <a class="btn btn-secondary" href="#motion">See the motion</a>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;margin-top:40px}
+#palette .role{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin:48px 0 8px}
+#palette .swatch{border:1px solid #000000;border-radius:var(--radius-card)}
+#palette .chip{height:120px;border-radius:0}
+#palette .chip.checker{
+  background-image:
+    linear-gradient(45deg,#e6e6e6 25%,transparent 25%),
+    linear-gradient(-45deg,#e6e6e6 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#e6e6e6 75%),
+    linear-gradient(-45deg,transparent 75%,#e6e6e6 75%);
+  background-size:16px 16px;
+  background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+#palette .meta{padding:14px 16px}
+#palette .meta .name{font-weight:600;font-size:15px}
+#palette .meta .val{font-family:ui-monospace,monospace;font-size:13px;margin-top:4px}
+#palette .meta .note{font-size:13px;margin-top:8px}
+</style>
+<section id="palette">
+  <div class="band-inner">
+    <div class="eyebrow">Palette</div>
+    <h2>Two values, nothing more</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">The entire field is white, with black held in reserve as the only ink. No hue, no gradient, no decoration — the system earns its clarity by restraint.</p>
+
+    <div class="role">Surfaces</div>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#FFFFFF;border-bottom:1px solid #000"></div>
+        <div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="note">The dominant and only measured field.</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#FFFFFF;border-bottom:1px solid #000"></div>
+        <div class="meta"><div class="name">Surface</div><div class="val">#FFFFFF</div><div class="note">Shares the field — no elevation is drawn.</div></div>
+      </div>
+    </div>
+
+    <div class="role">Text</div>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="meta"><div class="name">Text primary</div><div class="val">#000000</div><div class="note">The single dark value; all ink is this black.</div></div>
+      </div>
+      <div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="meta"><div class="name">Text secondary</div><div class="val">#000000</div><div class="note">No softened tier exists — reads as primary.</div></div>
+      </div>
+    </div>
+
+    <div class="role">Accent</div>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="meta"><div class="name">Accent</div><div class="val">#000000</div><div class="note">Black carries every interactive and emphatic cue.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .specimen{border-top:1px solid #000000;padding:32px 0;display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:baseline}
+#type-scale .specimen:last-child{border-bottom:1px solid #000000}
+#type-scale .sample{font-weight:400}
+#type-scale .metrics{font-family:ui-monospace,monospace;font-size:12px;line-height:1.7}
+@media(max-width:640px){#type-scale .specimen{grid-template-columns:1fr}}
+</style>
+<section id="type-scale">
+  <div class="band-inner">
+    <div class="eyebrow">Type scale</div>
+    <h2>A single system voice</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">One body token is declared, on the system default stack. Everything is built from this one measured size.</p>
+    <div class="specimen">
+      <div class="sample" style="font-size:16px;font-weight:400;line-height:1.5">Nothing paints before it is ready — the body-md token holds the whole page at a steady sixteen pixels.</div>
+      <div class="metrics">role · body-md<br>size · 16px<br>weight · 400<br>line-height · 1.5<br>family · system default</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid #000000;padding:48px 0;display:grid;grid-template-columns:1fr 300px;gap:40px}
+#components .comp:last-child{border-bottom:1px solid #000000}
+#components .comp h3{font-size:22px;margin-bottom:8px}
+#components .comp .desc{font-size:14px;line-height:1.5;margin-bottom:28px;max-width:440px}
+.spec{font-family:ui-monospace,monospace;font-size:12px;line-height:1.8;border:1px solid #000000;padding:16px 18px;border-radius:var(--radius-card)}
+.spec .k{opacity:1;font-weight:600}
+.stage{
+  min-height:220px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid #000000;
+  background:#FFFFFF;
+  border-radius:var(--radius-card);
+}
+.void-spinner{
+  width:40px;height:40px;
+  border:3px solid #000000;
+  border-top-color:transparent;
+  border-radius:var(--radius-pill);
+  animation:rotateSpinner 1s linear infinite;
+}
+.reveal-stage{flex-direction:column;gap:24px;position:relative}
+.reveal-target{
+  padding:20px 32px;
+  border:1px solid #000000;
+  border-radius:var(--radius-card);
+  font-size:15px;
+}
+.reveal-target.playing{animation:fb_transform .6s ease-out both}
+.replay{
+  margin-top:4px;
+  font-size:13px;font-weight:500;
+  background:#000000;color:#FFFFFF;
+  border:1px solid #000000;
+  padding:10px 18px;border-radius:var(--radius-control);
+  cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+}
+@media(max-width:768px){#components .comp{grid-template-columns:1fr}}
+</style>
+<section id="components">
+  <div class="band-inner">
+    <div class="eyebrow">Components</div>
+    <h2>The confirmed inventory</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">Two families carry the system's entire identity: an indeterminate loader and a transform-based reveal. Each is built only from measured tokens.</p>
+
+    <div class="comp" data-tier-a-component="loader-spinner">
+      <div>
+        <h3>Loading mechanism</h3>
+        <p class="desc">An indeterminate spinner centered on an otherwise blank white viewport. Driven by <code>rotateSpinner</code> — a continuous, linear 360° loop. Black ink, pill radius, unobtrusive scale. The only thing allowed to paint before content is ready.</p>
+        <div class="stage">
+          <div class="void-spinner" role="status" aria-label="Loading indicator"></div>
+        </div>
+      </div>
+      <div class="spec">
+        <div><span class="k">--loader-spinner</span></div>
+        background transparent<br>
+        ink text-primary #000000<br>
+        radius r-pill 9999px<br>
+        motion rotateSpinner<br>
+        easing linear · loop infinite
+      </div>
+    </div>
+
+    <div class="comp" data-tier-a-component="content-reveal">
+      <div>
+        <h3>Content reveal</h3>
+        <p class="desc">A one-shot, transform-driven entrance applied to a container as content enters, once loading completes. Preserves the <code>fb_transform</code> motion identity — a subtle translate and scale, not a decorative flourish.</p>
+        <div class="stage reveal-stage">
+          <div class="reveal-target playing" id="revealTarget">Content, revealed.</div>
+          <button class="replay" id="revealReplay" type="button">
+            <iconify-icon icon="lucide:rotate-ccw" aria-hidden="true"></iconify-icon>
+            Replay
+          </button>
+        </div>
+      </div>
+      <div class="spec">
+        <div><span class="k">--content-reveal</span></div>
+        target container<br>
+        transform translate + scale<br>
+        motion fb_transform<br>
+        trigger on content enter<br>
+        shot one-time
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .card{
+  border:1px solid #000000;
+  background:#FFFFFF;
+  border-radius:var(--radius-card);
+  padding:32px;
+  max-width:420px;
+  margin-top:40px;
+}
+#surface-depth .card h3{font-size:18px;margin-bottom:12px}
+#surface-depth .card p{font-size:14px;line-height:1.5}
+#surface-depth .radii{display:flex;gap:24px;margin-top:32px;flex-wrap:wrap}
+#surface-depth .r{text-align:center;font-family:ui-monospace,monospace;font-size:12px}
+#surface-depth .r .box{width:88px;height:88px;border:1px solid #000000;margin-bottom:8px}
+</style>
+<section id="surface-depth">
+  <div class="band-inner">
+    <div class="eyebrow">Surface &amp; depth</div>
+    <h2>Flat by intent</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">No shadow, no elevation. Depth is expressed only through the single hairline edge and the system's documented radii.</p>
+    <div class="radii">
+      <div class="r"><div class="box" style="border-radius:0"></div>control · 0px</div>
+      <div class="r"><div class="box" style="border-radius:0"></div>card · 0px</div>
+      <div class="r"><div class="box" style="border-radius:9999px"></div>pill · 9999px</div>
+    </div>
+    <div class="card">
+      <h3>Surface</h3>
+      <p>Surface and background share one value. The card is defined by its edge alone — no tonal shift, no shadow.</p>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .mrow{display:grid;grid-template-columns:1fr 260px;gap:40px;border-top:1px solid #000000;padding:48px 0;align-items:center}
+#motion .mrow:last-child{border-bottom:1px solid #000000}
+#motion .mstage{min-height:140px;display:flex;align-items:center;justify-content:center;border:1px solid #000000;border-radius:var(--radius-card)}
+#motion .mspin{width:40px;height:40px;border:3px solid #000;border-top-color:transparent;border-radius:9999px;animation:rotateSpinner 1s linear infinite}
+#motion .mreveal{padding:18px 28px;border:1px solid #000;font-size:15px}
+#motion .mreveal.go{animation:fb_transform .6s ease-out both}
+#motion .mlabel{font-family:ui-monospace,monospace;font-size:12px;line-height:1.8}
+#motion .playbtn{margin-top:12px;font-size:13px;font-weight:500;background:#000;color:#fff;border:1px solid #000;padding:9px 16px;cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+@media(max-width:768px){#motion .mrow{grid-template-columns:1fr}}
+</style>
+<section id="motion">
+  <div class="band-inner">
+    <div class="eyebrow">Motion</div>
+    <h2>The only two things that move</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">Two named keyframes are the system's entire motion identity. Nothing else animates.</p>
+    <div class="mrow">
+      <div class="mstage"><div class="mspin" aria-hidden="true"></div></div>
+      <div class="mlabel">
+        <strong>rotateSpinner</strong><br>
+        360° continuous loop<br>
+        easing · linear<br>
+        loop · infinite<br>
+        role · indeterminate loader
+      </div>
+    </div>
+    <div class="mrow">
+      <div class="mstage"><div class="mreveal go" id="motionReveal">Entering.</div></div>
+      <div class="mlabel">
+        <strong>fb_transform</strong><br>
+        translate + scale in<br>
+        shot · one-time on enter<br>
+        role · content reveal
+        <div><button class="playbtn" id="motionReplay" type="button"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon>Play</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid #000000;border-radius:var(--radius-card);overflow:hidden;margin-top:40px;background:#FFFFFF}
+#composition .mocknav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-bottom:1px solid #000}
+#composition .mocknav .logo{font-weight:600;font-size:16px}
+#composition .mocknav .lnk{font-size:14px;text-decoration:none;color:#000}
+#composition .mockhero{padding:64px 28px;text-align:center}
+#composition .mockhero .mspin{width:32px;height:32px;border:3px solid #000;border-top-color:transparent;border-radius:9999px;animation:rotateSpinner 1s linear infinite;margin:0 auto 28px}
+#composition .mockhero h3{font-size:clamp(28px,5vw,44px);letter-spacing:-0.02em;margin-bottom:16px}
+#composition .mockhero p{font-size:16px;max-width:420px;margin:0 auto}
+#composition .mockcards{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #000}
+#composition .mockcard{padding:28px;border-right:1px solid #000}
+#composition .mockcard:last-child{border-right:none}
+#composition .mockcard h4{font-size:16px;margin-bottom:8px}
+#composition .mockcard p{font-size:14px;line-height:1.5}
+#composition .mockcta{padding:40px 28px;text-align:center;border-top:1px solid #000}
+@media(max-width:768px){#composition .mockcards{grid-template-columns:1fr}#composition .mockcard{border-right:none;border-bottom:1px solid #000}}
+</style>
+<section id="composition">
+  <div class="band-inner">
+    <div class="eyebrow">In composition</div>
+    <h2>Held together</h2>
+    <p class="caption" style="margin-top:16px;max-width:560px">A whole screen assembled from only the documented tokens: white field, black ink, hairline edges, the loader, the reveal.</p>
+    <div class="mock">
+      <div class="mocknav">
+        <div class="logo">Void canvas</div>
+        <a class="lnk" href="#hero">Enter</a>
+      </div>
+      <div class="mockhero">
+        <div class="mspin" role="status" aria-label="Loading"></div>
+        <h3>Ready when it's ready</h3>
+        <p>No skeleton, no placeholder shell. The field stays pure until content can paint in full.</p>
+      </div>
+      <div class="mockcards">
+        <div class="mockcard"><h4>Restraint</h4><p>Two values carry the entire interface — white and black.</p></div>
+        <div class="mockcard"><h4>Clarity</h4><p>Flat surfaces, a single hairline edge, zero decoration.</p></div>
+        <div class="mockcard"><h4>Patience</h4><p>Motion only to signal loading and to reveal what arrives.</p></div>
+      </div>
+      <div class="mockcta">
+        <a class="btn btn-primary" href="#components" style="border-radius:0">Explore components</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:64px 32px;text-align:center;border-bottom:none}
+#footer .brand{font-size:20px;font-weight:600;margin-bottom:12px}
+#footer a{color:#000;font-size:14px;word-break:break-all}
+#footer .credit{font-size:13px;margin-top:16px}
+</style>
+<footer id="footer">
+  <div class="band-inner">
+    <div class="brand">Void canvas</div>
+    <a href="https://pth5.qmai.cn/mp-monorepo-h5/web/index.html">https://pth5.qmai.cn/mp-monorepo-h5/web/index.html</a>
+    <div class="credit">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function wire(targetId, btnId, cls){
+    var t=document.getElementById(targetId), b=document.getElementById(btnId);
+    if(!t||!b)return;
+    b.addEventListener('click',function(){
+      t.classList.remove(cls);
+      void t.offsetWidth;
+      t.classList.add(cls);
+    });
+  }
+  wire('revealTarget','revealReplay','playing');
+  wire('motionReveal','motionReplay','go');
+})();
+</script>
+</body>
+</html>

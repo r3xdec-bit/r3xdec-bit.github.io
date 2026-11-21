@@ -1,0 +1,470 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>My design system — Style Guide</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#ffffff;
+    --foreground:#111111;
+    --primary:#635bff;
+    --primary-hover:#524ad6;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --surface-alt:#f6f7f9;
+    --space-base:8px;
+    --space-section:64px;
+    --r-card:16px;
+    --r-button:8px;
+    --font-body:'Inter',system-ui,-apple-system,sans-serif;
+    --body-size:16px;
+    --body-weight:400;
+    --body-lh:1.5;
+    --ease-out:cubic-bezier(0.22,0.61,0.36,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--background);
+    color:var(--foreground);
+    font-family:var(--font-body);
+    font-size:var(--body-size);
+    font-weight:var(--body-weight);
+    line-height:var(--body-lh);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-weight:600;line-height:1.1;margin:0;letter-spacing:-0.02em;}
+  p{margin:0;}
+  a{color:var(--primary);}
+  .band{padding:var(--space-section) 24px;max-width:1120px;margin:0 auto;}
+  .eyebrow{font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--primary);margin-bottom:12px;}
+  .lede{color:var(--muted);font-size:18px;max-width:52ch;}
+  .btn{
+    font-family:var(--font-body);
+    font-size:15px;font-weight:500;
+    border-radius:var(--r-button);
+    padding:12px 20px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:background .3s var(--ease-out),color .3s var(--ease-out),border-color .3s var(--ease-out);
+    display:inline-flex;align-items:center;gap:8px;
+    text-decoration:none;
+  }
+  .btn-primary{background:var(--primary);color:#ffffff;}
+  .btn-primary:hover{background:var(--primary-hover);}
+  .btn-secondary{background:var(--background);color:var(--foreground);border-color:var(--border);}
+  .btn-secondary:hover{background:var(--surface-alt);}
+  /* nav */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    height:64px;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 24px;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--border);
+  }
+  .nav-inner{max-width:1120px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;}
+  .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px;letter-spacing:-0.02em;}
+  .logo-mark{width:28px;height:28px;border-radius:var(--r-button);background:var(--primary);display:grid;place-items:center;color:#fff;}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{color:var(--foreground);text-decoration:none;font-size:15px;font-weight:500;transition:color .3s var(--ease-out);}
+  .nav-links a:hover{color:var(--primary);}
+  /* hero */
+  #hero{
+    background:
+      radial-gradient(1200px 500px at 70% -10%, rgba(99,91,255,0.14), transparent 60%),
+      var(--background);
+    border-bottom:1px solid var(--border);
+  }
+  .hero-inner{max-width:1120px;margin:0 auto;padding:120px 24px 110px;}
+  .hero-title{font-size:72px;letter-spacing:-0.03em;max-width:16ch;}
+  .hero-title .accent{color:var(--primary);}
+  .hero-lede{margin-top:24px;font-size:20px;color:var(--muted);max-width:48ch;}
+  .hero-cta{margin-top:40px;display:flex;gap:14px;flex-wrap:wrap;}
+  @media(max-width:768px){
+    .nav-links{display:none;}
+    .hero-title{font-size:44px;}
+    .hero-inner{padding:72px 24px 64px;}
+    .hero-lede{font-size:17px;}
+  }
+  @media(max-width:640px){
+    .hero-title{font-size:36px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <div class="logo">
+      <span class="logo-mark"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></span>
+      My design system
+    </div>
+    <div class="nav-links">
+      <a href="#palette">Palette</a>
+      <a href="#type-scale">Type</a>
+      <a href="#components">Components</a>
+      <a href="#surface-depth">Surfaces</a>
+      <a href="#motion">Motion</a>
+    </div>
+    <a href="#components" class="btn btn-primary">Explore</a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-inner">
+    <p class="eyebrow">Design system</p>
+    <h1 class="hero-title" id="hero-title">A calm, considered <span class="accent">visual language</span> for building.</h1>
+    <p class="hero-lede">One set of tokens — colour, type, spacing and radius — tuned for clarity and consistency across every surface.</p>
+    <div class="hero-cta">
+      <a href="#components" class="btn btn-primary"><iconify-icon icon="lucide:grid-2x2" aria-hidden="true"></iconify-icon>View components</a>
+      <a href="#palette" class="btn btn-secondary">Browse tokens</a>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+  #palette .band{padding-top:var(--space-section);padding-bottom:var(--space-section);}
+  .group-title{font-size:15px;font-weight:600;margin:40px 0 16px;}
+  .swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;}
+  .swatch{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;background:var(--background);}
+  .swatch-color{height:96px;}
+  .swatch-meta{padding:14px 16px;}
+  .swatch-name{font-weight:600;font-size:15px;}
+  .swatch-val{font-family:ui-monospace,monospace;font-size:13px;color:var(--muted);margin-top:4px;}
+  .swatch-note{font-size:13px;color:var(--muted);margin-top:8px;line-height:1.4;}
+</style>
+<section id="palette" aria-labelledby="palette-h">
+  <div class="band">
+    <p class="eyebrow">Colour</p>
+    <h2 id="palette-h">Palette</h2>
+    <p class="lede">A restrained set of tokens. One accent, rationed for interactive moments.</p>
+
+    <h3 class="group-title">Surfaces</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#ffffff;border-bottom:1px solid var(--border);"></div>
+        <div class="swatch-meta"><div class="swatch-name">Background</div><div class="swatch-val">#ffffff</div><div class="swatch-note">Primary page and card surface.</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#f6f7f9;"></div>
+        <div class="swatch-meta"><div class="swatch-name">Surface alt</div><div class="swatch-val">#f6f7f9</div><div class="swatch-note">Hover fills and subtle panels, derived from background.</div></div>
+      </div>
+    </div>
+
+    <h3 class="group-title">Text</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#111111;"></div>
+        <div class="swatch-meta"><div class="swatch-name">Foreground</div><div class="swatch-val">#111111</div><div class="swatch-note">Primary body and heading text.</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#6b7280;"></div>
+        <div class="swatch-meta"><div class="swatch-name">Muted</div><div class="swatch-val">#6b7280</div><div class="swatch-note">Captions, secondary copy, placeholders.</div></div>
+      </div>
+    </div>
+
+    <h3 class="group-title">Accents</h3>
+    <div class="swatch-grid">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#635bff;"></div>
+        <div class="swatch-meta"><div class="swatch-name">Primary</div><div class="swatch-val">#635bff</div><div class="swatch-note">Reserved for filled primary actions and links.</div></div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#524ad6;"></div>
+        <div class="swatch-meta"><div class="swatch-name">Primary hover</div><div class="swatch-val">#524ad6</div><div class="swatch-note">Darkened primary for hover and active states.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+  #type-scale{background:var(--surface-alt);}
+  .specimen{border-bottom:1px solid var(--border);padding:28px 0;}
+  .specimen:last-child{border-bottom:none;}
+  .spec-text{color:var(--foreground);}
+  .spec-meta{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);margin-top:10px;}
+  .weight-ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:20px;}
+  .weight-ramp div{font-size:28px;}
+</style>
+<section id="type-scale" aria-labelledby="type-h">
+  <div class="band">
+    <p class="eyebrow">Typography</p>
+    <h2 id="type-h">Type scale</h2>
+    <p class="lede">Inter across the board. Tight tracking on display sizes, comfortable line-height on body.</p>
+
+    <div class="specimen">
+      <div class="spec-text" style="font-size:72px;font-weight:600;letter-spacing:-0.03em;line-height:1.1;">Build with clarity</div>
+      <div class="spec-meta">Display · 72px / 600 / 1.1 / -0.03em</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-text" style="font-size:48px;font-weight:600;letter-spacing:-0.02em;line-height:1.1;">A consistent language</div>
+      <div class="spec-meta">Heading 1 · 48px / 600 / 1.1 / -0.02em</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-text" style="font-size:32px;font-weight:600;letter-spacing:-0.02em;line-height:1.2;">Tokens over guesswork</div>
+      <div class="spec-meta">Heading 2 · 32px / 600 / 1.2 / -0.02em</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-text" style="font-size:20px;font-weight:500;line-height:1.3;">Section lead copy that guides the reader.</div>
+      <div class="spec-meta">Subtitle · 20px / 500 / 1.3</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-text" style="font-size:16px;font-weight:400;line-height:1.5;">Body copy is set at sixteen pixels with a line-height of one point five, the baseline rhythm for everything in the system. It stays legible across long passages and small cards alike.</div>
+      <div class="spec-meta">Body · 16px / 400 / 1.5</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-text" style="font-size:13px;font-weight:400;line-height:1.4;color:var(--muted);">Caption and supporting metadata.</div>
+      <div class="spec-meta">Caption · 13px / 400 / 1.4</div>
+    </div>
+
+    <h3 class="group-title">Weight ramp</h3>
+    <div class="weight-ramp">
+      <div style="font-weight:400;">Regular 400</div>
+      <div style="font-weight:500;">Medium 500</div>
+      <div style="font-weight:600;">Semibold 600</div>
+      <div style="font-weight:700;">Bold 700</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+  .comp-block{margin-top:48px;}
+  .comp-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:18px;}
+  .comp-head h3{font-size:22px;}
+  .comp-desc{color:var(--muted);font-size:15px;max-width:48ch;}
+  .comp-layout{display:grid;grid-template-columns:1fr 300px;gap:28px;align-items:start;}
+  @media(max-width:768px){.comp-layout{grid-template-columns:1fr;}}
+  .comp-demo{border:1px solid var(--border);border-radius:var(--r-card);padding:28px;background:var(--surface-alt);}
+  .spec-card{
+    border:1px solid var(--border);border-radius:var(--r-card);
+    padding:18px;background:var(--background);
+    font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.7;color:var(--muted);
+  }
+  .spec-card b{color:var(--foreground);font-weight:600;}
+  .matrix{display:grid;grid-template-columns:120px repeat(4,1fr);gap:14px;align-items:center;}
+  .matrix .mh{font-size:12px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em;}
+  .matrix .rl{font-size:13px;font-weight:600;}
+  .btn[disabled]{opacity:0.4;cursor:not-allowed;}
+  .btn.is-active{transform:translateY(1px);}
+  .anatomy{font-size:13px;color:var(--muted);margin-top:14px;}
+  .anatomy span{display:inline-block;background:var(--background);border:1px solid var(--border);border-radius:999px;padding:3px 10px;margin:3px 4px 0 0;}
+</style>
+<section id="components" aria-labelledby="comp-h">
+  <div class="band">
+    <p class="eyebrow">Library</p>
+    <h2 id="comp-h">Components</h2>
+    <p class="lede">The measured inventory, rendered from the system's own tokens.</p>
+
+    <div class="comp-block" data-tier-a-component="button">
+      <div class="comp-head">
+        <h3>Filled Primary Button</h3>
+        <span class="comp-desc">Inline control for the single most important action on a surface. Filled, with a clear focus state.</span>
+      </div>
+      <div class="comp-layout">
+        <div class="comp-demo">
+          <div class="matrix">
+            <div class="mh"></div>
+            <div class="mh">Rest</div>
+            <div class="mh">Hover</div>
+            <div class="mh">Active</div>
+            <div class="mh">Disabled</div>
+
+            <div class="rl">Primary</div>
+            <button class="btn btn-primary">Save changes</button>
+            <button class="btn btn-primary" style="background:var(--primary-hover);">Save changes</button>
+            <button class="btn btn-primary is-active" style="background:var(--primary-hover);">Save changes</button>
+            <button class="btn btn-primary" disabled>Save changes</button>
+
+            <div class="rl">Secondary</div>
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-secondary" style="background:var(--surface-alt);">Cancel</button>
+            <button class="btn btn-secondary is-active" style="background:var(--surface-alt);">Cancel</button>
+            <button class="btn btn-secondary" disabled>Cancel</button>
+          </div>
+          <div class="anatomy">
+            Anatomy:
+            <span>Label text</span><span>Filled background</span><span>Focus ring</span>
+          </div>
+        </div>
+        <aside class="spec-card">
+          <b>--btn-primary</b><br>
+          fill <b>--primary</b> #635bff<br>
+          text #ffffff<br>
+          hover <b>--primary-hover</b> #524ad6<br>
+          radius <b>--r-button</b> 8px<br>
+          type Inter / 15px / 500<br>
+          motion ease-out 0.3s
+        </aside>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+  #surface-depth{background:var(--surface-alt);}
+  .card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-top:28px;}
+  .demo-card{background:var(--background);border:1px solid var(--border);padding:24px;}
+  .demo-card h4{margin:0 0 8px;font-size:17px;font-weight:600;}
+  .demo-card p{font-size:14px;color:var(--muted);}
+  .demo-card .spec-meta{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);margin-top:16px;}
+</style>
+<section id="surface-depth" aria-labelledby="surf-h">
+  <div class="band">
+    <p class="eyebrow">Depth</p>
+    <h2 id="surf-h">Surface &amp; depth</h2>
+    <p class="lede">Cards share one radius and layer with soft, restrained elevation.</p>
+    <div class="card-grid">
+      <div class="demo-card" style="border-radius:var(--r-card);">
+        <h4>Flat card</h4>
+        <p>The base container. Border-defined, no shadow.</p>
+        <div class="spec-meta">radius 16px · border 1px</div>
+      </div>
+      <div class="demo-card" style="border-radius:var(--r-card);box-shadow:0 1px 2px rgba(17,17,17,0.06);">
+        <h4>Raised card</h4>
+        <p>A subtle lift for interactive surfaces.</p>
+        <div class="spec-meta">radius 16px · shadow sm</div>
+      </div>
+      <div class="demo-card" style="border-radius:var(--r-card);box-shadow:0 8px 24px rgba(17,17,17,0.10);">
+        <h4>Floating card</h4>
+        <p>For popovers and elevated panels.</p>
+        <div class="spec-meta">radius 16px · shadow lg</div>
+      </div>
+      <div class="demo-card" style="border-radius:var(--r-button);">
+        <h4>Control radius</h4>
+        <p>The tighter radius used on buttons and inputs.</p>
+        <div class="spec-meta">radius 8px</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+  .motion-row{display:flex;gap:28px;flex-wrap:wrap;margin-top:28px;}
+  .motion-card{border:1px solid var(--border);border-radius:var(--r-card);padding:24px;background:var(--surface-alt);flex:1;min-width:240px;}
+  .mover{width:40px;height:40px;border-radius:var(--r-button);background:var(--primary);transition:transform .3s var(--ease-out);}
+  .motion-card.play .mover{transform:translateX(140px);}
+  .motion-meta{font-family:ui-monospace,monospace;font-size:12px;color:var(--muted);margin-top:16px;}
+  .replay{margin-top:16px;}
+</style>
+<section id="motion" aria-labelledby="motion-h">
+  <div class="band">
+    <p class="eyebrow">Motion</p>
+    <h2 id="motion-h">Motion</h2>
+    <p class="lede">A single curve and duration keep transitions feeling coherent.</p>
+    <div class="motion-row">
+      <div class="motion-card" id="m1">
+        <div class="mover"></div>
+        <div class="motion-meta">ease-out · 0.3s · cubic-bezier(0.22,0.61,0.36,1)</div>
+        <button class="btn btn-secondary replay" data-play="m1">Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+  #composition{background:var(--surface-alt);}
+  .mock{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;background:var(--background);box-shadow:0 8px 24px rgba(17,17,17,0.08);margin-top:28px;}
+  .mock-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;border-bottom:1px solid var(--border);}
+  .mock-nav .logo{font-size:15px;}
+  .mock-hero{padding:48px 24px;background:radial-gradient(800px 320px at 80% -20%, rgba(99,91,255,0.12), transparent 60%);}
+  .mock-hero h3{font-size:34px;letter-spacing:-0.02em;max-width:18ch;}
+  .mock-hero p{color:var(--muted);margin-top:12px;max-width:40ch;}
+  .mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:24px;}
+  @media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-hero h3{font-size:26px;}}
+  .mock-card{border:1px solid var(--border);border-radius:var(--r-card);padding:20px;}
+  .mock-card h5{margin:12px 0 6px;font-size:16px;font-weight:600;}
+  .mock-card p{font-size:14px;color:var(--muted);}
+  .mock-ico{width:36px;height:36px;border-radius:var(--r-button);background:var(--primary);display:grid;place-items:center;color:#fff;}
+  .mock-cta{padding:0 24px 32px;}
+</style>
+<section id="composition" aria-labelledby="comp2-h">
+  <div class="band">
+    <p class="eyebrow">Applied</p>
+    <h2 id="comp2-h">In composition</h2>
+    <p class="lede">Every token working together in one screen.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="logo"><span class="logo-mark"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></span>Acme</div>
+        <a href="#composition" class="btn btn-primary">Get started</a>
+      </div>
+      <div class="mock-hero">
+        <h3>Everything you ship, on one consistent surface.</h3>
+        <p>From dashboards to docs, the same tokens carry across.</p>
+        <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="#composition" class="btn btn-primary">Start building</a>
+          <a href="#composition" class="btn btn-secondary">Read the guide</a>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card">
+          <div class="mock-ico"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon></div>
+          <h5>Tokenised colour</h5>
+          <p>One accent, rationed for the moments that matter.</p>
+        </div>
+        <div class="mock-card">
+          <div class="mock-ico"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon></div>
+          <h5>Clear type</h5>
+          <p>Inter at every size, tuned for long-form reading.</p>
+        </div>
+        <div class="mock-card">
+          <div class="mock-ico"><iconify-icon icon="lucide:ruler" aria-hidden="true"></iconify-icon></div>
+          <h5>8px rhythm</h5>
+          <p>Consistent spacing from the smallest chip to full sections.</p>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <a href="#composition" class="btn btn-primary"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>Explore the system</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+  #footer{border-top:1px solid var(--border);}
+  .foot{max-width:1120px;margin:0 auto;padding:48px 24px;display:flex;flex-direction:column;gap:8px;}
+  .foot .logo{font-size:16px;}
+  .foot a{color:var(--primary);text-decoration:none;}
+  .foot small{color:var(--muted);font-size:13px;}
+</style>
+<footer id="footer">
+  <div class="foot">
+    <div class="logo"><span class="logo-mark"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></span>My design system</div>
+    <small><a href="#hero">my-design-system.example</a></small>
+    <small>Design system captured and rendered by r3xdec.design</small>
+  </div>
+</footer>
+
+</main>
+
+<script>
+  document.querySelectorAll('[data-play]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=document.getElementById(btn.getAttribute('data-play'));
+      card.classList.remove('play');
+      void card.offsetWidth;
+      card.classList.add('play');
+    });
+  });
+</script>
+</body>
+</html>

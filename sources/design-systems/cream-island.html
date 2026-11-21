@@ -1,0 +1,836 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cream Island — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Nunito:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFF0DF;
+  --surface:#FFF0DF;
+  --text-primary:#292524;
+  --text-secondary:#FFF0DF;
+  --ink-stroke:#000000;
+  --accent:#EFABFB;
+  --accent-warm:#FF6900;
+  --coral-highlight:#F5D0FE;
+  --media-deep:#301860;
+  --media-mid:#4830A8;
+  --media-deep2:#301878;
+  --media-mid2:#483090;
+  --btn-primary-bg:#1C1917;
+  --btn-primary-text:#FFF0DF;
+  --hairline:rgba(41,37,36,0.08);
+  --hairline-soft:rgba(41,37,36,0.06);
+  --r-control:8px;
+  --r-btn:12px;
+  --r-card:16px;
+  --r-pill:9999px;
+  --space-base:8px;
+  --gap:56px;
+  --gap-tight:12px;
+  --section-padding:56px;
+  --card-padding:20px;
+  --ease-shared:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+  --dur:0.3s;
+  --dur-lg:0.35s;
+  --device-shadow: rgba(41,37,36,0.25) 0px 20px 25px -5px, rgba(41,37,36,0.25) 0px 8px 10px -6px;
+  --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+  --font-clock:'Nunito','SF Soft Time',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1024px;margin:0 auto;padding:0 24px}
+.wrap-wide{max-width:1200px;margin:0 auto;padding:0 24px}
+
+/* Navbar */
+.nav{
+  position:sticky;top:0;z-index:50;
+  width:100%;
+  height:116px;
+  background:transparent;
+  border-radius:0;
+  display:flex;align-items:center;
+  padding:0 32px;
+  animation:header-rise 0.35s var(--ease-out) both;
+}
+@keyframes header-rise{from{transform:translateY(-24px);opacity:.6}to{transform:translateY(0);opacity:1}}
+.nav__left{display:flex;align-items:center;gap:10px}
+.nav__logo{
+  width:36px;height:36px;border-radius:var(--r-control);
+  background:var(--btn-primary-bg);color:var(--btn-primary-text);
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+}
+.nav__word{font-weight:700;font-size:22px;letter-spacing:-0.6px}
+.nav__badge{
+  font-size:11px;font-weight:500;padding:2px 8px;border-radius:var(--r-pill);
+  border:1px solid var(--hairline);color:var(--text-primary);
+}
+.nav__mid{margin-left:auto;display:flex;align-items:center;gap:28px}
+.nav__link{text-decoration:none;font-size:15px;font-weight:500;opacity:.85}
+.nav__link:hover{opacity:1}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:8px;
+  height:40px;padding:0 18px;
+  background:var(--surface);color:var(--text-primary);
+  border:1px solid var(--hairline-soft);
+  border-radius:var(--r-pill);
+  font-size:14px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform var(--dur) var(--ease-shared),box-shadow var(--dur) var(--ease-shared);
+}
+.nav-cta:hover{transform:translateY(-1px)}
+
+/* Hero */
+#hero{position:relative;overflow:hidden;padding-bottom:0}
+.hero__inner{text-align:center;padding-top:24px}
+.hero__title{
+  font-weight:700;font-size:96px;line-height:1;letter-spacing:-2.4px;
+  max-width:14ch;margin:0 auto;
+}
+.hl{
+  background:var(--coral-highlight);
+  color:var(--text-primary);
+  padding:0 .12em;border-radius:6px;
+  box-decoration-break:clone;-webkit-box-decoration-break:clone;
+}
+.hero__ctas{display:flex;flex-direction:column;align-items:center;gap:var(--gap-tight);margin-top:40px}
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  height:48px;padding:0 26px;
+  background:var(--btn-primary-bg);color:var(--btn-primary-text);
+  border:none;border-radius:var(--r-btn);
+  font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform var(--dur) var(--ease-shared),opacity var(--dur) var(--ease-shared);
+}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-secondary{
+  display:inline-flex;align-items:center;gap:10px;
+  height:48px;padding:0 14px 0 16px;
+  background:var(--surface);color:var(--text-primary);
+  border:1px solid var(--hairline);border-radius:var(--r-btn);
+  font-size:16px;font-weight:600;cursor:pointer;text-decoration:none;
+  transition:transform var(--dur) var(--ease-shared);
+}
+.btn-secondary:hover{transform:translateY(-1px)}
+.btn-secondary .chip{
+  width:24px;height:24px;border-radius:6px;
+  background:rgba(255,105,0,0.14);color:var(--accent-warm);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+}
+.btn-secondary .price-badge{
+  display:inline-flex;align-items:center;
+  background:var(--btn-primary-bg);color:var(--btn-primary-text);
+  border-radius:var(--r-pill);padding:3px 10px;font-size:13px;font-weight:700;
+}
+@media(max-width:1024px){.hero__title{font-size:72px;letter-spacing:-1.8px}}
+@media(max-width:768px){.hero__title{font-size:54px;letter-spacing:-1.2px}}
+@media(max-width:640px){
+  .hero__title{font-size:40px;letter-spacing:-0.8px}
+  .nav{height:72px;padding:0 18px}
+  .nav__mid{gap:14px}
+  .nav__link{display:none}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <div class="nav__left">
+    <span class="nav__logo" aria-hidden="true"><iconify-icon icon="lucide:waves"></iconify-icon></span>
+    <span class="nav__word">Alcove</span>
+    <span class="nav__badge">v1.0</span>
+  </div>
+  <div class="nav__mid">
+    <a class="nav__link" href="#components">Features</a>
+    <a class="nav__link" href="#type-scale">About</a>
+    <a class="nav-cta" href="#composition">
+      <iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon>
+      Get Alcove
+    </a>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<section id="hero" aria-labelledby="hero-title">
+  <div class="wrap hero__inner">
+    <h1 class="hero__title" id="hero-title">A calmer home for your <span class="hl">everyday</span> screen</h1>
+    <div class="hero__ctas">
+      <a class="btn-primary" href="#composition">
+        <iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon>
+        Download Alcove
+      </a>
+      <a class="btn-secondary" href="#composition">
+        <span class="chip" aria-hidden="true"><iconify-icon icon="lucide:shield"></iconify-icon></span>
+        Buy the lifetime license
+        <span class="price-badge">$29</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Device / media surface teaser lives in composition; hero shows a fragment below the fold -->
+  <div style="height:56px"></div>
+</section>
+
+<style data-section-styles="palette">
+#palette{padding:var(--section-padding) 0}
+.sec-head{text-align:center;margin-bottom:48px}
+.sec-title{font-size:30px;font-weight:700;letter-spacing:-0.4px;line-height:1.2}
+.sec-cap{font-size:15px;opacity:.7;margin-top:10px}
+.pal-group{margin-bottom:40px}
+.pal-group h3{font-size:16px;font-weight:700;margin-bottom:16px;letter-spacing:-0.2px}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+.pal-card{border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
+.pal-sw{height:96px}
+.pal-sw.checker{
+  background-image:
+    linear-gradient(45deg,#e4d3bf 25%,transparent 25%),
+    linear-gradient(-45deg,#e4d3bf 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#e4d3bf 75%),
+    linear-gradient(-45deg,transparent 75%,#e4d3bf 75%);
+  background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;
+  position:relative;
+}
+.pal-sw.checker span{position:absolute;inset:0}
+.pal-meta{padding:14px 16px}
+.pal-name{font-weight:700;font-size:14px}
+.pal-val{font-size:13px;opacity:.7;font-family:ui-monospace,monospace;margin-top:2px}
+.pal-note{font-size:13px;opacity:.75;margin-top:8px;line-height:1.4}
+</style>
+<section id="palette" aria-labelledby="palette-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="palette-title">Colour, rationed</h2>
+      <p class="sec-cap">Cream is the page. Violet is a reward for scrolling. Everything else is ink.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#FFF0DF"></div>
+          <div class="pal-meta"><div class="pal-name">Cream</div><div class="pal-val">#FFF0DF</div>
+          <div class="pal-note">The field. ~85% of every rendered screen.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw" style="background:linear-gradient(135deg,#301860,#4830A8)"></div>
+          <div class="pal-meta"><div class="pal-name">Media violet</div><div class="pal-val">#301860 → #4830A8</div>
+          <div class="pal-note">Confined to the device surface. Never a page background.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#1C1917"></div>
+          <div class="pal-meta"><div class="pal-name">Button ink</div><div class="pal-val">#1C1917</div>
+          <div class="pal-note">The single dark primary fill and its badges.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#292524"></div>
+          <div class="pal-meta"><div class="pal-name">Charcoal ink</div><div class="pal-val">#292524</div>
+          <div class="pal-note">All body and heading copy on cream.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#000000"></div>
+          <div class="pal-meta"><div class="pal-name">Icon stroke</div><div class="pal-val">#000000</div>
+          <div class="pal-note">Reserved for outline icon line-art.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#292524;position:relative">
+            <span style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:#FFF0DF;font-weight:700">On dark</span>
+          </div>
+          <div class="pal-meta"><div class="pal-name">Cream on ink</div><div class="pal-val">#FFF0DF</div>
+          <div class="pal-note">Inverse text inside the media surface and dark buttons.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#F5D0FE"></div>
+          <div class="pal-meta"><div class="pal-name">Coral-lilac highlight</div><div class="pal-val">#F5D0FE</div>
+          <div class="pal-note">The flat block behind two headline words. Nothing larger.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw" style="background:#EFABFB"></div>
+          <div class="pal-meta"><div class="pal-name">Accent lilac</div><div class="pal-val">#EFABFB</div>
+          <div class="pal-note">Soft edge glow behind the mockup.</div></div>
+        </div>
+        <div class="pal-card">
+          <div class="pal-sw checker"><span style="background:rgba(255,105,0,0.14)"></span></div>
+          <div class="pal-meta"><div class="pal-name">Warm coral chip</div><div class="pal-val">#FF6900 · 14%</div>
+          <div class="pal-note">Tiny icon chips and price shields only.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:var(--section-padding) 0}
+.spec{border-top:1px solid var(--hairline);padding:32px 0}
+.spec:last-child{border-bottom:1px solid var(--hairline)}
+.spec__demo{margin-bottom:14px}
+.spec__meta{font-size:13px;opacity:.65;font-family:ui-monospace,monospace}
+.d-lg{font-weight:700;font-size:96px;line-height:1;letter-spacing:-2.4px}
+.d-head{font-weight:700;font-size:30px;line-height:1.2;letter-spacing:-0.4px}
+.d-body{font-weight:400;font-size:16px;line-height:1.5}
+.d-clock{font-family:var(--font-clock);font-weight:700;font-size:30px;letter-spacing:-0.4px}
+@media(max-width:768px){.d-lg{font-size:56px;letter-spacing:-1.2px}}
+@media(max-width:640px){.d-lg{font-size:40px;letter-spacing:-0.8px}}
+</style>
+<section id="type-scale" aria-labelledby="type-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="type-title">One family, extreme scale contrast</h2>
+      <p class="sec-cap">A single system-sans does all the work. Hierarchy comes from size, never from a serif.</p>
+    </div>
+
+    <div class="spec">
+      <div class="spec__demo"><div class="d-lg">Cream Island</div></div>
+      <div class="spec__meta">display-lg · 96px / 700 / 1.0 / -2.4px · system-ui</div>
+    </div>
+    <div class="spec">
+      <div class="spec__demo"><div class="d-head">Feature marks, set in two lines</div></div>
+      <div class="spec__meta">headline-md · 30px / 700 / 1.2 / -0.4px · system-ui</div>
+    </div>
+    <div class="spec">
+      <div class="spec__demo"><div class="d-body">Body, caption, nav and helper copy all sit here at a quiet regular weight in the same charcoal ink — small on purpose, so the display type carries the drama.</div></div>
+      <div class="spec__meta">body-md · 16px / 400 / 1.5 · system-ui</div>
+    </div>
+    <div class="spec">
+      <div class="spec__demo"><div class="d-clock">10:24</div></div>
+      <div class="spec__meta">accent-display · 30px / 700 · SF Soft Time · in-device numerals only</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:var(--section-padding) 0}
+.comp-block{margin-bottom:72px}
+.comp-title{font-size:30px;font-weight:700;letter-spacing:-0.4px;margin-bottom:6px}
+.comp-desc{font-size:15px;opacity:.72;max-width:60ch;margin-bottom:24px;line-height:1.5}
+.comp-layout{display:grid;grid-template-columns:1fr 300px;gap:40px;align-items:start}
+@media(max-width:900px){.comp-layout{grid-template-columns:1fr}}
+.stage{
+  border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:32px;background:var(--surface);
+}
+.speccard{
+  border:1px solid var(--hairline);border-radius:var(--r-card);
+  padding:18px;font-family:ui-monospace,monospace;font-size:12px;line-height:1.7;
+  background:var(--surface);
+}
+.speccard b{font-weight:700}
+.speccard .tk{opacity:.7}
+
+/* nav demo */
+.navdemo{
+  display:flex;align-items:center;height:116px;padding:0 24px;
+  background:linear-gradient(135deg,#FFF0DF,#ffe6cc);border-radius:0;
+  border:1px dashed var(--hairline);
+}
+.navdemo .nav__mid{margin-left:auto}
+@media(max-width:640px){.navdemo{height:72px}}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse;font-size:13px}
+.matrix th,.matrix td{padding:14px;text-align:left;vertical-align:middle}
+.matrix th{font-weight:700;opacity:.7;font-size:12px;border-bottom:1px solid var(--hairline)}
+.matrix td{border-bottom:1px solid var(--hairline)}
+.matrix tr:last-child td{border-bottom:none}
+.state-hover .btn-primary{transform:translateY(-1px);opacity:.92}
+.state-hover .btn-secondary,.state-hover .nav-cta{transform:translateY(-1px)}
+.state-active .btn-primary{transform:translateY(1px)}
+.state-disabled{opacity:.4;pointer-events:none}
+.btn-sm{font-size:14px}
+
+/* feature grid */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);column-gap:56px;row-gap:56px}
+@media(max-width:768px){.feat-grid{grid-template-columns:repeat(2,1fr);gap:40px}}
+.feat-cell{
+  background:transparent;border:none;border-radius:0;padding:0;
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;
+}
+.feat-cell iconify-icon{font-size:34px;color:#000}
+.feat-label{font-size:30px;font-weight:700;line-height:1.1;letter-spacing:-0.4px;max-width:8ch}
+@media(max-width:768px){.feat-label{font-size:20px}}
+
+/* social row */
+.social-row{display:flex;justify-content:center;gap:12px}
+.social-btn{
+  width:44px;height:44px;border-radius:var(--r-control);
+  background:var(--surface);border:1px solid var(--hairline);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  color:var(--text-primary);font-size:20px;
+  transition:transform var(--dur) var(--ease-shared);
+}
+.social-btn:hover{transform:translateY(-1px)}
+
+/* footer links demo */
+.footlinks{display:flex;justify-content:center;gap:28px;font-size:14px}
+.footlinks a{text-decoration:none;opacity:.75}
+.footlinks a:hover{opacity:1}
+
+/* micro annotation */
+.micro{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-style:italic;opacity:.8}
+.micro iconify-icon{font-size:18px;transform:rotate(-8deg)}
+
+/* device surface */
+.device{
+  position:relative;max-width:520px;margin:0 auto;
+  border-radius:var(--r-card);overflow:hidden;
+  background:radial-gradient(circle at 30% 20%,#4830A8,#301860 70%,#301878 100%);
+  box-shadow:var(--device-shadow);
+  padding:28px 22px 22px;color:#FFF0DF;
+}
+.device__glaze{position:absolute;left:0;right:0;top:0;height:120px;
+  background:linear-gradient(rgba(28,25,23,0.28) 25%,rgba(0,0,0,0) 100%);pointer-events:none}
+.glass{
+  backdrop-filter:blur(40px) saturate(1.15);
+  -webkit-backdrop-filter:blur(40px) saturate(1.15);
+  background:rgba(255,240,223,0.12);
+  border:1px solid rgba(255,240,223,0.18);
+}
+.dev-status{
+  position:relative;z-index:2;display:inline-flex;align-items:center;gap:6px;
+  padding:5px 12px;border-radius:var(--r-pill);font-size:12px;font-weight:600;
+  margin:0 auto 28px;
+}
+.dev-statuswrap{display:flex;justify-content:center}
+.dev-lock{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:var(--r-pill);margin:0 auto 12px;
+}
+.dev-lockwrap{display:flex;justify-content:center}
+.dev-date{text-align:center;font-size:13px;opacity:.85}
+.dev-time{text-align:center;font-family:var(--font-clock);font-size:72px;font-weight:700;line-height:1;letter-spacing:-2px;margin:4px 0}
+.dev-temp{text-align:center;font-size:14px;opacity:.9;margin-bottom:24px}
+.dev-player{border-radius:var(--r-btn);padding:14px;display:flex;gap:12px;align-items:center}
+.dev-art{width:48px;height:48px;border-radius:var(--r-control);background:linear-gradient(135deg,#EFABFB,#FF6900);flex:none}
+.dev-track{flex:1;min-width:0}
+.dev-track .t1{font-weight:700;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dev-track .t2{font-size:12px;opacity:.75}
+.dev-rail{height:4px;border-radius:var(--r-pill);background:rgba(255,240,223,0.25);margin-top:8px;position:relative}
+.dev-rail::after{content:"";position:absolute;left:0;top:0;bottom:0;width:38%;background:#FFF0DF;border-radius:var(--r-pill)}
+.dev-transport{display:flex;gap:16px;color:#FFF0DF;font-size:20px;margin-left:6px}
+</style>
+<section id="components" aria-labelledby="comp-heading">
+  <div class="wrap-wide">
+    <div class="sec-head">
+      <h2 class="sec-title" id="comp-heading">The kit</h2>
+      <p class="sec-cap">Flat, square, ink-on-cream — with one saturated exception.</p>
+    </div>
+
+    <!-- Navbar -->
+    <div class="comp-block">
+      <h3 class="comp-title">Navbar</h3>
+      <p class="comp-desc">Edge-to-edge, transparent, square-cornered and 116px tall. Wordmark plus version chip far left, two utility links center-right, one filled CTA pill far right. It never insets or rounds into a floating capsule.</p>
+      <div class="comp-layout">
+        <div class="stage" style="padding:0;overflow:hidden" data-tier-a-component="navbar">
+          <div class="navdemo">
+            <div class="nav__left">
+              <span class="nav__logo" aria-hidden="true"><iconify-icon icon="lucide:waves"></iconify-icon></span>
+              <span class="nav__word">Alcove</span>
+              <span class="nav__badge">v1.0</span>
+            </div>
+            <div class="nav__mid">
+              <a class="nav__link" href="#components">Features</a>
+              <a class="nav__link" href="#type-scale">About</a>
+              <a class="nav-cta" href="#composition">
+                <iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Get Alcove
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="speccard">
+          <b>--navbar</b><br>
+          <span class="tk">height</span> 116<br>
+          <span class="tk">radius</span> 0 (square)<br>
+          <span class="tk">bg</span> transparent<br>
+          <span class="tk">items</span> logo · badge · 2 links · nav-cta<br>
+          <span class="tk">motion</span> header-rise 0.35s ease-out
+        </div>
+      </div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp-block">
+      <h3 class="comp-title">Buttons</h3>
+      <p class="comp-desc">Exactly one dark solid primary per view. Secondary and purchase controls stay cream-filled with a hairline border, never matching the primary fill. The nav CTA is the pill-shaped, lighter-weight echo.</p>
+      <div class="comp-layout">
+        <div class="stage" style="overflow-x:auto"
+             data-tier-a-component="hero-primary-button">
+          <table class="matrix">
+            <thead>
+              <tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><b>Primary</b><br><span style="opacity:.6;font-size:12px">dark solid · 48px</span></td>
+                <td><button class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download</button></td>
+                <td class="state-hover"><button class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download</button></td>
+                <td class="state-active"><button class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download</button></td>
+                <td class="state-disabled"><button class="btn-primary" disabled><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download</button></td>
+              </tr>
+              <tr>
+                <td><b>Secondary / purchase</b><br><span style="opacity:.6;font-size:12px">cream · hairline · 48px</span></td>
+                <td><button class="btn-secondary"><span class="chip"><iconify-icon icon="lucide:shield"></iconify-icon></span> Buy license <span class="price-badge">$29</span></button></td>
+                <td class="state-hover"><button class="btn-secondary"><span class="chip"><iconify-icon icon="lucide:shield"></iconify-icon></span> Buy license <span class="price-badge">$29</span></button></td>
+                <td class="state-active"><button class="btn-secondary"><span class="chip"><iconify-icon icon="lucide:shield"></iconify-icon></span> Buy license <span class="price-badge">$29</span></button></td>
+                <td class="state-disabled"><button class="btn-secondary" disabled><span class="chip"><iconify-icon icon="lucide:shield"></iconify-icon></span> Buy license <span class="price-badge">$29</span></button></td>
+              </tr>
+              <tr>
+                <td><b>Nav CTA pill</b><br><span style="opacity:.6;font-size:12px">cream · pill · 40px</span></td>
+                <td><a class="nav-cta"><iconify-icon icon="lucide:waves"></iconify-icon> Get Alcove</a></td>
+                <td class="state-hover"><a class="nav-cta"><iconify-icon icon="lucide:waves"></iconify-icon> Get Alcove</a></td>
+                <td class="state-active"><a class="nav-cta"><iconify-icon icon="lucide:waves"></iconify-icon> Get Alcove</a></td>
+                <td class="state-disabled"><a class="nav-cta"><iconify-icon icon="lucide:waves"></iconify-icon> Get Alcove</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="speccard">
+          <b>--button-primary</b><br>
+          <span class="tk">fill</span> #1C1917<br>
+          <span class="tk">text</span> #FFF0DF<br>
+          <span class="tk">radius</span> 12 · <span class="tk">height</span> 48<br><br>
+          <b>--button-secondary-purchase</b><br>
+          <span class="tk">fill</span> #FFF0DF<br>
+          <span class="tk">border</span> 1px rgba(41,37,36,.08)<br>
+          <span class="tk">badge</span> #1C1917 / #FFF0DF<br><br>
+          <b>--button-nav-cta</b><br>
+          <span class="tk">radius</span> 9999 · <span class="tk">height</span> 40<br>
+          <span class="tk">motion</span> ease-shared 0.3s
+        </div>
+      </div>
+    </div>
+
+    <!-- hero secondary purchase (dedicated marker) -->
+    <div class="comp-block" data-tier-a-component="hero-secondary-purchase-button">
+      <h3 class="comp-title">Hero secondary purchase button</h3>
+      <p class="comp-desc">Cream fill, hairline border, a coral-tinted shield chip and a black pill sub-badge carrying the numeral price — a purchase-tier control, deliberately lighter than the primary.</p>
+      <div class="stage">
+        <button class="btn-secondary"><span class="chip"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon></span> Buy the lifetime license <span class="price-badge">$29</span></button>
+      </div>
+    </div>
+
+    <!-- nav cta pill dedicated -->
+    <div class="comp-block" data-tier-a-component="nav-cta-pill">
+      <h3 class="comp-title">Nav CTA pill</h3>
+      <p class="comp-desc">The navbar-sized echo of the hero action: cream fill, full pill radius, hairline border, brand glyph and label at 40px.</p>
+      <div class="stage"><a class="nav-cta"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Get Alcove</a></div>
+    </div>
+
+    <!-- device / media surface -->
+    <div class="comp-block">
+      <h3 class="comp-title">Device / media surface</h3>
+      <p class="comp-desc">The single saturated moment: a 16px-radius card filled with a violet illustrative scene, lifted by the system's only shadow — a soft double drop. Glass components blur the scene behind them at blur(40px) saturate(1.15). The violet never escapes this card.</p>
+      <div class="comp-layout">
+        <div class="stage" data-tier-a-component="device-media-surface">
+          <div class="device">
+            <div class="device__glaze"></div>
+            <div class="dev-statuswrap"><span class="dev-status glass"><iconify-icon icon="lucide:wifi" aria-hidden="true"></iconify-icon> Connected</span></div>
+            <div class="dev-lockwrap"><span class="dev-lock glass"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon></span></div>
+            <div class="dev-date">Tuesday, 4 June</div>
+            <div class="dev-time">10:24</div>
+            <div class="dev-temp"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon> Clear · 21°</div>
+            <div class="dev-player glass">
+              <div class="dev-art" aria-hidden="true"></div>
+              <div class="dev-track">
+                <div class="t1">Tide Pools</div>
+                <div class="t2">Coastline Sessions</div>
+                <div class="dev-rail" aria-hidden="true"></div>
+              </div>
+              <div class="dev-transport">
+                <iconify-icon icon="lucide:skip-back" aria-label="Previous track"></iconify-icon>
+                <iconify-icon icon="lucide:pause" aria-label="Pause"></iconify-icon>
+                <iconify-icon icon="lucide:skip-forward" aria-label="Next track"></iconify-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="speccard">
+          <b>--media-device-frame</b><br>
+          <span class="tk">radius</span> 16<br>
+          <span class="tk">shadow</span> 0 20 25 -5 + 0 8 10 -6<br>
+          <span class="tk">shadow ink</span> 25% opacity<br>
+          <span class="tk">glass</span> blur(40) saturate(1.15)<br>
+          <span class="tk">glaze</span> warm-black top edge<br>
+          <span class="tk">numerals</span> SF Soft Time
+        </div>
+      </div>
+    </div>
+
+    <!-- micro annotation -->
+    <div class="comp-block" data-tier-a-component="micro-annotation-label">
+      <h3 class="comp-title">Micro-annotation label</h3>
+      <p class="comp-desc">A small hand-drawn cursor glyph and an italic-toned caption, centered above the feature grid, calling out that the surface above is interactive.</p>
+      <div class="stage" style="text-align:center">
+        <span class="micro"><iconify-icon icon="lucide:mouse-pointer-2" aria-hidden="true"></iconify-icon> try it — everything on the screen is live</span>
+      </div>
+    </div>
+
+    <!-- feature icon grid -->
+    <div class="comp-block">
+      <h3 class="comp-title">Feature icon-grid cards</h3>
+      <p class="comp-desc">Eight equal cells, four across in two rows. No background, no border, no radius, no shadow, no padding — an outline icon stacked over a two-line bold label, dead center. Flat and transparent by rule.</p>
+      <div class="stage" data-tier-a-component="feature-icon-grid-cards">
+        <div class="feat-grid">
+          <div class="feat-cell"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon><div class="feat-label">Live Clock</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:cloud-sun" aria-hidden="true"></iconify-icon><div class="feat-label">Weather Now</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:music" aria-hidden="true"></iconify-icon><div class="feat-label">Media Keys</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon><div class="feat-label">Quick Lock</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:bell" aria-hidden="true"></iconify-icon><div class="feat-label">Gentle Alerts</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:calendar" aria-hidden="true"></iconify-icon><div class="feat-label">Day View</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:battery" aria-hidden="true"></iconify-icon><div class="feat-label">Power Care</div></div>
+          <div class="feat-cell"><iconify-icon icon="lucide:sliders" aria-hidden="true"></iconify-icon><div class="feat-label">Fine Tune</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- secondary repeat CTA -->
+    <div class="comp-block" data-tier-a-component="secondary-repeat-cta">
+      <h3 class="comp-title">Secondary repeat CTA</h3>
+      <p class="comp-desc">The dark solid primary makes its only reappearance here, centered below the icon grid — the page's second and final conversion point.</p>
+      <div class="stage" style="text-align:center">
+        <a class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download Alcove</a>
+      </div>
+    </div>
+
+    <!-- social icon row -->
+    <div class="comp-block" data-tier-a-component="social-icon-row">
+      <h3 class="comp-title">Social icon row</h3>
+      <p class="comp-desc">Three small rounded-square glyph buttons on cream, icon-only, centered beneath the repeat CTA.</p>
+      <div class="stage">
+        <div class="social-row">
+          <button class="social-btn" aria-label="Alcove on X"><iconify-icon icon="lucide:twitter"></iconify-icon></button>
+          <button class="social-btn" aria-label="Alcove on GitHub"><iconify-icon icon="lucide:github"></iconify-icon></button>
+          <button class="social-btn" aria-label="Email Alcove"><iconify-icon icon="lucide:mail"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer component -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <h3 class="comp-title">Footer links</h3>
+      <p class="comp-desc">A minimal-height, transparent row of three text links that precedes the closing watermark wordmark.</p>
+      <div class="stage">
+        <nav class="footlinks" aria-label="Footer sample">
+          <a href="#hero">Privacy</a><a href="#hero">Terms</a><a href="#hero">Contact</a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- closing wordmark -->
+    <div class="comp-block" data-tier-a-component="closing-wordmark-watermark">
+      <h3 class="comp-title">Closing wordmark watermark</h3>
+      <p class="comp-desc">A giant, near-zero-contrast wordmark that bleeds off the bottom of the page as a closing signature — texture, not headline.</p>
+      <div class="stage" style="overflow:hidden">
+        <div style="font-weight:700;font-size:96px;letter-spacing:-2.4px;line-height:1;color:#292524;opacity:0.05;white-space:nowrap">Alcove</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:var(--section-padding) 0}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.depth-card{padding:var(--card-padding);background:var(--surface);border:1px solid var(--hairline)}
+.r8{border-radius:var(--r-control)}
+.r12{border-radius:var(--r-btn)}
+.r16{border-radius:var(--r-card)}
+.rpill{border-radius:var(--r-pill)}
+.depth-shadow{border:none;box-shadow:var(--device-shadow)}
+.depth-name{font-weight:700;font-size:15px}
+.depth-val{font-size:13px;opacity:.7;font-family:ui-monospace,monospace;margin-top:4px}
+</style>
+<section id="surface-depth" aria-labelledby="depth-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="depth-title">Surface &amp; depth</h2>
+      <p class="sec-cap">Consistently soft corners. One shadow in the whole system — everything else is flat.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card r8"><div class="depth-name">Control radius</div><div class="depth-val">8px · smaller controls</div></div>
+      <div class="depth-card r12"><div class="depth-name">Button radius</div><div class="depth-val">12px · buttons</div></div>
+      <div class="depth-card r16"><div class="depth-name">Card radius</div><div class="depth-val">16px · device frame</div></div>
+      <div class="depth-card rpill"><div class="depth-name">Pill radius</div><div class="depth-val">9999px · nav CTA</div></div>
+      <div class="depth-card r16 depth-shadow"><div class="depth-name">Device shadow</div><div class="depth-val">0 20 25 -5 + 0 8 10 -6 · 25%</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:var(--section-padding) 0}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.motion-card{border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px;background:var(--surface)}
+.motion-name{font-weight:700;font-size:15px;margin-bottom:4px}
+.motion-meta{font-size:12px;opacity:.7;font-family:ui-monospace,monospace;margin-bottom:16px}
+.mover{width:40px;height:40px;border-radius:var(--r-control);background:#1C1917}
+.mover.shared{transition:transform var(--dur) var(--ease-shared)}
+.mover.eout{transition:transform var(--dur) var(--ease-out)}
+.mover.large{transition:transform var(--dur-lg) var(--ease-shared)}
+.motion-card.play .mover{transform:translateX(140px)}
+.replay{margin-top:16px;font-size:13px;font-weight:600;cursor:pointer;background:none;border:1px solid var(--hairline);border-radius:var(--r-pill);padding:6px 14px}
+.pulsebox{width:40px;height:40px;border-radius:var(--r-pill);background:var(--accent);animation:pulse 1.8s var(--ease-shared) infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+<section id="motion" aria-labelledby="motion-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="motion-title">Motion, restrained</h2>
+      <p class="sec-cap">One shared curve, fast and flat. No overshoot. Click a card to replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card" onclick="this.classList.toggle('play')">
+        <div class="motion-name">Shared transition</div>
+        <div class="motion-meta">0.3s cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="mover shared"></div>
+        <button class="replay" onclick="event.stopPropagation();this.closest('.motion-card').classList.toggle('play')">Replay</button>
+      </div>
+      <div class="motion-card" onclick="this.classList.toggle('play')">
+        <div class="motion-name">Entrance ease-out</div>
+        <div class="motion-meta">0.3s cubic-bezier(0,0,0.2,1)</div>
+        <div class="mover eout"></div>
+        <button class="replay" onclick="event.stopPropagation();this.closest('.motion-card').classList.toggle('play')">Replay</button>
+      </div>
+      <div class="motion-card" onclick="this.classList.toggle('play')">
+        <div class="motion-name">Large surface</div>
+        <div class="motion-meta">0.35s cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="mover large"></div>
+        <button class="replay" onclick="event.stopPropagation();this.closest('.motion-card').classList.toggle('play')">Replay</button>
+      </div>
+      <div class="motion-card">
+        <div class="motion-name">Live pulse</div>
+        <div class="motion-meta">pulse · waiting / live states</div>
+        <div class="pulsebox"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:var(--section-padding) 0}
+.mock{
+  border:1px solid var(--hairline);border-radius:var(--r-card);overflow:hidden;background:var(--background);
+}
+.mock__nav{display:flex;align-items:center;height:80px;padding:0 24px}
+.mock__hero{text-align:center;padding:32px 24px 8px}
+.mock__hero h3{font-size:56px;font-weight:700;line-height:1;letter-spacing:-1.4px}
+@media(max-width:640px){.mock__hero h3{font-size:34px;letter-spacing:-0.8px}}
+.mock__cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:32px 24px}
+@media(max-width:768px){.mock__cards{grid-template-columns:1fr}}
+.mock__feat{text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px}
+.mock__feat iconify-icon{font-size:30px;color:#000}
+.mock__feat .l{font-size:24px;font-weight:700;letter-spacing:-0.4px}
+.mock__cta{text-align:center;padding:0 24px 40px}
+</style>
+<section id="composition" aria-labelledby="comp2-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 class="sec-title" id="comp2-title">In composition</h2>
+      <p class="sec-cap">The whole system, assembled — cream field, one violet surface, ink everywhere else.</p>
+    </div>
+    <div class="mock">
+      <div class="mock__nav">
+        <div class="nav__left">
+          <span class="nav__logo" aria-hidden="true"><iconify-icon icon="lucide:waves"></iconify-icon></span>
+          <span class="nav__word">Alcove</span>
+          <span class="nav__badge">v1.0</span>
+        </div>
+        <div class="nav__mid"><a class="nav-cta"><iconify-icon icon="lucide:waves"></iconify-icon> Get Alcove</a></div>
+      </div>
+      <div class="mock__hero">
+        <h3>A calmer <span class="hl">home</span> screen</h3>
+        <div class="hero__ctas" style="margin-top:24px">
+          <a class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download Alcove</a>
+          <a class="btn-secondary"><span class="chip"><iconify-icon icon="lucide:shield"></iconify-icon></span> Buy license <span class="price-badge">$29</span></a>
+        </div>
+      </div>
+      <div style="padding:8px 24px 0">
+        <div class="device" style="max-width:420px">
+          <div class="device__glaze"></div>
+          <div class="dev-date" style="margin-top:8px">Tuesday, 4 June</div>
+          <div class="dev-time">10:24</div>
+          <div class="dev-temp"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon> Clear · 21°</div>
+          <div class="dev-player glass">
+            <div class="dev-art" aria-hidden="true"></div>
+            <div class="dev-track"><div class="t1">Tide Pools</div><div class="t2">Coastline Sessions</div><div class="dev-rail"></div></div>
+            <div class="dev-transport"><iconify-icon icon="lucide:pause" aria-label="Pause"></iconify-icon></div>
+          </div>
+        </div>
+      </div>
+      <div class="mock__cards">
+        <div class="mock__feat"><iconify-icon icon="lucide:clock"></iconify-icon><div class="l">Live Clock</div></div>
+        <div class="mock__feat"><iconify-icon icon="lucide:music"></iconify-icon><div class="l">Media Keys</div></div>
+        <div class="mock__feat"><iconify-icon icon="lucide:cloud-sun"></iconify-icon><div class="l">Weather Now</div></div>
+      </div>
+      <div class="mock__cta">
+        <a class="btn-primary"><iconify-icon icon="lucide:waves" aria-hidden="true"></iconify-icon> Download Alcove</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<style data-section-styles="footer">
+#footer{padding:64px 0 0;text-align:center;position:relative;overflow:hidden}
+.foot-links{display:flex;justify-content:center;gap:28px;font-size:14px;margin-bottom:28px}
+.foot-links a{text-decoration:none;opacity:.75}
+.foot-links a:hover{opacity:1}
+.foot-meta{font-size:13px;opacity:.65}
+.foot-meta a{color:inherit}
+.foot-mark{font-weight:700;font-size:20vw;letter-spacing:-2.4px;line-height:.8;color:#292524;opacity:0.05;white-space:nowrap;margin-top:24px;transform:translateY(20%)}
+</style>
+<footer id="footer">
+  <nav class="foot-links" aria-label="Footer">
+    <a href="#hero">Privacy</a><a href="#hero">Terms</a><a href="#hero">Contact</a>
+  </nav>
+  <div class="foot-meta">
+    <div><strong>Cream Island</strong> · <a href="https://tryalcove.com/">tryalcove.com</a></div>
+    <div style="margin-top:6px">Design system captured and rendered by r3xdec.design</div>
+  </div>
+  <div class="foot-mark" aria-hidden="true">Alcove</div>
+</footer>
+
+<script>
+document.querySelectorAll('.motion-card').forEach(c=>{
+  c.addEventListener('click',()=>{});
+});
+</script>
+</body>
+</html>

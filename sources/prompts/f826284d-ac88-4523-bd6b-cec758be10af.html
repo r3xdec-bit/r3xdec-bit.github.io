@@ -1,0 +1,1395 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fontaine Bleue - Institutional Aquatic Excellence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+    :root {
+      --institutional-blue: #0060A8;
+      --hero-fill: #0066AE;
+      --footer-fill: #031120;
+      --accent-blue: #1473E6;
+      --surface-gray: #F1F5F8;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: white;
+      color: black;
+      overflow-x: hidden;
+    }
+    .card-shadow {
+      box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1), 0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #004a82;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1473E6;
+      border-radius: 4px;
+    }
+
+    /* Language Toggle Logic - Strictly Exclusive Visibility */
+    .lang-fr, .lang-fr-block, .lang-en, .lang-en-block {
+      display: none !important;
+    }
+
+    html[lang="fr"] .lang-fr {
+      display: inline-block !important;
+    }
+    html[lang="fr"] .lang-fr-block {
+      display: block !important;
+    }
+
+    html[lang="en"] .lang-en {
+      display: inline-block !important;
+    }
+    html[lang="en"] .lang-en-block {
+      display: block !important;
+    }
+
+    #mobile-menu.hidden {
+      display: none;
+    }
+    #mobile-menu:not(.hidden) {
+      display: flex;
+    }
+  </style>
+
+<meta name="preview-version" content="c23f9651-ee52-41f2-89e4-8cf9a156469c" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.971Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "c23f9651-ee52-41f2-89e4-8cf9a156469c");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "c23f9651-ee52-41f2-89e4-8cf9a156469c",
+      timestamp: "2026-11-20T00:19:42.971Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "c23f9651-ee52-41f2-89e4-8cf9a156469c";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+  <div class="min-h-screen flex flex-col">
+    <!-- Top Utility Strip -->
+    <div class="bg-white w-full py-2 px-4 md:px-12 flex justify-between items-center border-b border-gray-100">
+      <div class="flex items-center gap-4">
+        <button onclick="toggleLanguage()" class="text-[10px] font-bold text-[#1473E6] uppercase tracking-wider flex items-center gap-1 min-h-[44px]" id="lang-toggle">
+          <span class="lang-fr">FR / EN</span>
+          <span class="lang-en">EN / FR</span>
+        </button>
+      </div>
+      <a href="#" id="nav-login-link" class="text-[11px] font-medium text-[#1473E6] uppercase tracking-wider flex items-center gap-2 min-h-[44px]">
+        <span class="lang-fr">Accès Membre</span>
+        <span class="lang-en">Member Access</span>
+        <iconify-icon icon="lucide:user" class="text-sm"></iconify-icon>
+      </a>
+    </div>
+
+    <header class="bg-white sticky top-0 z-50 py-4 px-4 md:px-12 flex justify-between items-center shadow-sm">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 bg-[#0060A8] rounded flex items-center justify-center text-white font-bold text-lg">FB</div>
+        <h1 class="text-[#0060A8] text-lg md:text-xl font-bold uppercase tracking-tight">Fontaine Bleue</h1>
+      </div>
+      <nav class="hidden lg:flex items-center gap-10">
+        <a href="#services" id="nav-services" class="text-sm font-semibold text-gray-600 hover:text-[#0060A8] transition-colors uppercase tracking-wide">
+          <span class="lang-fr">Services</span>
+          <span class="lang-en">Services</span>
+        </a>
+        <a href="#about" id="nav-about" class="text-sm font-semibold text-gray-600 hover:text-[#0060A8] transition-colors uppercase tracking-wide">
+          <span class="lang-fr">À Propos</span>
+          <span class="lang-en">About Us</span>
+        </a>
+        <a href="#pricing" id="nav-tarifs" class="text-sm font-semibold text-gray-600 hover:text-[#0060A8] transition-colors uppercase tracking-wide">
+          <span class="lang-fr">Tarifs</span>
+          <span class="lang-en">Pricing</span>
+        </a>
+        <a href="#contact" id="nav-contact" class="text-sm font-semibold text-gray-600 hover:text-[#0060A8] transition-colors uppercase tracking-wide">
+          <span class="lang-fr">Contact</span>
+          <span class="lang-en">Contact</span>
+        </a>
+      </nav>
+      <div class="flex items-center gap-4">
+        <a href="tel:+237677291423" id="nav-cta-call" class="hidden sm:flex bg-[#0066AE] text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#004a82] transition-all items-center gap-2">
+          <span class="lang-fr">Appelez-nous</span>
+          <span class="lang-en">Call Us</span>
+        </a>
+        <button onclick="toggleMobileMenu()" class="lg:hidden text-[#0060A8] text-3xl flex items-center justify-center min-w-[44px] min-h-[44px]" aria-label="Menu">
+          <iconify-icon icon="lucide:menu"></iconify-icon>
+        </button>
+      </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#0060A8] z-[60] hidden flex-col items-center justify-center gap-8 text-white p-8">
+      <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 text-4xl"><iconify-icon icon="lucide:x"></iconify-icon></button>
+      <a href="#services" onclick="toggleMobileMenu()" class="text-2xl font-bold uppercase tracking-widest">
+        <span class="lang-fr">Services</span>
+        <span class="lang-en">Services</span>
+      </a>
+      <a href="#about" onclick="toggleMobileMenu()" class="text-2xl font-bold uppercase tracking-widest">
+        <span class="lang-fr">À Propos</span>
+        <span class="lang-en">About Us</span>
+      </a>
+      <a href="#pricing" onclick="toggleMobileMenu()" class="text-2xl font-bold uppercase tracking-widest">
+        <span class="lang-fr">Tarifs</span>
+        <span class="lang-en">Pricing</span>
+      </a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="text-2xl font-bold uppercase tracking-widest">
+        <span class="lang-fr">Contact</span>
+        <span class="lang-en">Contact</span>
+      </a>
+      <a href="tel:+237677291423" class="mt-8 bg-white text-[#0060A8] px-10 py-4 rounded-full font-bold uppercase">
+        <span class="lang-fr">Appelez-nous</span>
+        <span class="lang-en">Call Us</span>
+      </a>
+    </div>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="relative h-[500px] md:h-[600px] flex items-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+          <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-24-14_clean.jpg/photo_2026-10-25_16-24-14_clean.jpg" alt="Luxury pool facility" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+          <div class="absolute inset-0 bg-gradient-to-r from-[#0060A8]/90 via-[#0060A8]/40 to-transparent"></div>
+        </div>
+        <div class="container mx-auto px-6 md:px-12 relative z-10 max-w-[1170px]">
+          <div class="max-w-2xl">
+            <span class="inline-block bg-white/20 backdrop-blur-sm px-4 py-1 rounded-full text-[10px] md:text-[12px] font-bold text-white mb-6 uppercase tracking-widest">
+              <span class="lang-fr">Le coin fraîcheur de la famille</span>
+              <span class="lang-en">The Family Refreshment Spot</span>
+            </span>
+            <h2 class="text-4xl md:text-6xl font-normal leading-tight text-white mb-6">
+              <span class="lang-fr-block">Votre Oasis Aquatique <br><span class="italic font-light opacity-90">au Cœur de l'Excellence</span></span>
+              <span class="lang-en-block">Your Aquatic Oasis <br><span class="italic font-light opacity-90">at the Heart of Excellence</span></span>
+            </h2>
+            <p class="text-base md:text-lg text-white/90 mb-10 max-w-lg font-light leading-relaxed">
+              <span class="lang-fr">Plongez dans votre paradis aquatique pour une expérience inoubliable. Rejoignez-nous en famille ou entre amis et découvrez la tranquillité absolue.</span>
+              <span class="lang-en">Dive into your aquatic paradise for an unforgettable experience. Join us with family or friends and discover absolute tranquility.</span>
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+              <a href="#services" id="hero-cta-main" class="bg-[#0066AE] hover:bg-white hover:text-[#0060A8] text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold text-sm md:text-base transition-all text-center min-h-[48px] flex items-center justify-center">
+                <span class="lang-fr">Découvrir le club</span>
+                <span class="lang-en">Discover the Club</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Services Section -->
+      <section id="services" class="py-16 md:py-[80px] bg-[#F1F5F8]">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+            <div>
+              <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-2">
+                <span class="lang-fr">Nos Services</span>
+                <span class="lang-en">Our Services</span>
+                <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+              </h2>
+              <p class="text-[#6C6C6C] text-sm md:text-[16px]">
+                <span class="lang-fr">Des activités adaptées à tous les âges et à tous les niveaux de nage.</span>
+                <span class="lang-en">Activities adapted to all ages and all swimming levels.</span>
+              </p>
+            </div>
+            <a href="#" id="services-view-all" class="text-[#1473E6] text-sm font-bold flex items-center gap-1 hover:underline min-h-[44px]">
+              <span class="lang-fr">Voir tout</span>
+              <span class="lang-en">View All</span>
+              <iconify-icon icon="lucide:chevron-right"></iconify-icon>
+            </a>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-[28px]">
+            <!-- Service Card 1 -->
+            <div class="bg-white rounded-[10px] overflow-hidden card-shadow group transition-transform hover:-translate-y-1">
+              <div class="h-[200px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1560090151-6893b13ce828?q=80&w=1200&auto=format&fit=crop" alt="Kids swimming" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-24-08_clean.jpg/photo_2026-10-25_16-24-08_clean.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              </div>
+              <div class="p-6 md:p-8">
+                <h3 class="text-lg md:text-xl font-bold text-[#0060A8] mb-3">
+                  <span class="lang-fr">Cours pour enfants</span>
+                  <span class="lang-en">Children Classes</span>
+                </h3>
+                <p class="text-[#6C6C6C] text-[13px] leading-relaxed mb-6">
+                  <span class="lang-fr">Des cours adaptés aux enfants pour apprendre à nager en s'amusant et en toute sécurité avec nos instructeurs certifiés.</span>
+                  <span class="lang-en">Children's classes to learn to swim while having fun and safely with our certified instructors.</span>
+                </p>
+                <a href="#" id="service-card-1-link" class="text-[#1473E6] font-bold text-[11px] uppercase tracking-widest flex items-center gap-2 min-h-[44px]">
+                  <span class="lang-fr">En savoir plus</span>
+                  <span class="lang-en">Learn More</span>
+                  <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                </a>
+              </div>
+            </div>
+            <!-- Service Card 2 -->
+            <div class="bg-white rounded-[10px] overflow-hidden card-shadow group transition-transform hover:-translate-y-1">
+              <div class="h-[200px] overflow-hidden">
+                <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-22-34_clean.jpg/photo_2026-10-25_16-22-34_clean.jpg" alt="Aqua gym class" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              </div>
+              <div class="p-6 md:p-8">
+                <h3 class="text-lg md:text-xl font-bold text-[#0060A8] mb-3">
+                  <span class="lang-fr">Séances d'aquagym</span>
+                  <span class="lang-en">Aqua Gym Sessions</span>
+                </h3>
+                <p class="text-[#6C6C6C] text-[13px] leading-relaxed mb-6">
+                  <span class="lang-fr">Exercez-vous dans l'eau avec nos séances d'aquagym qui allient fitness et plaisir pour une tonification musculaire optimale.</span>
+                  <span class="lang-en">Exercise in the water with our aqua gym sessions that combine fitness and fun for optimal muscle toning.</span>
+                </p>
+                <a href="#" id="service-card-2-link" class="text-[#1473E6] font-bold text-[11px] uppercase tracking-widest flex items-center gap-2 min-h-[44px]">
+                  <span class="lang-fr">En savoir plus</span>
+                  <span class="lang-en">Learn More</span>
+                  <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                </a>
+              </div>
+            </div>
+            <!-- Service Card 3 -->
+            <div class="bg-white rounded-[10px] overflow-hidden card-shadow group transition-transform hover:-translate-y-1">
+              <div class="h-[200px] overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop" alt="Private lessons" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-25-13_clean.jpg/photo_2026-10-25_16-25-13_clean.jpg" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              </div>
+              <div class="p-6 md:p-8">
+                <h3 class="text-lg md:text-xl font-bold text-[#0060A8] mb-3">
+                  <span class="lang-fr">Leçons privées</span>
+                  <span class="lang-en">Private Lessons</span>
+                </h3>
+                <p class="text-[#6C6C6C] text-[13px] leading-relaxed mb-6">
+                  <span class="lang-fr">Prenez des leçons privées avec nos instructeurs pour une progression rapide, personnalisée et adaptée à vos objectifs.</span>
+                  <span class="lang-en">Take private lessons with our instructors for fast, personalized progress tailored to your goals.</span>
+                </p>
+                <a href="#" id="service-card-3-link" class="text-[#1473E6] font-bold text-[11px] uppercase tracking-widest flex items-center gap-2 min-h-[44px]">
+                  <span class="lang-fr">En savoir plus</span>
+                  <span class="lang-en">Learn More</span>
+                  <iconify-icon icon="lucide:arrow-right"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- About Section -->
+      <section id="about" class="py-16 md:py-[80px] bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <div class="flex flex-col md:flex-row gap-10 md:gap-[50px] items-center">
+            <div class="w-full md:w-1/2 h-[300px] md:h-[450px] rounded-[16px] overflow-hidden">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-23-15_clean.jpg/photo_2026-10-25_16-23-15_clean.jpg" alt="Installations Fontaine Bleue" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+            </div>
+            <div class="w-full md:w-1/2">
+              <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-2">
+                <span class="lang-fr">À Propos</span>
+                <span class="lang-en">About Us</span>
+                <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+              </h2>
+              <h3 class="text-[#0060A8] text-2xl md:text-3xl font-bold mb-6 mt-4">
+                <span class="lang-fr">Maîtrisez la Natation chez Nous!</span>
+                <span class="lang-en">Master Swimming with Us!</span>
+              </h3>
+              <p class="text-[#6C6C6C] text-sm md:text-[16px] leading-relaxed mb-6">
+                <span class="lang-fr">Notre établissement utilise les dernières technologies de filtration pour une eau pure et une expérience sans chlore agressif. Chez Fontaine Bleue, nous croyons que la qualité de l'environnement est essentielle à la performance et au bien-être.</span>
+                <span class="lang-en">Our facility uses the latest filtration technologies for pure water and a harsh chlorine-free experience. At Fontaine Bleue, we believe environment quality is essential for performance and well-being.</span>
+              </p>
+              <div class="flex items-center gap-3 mb-8">
+                <div class="flex -space-x-2">
+                  <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gray-200"></div>
+                  <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gray-300"></div>
+                  <div class="w-8 h-8 md:w-10 md:h-10 rounded-full border-2 border-white bg-gray-400"></div>
+                </div>
+                <span class="text-[#0060A8] text-xs md:text-sm font-bold tracking-wide">
+                  <span class="lang-fr">+500 membres actifs nous font confiance</span>
+                  <span class="lang-en">+500 active members trust us</span>
+                </span>
+              </div>
+              <ul class="space-y-3">
+                <li class="flex items-center gap-3 text-[#6C6C6C] text-[13px] md:text-[14px]">
+                  <iconify-icon icon="lucide:check-circle" class="text-[#1473E6] text-lg"></iconify-icon>
+                  <span>
+                    <span class="lang-fr">Instructeurs certifiés d'État</span>
+                    <span class="lang-en">State certified instructors</span>
+                  </span>
+                </li>
+                <li class="flex items-center gap-3 text-[#6C6C6C] text-[13px] md:text-[14px]">
+                  <iconify-icon icon="lucide:check-circle" class="text-[#1473E6] text-lg"></iconify-icon>
+                  <span>
+                    <span class="lang-fr">Environnement familial et sécurisé</span>
+                    <span class="lang-en">Family-friendly and secure environment</span>
+                  </span>
+                </li>
+                <li class="flex items-center gap-3 text-[#6C6C6C] text-[13px] md:text-[14px]">
+                  <iconify-icon icon="lucide:check-circle" class="text-[#1473E6] text-lg"></iconify-icon>
+                  <span>
+                    <span class="lang-fr">Installations premium et vestiaires équipés</span>
+                    <span class="lang-en">Premium facilities and equipped locker rooms</span>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gallery Section -->
+      <section class="py-16 md:py-[80px] bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-10">
+            <span class="lang-fr">Galerie Photos</span>
+            <span class="lang-en">Photo Gallery</span>
+            <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+          </h2>
+          <div class="relative flex flex-col md:flex-row gap-6">
+            <div class="flex-1 h-[300px] md:h-[450px] relative rounded-[16px] overflow-hidden group">
+              <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-24-14_clean.jpg/photo_2026-10-25_16-24-14_clean.jpg" alt="Pool relaxation area" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+              <div class="absolute bottom-4 left-4 md:bottom-8 md:left-8 bg-white p-4 md:p-6 rounded-[10px] max-w-[200px] md:max-w-[280px] shadow-lg transform transition-transform group-hover:scale-105">
+                <p class="text-[#0060A8] font-bold text-base md:text-lg mb-2">
+                  <span class="lang-fr">Espaces Relax</span>
+                  <span class="lang-en">Relax Areas</span>
+                </p>
+                <p class="text-[#6C6C6C] text-[10px] md:text-xs">
+                  <span class="lang-fr">Profitez de nos transats et zones de détente après votre nage.</span>
+                  <span class="lang-en">Enjoy our sunbeds and relaxation zones after your swim.</span>
+                </p>
+              </div>
+              <button class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#0060A8] hover:bg-white transition-all"><iconify-icon icon="lucide:chevron-left" class="text-xl"></iconify-icon></button>
+              <button class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/90 shadow-md flex items-center justify-center text-[#0060A8] hover:bg-white transition-all"><iconify-icon icon="lucide:chevron-right" class="text-xl"></iconify-icon></button>
+            </div>
+            <div class="w-full md:w-[350px] flex flex-col gap-6">
+              <div class="bg-[#F1F5F8] p-6 md:p-8 rounded-[16px] flex-1 flex flex-col justify-center border-l-4 border-[#1473E6]">
+                <h4 class="text-[#0060A8] text-xl md:text-2xl font-bold mb-4">
+                  <span class="lang-fr">Maîtrisez la Natation chez Nous!</span>
+                  <span class="lang-en">Master Swimming with Us!</span>
+                </h4>
+                <p class="text-[#6C6C6C] text-xs md:text-sm leading-relaxed mb-6">
+                  <span class="lang-fr">Notre établissement utilise les dernières technologies de filtration pour une eau pure.</span>
+                  <span class="lang-en">Our facility uses the latest filtration technologies for pure water.</span>
+                </p>
+              </div>
+              <div class="h-[150px] md:h-[180px] rounded-[16px] overflow-hidden hidden sm:block">
+                <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/projects/d718abde-781a-4fff-ab95-39f058f88420/content-assets/clean-photo_2026-10-25_16-23-15_clean.jpg/photo_2026-10-25_16-23-15_clean.jpg" alt="Swimming details" class="w-full h-full object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" class="py-16 md:py-[80px] bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <div class="mb-10">
+            <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-2">
+              <span class="lang-fr">Nos Tarifs</span>
+              <span class="lang-en">Our Pricing</span>
+              <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+            </h2>
+            <p class="text-[#6C6C6C] text-sm md:text-[16px]">
+              <span class="lang-fr">Choisissez le plan qui correspond le mieux à vos besoins aquatiques.</span>
+              <span class="lang-en">Choose the plan that best matches your aquatic needs.</span>
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-[28px]">
+            <!-- Bronze Card -->
+            <div class="bg-white rounded-[10px] p-6 md:p-8 card-shadow border-t-4 border-[#1473E6] text-center transition-all hover:-translate-y-2">
+              <h3 class="text-[#0060A8] text-lg md:text-xl font-bold mb-2">Bronze</h3>
+              <p class="text-[#6C6C6C] text-[10px] md:text-xs mb-6">
+                <span class="lang-fr">Pour les nageurs occasionnels</span>
+                <span class="lang-en">For occasional swimmers</span>
+              </p>
+              <div class="text-3xl md:text-4xl font-bold text-[#0060A8] mb-6">29€<span class="text-base md:text-lg text-[#6C6C6C] font-normal">/mois</span></div>
+              <ul class="space-y-3 mb-8 text-[12px] md:text-[13px] text-[#6C6C6C] text-left">
+                <li class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:check" class="text-[#1473E6]"></iconify-icon>
+                  <span class="lang-fr">Accès piscine 2j/semaine</span>
+                  <span class="lang-en">Pool access 2 days/week</span>
+                </li>
+              </ul>
+              <a href="#contact" id="cta-bronze" class="block w-full bg-[#0066AE] text-white py-3 md:py-4 rounded-full font-bold hover:bg-[#004a82] transition-all text-xs md:text-sm uppercase tracking-widest flex items-center justify-center min-h-[44px]">
+                <span class="lang-fr">Choisir ce Plan</span>
+                <span class="lang-en">Choose this Plan</span>
+              </a>
+            </div>
+            <!-- Silver Card -->
+            <div class="bg-white rounded-[10px] p-6 md:p-8 card-shadow border-t-4 border-[#1473E6] text-center transition-all hover:-translate-y-2 relative">
+              <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#1473E6] text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest">
+                <span class="lang-fr">Populaire</span>
+                <span class="lang-en">Popular</span>
+              </div>
+              <h3 class="text-[#0060A8] text-lg md:text-xl font-bold mb-2">Silver</h3>
+              <p class="text-[#6C6C6C] text-[10px] md:text-xs mb-6">
+                <span class="lang-fr">L'équilibre parfait fitness & plaisir</span>
+                <span class="lang-en">The perfect balance fitness & fun</span>
+              </p>
+              <div class="text-3xl md:text-4xl font-bold text-[#0060A8] mb-6">49€<span class="text-base md:text-lg text-[#6C6C6C] font-normal">/mois</span></div>
+              <ul class="space-y-3 mb-8 text-[12px] md:text-[13px] text-[#6C6C6C] text-left">
+                <li class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:check" class="text-[#1473E6]"></iconify-icon>
+                  <span class="lang-fr">Accès illimité piscine</span>
+                  <span class="lang-en">Unlimited pool access</span>
+                </li>
+              </ul>
+              <a href="#contact" id="cta-silver" class="block w-full bg-[#0066AE] text-white py-3 md:py-4 rounded-full font-bold hover:bg-[#004a82] transition-all text-xs md:text-sm uppercase tracking-widest flex items-center justify-center min-h-[44px]">
+                <span class="lang-fr">Choisir ce Plan</span>
+                <span class="lang-en">Choose this Plan</span>
+              </a>
+            </div>
+            <!-- Gold Card -->
+            <div class="bg-white rounded-[10px] p-6 md:p-8 card-shadow border-t-4 border-[#1473E6] text-center transition-all hover:-translate-y-2">
+              <h3 class="text-[#0060A8] text-lg md:text-xl font-bold mb-2">Gold</h3>
+              <p class="text-[#6C6C6C] text-[10px] md:text-xs mb-6">
+                <span class="lang-fr">L'expérience premium complète</span>
+                <span class="lang-en">The complete premium experience</span>
+              </p>
+              <div class="text-3xl md:text-4xl font-bold text-[#0060A8] mb-6">79€<span class="text-base md:text-lg text-[#6C6C6C] font-normal">/mois</span></div>
+              <ul class="space-y-3 mb-8 text-[12px] md:text-[13px] text-[#6C6C6C] text-left">
+                <li class="flex items-center gap-2">
+                  <iconify-icon icon="lucide:check" class="text-[#1473E6]"></iconify-icon>
+                  <span class="lang-fr">Tout le contenu Silver</span>
+                  <span class="lang-en">Everything in Silver</span>
+                </li>
+              </ul>
+              <a href="#contact" id="cta-gold" class="block w-full bg-[#0066AE] text-white py-3 md:py-4 rounded-full font-bold hover:bg-[#004a82] transition-all text-xs md:text-sm uppercase tracking-widest flex items-center justify-center min-h-[44px]">
+                <span class="lang-fr">Choisir ce Plan</span>
+                <span class="lang-en">Choose this Plan</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials Section -->
+      <section class="py-16 md:py-[80px] bg-[#0060A8]">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <h2 class="text-white text-[20px] md:text-[24px] font-normal uppercase tracking-tight mb-12 text-center">
+            <span class="lang-fr">Avis de nos Membres</span>
+            <span class="lang-en">Member Reviews</span>
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-[28px]">
+            <div class="bg-white rounded-[10px] p-6 md:p-8 card-shadow transition-all hover:scale-[1.02]">
+              <div class="flex gap-1 mb-4">
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+              </div>
+              <p class="text-[#000000] text-[12px] md:text-[13px] leading-relaxed mb-6 italic">
+                <span class="lang-fr">"Le cadre est magnifique et l'eau est toujours à la température parfaite."</span>
+                <span class="lang-en">"The setting is beautiful and the water is always at the perfect temperature."</span>
+              </p>
+              <p class="text-[#0060A8] font-bold text-[10px] md:text-[11px] uppercase tracking-wider">— Sophie Martin</p>
+              <p class="text-[#6C6C6C] text-[10px]">
+                <span class="lang-fr">Membre depuis 2022</span>
+                <span class="lang-en">Member since 2022</span>
+              </p>
+            </div>
+            <div class="bg-white rounded-[10px] p-6 md:p-8 card-shadow transition-all hover:scale-[1.02]">
+              <div class="flex gap-1 mb-4">
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+                <iconify-icon icon="lucide:star" class="text-[#1473E6]"></iconify-icon>
+              </div>
+              <p class="text-[#000000] text-[12px] md:text-[13px] leading-relaxed mb-6 italic">
+                <span class="lang-fr">"Mes enfants ont fait d'énormes progrès en seulement quelques leçons."</span>
+                <span class="lang-en">"My children have made huge progress in just a few lessons."</span>
+              </p>
+              <p class="text-[#0060A8] font-bold text-[10px] md:text-[11px] uppercase tracking-wider">— Jean Dupont</p>
+              <p class="text-[#6C6C6C] text-[10px]">
+                <span class="lang-fr">Membre Famille</span>
+                <span class="lang-en">Family Member</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Booking Section -->
+      <section id="contact" class="py-16 md:py-[80px] bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <div class="flex flex-col lg:flex-row gap-12 lg:gap-16">
+            <div class="lg:w-1/3">
+              <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-2">
+                <span class="lang-fr">Réserver une Activité</span>
+                <span class="lang-en">Book an Activity</span>
+                <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+              </h2>
+              <p class="text-[#6C6C6C] text-sm md:text-[16px] mb-8">
+                <span class="lang-fr">Inscrivez-vous pour une leçon ou une séance. Notre équipe vous recontactera.</span>
+                <span class="lang-en">Sign up for a lesson or session. Our team will contact you.</span>
+              </p>
+              <div class="space-y-4">
+                <div class="flex items-center gap-4 text-[#0060A8]">
+                  <iconify-icon icon="lucide:info" class="text-xl"></iconify-icon>
+                  <span class="text-[10px] font-bold uppercase tracking-widest">
+                    <span class="lang-fr">Confirmation sous 24h</span>
+                    <span class="lang-en">Confirmation within 24h</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div class="lg:w-2/3">
+              <form class="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+                <div class="flex flex-col gap-2">
+                  <label class="text-[10px] font-bold text-[#6C6C6C] uppercase tracking-widest">
+                    <span class="lang-fr">Nom Complet</span>
+                    <span class="lang-en">Full Name</span>
+                  </label>
+                  <input type="text" class="bg-[#F1F5F8] border-none rounded-[10px] p-4 text-sm text-black focus:ring-2 focus:ring-[#1473E6] outline-none min-h-[48px]">
+                </div>
+                <div class="flex flex-col gap-2">
+                  <label class="text-[10px] font-bold text-[#6C6C6C] uppercase tracking-widest">
+                    <span class="lang-fr">Email</span>
+                    <span class="lang-en">Email</span>
+                  </label>
+                  <input type="email" class="bg-[#F1F5F8] border-none rounded-[10px] p-4 text-sm text-black focus:ring-2 focus:ring-[#1473E6] outline-none min-h-[48px]">
+                </div>
+                <div class="sm:col-span-2">
+                  <button type="submit" class="w-full bg-[#0066AE] text-white py-4 rounded-full font-bold hover:bg-[#004a82] transition-all text-xs md:text-sm uppercase tracking-widest mt-2 min-h-[48px] flex items-center justify-center">
+                    <span class="lang-fr">Confirmer la Réservation</span>
+                    <span class="lang-en">Confirm Reservation</span>
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Location Section -->
+      <section id="location" class="py-16 md:py-[80px] bg-white">
+        <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-[28px]">
+            <div class="flex flex-col">
+              <h2 class="text-[#0060A8] text-[22px] md:text-[24px] font-normal uppercase tracking-tight mb-2">
+                <span class="lang-fr">Horaires d'Ouverture</span>
+                <span class="lang-en">Opening Hours</span>
+                <div class="h-1 w-12 bg-[#1473E6] mt-1"></div>
+              </h2>
+              <div class="overflow-hidden rounded-[10px] border border-gray-100 card-shadow mt-6">
+                <table class="w-full border-collapse text-left">
+                  <tbody class="text-sm">
+                    <tr class="border-t border-gray-50 bg-[#F1F5F8]">
+                      <td class="p-4 font-bold text-[#0060A8] uppercase text-[10px] tracking-widest">
+                        <span class="lang-fr">Jour</span>
+                        <span class="lang-en">Day</span>
+                      </td>
+                      <td class="p-4 font-bold text-[#0060A8] uppercase text-[10px] tracking-widest">
+                        <span class="lang-fr">Horaires</span>
+                        <span class="lang-en">Hours</span>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-50">
+                      <td class="p-4 font-semibold text-[#0060A8]">
+                        <span class="lang-fr">Lun - Ven</span>
+                        <span class="lang-en">Mon - Fri</span>
+                      </td>
+                      <td class="p-4 text-[#6C6C6C]">08:00 - 22:00</td>
+                    </tr>
+                    <tr class="border-t border-gray-50">
+                      <td class="p-4 font-semibold text-[#0060A8]">
+                        <span class="lang-fr">Samedi</span>
+                        <span class="lang-en">Saturday</span>
+                      </td>
+                      <td class="p-4 text-[#6C6C6C]">09:00 - 20:00</td>
+                    </tr>
+                    <tr class="border-t border-gray-50">
+                      <td class="p-4 font-semibold text-[#0060A8]">
+                        <span class="lang-fr">Dimanche</span>
+                        <span class="lang-en">Sunday</span>
+                      </td>
+                      <td class="p-4 text-[#6C6C6C]">10:00 - 19:00</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="flex flex-col gap-6">
+              <div class="h-[250px] md:h-[300px] rounded-[10px] overflow-hidden card-shadow border border-gray-100">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3980.1234!2d9.7700!3d4.0500!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwMDMnMDAuMCJOIDnCsDQ2JzEyLjAiRQ!5e0!3m2!1sen!2scm!4v1715856600000!5m2!1sen!2scm" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+              </div>
+              <div class="bg-white p-6 rounded-[10px] card-shadow border border-gray-100">
+                <div class="flex items-start gap-4">
+                  <iconify-icon icon="lucide:map-pin" class="text-2xl text-[#1473E6]"></iconify-icon>
+                  <div>
+                    <h4 class="text-[#0060A8] font-bold text-[10px] uppercase tracking-wider mb-1">
+                      <span class="lang-fr">Notre Adresse</span>
+                      <span class="lang-en">Our Address</span>
+                    </h4>
+                    <p class="text-[#6C6C6C] text-sm">XRC7+874, Yassa, Cameroun</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#031120] text-white py-16 md:py-20">
+      <div class="container mx-auto px-6 md:px-12 max-w-[1170px]">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12 mb-16">
+          <div class="col-span-1">
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-8 h-8 bg-white/10 rounded flex items-center justify-center text-white font-bold text-sm">FB</div>
+              <h3 class="text-white text-lg font-bold uppercase tracking-tight">Fontaine Bleue</h3>
+            </div>
+            <p class="text-gray-400 text-xs leading-relaxed max-w-[240px]">
+              <span class="lang-fr">Centre aquatique d'excellence dédié à la formation et au bien-être.</span>
+              <span class="lang-en">Aquatic excellence center dedicated to training and well-being.</span>
+            </p>
+          </div>
+          <div>
+            <h4 class="text-white font-bold text-[10px] md:text-[11px] uppercase tracking-widest mb-6">
+              <span class="lang-fr">Plan du site</span>
+              <span class="lang-en">Sitemap</span>
+            </h4>
+            <ul class="space-y-4">
+              <li class="text-xs text-gray-400">
+                <a href="#" id="f-home">
+                  <span class="lang-fr">Accueil</span>
+                  <span class="lang-en">Home</span>
+                </a>
+              </li>
+              <li class="text-xs text-gray-400"><a href="#services" id="f-services">Services</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-bold text-[10px] md:text-[11px] uppercase tracking-widest mb-6">
+              <span class="lang-fr">Contact</span>
+              <span class="lang-en">Contact</span>
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-gray-400 text-xs">
+                <iconify-icon icon="lucide:phone" class="text-[#1473E6]"></iconify-icon>
+                +237 677 29 14 23
+              </li>
+              <li class="flex items-center gap-3 text-gray-400 text-xs">
+                <iconify-icon icon="lucide:mail" class="text-[#1473E6]"></iconify-icon>
+                fontainebleue.support@gmail.com
+              </li>
+              <li class="flex items-center gap-3 text-gray-400 text-xs">
+                <iconify-icon icon="lucide:map-pin" class="text-[#1473E6]"></iconify-icon>
+                XRC7+874, Yassa, Cameroun
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-bold text-[10px] md:text-[11px] uppercase tracking-widest mb-6">
+              <span class="lang-fr">Réseaux</span>
+              <span class="lang-en">Socials</span>
+            </h4>
+            <div class="flex gap-4">
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center min-w-[44px] min-h-[44px]" id="f-social-fb"><iconify-icon icon="lucide:facebook"></iconify-icon></a>
+              <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center min-w-[44px] min-h-[44px]" id="f-social-ig"><iconify-icon icon="lucide:instagram"></iconify-icon></a>
+            </div>
+          </div>
+        </div>
+        <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
+          <p class="text-gray-500 text-[10px] uppercase tracking-widest">© 2024 Fontaine Bleue. 
+            <span class="lang-fr">Tous droits réservés.</span>
+            <span class="lang-en">All rights reserved.</span>
+          </p>
+          <div class="flex gap-6">
+            <a href="#" id="f-legal" class="text-gray-500 text-[10px] uppercase tracking-widest underline decoration-white/20">
+              <span class="lang-fr">Mentions Légales</span>
+              <span class="lang-en">Legal Notice</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleLanguage() {
+      const html = document.documentElement;
+      if (html.getAttribute('lang') === 'fr') {
+        html.setAttribute('lang', 'en');
+      } else {
+        html.setAttribute('lang', 'fr');
+      }
+    }
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sunset 3D Savings · ThreeUI</title><link rel="stylesheet" href="./sunset-3d-savings.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script></head><body data-template="sunset-3d-savings" data-kind="Sections"><canvas id="gl" aria-hidden="true"></canvas><canvas id="petals-near" aria-hidden="true"></canvas><main><section id="savings" data-bg="#F3EADB">
+  <div class="grid-lines"><div class="frame"><i></i><i></i><i></i><i></i></div></div>
+  <div class="orn" data-orn="savings-sprig" style="width:200px;bottom:26px;right:3%;rotate:14deg" data-depth=".18"><img crossorigin="anonymous" decoding="async" loading="lazy" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/4f56d496897d1113cdcf3a73825b962f2d0891011c25938c6dda6a0b9fa8f6ed.webp" alt=""></div>
+  <div class="frame sv-grid">
+    <div class="sv-copy" data-keep>
+      <span class="eyebrow rv"><i class="i" data-i="graph-up-bold-duotone"></i>Savings <span class="jp">節約</span></span>
+      <h2 class="rv">See what the sun is worth on <em>your</em> roof</h2>
+      <p class="lede rv">Grid prices in Japan rise almost every year. Your own panels and battery don’t. Move the slider to your usual monthly bill and compare 25 years of power.</p>
+      <div class="sv-calc rv">
+        <div class="sv-row"><label for="bill">Your monthly power bill</label><span class="sv-bill" id="billOut">¥15,000<small> / mo</small></span></div>
+        <input id="bill" type="range" min="8000" max="40000" step="500" value="15000" aria-label="Monthly power bill in yen">
+        <div class="sv-scale"><span>¥8,000</span><span>¥40,000</span></div>
+        <div class="sv-result">
+          <div><small>You’d save</small><b class="hot" id="saveOut">¥3.1M</b></div>
+          <div><small>Every month, about</small><b id="monthOut">¥10,300</b></div>
+        </div>
+      </div>
+      <div class="sv-note">Estimates over 25 years. Assumes grid prices rise 3% a year.</div>
+    </div>
+    <div class="sv-stage">
+      <div class="gl-host" data-scene="chart">
+        <div class="gl-anchor" data-anchor="grid"><div class="bar-label"><small><span class="lg">Grid only</span><span class="sh">Grid</span></small><b id="lblGrid">¥6.6M</b></div></div>
+        <div class="gl-anchor" data-anchor="solar"><div class="bar-label"><small><span class="lg">Solar only</span><span class="sh">Solar</span></small><b id="lblSolar">¥4.8M</b></div></div>
+        <div class="gl-anchor" data-anchor="sunset"><div class="bar-label hot"><small><span class="lg">Sunset solar + battery</span><span class="sh">Sunset</span></small><b id="lblSunset">¥3.4M</b></div></div>
+      </div>
+      <div class="chart-legend"><i></i>1 block = ¥1M of power bills over 25 years</div>
+    </div>
+  </div>
+</section></main><output id="demo" class="demo-message" aria-live="polite"></output><script type="module" src="./sunset-3d-savings.js"></script></body></html>

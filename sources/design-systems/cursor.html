@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm-paper IDE chrome — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Grotesk:wght@400;500&family=Lato:wght@400&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#F7F7F4;
+    --surface:#F2F1ED;
+    --surface-alt:#E6E5E0;
+    --surface-step:#EBEAE5;
+    --text-primary:#26251E;
+    --text-secondary:#3f6f8f;
+    --accent:#F54E00;
+    --accent-gold:#C08532;
+    --ink:#000000;
+    --btn-hover:#3B3A33;
+    --r-control:4px;
+    --r-pill:9999px;
+    --r-card:2px;
+    --r-chip:2px;
+    --base:4px;
+    --gap:8px;
+    --section-padding:67px;
+    --section-gap-lg:177px;
+    --section-gap-md:90px;
+    --maxw:1300px;
+    --ff-display:"Space Grotesk", "CursorGothic", system-ui, sans-serif;
+    --ff-ui:"Space Grotesk", "CursorGothic", system-ui, sans-serif;
+    --ff-serif:"EB Garamond", Georgia, serif;
+    --ff-mono:"IBM Plex Mono", "berkeleyMono", ui-monospace, monospace;
+    --ff-caption:"Lato", system-ui, sans-serif;
+    --ease:cubic-bezier(0.4,0,0.2,1);
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--ff-serif);
+    font-size:17px;
+    line-height:1.35;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4,p{margin:0;}
+  a{color:var(--accent);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .display{font-family:var(--ff-display);font-weight:400;letter-spacing:-0.3px;line-height:1.25;}
+  .ui{font-family:var(--ff-ui);}
+  .eyebrow{font-family:var(--ff-ui);font-size:14px;line-height:1.5;letter-spacing:0.1px;font-weight:500;}
+  .caption{font-family:var(--ff-caption);font-size:13px;color:var(--text-primary);opacity:.7;}
+  section{padding:var(--section-padding) 0;}
+  .section-head{font-family:var(--ff-display);font-size:26px;letter-spacing:-0.3px;line-height:1.25;margin-bottom:8px;}
+  .section-sub{font-family:var(--ff-serif);font-size:17px;max-width:60ch;opacity:.8;margin-bottom:40px;}
+  .link-arrow{font-family:var(--ff-ui);font-size:14px;color:var(--accent);letter-spacing:0.1px;}
+  iconify-icon{display:inline-block;vertical-align:-0.125em;}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;height:52px;background:var(--background);border-bottom:1px solid var(--surface-alt);}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;height:52px;padding:0 24px;display:flex;align-items:center;gap:24px;}
+  .logo{display:flex;align-items:center;gap:8px;font-family:var(--ff-display);font-size:16px;letter-spacing:-0.2px;color:var(--text-primary);}
+  .logo-mark{width:16px;height:16px;background:var(--text-primary);transform:rotate(45deg);display:inline-block;}
+  .nav-items{display:flex;gap:20px;font-family:var(--ff-ui);font-size:14px;letter-spacing:0.1px;}
+  .nav-items a{color:var(--text-primary);}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:12px;}
+  .nav-signin{font-family:var(--ff-ui);font-size:14px;color:var(--text-primary);}
+  .btn-outline{font-family:var(--ff-ui);font-size:13px;height:27px;padding:0 12px;background:transparent;color:var(--text-primary);border:1px solid var(--text-primary);border-radius:var(--r-pill);display:inline-flex;align-items:center;cursor:pointer;transition:all .15s var(--ease);}
+  .btn-outline:hover{background:var(--surface-alt);}
+  .btn-nav-cta{font-family:var(--ff-ui);font-size:13px;background:var(--text-primary);color:var(--background);height:27px;padding:5.6px 10.5px 5.88px;border:1px solid rgb(38,37,30);border-radius:var(--r-pill);display:inline-flex;align-items:center;cursor:pointer;transition:all .15s var(--ease);}
+  .btn-nav-cta:hover{background:var(--btn-hover);}
+  @media(max-width:768px){.nav-items{display:none;}.nav-signin{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="nav" data-tier-a-component="navbar">
+  <nav class="nav-inner" aria-label="Primary">
+    <a href="#hero" class="logo"><span class="logo-mark" aria-hidden="true"></span>Cursor</a>
+    <div class="nav-items">
+      <a href="#components">Models</a>
+      <a href="#components">Product</a>
+      <a href="#components">Enterprise</a>
+      <a href="#palette">Pricing</a>
+      <a href="#type-scale">Resources</a>
+    </div>
+    <div class="nav-right">
+      <a href="#composition" class="nav-signin">Sign in</a>
+      <button class="btn-outline">Contact sales</button>
+      <button class="btn-nav-cta">Download</button>
+    </div>
+  </nav>
+</header>
+
+<style data-section-styles="hero">
+  #hero{padding-top:80px;padding-bottom:0;overflow:hidden;position:relative;}
+  .hero-grid{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .hero-head{font-family:var(--ff-display);font-size:26px;line-height:1.25;letter-spacing:-0.3px;max-width:20ch;}
+  .hero-sub{font-family:var(--ff-serif);font-size:17px;line-height:1.35;max-width:44ch;margin-top:16px;opacity:.85;}
+  .hero-btns{display:flex;align-items:center;gap:12px;margin-top:28px;}
+  .btn-primary{font-family:var(--ff-ui);font-size:14px;background:var(--text-primary);color:var(--background);height:43px;padding:12.48px 21.6px 12.8px;border:1px solid rgb(38,37,30);border-radius:var(--r-pill);display:inline-flex;align-items:center;cursor:pointer;transition:all .15s var(--ease);line-height:1;}
+  .btn-primary:hover{background:var(--btn-hover);}
+  .btn-glass{font-family:var(--ff-ui);font-size:14px;background:rgba(38,37,30,0.06);color:var(--text-primary);height:35px;padding:6px 12px;border:0;border-radius:0;display:inline-flex;align-items:center;cursor:pointer;transition:all .15s var(--ease);line-height:1;}
+  .btn-glass:hover{background:rgba(38,37,30,0.10);}
+  .hero-window-scrim{position:relative;margin-top:64px;padding-top:60px;background:linear-gradient(#F2F1ED 0%, rgba(242,241,237,0) 60%);}
+  .hero-window-scrim::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg, rgba(101,175,224,0.10), rgba(192,133,50,0.04) 60%, transparent);pointer-events:none;}
+  .win{position:relative;background:var(--background);border-radius:0;box-shadow:rgba(0,0,0,0.14) 0 28px 70px 0, rgba(0,0,0,0.1) 0 14px 32px 0, oklab(0.263084 -0.00230259 0.0124794 / 0.1) 0 0 0 1px;max-width:1040px;margin:0 auto;}
+  .win-bar{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--surface-alt);}
+  .dot{width:11px;height:11px;border-radius:var(--r-pill);display:inline-block;}
+  .dot.r{background:#e06a5a;}.dot.y{background:#d6ad4e;}.dot.g{background:#8aa870;}
+  .win-tabs{display:flex;gap:2px;margin-left:16px;font-family:var(--ff-ui);font-size:13px;}
+  .win-tab{padding:2px 10px;color:var(--text-primary);opacity:.55;}
+  .win-tab.active{opacity:1;border-bottom:2px solid var(--text-primary);}
+  .win-body{display:grid;grid-template-columns:220px 1fr;min-height:300px;}
+  .win-list{border-right:1px solid var(--surface-alt);padding:12px;}
+  .win-list-item{font-family:var(--ff-ui);font-size:13px;padding:8px 10px;color:var(--text-primary);}
+  .win-list-item.sel{background:var(--surface);}
+  .win-detail{padding:20px 24px;font-family:var(--ff-serif);font-size:16px;position:relative;}
+  .win-code{font-family:var(--ff-mono);font-size:13px;background:var(--surface);padding:14px;margin-top:14px;line-height:1.7;color:var(--text-primary);position:relative;overflow:hidden;}
+  .win-code::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,0.5) 50%,transparent 70%);transform:translateX(-100%);animation:shimmer 2.6s var(--ease) infinite;}
+  @keyframes shimmer{to{transform:translateX(100%);}}
+  .cli-popover{position:absolute;right:-24px;bottom:-34px;width:300px;background:var(--background);box-shadow:rgba(0,0,0,0.02) 0 0 16px 0, rgba(0,0,0,0.008) 0 0 8px 0, rgb(235,234,229) 0 0 0 2px;padding:14px;font-family:var(--ff-mono);font-size:13px;line-height:1.6;}
+  .cli-prompt{color:var(--accent);}
+  @media(max-width:768px){.hero-head{font-size:22px;}.win-body{grid-template-columns:1fr;}.win-list{display:none;}.cli-popover{position:static;width:auto;margin-top:16px;right:auto;bottom:auto;}}
+  @media(prefers-reduced-motion:reduce){.win-code::after{animation:none;display:none;}}
+</style>
+<main>
+<section id="hero" aria-label="Hero">
+  <div class="hero-grid">
+    <h1 class="hero-head">The IDE that reads like documentation.<br>Ink on paper, chrome on canvas.</h1>
+    <p class="hero-sub">A warm-paper workspace where near-black pill controls, EB Garamond prose, and flat window-chrome cards do the talking. Amber is rationed. Nothing shouts.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" data-tier-a-component="hero-primary-button">Download for macOS</button>
+      <button class="btn-glass" data-tier-a-component="hero-secondary-button">Read the docs</button>
+    </div>
+  </div>
+  <div class="hero-window-scrim">
+    <div class="win" role="img" aria-label="Mock IDE window with a file list, editor pane, and a floating CLI panel">
+      <div class="win-bar">
+        <span class="dot r" aria-hidden="true"></span><span class="dot y" aria-hidden="true"></span><span class="dot g" aria-hidden="true"></span>
+        <div class="win-tabs"><span class="win-tab active">agent.ts</span><span class="win-tab">index.md</span><span class="win-tab">README</span></div>
+      </div>
+      <div class="win-body">
+        <div class="win-list">
+          <div class="win-list-item sel">Refactor payment flow</div>
+          <div class="win-list-item">Draft release notes</div>
+          <div class="win-list-item">Fix flaky test suite</div>
+          <div class="win-list-item">Migrate auth module</div>
+        </div>
+        <div class="win-detail">
+          Agent is editing three files across the workspace and running the affected tests.
+          <div class="win-code">$ cursor run agent<br>→ analyzing 12 files<br>→ applying edit to agent.ts<br>→ tests passing (24/24)</div>
+          <div class="cli-popover" aria-hidden="true"><span class="cli-prompt">›</span> summarize diff<br>Updated retry logic + added idempotency key.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+  #palette{padding-top:var(--section-gap-md);}
+  .swatch-group{margin-bottom:40px;}
+  .swatch-group h3{font-family:var(--ff-ui);font-size:14px;letter-spacing:0.1px;text-transform:uppercase;opacity:.6;margin-bottom:16px;}
+  .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+  .swatch{border:1px solid var(--surface-alt);}
+  .swatch-chip{height:96px;position:relative;}
+  .swatch.check .swatch-chip{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+  .swatch-fill{position:absolute;inset:0;}
+  .swatch-meta{padding:12px;background:var(--background);}
+  .swatch-name{font-family:var(--ff-ui);font-size:14px;letter-spacing:0.1px;}
+  .swatch-val{font-family:var(--ff-mono);font-size:13px;opacity:.7;margin-top:2px;}
+  .swatch-note{font-family:var(--ff-serif);font-size:15px;margin-top:6px;opacity:.8;}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <h2 class="section-head">Palette</h2>
+    <p class="section-sub">Ninety percent paper and ink. Color is rationed to a single amber link accent and one warm gold chip — nothing else earns saturation.</p>
+
+    <div class="swatch-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#F7F7F4"></div></div><div class="swatch-meta"><div class="swatch-name">background</div><div class="swatch-val">#F7F7F4</div><div class="swatch-note">True page canvas — 56.7% of area.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#F2F1ED"></div></div><div class="swatch-meta"><div class="swatch-name">surface</div><div class="swatch-val">#F2F1ED</div><div class="swatch-note">Deeper paper for banded sections.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#E6E5E0"></div></div><div class="swatch-meta"><div class="swatch-name">surface-alt</div><div class="swatch-val">#E6E5E0</div><div class="swatch-note">Stepped tint for hairline separation.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#EBEAE5"></div></div><div class="swatch-meta"><div class="swatch-name">surface-step</div><div class="swatch-val">#EBEAE5</div><div class="swatch-note">Second paper layer step.</div></div></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#26251E"></div></div><div class="swatch-meta"><div class="swatch-name">text-primary</div><div class="swatch-val">#26251E</div><div class="swatch-note">Near-black ink — all copy, borders, solids.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#3f6f8f"></div></div><div class="swatch-meta"><div class="swatch-name">text-secondary</div><div class="swatch-val">#3f6f8f</div><div class="swatch-note">Muted caption tone in UI captures.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#000000"></div></div><div class="swatch-meta"><div class="swatch-name">ink</div><div class="swatch-val">#000000</div><div class="swatch-note">Rare true black for glyph fills.</div></div></div>
+      </div>
+    </div>
+
+    <div class="swatch-group">
+      <h3>Accents</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#F54E00"></div></div><div class="swatch-meta"><div class="swatch-name">accent</div><div class="swatch-val">#F54E00</div><div class="swatch-note">Amber — links and arrow CTAs only, never a fill.</div></div></div>
+        <div class="swatch"><div class="swatch-chip"><div class="swatch-fill" style="background:#C08532"></div></div><div class="swatch-meta"><div class="swatch-name">accent-gold</div><div class="swatch-val">#C08532</div><div class="swatch-note">Restricted to the single inline tag chip.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+  #type-scale{background:var(--surface);padding-top:var(--section-gap-md);}
+  .spec{border-top:1px solid var(--surface-alt);padding:24px 0;display:grid;grid-template-columns:1fr 280px;gap:24px;align-items:baseline;}
+  .spec:last-child{border-bottom:1px solid var(--surface-alt);}
+  .spec-metrics{font-family:var(--ff-mono);font-size:13px;opacity:.7;line-height:1.7;}
+  @media(max-width:768px){.spec{grid-template-columns:1fr;}}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <h2 class="section-head">Type scale</h2>
+    <p class="section-sub">A serif reads, a grotesk labels. EB Garamond carries every sentence; CursorGothic runs every heading, nav item, and control. Hierarchy comes from size, not color.</p>
+
+    <div class="spec">
+      <div class="display" style="font-size:26px;letter-spacing:-0.3px;line-height:1.25;">Documentation-grade chrome</div>
+      <div class="spec-metrics">display-lg · CursorGothic<br>26px / 400 / 1.25 / -0.3px</div>
+    </div>
+    <div class="spec">
+      <div class="ui" style="font-size:22px;letter-spacing:-0.1px;line-height:1.3;">Feature card title</div>
+      <div class="spec-metrics">label-md · CursorGothic<br>22px / 400 / 1.3 / -0.1px</div>
+    </div>
+    <div class="spec">
+      <div class="ui" style="font-size:16px;line-height:1.4;">Interface body inside mockups</div>
+      <div class="spec-metrics">ui-body · CursorGothic<br>16px / 400 / 1.4</div>
+    </div>
+    <div class="spec">
+      <div class="ui" style="font-size:14px;letter-spacing:0.1px;line-height:1.5;">Models · Product · Enterprise</div>
+      <div class="spec-metrics">headline-md · CursorGothic<br>14px / 400 / 1.5 / 0.1px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--ff-serif);font-size:17px;line-height:1.35;">The editorial serif carries reading copy — long-form explanatory prose and testimonial quotes, never a control label.</div>
+      <div class="spec-metrics">body-md · EB Garamond<br>17px / 400 / 1.35</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--ff-mono);font-size:13px;">$ cursor run agent --watch</div>
+      <div class="spec-metrics">accent-mono · berkeleyMono<br>13px / 400</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--ff-caption);font-size:13px;">Jordan Wells · 6 min read</div>
+      <div class="spec-metrics">label-caption · Lato<br>13px / 400</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+  #components{padding-top:var(--section-gap-md);}
+  .comp-block{margin-bottom:var(--section-gap-md);}
+  .comp-head{font-family:var(--ff-ui);font-size:22px;letter-spacing:-0.1px;margin-bottom:4px;}
+  .comp-count{font-family:var(--ff-mono);font-size:13px;color:var(--accent-gold);margin-bottom:16px;}
+  .comp-lead{font-family:var(--ff-serif);font-size:17px;opacity:.8;max-width:60ch;margin-bottom:24px;}
+  .comp-cols{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;}
+  .spec-card{font-family:var(--ff-mono);font-size:12px;line-height:1.8;background:var(--surface);padding:16px;color:var(--text-primary);border-left:2px solid var(--text-primary);}
+  .spec-card b{color:var(--accent-gold);font-weight:400;}
+  @media(max-width:768px){.comp-cols{grid-template-columns:1fr;}}
+
+  /* button matrix */
+  .matrix{border-collapse:separate;border-spacing:0;width:100%;font-family:var(--ff-ui);font-size:13px;}
+  .matrix th{text-align:left;font-weight:500;padding:10px 14px;font-size:12px;letter-spacing:0.1px;opacity:.6;border-bottom:1px solid var(--surface-alt);}
+  .matrix td{padding:14px;border-bottom:1px solid var(--surface-alt);vertical-align:middle;}
+  .matrix .rowlbl{font-family:var(--ff-mono);font-size:12px;opacity:.7;}
+  .m-primary{font-family:var(--ff-ui);font-size:14px;background:var(--text-primary);color:var(--background);height:43px;padding:0 21.6px;border:1px solid rgb(38,37,30);border-radius:var(--r-pill);display:inline-flex;align-items:center;}
+  .m-primary.hover{background:var(--btn-hover);}
+  .m-primary.disabled{opacity:.4;}
+  .m-navcta{font-family:var(--ff-ui);font-size:13px;background:var(--text-primary);color:var(--background);height:27px;padding:0 10.5px;border:1px solid rgb(38,37,30);border-radius:var(--r-pill);display:inline-flex;align-items:center;}
+  .m-navcta.hover{background:var(--btn-hover);}
+  .m-navcta.disabled{opacity:.4;}
+  .m-outline{font-family:var(--ff-ui);font-size:13px;background:transparent;color:var(--text-primary);height:27px;padding:0 12px;border:1px solid var(--text-primary);border-radius:var(--r-pill);display:inline-flex;align-items:center;}
+  .m-outline.hover{background:var(--surface-alt);}
+  .m-outline.disabled{opacity:.4;}
+  .m-glass{font-family:var(--ff-ui);font-size:14px;background:rgba(38,37,30,0.06);color:var(--text-primary);height:35px;padding:0 12px;border:0;border-radius:0;display:inline-flex;align-items:center;}
+  .m-glass.hover{background:rgba(38,37,30,0.10);}
+  .m-glass.disabled{opacity:.4;}
+
+  .demo-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+
+  /* logo strip */
+  .logo-strip{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;}
+  .logo-tile{background:var(--surface);height:56px;display:flex;align-items:center;justify-content:center;font-family:var(--ff-ui);font-size:13px;letter-spacing:0.1px;color:var(--text-primary);opacity:.55;}
+  .strip-cap{text-align:center;font-family:var(--ff-ui);font-size:14px;letter-spacing:0.1px;opacity:.6;margin-bottom:16px;}
+  @media(max-width:640px){.logo-strip{grid-template-columns:repeat(3,1fr);}}
+
+  /* showcase card small */
+  .win-sm{background:var(--background);box-shadow:rgba(0,0,0,0.14) 0 28px 70px 0, rgba(0,0,0,0.1) 0 14px 32px 0, oklab(0.263084 -0.00230259 0.0124794 / 0.1) 0 0 0 1px;border-radius:0;}
+  .band{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:center;margin-bottom:48px;}
+  .band.rev{grid-template-columns:1fr 1.4fr;}
+  .band.rev .band-text{order:-1;}
+  .band-eyebrow{font-family:var(--ff-ui);font-size:14px;font-weight:500;letter-spacing:0.1px;margin-bottom:8px;}
+  .band-copy{font-family:var(--ff-serif);font-size:17px;opacity:.85;margin-bottom:12px;}
+  .win-sm .win-body{min-height:200px;}
+  @media(max-width:768px){.band,.band.rev{grid-template-columns:1fr;}.band.rev .band-text{order:0;}}
+
+  /* testimonial grid */
+  .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+  .tcard{background:var(--surface);border-radius:0;padding:24px;}
+  .tquote{font-family:var(--ff-serif);font-size:17px;line-height:1.4;margin-bottom:20px;}
+  .tfoot{display:flex;align-items:center;gap:10px;}
+  .avatar{width:32px;height:32px;border-radius:var(--r-pill);background:var(--surface-alt);display:inline-flex;align-items:center;justify-content:center;font-family:var(--ff-ui);font-size:13px;color:var(--text-primary);flex:none;}
+  .tname{font-family:var(--ff-ui);font-size:14px;font-weight:500;letter-spacing:0.1px;}
+  .trole{font-family:var(--ff-ui);font-size:13px;opacity:.6;}
+  @media(max-width:768px){.tgrid{grid-template-columns:1fr;}}
+
+  /* feature triptych */
+  .tri{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .fcard{background:transparent;border-radius:0;padding:0;}
+  .fcard h4{font-family:var(--ff-ui);font-size:22px;letter-spacing:-0.1px;margin-bottom:8px;}
+  .fcard p{font-family:var(--ff-serif);font-size:17px;opacity:.85;margin-bottom:10px;}
+  .fmedia{margin-top:16px;background:var(--surface);border-radius:0;box-shadow:rgba(0,0,0,0.1) 0 14px 32px 0;}
+  .fmedia .win-bar{border-bottom:1px solid var(--surface-alt);}
+  .fmedia-inner{padding:16px;font-family:var(--ff-mono);font-size:12px;line-height:1.7;color:var(--text-primary);}
+  @media(max-width:768px){.tri{grid-template-columns:1fr;}}
+
+  /* blog row */
+  .bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:20px;}
+  .bcard{background:transparent;padding:0;}
+  .bcard h4{font-family:var(--ff-ui);font-size:16px;line-height:1.4;margin-bottom:14px;}
+  .bmeta{display:flex;align-items:center;gap:8px;}
+  .bmeta .caption{font-family:var(--ff-caption);font-size:13px;opacity:.7;}
+  @media(max-width:768px){.bgrid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:640px){.bgrid{grid-template-columns:1fr;}}
+
+  /* closing cta */
+  .cta-band{text-align:center;padding:var(--section-gap-md) 0;}
+  .cta-head{font-family:var(--ff-display);font-size:64px;line-height:1.05;letter-spacing:-1px;margin-bottom:32px;}
+  @media(max-width:768px){.cta-head{font-size:40px;}}
+  @media(max-width:640px){.cta-head{font-size:32px;}}
+
+  /* chip */
+  .tag-chip{background:var(--accent-gold);color:#fff;border-radius:4px;height:20px;padding:2px 8px;font-family:var(--ff-ui);font-size:12px;display:inline-flex;align-items:center;line-height:1;}
+</style>
+<section id="components">
+  <div class="wrap">
+    <h2 class="section-head">Components</h2>
+    <p class="section-sub">Every control and panel the system ships. Bimodal corners throughout: 0px sharp on cards and windows, fully pilled on buttons and chips.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <h3 class="comp-head">Navbar</h3>
+      <div class="comp-count">×1 · 52px · ~37 interactive items</div>
+      <div class="comp-cols">
+        <div>
+          <div style="border:1px solid var(--surface-alt);background:var(--background);">
+            <div class="nav-inner" style="height:52px;">
+              <span class="logo"><span class="logo-mark" aria-hidden="true"></span>Cursor</span>
+              <div class="nav-items"><a href="#components">Models</a><a href="#components">Product</a><a href="#components">Enterprise</a><a href="#palette">Pricing</a><a href="#type-scale">Resources</a></div>
+              <div class="nav-right"><span class="nav-signin">Sign in</span><button class="btn-outline">Contact sales</button><button class="btn-nav-cta">Download</button></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--nav</b> height 52 · fill background<br>
+          <b>--btn-nav-cta</b> fill text-primary · text background<br>
+          radius r-pill · height 27 · pad 5.6 10.5 5.88<br>
+          border 1px rgb(38,37,30) · hover #3B3A33<br>
+          labels CursorGothic headline-md<br>
+          motion ease 0.15s · navItemSlideIn/Out/Fade
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block" data-tier-a-component="hero-primary-button">
+      <h3 class="comp-head">Buttons — variant × state</h3>
+      <div class="comp-count">solid pill primary · nav CTA · outline · glass secondary</div>
+      <div class="comp-cols">
+        <div style="overflow-x:auto">
+          <table class="matrix">
+            <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="rowlbl">button-primary<br>43px pill</td>
+                <td><span class="m-primary" data-tier-a-component="hero-primary-button">Download</span></td>
+                <td><span class="m-primary hover">Download</span></td>
+                <td><span class="m-primary disabled">Download</span></td>
+              </tr>
+              <tr>
+                <td class="rowlbl">button-nav-cta<br>27px pill</td>
+                <td><span class="m-navcta">Download</span></td>
+                <td><span class="m-navcta hover">Download</span></td>
+                <td><span class="m-navcta disabled">Download</span></td>
+              </tr>
+              <tr>
+                <td class="rowlbl">outline secondary<br>27px pill</td>
+                <td><span class="m-outline">Contact sales</span></td>
+                <td><span class="m-outline hover">Contact sales</span></td>
+                <td><span class="m-outline disabled">Contact sales</span></td>
+              </tr>
+              <tr>
+                <td class="rowlbl">glass secondary<br>35px · 0px</td>
+                <td><span class="m-glass" data-tier-a-component="hero-secondary-button">Read the docs</span></td>
+                <td><span class="m-glass hover">Read the docs</span></td>
+                <td><span class="m-glass disabled">Read the docs</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec-card">
+          <b>--btn-primary</b> fill text-primary · text background<br>
+          radius r-pill · height 43 · pad 12.48 21.6 12.8<br>
+          <b>--btn-secondary-glass</b> fill rgba(38,37,30,.06)<br>
+          text text-primary · radius 0 · height 35<br>
+          hover → #3B3A33 (solids) · disabled opacity ramp<br>
+          motion all 0.15s cubic-bezier(.4,0,.2,1)
+        </div>
+      </div>
+    </div>
+
+    <!-- INLINE TAG CHIP -->
+    <div class="comp-block" data-tier-a-component="inline-tag-chip">
+      <h3 class="comp-head">Gold inline tag chip</h3>
+      <div class="comp-count">×1 · the only gold in the system</div>
+      <div class="comp-cols">
+        <div class="demo-row">
+          <p style="font-family:var(--ff-serif);font-size:17px;">Available today on the <span class="tag-chip">Pro</span> plan and above.</p>
+        </div>
+        <div class="spec-card">
+          <b>--btn-inline-tag</b> fill accent-gold · text #FFFFFF<br>
+          radius r-control 4 · height 20 · pad 2 8<br>
+          only component permitted the gold accent
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip">
+      <h3 class="comp-head">Logo strip</h3>
+      <div class="comp-count">×7 tiles · single row</div>
+      <p class="strip-cap">Trusted in the world's engineering teams</p>
+      <div class="logo-strip">
+        <div class="logo-tile">Northwind</div>
+        <div class="logo-tile">Meridian</div>
+        <div class="logo-tile">Basalt</div>
+        <div class="logo-tile">Quill</div>
+        <div class="logo-tile">Foundry</div>
+        <div class="logo-tile">Halcyon</div>
+        <div class="logo-tile">Cinder</div>
+      </div>
+    </div>
+
+    <!-- WINDOW CHROME SHOWCASE -->
+    <div class="comp-block" data-tier-a-component="window-chrome-showcase-card">
+      <h3 class="comp-head">Window-chrome showcase card</h3>
+      <div class="comp-count">×7 · alternating image/caption bands</div>
+      <p class="comp-lead">The dominant recurring unit. A flat 0px window with traffic-light dots, a tab strip, and a two-pane body — repeated at reduced scale with the caption alternating left and right.</p>
+
+      <div class="band">
+        <div class="win-sm">
+          <div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="win-tabs"><span class="win-tab active">tasks.ts</span><span class="win-tab">notes.md</span></div></div>
+          <div class="win-body"><div class="win-list"><div class="win-list-item sel">Plan the sprint</div><div class="win-list-item">Triage inbox</div><div class="win-list-item">Ship v2.3</div></div><div class="win-detail">The agent reads your whole workspace and proposes edits inline — you stay in the loop.</div></div>
+        </div>
+        <div class="band-text">
+          <div class="band-eyebrow">Agent mode</div>
+          <p class="band-copy">Delegate multi-file changes and watch them land across the project, one reviewable diff at a time.</p>
+          <a href="#composition" class="link-arrow">See agent mode →</a>
+        </div>
+      </div>
+
+      <div class="band rev">
+        <div class="win-sm">
+          <div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><div class="win-tabs"><span class="win-tab active">chat</span><span class="win-tab">context</span></div></div>
+          <div class="win-body"><div class="win-list"><div class="win-list-item sel">Explain this file</div><div class="win-list-item">Find the bug</div></div><div class="win-detail" style="position:relative;">Ask across the codebase. Answers cite the exact files they came from.<div class="cli-popover" style="position:static;margin-top:14px;right:auto;bottom:auto;width:auto;"><span class="cli-prompt">›</span> where is retry logic?<br>agent.ts:42 — exponential backoff.</div></div></div>
+        </div>
+        <div class="band-text">
+          <div class="band-eyebrow">Grounded chat</div>
+          <p class="band-copy">Every answer is anchored to real files, with a floating CLI popover for quick commands.</p>
+          <a href="#composition" class="link-arrow">Explore chat →</a>
+        </div>
+      </div>
+
+      <div class="comp-cols">
+        <div></div>
+        <div class="spec-card">
+          <b>--card-window-chrome</b> fill background · radius 0<br>
+          pad 112 20 67.2 (largest instance)<br>
+          shadow 0 28px 70px /.14 + 0 14px 32px /.1 + hairline<br>
+          sub-panel shadow 0 0 16px /.02 + 0 0 8px /.008<br>
+          shimmer/shimmer-slide light sweep
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS -->
+    <div class="comp-block" data-tier-a-component="testimonial-card">
+      <h3 class="comp-head">Testimonial card grid</h3>
+      <div class="comp-count">×6 · [3][3] uniform grid</div>
+      <div class="tgrid">
+        <div class="tcard"><p class="tquote">"It reads like documentation and edits like a senior pair. The restraint is the feature."</p><div class="tfoot"><span class="avatar">AR</span><div><div class="tname">Ana Rivera</div><div class="trole">Staff Engineer, Meridian</div></div></div></div>
+        <div class="tcard"><p class="tquote">"Serif prose next to flat window chrome — it finally feels like a tool made by people who read."</p><div class="tfoot"><span class="avatar">JW</span><div><div class="tname">Jordan Wells</div><div class="trole">CTO, Basalt</div></div></div></div>
+        <div class="tcard"><p class="tquote">"The agent shipped a migration in an afternoon. Every diff was reviewable and boring — in the best way."</p><div class="tfoot"><span class="avatar">MK</span><div><div class="tname">Mira Kapoor</div><div class="trole">Lead, Foundry</div></div></div></div>
+        <div class="tcard"><p class="tquote">"No gradients, no noise. Just paper, ink, and a workspace that gets out of the way."</p><div class="tfoot"><span class="avatar">TL</span><div><div class="tname">Theo Lund</div><div class="trole">Design Eng, Quill</div></div></div></div>
+        <div class="tcard"><p class="tquote">"We adopted it across four teams in a week. The onboarding was reading a page."</p><div class="tfoot"><span class="avatar">SC</span><div><div class="tname">Sana Cho</div><div class="trole">VP Eng, Halcyon</div></div></div></div>
+        <div class="tcard"><p class="tquote">"The one amber link tells you exactly where to go next. Color as wayfinding, not decoration."</p><div class="tfoot"><span class="avatar">DP</span><div><div class="tname">Diego Paz</div><div class="trole">Principal, Cinder</div></div></div></div>
+      </div>
+    </div>
+
+    <!-- FEATURE TRIPTYCH -->
+    <div class="comp-block" data-tier-a-component="feature-triptych-card">
+      <h3 class="comp-head">Feature triptych card</h3>
+      <div class="comp-count">×3 · single row, transparent, no padding</div>
+      <div class="tri">
+        <div class="fcard">
+          <h4>Edit in prose</h4>
+          <p>Describe the change in plain language; the editor renders the diff.</p>
+          <a href="#composition" class="link-arrow">Learn more →</a>
+          <div class="fmedia"><div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div><div class="fmedia-inner">const x = <span style="color:var(--accent)">retry</span>(fetch, 3)<br>// idempotency added</div></div>
+        </div>
+        <div class="fcard">
+          <h4>On every device</h4>
+          <p>Review agent runs from your phone while the build finishes.</p>
+          <a href="#composition" class="link-arrow">Learn more →</a>
+          <div class="fmedia"><div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div><div class="fmedia-inner">Build passing ✓<br>Deploy staged →<br>2 files changed</div></div>
+        </div>
+        <div class="fcard">
+          <h4>Terminal-native</h4>
+          <p>Drive the agent from the CLI with the same context as the editor.</p>
+          <a href="#composition" class="link-arrow">Learn more →</a>
+          <div class="fmedia"><div class="win-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div><div class="fmedia-inner"><span style="color:var(--accent)">$</span> cursor agent run<br>→ 24/24 tests green</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BLOG TEASER -->
+    <div class="comp-block" data-tier-a-component="blog-teaser-card">
+      <h3 class="comp-head">Blog teaser row</h3>
+      <div class="comp-count">×4 · transparent, thumbnail-less</div>
+      <div class="bgrid">
+        <div class="bcard"><h4>How we ration color to a single amber link</h4><div class="bmeta"><span class="avatar" style="width:24px;height:24px;font-size:11px;">AR</span><span class="caption">Ana Rivera · 6 min read</span></div></div>
+        <div class="bcard"><h4>Serif for reading, grotesk for the interface</h4><div class="bmeta"><span class="avatar" style="width:24px;height:24px;font-size:11px;">JW</span><span class="caption">Jordan Wells · 4 min read</span></div></div>
+        <div class="bcard"><h4>Why our cards are 0px and our buttons are pills</h4><div class="bmeta"><span class="avatar" style="width:24px;height:24px;font-size:11px;">MK</span><span class="caption">Mira Kapoor · 5 min read</span></div></div>
+        <div class="bcard"><h4>Building trust with reviewable diffs</h4><div class="bmeta"><span class="avatar" style="width:24px;height:24px;font-size:11px;">TL</span><span class="caption">Theo Lund · 7 min read</span></div></div>
+      </div>
+      <a href="#composition" class="link-arrow">View all →</a>
+    </div>
+
+    <!-- CLOSING CTA -->
+    <div class="comp-block" data-tier-a-component="closing-cta-band">
+      <div class="cta-band">
+        <h3 class="cta-head">Write less. Ship more.</h3>
+        <button class="btn-primary">Download for macOS</button>
+      </div>
+    </div>
+
+    <!-- TIER B: inline link -->
+    <div class="comp-block">
+      <h3 class="comp-head">Inline link</h3>
+      <div class="comp-cols">
+        <div class="demo-row"><p style="font-family:var(--ff-serif);font-size:17px;">Read the <a href="#type-scale">typographic rationale</a> or jump straight to <a href="#composition">the composition →</a>.</p></div>
+        <div class="spec-card"><b>link</b> color accent #F54E00 · hover underline<br>text body-md · never a fill</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+  #surface-depth{background:var(--surface);padding-top:var(--section-gap-md);}
+  .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;}
+  .depth-card{background:var(--background);padding:24px;}
+  .depth-card .lbl{font-family:var(--ff-mono);font-size:12px;opacity:.7;margin-top:14px;}
+  .d-flat{box-shadow:none;border:1px solid var(--surface-alt);}
+  .d-hairline{box-shadow:rgb(235,234,229) 0 0 0 2px;}
+  .d-sub{box-shadow:rgba(0,0,0,0.02) 0 0 16px 0, rgba(0,0,0,0.008) 0 0 8px 0;}
+  .d-deep{box-shadow:rgba(0,0,0,0.14) 0 28px 70px 0, rgba(0,0,0,0.1) 0 14px 32px 0, oklab(0.263084 -0.00230259 0.0124794 / 0.1) 0 0 0 1px;}
+  .radius-row{display:flex;gap:24px;flex-wrap:wrap;margin-top:32px;}
+  .radius-demo{text-align:center;}
+  .radius-demo .box{width:120px;height:80px;background:var(--text-primary);}
+  .radius-demo .lbl{font-family:var(--ff-mono);font-size:12px;opacity:.7;margin-top:10px;}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <h2 class="section-head">Surface &amp; depth</h2>
+    <p class="section-sub">Elevation reads through layered soft shadows, never borders. Corners are bimodal — 0px on everything but buttons and chips.</p>
+    <div class="depth-grid">
+      <div class="depth-card d-flat"><div style="font-family:var(--ff-serif);">Flat paper tint. Testimonial and footer surfaces separate by tone, not shadow.</div><div class="lbl">surface · 1px surface-alt</div></div>
+      <div class="depth-card d-hairline"><div style="font-family:var(--ff-serif);">Hairline definition ring for focus and edge crispness.</div><div class="lbl">rgb(235,234,229) 0 0 0 2px</div></div>
+      <div class="depth-card d-sub"><div style="font-family:var(--ff-serif);">Floating sub-panel. Sits above the base window without competing.</div><div class="lbl">0 0 16px /.02 · 0 0 8px /.008</div></div>
+      <div class="depth-card d-deep"><div style="font-family:var(--ff-serif);">Deepest tier. The primary window-chrome elevation.</div><div class="lbl">0 28px 70px /.14 · 0 14px 32px /.1</div></div>
+    </div>
+    <div class="radius-row">
+      <div class="radius-demo"><div class="box" style="border-radius:0"></div><div class="lbl">card / window · 0px</div></div>
+      <div class="radius-demo"><div class="box" style="border-radius:4px"></div><div class="lbl">r-control · 4px</div></div>
+      <div class="radius-demo"><div class="box" style="border-radius:9999px"></div><div class="lbl">r-pill · buttons</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+  #motion{padding-top:var(--section-gap-md);}
+  .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;}
+  .motion-card{background:var(--surface);padding:24px;}
+  .motion-card .lbl{font-family:var(--ff-mono);font-size:12px;opacity:.7;margin-top:16px;}
+  .replay{font-family:var(--ff-ui);font-size:13px;margin-top:12px;background:transparent;border:1px solid var(--text-primary);border-radius:var(--r-pill);height:27px;padding:0 12px;cursor:pointer;color:var(--text-primary);}
+  .m-swatch{height:44px;background:var(--text-primary);transition:background .15s var(--ease);}
+  .m-swatch.go{background:var(--btn-hover);}
+  .m-shim{height:44px;background:var(--surface-alt);position:relative;overflow:hidden;}
+  .m-shim::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,0.6) 50%,transparent 70%);transform:translateX(-100%);}
+  .m-shim.go::after{animation:shimmer 1.4s var(--ease);}
+  .m-fade{height:44px;background:var(--accent);opacity:1;transition:opacity .2s var(--ease);}
+  .m-fade.go{opacity:.2;}
+  @media(prefers-reduced-motion:reduce){.m-swatch,.m-shim::after,.m-fade{transition:none!important;animation:none!important;}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <h2 class="section-head">Motion</h2>
+    <p class="section-sub">Short, snappy, functional. One curve does most of the work — no overshoot, no cinematic easing.</p>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="m-swatch" id="mo1"></div>
+        <button class="replay" data-target="mo1">Replay hover darken</button>
+        <div class="lbl">color/bg · 0.15s cubic-bezier(.4,0,.2,1)<br>#26251E → #3B3A33</div>
+      </div>
+      <div class="motion-card">
+        <div class="m-shim" id="mo2"></div>
+        <button class="replay" data-target="mo2">Replay shimmer</button>
+        <div class="lbl">shimmer / shimmer-slide<br>agent-activity light sweep</div>
+      </div>
+      <div class="motion-card">
+        <div class="m-fade" id="mo3"></div>
+        <button class="replay" data-target="mo3">Replay fade-in</button>
+        <div class="lbl">opacity · 0.2s cubic-bezier(.4,0,.2,1)<br>fade-in entrance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+  #composition{background:var(--surface);padding-top:var(--section-gap-md);}
+  .mock{background:var(--background);box-shadow:rgba(0,0,0,0.14) 0 28px 70px 0, rgba(0,0,0,0.1) 0 14px 32px 0;}
+  .mock-nav{height:52px;display:flex;align-items:center;gap:20px;padding:0 20px;border-bottom:1px solid var(--surface-alt);}
+  .mock-nav .nav-items{font-size:13px;}
+  .mock-hero{padding:48px 32px 32px;}
+  .mock-hero h3{font-family:var(--ff-display);font-size:26px;letter-spacing:-0.3px;max-width:20ch;line-height:1.25;}
+  .mock-hero p{font-family:var(--ff-serif);font-size:17px;max-width:44ch;margin-top:12px;opacity:.85;}
+  .mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 32px 32px;}
+  .mock-cards .tcard{background:var(--surface);}
+  .mock-cta{text-align:center;padding:40px 32px 56px;border-top:1px solid var(--surface-alt);}
+  .mock-cta h4{font-family:var(--ff-display);font-size:40px;letter-spacing:-0.5px;margin-bottom:24px;}
+  @media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-nav .nav-items{display:none;}.mock-cta h4{font-size:28px;}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <h2 class="section-head">In composition</h2>
+    <p class="section-sub">The whole system, assembled: nav, a text-first hero, three cards, and a closing pill — all paper and ink.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo" style="font-size:15px;"><span class="logo-mark" style="width:14px;height:14px;"></span>Cursor</span>
+        <div class="nav-items"><a href="#composition">Models</a><a href="#composition">Product</a><a href="#composition">Pricing</a></div>
+        <div class="nav-right"><button class="btn-nav-cta">Download</button></div>
+      </div>
+      <div class="mock-hero">
+        <h3>The workspace that reads like a page.</h3>
+        <p>Near-black controls, serif prose, and one amber link telling you where to go next.</p>
+        <div class="hero-btns" style="margin-top:20px;">
+          <button class="btn-primary">Get started</button>
+          <button class="btn-glass">View docs</button>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="tcard"><p class="tquote" style="font-size:16px;">"Boring diffs, shipped fast. Exactly what we wanted."</p><div class="tfoot"><span class="avatar">MK</span><div><div class="tname">Mira K.</div><div class="trole">Foundry</div></div></div></div>
+        <div class="tcard"><p class="tquote" style="font-size:16px;">"Color as wayfinding, not decoration."</p><div class="tfoot"><span class="avatar">DP</span><div><div class="tname">Diego P.</div><div class="trole">Cinder</div></div></div></div>
+        <div class="tcard"><p class="tquote" style="font-size:16px;">"Adopted across four teams in a week."</p><div class="tfoot"><span class="avatar">SC</span><div><div class="tname">Sana C.</div><div class="trole">Halcyon</div></div></div></div>
+      </div>
+      <div class="mock-cta">
+        <h4>Write less. Ship more.</h4>
+        <button class="btn-primary">Download for macOS</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+  #footer{background:var(--surface);padding-top:var(--section-gap-md);}
+  .foot-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;padding-bottom:40px;border-bottom:1px solid var(--surface-alt);}
+  .foot-col h4{font-family:var(--ff-ui);font-size:13px;letter-spacing:0.1px;opacity:.55;margin-bottom:12px;text-transform:uppercase;}
+  .foot-col a{display:block;font-family:var(--ff-ui);font-size:14px;color:var(--text-primary);margin-bottom:8px;}
+  .foot-col a:hover{color:var(--accent);text-decoration:none;}
+  .foot-bar{display:flex;align-items:center;gap:16px;padding-top:24px;flex-wrap:wrap;}
+  .foot-copy{font-family:var(--ff-ui);font-size:13px;opacity:.6;}
+  .foot-badge{font-family:var(--ff-ui);font-size:12px;border:1px solid var(--surface-alt);padding:4px 10px;opacity:.7;}
+  .seg{margin-left:auto;display:flex;border:1px solid var(--surface-alt);}
+  .seg button{background:transparent;border:0;padding:6px 10px;cursor:pointer;color:var(--text-primary);border-right:1px solid var(--surface-alt);font-size:16px;display:inline-flex;}
+  .seg button:last-child{border-right:0;}
+  .seg button.on{background:var(--surface-alt);}
+  .foot-brand{font-family:var(--ff-serif);font-size:15px;opacity:.7;margin-top:24px;}
+  .foot-brand a{color:var(--accent);}
+  @media(max-width:768px){.foot-cols{grid-template-columns:repeat(2,1fr);}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-cols">
+      <div class="foot-col"><h4>Product</h4><a href="#components">Editor</a><a href="#components">Agent</a><a href="#components">CLI</a><a href="#components">Models</a><a href="#components">Changelog</a><a href="#components">Status</a><a href="#components">Downloads</a></div>
+      <div class="foot-col"><h4>Solutions</h4><a href="#components">Startups</a><a href="#components">Enterprise</a><a href="#components">Teams</a><a href="#components">Education</a><a href="#components">Security</a><a href="#components">Migrate</a></div>
+      <div class="foot-col"><h4>Resources</h4><a href="#type-scale">Docs</a><a href="#components">Guides</a><a href="#components">Blog</a><a href="#components">Community</a><a href="#components">Support</a><a href="#components">API</a><a href="#components">Forum</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="#hero">About</a><a href="#components">Careers</a><a href="#components">Press</a><a href="#components">Contact</a><a href="#components">Partners</a><a href="#components">Legal</a></div>
+      <div class="foot-col"><h4>Legal</h4><a href="#components">Privacy</a><a href="#components">Terms</a><a href="#components">Cookies</a><a href="#components">Trust</a><a href="#components">DPA</a><a href="#components">Licenses</a></div>
+    </div>
+    <div class="foot-bar">
+      <span class="foot-copy">© 2024 Cursor</span>
+      <span class="foot-badge">SOC 2 Type II</span>
+      <div class="seg" role="group" aria-label="Theme and locale">
+        <button class="on" aria-label="Light theme"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon></button>
+        <button aria-label="Dark theme"><iconify-icon icon="lucide:moon" aria-hidden="true"></iconify-icon></button>
+        <button aria-label="Language"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+    <p class="foot-brand">Warm-paper IDE chrome · <a href="https://cursor.com/">cursor.com</a> · Design system captured and rendered by r3xdec.design</p>
+  </div>
+</footer>
+</main>
+
+<script>
+  document.querySelectorAll('.replay').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.dataset.target);
+      if(!el)return;
+      el.classList.remove('go');
+      void el.offsetWidth;
+      el.classList.add('go');
+      if(el.classList.contains('m-shim')){
+        setTimeout(function(){el.classList.remove('go');},1500);
+      }
+    });
+  });
+</script>
+</body>
+</html>

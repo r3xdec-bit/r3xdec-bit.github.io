@@ -1,0 +1,1263 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PitchPeople | One identity. Every role. Connected football.</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: { extend: { fontFamily: {"mono":["'DM Mono'","monospace"]} } }
+}
+</script>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      fontFamily: { sans: ['Archivo','sans-serif'], mono: ['DM Mono','monospace'] },
+      colors: {
+        pitch: '#1a3a52', rail: '#112636', railline: '#234a66',
+        ready: '#16a34a', readysoft: '#dcfce7', readyink: '#14532d',
+        waiting: '#d97706', waitingsoft: '#fef3c7', waitingink: '#78350f',
+        blocked: '#dc2626', blockedsoft: '#fee2e2', blockedink: '#7f1d1d',
+        info: '#0284c7', infosoft: '#e0f2fe', infoink: '#1e293b',
+        volt: '#84cc16',
+        ink: '#1a3a52', subtle: '#475569', muted: '#64748b',
+        border: '#e2e8f0', surface: '#ffffff', bg: '#f8fafc', bgsunk: '#f1f5f9'
+      },
+      borderRadius: { sm: '6px', DEFAULT: '10px', lg: '16px', full: '999px' }
+    }
+  }
+}
+</script>
+<style>
+html { scroll-behavior: smooth; }
+body { font-family:'Archivo',sans-serif; }
+.font-mono { font-family:'DM Mono',monospace; }
+.eyebrow { font-family:'DM Mono',monospace; text-transform:uppercase; letter-spacing:0.08em; font-size:11px; }
+:focus-visible { outline:2px solid #16a34a; outline-offset:2px; }
+summary { list-style:none; }
+summary::-webkit-details-marker { display:none; }
+
+/* Reveals */
+.reveal { opacity:0; transform:translateY(24px); transition:opacity 600ms cubic-bezier(0.2,0.6,0.3,1), transform 600ms cubic-bezier(0.2,0.6,0.3,1); }
+.reveal.in { opacity:1; transform:translateY(0); }
+
+/* Pitch markings self-draw */
+.pitch-line { stroke-dasharray:2000; stroke-dashoffset:2000; animation:draw 2.2s cubic-bezier(0.2,0.6,0.3,1) forwards; }
+.pitch-line.d2 { animation-delay:0.3s; }
+.pitch-line.d3 { animation-delay:0.6s; }
+@keyframes draw { to { stroke-dashoffset:0; } }
+
+/* Role lens rotation */
+.lens-ring { animation:spin 20s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+/* Counter-spin the label, not the positioned wrapper: an animated transform
+   on .chip would replace its centring translate. */
+.lens-ring .chip > span { animation:counterspin 20s linear infinite; }
+@keyframes counterspin { to { transform:rotate(-360deg); } }
+
+/* Timeline token: horizontal on tablet and up, vertical on phones */
+.token { transition:left 120ms linear, top 120ms linear; }
+
+/* status chip base */
+.status-chip { display:inline-flex; align-items:center; gap:6px; height:24px; line-height:1; white-space:nowrap; font-family:'DM Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:0.06em; padding:4px 10px; border-radius:999px; }
+.dot { width:7px; height:7px; border-radius:999px; display:inline-block; flex-shrink:0; }
+
+/* shirt dots pop in */
+.shirt { opacity:0; transform:scale(0.4); transition:opacity 500ms ease-out, transform 500ms cubic-bezier(0.2,0.6,0.3,1); }
+.matchday-in .shirt { opacity:1; transform:scale(1); }
+
+/* fixture pop */
+.fixture { opacity:0; transform:translateY(8px); transition:opacity 400ms ease-out, transform 400ms ease-out; }
+.matchday-in .fixture { opacity:1; transform:translateY(0); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior:auto; }
+  .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
+  .pitch-line { animation:none !important; stroke-dashoffset:0 !important; }
+  .lens-ring, .lens-ring .chip > span { animation:none !important; }
+  .shirt, .fixture { opacity:1 !important; transform:none !important; }
+  .token { transition:none !important; }
+}
+</style>
+
+<meta name="preview-version" content="8a04efcb-4add-4534-95bf-5cc3b8d47658" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.983Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "8a04efcb-4add-4534-95bf-5cc3b8d47658");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "8a04efcb-4add-4534-95bf-5cc3b8d47658",
+      timestamp: "2026-11-20T00:19:42.983Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "8a04efcb-4add-4534-95bf-5cc3b8d47658";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+<div class="min-h-screen bg-bg text-ink antialiased selection:bg-ready selection:text-white">
+
+  <!-- NAV -->
+  <nav id="main-nav" class="fixed w-full z-50 bg-rail/95 backdrop-blur-md border-b border-railline transition-all duration-300">
+    <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div id="nav-inner" class="flex justify-between items-center gap-3 transition-all duration-300 h-20">
+        <a href="#top" id="nav-logo-link" class="flex items-center gap-2.5 min-h-[44px] shrink-0">
+          <svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="6" stroke="#94a3b8" stroke-width="1.5"/><line x1="15" y1="1" x2="15" y2="29" stroke="#94a3b8" stroke-width="1.5"/><circle cx="15" cy="15" r="5" stroke="#94a3b8" stroke-width="1.5"/></svg>
+          <span class="font-extrabold text-xl tracking-tight text-white">PitchPeople</span>
+        </a>
+        <div class="hidden lg:flex space-x-8 items-center">
+          <a href="#how" id="nav-how" class="text-slate-300 hover:text-white font-medium text-sm transition-colors">How it works</a>
+          <a href="#roles" id="nav-roles" class="text-slate-300 hover:text-white font-medium text-sm transition-colors">Roles</a>
+          <a href="#matchday" id="nav-matchday" class="text-slate-300 hover:text-white font-medium text-sm transition-colors">Matchday</a>
+          <a href="#for-clubs" id="nav-clubs" class="text-slate-300 hover:text-white font-medium text-sm transition-colors">For clubs</a>
+        </div>
+        <div class="flex items-center gap-2 sm:gap-3">
+          <a href="#" id="nav-signin" class="hidden sm:inline-flex items-center px-2 text-slate-300 hover:text-white font-medium text-sm transition-colors min-h-[44px]">Sign in</a>
+          <a href="#" id="nav-register" class="inline-flex items-center bg-white hover:bg-slate-100 text-ink px-5 rounded-full font-semibold text-sm transition-all min-h-[44px]">Register</a>
+          <!-- phones and tablets: the section links fold into a menu -->
+          <details id="nav-menu" class="lg:hidden relative">
+            <summary class="flex items-center justify-center w-11 h-11 rounded border border-railline text-slate-200 hover:text-white cursor-pointer">
+              <iconify-icon icon="lucide:menu" class="text-xl" aria-hidden="true"></iconify-icon><span class="sr-only">Menu</span>
+            </summary>
+            <div class="absolute right-0 top-full mt-3 w-60 bg-rail border border-railline rounded p-2 shadow-2xl">
+              <a href="#how" id="menu-how" class="flex items-center min-h-[44px] px-3 rounded text-slate-200 hover:bg-pitch hover:text-white font-medium">How it works</a>
+              <a href="#roles" id="menu-roles" class="flex items-center min-h-[44px] px-3 rounded text-slate-200 hover:bg-pitch hover:text-white font-medium">Roles</a>
+              <a href="#matchday" id="menu-matchday" class="flex items-center min-h-[44px] px-3 rounded text-slate-200 hover:bg-pitch hover:text-white font-medium">Matchday</a>
+              <a href="#for-clubs" id="menu-clubs" class="flex items-center min-h-[44px] px-3 rounded text-slate-200 hover:bg-pitch hover:text-white font-medium">For clubs</a>
+              <div class="h-px bg-railline my-2 sm:hidden"></div>
+              <a href="#" id="menu-signin" class="sm:hidden flex items-center min-h-[44px] px-3 rounded text-slate-200 hover:bg-pitch hover:text-white font-medium">Sign in</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="top" class="pt-20">
+
+    <!-- HERO -->
+    <section class="relative bg-rail text-white overflow-hidden">
+      <!-- self-drawing pitch markings -->
+      <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect class="pitch-line" x="60" y="80" width="1320" height="640" rx="2" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+        <line class="pitch-line d2" x1="720" y1="80" x2="720" y2="720" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+        <circle class="pitch-line d3" cx="720" cy="400" r="130" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+        <rect class="pitch-line d3" x="60" y="250" width="170" height="300" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+        <rect class="pitch-line d3" x="1210" y="250" width="170" height="300" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+      </svg>
+
+      <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8 relative z-10 pt-12 pb-20 sm:pt-20 sm:pb-28">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <p class="eyebrow text-slate-400 mb-6 reveal">PitchPeople · Football clubs in Australia &amp; New Zealand</p>
+            <h1 class="font-black tracking-tight leading-[1.05] mb-8">
+              <span class="block text-5xl md:text-6xl xl:text-7xl reveal">One identity.</span>
+              <span class="block text-5xl md:text-6xl xl:text-7xl text-ready reveal" style="transition-delay:140ms">Every role.</span>
+              <span class="block text-5xl md:text-6xl xl:text-7xl reveal" style="transition-delay:280ms">Connected football.</span>
+            </h1>
+            <p class="text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl mb-8 reveal" style="transition-delay:360ms">
+              Registration, money, documents and match officials, around one Person who can play, coach, referee, look after a child and sit on the committee &mdash; with one sign-in. A family enters a player&rsquo;s details one time, and the club hands the governing body a complete submission instead of a guess that comes back weeks later.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-5 reveal" style="transition-delay:440ms">
+              <a href="#" id="hero-signin" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-ink px-7 py-3.5 rounded-full text-base font-semibold transition-all min-h-[44px]">Sign in to your roles <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+              <a href="#" id="hero-register" class="inline-flex items-center justify-center gap-2 border-2 border-railline hover:border-slate-500 text-white px-7 py-3.5 rounded-full text-base font-semibold transition-all min-h-[44px]">Start a registration</a>
+            </div>
+            <p class="eyebrow text-slate-500 reveal" style="transition-delay:500ms">By Let&rsquo;s Data Talk</p>
+          </div>
+
+          <!-- Person lens card: an orbiting ring from tablet up; a row of role chips on phones -->
+          <div class="relative flex items-center justify-center reveal" style="transition-delay:300ms">
+            <div class="relative w-full sm:w-[420px] sm:h-[420px] flex flex-col items-center justify-center">
+              <div class="lens-ring absolute inset-0 hidden sm:block" aria-hidden="true">
+                <div class="chip absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2"><span class="status-chip bg-rail border border-railline text-slate-200">Player</span></div>
+                <div class="chip absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2"><span class="status-chip bg-rail border border-railline text-slate-200">Coach</span></div>
+                <div class="chip absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2"><span class="status-chip bg-rail border border-railline text-slate-200">Referee</span></div>
+                <div class="chip absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2"><span class="status-chip bg-rail border border-railline text-slate-200">Guardian</span></div>
+                <div class="chip absolute top-[14%] left-[14%] -translate-x-1/2 -translate-y-1/2"><span class="status-chip bg-rail border border-railline text-slate-200">Committee</span></div>
+              </div>
+              <!-- still person card -->
+              <div class="relative z-10 w-full max-w-[16rem] bg-pitch border border-railline rounded-lg p-6 text-center shadow-2xl">
+                <div class="w-16 h-16 mx-auto rounded-full bg-ready/20 border border-ready/40 flex items-center justify-center mb-4">
+                  <span class="font-bold text-xl text-ready">TW</span>
+                </div>
+                <div class="font-bold text-lg text-white">Tan&eacute; Walker</div>
+                <div class="text-xs text-slate-400 mb-4">One record since 2024</div>
+                <div class="h-px bg-railline mb-4"></div>
+                <div class="eyebrow text-slate-500 mb-2" id="lens-role">PLAYER</div>
+                <div class="status-chip bg-readysoft text-readyink" id="lens-status"><span class="dot bg-ready"></span><span id="lens-status-text">Registered · U14 Girls</span></div>
+              </div>
+              <div class="sm:hidden mt-4 flex flex-wrap justify-center gap-x-1.5" id="lens-picks">
+                <button type="button" class="lens-pick min-h-[44px] inline-flex items-center" aria-pressed="true"><span class="status-chip border bg-ready/15 border-ready text-white">Player</span></button>
+                <button type="button" class="lens-pick min-h-[44px] inline-flex items-center" aria-pressed="false"><span class="status-chip border bg-rail border-railline text-slate-300">Coach</span></button>
+                <button type="button" class="lens-pick min-h-[44px] inline-flex items-center" aria-pressed="false"><span class="status-chip border bg-rail border-railline text-slate-300">Referee</span></button>
+                <button type="button" class="lens-pick min-h-[44px] inline-flex items-center" aria-pressed="false"><span class="status-chip border bg-rail border-railline text-slate-300">Guardian</span></button>
+                <button type="button" class="lens-pick min-h-[44px] inline-flex items-center" aria-pressed="false"><span class="status-chip border bg-rail border-railline text-slate-300">Committee</span></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-16 sm:py-24 bg-surface border-b border-border">
+      <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+          <p class="eyebrow text-muted mb-3">How it works</p>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight mb-4">One registration, start to submitted.</h2>
+          <p class="text-base sm:text-lg text-subtle">A family enters a player&rsquo;s details once. The record carries itself through the club and lands with the governing body as a complete submission.</p>
+        </div>
+
+        <!-- horizontal timeline (tablet and up) -->
+        <div id="timeline" class="relative hidden md:block reveal">
+          <div class="relative h-1 bg-border rounded-full" style="margin:0 10%">
+            <div id="timeline-fill" class="absolute left-0 top-0 h-full bg-ready rounded-full" style="width:0%"></div>
+            <div id="timeline-token" class="token absolute -top-2.5 -ml-3 w-6 h-6 rounded-full bg-ready border-4 border-surface shadow-md" style="left:0%"></div>
+          </div>
+          <div class="grid grid-cols-5 gap-4 mt-8">
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-bgsunk border border-border flex items-center justify-center mb-3"><iconify-icon icon="lucide:pen-line" class="text-xl text-ink"></iconify-icon></div>
+              <h3 class="font-bold mb-2">Family enters details once</h3>
+              <span class="status-chip bg-infosoft text-infoink"><span class="dot bg-info"></span>Entered</span>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-bgsunk border border-border flex items-center justify-center mb-3"><iconify-icon icon="lucide:file-check" class="text-xl text-ink"></iconify-icon></div>
+              <h3 class="font-bold mb-2">Documents checked</h3>
+              <span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Waiting</span>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-bgsunk border border-border flex items-center justify-center mb-3"><iconify-icon icon="lucide:receipt" class="text-xl text-ink"></iconify-icon></div>
+              <h3 class="font-bold mb-2">Fee settled</h3>
+              <span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-bgsunk border border-border flex items-center justify-center mb-3"><iconify-icon icon="lucide:check-circle" class="text-xl text-ready"></iconify-icon></div>
+              <h3 class="font-bold mb-2">Registered</h3>
+              <span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span>
+            </div>
+            <div class="text-center">
+              <div class="w-12 h-12 mx-auto rounded-full bg-ready flex items-center justify-center mb-3"><iconify-icon icon="lucide:send" class="text-xl text-white"></iconify-icon></div>
+              <h3 class="font-bold mb-2">Submitted to governing body</h3>
+              <span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Submitted</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- vertical timeline (phones): the same token, travelling down -->
+        <div id="timeline-v" class="md:hidden flex gap-4">
+          <div class="relative w-6 shrink-0 my-5">
+            <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-1 bg-border rounded-full">
+              <div id="timeline-v-fill" class="absolute left-0 top-0 w-full bg-ready rounded-full" style="height:0%"></div>
+            </div>
+            <div id="timeline-v-token" class="token absolute left-0 -mt-3 w-6 h-6 rounded-full bg-ready border-4 border-surface shadow-md" style="top:0%"></div>
+          </div>
+          <div class="space-y-6 flex-1 min-w-0">
+            <div class="flex gap-4 items-start"><div class="w-10 h-10 shrink-0 rounded-full bg-bgsunk border border-border flex items-center justify-center"><iconify-icon icon="lucide:pen-line" class="text-ink"></iconify-icon></div><div><h3 class="font-bold mb-1">Family enters details once</h3><span class="status-chip bg-infosoft text-infoink"><span class="dot bg-info"></span>Entered</span></div></div>
+            <div class="flex gap-4 items-start"><div class="w-10 h-10 shrink-0 rounded-full bg-bgsunk border border-border flex items-center justify-center"><iconify-icon icon="lucide:file-check" class="text-ink"></iconify-icon></div><div><h3 class="font-bold mb-1">Documents checked</h3><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Waiting</span></div></div>
+            <div class="flex gap-4 items-start"><div class="w-10 h-10 shrink-0 rounded-full bg-bgsunk border border-border flex items-center justify-center"><iconify-icon icon="lucide:receipt" class="text-ink"></iconify-icon></div><div><h3 class="font-bold mb-1">Fee settled</h3><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span></div></div>
+            <div class="flex gap-4 items-start"><div class="w-10 h-10 shrink-0 rounded-full bg-bgsunk border border-border flex items-center justify-center"><iconify-icon icon="lucide:check-circle" class="text-ready"></iconify-icon></div><div><h3 class="font-bold mb-1">Registered</h3><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span></div></div>
+            <div class="flex gap-4 items-start"><div class="w-10 h-10 shrink-0 rounded-full bg-ready flex items-center justify-center"><iconify-icon icon="lucide:send" class="text-white"></iconify-icon></div><div><h3 class="font-bold mb-1">Submitted to governing body</h3><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Submitted</span></div></div>
+          </div>
+        </div>
+
+        <!-- complete pack card -->
+        <div class="mt-12 sm:mt-16 max-w-md mx-auto reveal">
+          <div class="relative mr-2 mb-2">
+            <div class="absolute inset-0 translate-x-2 translate-y-2 bg-bgsunk border border-border rounded-lg"></div>
+            <div class="absolute inset-0 translate-x-1 translate-y-1 bg-bgsunk border border-border rounded-lg"></div>
+            <div class="relative bg-surface border border-border rounded-lg p-5 sm:p-6 shadow-md flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <div class="eyebrow text-muted mb-1">Submission pack</div>
+                <div class="font-bold text-lg">Complete submission</div>
+                <div class="text-sm text-subtle">Player, documents, consents &amp; fee</div>
+              </div>
+              <span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Complete</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ROLES: sticky split from tablet up; a swipeable strip above the phone on phones -->
+    <section id="roles" class="bg-bgsunk">
+      <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+          <p class="eyebrow text-muted mb-3">Roles</p>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight mb-4">One Person, seen five ways.</h2>
+          <p class="text-base sm:text-lg text-subtle">Switch the lens; the person never changes, only what you see does.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+          <div id="role-list" class="flex gap-3 overflow-x-auto snap-x snap-mandatory -mx-4 px-4 pb-2 md:block md:space-y-3 md:overflow-visible md:mx-0 md:px-0 md:pb-0">
+            <div data-role="0" class="role-item shrink-0 w-[240px] md:w-auto snap-start cursor-pointer bg-surface border-l-4 border-ready shadow-sm rounded-r-lg p-5 transition-all">
+              <h3 class="font-bold text-lg">Registrar</h3>
+              <p class="text-sm text-subtle mt-1">The season queue: who is ready, who is waiting, who is blocked.</p>
+            </div>
+            <div data-role="1" class="role-item shrink-0 w-[240px] md:w-auto snap-start cursor-pointer bg-surface border-l-4 border-transparent rounded-r-lg p-5 transition-all">
+              <h3 class="font-bold text-lg">Coach</h3>
+              <p class="text-sm text-subtle mt-1">The squad and Saturday&rsquo;s availability answers.</p>
+            </div>
+            <div data-role="2" class="role-item shrink-0 w-[240px] md:w-auto snap-start cursor-pointer bg-surface border-l-4 border-transparent rounded-r-lg p-5 transition-all">
+              <h3 class="font-bold text-lg">Referee</h3>
+              <p class="text-sm text-subtle mt-1">Appointments and declaring availability.</p>
+            </div>
+            <div data-role="3" class="role-item shrink-0 w-[240px] md:w-auto snap-start cursor-pointer bg-surface border-l-4 border-transparent rounded-r-lg p-5 transition-all">
+              <h3 class="font-bold text-lg">Guardian</h3>
+              <p class="text-sm text-subtle mt-1">Their children&rsquo;s registrations, in one place.</p>
+            </div>
+            <div data-role="4" class="role-item shrink-0 w-[240px] md:w-auto snap-start cursor-pointer bg-surface border-l-4 border-transparent rounded-r-lg p-5 transition-all">
+              <h3 class="font-bold text-lg">Committee</h3>
+              <p class="text-sm text-subtle mt-1">The Management Committee and its sub-committees.</p>
+            </div>
+          </div>
+
+          <!-- phone workspace -->
+          <div class="md:sticky md:top-28">
+            <div class="mx-auto w-[300px] max-w-full bg-rail rounded-[2rem] p-3 shadow-2xl border border-railline">
+              <div class="bg-surface rounded-[1.5rem] overflow-hidden h-[520px] sm:h-[560px] relative" aria-live="polite">
+                <div class="workspace absolute inset-0 p-5 transition-opacity duration-500" data-ws="0">
+                  <div class="eyebrow text-muted mb-1">Registrar</div>
+                  <h4 class="font-bold text-lg mb-4">Season queue</h4>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">U14 Girls · 18</span><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">U12 Mixed · 6</span><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Waiting</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">U16 Boys · 2</span><span class="status-chip bg-blockedsoft text-blockedink"><span class="dot bg-blocked"></span>Blocked</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Seniors · 11</span><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Ready</span></div>
+                  </div>
+                </div>
+                <div class="workspace absolute inset-0 p-5 opacity-0 transition-opacity duration-500" data-ws="1">
+                  <div class="eyebrow text-muted mb-1">Coach</div>
+                  <h4 class="font-bold text-lg mb-4">Saturday availability</h4>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Tan&eacute; Walker</span><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Available</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Jordan Lee</span><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Available</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Sam Ortiz</span><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>No reply</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Priya Nair</span><span class="status-chip bg-blockedsoft text-blockedink"><span class="dot bg-blocked"></span>Unavailable</span></div>
+                  </div>
+                </div>
+                <div class="workspace absolute inset-0 p-5 opacity-0 transition-opacity duration-500" data-ws="2">
+                  <div class="eyebrow text-muted mb-1">Referee</div>
+                  <h4 class="font-bold text-lg mb-4">Your appointments</h4>
+                  <div class="space-y-2">
+                    <div class="bg-bgsunk rounded p-3"><div class="text-sm font-medium mb-1.5">Sat 10:00 · U14 Girls</div><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Appointed</span></div>
+                    <div class="bg-bgsunk rounded p-3"><div class="text-sm font-medium mb-1.5">Sat 13:00 · U16 Boys</div><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Offered</span></div>
+                  </div>
+                  <button type="button" tabindex="-1" class="w-full mt-4 bg-pitch text-white rounded py-3 text-sm font-semibold min-h-[44px]">Declare availability</button>
+                </div>
+                <div class="workspace absolute inset-0 p-5 opacity-0 transition-opacity duration-500" data-ws="3">
+                  <div class="eyebrow text-muted mb-1">Guardian</div>
+                  <h4 class="font-bold text-lg mb-4">Your children</h4>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Mia · U10</span><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Registered</span></div>
+                    <div class="flex items-center justify-between gap-2 bg-bgsunk rounded p-3"><span class="text-sm font-medium">Noah · U12</span><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Docs due</span></div>
+                  </div>
+                </div>
+                <div class="workspace absolute inset-0 p-5 opacity-0 transition-opacity duration-500" data-ws="4">
+                  <div class="eyebrow text-muted mb-1">Committee</div>
+                  <h4 class="font-bold text-lg mb-4">Management Committee</h4>
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between bg-bgsunk rounded p-3"><span class="text-sm font-medium">President</span><span class="text-sm text-subtle">A. Rata</span></div>
+                    <div class="flex items-center justify-between bg-bgsunk rounded p-3"><span class="text-sm font-medium">Secretary</span><span class="text-sm text-subtle">K. Osei</span></div>
+                    <div class="flex items-center justify-between bg-bgsunk rounded p-3"><span class="text-sm font-medium">Treasurer</span><span class="text-sm text-subtle">T. Walker</span></div>
+                  </div>
+                  <div class="eyebrow text-muted mt-5 mb-2">Sub-committees</div>
+                  <div class="flex flex-wrap gap-2"><span class="status-chip bg-bgsunk text-subtle">Juniors</span><span class="status-chip bg-bgsunk text-subtle">Facilities</span><span class="status-chip bg-bgsunk text-subtle">Events</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MATCHDAY -->
+    <section id="matchday" class="py-16 sm:py-24 bg-rail text-white">
+      <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-2xl mb-12 sm:mb-16 reveal">
+          <p class="eyebrow text-slate-400 mb-3">Matchday</p>
+          <h2 class="text-3xl sm:text-4xl font-black tracking-tight mb-4">Who&rsquo;s clear to play, and who&rsquo;s got the whistle.</h2>
+          <p class="text-base sm:text-lg text-slate-300">The squad takes the field, the officials are appointed, and the fixtures line up.</p>
+        </div>
+
+        <div id="matchday-grid" class="grid lg:grid-cols-3 gap-8 items-start">
+          <!-- pitch; on phones the bench and referee labels sit below it, not on it -->
+          <div class="lg:col-span-2 relative">
+            <div class="relative bg-pitch border border-railline rounded-lg overflow-hidden" style="aspect-ratio:3/2">
+              <svg class="absolute inset-0 w-full h-full" viewBox="0 0 600 400" aria-hidden="true">
+                <rect x="10" y="10" width="580" height="380" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+                <line x1="300" y1="10" x2="300" y2="390" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+                <circle cx="300" cy="200" r="55" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+                <rect x="10" y="120" width="70" height="160" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+                <rect x="520" y="120" width="70" height="160" fill="none" stroke="rgba(255, 255, 255, 0.35)" stroke-width="3"/>
+              </svg>
+              <!-- 4-3-3 -->
+              <div class="absolute inset-0" role="img" aria-label="Starting eleven in a 4-3-3 and the appointed referee">
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:4%;top:45%;transition-delay:0ms">GK</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:20%;top:16%;transition-delay:80ms">DF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:20%;top:36%;transition-delay:140ms">DF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:20%;top:56%;transition-delay:200ms">DF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:20%;top:76%;transition-delay:260ms">DF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:42%;top:26%;transition-delay:320ms">MF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:42%;top:46%;transition-delay:380ms">MF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:42%;top:66%;transition-delay:440ms">MF</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:66%;top:20%;transition-delay:500ms">FW</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:66%;top:46%;transition-delay:560ms">FW</div>
+                <div class="shirt absolute w-7 h-7 rounded-full bg-ready text-rail text-[10px] font-bold flex items-center justify-center" style="left:66%;top:72%;transition-delay:620ms">FW</div>
+                <!-- referee -->
+                <div class="shirt absolute w-7 h-7 rounded-full bg-waiting text-rail text-[12px] flex items-center justify-center" style="left:52%;top:34%;transition-delay:700ms"><iconify-icon icon="lucide:flag" aria-hidden="true"></iconify-icon></div>
+              </div>
+            </div>
+            <div class="mt-4 flex flex-wrap items-center gap-3 sm:mt-0">
+              <div class="flex items-center gap-2 sm:absolute sm:bottom-3 sm:left-3">
+                <div class="shirt w-7 h-7 rounded-full bg-slate-600" style="transition-delay:780ms"></div>
+                <div class="shirt w-7 h-7 rounded-full bg-slate-600" style="transition-delay:840ms"></div>
+                <span class="status-chip bg-blockedsoft text-blockedink"><span class="dot bg-blocked"></span>Not clear to play</span>
+              </div>
+              <div class="sm:absolute sm:top-3 sm:right-3"><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Referee appointed</span></div>
+            </div>
+          </div>
+
+          <!-- calendar strip -->
+          <div class="bg-pitch border border-railline rounded-lg p-4 sm:p-5">
+            <div class="eyebrow text-slate-400 mb-4">Competition · March</div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-1 gap-2">
+              <div class="fixture flex items-center justify-between gap-2 bg-rail rounded p-3" style="transition-delay:200ms"><div><div class="text-sm font-semibold">Sat 7 · 10:00</div><div class="text-xs text-slate-400">U14 Girls vs Harbour</div></div><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Set</span></div>
+              <div class="fixture flex items-center justify-between gap-2 bg-rail rounded p-3" style="transition-delay:320ms"><div><div class="text-sm font-semibold">Sat 14 · 13:00</div><div class="text-xs text-slate-400">U16 Boys vs Rovers</div></div><span class="status-chip bg-waitingsoft text-waitingink"><span class="dot bg-waiting"></span>Ref due</span></div>
+              <div class="fixture flex items-center justify-between gap-2 bg-rail rounded p-3" style="transition-delay:440ms"><div><div class="text-sm font-semibold">Sat 21 · 09:00</div><div class="text-xs text-slate-400">Seniors vs City</div></div><span class="status-chip bg-readysoft text-readyink"><span class="dot bg-ready"></span>Set</span></div>
+              <div class="fixture flex items-center justify-between gap-2 bg-rail rounded p-3" style="transition-delay:560ms"><div><div class="text-sm font-semibold">Sat 28 · 11:00</div><div class="text-xs text-slate-400">U12 Mixed vs Bay</div></div><span class="status-chip bg-infosoft text-infoink"><span class="dot bg-info"></span>Scheduled</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOR CLUBS -->
+    <section id="for-clubs" class="py-20 sm:py-28 bg-pitch text-white">
+      <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center reveal">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-black tracking-tight mb-6">Bring your club&rsquo;s season into one place.</h2>
+          <p class="text-lg sm:text-xl text-slate-300 leading-relaxed mb-10">
+            There&rsquo;s no account to create to ask, nothing to set up, and no free trial &mdash; an empty system is worth nothing to a club. Tell us about your club and we&rsquo;ll reply directly.
+          </p>
+          <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+            <a href="#" id="clubs-talk" class="inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-100 text-ink px-8 py-4 rounded-full text-base sm:text-lg font-semibold transition-all min-h-[44px]">Talk to us about your club <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+            <a href="#" id="clubs-demo" class="inline-flex items-center justify-center gap-2 border-2 border-railline hover:border-slate-500 text-white px-8 py-4 rounded-full text-base sm:text-lg font-semibold transition-all min-h-[44px]">See the demonstration club</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-rail pt-16 pb-8 border-t border-railline">
+    <div class="max-w-[78rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div class="col-span-2">
+          <div class="flex items-center gap-2.5 mb-5">
+            <svg width="28" height="28" viewBox="0 0 30 30" fill="none" aria-hidden="true"><rect x="1" y="1" width="28" height="28" rx="6" stroke="#94a3b8" stroke-width="1.5"/><line x1="15" y1="1" x2="15" y2="29" stroke="#94a3b8" stroke-width="1.5"/><circle cx="15" cy="15" r="5" stroke="#94a3b8" stroke-width="1.5"/></svg>
+            <span class="font-extrabold text-xl text-white">PitchPeople</span>
+          </div>
+          <p class="text-slate-400 max-w-sm mb-3">One identity. Every role. Connected football.</p>
+          <p class="eyebrow text-slate-500">By Let&rsquo;s Data Talk</p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4">Product</h4>
+          <ul class="space-y-1">
+            <li><a href="#roles" id="foot-roles" class="inline-flex items-center min-h-[44px] text-slate-400 hover:text-white transition-colors">Roles</a></li>
+            <li><a href="#how" id="foot-registration" class="inline-flex items-center min-h-[44px] text-slate-400 hover:text-white transition-colors">Registration</a></li>
+            <li><a href="#matchday" id="foot-matchday" class="inline-flex items-center min-h-[44px] text-slate-400 hover:text-white transition-colors">Matchday</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold mb-4">Clubs</h4>
+          <ul class="space-y-1">
+            <li><a href="#for-clubs" id="foot-talk" class="inline-flex items-center min-h-[44px] text-slate-400 hover:text-white transition-colors">Talk to us</a></li>
+            <li><a href="#" id="foot-demo" class="inline-flex items-center min-h-[44px] text-slate-400 hover:text-white transition-colors">Demonstration club</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-railline pt-6 flex flex-col md:flex-row justify-between items-center gap-2">
+        <p class="text-slate-500 text-sm">© 2026 Let&rsquo;s Data Talk</p>
+        <div class="flex gap-6">
+          <a href="#" id="foot-privacy" class="inline-flex items-center min-h-[44px] text-slate-500 hover:text-white text-sm transition-colors">Privacy</a>
+          <a href="#" id="foot-terms" class="inline-flex items-center min-h-[44px] text-slate-500 hover:text-white text-sm transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var split = window.matchMedia('(min-width: 768px)');
+
+  // Reveal observer
+  var revEls = document.querySelectorAll('.reveal');
+  if (reduced) { revEls.forEach(function(e){ e.classList.add('in'); }); }
+  else {
+    var ro = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('in'); ro.unobserve(en.target); } });
+    }, { threshold:0.15 });
+    revEls.forEach(function(e){ ro.observe(e); });
+  }
+
+  // Nav shrink, and the menu closes once a section is chosen
+  var navInner = document.getElementById('nav-inner');
+  var menu = document.getElementById('nav-menu');
+  menu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu.open = false; }); });
+
+  // Lens rotation (role swap on person card)
+  var roles = [
+    { label:'PLAYER', text:'Registered · U14 Girls', bg:'bg-readysoft', ink:'text-readyink', dot:'bg-ready' },
+    { label:'COACH', text:'U14 Girls · Head coach', bg:'bg-infosoft', ink:'text-infoink', dot:'bg-info' },
+    { label:'REFEREE', text:'Appointed · Sat 10:00', bg:'bg-readysoft', ink:'text-readyink', dot:'bg-ready' },
+    { label:'GUARDIAN', text:'Looks after 2 players', bg:'bg-infosoft', ink:'text-infoink', dot:'bg-info' },
+    { label:'COMMITTEE', text:'Treasurer · 2026 term', bg:'bg-waitingsoft', ink:'text-waitingink', dot:'bg-waiting' }
+  ];
+  var li=0, timer=null, roleEl=document.getElementById('lens-role'), statEl=document.getElementById('lens-status');
+  var picks=document.querySelectorAll('.lens-pick');
+  function applyRole(i){
+    var r=roles[i];
+    roleEl.textContent=r.label;
+    statEl.className='status-chip '+r.bg+' '+r.ink;
+    statEl.innerHTML='<span class="dot '+r.dot+'"></span>';
+    var sp=document.createElement('span'); sp.id='lens-status-text'; sp.textContent=r.text; statEl.appendChild(sp);
+    picks.forEach(function(b,j){
+      b.setAttribute('aria-pressed', j===i);
+      b.firstElementChild.className='status-chip border '+(j===i?'bg-ready/15 border-ready text-white':'bg-rail border-railline text-slate-300');
+    });
+  }
+  function rotate(){ if(!reduced){ timer=setInterval(function(){ li=(li+1)%roles.length; applyRole(li); }, 2500); } }
+  picks.forEach(function(b,j){ b.addEventListener('click', function(){ clearInterval(timer); li=j; applyRole(j); rotate(); }); });
+  rotate();
+
+  // Timeline scroll-linked token: across on tablet and up, down on phones
+  var tl={ el:document.getElementById('timeline'), tok:document.getElementById('timeline-token'), fill:document.getElementById('timeline-fill') };
+  var tv={ el:document.getElementById('timeline-v'), tok:document.getElementById('timeline-v-token'), fill:document.getElementById('timeline-v-fill') };
+  function setTrack(p){
+    var v=(p*100)+'%';
+    tl.tok.style.left=v; tl.fill.style.width=v;
+    tv.tok.style.top=v; tv.fill.style.height=v;
+  }
+  function trackScroll(){
+    var vh=window.innerHeight, p;
+    if(split.matches){ p=(vh*0.85 - tl.el.getBoundingClientRect().top)/(vh*0.6); }
+    else { var r=tv.el.getBoundingClientRect(); p=(vh*0.6 - r.top)/r.height; }
+    setTrack(Math.max(0, Math.min(1, p)));
+  }
+
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ navInner.classList.remove('h-20'); navInner.classList.add('h-16'); }
+    else { navInner.classList.add('h-20'); navInner.classList.remove('h-16'); }
+    if(!reduced) trackScroll();
+  }, { passive:true });
+  if(reduced) setTrack(1); else trackScroll();
+
+  // Roles: the sticky split follows scroll from tablet up; tap, hover and focus choose a role at any width
+  var roleItems=document.querySelectorAll('.role-item');
+  var workspaces=document.querySelectorAll('.workspace');
+  function setActiveRole(idx){
+    roleItems.forEach(function(it,i){
+      if(i===idx){ it.classList.add('border-ready','shadow-sm'); it.classList.remove('border-transparent'); it.setAttribute('aria-pressed','true'); }
+      else { it.classList.remove('border-ready','shadow-sm'); it.classList.add('border-transparent'); it.setAttribute('aria-pressed','false'); }
+    });
+    workspaces.forEach(function(w,i){ w.style.opacity = (i===idx)?'1':'0'; });
+  }
+  if(!reduced){
+    var rObs=new IntersectionObserver(function(entries){
+      if(!split.matches) return;
+      entries.forEach(function(en){ if(en.isIntersecting){ setActiveRole(parseInt(en.target.dataset.role)); } });
+    }, { rootMargin:'-45% 0px -45% 0px', threshold:0 });
+    roleItems.forEach(function(it){ rObs.observe(it); });
+  }
+  roleItems.forEach(function(it){
+    it.tabIndex = 0; it.setAttribute('role', 'button');
+    var pick = function(){ setActiveRole(parseInt(it.dataset.role)); };
+    ['mouseenter', 'click', 'focus'].forEach(function(ev){ it.addEventListener(ev, pick); });
+    it.addEventListener('keydown', function(e){ if(e.key==='Enter' || e.key===' '){ e.preventDefault(); pick(); } });
+  });
+  setActiveRole(0);
+
+  // Matchday trigger
+  var mdGrid=document.getElementById('matchday-grid');
+  if(mdGrid && !reduced){
+    var mObs=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting){ en.target.classList.add('matchday-in'); mObs.unobserve(en.target); } });
+    }, { threshold:0.2 });
+    mObs.observe(mdGrid);
+  } else if(mdGrid){ mdGrid.classList.add('matchday-in'); }
+})();
+</script>
+</body></html>

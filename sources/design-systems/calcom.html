@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Structured Light Scheduler — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F4F4F4;
+  --surface:#FFFFFF;
+  --surface-muted:#E5E7EB;
+  --text-primary:#141414;
+  --text-secondary:#898989;
+  --text-tertiary:#242424;
+  --border:#767676;
+  --border-card:#E5E7EB;
+  --border-hero:#D3D3D3;
+  --link:#0000EE;
+  --accent-ring:#3C81F5;
+  --r-control:8px;
+  --r-card:12px;
+  --r-card-lg:29px;
+  --r-pill:100px;
+  --r-tag:4px;
+  --r-hairline:2px;
+  --base:4px;
+  --gap-sm:8px;
+  --gap-md:12px;
+  --gap-lg:24px;
+  --section-padding:96px;
+  --shadow-card:rgba(36,36,36,0.7) 0px 1px 5px -4px, rgba(36,36,36,0.05) 0px 4px 8px 0px;
+  --shadow-popover:rgba(19,19,22,0.7) 0px 1px 5px -4px, rgba(34,42,53,0.08) 0px 0px 0px 1px, rgba(34,42,53,0.05) 0px 4px 8px 0px;
+  --font-display:"Cal Sans","Poppins",sans-serif;
+  --font-body:"Cal Sans UI Variable Light","Inter",sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-weight:300;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;line-height:1.1;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+.canvas{
+  margin:16px;
+  border:1px solid var(--text-primary);
+  position:relative;
+}
+.plus{position:absolute;width:14px;height:14px;color:var(--text-primary);opacity:.6;}
+.plus.tl{top:-7px;left:-7px;}
+.plus.tr{top:-7px;right:-7px;}
+.plus.bl{bottom:-7px;left:-7px;}
+.plus.br{bottom:-7px;right:-7px;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+/* nav */
+.nav{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;border-bottom:1px solid var(--border);position:relative;
+  background:var(--background);
+}
+.wordmark{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.5px;}
+.nav-right{display:flex;align-items:center;gap:20px;}
+.nav-link{font-size:14px;text-decoration:none;color:var(--text-primary);}
+.btn-nav-cta{
+  display:inline-flex;align-items:center;gap:6px;height:38px;padding:0 16px;
+  background:var(--text-primary);color:#fff;border:none;border-radius:var(--r-control);
+  font-family:var(--font-body);font-size:14px;cursor:pointer;
+}
+.menu-glyph{background:none;border:none;color:var(--text-primary);cursor:pointer;display:inline-flex;font-size:22px;}
+/* hero */
+#hero{position:relative;padding:72px 24px var(--section-padding);border-bottom:1px solid var(--border);}
+.hero-grid{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 14px;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-pill);
+  font-size:14px;color:var(--text-tertiary);margin-bottom:24px;
+}
+.display-lg{font-size:64px;letter-spacing:-1px;}
+.hero-sub{font-size:16px;color:var(--text-secondary);margin-top:20px;max-width:440px;}
+.hero-ctas{margin-top:32px;display:flex;flex-direction:column;gap:12px;max-width:360px;}
+.btn-google{
+  display:flex;align-items:center;justify-content:center;gap:10px;height:48px;width:100%;
+  background:var(--text-primary);color:#fff;border:none;border-radius:var(--r-control);
+  font-family:var(--font-body);font-size:16px;cursor:pointer;
+}
+.g-mark{background:#fff;border-radius:3px;width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;font-family:"Poppins";font-weight:600;font-size:13px;color:#4285F4;}
+.btn-secondary-8{
+  display:flex;align-items:center;justify-content:center;gap:8px;height:48px;width:100%;
+  background:var(--surface);color:var(--text-primary);border:1px solid var(--border);
+  border-radius:var(--r-control);font-family:var(--font-body);font-size:16px;cursor:pointer;
+}
+/* booking widget */
+.widget{
+  background:var(--surface);border:1px solid var(--border-hero);border-radius:var(--r-card-lg);
+  padding:24px;box-shadow:var(--shadow-popover);
+}
+.w-head{display:flex;align-items:center;gap:10px;}
+.avatar{width:36px;height:36px;border-radius:var(--r-pill);background:var(--surface-muted);display:inline-flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:16px;overflow:hidden;}
+.w-name{font-size:14px;color:var(--text-secondary);}
+.w-title{font-size:18px;letter-spacing:-.2px;margin-top:14px;font-family:var(--font-display);font-weight:600;}
+.w-desc{font-size:14px;color:var(--text-secondary);margin-top:6px;}
+.chip-row{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap;}
+.chip{height:30px;padding:0 14px;border-radius:var(--r-pill);border:1px solid var(--border);background:var(--surface);font-size:14px;display:inline-flex;align-items:center;color:var(--text-primary);cursor:pointer;}
+.chip.active{background:var(--text-primary);color:#fff;border-color:var(--text-primary);}
+.w-row{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:14px;color:var(--text-tertiary);}
+.w-row .chev{margin-left:auto;color:var(--text-secondary);}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:16px;}
+.cal-cell{aspect-ratio:1;border-radius:var(--r-control);display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:13px;color:var(--text-primary);cursor:pointer;position:relative;}
+.cal-cell.head{color:var(--text-secondary);font-size:12px;cursor:default;}
+.cal-cell.sel{background:var(--text-primary);color:#fff;}
+.cal-cell.muted{color:var(--surface-muted);cursor:default;}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--text-secondary);margin-top:2px;}
+@media(max-width:1024px){.hero-grid{grid-template-columns:1fr;gap:40px;}.display-lg{font-size:52px;}}
+@media(max-width:640px){.display-lg{font-size:38px;}.nav-link{display:none;}}
+</style>
+</head>
+<body>
+<div class="canvas">
+<span class="plus tl"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+<span class="plus tr"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+<span class="plus bl"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+<span class="plus br"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <span class="wordmark">Cal.com</span>
+  <div class="nav-right">
+    <a href="#" class="nav-link">Sign in</a>
+    <button class="btn-nav-cta">Get started <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+    <button class="menu-glyph" aria-label="Open menu"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+  </div>
+</nav>
+</header>
+
+<main>
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow"><iconify-icon icon="lucide:calendar-check" aria-hidden="true"></iconify-icon> Scheduling, structured</span>
+      <h1 id="hero-title" class="display-lg">The calendar that books itself.</h1>
+      <p class="hero-sub">Share one link, sync every calendar, and let availability do the negotiating. No back-and-forth, no double-bookings — just a clean handoff from busy to booked.</p>
+      <div class="hero-ctas">
+        <button class="btn-google"><span class="g-mark">G</span> Sign up with Google</button>
+        <button class="btn-secondary-8">Sign up with email <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+    <div class="widget" data-tier-a-component="booking-widget-hero-card" aria-label="Booking widget preview">
+      <div class="w-head">
+        <span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span>
+        <span class="w-name">Jordan Avery</span>
+      </div>
+      <div class="w-title">Intro call</div>
+      <p class="w-desc">A quick 30 minutes to see if we're a fit.</p>
+      <div class="chip-row" role="group" aria-label="Duration">
+        <span class="chip">15m</span>
+        <span class="chip active">30m</span>
+        <span class="chip">45m</span>
+        <span class="chip">60m</span>
+      </div>
+      <div class="w-row"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon> Cal Video</div>
+      <div class="w-row"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon> Europe/London <iconify-icon class="chev" icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></div>
+      <div class="cal-grid" aria-hidden="true">
+        <span class="cal-cell head">M</span><span class="cal-cell head">T</span><span class="cal-cell head">W</span><span class="cal-cell head">T</span><span class="cal-cell head">F</span><span class="cal-cell head">S</span><span class="cal-cell head">S</span>
+        <span class="cal-cell muted">28</span><span class="cal-cell muted">29</span><span class="cal-cell">1<span class="dot"></span></span><span class="cal-cell">2<span class="dot"></span></span><span class="cal-cell">3<span class="dot"></span></span><span class="cal-cell">4</span><span class="cal-cell">5</span>
+        <span class="cal-cell">6<span class="dot"></span></span><span class="cal-cell">7<span class="dot"></span></span><span class="cal-cell sel">8</span><span class="cal-cell">9<span class="dot"></span></span><span class="cal-cell">10<span class="dot"></span></span><span class="cal-cell">11</span><span class="cal-cell">12</span>
+        <span class="cal-cell">13<span class="dot"></span></span><span class="cal-cell">14<span class="dot"></span></span><span class="cal-cell">15<span class="dot"></span></span><span class="cal-cell">16<span class="dot"></span></span><span class="cal-cell">17</span><span class="cal-cell">18</span><span class="cal-cell">19</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.sec-head{text-align:center;max-width:640px;margin:0 auto 56px;}
+.sec-head .eyebrow{margin-bottom:20px;}
+.headline-md{font-size:48px;letter-spacing:-.5px;}
+.sec-sub{font-size:16px;color:var(--text-secondary);margin-top:16px;}
+.pal-group{margin-bottom:40px;}
+.pal-group h3{font-size:18px;letter-spacing:-.2px;font-family:var(--font-display);margin-bottom:16px;}
+.pal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.swatch{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-card);}
+.swatch .chip-fill{height:88px;}
+.swatch .meta{padding:14px 16px;}
+.swatch .name{font-size:14px;color:var(--text-primary);}
+.swatch .val{font-family:"Inter";font-size:13px;color:var(--text-tertiary);margin-top:4px;}
+.swatch .note{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.4;}
+.check{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+@media(max-width:768px){.pal-grid{grid-template-columns:repeat(2,1fr);}.headline-md{font-size:36px;}}
+@media(max-width:640px){.headline-md{font-size:30px;}}
+</style>
+<section id="palette" aria-labelledby="palette-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon> Color, rationed</span>
+    <h2 id="palette-title" class="headline-md">Ink, gray, white — and one blue.</h2>
+    <p class="sec-sub">Hierarchy is carried by a three-stop gray ramp. Saturation is withheld until it means something.</p>
+  </div>
+  <div class="wrap">
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip-fill" style="background:#F4F4F4"></div><div class="meta"><div class="name">background</div><div class="val">#F4F4F4</div><div class="note">Flat warm-gray page field beneath every card.</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#FFFFFF;border-bottom:1px solid var(--border-card)"></div><div class="meta"><div class="name">surface</div><div class="val">#FFFFFF</div><div class="note">Pure-white cards and popovers — step two of elevation.</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#E5E7EB"></div><div class="meta"><div class="name">surface-muted</div><div class="val">#E5E7EB</div><div class="note">Card hairline borders and quiet fills.</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#767676"></div><div class="meta"><div class="name">border</div><div class="val">#767676</div><div class="note">Hairline dividers and crosshair marks.</div></div></div>
+      </div>
+    </div>
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip-fill" style="background:#141414"></div><div class="meta"><div class="name">text-primary</div><div class="val">#141414</div><div class="note">Headlines and primary labels.</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#242424"></div><div class="meta"><div class="name">text-tertiary</div><div class="val">#242424</div><div class="note">Secondary emphasis, one step down.</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#898989"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#898989</div><div class="note">Muted body copy and captions.</div></div></div>
+      </div>
+    </div>
+    <div class="pal-group">
+      <h3>Accents (functional only)</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip-fill" style="background:#3C81F5"></div><div class="meta"><div class="name">accent-ring</div><div class="val">#3C81F5</div><div class="note">Focus-ring blue — signals "this is focused."</div></div></div>
+        <div class="swatch"><div class="chip-fill" style="background:#0000EE"></div><div class="meta"><div class="name">link</div><div class="val">#0000EE</div><div class="note">Inline hyperlinks inside testimonials.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.spec-row{border-bottom:1px solid var(--border-card);padding:28px 0;}
+.spec-row:last-child{border-bottom:none;}
+.spec-meta{font-family:"Inter";font-size:12px;color:var(--text-secondary);margin-top:12px;letter-spacing:.02em;}
+.t-display{font-family:var(--font-display);font-weight:600;font-size:64px;line-height:1.1;letter-spacing:-1px;}
+.t-headline{font-family:var(--font-display);font-weight:600;font-size:48px;line-height:1.1;}
+.t-label{font-family:var(--font-body);font-weight:300;font-size:18px;line-height:1.3;letter-spacing:-.2px;}
+.t-bodydef{font-family:var(--font-body);font-weight:300;font-size:16px;line-height:1.5;}
+.t-bodymd{font-family:var(--font-body);font-weight:300;font-size:14px;line-height:1.4;}
+@media(max-width:768px){.t-display{font-size:44px;}.t-headline{font-size:34px;}}
+@media(max-width:640px){.t-display{font-size:34px;}.t-headline{font-size:28px;}}
+</style>
+<section id="type-scale" aria-labelledby="type-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon> The working pair</span>
+    <h2 id="type-title" class="headline-md">Cal Sans carries the voice.</h2>
+    <p class="sec-sub">Display and headline in Cal Sans 600; everything readable in Cal Sans UI Variable Light 300.</p>
+  </div>
+  <div class="wrap">
+    <div class="spec-row"><div class="t-display">Book the meeting.</div><div class="spec-meta">display-lg · Cal Sans · 64px / 600 / 1.1 / -1px</div></div>
+    <div class="spec-row"><div class="t-headline">Availability, solved.</div><div class="spec-meta">headline-md · Cal Sans · 48px / 600 / 1.1</div></div>
+    <div class="spec-row"><div class="t-label">Connect your calendar</div><div class="spec-meta">label-md · Cal Sans UI Variable Light · 18px / 300 / 1.3 / -0.2px</div></div>
+    <div class="spec-row"><div class="t-bodydef">Every event type inherits your working hours, buffers, and limits — so the only slots anyone ever sees are the ones you can actually make.</div><div class="spec-meta">body-default · Cal Sans UI Variable Light · 16px / 300 / 1.5</div></div>
+    <div class="spec-row"><div class="t-bodymd">Tighter component copy for chips, rows, and captions inside dense widget interiors.</div><div class="spec-meta">body-md · Cal Sans UI Variable Light · 14px / 300 / 1.4</div></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.comp-block{margin-bottom:72px;}
+.comp-block:last-child{margin-bottom:0;}
+.comp-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px;}
+.comp-head h3{font-family:var(--font-display);font-weight:600;font-size:28px;letter-spacing:-.4px;}
+.comp-count{font-family:"Inter";font-size:12px;color:var(--text-secondary);border:1px solid var(--border-card);border-radius:var(--r-pill);padding:2px 10px;}
+.comp-desc{font-size:15px;color:var(--text-secondary);max-width:640px;margin-bottom:24px;}
+.spec-card{background:var(--surface);border:1px solid var(--border-card);border-left:3px solid var(--text-primary);border-radius:var(--r-tag);padding:14px 16px;margin-top:20px;font-family:"Inter";font-size:12px;line-height:1.7;color:var(--text-tertiary);}
+.spec-card b{color:var(--text-primary);font-weight:500;}
+.demo{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px;box-shadow:var(--shadow-card);}
+/* buttons */
+.btn-primary-pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 20px;background:var(--text-primary);color:#fff;border:none;border-radius:var(--r-pill);font-family:var(--font-body);font-size:15px;cursor:pointer;transition:background .3s ease-out;}
+.btn-primary-pill:hover{background:#000;}
+.btn-secondary-pill{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 20px;background:var(--surface);color:var(--text-primary);border:1px solid var(--border);border-radius:var(--r-pill);font-family:var(--font-body);font-size:15px;cursor:pointer;transition:box-shadow .3s ease-out;}
+.btn-secondary-pill:hover{box-shadow:var(--shadow-card);}
+.cta-pair{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+/* matrix */
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{padding:14px;text-align:left;border-bottom:1px solid var(--border-card);}
+.matrix th{font-family:"Inter";font-weight:500;font-size:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.04em;}
+.matrix td:first-child{font-family:"Inter";font-size:12px;color:var(--text-tertiary);}
+.st-hover{background:#000;color:#fff;}
+.st-active{background:#000;color:#fff;transform:translateY(1px);}
+.st-disabled{opacity:.4;cursor:not-allowed;}
+/* step cards */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+.step-card{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:24px;box-shadow:var(--shadow-card);display:flex;flex-direction:column;}
+.num-badge{width:34px;height:34px;border-radius:var(--r-control);background:var(--surface-muted);display:inline-flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:14px;color:var(--text-tertiary);}
+.step-title{font-family:var(--font-body);font-size:18px;letter-spacing:-.2px;margin-top:16px;color:var(--text-primary);}
+.step-copy{font-size:14px;color:var(--text-secondary);margin-top:8px;}
+.step-illus{margin-top:20px;background:var(--background);border:1px solid var(--border-card);border-radius:var(--r-control);height:120px;display:flex;align-items:center;justify-content:center;color:var(--text-tertiary);}
+.sync-diagram{display:flex;align-items:center;justify-content:center;gap:0;position:relative;}
+.sync-diagram span{position:absolute;border:1px solid var(--border);border-radius:50%;}
+.toggle-list{width:100%;padding:12px;display:flex;flex-direction:column;gap:8px;}
+.toggle-line{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--text-tertiary);}
+.mini-toggle{width:28px;height:16px;border-radius:var(--r-pill);background:var(--text-primary);position:relative;flex-shrink:0;}
+.mini-toggle::after{content:"";position:absolute;width:12px;height:12px;border-radius:50%;background:#fff;top:2px;right:2px;}
+.two-av{display:flex;gap:8px;}
+.two-av .avatar{width:44px;height:44px;}
+/* feature panels */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.feat-panel{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:32px;box-shadow:var(--shadow-card);}
+.feat-panel h4{font-family:var(--font-body);font-size:18px;letter-spacing:-.2px;color:var(--text-primary);}
+.feat-panel p{font-size:14px;color:var(--text-secondary);margin-top:8px;}
+.feat-media{margin-top:24px;background:var(--background);border:1px solid var(--border-card);border-radius:var(--r-control);padding:14px;}
+.evt-block{border-radius:var(--r-tag);padding:6px 10px;font-size:12px;color:#fff;margin-bottom:6px;}
+.toast{display:flex;align-items:center;gap:10px;background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-control);padding:12px;box-shadow:var(--shadow-popover);}
+.toast .avatar{width:32px;height:32px;}
+.toast .t-time{margin-left:auto;font-size:12px;color:var(--text-secondary);}
+/* icon tiles */
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.icon-tile{background:var(--surface);border-radius:var(--r-control);padding:24px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;}
+.icon-box{width:48px;height:48px;border-radius:var(--r-control);background:var(--background);border:1px solid var(--border-card);display:inline-flex;align-items:center;justify-content:center;font-size:22px;color:var(--text-primary);}
+.icon-tile .lbl{font-family:var(--font-body);font-size:15px;color:var(--text-primary);}
+/* integrations */
+.int-card{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:40px;box-shadow:var(--shadow-card);}
+.int-grid{display:grid;grid-template-columns:repeat(4,1fr);margin-top:28px;border-top:1px solid var(--border-card);border-left:1px solid var(--border-card);}
+.int-cell{border-right:1px solid var(--border-card);border-bottom:1px solid var(--border-card);aspect-ratio:2/1;display:flex;align-items:center;justify-content:center;font-size:30px;}
+/* testimonials */
+.wall{column-count:3;column-gap:12px;}
+.t-card{background:var(--surface);border-radius:var(--r-card);padding:16px;box-shadow:var(--shadow-popover);margin-bottom:12px;break-inside:avoid;}
+.t-card .t-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.t-card .avatar{width:32px;height:32px;}
+.t-name{font-size:14px;color:var(--text-primary);}
+.t-role{font-size:12px;color:var(--text-secondary);}
+.t-quote{font-size:14px;color:var(--text-tertiary);line-height:1.5;}
+.t-quote a{color:var(--link);}
+.show-more{display:block;margin:24px auto 0;}
+/* faq */
+.faq{max-width:720px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 0;font-family:var(--font-body);font-size:18px;letter-spacing:-.2px;color:var(--text-primary);cursor:pointer;text-align:left;}
+.faq-a{font-size:16px;color:var(--text-secondary);padding:0 0 20px;display:none;}
+.faq-item[open] .faq-a{display:block;}
+.faq-q iconify-icon{transition:transform .3s ease-out;font-size:20px;color:var(--text-tertiary);}
+.faq-item[open] .faq-q iconify-icon{transform:rotate(45deg);}
+/* trust strip */
+.trust{display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+.seal{width:40px;height:40px;border-radius:50%;border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;color:var(--text-tertiary);font-size:18px;}
+.locale-chip{display:inline-flex;align-items:center;gap:6px;height:32px;padding:0 14px;border:1px solid var(--border);border-radius:var(--r-pill);font-size:14px;color:var(--text-primary);background:var(--surface);}
+.status-pill{display:inline-flex;align-items:center;gap:8px;height:32px;padding:0 14px;border:1px solid var(--border-card);border-radius:var(--r-pill);font-size:14px;color:var(--text-tertiary);background:var(--surface);}
+.green-dot{width:8px;height:8px;border-radius:50%;background:#16A34A;}
+@media(max-width:1024px){.wall{column-count:2;}}
+@media(max-width:768px){.grid-3,.grid-2,.grid-4{grid-template-columns:1fr 1fr;}.wall{column-count:1;}.int-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.grid-3,.grid-4{grid-template-columns:1fr;}.comp-head h3{font-size:22px;}}
+</style>
+<section id="components" aria-labelledby="comp-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:layout-grid" aria-hidden="true"></iconify-icon> The inventory</span>
+    <h2 id="comp-title" class="headline-md">Built from one rhythm.</h2>
+    <p class="sec-sub">Every band repeats the same header-then-grid template. Reuse over surprise.</p>
+  </div>
+  <div class="wrap">
+
+    <!-- Navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Fixed top band, 64px tall, full-bleed within the canvas border. Wordmark left; sign-in link, solid CTA, and menu glyph right.</p>
+      <div class="demo" style="padding:0;">
+        <div class="nav" style="border-bottom:none;">
+          <span class="wordmark">Cal.com</span>
+          <div class="nav-right">
+            <a href="#" class="nav-link">Sign in</a>
+            <button class="btn-nav-cta">Get started <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+            <button class="menu-glyph" aria-label="Open menu"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--button-nav-cta · fill <b>text-primary #141414</b> · text <b>#FFFFFF</b> · radius <b>r-control 8px</b> · height <b>38px</b> · suffix <b>chevron-right</b> · type <b>body-md 14px</b></div>
+    </div>
+
+    <!-- Hero primary CTA -->
+    <div class="comp-block" data-tier-a-component="hero-primary-cta-google">
+      <div class="comp-head"><h3>Hero Primary CTA</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">The most-emphasized action on the first screen. Solid near-black with the Google mark — one of the only saturated colors allowed. The secondary path sits beneath it, never competing.</p>
+      <div class="demo" style="max-width:360px;">
+        <div style="display:flex;flex-direction:column;gap:12px;">
+          <button class="btn-google"><span class="g-mark">G</span> Sign up with Google</button>
+          <button class="btn-secondary-8">Sign up with email <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card">--button-social-google · fill <b>#141414</b> · text <b>#FFFFFF</b> · radius <b>r-control 8px</b> · height <b>48px</b> · inset <b>Google G mark</b><br>--button-secondary-outline · fill <b>surface #FFFFFF</b> · border <b>1px #767676</b> · radius <b>8px</b> · suffix <b>chevron-right</b></div>
+    </div>
+
+    <!-- CTA pill pair + full matrix -->
+    <div class="comp-block" data-tier-a-component="cta-pill-pair">
+      <div class="comp-head"><h3>Section CTA Pill Pair</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Repeated at the top of nearly every band. Fully-rounded 100px pills — distinct from the 8px-radius nav CTA. Primary solid, secondary white with a hairline border, both chevron-suffixed.</p>
+      <div class="demo">
+        <div class="cta-pair" style="margin-bottom:32px;">
+          <button class="btn-primary-pill">Get started <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-secondary-pill">Book a demo <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Primary pill</td>
+              <td><button class="btn-primary-pill">Get started</button></td>
+              <td><button class="btn-primary-pill st-hover">Get started</button></td>
+              <td><button class="btn-primary-pill st-active">Get started</button></td>
+              <td><button class="btn-primary-pill st-disabled" disabled>Get started</button></td>
+            </tr>
+            <tr>
+              <td>Secondary outline</td>
+              <td><button class="btn-secondary-pill">Book a demo</button></td>
+              <td><button class="btn-secondary-pill" style="box-shadow:var(--shadow-card)">Book a demo</button></td>
+              <td><button class="btn-secondary-pill st-active" style="background:var(--surface);color:var(--text-primary)">Book a demo</button></td>
+              <td><button class="btn-secondary-pill st-disabled" disabled>Book a demo</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card">--button-primary · fill <b>#141414</b> · text <b>#FFFFFF</b> · radius <b>r-pill 100px</b> · height <b>40px</b> · hover <b>#000</b> · motion <b>ease-out 0.3s</b><br>--button-secondary-outline · fill <b>#FFFFFF</b> · border <b>1px #767676</b> · radius <b>100px</b> · disabled <b>text-opacity min</b></div>
+    </div>
+
+    <!-- Numbered step cards -->
+    <div class="comp-block" data-tier-a-component="numbered-step-cards">
+      <div class="comp-head"><h3>Numbered Step Cards</h3><span class="comp-count">×3</span></div>
+      <p class="comp-desc">The how-it-works triptych. Equal thirds at 12px gap, numeral badge top-left, bottom-anchored product-UI illustration.</p>
+      <div class="grid-3">
+        <div class="step-card">
+          <span class="num-badge">01</span>
+          <div class="step-title">Connect calendars</div>
+          <p class="step-copy">Link Google, Outlook, or iCloud and Cal.com reads your real availability.</p>
+          <div class="step-illus"><div class="sync-diagram" style="width:80px;height:80px;"><span style="width:80px;height:80px;"></span><span style="width:52px;height:52px;"></span><span style="width:24px;height:24px;"></span></div></div>
+        </div>
+        <div class="step-card">
+          <span class="num-badge">02</span>
+          <div class="step-title">Set your rules</div>
+          <p class="step-copy">Working hours, buffers, and daily limits — availability that respects your day.</p>
+          <div class="step-illus"><div class="toggle-list"><div class="toggle-line"><span class="mini-toggle"></span> Mon 09:00–17:00</div><div class="toggle-line"><span class="mini-toggle"></span> Tue 09:00–17:00</div><div class="toggle-line"><span class="mini-toggle" style="background:var(--surface-muted)"></span> Wed off</div></div></div>
+        </div>
+        <div class="step-card">
+          <span class="num-badge">03</span>
+          <div class="step-title">Share one link</div>
+          <p class="step-copy">Bookers pick a slot and the invite lands in both calendars instantly.</p>
+          <div class="step-illus"><div class="two-av"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span></div></div>
+        </div>
+      </div>
+      <div class="spec-card">--card-step · fill <b>#FFFFFF</b> · radius <b>r-card 12px</b> · padding <b>24px</b> · border <b>1px #E5E7EB</b> · shadow <b>shadow-card</b> · badge radius <b>r-control 8px</b></div>
+    </div>
+
+    <!-- Feature panels -->
+    <div class="comp-block" data-tier-a-component="feature-benefit-panels">
+      <div class="comp-head"><h3>Feature / Benefit Panels</h3><span class="comp-count">×2</span></div>
+      <p class="comp-desc">Paired 2-up cards at 49/49. Same border and shadow language as the step cards, larger internal padding, distinct product-screenshot media.</p>
+      <div class="grid-2">
+        <div class="feat-panel">
+          <h4>A booker experience worth the click</h4>
+          <p>Clean, fast, and on-brand — a weekly overview that shows exactly what's free.</p>
+          <div class="feat-media">
+            <div class="evt-block" style="background:#141414">09:00 — Design sync</div>
+            <div class="evt-block" style="background:#242424">11:30 — 1:1 with Sam</div>
+            <div class="evt-block" style="background:#898989">14:00 — Open slot</div>
+          </div>
+        </div>
+        <div class="feat-panel">
+          <h4>Fewer no-shows, automatically</h4>
+          <p>Reminders and reschedules keep every meeting on the books without a nudge from you.</p>
+          <div class="feat-media">
+            <div class="toast"><span class="avatar"><iconify-icon icon="lucide:calendar-clock" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Booking rescheduled</div><div class="t-role">Moved to Thu, 2:00 PM</div></div><span class="t-time">2m</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--card-step (shared) · fill <b>#FFFFFF</b> · radius <b>12px</b> · padding <b>32px</b> · shadow <b>shadow-card</b> · event radius <b>r-tag 4px</b> · ink ramp <b>#141414 / #242424 / #898989</b></div>
+    </div>
+
+    <!-- Icon tile grid -->
+    <div class="comp-block" data-tier-a-component="icon-tile-grid">
+      <div class="comp-head"><h3>Icon-Tile Grid</h3><span class="comp-count">×8</span></div>
+      <p class="comp-desc">"And so much more" — a uniform 4×2 grid, 24px gap. Rounded-square icon container, single-stroke line icon, short bold label. No body copy.</p>
+      <div class="grid-4">
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:repeat" aria-hidden="true"></iconify-icon></span><span class="lbl">Recurring</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon></span><span class="lbl">Round-robin</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:credit-card" aria-hidden="true"></iconify-icon></span><span class="lbl">Payments</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:webhook" aria-hidden="true"></iconify-icon></span><span class="lbl">Webhooks</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:workflow" aria-hidden="true"></iconify-icon></span><span class="lbl">Workflows</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:languages" aria-hidden="true"></iconify-icon></span><span class="lbl">Translations</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon></span><span class="lbl">Privacy</span></div>
+        <div class="icon-tile"><span class="icon-box"><iconify-icon icon="lucide:route" aria-hidden="true"></iconify-icon></span><span class="lbl">Routing</span></div>
+      </div>
+      <div class="spec-card">--card-icon-tile · fill <b>#FFFFFF</b> · radius <b>r-control 8px</b> · padding <b>24px</b> · icon-container radius <b>8px</b> · gap <b>gap-lg 24px</b> · label <b>label-md 18px</b></div>
+    </div>
+
+    <!-- Integrations band -->
+    <div class="comp-block" data-tier-a-component="integrations-app-sync-band">
+      <div class="comp-head"><h3>Integrations / App-Sync Band</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">One large white card. Eyebrow pill, two-line headline, subcopy, CTA pair, then a 4×2 logo grid split by cross-hatch dividers — the only place third-party brand color is sanctioned.</p>
+      <div class="int-card">
+        <span class="eyebrow"><iconify-icon icon="lucide:plug" aria-hidden="true"></iconify-icon> Connects to your stack</span>
+        <h3 style="margin-top:16px;font-size:32px;letter-spacing:-.4px;">Sync the apps<br>you already run on.</h3>
+        <p style="font-size:15px;color:var(--text-secondary);margin-top:12px;max-width:480px;">Meetings, messages, and pipelines stay in step — no copy-paste, no context switch.</p>
+        <div class="cta-pair" style="justify-content:flex-start;margin-top:24px;">
+          <button class="btn-primary-pill">Browse apps <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-secondary-pill">Read docs <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div class="int-grid">
+          <div class="int-cell" style="color:#5059C9"><iconify-icon icon="lucide:message-square" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#2D8CFF"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#FF4A00"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#611F69"><iconify-icon icon="lucide:hash" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#FF7A59"><iconify-icon icon="lucide:contact" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#4285F4"><iconify-icon icon="lucide:calendar" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#0078D4"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></div>
+          <div class="int-cell" style="color:#635BFF"><iconify-icon icon="lucide:credit-card" aria-hidden="true"></iconify-icon></div>
+        </div>
+      </div>
+      <div class="spec-card">--card (integrations) · fill <b>#FFFFFF</b> · radius <b>r-card 12px</b> · dividers <b>#E5E7EB cross-hatch</b> · brand marks <b>full-color, sanctioned</b> · CTA <b>button-primary / secondary-outline</b></div>
+    </div>
+
+    <!-- Testimonial wall -->
+    <div class="comp-block" data-tier-a-component="testimonial-wall">
+      <div class="comp-head"><h3>Testimonial Wall</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">The one irregular layout in the system — a stacked, uneven cluster of popover-shadowed cards with a centered "Show more" control beneath.</p>
+      <div class="wall">
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Priya Nair</div><div class="t-role">Head of Ops · @priya</div></div></div><p class="t-quote">Cut our scheduling emails to zero. The team just shares a <a href="#">link</a> and it's done.</p></div>
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Marco Reyes</div><div class="t-role">Founder · @marco</div></div></div><p class="t-quote">The booking widget looks like part of our product. That mattered more than I expected — clients never leave our brand.</p></div>
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Anna Wolf</div><div class="t-role">Recruiter · @annaw</div></div></div><p class="t-quote">Round-robin across five interviewers used to be a nightmare.</p></div>
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Dev Patel</div><div class="t-role">Engineer · @devp</div></div></div><p class="t-quote">The API and webhooks are clean. We wired availability into our own app in an afternoon and it just worked end to end.</p></div>
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Lena Ford</div><div class="t-role">Coach · @lenaf</div></div></div><p class="t-quote">No-shows dropped after we turned on reminders. Quiet, reliable, out of the way.</p></div>
+        <div class="t-card"><div class="t-head"><span class="avatar"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><div><div class="t-name">Sam True</div><div class="t-role">PM · @samt</div></div></div><p class="t-quote">Finally a scheduler that respects buffers.</p></div>
+      </div>
+      <button class="btn-secondary-pill show-more">Show more <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <div class="spec-card">--testimonial-popover · fill <b>#FFFFFF</b> · radius <b>r-card 12px</b> · padding <b>16px</b> · shadow <b>shadow-popover</b> · link <b>#0000EE</b> · quote ink <b>#242424</b></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="comp-block" data-tier-a-component="faq-accordion">
+      <div class="comp-head"><h3>FAQ Accordion</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Full-width single column, hairline divider separation, no card chrome. Plus toggle rotates to a cross on open.</p>
+      <div class="faq">
+        <details class="faq-item" open><summary class="faq-q">Is there a free plan?<iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p class="faq-a">Yes — individuals can schedule unlimited meetings on the free tier, with paid plans for teams and advanced routing.</p></details>
+        <details class="faq-item"><summary class="faq-q">Which calendars do you support?<iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p class="faq-a">Google, Outlook, Office 365, and iCloud, with two-way sync so busy times are always respected.</p></details>
+        <details class="faq-item"><summary class="faq-q">Can I self-host?<iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p class="faq-a">The platform is open source — run it on your own infrastructure or let us host it for you.</p></details>
+      </div>
+      <div class="spec-card">--faq · row type <b>label-md 18px</b> · answer <b>body-default 16px / #898989</b> · divider <b>1px #767676</b> · toggle <b>plus→cross, ease-out 0.3s</b></div>
+    </div>
+
+    <!-- Trust strip -->
+    <div class="comp-block" data-tier-a-component="trust-badge-strip">
+      <div class="comp-head"><h3>Trust / Certification Strip</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Monochrome seals beside a locale chip and a status pill. The green status dot is the one small functional saturation exception.</p>
+      <div class="demo">
+        <div class="trust">
+          <span class="seal" aria-label="ISO certified"><iconify-icon icon="lucide:badge-check" aria-hidden="true"></iconify-icon></span>
+          <span class="seal" aria-label="SOC 2"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon></span>
+          <span class="seal" aria-label="HIPAA"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon></span>
+          <span class="locale-chip"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon> English</span>
+          <span class="status-pill"><span class="green-dot"></span> All systems operational</span>
+        </div>
+      </div>
+      <div class="spec-card">--trust-strip · seals <b>monochrome, r-pill</b> · locale chip <b>border 1px #767676 · r-pill</b> · status dot <b>#16A34A functional</b> · type <b>body-md 14px</b></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.depth-card{background:var(--surface);padding:28px;border:1px solid var(--border-card);}
+.depth-card .cap{font-family:"Inter";font-size:12px;color:var(--text-secondary);margin-top:16px;}
+.depth-card .name{font-family:var(--font-body);font-size:18px;letter-spacing:-.2px;color:var(--text-primary);}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr;}}
+</style>
+<section id="surface-depth" aria-labelledby="depth-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon> Two-step elevation</span>
+    <h2 id="depth-title" class="headline-md">A disciplined radius set.</h2>
+    <p class="sec-sub">Radii jump from 4px tags to a 29px hero frame — small, deliberate stops. Shadows stay tight and low.</p>
+  </div>
+  <div class="wrap">
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:var(--r-tag);"><div class="name">Tag</div><div class="cap">radius r-tag · 4px</div></div>
+      <div class="depth-card" style="border-radius:var(--r-control);"><div class="name">Control</div><div class="cap">radius r-control · 8px</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card);box-shadow:var(--shadow-card);"><div class="name">Card</div><div class="cap">radius r-card · 12px · shadow-card</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card-lg);border-color:var(--border-hero);"><div class="name">Hero frame</div><div class="cap">radius r-card-lg · 29px</div></div>
+      <div class="depth-card" style="border-radius:var(--r-pill);"><div class="name">Pill</div><div class="cap">radius r-pill · 100px</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card);box-shadow:var(--shadow-popover);"><div class="name">Popover</div><div class="cap">radius 12px · shadow-popover</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.motion-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+.motion-card{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:28px;box-shadow:var(--shadow-card);}
+.motion-card .cap{font-family:"Inter";font-size:12px;color:var(--text-secondary);margin-top:16px;}
+.mo-box{height:44px;width:44px;border-radius:var(--r-control);background:var(--text-primary);}
+.mo-play{margin-top:16px;}
+.anim-hover{transition:background .3s ease-out;}
+.anim-shadow.play{box-shadow:var(--shadow-popover);transition:box-shadow .3s ease-out;}
+.anim-fill.play{background:#000;transition:background .3s ease-out;}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr;}}
+</style>
+<section id="motion" aria-labelledby="motion-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon> Utility, not spectacle</span>
+    <h2 id="motion-title" class="headline-md">Short, snappy, ease-out.</h2>
+    <p class="sec-sub">Fills darken and shadows lift on interaction. No spring, no parallax, no loops.</p>
+  </div>
+  <div class="wrap">
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="mo-box anim-fill" id="mo1"></div>
+        <button class="btn-secondary-pill mo-play" data-play="mo1">Replay fill</button>
+        <div class="cap">button fill darken · #141414 → #000 · ease-out 0.3s</div>
+      </div>
+      <div class="motion-card">
+        <div class="mo-box anim-shadow" id="mo2"></div>
+        <button class="btn-secondary-pill mo-play" data-play="mo2">Replay lift</button>
+        <div class="cap">card shadow lift · shadow-card → shadow-popover · ease-out 0.3s</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:var(--section-padding) 24px;border-bottom:1px solid var(--border);}
+.mock{border:1px solid var(--text-primary);position:relative;background:var(--background);border-radius:var(--r-tag);overflow:hidden;}
+.mock .plus{opacity:.5;}
+.mock-nav{height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--border);}
+.mock-hero{padding:40px 24px;display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center;border-bottom:1px solid var(--border);}
+.mock-hero h3{font-family:var(--font-display);font-size:36px;letter-spacing:-.5px;}
+.mock-hero p{font-size:14px;color:var(--text-secondary);margin-top:10px;}
+.mock-mini-widget{background:var(--surface);border:1px solid var(--border-hero);border-radius:var(--r-card-lg);padding:18px;box-shadow:var(--shadow-popover);}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:24px;}
+.mock-cta{text-align:center;padding:0 24px 40px;}
+@media(max-width:768px){.mock-hero{grid-template-columns:1fr;}.mock-cards{grid-template-columns:1fr;}.mock-hero h3{font-size:28px;}}
+</style>
+<section id="composition" aria-labelledby="comp2-title">
+  <div class="sec-head">
+    <span class="eyebrow"><iconify-icon icon="lucide:panels-top-left" aria-hidden="true"></iconify-icon> It holds together</span>
+    <h2 id="comp2-title" class="headline-md">The whole system, in one frame.</h2>
+    <p class="sec-sub">Nav, hero fragment, three cards, and a CTA — assembled only from the tokens above.</p>
+  </div>
+  <div class="wrap">
+    <div class="mock">
+      <span class="plus tl"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+      <span class="plus tr"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+      <span class="plus bl"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+      <span class="plus br"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></span>
+      <div class="mock-nav">
+        <span class="wordmark" style="font-size:18px;">Cal.com</span>
+        <button class="btn-nav-cta">Get started <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="mock-hero">
+        <div>
+          <h3>Time, back on your side.</h3>
+          <p>One link, every calendar, zero back-and-forth.</p>
+          <div class="cta-pair" style="justify-content:flex-start;margin-top:20px;">
+            <button class="btn-primary-pill">Get started <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+            <button class="btn-secondary-pill">Book a demo</button>
+          </div>
+        </div>
+        <div class="mock-mini-widget">
+          <div class="w-head"><span class="avatar" style="width:28px;height:28px;"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span><span class="w-name">Jordan Avery</span></div>
+          <div class="chip-row" style="margin-top:12px;"><span class="chip">15m</span><span class="chip active">30m</span><span class="chip">45m</span></div>
+          <div class="cal-grid" style="margin-top:12px;" aria-hidden="true">
+            <span class="cal-cell">6</span><span class="cal-cell sel">7</span><span class="cal-cell">8</span><span class="cal-cell">9</span><span class="cal-cell">10</span><span class="cal-cell">11</span><span class="cal-cell">12</span>
+          </div>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="step-card"><span class="num-badge">01</span><div class="step-title">Connect</div><p class="step-copy">Sync every calendar in seconds.</p></div>
+        <div class="step-card"><span class="num-badge">02</span><div class="step-title">Configure</div><p class="step-copy">Set hours, buffers, and limits.</p></div>
+        <div class="step-card"><span class="num-badge">03</span><div class="step-title">Share</div><p class="step-copy">One link does the booking.</p></div>
+      </div>
+      <div class="mock-cta">
+        <div class="cta-pair">
+          <button class="btn-primary-pill">Create your link <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-secondary-pill">Book a demo <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:var(--section-padding) 24px 48px;background:var(--background);}
+.foot-top{display:flex;gap:24px;flex-wrap:wrap;align-items:center;justify-content:space-between;}
+.foot-mission{font-size:16px;color:var(--text-secondary);max-width:420px;margin-top:20px;}
+.downloads{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.plat-badge{display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px;border:1px solid var(--border);border-radius:var(--r-control);background:var(--surface);font-size:14px;color:var(--text-primary);}
+.review-tiles{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;}
+.review-tile{background:var(--surface);border:1px solid var(--border-card);border-radius:var(--r-card);padding:14px 18px;box-shadow:var(--shadow-card);display:flex;align-items:center;gap:10px;}
+.stars{color:var(--text-primary);font-size:14px;}
+.foot-links{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:48px;border-top:1px solid var(--border);padding-top:40px;}
+.foot-col h4{font-family:var(--font-body);font-size:14px;color:var(--text-primary);margin-bottom:12px;}
+.foot-col a{display:block;font-size:14px;color:var(--text-secondary);text-decoration:none;margin-bottom:8px;}
+.foot-legal{margin-top:40px;font-size:13px;color:var(--text-secondary);border-top:1px solid var(--border);padding-top:24px;}
+.foot-legal a{color:var(--text-tertiary);}
+@media(max-width:768px){.foot-links{grid-template-columns:repeat(2,1fr);}}
+</style>
+<footer id="footer" aria-labelledby="footer-title">
+  <div class="wrap">
+    <h2 id="footer-title" class="wordmark" style="font-size:24px;">Cal.com</h2>
+    <p class="foot-mission">Structured Light Scheduler — scheduling infrastructure for absolutely everyone, open by default.</p>
+    <div class="foot-top" style="margin-top:24px;">
+      <div class="trust">
+        <span class="seal" aria-label="ISO"><iconify-icon icon="lucide:badge-check" aria-hidden="true"></iconify-icon></span>
+        <span class="seal" aria-label="SOC 2"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon></span>
+        <span class="seal" aria-label="HIPAA"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon></span>
+        <span class="locale-chip"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon> English</span>
+        <span class="status-pill"><span class="green-dot"></span> All systems operational</span>
+      </div>
+    </div>
+    <div class="downloads">
+      <span class="plat-badge"><iconify-icon icon="lucide:apple" aria-hidden="true"></iconify-icon> iOS</span>
+      <span class="plat-badge"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> Android</span>
+      <span class="plat-badge"><iconify-icon icon="lucide:chrome" aria-hidden="true"></iconify-icon> Extension</span>
+    </div>
+    <div class="review-tiles">
+      <div class="review-tile"><span class="stars">★★★★★</span><span class="t-role" style="color:var(--text-secondary)">G2 · 4.8</span></div>
+      <div class="review-tile"><span class="stars">★★★★★</span><span class="t-role" style="color:var(--text-secondary)">Product Hunt</span></div>
+    </div>
+    <div class="foot-links">
+      <div class="foot-col"><h4>Product</h4><a href="#">Booking</a><a href="#">Routing</a><a href="#">Workflows</a><a href="#">Apps</a></div>
+      <div class="foot-col"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Careers</a><a href="#">Contact</a></div>
+      <div class="foot-col"><h4>Developers</h4><a href="#">Docs</a><a href="#">API</a><a href="#">Open source</a><a href="#">Status</a></div>
+      <div class="foot-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">DPA</a></div>
+    </div>
+    <p class="foot-legal">
+      <a href="https://cal.com/">cal.com</a> · © Cal.com, Inc.<br>
+      Design system captured and rendered by r3xdec.design
+    </p>
+  </div>
+</footer>
+
+</main>
+</div>
+
+<script>
+document.querySelectorAll('.mo-play').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.getAttribute('data-play'));
+    if(!el)return;
+    el.classList.remove('play');
+    void el.offsetWidth;
+    el.classList.add('play');
+    setTimeout(function(){el.classList.remove('play');},700);
+  });
+});
+</script>
+</body>
+</html>

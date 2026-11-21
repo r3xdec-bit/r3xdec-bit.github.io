@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head><meta charset="UTF-8"><meta name="viewport" content="width=1440, initial-scale=1.0"><title>ZEE OPTICALS // PRECISION EYEWEAR</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><style>@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600&family=Syne:wght@600;800&display=swap');:root { --ground: #0A0C0E; --ground-sec: #101317; --ink: #EDE7DC; --ink-sec: #9EA5A8; --muted: #6C7378; --amber: #E8913C; --teal: #2E6B72; --hairline: rgba(237,231,220,0.13); }body { background-color: var(--ground); color: var(--ink); font-family: 'Sora', sans-serif; -webkit-font-smoothing: antialiased; }h1, h2, h3, .display-font { font-family: 'Syne', sans-serif; letter-spacing: -0.03em; }.tracking-wide-label { letter-spacing: 0.15em; font-size: 10.5px; text-transform: uppercase; }#portal-hero { height: 250vh; }#sticky-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; isolation: isolate; }#hero-image { transform: scale(1.1); transition: transform 0.1s linear; }#duotone-overlay { background: linear-gradient(45deg, var(--teal), var(--amber)); mix-blend-mode: overlay; opacity: 0; }#panel-left, #panel-right { background: var(--ground); z-index: 20; }#wordmark-container { transition: transform 0.1s linear; z-index: 30; }.deck-card { transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease; cursor: grab; user-select: none; touch-action: none; }.deck-card:active { cursor: grabbing; }.outline-num { -webkit-text-stroke: 1px var(--ink); color: transparent; }@media (prefers-reduced-motion: no-preference) { .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); } .reveal.active { opacity: 1; transform: translateY(0); } }</style><script>tailwind.config = { theme: { extend: { colors: { ground: '#0A0C0E', groundSec: '#101317', ink: '#EDE7DC', inkSec: '#9EA5A8', muted: '#6C7378', amber: '#E8913C', teal: '#2E6B72', } } } }</script>
+<meta name="preview-version" content="1ec02a20-1725-4033-ae2f-8b856c5167bc" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.126Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "1ec02a20-1725-4033-ae2f-8b856c5167bc");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "1ec02a20-1725-4033-ae2f-8b856c5167bc",
+      timestamp: "2026-11-20T00:19:43.126Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "1ec02a20-1725-4033-ae2f-8b856c5167bc";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head><body><div class="min-h-screen relative flex flex-col"><nav class="fixed top-0 left-0 w-full h-[58px] z-50 flex items-center justify-between px-12 bg-ground/80 backdrop-blur-md border-b border-[rgba(237,231,220,0.13)]"><a href="#" id="nav-logo" class="display-font font-bold text-[15px] uppercase tracking-tighter">Zee Opticals<span class="text-amber">.</span></a><div class="flex items-center gap-12"><a href="#releases" id="nav-rel" class="tracking-wide-label hover:text-amber transition-colors">Collections</a><a href="#roster" id="nav-ros" class="tracking-wide-label hover:text-amber transition-colors">Designers</a><a href="#dates" id="nav-dat" class="tracking-wide-label hover:text-amber transition-colors">Events</a><a href="#join" id="nav-cta" class="px-5 py-2 border border-ink text-[10.5px] uppercase tracking-widest hover:bg-ink hover:text-ground transition-all">Book Consultation</a></div></nav><main class="relative z-0"><section id="portal-hero"><div id="sticky-stage"><div class="absolute inset-0 bg-ground"></div><img id="hero-image" src="https://images.unsplash.com/photo-1591076482161-42ce6da69f67?auto=format&amp;fit=crop&amp;q=80&amp;w=2400" class="absolute inset-0 w-full h-full object-cover object-center" alt="Luxury Eyewear Product Photography" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"><div id="duotone-overlay" class="absolute inset-0 pointer-events-none"></div><div class="absolute inset-0 bg-radial-gradient from-transparent via-transparent to-ground/60 pointer-events-none"></div><div id="panel-left" class="absolute left-0 top-0 w-[50.1%] h-full"></div><div id="panel-right" class="absolute right-0 top-0 w-[50.1%] h-full"></div><div id="accent-dot-1" class="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-amber rounded-full z-20 transition-transform duration-75"></div><div id="accent-dot-2" class="absolute top-1/2 left-1/2 w-1.5 h-1.5 bg-teal rounded-full z-20 transition-transform duration-75"></div><div class="absolute inset-0 flex items-center justify-center z-30 pointer-events-none"><h1 id="wordmark-container" class="display-font text-[clamp(40px,12vw,180px)] font-extrabold flex gap-[0.5em] leading-none uppercase"><span id="wm-left" class="inline-block">ZEE</span><span id="wm-right" class="inline-block">OPTICALS</span></h1></div><div class="absolute top-24 left-12 tracking-wide-label text-inkSec z-40">Curated Collection / ZEE-2024</div><div class="absolute bottom-12 left-12 tracking-wide-label text-inkSec z-40">Established 2024 / London</div><div class="absolute bottom-12 right-12 tracking-wide-label text-inkSec z-40 flex items-center gap-2"><span class="w-8 h-[1px] bg-amber"></span> Scrolling Down</div></div></section><section id="statement" class="min-h-screen flex flex-col justify-center px-24 relative overflow-hidden bg-groundSec border-y border-[rgba(237,231,220,0.05)]"><div class="max-w-screen-xl mx-auto w-full grid grid-cols-12 items-center"><div class="col-span-8 reveal"><p class="tracking-wide-label text-teal mb-8">Our Thesis</p><h2 class="display-font text-[clamp(32px,4vw,64px)] leading-[1.1] max-w-[22ch]">Redefining vision through <span class="text-amber">precision optics</span> and timeless design.</h2><div class="mt-16 outline-num display-font text-[160px] leading-none">01</div></div><div class="col-span-4 relative flex justify-end"><img src="https://images.unsplash.com/photo-1516714819001-8ee7a13b71d7?auto=format&amp;fit=crop&amp;q=80&amp;w=800" id="drifting-img" class="w-[400px] h-[400px] rounded-full object-cover opacity-40 mix-blend-luminosity border border-ink/20" style="transform: translateX(100px)" alt="Optical Lens Refraction Close-up" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div></div></section><section id="releases" class="py-32 px-24 bg-ground"><div class="max-w-screen-xl mx-auto grid grid-cols-12 gap-24"><div class="col-span-5 reveal"><p class="tracking-wide-label text-teal mb-6">Frame Collections</p><h2 class="display-font text-6xl mb-8">Frame<br>Collections.</h2><p class="text-inkSec text-lg leading-relaxed mb-12 max-w-md">Curated collections of premium eyewear. Each frame is handcrafted and tested for optical precision, combining European design with Japanese craftsmanship.</p><div class="flex gap-6"><a id="cta-store" href="#" class="px-8 py-4 bg-ink text-ground text-[12px] uppercase font-semibold tracking-widest hover:bg-amber transition-colors">View Store</a><a id="cta-archive" href="#" class="px-8 py-4 border border-ink/20 text-ink text-[12px] uppercase font-semibold tracking-widest hover:border-ink transition-colors">Digital Catalog</a></div></div><div class="col-span-7 flex flex-col items-center justify-center"><div id="deck-container" class="relative w-[450px] h-[450px] flex items-center justify-center" tabindex="0"><div class="deck-card absolute w-full h-full bg-groundSec border border-ink/10 flex flex-col p-8 z-10 shadow-2xl" data-index="0" style="transform: rotate(-2deg) translate(-10px, -5px)"><div class="w-full aspect-square bg-[#1A1E22] mb-6 flex items-center justify-center border border-ink/5"><img src="https://images.unsplash.com/photo-1511499767390-90342f5b89a8?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover opacity-80" alt="Classic Heritage Frames" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><div class="flex justify-between items-end"><div class="display-font uppercase"><div class="text-2xl">Classic Heritage</div><div class="text-inkSec text-sm">ZEE OPTICALS / ZEE-012</div></div><div class="text-amber tracking-wide-label">Available</div></div></div><div class="deck-card absolute w-full h-full bg-groundSec border border-ink/10 flex flex-col p-8 z-[9] shadow-2xl" data-index="1" style="transform: rotate(3deg) translate(8px, 12px) scale(0.98)"><div class="w-full aspect-square bg-[#1A1E22] mb-6 flex items-center justify-center border border-ink/5"><img src="https://images.unsplash.com/photo-1590292723145-38c234a9497e?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover opacity-80" alt="Modern Geometry Frames" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><div class="flex justify-between items-end"><div class="display-font uppercase"><div class="text-2xl">Modern Geometry</div><div class="text-inkSec text-sm">ZEE OPTICALS / ZEE-011</div></div><div class="text-inkSec tracking-wide-label">Limited Stock</div></div></div><div class="deck-card absolute w-full h-full bg-groundSec border border-ink/10 flex flex-col p-8 z-[8] shadow-2xl" data-index="2" style="transform: rotate(-1deg) translate(-5px, 8px) scale(0.96)"><div class="w-full aspect-square bg-[#1A1E22] mb-6 flex items-center justify-center border border-ink/5"><img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&amp;fit=crop&amp;q=80&amp;w=400" class="w-full h-full object-cover opacity-80" alt="Luxury Sport Frames" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><div class="flex justify-between items-end"><div class="display-font uppercase"><div class="text-2xl">Luxury Sport</div><div class="text-inkSec text-sm">ZEE OPTICALS / ZEE-010</div></div><div class="text-amber tracking-wide-label">Available</div></div></div></div><div class="mt-12 w-full max-w-[450px] flex items-center gap-6"><div class="h-[1px] bg-ink/10 flex-1 relative overflow-hidden"><div id="deck-progress" class="absolute top-0 left-0 h-full bg-amber w-1/3 transition-all duration-300"></div></div><div class="flex gap-2"><span class="w-1.5 h-1.5 rounded-full bg-amber"></span><span class="w-1.5 h-1.5 rounded-full bg-ink/20"></span><span class="w-1.5 h-1.5 rounded-full bg-ink/20"></span></div></div></div></div></section><section id="roster" class="py-32 px-24 bg-groundSec"><div class="max-w-screen-xl mx-auto"><div class="flex justify-between items-end mb-16 reveal"><h2 class="display-font text-7xl uppercase">Designers</h2><p class="tracking-wide-label text-inkSec">Curated Talent</p></div><div class="border-t border-ink/10"><div class="flex items-center justify-between py-10 border-b border-ink/10 group cursor-pointer reveal"><div class="flex items-center gap-12"><span class="tracking-wide-label text-amber opacity-0 group-hover:opacity-100 transition-opacity">01</span><div class="w-24 h-24 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&amp;fit=crop&amp;q=80&amp;w=200" class="w-full h-full object-cover" alt="Hiroshi Nakamura portrait" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><h3 class="display-font text-5xl uppercase group-hover:text-amber transition-colors">Hiroshi Nakamura</h3></div><div class="text-inkSec text-sm display-font">12 COLLECTIONS</div></div><div class="flex items-center justify-between py-10 border-b border-ink/10 group cursor-pointer reveal"><div class="flex items-center gap-12"><span class="tracking-wide-label text-amber opacity-0 group-hover:opacity-100 transition-opacity">02</span><div class="w-24 h-24 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&amp;fit=crop&amp;q=80&amp;w=200" class="w-full h-full object-cover" alt="Elena Rossi portrait" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><h3 class="display-font text-5xl uppercase group-hover:text-amber transition-colors">Elena Rossi</h3></div><div class="text-inkSec text-sm display-font">08 COLLECTIONS</div></div><div class="flex items-center justify-between py-10 border-b border-ink/10 group cursor-pointer reveal"><div class="flex items-center gap-12"><span class="tracking-wide-label text-amber opacity-0 group-hover:opacity-100 transition-opacity">03</span><div class="w-24 h-24 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&amp;fit=crop&amp;q=80&amp;w=200" class="w-full h-full object-cover" alt="Marcus Chen portrait" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><h3 class="display-font text-5xl uppercase group-hover:text-amber transition-colors">Marcus Chen</h3></div><div class="text-inkSec text-sm display-font">05 COLLECTIONS</div></div><div class="flex items-center justify-between py-10 border-b border-ink/10 group cursor-pointer reveal"><div class="flex items-center gap-12"><span class="tracking-wide-label text-amber opacity-0 group-hover:opacity-100 transition-opacity">04</span><div class="w-24 h-24 overflow-hidden grayscale group-hover:grayscale-0 transition-all duration-500"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&amp;fit=crop&amp;q=80&amp;w=200" class="w-full h-full object-cover" alt="Sofia Bergström portrait" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div><h3 class="display-font text-5xl uppercase group-hover:text-amber transition-colors">Sofia Bergström</h3></div><div class="text-inkSec text-sm display-font">03 COLLECTIONS</div></div></div></div></section><section id="dates" class="py-32 px-24 bg-ground"><div class="max-w-screen-xl mx-auto"><div class="flex justify-between items-end mb-16 reveal"><h2 class="display-font text-5xl uppercase">Launch Events</h2><p class="tracking-wide-label text-teal">Premieres</p></div><div class="w-full overflow-x-auto"><table class="w-full text-left border-collapse"><thead class="border-b border-ink/20"><tr class="text-inkSec tracking-wide-label"><th class="pb-4 font-normal">Date</th><th class="pb-4 font-normal">Designer</th><th class="pb-4 font-normal">Location</th><th class="pb-4 font-normal">Event</th><th class="pb-4 font-normal text-right">Status</th></tr></thead><tbody class="divide-y divide-ink/10"><tr class="group reveal"><td class="py-8 text-inkSec font-mono text-sm">24.11.24</td><td class="py-8 display-font text-2xl uppercase group-hover:text-teal transition-colors">Hiroshi Nakamura</td><td class="py-8">Berlin, DE</td><td class="py-8 text-inkSec">Berlin Flagship Opening</td><td class="py-8 text-right text-amber font-mono text-xs uppercase">Limited Tickets</td></tr><tr class="group reveal"><td class="py-8 text-inkSec font-mono text-sm">28.11.24</td><td class="py-8 display-font text-2xl uppercase group-hover:text-teal transition-colors">Elena Rossi</td><td class="py-8">London, UK</td><td class="py-8 text-inkSec">Luxury Collection Preview</td><td class="py-8 text-right text-teal font-mono text-xs uppercase">On Sale</td></tr><tr class="group reveal"><td class="py-8 text-inkSec font-mono text-sm">05.12.24</td><td class="py-8 display-font text-2xl uppercase group-hover:text-teal transition-colors">Marcus Chen</td><td class="py-8">Tokyo, JP</td><td class="py-8 text-inkSec">Tokyo Optical Summit</td><td class="py-8 text-right text-ink font-mono text-xs uppercase">Sold Out</td></tr></tbody></table></div></div></section><section id="close" class="pt-48 pb-0 bg-groundSec border-t border-ink/10 overflow-hidden"><div class="px-24 max-w-screen-xl mx-auto flex justify-between items-start mb-32"><div class="max-w-md"><h2 class="display-font text-5xl mb-6 uppercase">Join Zee Circle.</h2><p class="text-inkSec">Subscribe for exclusive access to frame collections and optical consultations.</p></div><div class="flex gap-4"><input type="email" placeholder="EMAIL ADDRESS" class="bg-transparent border-b border-ink/20 py-4 w-64 focus:border-amber outline-none transition-colors uppercase text-xs tracking-widest"><button id="cta-submit" class="w-12 h-12 flex items-center justify-center border border-ink/20 hover:bg-amber hover:text-ground transition-all"><iconify-icon icon="lucide:arrow-right"></iconify-icon></button></div></div><footer class="border-t border-ink/10 py-8 px-24 flex justify-between items-center text-inkSec tracking-wide-label"><div>© 2024 Zee Opticals Precision</div><div class="flex gap-8"><a id="footer-social-ig" href="#" class="hover:text-amber">Instagram</a><a id="footer-social-fb" href="#" class="hover:text-amber">Facebook</a><a id="footer-social-lin" href="#" class="hover:text-amber">LinkedIn</a></div></footer><div class="display-font text-[24vw] leading-[0.7] font-extrabold uppercase whitespace-nowrap opacity-10 translate-y-12 select-none pointer-events-none">ZEE OPTICALS</div></section></main></div><script>document.addEventListener('DOMContentLoaded', () => { const heroSection = document.getElementById('portal-hero'); const panelLeft = document.getElementById('panel-left'); const panelRight = document.getElementById('panel-right'); const wmLeft = document.getElementById('wm-left'); const wmRight = document.getElementById('wm-right'); const wmContainer = document.getElementById('wordmark-container'); const heroImg = document.getElementById('hero-image'); const overlay = document.getElementById('duotone-overlay'); const dot1 = document.getElementById('accent-dot-1'); const dot2 = document.getElementById('accent-dot-2'); const driftingImg = document.getElementById('drifting-img'); window.addEventListener('scroll', () => { const scrollY = window.scrollY; const heroHeight = heroSection.offsetHeight; const progress = Math.min(scrollY / (heroHeight * 0.4), 1); const panelPos = progress * 50.1; panelLeft.style.transform = `translateX(-${panelPos}%)`; panelRight.style.transform = `translateX(${panelPos}%)`; const tracking = 0.05 - (progress * 0.08); const scale = 1 + (progress * 0.15); wmContainer.style.letterSpacing = `${tracking}em`; wmContainer.style.transform = `scale(${scale})`; const wmTranslate = progress * 40; wmLeft.style.transform = `translateX(-${wmTranslate}px)`; wmRight.style.transform = `translateX(${wmTranslate}px)`; const imgScale = 1.1 - (progress * 0.1); heroImg.style.transform = `scale(${imgScale})`; overlay.style.opacity = progress * 0.35; const dotPos = progress * 45; dot1.style.transform = `translate(calc(-50% - ${dotPos}vw), calc(-50% - ${dotPos}vh))`; dot2.style.transform = `translate(calc(-50% + ${dotPos}vw), calc(-50% + ${dotPos}vh))`; const stProgress = Math.max(0, (scrollY - heroHeight) / 1000); driftingImg.style.transform = `translate(${100 - (stProgress * 50)}px, ${stProgress * 20}px) rotate(${stProgress * 15}deg)`; const reveals = document.querySelectorAll('.reveal'); reveals.forEach(el => { const rect = el.getBoundingClientRect(); if (rect.top < window.innerHeight * 0.85) { el.classList.add('active'); } }); }); const deck = document.getElementById('deck-container'); const cards = Array.from(document.querySelectorAll('.deck-card')); let isDragging = false; let startX = 0; let currentX = 0; let topCardIndex = 0; function updateDeck() { const progress = document.getElementById('deck-progress'); progress.style.width = `${((topCardIndex + 1) / cards.length) * 100}%`; cards.forEach((card, idx) => { card.style.zIndex = idx === topCardIndex ? 20 : 20 - (idx > topCardIndex ? idx - topCardIndex : cards.length - topCardIndex + idx); card.style.opacity = idx === topCardIndex ? 1 : 0.6; }); } deck.addEventListener('pointerdown', (e) => { isDragging = true; startX = e.clientX; cards[topCardIndex].style.transition = 'none'; }); window.addEventListener('pointermove', (e) => { if (!isDragging) return; currentX = e.clientX - startX; const rotate = currentX / 20; const scale = 1 + Math.abs(currentX) / 2000; cards[topCardIndex].style.transform = `translate(${currentX}px, 0) rotate(${rotate}deg) scale(${scale})`; }); window.addEventListener('pointerup', () => { if (!isDragging) return; isDragging = false; const card = cards[topCardIndex]; card.style.transition = 'transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.5s ease'; if (Math.abs(currentX) > 100) { const direction = currentX > 0 ? 1 : -1; card.style.transform = `translate(${direction * 600}px, -100px) rotate(${direction * 45}deg)`; card.style.opacity = '0'; setTimeout(() => { card.style.zIndex = '1'; card.style.transform = `translate(0, 0) scale(0.9) rotate(${Math.random() * 6 - 3}deg)`; card.style.opacity = '0.4'; topCardIndex = (topCardIndex + 1) % cards.length; updateDeck(); setTimeout(() => { card.style.transition = 'transform 0.4s ease, opacity 0.4s ease'; }, 50); }, 500); } else { card.style.transform = `translate(0, 0) rotate(0deg) scale(1)`; } currentX = 0; }); deck.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { currentX = e.key === 'ArrowRight' ? 150 : -150; isDragging = true; window.dispatchEvent(new PointerEvent('pointerup')); } }); updateDeck(); });</script></body></html>

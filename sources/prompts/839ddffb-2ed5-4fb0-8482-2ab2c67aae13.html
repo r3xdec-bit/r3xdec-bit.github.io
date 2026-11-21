@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speisely Magazin — Partner-Story: Schnitzel Schmiede</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <meta name="view-transition" content="same-origin">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,700;0,9..144,900;1,9..144,700&display=swap');
+
+        :root {
+            --forest: #0a2f17;
+            --gold: #eebc4a;
+            --cream: #faf5e6;
+            --mint: #e8f3ec;
+            --accent-gold: #b28a3c;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f0f0;
+            color: var(--forest);
+            margin: 0;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Fraunces', serif;
+            letter-spacing: -0.02em;
+        }
+
+        .paper-grain {
+            position: relative;
+        }
+
+        .paper-grain::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            opacity: 0.04;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3BaseFilter id='noiseFilter'%3BfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3B/filter%3Brect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3B/svg%3E");
+            z-index: 10;
+        }
+
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 4.8rem;
+            line-height: 0.8;
+            padding-top: 4px;
+            padding-right: 10px;
+            font-family: 'Fraunces', serif;
+            font-weight: 900;
+            color: var(--accent-gold);
+        }
+
+        .magazine-page {
+            width: 100%;
+            max-width: 1000px;
+            min-height: 1414px;
+            margin: 40px auto;
+            background: var(--cream);
+            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @view-transition {
+            navigation: auto;
+        }
+    </style>
+
+<meta name="preview-version" content="4a266384-cdd6-44b7-a7ad-9c7362c13ec4" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.666Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "4a266384-cdd6-44b7-a7ad-9c7362c13ec4");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "4a266384-cdd6-44b7-a7ad-9c7362c13ec4",
+      timestamp: "2026-11-20T00:19:43.666Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "4a266384-cdd6-44b7-a7ad-9c7362c13ec4";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <div class="min-h-screen py-10">
+        
+        <!-- PAGE 1: COVER -->
+        <article id="page-1-cover" class="magazine-page bg-[#0a2f17] paper-grain">
+            <div class="flex flex-col h-full justify-between p-12 md:p-20 relative z-20">
+                <header class="flex justify-between items-start">
+                    <div class="space-y-4">
+                        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/brand/89152305-e40f-4aef-8108-c64138dec192/logo/c3822c2f-bf26-4b3b-a6f7-4d6933b2ab13.svg" id="header-speisely-logo" alt="Speisely Logo" class="h-20 w-auto" style="filter: invert(1) brightness(1.3);" onerror="this.onerror=null;this.src='https://placehold.co/600x80/1a1a1a/888?text=Image';">
+                        <div class="flex flex-col">
+                            <span class="text-[#faf5e6] font-extrabold tracking-[0.3em] text-[10px] uppercase">Speisely Magazin</span>
+                            <span class="text-[#faf5e6]/50 text-[10px] uppercase tracking-widest">Ausgabe 01 · 2026</span>
+                        </div>
+                    </div>
+                    <div class="px-4 py-2 bg-[#eebc4a] rounded-full">
+                        <span class="text-[#0a2f17] font-black text-[10px] uppercase tracking-widest">Speisely Partner-Story</span>
+                    </div>
+                </header>
+
+                <div class="flex-1 flex flex-col justify-center py-12">
+                    <div class="max-w-3xl space-y-10">
+                        <h1 class="text-7xl md:text-8xl lg:text-[100px] text-[#faf5e6] font-black leading-[0.85] tracking-tighter serif">
+                            Seit 2013<br>
+                            <span class="italic text-[#eebc4a]">ein Teil</span><br>
+                            des Festes
+                        </h1>
+                        <div class="h-[2px] w-32 bg-[#eebc4a]/30"></div>
+                        <div class="space-y-2">
+                            <h2 class="text-4xl text-[#faf5e6] font-semibold serif tracking-tight">Schnitzel Schmiede</h2>
+                            <p class="text-[#faf5e6]/70 text-lg font-medium leading-relaxed max-w-xl">
+                                Eine Geschichte über Handwerk, Beständigkeit und die kulinarische Meile in Mönchengladbach.
+                            </p>
+                        </div>
+                        <div class="flex flex-wrap gap-x-8 gap-y-4 pt-4">
+                            <span class="text-[#eebc4a] text-xs font-black uppercase tracking-[0.2em]">Frisch zubereitet</span>
+                            <span class="text-[#eebc4a] text-xs font-black uppercase tracking-[0.2em]">Heiß serviert</span>
+                            <span class="text-[#eebc4a] text-xs font-black uppercase tracking-[0.2em]">Seit 2013 dabei</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 relative">
+                        <div class="rounded-[2.5rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.8)] border border-white/10">
+                            <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/b3e7bd0a-812d-456e-8cf3-2f4b5083eb88/1786873586955-8cf9de3d/image.png" alt="Echtes Schnitzel Gericht" class="w-full h-[500px] object-contain object-center" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+                        </div>
+                    </div>
+                </div>
+
+                <footer class="flex flex-col md:flex-row justify-between items-end gap-8 pt-8">
+                    <div class="flex items-center gap-4">
+                        <span class="text-[#faf5e6]/30 text-[10px] font-bold uppercase tracking-[0.3em]">Publication Publisher: Speisely</span>
+                        <a id="cta-discover-page1" href="https://www.speisely.de/" class="px-8 py-4 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-xs uppercase tracking-widest shadow-xl hover:scale-105 transition-transform">Partner auf Speisely entdecken</a>
+                    </div>
+                    <div class="text-right opacity-30">
+                        <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/brand/89152305-e40f-4aef-8108-c64138dec192/logo/c3822c2f-bf26-4b3b-a6f7-4d6933b2ab13.svg" alt="Speisely Icon" class="h-6 brightness-0 invert inline-block" onerror="this.onerror=null;this.src='https://placehold.co/600x24/1a1a1a/888?text=Image';">
+                    </div>
+                </footer>
+            </div>
+        </article>
+
+        <!-- PAGE 2: STORY -->
+        <article id="page-2-story" class="magazine-page bg-[#faf5e6] paper-grain">
+            <div class="p-12 md:p-20 h-full flex flex-col z-20">
+                <header class="mb-16">
+                    <span class="text-[#0a2f17] font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Die Geschichte</span>
+                    <h2 class="text-6xl text-[#0a2f17] font-black serif leading-[0.95] tracking-tighter">Ein fester Teil der <br><span class="italic text-[#b28a3c]">kulinarischen Meile</span></h2>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 flex-1">
+                    <div class="space-y-8">
+                        <p class="text-[#0a2f17] font-extrabold text-xl leading-snug">
+                            Seit 2013 gehört die Schnitzel Schmiede zum EineStadt-Fest.
+                        </p>
+                        <div class="space-y-6 text-[#0a2f17]/80 leading-relaxed text-lg">
+                            <p class="drop-cap">
+                                Wenn auf dem EineStadt-Fest die Musik läuft und Besucherinnen und Besucher durch die Festmeile ziehen, gehört ein Name seit vielen Jahren fest dazu: die Schnitzel Schmiede.
+                            </p>
+                            <p>
+                                Bereits seit 2013 nimmt das Team an der Veranstaltung teil. Damit ist die Schnitzel Schmiede zu einem vertrauten Bestandteil der kulinarischen Meile geworden.
+                            </p>
+                            <p>
+                                Der Veranstalter beschreibt das Angebot klar: frisch zubereitete Schnitzel, heiß serviert. Genau diese unkomplizierte Kombination passt zum Stadtfest – herzhaftes Essen zwischen Musik, Begegnungen und einem langen Tag auf den Beinen.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="space-y-12">
+                        <figure class="space-y-4">
+                            <div class="rounded-[2rem] overflow-hidden shadow-2xl -rotate-2 group border-4 border-white bg-white">
+                                <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/b3e7bd0a-812d-456e-8cf3-2f4b5083eb88/1786873572086-00189fcd/image.png" alt="Schnitzel Wiener Art" class="w-full aspect-[4/3] object-cover scale-150 object-[center_right]" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';">
+                            </div>
+                            <figcaption class="text-center text-[10px] uppercase tracking-widest text-[#0a2f17]/50 font-bold">
+                                Ein Klassiker auf dem Fest &mdash; Schnitzel Wiener Art · Partnerfoto
+                            </figcaption>
+                        </figure>
+                        
+                        <div class="bg-[#e8f3ec] p-8 rounded-[2rem] border-l-[8px] border-[#0a2f17]/10">
+                            <span class="text-[#0a2f17] font-black text-[10px] uppercase tracking-widest mb-4 block">Auf Speisely entdeckt</span>
+                            <p class="text-[#0a2f17]/80 text-sm leading-relaxed">
+                                Speisely stellt lokale Restaurants und Caterer vor und macht die Geschichten hinter ihren Angeboten sichtbar.
+                            </p>
+                        </div>
+
+                        <div class="bg-[#ffffff]/60 p-8 rounded-[2rem] border border-[#0a2f17]/5">
+                            <span class="text-[#b28a3c] font-black text-[10px] uppercase tracking-widest mb-4 block underline">Transparenz</span>
+                            <p class="text-[11px] text-[#0a2f17]/60 leading-relaxed font-medium">
+                                Diese Speisely Partner-Story basiert auf veröffentlichten Angaben des EineStadt-Fests und der Schnitzel Schmiede sowie auf vom Partner freigegebenem Bildmaterial. Sie ist keine anonyme Restaurantkritik und enthält keine Behauptung eines persönlichen Testbesuchs durch Speisely.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-12 pt-12 border-t border-[#0a2f17]/10 flex justify-between items-center">
+                    <a id="cta-partner-page2" href="https://schnitzel-schmiede.speisely.de" class="px-8 py-4 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-xs uppercase tracking-widest shadow-lg">Schnitzel Schmiede auf Speisely entdecken</a>
+                    <span class="text-[#0a2f17]/40 text-[10px] font-black uppercase tracking-[0.3em]">Speisely Magazin · Partner-Story · Ausgabe 01 / 2026</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- PAGE 3: SERVICES -->
+        <article id="page-3-services" class="magazine-page bg-[#faf5e6] paper-grain">
+            <div class="p-12 md:p-20 h-full flex flex-col z-20">
+                <header class="mb-16">
+                    <span class="text-[#0a2f17] font-black text-[10px] uppercase tracking-[0.5em] mb-4 block">Mehr als Festival</span>
+                    <h2 class="text-6xl text-[#0a2f17] font-black serif leading-[0.95] tracking-tighter">
+                        Restaurant, Catering und <br><span class="italic text-[#b28a3c]">Partyservice entdecken</span>
+                    </h2>
+                </header>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-16">
+                    <div class="space-y-8">
+                        <p class="text-[#0a2f17] text-lg leading-relaxed">
+                            Die Schnitzel Schmiede ist Teil des Speisely Partnernetzwerks. Über Speisely können Interessierte den Betrieb entdecken, mehr über sein Angebot erfahren und passende Restaurant- oder Cateringmöglichkeiten finden.
+                        </p>
+                        <div class="space-y-6 text-[#0a2f17]/70 leading-relaxed text-base">
+                            <p>
+                                Die Schnitzel Schmiede präsentiert sich nicht nur als Restaurant, sondern auch als Catering-, Party- und Lieferservice. Damit reicht das Angebot über den einzelnen Festivalbesuch hinaus.
+                            </p>
+                            <p>
+                                Wer Schnitzel für einen privaten oder geschäftlichen Anlass sucht, kann sich über verfügbare Angebote und Möglichkeiten informieren. Leistungen, Termine und Verfügbarkeit werden direkt mit dem Betrieb abgestimmt.
+                            </p>
+                        </div>
+                        <div class="pt-8">
+                             <a id="cta-discover-page3" href="https://www.speisely.de/" class="inline-block px-10 py-5 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-sm uppercase tracking-widest shadow-xl">Partner auf Speisely entdecken</a>
+                             <p class="mt-4 text-xs font-bold text-[#0a2f17]/50 italic">Entdecke die Schnitzel Schmiede und weitere lokale Anbieter über Speisely.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-8">
+                        <div class="bg-[#ffffff] p-10 rounded-[2.5rem] shadow-xl border border-[#0a2f17]/5">
+                            <h3 class="text-2xl font-black text-[#0a2f17] serif mb-8 flex items-center gap-3">
+                                <iconify-icon icon="lucide:star" class="text-[#eebc4a]"></iconify-icon>
+                                Das Angebot
+                            </h3>
+                            <ul class="space-y-4">
+                                <li class="flex items-center gap-4 text-[#0a2f17] font-bold border-b border-[#0a2f17]/5 pb-3">
+                                    <span class="w-2 h-2 rounded-full bg-[#eebc4a]"></span> Restaurant
+                                </li>
+                                <li class="flex items-center gap-4 text-[#0a2f17] font-bold border-b border-[#0a2f17]/5 pb-3">
+                                    <span class="w-2 h-2 rounded-full bg-[#eebc4a]"></span> Schnitzelgerichte
+                                </li>
+                                <li class="flex items-center gap-4 text-[#0a2f17] font-bold border-b border-[#0a2f17]/5 pb-3">
+                                    <span class="w-2 h-2 rounded-full bg-[#eebc4a]"></span> Catering
+                                </li>
+                                <li class="flex items-center gap-4 text-[#0a2f17] font-bold border-b border-[#0a2f17]/5 pb-3">
+                                    <span class="w-2 h-2 rounded-full bg-[#eebc4a]"></span> Partyservice
+                                </li>
+                                <li class="flex items-center gap-4 text-[#0a2f17] font-bold pb-3">
+                                    <span class="w-2 h-2 rounded-full bg-[#eebc4a]"></span> Lieferservice
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-[#e8f3ec] p-10 rounded-[2.5rem] shadow-sm">
+                            <h3 class="text-xl font-black text-[#0a2f17] serif mb-6">Über Speisely</h3>
+                            <ul class="space-y-3 text-sm text-[#0a2f17]/80">
+                                <li class="flex items-start gap-3"><iconify-icon icon="lucide:check" class="mt-1 text-[#0a2f17]"></iconify-icon> Partner entdecken</li>
+                                <li class="flex items-start gap-3"><iconify-icon icon="lucide:check" class="mt-1 text-[#0a2f17]"></iconify-icon> Angebote kennenlernen</li>
+                                <li class="flex items-start gap-3"><iconify-icon icon="lucide:check" class="mt-1 text-[#0a2f17]"></iconify-icon> Catering anfragen</li>
+                                <li class="flex items-start gap-3"><iconify-icon icon="lucide:check" class="mt-1 text-[#0a2f17]"></iconify-icon> Direkt mit lokalen Anbietern verbunden werden</li>
+                            </ul>
+                            <p class="mt-8 text-[10px] font-bold text-[#0a2f17]/40 uppercase">Leistungen und Verfügbarkeit bitte direkt über die jeweilige Partneranfrage bestätigen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex-1 flex flex-col justify-end">
+  <div class="bg-[#0a2f17] p-10 md:p-14 rounded-[2.5rem] shadow-2xl relative overflow-hidden text-[#faf5e6]">
+    <div class="relative z-20 flex flex-col md:flex-row justify-between items-start md:items-center gap-12">
+      <!-- LEFT: Text Content -->
+      <div class="max-w-xl flex-1">
+        <span class="text-[#eebc4a] font-black text-[10px] uppercase tracking-[0.4em] mb-6 block">Speisely Partner-Programm</span>
+        <h3 class="text-4xl font-black serif leading-[1.1] mb-6 text-[#faf5e6]">Werde Teil der kulinarischen Gemeinschaft</h3>
+        <p class="text-[#faf5e6]/70 leading-relaxed text-base font-medium">
+          Zeigen Sie Ihr Handwerk einem breiten Publikum. Profitieren Sie von unserer Plattform, erhalten Sie qualifizierte Catering-Anfragen und stärken Sie Ihre lokale Sichtbarkeit.
+        </p>
+      </div>
+      
+      <!-- RIGHT: CTAs -->
+      <div class="flex flex-col gap-4 w-full md:w-auto md:flex-shrink-0">
+        <a id="cta-join-partners-p3" href="https://www.speisely.de/partners" class="px-10 py-4 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-xs uppercase tracking-widest text-center shadow-lg hover:shadow-xl transition-shadow whitespace-nowrap">
+          Partner Werden
+        </a>
+        <a id="cta-learn-more-p3" href="https://www.speisely.de/" class="px-10 py-4 border-2 border-[#eebc4a] text-[#eebc4a] rounded-full font-black text-xs uppercase tracking-widest text-center hover:bg-[#eebc4a]/10 transition-colors whitespace-nowrap">
+          Mehr Erfahren
+        </a>
+      </div>
+    </div>
+    <!-- Background accent -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#eebc4a]/5 rounded-full -mr-48 -mt-48"></div>
+  </div>
+</div>
+
+                <div class="mt-12 pt-8 border-t border-[#0a2f17]/10 text-center">
+                    <span class="text-[#0a2f17]/40 text-[10px] font-black uppercase tracking-[0.3em]">Speisely Magazin · Partner-Story · Ausgabe 01 / 2026</span>
+                </div>
+            </div>
+        </article>
+
+        <!-- PAGE 4: ABOUT SPEISELY -->
+        <article id="page-4-about" class="magazine-page bg-[#faf5e6] paper-grain">
+            <div class="p-12 md:p-20 h-full flex flex-col z-20">
+                <header class="text-center mb-16">
+                    <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/brand/89152305-e40f-4aef-8108-c64138dec192/logo/c3822c2f-bf26-4b3b-a6f7-4d6933b2ab13.svg" alt="Speisely Logo" class="h-16 w-auto mx-auto mb-6" onerror="this.onerror=null;this.src='https://placehold.co/600x64/1a1a1a/888?text=Image';">
+                    <span class="text-[#0a2f17] font-black text-[10px] uppercase tracking-[0.4em] mb-4 block">Die Plattform hinter der Partner-Story</span>
+                    <h2 class="text-6xl text-[#0a2f17] font-black serif leading-[1.1] tracking-tighter">
+                        Gutes Essen entdecken. <br><span class="italic text-[#b28a3c]">Direkt beim lokalen Anbieter bestellen.</span>
+                    </h2>
+                    <p class="mt-8 text-[#0a2f17]/70 text-lg leading-relaxed max-w-2xl mx-auto font-medium">
+                        Speisely verbindet Gäste mit lokalen Restaurants, Caterern und Eventanbietern. Entdecke authentische Geschichten, finde passende Angebote und bestelle oder frage direkt beim jeweiligen Anbieter an.
+                    </p>
+                </header>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
+                    <div class="bg-[#e8f3ec] p-10 rounded-[2.5rem] flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl">
+                                <iconify-icon icon="lucide:search"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-black text-[#0a2f17] serif">Restaurants entdecken</h3>
+                            <p class="text-sm text-[#0a2f17]/70">Lokale Restaurants, ihre Menüs und die Geschichten hinter ihren Angeboten kennenlernen.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#e8f3ec] p-10 rounded-[2.5rem] flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl">
+                                <iconify-icon icon="lucide:clipboard-list"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-black text-[#0a2f17] serif">Catering anfragen</h3>
+                            <p class="text-sm text-[#0a2f17]/70">Anforderungen senden, passende Anbieter entdecken und Cateringangebote anfragen.</p>
+                        </div>
+                    </div>
+                    <div class="bg-[#e8f3ec] p-10 rounded-[2.5rem] flex flex-col justify-between hover:shadow-xl transition-shadow">
+                        <div class="space-y-4">
+                            <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center text-2xl">
+                                <iconify-icon icon="lucide:handshake"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-black text-[#0a2f17] serif">Direkt und Fair</h3>
+                            <p class="text-sm text-[#0a2f17]/70">Klare Kommunikation und direkte Beziehungen zwischen Gästen und lokalen Anbietern.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-[#0a2f17] p-12 rounded-[3rem] mb-12 shadow-2xl relative overflow-hidden">
+                    <div class="relative z-20 flex flex-col md:flex-row justify-between items-center gap-10">
+                        <div class="max-w-md">
+                            <h3 class="text-3xl text-[#faf5e6] font-black serif leading-tight mb-4">Du bist Restaurant oder Caterer?</h3>
+                            <p class="text-[#faf5e6]/70 leading-relaxed">
+                                Präsentiere dein Angebot auf Speisely, werde von neuen Gästen entdeckt und erhalte passende Anfragen über die Plattform.
+                            </p>
+                        </div>
+                        <a id="cta-partners-final" href="https://www.speisely.de/partners" class="px-10 py-5 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-sm uppercase tracking-widest shadow-xl whitespace-nowrap">Restaurant oder Cateringpartner werden</a>
+                    </div>
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#eebc4a]/5 rounded-full -mr-32 -mt-32"></div>
+                </div>
+
+                <div class="flex-1 flex flex-col md:flex-row gap-8 items-stretch">
+                    <!-- FOR CUSTOMERS -->
+                    <div class="flex-1 bg-white border border-[#0a2f17]/5 p-10 rounded-[2.5rem] flex flex-col justify-between items-center text-center group">
+                        <div class="space-y-4">
+                            <h4 class="text-2xl font-black text-[#eebc4a] serif uppercase tracking-tighter">Speisely entdecken</h4>
+                            <p class="text-sm text-[#0a2f17]/60 font-medium px-4">Entdecke lokale Restaurants, Caterer, Eventanbieter und die Geschichten hinter ihren Angeboten.</p>
+                        </div>
+                        
+                        <div class="my-8 flex flex-col items-center">
+                            <div class="p-4 bg-white shadow-xl rounded-2xl mb-4 border border-gray-100">
+                                <!-- Genuine QR Code for www.speisely.de -->
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.speisely.de/" alt="QR Speisely Discover" class="w-32 h-32" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a1a1a/888?text=Image';">
+                            </div>
+                            <span class="text-[10px] font-black text-[#0a2f17] uppercase tracking-widest mb-1">https://www.speisely.de/</span>
+                            <span class="text-[10px] font-bold text-[#b28a3c] uppercase">Jetzt Speisely entdecken</span>
+                        </div>
+
+                        <a id="cta-discover-bottom" href="https://www.speisely.de/" class="w-full py-4 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-xs uppercase tracking-widest">Speisely entdecken</a>
+                    </div>
+
+                    <!-- FOR PARTNERS -->
+                    <div class="flex-1 bg-white border border-[#0a2f17]/5 p-10 rounded-[2.5rem] flex flex-col justify-between items-center text-center group">
+                        <div class="space-y-4">
+                            <h4 class="text-2xl font-black text-[#eebc4a] serif uppercase tracking-tighter leading-none">Partner <br>werden</h4>
+                            <p class="text-sm text-[#0a2f17]/60 font-medium px-4">Präsentiere dein Angebot und werde von neuen Gästen über unsere Plattform entdeckt.</p>
+                        </div>
+                        
+                        <div class="my-8 flex flex-col items-center">
+                            <div class="p-4 bg-white shadow-xl rounded-2xl mb-4 border border-gray-100">
+                                <!-- Genuine QR Code for www.speisely.de/partners -->
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://www.speisely.de/partners" alt="QR Speisely Partners" class="w-32 h-32" onerror="this.onerror=null;this.src='https://placehold.co/128x128/1a1a1a/888?text=Image';">
+                            </div>
+                            <span class="text-[10px] font-black text-[#0a2f17] uppercase tracking-widest mb-1">https://www.speisely.de/partners</span>
+                            <span class="text-[10px] font-bold text-[#b28a3c] uppercase">Jetzt Speisely Partner werden</span>
+                        </div>
+
+                        <a id="cta-partners-bottom" href="https://www.speisely.de/partners" class="w-full py-4 bg-[#eebc4a] text-[#0a2f17] rounded-full font-black text-xs uppercase tracking-widest">Partner werden</a>
+                    </div>
+                </div>
+
+                <footer class="mt-12 pt-8 border-t border-[#0a2f17]/10 flex flex-col md:flex-row justify-between items-center">
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black italic serif text-[#0a2f17] tracking-tighter">Speisely Magazin</span>
+                        <span class="text-[8px] uppercase tracking-[0.6em] text-[#0a2f17]/30 font-bold">Digital Gastronomy Editorial</span>
+                    </div>
+                    <div class="text-[#0a2f17]/40 text-[10px] font-black uppercase tracking-[0.3em]">Seite 04 / 04 · Partner-Story Issue 01</div>
+                </footer>
+            </div>
+        </article>
+
+    </div>
+</body>
+</html>

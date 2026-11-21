@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Archival Cream Ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F5F3ED;
+  --surface:#E8E3DA;
+  --surface-alt:#C8CECC;
+  --text-primary:#484A2E;
+  --text-secondary:#837975;
+  --text-heading:#000000;
+  --ink-2b:#2B2B2B;
+  --border:#E2DDD0;
+  --border-strong:#B8B0AA;
+  --accent-teal:#A0C3C4;
+  --accent-navy:#3A3F4B;
+  --ink-dark:#292C33;
+  --danger:#FB2C36;
+  --warning:#FE9A00;
+  --success:#00D492;
+  --r-control:8px;
+  --r-control-lg:10px;
+  --r-pill:50px;
+  --r-card:22px;
+  --r-card-sm:37px;
+  --r-sharp:4px;
+  --base:8px;
+  --gap:22px;
+  --section-padding:80px;
+  --section-gap:131px;
+  --shadow-paper:rgba(41,44,51,0.14) 0 18px 48px 0;
+  --shadow-util:rgba(0,0,0,0.08) 0 1px 3px 0;
+  --ease:0.2s ease;
+  --serif:"Libre Baskerville",Georgia,serif;
+  --concrette:"Oswald","Inter",sans-serif;
+  --body:"Inter",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1130px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:var(--body);
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.serif-h{font-family:var(--serif);font-weight:400;letter-spacing:-0.4px;line-height:1.4;color:var(--text-heading)}
+.concrette-h{font-family:var(--concrette);font-weight:400;letter-spacing:-0.8px;line-height:1.2;color:var(--ink-2b);text-transform:uppercase}
+section{padding:var(--section-padding) 0}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  height:72px;background:var(--background);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;width:100%}
+.nav-logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-size:19px;color:var(--text-heading)}
+.nav-logo iconify-icon{color:var(--accent-navy)}
+.nav-links{display:flex;gap:28px;list-style:none;margin:0;padding:0}
+.nav-links a{
+  font-size:12px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--text-primary);text-decoration:none;transition:color var(--ease);
+}
+.nav-links a:hover{color:var(--ink-2b)}
+.nav-cta{
+  background:linear-gradient(rgba(41,44,51,0.6),rgba(41,44,51,0.6)),var(--surface-alt);
+  color:#fff;
+  border:none;border-radius:0;
+  height:20px;padding:0 12px;
+  font-size:11px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  display:inline-flex;align-items:center;
+  backdrop-filter:blur(16px) saturate(1.8);
+  cursor:pointer;
+}
+@media(max-width:768px){.nav-links{display:none}}
+
+/* HERO */
+#hero{padding:0;position:relative}
+.hero-photo{
+  position:relative;
+  min-height:520px;
+  display:flex;align-items:flex-end;
+  background:
+    linear-gradient(rgba(0,0,0,0.28),rgba(0,0,0,0.28)),
+    repeating-linear-gradient(180deg,#8a8073 0 3px,#7a715f 3px 6px),
+    linear-gradient(120deg,#9c9284,#6f665a);
+  overflow:hidden;
+}
+.arches{
+  position:absolute;inset:0;display:flex;justify-content:center;gap:4px;
+  padding:0 8%;align-items:flex-start;
+}
+.arch{
+  flex:1;height:62%;
+  background:radial-gradient(120% 80% at 50% 100%,rgba(30,26,20,0.55),rgba(60,54,44,0.15));
+  border-top-left-radius:50% 80%;
+  border-top-right-radius:50% 80%;
+  border:1px solid rgba(20,16,10,0.35);
+  border-bottom:none;
+}
+.hero-plate{
+  position:relative;z-index:2;
+  width:100%;
+  background:var(--background);
+  padding:56px 0 64px;
+  margin-top:auto;
+  border-top:1px solid var(--border);
+}
+.hero-plate .wrap{max-width:1130px}
+.hero-eyebrow{margin-bottom:22px}
+.hero-headline{
+  font-family:var(--serif);font-weight:400;
+  font-size:34px;line-height:1.4;letter-spacing:-0.4px;
+  color:var(--text-heading);max-width:900px;
+}
+.hero-headline em{font-family:"Times New Roman",var(--serif);font-style:italic}
+.caret{display:inline-block;width:2px;height:0.95em;background:var(--text-heading);vertical-align:-0.12em;margin-left:2px;animation:caret-blink 1s step-end infinite}
+@keyframes caret-blink{0%,50%{opacity:1}50.01%,100%{opacity:0}}
+.hero-actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap}
+.btn-hero{
+  background:var(--background);color:var(--ink-2b);
+  border:1px solid var(--border-strong);border-radius:6px;height:48px;
+  padding:0 22px;font-size:14px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  box-shadow:var(--shadow-util);transition:background var(--ease);
+}
+.btn-hero:hover{background:#F0EDE4}
+.btn-hero-dark{
+  background:var(--accent-navy);color:#fff;border:1px solid var(--accent-navy);
+  border-radius:6px;height:48px;padding:0 22px;font-size:14px;font-weight:600;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;transition:opacity var(--ease);
+}
+.btn-hero-dark:hover{opacity:0.9}
+@media(max-width:640px){.hero-headline{font-size:26px}.hero-photo{min-height:440px}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-logo">
+      <iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon>
+      Intelligence
+    </div>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#palette">Palette</a></li>
+        <li><a href="#type-scale">Type</a></li>
+        <li><a href="#components">Components</a></li>
+        <li><a href="#composition">Composition</a></li>
+      </ul>
+    </nav>
+    <button class="nav-cta" type="button">Enter the Ledger</button>
+  </div>
+</header>
+
+<main>
+<section id="hero" aria-label="Hero">
+  <div class="hero-photo">
+    <div class="arches" aria-hidden="true">
+      <span class="arch"></span><span class="arch"></span><span class="arch"></span>
+      <span class="arch"></span><span class="arch"></span>
+    </div>
+    <div class="hero-plate">
+      <div class="wrap">
+        <p class="eyebrow hero-eyebrow">The Product Lab · Est. Archive</p>
+        <h1 class="hero-headline">A warm, unhurried system where color is earned only by the data — <em>everything else stays paper</em><span class="caret" aria-hidden="true"></span></h1>
+        <div class="hero-actions">
+          <button class="btn-hero-dark" type="button">Read the ledger <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-hero" type="button">Browse leaderboards</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--background)}
+.sec-head{margin-bottom:48px}
+.sec-head h2{font-size:34px}
+.sec-head .eyebrow{margin-bottom:14px}
+.role-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:var(--gap);margin-bottom:44px}
+.sw{border:1px solid var(--border);border-radius:var(--r-control)}
+.sw-chip{height:96px;border-radius:var(--r-control) var(--r-control) 0 0;position:relative}
+.sw-body{padding:14px 16px}
+.sw-name{font-family:var(--concrette);font-size:15px;text-transform:uppercase;letter-spacing:0.02em;color:var(--ink-2b)}
+.sw-val{font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums;margin-top:2px}
+.sw-note{font-size:13px;color:var(--text-primary);margin-top:8px;line-height:1.4}
+.role-label{font-family:var(--concrette);text-transform:uppercase;letter-spacing:0.04em;font-size:14px;color:var(--text-secondary);margin:0 0 18px}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" aria-label="Palette">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The Palette</p>
+      <h2 class="concrette-h">Cream shell, rationed color</h2>
+    </div>
+
+    <p class="role-label">Surfaces</p>
+    <div class="role-grid">
+      <div class="sw"><div class="sw-chip" style="background:#F5F3ED"></div><div class="sw-body"><div class="sw-name">Background</div><div class="sw-val">#F5F3ED</div><div class="sw-note">Dominant page ground, ~74% of the shell.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#E8E3DA"></div><div class="sw-body"><div class="sw-name">Surface</div><div class="sw-val">#E8E3DA</div><div class="sw-note">Cards and the diagram band, a half-step darker.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C8CECC"></div><div class="sw-body"><div class="sw-name">Surface Alt</div><div class="sw-val">#C8CECC</div><div class="sw-note">Cooler stone, sparingly for contrast blocks.</div></div></div>
+    </div>
+
+    <p class="role-label">Text</p>
+    <div class="role-grid">
+      <div class="sw"><div class="sw-chip" style="background:#484A2E"></div><div class="sw-body"><div class="sw-name">Text Primary</div><div class="sw-val">#484A2E</div><div class="sw-note">Olive-black for body copy.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#000000"></div><div class="sw-body"><div class="sw-name">Text Heading</div><div class="sw-val">#000000</div><div class="sw-note">Serif headlines and hero display.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#837975"></div><div class="sw-body"><div class="sw-name">Text Secondary</div><div class="sw-val">#837975</div><div class="sw-note">Captions, metadata, muted labels.</div></div></div>
+    </div>
+
+    <p class="role-label">Accents &amp; ink — earned inside charts, chips, and CTAs</p>
+    <div class="role-grid">
+      <div class="sw"><div class="sw-chip" style="background:#A0C3C4"></div><div class="sw-body"><div class="sw-name">Accent Teal</div><div class="sw-val">#A0C3C4</div><div class="sw-note">Dusty teal — leaderboard bars, icon chips.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#3A3F4B"></div><div class="sw-body"><div class="sw-name">Accent Navy</div><div class="sw-val">#3A3F4B</div><div class="sw-note">Darkest filled buttons and central CTA.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#292C33"></div><div class="sw-body"><div class="sw-name">Ink Dark</div><div class="sw-val">#292C33</div><div class="sw-note">Nav CTA tint and scrim gradient.</div></div></div>
+    </div>
+
+    <p class="role-label">Borders</p>
+    <div class="role-grid">
+      <div class="sw"><div class="sw-chip" style="background:#E2DDD0"></div><div class="sw-body"><div class="sw-name">Border</div><div class="sw-val">#E2DDD0</div><div class="sw-note">Light hairlines on controls.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#B8B0AA"></div><div class="sw-body"><div class="sw-name">Border Strong</div><div class="sw-val">#B8B0AA</div><div class="sw-note">Weightier edges on cream buttons.</div></div></div>
+    </div>
+
+    <p class="role-label">Status primitives — dots and annotations only</p>
+    <div class="role-grid">
+      <div class="sw"><div class="sw-chip" style="background:#FB2C36"></div><div class="sw-body"><div class="sw-name">Danger</div><div class="sw-val">#FB2C36</div><div class="sw-note">Chart annotation / status dot.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FE9A00"></div><div class="sw-body"><div class="sw-name">Warning</div><div class="sw-val">#FE9A00</div><div class="sw-note">Chart annotation / status dot.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#00D492"></div><div class="sw-body"><div class="sw-name">Success</div><div class="sw-val">#00D492</div><div class="sw-note">Chart annotation / status dot.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--surface)}
+.spec{border-top:1px solid var(--border);padding:34px 0}
+.spec:last-child{border-bottom:1px solid var(--border)}
+.spec-meta{font-size:12px;color:var(--text-secondary);letter-spacing:0.04em;text-transform:uppercase;margin-top:16px;font-variant-numeric:tabular-nums}
+.t-display{font-family:var(--concrette);font-weight:400;font-size:34px;line-height:1.2;letter-spacing:-0.8px;color:var(--ink-2b);text-transform:uppercase}
+.t-headline{font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.4;letter-spacing:-0.4px;color:var(--text-heading)}
+.t-body{font-family:var(--body);font-weight:400;font-size:16px;line-height:1.5;color:var(--text-primary)}
+.t-bodymd{font-family:var(--concrette);font-weight:500;font-size:14px;line-height:1.2;color:var(--text-primary);text-transform:uppercase;letter-spacing:0.02em}
+.t-eyebrow{font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary)}
+.t-serif-it{font-family:"Times New Roman",var(--serif);font-style:italic;font-size:22px;color:var(--text-heading)}
+@media(max-width:640px){.t-display,.t-headline{font-size:26px}}
+</style>
+<section id="type-scale" aria-label="Type scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The Type Scale</p>
+      <h2 class="concrette-h">Two faces, split by role</h2>
+    </div>
+    <div class="spec">
+      <div class="t-display">Top Leaderboards</div>
+      <div class="spec-meta">display-lg · Concrette · 34px · 400 · 1.2 · -0.8px</div>
+    </div>
+    <div class="spec">
+      <div class="t-headline">The archive keeps its color in the ledger.</div>
+      <div class="spec-meta">headline-md · Libre Baskerville · 34px · 400 · 1.4 · -0.4px</div>
+    </div>
+    <div class="spec">
+      <div class="t-serif-it">a one-clause signature, set apart</div>
+      <div class="spec-meta">accent-serif · Times New Roman · italic · rare literary flourish</div>
+    </div>
+    <div class="spec">
+      <div class="t-body">Body copy runs on Inter at a comfortable reading size in olive-black ink, with muted stone for secondary lines. The shell stays achromatic — paper first, data second.</div>
+      <div class="spec-meta">body-base · Inter · 16px · 400 · 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="t-bodymd">Dashboard label · model score</div>
+      <div class="spec-meta">body-md · Concrette · 14px · 500 · 1.2</div>
+    </div>
+    <div class="spec">
+      <div class="t-eyebrow">Referenced By</div>
+      <div class="spec-meta">label-eyebrow · Inter · 12px · 500 · 0.08em tracking</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--background)}
+.comp-block{margin-bottom:var(--section-gap)}
+.comp-block:last-child{margin-bottom:0}
+.comp-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.comp-head h3{font-family:var(--concrette);font-size:22px;text-transform:uppercase;letter-spacing:-0.02em;color:var(--ink-2b)}
+.comp-count{font-size:12px;color:var(--text-secondary);letter-spacing:0.06em;text-transform:uppercase}
+.comp-desc{font-size:15px;color:var(--text-primary);max-width:620px;margin-bottom:24px}
+.spec-card{
+  margin-top:22px;border:1px solid var(--border);border-radius:var(--r-control);
+  background:var(--surface);padding:14px 16px;font-size:12.5px;line-height:1.7;color:var(--text-primary);
+  font-family:var(--body);
+}
+.spec-card b{color:var(--ink-2b)}
+.demo{border:1px solid var(--border);border-radius:var(--r-card);background:#fdfcf8;padding:34px}
+
+/* nav demo */
+.navdemo{display:flex;align-items:center;justify-content:space-between;background:var(--background);height:72px;border:1px solid var(--border);padding:0 20px}
+.navdemo .nl{display:flex;gap:22px;list-style:none;margin:0;padding:0}
+.navdemo .nl a{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;color:var(--text-primary)}
+
+/* logo strip */
+.logostrip{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;filter:grayscale(1);opacity:0.65}
+.logostrip .lm{display:flex;align-items:center;gap:8px;font-family:var(--serif);font-size:17px;color:var(--ink-2b)}
+
+/* filter pills */
+.pillrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px}
+.pill-out{
+  background:transparent;color:var(--text-primary);
+  border:1px solid var(--border);border-radius:8px;height:44px;padding:0 14px;
+  display:inline-flex;align-items:center;gap:8px;font-size:14px;cursor:pointer;transition:background var(--ease);
+}
+.pill-out:hover{background:#F0EDE4}
+.pill-out iconify-icon{font-size:18px}
+.tablist{display:flex;flex-direction:column;gap:2px}
+.tablist button{
+  background:transparent;border:none;border-radius:0;text-align:left;
+  padding:11px 12px;font-size:14px;color:var(--text-primary);cursor:pointer;
+  border-left:2px solid transparent;transition:background var(--ease);
+}
+.tablist button:hover{background:#F0EDE4}
+.tablist button[aria-current="true"]{border-left-color:var(--accent-navy);background:#F0EDE4;color:var(--ink-2b);font-weight:600}
+.lb-grid{display:grid;grid-template-columns:35% 1fr;gap:28px}
+@media(max-width:768px){.lb-grid{grid-template-columns:1fr}}
+
+/* bar chart */
+.chartcard{background:#fdfcf8;border-radius:var(--r-card-sm);padding:28px;box-shadow:var(--shadow-paper)}
+.chart-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;gap:12px;flex-wrap:wrap}
+.chart-top h4{font-family:var(--concrette);font-size:19px;text-transform:uppercase;color:var(--ink-2b)}
+.chart-controls{display:flex;gap:10px}
+.dropdown{background:transparent;border:1px solid var(--border);border-radius:8px;height:44px;padding:0 12px;display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-primary);cursor:pointer}
+.toggle2{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;height:44px}
+.toggle2 button{border:none;background:transparent;padding:0 14px;font-size:13px;color:var(--text-primary);cursor:pointer}
+.toggle2 button[aria-pressed="true"]{background:var(--accent-navy);color:#fff}
+.bars{display:flex;align-items:flex-end;gap:6px;height:220px;overflow-x:auto;padding-bottom:6px}
+.bar{display:flex;flex-direction:column;align-items:center;gap:6px;min-width:34px}
+.bar .num{font-size:11px;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.bar .col{width:22px;border-radius:0;transition:filter var(--ease)}
+.bar:hover .col{filter:brightness(0.92)}
+.bar .chip{width:22px;height:22px;border-radius:0;display:flex;align-items:center;justify-content:center;background:var(--surface);color:var(--ink-2b)}
+.bar .chip iconify-icon{font-size:13px}
+.load-dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent-navy);animation:loading-dot-pulse 1.2s ease-in-out infinite;margin-left:8px;vertical-align:middle}
+@keyframes loading-dot-pulse{0%,100%{opacity:0.3;transform:scale(0.8)}50%{opacity:1;transform:scale(1)}}
+
+/* list rows */
+.rowlist{border-top:1px solid var(--border)}
+.lrow{display:flex;align-items:center;background:transparent;border-radius:0;padding:0;border-bottom:1px solid var(--border)}
+.lrow .lbl{flex:0 0 auto;width:60%;padding:12px 0;font-size:14px;color:var(--text-primary);display:flex;align-items:center;gap:10px}
+.lrow .rank{font-variant-numeric:tabular-nums;color:var(--text-secondary);width:26px}
+.lrow .vals{flex:1;display:flex;justify-content:flex-end;gap:18px}
+.lrow .v{font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums;min-width:40px;text-align:right}
+.lrow:hover{background:#F0EDE4}
+.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+/* network band */
+.netband{background:var(--surface);border-radius:var(--r-card);padding:44px;position:relative;overflow:hidden}
+.netband.stone{background:var(--surface-alt)}
+.net-head{margin-bottom:32px}
+.net-diagram{position:relative;min-height:320px;display:flex;align-items:center;justify-content:center}
+.ring{position:absolute;border:1px dashed var(--border-strong);border-radius:50%}
+.ring.r1{width:300px;height:300px}
+.ring.r2{width:200px;height:200px}
+.net-center{
+  position:relative;z-index:2;
+  background:var(--accent-navy);color:#fff;border:1px solid var(--accent-navy);
+  border-radius:var(--r-pill);height:44px;padding:0 22px;
+  display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:600;cursor:pointer;
+}
+.node{
+  position:absolute;background:#fdfcf8;border:1px solid var(--border);border-radius:var(--r-pill);
+  height:40px;padding:0 16px;display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--ink-2b);
+  box-shadow:var(--shadow-util);animation:drift 6s ease-in-out infinite;
+}
+.node iconify-icon{color:var(--accent-navy);font-size:16px}
+.node.n1{top:6%;left:14%}
+.node.n2{top:10%;right:12%;animation-delay:-1.5s}
+.node.n3{bottom:10%;left:18%;animation-delay:-3s}
+.node.n4{bottom:6%;right:16%;animation-delay:-4.5s}
+@keyframes drift{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+/* resource cards */
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media(max-width:768px){.res-grid{grid-template-columns:1fr}}
+.res-card{background:var(--surface);border-radius:0;padding:0;overflow:hidden}
+.res-media{height:200px;display:flex;align-items:center;justify-content:center;color:var(--ink-2b)}
+.res-media iconify-icon{font-size:52px;opacity:0.6}
+.res-lbl{text-align:center;padding:16px 8px;font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-primary)}
+
+/* button matrix */
+.matrix{overflow-x:auto}
+.matrix table{border-collapse:collapse;width:100%;min-width:560px}
+.matrix th,.matrix td{padding:14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle}
+.matrix th{font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--text-secondary);font-weight:500}
+.matrix td .rowname{font-size:13px;color:var(--ink-2b);font-family:var(--concrette);text-transform:uppercase}
+.btn{border:none;cursor:pointer;font-family:var(--body);font-weight:600;display:inline-flex;align-items:center;justify-content:center;font-size:14px}
+.b-dark{background:var(--accent-navy);color:#fff;border:1px solid var(--accent-navy);border-radius:10px;height:48px;padding:11px 18px}
+.b-dark:hover{opacity:0.9}
+.b-outline{background:transparent;color:var(--text-primary);border:1px solid var(--border);border-radius:8px;height:44px;padding:10px 14px}
+.b-outline:hover{background:#F0EDE4}
+.b-tint{background:#F0EDE4;color:var(--ink-2b);border:1px solid var(--border);border-radius:10px;height:48px;padding:11px 18px}
+.b-tint:hover{filter:brightness(0.97)}
+.btn:disabled{opacity:0.4;cursor:not-allowed}
+</style>
+<section id="components" aria-label="Components">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">The Inventory</p>
+      <h2 class="concrette-h">Every measured family, rendered live</h2>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Sticky Cream Navbar</h3><span class="comp-count">×1 · 72px</span></div>
+      <p class="comp-desc">A slim cream bar with logo, four all-caps text links, and a compact dark glass-tinted utility pill — never the page's primary action.</p>
+      <div class="navdemo">
+        <div class="nav-logo" style="font-size:17px"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Intelligence</div>
+        <ul class="nl"><li><a href="#">Models</a></li><li><a href="#">Arena</a></li><li><a href="#">Docs</a></li><li><a href="#">About</a></li></ul>
+        <button class="nav-cta" type="button">Enter</button>
+      </div>
+      <div class="spec-card"><b>--btn-nav-cta</b> · fill <b>linear-gradient(rgba(41,44,51,0.6))</b> · text <b>#fff</b> on ink · radius <b>0px</b> · height <b>20px</b> · backdrop blur(16px) saturate(1.8) · motion ease 0.2s</div>
+    </div>
+
+    <!-- HERO ARCH -->
+    <div class="comp-block" data-tier-a-component="hero-arch">
+      <div class="comp-head"><h3>Stone-Arch Photographic Hero</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Full-bleed colonnade imagery with a serif headline set low on cream ground beneath the arches, a blinking caret, and an optional cream-fill CTA.</p>
+      <div class="demo" style="padding:0;overflow:hidden">
+        <div style="min-height:220px;background:linear-gradient(rgba(0,0,0,0.28),rgba(0,0,0,0.28)),linear-gradient(120deg,#9c9284,#6f665a);display:flex;align-items:flex-end">
+          <div style="background:var(--background);width:100%;padding:24px">
+            <p class="eyebrow" style="margin-bottom:10px">The Product Lab</p>
+            <p class="serif-h" style="font-size:24px;max-width:520px">The archive keeps its color in the ledger<span class="caret" aria-hidden="true"></span></p>
+            <button class="btn-hero" type="button" style="margin-top:16px">View the arena</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--btn-hero-primary</b> · fill <b>#F5F3ED</b> · text <b>#2B2B2B</b> · radius <b>6px</b> · height <b>48px</b> · headline <b>Libre Baskerville 34/1.4</b> · motion <b>caret-blink</b></div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip">
+      <div class="comp-head"><h3>Referenced-By Logo Strip</h3><span class="comp-count">×1 · 5–6 marks</span></div>
+      <p class="comp-desc">A single evenly-spaced row of grayscale wordmarks under a small eyebrow — no card container.</p>
+      <p class="eyebrow" style="margin-bottom:20px">Referenced By</p>
+      <div class="logostrip">
+        <span class="lm"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon>Meridian</span>
+        <span class="lm"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon>Northwind</span>
+        <span class="lm"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon>Atlas Labs</span>
+        <span class="lm"><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon>Provenance</span>
+        <span class="lm"><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon>Foundry</span>
+        <span class="lm"><iconify-icon icon="lucide:pentagon" aria-hidden="true"></iconify-icon>Cornice</span>
+      </div>
+      <div class="spec-card"><b>--logo-strip</b> · eyebrow <b>label-eyebrow 12px</b> · color <b>grayscale rationed</b> · no container · gap <b>22px</b></div>
+    </div>
+
+    <!-- FILTER PILLS -->
+    <div class="comp-block" data-tier-a-component="filter-tab-pills">
+      <div class="comp-head"><h3>Leaderboard Filter / Tab Pills</h3><span class="comp-count">×6 pills · 7 tabs</span></div>
+      <p class="comp-desc">A horizontal cluster of icon-labeled outline pills, plus a vertical list of category tabs at left of the leaderboard module.</p>
+      <div class="pillrow">
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:code" aria-hidden="true"></iconify-icon>Code</button>
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:image" aria-hidden="true"></iconify-icon>Image</button>
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon>Video</button>
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:audio-lines" aria-hidden="true"></iconify-icon>Audio</button>
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:presentation" aria-hidden="true"></iconify-icon>Slides</button>
+        <button class="pill-out" type="button"><iconify-icon icon="lucide:file-code" aria-hidden="true"></iconify-icon>SVG / ASCII</button>
+      </div>
+      <div class="lb-grid">
+        <div class="tablist" role="tablist" aria-label="Categories">
+          <button role="tab" aria-current="true">All Models</button>
+          <button role="tab">Reasoning</button>
+          <button role="tab">Vision</button>
+          <button role="tab">Coding</button>
+          <button role="tab">Speech</button>
+          <button role="tab">Agents</button>
+          <button role="tab">Retrieval</button>
+        </div>
+        <div style="border:1px solid var(--border);background:#fdfcf8;padding:20px;font-size:14px;color:var(--text-secondary)">Category tabs drive the chart panel beside them.</div>
+      </div>
+      <div class="spec-card"><b>--btn-outline</b> · fill <b>transparent</b> · text <b>#484A2E</b> · radius <b>8px</b> · height <b>44px</b> · border <b>1px #E2DDD0</b> · hover <b>#F0EDE4</b></div>
+    </div>
+
+    <!-- BAR CHART -->
+    <div class="comp-block" data-tier-a-component="bar-chart-panel">
+      <div class="comp-head"><h3>Leaderboard Bar-Chart Panel</h3><span class="comp-count">×1 · 17 bars</span></div>
+      <p class="comp-desc">A lifted paper panel of muted vertical bars, each with a numeral above and an icon chip below, plus a model dropdown and a two-way toggle.</p>
+      <div class="chartcard">
+        <div class="chart-top">
+          <h4>Top Leaderboards <span class="load-dot" aria-label="loading"></span></h4>
+          <div class="chart-controls">
+            <button class="dropdown" type="button">All Models <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <div class="toggle2" role="group" aria-label="View toggle"><button aria-pressed="true">Score</button><button aria-pressed="false">Cost</button></div>
+          </div>
+        </div>
+        <div class="bars" id="barsGroup"></div>
+      </div>
+      <div class="spec-card"><b>--bar-chart</b> · bars <b>accent-teal #A0C3C4 / sage / clay / stone</b> · panel radius <b>37px</b> · bar radius <b>0px</b> · shadow <b>rgba(41,44,51,.14) 0 18px 48px</b> · motion <b>loading-dot-pulse</b></div>
+    </div>
+
+    <!-- LIST ROW -->
+    <div class="comp-block" data-tier-a-component="list-row">
+      <div class="comp-head"><h3>Tabular List-Row Family</h3><span class="comp-count">×19 rows</span></div>
+      <p class="comp-desc">A dense stacked list — transparent fill, sharp 0px radius, no padding — a wide label column trailed by a run of value columns. Data rows, never cards.</p>
+      <div class="rowlist" id="rowlist"></div>
+      <div class="spec-card"><b>--card-list-item</b> · fill <b>transparent</b> · radius <b>0px</b> · padding <b>0px</b> · divider <b>#E2DDD0</b> · body <b>Inter 14px</b> · status dots use <b>danger/warning/success</b></div>
+    </div>
+
+    <!-- NETWORK BAND -->
+    <div class="comp-block" data-tier-a-component="diagram-network-band">
+      <div class="comp-head"><h3>Radial Network Diagram Band</h3><span class="comp-count">×1 · 4 nodes</span></div>
+      <p class="comp-desc">A stone contrast panel with a radial ring diagram, four floating icon-pill nodes, and a central dark CTA. Live video surfaces are substituted with a static muted-stone gradient.</p>
+      <div class="netband stone">
+        <div class="net-head"><p class="eyebrow" style="margin-bottom:10px">The Network</p><h4 class="serif-h" style="font-size:26px">Every model routed to one ledger</h4></div>
+        <div class="net-diagram">
+          <span class="ring r1" aria-hidden="true"></span>
+          <span class="ring r2" aria-hidden="true"></span>
+          <span class="node n1"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon>Inference</span>
+          <span class="node n2"><iconify-icon icon="lucide:database" aria-hidden="true"></iconify-icon>Datasets</span>
+          <span class="node n3"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon>Routing</span>
+          <span class="node n4"><iconify-icon icon="lucide:bar-chart-3" aria-hidden="true"></iconify-icon>Scoring</span>
+          <button class="net-center" type="button">Run the arena <iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--diagram-band</b> · surface <b>#C8CECC / #E8E3DA</b> · center <b>#3A3F4B fill, #fff text, pill radius, 44px</b> · nodes <b>#fdfcf8 pill, 40px</b> · motion <b>arena-pointer-drift, lbp-board-enter</b></div>
+    </div>
+
+    <!-- RESOURCE CARDS -->
+    <div class="comp-block" data-tier-a-component="resource-card">
+      <div class="comp-head"><h3>Media-Top-Bleed Resource Cards</h3><span class="comp-count">×3</span></div>
+      <p class="comp-desc">A three-up even grid — media dominates the top, a small centered all-caps label sits beneath. Surface #E8E3DA, sharp 0px media radius.</p>
+      <div class="res-grid">
+        <article class="res-card"><div class="res-media"><iconify-icon icon="lucide:file-code-2" aria-hidden="true"></iconify-icon></div><div class="res-lbl">Code Snippets</div></article>
+        <article class="res-card"><div class="res-media"><iconify-icon icon="lucide:trophy" aria-hidden="true"></iconify-icon></div><div class="res-lbl">Leaderboard Awards</div></article>
+        <article class="res-card"><div class="res-media"><iconify-icon icon="lucide:files" aria-hidden="true"></iconify-icon></div><div class="res-lbl">Document Archive</div></article>
+      </div>
+      <div class="spec-card"><b>--card-resource</b> · surface <b>#E8E3DA</b> · radius <b>0px</b> · padding <b>0px</b> · media-top-bleed · label <b>label-eyebrow 12px</b> · grid gap <b>22px</b></div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block">
+      <div class="comp-head"><h3>Button Matrix</h3><span class="comp-count">variants × states</span></div>
+      <p class="comp-desc">Every documented button fill against its source-supported states. No focus column is authored — the source records none.</p>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><span class="rowname">Dark Filled</span></td>
+              <td><button class="btn b-dark" type="button">Run</button></td>
+              <td><button class="btn b-dark" type="button" style="opacity:0.9">Run</button></td>
+              <td><button class="btn b-dark" type="button" disabled>Run</button></td>
+            </tr>
+            <tr>
+              <td><span class="rowname">Outline</span></td>
+              <td><button class="btn b-outline" type="button">Filter</button></td>
+              <td><button class="btn b-outline" type="button" style="background:#F0EDE4">Filter</button></td>
+              <td><button class="btn b-outline" type="button" disabled>Filter</button></td>
+            </tr>
+            <tr>
+              <td><span class="rowname">Tint Filled</span></td>
+              <td><button class="btn b-tint" type="button">Export</button></td>
+              <td><button class="btn b-tint" type="button" style="filter:brightness(0.97)">Export</button></td>
+              <td><button class="btn b-tint" type="button" disabled>Export</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><b>--btn-dark-filled</b> fill <b>#3A3F4B</b> radius <b>10px</b> height <b>48px</b> · <b>--btn-outline</b> radius <b>8px</b> height <b>44px</b> · <b>--btn-tint</b> fill <b>#F0EDE4</b> radius <b>10px</b> · disabled uses lowest text-opacity step · motion ease 0.2s</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--surface)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap)}
+.depth-card{background:#fdfcf8;padding:26px;border:1px solid var(--border)}
+.depth-card .dt{font-family:var(--concrette);text-transform:uppercase;font-size:15px;color:var(--ink-2b)}
+.depth-card .dm{font-size:12px;color:var(--text-secondary);margin-top:6px}
+.r-sharp{border-radius:4px}.r-control{border-radius:8px}.r-control-lg{border-radius:10px}
+.r-card{border-radius:22px}.r-card-sm{border-radius:37px}.r-pill{border-radius:50px}
+.sh-util{box-shadow:var(--shadow-util)}.sh-paper{box-shadow:var(--shadow-paper)}
+</style>
+<section id="surface-depth" aria-label="Surface and depth">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Surface &amp; Depth</p>
+      <h2 class="concrette-h">Radii vary by density</h2>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card r-sharp"><div class="dt">Sharp</div><div class="dm">4px · list rows, resource media</div></div>
+      <div class="depth-card r-control"><div class="dt">Control</div><div class="dm">8px · outline pills, small buttons</div></div>
+      <div class="depth-card r-control-lg"><div class="dt">Control LG</div><div class="dm">10px · filled buttons</div></div>
+      <div class="depth-card r-card"><div class="dt">Card</div><div class="dm">22px · container panels</div></div>
+      <div class="depth-card r-card-sm"><div class="dt">Card SM</div><div class="dm">37px · chart panel corners</div></div>
+      <div class="depth-card r-pill"><div class="dt">Pill</div><div class="dm">50px · diagram nodes, CTA</div></div>
+      <div class="depth-card r-control sh-util"><div class="dt">Utility Shadow</div><div class="dm">rgba(0,0,0,.08) 0 1px 3px</div></div>
+      <div class="depth-card r-card sh-paper"><div class="dt">Paper Shadow</div><div class="dm">rgba(41,44,51,.14) 0 18px 48px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--background)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap)}
+.motion-card{border:1px solid var(--border);border-radius:var(--r-control);background:#fdfcf8;padding:26px;text-align:center}
+.motion-card h4{font-family:var(--concrette);text-transform:uppercase;font-size:15px;color:var(--ink-2b);margin-bottom:16px}
+.motion-card .mm{font-size:12px;color:var(--text-secondary);margin-top:16px}
+.demo-caret{font-family:var(--serif);font-size:22px;color:var(--text-heading)}
+.demo-box{width:44px;height:44px;background:var(--accent-navy);border-radius:8px;margin:0 auto}
+.replay{margin-top:14px;background:transparent;border:1px solid var(--border);border-radius:8px;height:44px;padding:0 14px;font-size:13px;cursor:pointer;color:var(--text-primary)}
+.replay:hover{background:#F0EDE4}
+.anim-drift{animation:drift 6s ease-in-out infinite}
+.anim-pulse{animation:loading-dot-pulse 1.2s ease-in-out infinite}
+.play-fade{animation:fadein 0.25s ease}
+@keyframes fadein{from{opacity:0}to{opacity:1}}
+</style>
+<section id="motion" aria-label="Motion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">Motion</p>
+      <h2 class="concrette-h">Quiet and functional</h2>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card"><h4>Caret Blink</h4><span class="demo-caret">headline<span class="caret" aria-hidden="true"></span></span><div class="mm">caret-blink · 1s step-end</div></div>
+      <div class="motion-card"><h4>Pointer Drift</h4><div class="demo-box anim-drift"></div><div class="mm">arena-pointer-drift · 6s ease-in-out</div></div>
+      <div class="motion-card"><h4>Loading Dot</h4><span class="load-dot anim-pulse" style="margin:0"></span><div class="mm">loading-dot-pulse · 1.2s ease-in-out</div></div>
+      <div class="motion-card"><h4>Board Enter</h4><div class="demo-box" id="fadeBox"></div><button class="replay" type="button" id="replayFade">Replay · 0.25s ease</button><div class="mm">lbp-board-enter · opacity/filter 0.25s</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--surface)}
+.mock{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;background:var(--background);box-shadow:var(--shadow-paper)}
+.mock-nav{height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid var(--border);background:var(--background)}
+.mock-hero{background:linear-gradient(rgba(0,0,0,0.28),rgba(0,0,0,0.28)),linear-gradient(120deg,#9c9284,#6f665a);display:flex;align-items:flex-end;min-height:180px}
+.mock-hero .plate{background:var(--background);width:100%;padding:24px}
+.mock-body{padding:34px 24px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}}
+.mock-card{background:var(--surface);border-radius:0}
+.mock-card .m{height:110px;display:flex;align-items:center;justify-content:center;color:var(--ink-2b)}
+.mock-card .m iconify-icon{font-size:34px;opacity:0.6}
+.mock-card .l{text-align:center;padding:12px;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:var(--text-primary)}
+.mock-cta{margin-top:28px;text-align:center}
+</style>
+<section id="composition" aria-label="In composition">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">In Composition</p>
+      <h2 class="concrette-h">The system, assembled</h2>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="nav-logo" style="font-size:16px"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Intelligence</div>
+        <button class="nav-cta" type="button">Enter</button>
+      </div>
+      <div class="mock-hero">
+        <div class="plate">
+          <p class="eyebrow" style="margin-bottom:8px">The Product Lab</p>
+          <p class="serif-h" style="font-size:22px;max-width:480px">Color earned only by the data<span class="caret" aria-hidden="true"></span></p>
+        </div>
+      </div>
+      <div class="mock-body">
+        <div class="pillrow" style="margin-bottom:0">
+          <button class="pill-out" type="button"><iconify-icon icon="lucide:code" aria-hidden="true"></iconify-icon>Code</button>
+          <button class="pill-out" type="button"><iconify-icon icon="lucide:image" aria-hidden="true"></iconify-icon>Image</button>
+          <button class="pill-out" type="button"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon>Video</button>
+        </div>
+        <div class="mock-cards">
+          <article class="mock-card"><div class="m"><iconify-icon icon="lucide:file-code-2" aria-hidden="true"></iconify-icon></div><div class="l">Snippets</div></article>
+          <article class="mock-card"><div class="m"><iconify-icon icon="lucide:trophy" aria-hidden="true"></iconify-icon></div><div class="l">Awards</div></article>
+          <article class="mock-card"><div class="m"><iconify-icon icon="lucide:files" aria-hidden="true"></iconify-icon></div><div class="l">Archive</div></article>
+        </div>
+        <div class="mock-cta"><button class="btn b-dark" type="button">Run the arena <iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<style data-section-styles="footer">
+#footer{background:var(--background);padding:44px 0;border-top:1px solid var(--border)}
+.footlinks{display:flex;flex-wrap:wrap;gap:24px;margin-bottom:24px}
+.footlinks a{font-size:12px;letter-spacing:0.06em;text-transform:uppercase;text-decoration:none;color:var(--text-primary);transition:color var(--ease)}
+.footlinks a:hover{color:var(--ink-2b)}
+.footmeta{font-size:13px;color:var(--text-secondary);line-height:1.7}
+.footmeta a{color:var(--text-secondary)}
+</style>
+<footer id="footer" aria-label="Footer">
+  <div class="wrap">
+    <div class="footlinks">
+      <a href="#">Models</a><a href="#">Arena</a><a href="#">Leaderboards</a><a href="#">Datasets</a>
+      <a href="#">Docs</a><a href="#">About</a><a href="#">Privacy</a><a href="#">Terms</a>
+    </div>
+    <p class="footmeta">
+      Archival Cream Ledger — Intelligence<br>
+      Source: <a href="https://intelligence.ai/">https://intelligence.ai/</a><br>
+      Design system captured and rendered by r3xdec.design
+    </p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var barColors=['#A0C3C4','#9CA98C','#C4A98C','#B8B0AA','#A0C3C4','#8FA79A','#C4B08C','#A0C3C4','#9CA98C','#B8B0AA','#A0C3C4','#C4A98C','#8FA79A','#A0C3C4','#9CA98C','#B8B0AA','#A0C3C4'];
+  var icons=['code','image','video','audio-lines','presentation','file-code','cpu','database','git-branch','bar-chart-3','box','layers','activity','zap','globe','shield','star'];
+  var bars=document.getElementById('barsGroup');
+  if(bars){
+    for(var i=0;i<17;i++){
+      var h=40+Math.round(Math.random()*150);
+      var d=document.createElement('div');d.className='bar';
+      d.innerHTML='<span class="num">'+(98-i*2)+'</span><span class="col" style="height:'+h+'px;background:'+barColors[i]+'"></span><span class="chip"><iconify-icon icon="lucide:'+icons[i]+'" aria-hidden="true"></iconify-icon></span>';
+      bars.appendChild(d);
+    }
+  }
+  var rl=document.getElementById('rowlist');
+  if(rl){
+    var names=['GPT-Ledger 4','Claude Concordance','Meridian-70B','Northwind Reason','Atlas Vision Pro','Provenance Coder','Foundry Speech','Cornice Retrieval','Sage Agent','Clay Router','Stone Vision','Teal Reason-XL','Baskerville-M','Concrette-7','Halftone-V','Colonnade Base','Archive Mini','Ledger Lite','Paper Nano'];
+    var dots=['#00D492','#00D492','#FE9A00','#00D492','#FB2C36','#00D492','#FE9A00','#00D492','#00D492','#FB2C36','#00D492','#FE9A00','#00D492','#00D492','#FE9A00','#00D492','#00D492','#FB2C36','#00D492'];
+    for(var j=0;j<19;j++){
+      var r=document.createElement('div');r.className='lrow';
+      r.innerHTML='<div class="lbl"><span class="rank">'+(j+1)+'</span><span class="status-dot" style="background:'+dots[j]+'"></span>'+names[j]+'</div><div class="vals"><span class="v">'+(98-j*3)+'.'+(j%10)+'</span><span class="v">'+(1200-j*40)+'</span><span class="v">$'+(0.4+j*0.05).toFixed(2)+'</span></div>';
+      rl.appendChild(r);
+    }
+  }
+  var rf=document.getElementById('replayFade'),fb=document.getElementById('fadeBox');
+  if(rf&&fb){rf.addEventListener('click',function(){fb.classList.remove('play-fade');void fb.offsetWidth;fb.classList.add('play-fade');});}
+})();
+</script>
+
+<style>@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}</style>
+</body>
+</html>

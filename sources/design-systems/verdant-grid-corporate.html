@@ -1,0 +1,954 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verdant Grid Corporate — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface-dark:#1F242C;
+  --surface-muted:#F0F4F9;
+  --text-primary:#1F242C;
+  --text-secondary:#565872;
+  --text-on-dark:#FFFFFF;
+  --accent-primary:#57B33E;
+  --accent-secondary:#FF7029;
+  --border:#D1D1D1;
+  --border-alt:#E2EEFF;
+  --r-control:5px;
+  --r-card:3px;
+  --r-pill:126px;
+  --r-circle:50px;
+  --space-base:15px;
+  --gap:30px;
+  --section-padding:60px;
+  --shadow-process:rgba(0,0,0,0.06) 0px 3px 36px 0px;
+  --shadow-light:rgba(0,0,0,0.03) 0px 5px 50px 0px;
+  --shadow-deep:rgba(0,0,0,0.05) 0px 10px 30px 3px;
+  --font-display:"Teko", sans-serif;
+  --font-body:"Rubik", sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.88;
+}
+h1,h2,h3,h4{
+  font-family:var(--font-display);
+  font-weight:400;
+  line-height:0.95;
+  letter-spacing:-1.5px;
+  margin:0;
+}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.container{max-width:1200px;margin:0 auto;padding:0 24px;}
+.eyebrow{
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:16px;
+  line-height:1.24;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  color:var(--accent-primary);
+}
+.band{padding:80px 0;}
+iconify-icon{display:inline-block;line-height:1;}
+
+/* NAV */
+.nav{
+  width:100%;
+  height:100px;
+  background:#FFFFFF;
+  border-radius:0;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+}
+.nav-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px;
+  width:100%;
+  display:flex;
+  align-items:center;
+  gap:var(--gap);
+}
+.logo{
+  font-family:var(--font-display);
+  font-size:34px;
+  line-height:0.95;
+  letter-spacing:-1px;
+  color:var(--text-primary);
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.logo iconify-icon{color:var(--accent-primary);font-size:30px;}
+.nav-links{
+  display:flex;
+  gap:26px;
+  margin-left:20px;
+  list-style:none;
+  padding:0;
+  font-weight:700;
+  font-size:16px;
+  line-height:1.24;
+}
+.nav-links a{text-decoration:none;color:var(--text-primary);}
+.nav-links a:hover{color:var(--accent-primary);}
+.nav-spacer{flex:1;}
+.btn-nav-outline{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-primary);
+  border-radius:var(--r-control);
+  height:70px;
+  padding:0 26px;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:all .3s ease;
+}
+.btn-nav-outline:hover{border-color:var(--accent-primary);color:var(--accent-primary);}
+@media(max-width:1024px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{
+  background:var(--background);
+  padding:70px 0 90px;
+  position:relative;
+  overflow:hidden;
+}
+.hero-grid{
+  display:grid;
+  grid-template-columns:1.1fr 0.9fr;
+  gap:48px;
+  align-items:center;
+}
+.hero h1{
+  font-size:96px;
+  margin:18px 0 22px;
+  text-transform:uppercase;
+}
+.hero-lede{
+  color:var(--text-secondary);
+  max-width:460px;
+  margin-bottom:28px;
+}
+.hero-ctas{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn-hero{
+  background:var(--accent-primary);
+  color:#FFFFFF;
+  border:none;
+  border-radius:var(--r-control);
+  height:47px;
+  padding:11px 30px;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  transition:all .3s ease;
+}
+.btn-hero:hover{background:#489330;}
+.btn-hero-ghost{
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--text-primary);
+  border-radius:var(--r-control);
+  height:47px;
+  padding:11px 24px;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:16px;
+  cursor:pointer;
+  transition:all .3s ease;
+}
+.btn-hero-ghost:hover{border-color:var(--accent-primary);color:var(--accent-primary);}
+.hero-art{
+  background:var(--surface-muted);
+  border-radius:var(--r-card);
+  aspect-ratio:4/3;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.hero-art .sun{
+  position:absolute;
+  width:220px;height:220px;border-radius:50%;
+  background:radial-gradient(circle,#FF7029 0%,rgba(255,112,41,0) 70%);
+  top:-40px;right:-30px;opacity:.55;
+}
+.hero-art iconify-icon{font-size:120px;color:var(--accent-primary);z-index:1;}
+.hero-art .panel{
+  position:absolute;bottom:24px;left:24px;right:24px;
+  height:90px;background:var(--surface-dark);border-radius:var(--r-card);
+  display:flex;align-items:center;gap:14px;padding:0 20px;color:#fff;
+}
+.hero-art .panel iconify-icon{font-size:34px;color:var(--accent-primary);}
+.hero-art .panel small{color:#fff;font-weight:700;line-height:1.2;}
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero h1{font-size:60px;}
+}
+@media(max-width:640px){.hero h1{font-size:46px;}}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <span class="logo"><iconify-icon icon="lucide:leaf" aria-hidden="true"></iconify-icon>Verdant</span>
+    <ul class="nav-links">
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#components">Services</a></li>
+      <li><a href="#composition">Projects</a></li>
+      <li><a href="#palette">About</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <span class="nav-spacer"></span>
+    <button class="btn-nav-outline" type="button">Get A Quote <iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon></button>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" class="hero" aria-label="Hero">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Clean Energy, Built To Last</span>
+      <h1>Power Your<br>Future Green</h1>
+      <p class="hero-lede">We design, install and maintain solar and renewable systems for homes and businesses — engineered for reliability, backed by real service.</p>
+      <div class="hero-ctas">
+        <button class="btn-hero" type="button">Get A Free Quote <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        <button class="btn-hero-ghost" type="button">Our Services</button>
+      </div>
+    </div>
+    <div class="hero-art" role="img" aria-label="Illustration of a solar array with an efficiency readout">
+      <div class="sun"></div>
+      <iconify-icon icon="lucide:sun-medium" aria-hidden="true"></iconify-icon>
+      <div class="panel">
+        <iconify-icon icon="lucide:battery-charging" aria-hidden="true"></iconify-icon>
+        <small>98% Uptime<br>Clean Output</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface-muted);}
+.section-head{margin-bottom:44px;}
+.section-head h2{font-size:64px;text-transform:uppercase;margin-bottom:6px;}
+.section-head .eyebrow{margin-bottom:10px;display:block;}
+.section-head p{color:var(--text-secondary);max-width:560px;}
+.pal-group{margin-bottom:40px;}
+.pal-group h3{font-size:30px;text-transform:uppercase;color:var(--text-primary);margin-bottom:18px;}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);}
+.swatch{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r-card);
+  overflow:hidden;box-shadow:var(--shadow-light);
+}
+.swatch .chip{height:96px;}
+.checker{
+  background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);
+  background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+.swatch .meta{padding:14px 16px;}
+.swatch .name{font-weight:700;font-size:15px;line-height:1.3;}
+.swatch .val{font-size:13px;color:var(--text-secondary);font-family:monospace;margin-top:2px;}
+.swatch .note{font-size:14px;color:var(--text-secondary);line-height:1.5;margin-top:6px;}
+@media(max-width:640px){.section-head h2{font-size:46px;}}
+</style>
+<section id="palette" class="band" aria-label="Palette">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Palette</span>
+      <h2>Colour, On A Ration</h2>
+      <p>White and pale tints carry the page. One leaf-green earns every action, and a single orange is spent just once.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--border);"></div><div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="note">Page ground and dominant surface — hero, cards, footer top.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F0F4F9;"></div><div class="meta"><div class="name">Surface Muted</div><div class="val">#F0F4F9</div><div class="note">Pale blue-gray behind icon badges and the process section.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1F242C;"></div><div class="meta"><div class="name">Surface Dark</div><div class="val">#1F242C</div><div class="note">The sole dark band — proof, process and the quote form.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#1F242C;"></div><div class="meta"><div class="name">Text Primary</div><div class="val">#1F242C</div><div class="note">Near-black headings and copy on light surfaces.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#565872;"></div><div class="meta"><div class="name">Text Secondary</div><div class="val">#565872</div><div class="note">Muted slate for body paragraphs at length.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1F242C;border-bottom:1px solid var(--border);"></div><div class="meta"><div class="name" style="color:#1F242C;">Text On Dark</div><div class="val">#FFFFFF</div><div class="note">Pure white for copy set on the charcoal band.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#57B33E;"></div><div class="meta"><div class="name">Accent Primary</div><div class="val">#57B33E</div><div class="note">Leaf-green — every button, checklist glyph and the green band.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FF7029;"></div><div class="meta"><div class="name">Accent Secondary</div><div class="val">#FF7029</div><div class="note">Hot orange, spent once — the promotional pill CTA.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Borders</h3>
+      <div class="pal-grid">
+        <div class="swatch"><div class="chip" style="background:#D1D1D1;"></div><div class="meta"><div class="name">Border</div><div class="val">#D1D1D1</div><div class="note">Light neutral hairline on cards and outline controls.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E2EEFF;"></div><div class="meta"><div class="name">Border Alt</div><div class="val">#E2EEFF</div><div class="note">Pale blue-tint border delineating form inputs.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background);}
+.spec{border-top:1px solid var(--border);padding:28px 0;display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:baseline;}
+.spec:last-child{border-bottom:1px solid var(--border);}
+.spec-demo{overflow:hidden;}
+.spec-meta{font-size:13px;color:var(--text-secondary);font-family:monospace;line-height:1.7;}
+.demo-headline{font-family:var(--font-display);font-size:72px;line-height:0.95;letter-spacing:-1.5px;text-transform:uppercase;}
+.demo-label{font-family:var(--font-body);font-weight:700;font-size:16px;line-height:1.24;}
+.demo-body{font-family:var(--font-body);font-weight:400;font-size:16px;line-height:1.88;color:var(--text-secondary);max-width:640px;}
+.weights{display:flex;gap:36px;flex-wrap:wrap;margin-top:8px;}
+.weights span{font-family:var(--font-body);font-size:30px;}
+@media(max-width:768px){.spec{grid-template-columns:1fr;}.demo-headline{font-size:52px;}}
+</style>
+<section id="type-scale" class="band" aria-label="Type scale">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Type</span>
+      <h2>Condensed Against Calm</h2>
+      <p>Teko stands tall and tight for impact; Rubik breathes wide and loose for everything read at length.</p>
+    </div>
+
+    <div class="spec">
+      <div class="spec-demo"><div class="demo-headline">Clean Power Now</div></div>
+      <div class="spec-meta">headline-md · Teko<br>72px / 400<br>line-height 0.95<br>tracking -1.5px</div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="demo-label">Get A Free Quote Today</div></div>
+      <div class="spec-meta">label-md · Rubik<br>16px / 700<br>line-height 1.24</div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><p class="demo-body">Our engineers size every system to the roof, the load and the sunlight it actually gets — then stand behind the numbers with service that shows up. No guesswork, no oversell, just clean output you can measure.</p></div>
+      <div class="spec-meta">body-md · Rubik<br>16px / 400<br>line-height 1.88</div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo">
+        <div class="weights">
+          <span style="font-weight:400;">Regular 400</span>
+          <span style="font-weight:500;">Medium 500</span>
+          <span style="font-weight:700;">Bold 700</span>
+        </div>
+      </div>
+      <div class="spec-meta">Rubik weight ramp<br>400 · 500 · 700</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface-muted);}
+.comp-block{margin-bottom:72px;}
+.comp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:24px;}
+.comp-head h3{font-size:42px;text-transform:uppercase;}
+.comp-head .count{font-size:13px;font-family:monospace;color:var(--text-secondary);}
+.spec-card{
+  background:var(--surface-dark);color:#fff;border-radius:var(--r-card);
+  padding:16px 18px;font-family:monospace;font-size:12.5px;line-height:1.7;
+  margin-top:22px;
+}
+.spec-card b{color:var(--accent-primary);font-weight:400;}
+.comp-stage{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r-card);
+  padding:36px;box-shadow:var(--shadow-light);
+}
+.comp-stage.dark{background:var(--surface-dark);border-color:var(--surface-dark);color:#fff;}
+
+/* buttons */
+.btn-green{background:var(--accent-primary);color:#fff;border:none;font-family:var(--font-body);font-weight:700;font-size:16px;cursor:pointer;transition:all .3s ease;display:inline-flex;align-items:center;gap:8px;border-radius:var(--r-control);}
+.btn-green:hover{background:#489330;}
+.btn-green:active{background:#3d7f29;}
+.btn-green:disabled{background:#A9CFA0;cursor:not-allowed;}
+.b-nav{height:70px;padding:0 26px;}
+.b-body{height:47px;padding:11px 30px;}
+.b-compact{height:36px;padding:6px 12px;}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text-primary);height:47px;padding:11px 24px;border-radius:var(--r-control);font-family:var(--font-body);font-weight:700;font-size:16px;cursor:pointer;transition:all .3s ease;}
+.btn-outline:hover{border-color:var(--accent-primary);color:var(--accent-primary);}
+.btn-outline:active{background:var(--surface-muted);}
+.btn-outline:disabled{color:#9A9AA5;border-color:#E6E6E6;cursor:not-allowed;}
+.btn-pill{background:var(--accent-secondary);color:#fff;border:none;border-radius:var(--r-pill);height:64px;padding:23px 5px 20px 12px;font-family:var(--font-body);font-weight:700;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;transition:all .3s ease;}
+.btn-pill:hover{background:#e85f1c;}
+.btn-pill:active{background:#d1550f;}
+.btn-pill iconify-icon{font-size:22px;}
+
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{padding:16px 14px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle;}
+.matrix th{font-family:var(--font-body);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.5px;color:var(--text-secondary);}
+.matrix td:first-child{font-weight:700;font-size:14px;}
+.btn-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+
+/* testimonial */
+.tst-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+.tst-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:20px 24px;}
+.tst-quote{width:44px;height:44px;border-radius:var(--r-circle);background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:14px;}
+.tst-body{color:var(--text-secondary);margin-bottom:18px;}
+.tst-person{display:flex;align-items:center;gap:12px;}
+.tst-avatar{width:48px;height:48px;border-radius:var(--r-circle);background:var(--accent-primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;}
+.tst-name{font-weight:700;line-height:1.2;}
+.tst-cap{font-size:13px;color:var(--text-secondary);}
+
+/* service */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);}
+.svc-card{background:#fff;border-radius:0;padding:0 0 60px;overflow:visible;position:relative;}
+.svc-photo{height:200px;background:linear-gradient(135deg,#57B33E33,#1F242C);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.svc-photo iconify-icon{font-size:70px;color:#fff;opacity:.85;}
+.svc-badge{width:70px;height:70px;border-radius:var(--r-circle);background:#fff;display:flex;align-items:center;justify-content:center;margin:-35px auto 0;box-shadow:var(--shadow-light);color:var(--accent-primary);font-size:32px;position:relative;}
+.svc-body{padding:14px 30px 0;text-align:center;}
+.svc-body h4{font-family:var(--font-display);font-size:30px;text-transform:uppercase;letter-spacing:-.5px;color:var(--text-primary);margin-bottom:8px;}
+.svc-body p{color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:14px;}
+.svc-link{color:var(--accent-primary);font-weight:700;text-decoration:underline;display:inline-flex;align-items:center;gap:6px;}
+
+/* proof panel */
+.proof-wrap{background:linear-gradient(135deg,#2b333d,#12161c);border-radius:var(--r-card);padding:8px;position:relative;overflow:hidden;}
+.proof-card{background:rgba(31,36,44,0.88);color:#fff;padding:48px;border-radius:var(--r-card);}
+.proof-card h4{font-family:var(--font-display);font-size:42px;text-transform:uppercase;margin-bottom:12px;}
+.proof-card p{color:#D5D8DE;margin-bottom:28px;max-width:560px;}
+.proof-checks{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+.proof-item{display:flex;align-items:center;gap:12px;font-weight:700;}
+.proof-item .ck{width:32px;height:32px;border-radius:var(--r-circle);background:var(--accent-secondary);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
+
+/* promo strip */
+.promo-strip{display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;}
+.promo-card{position:relative;height:280px;overflow:hidden;border-radius:0;display:flex;align-items:center;justify-content:center;}
+.promo-card.a{background:linear-gradient(135deg,#57B33E,#3d7f29);}
+.promo-card.b{background:linear-gradient(135deg,#1F242C,#3a4451);}
+.promo-card.c{background:linear-gradient(135deg,#565872,#1F242C);}
+.promo-card iconify-icon{font-size:56px;color:#fff;opacity:.9;}
+.promo-pill-wrap{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);}
+
+/* process */
+.proc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.proc-card{background:#fff;border-radius:var(--r-card);padding:24px 30px;box-shadow:var(--shadow-process);border-top:3px solid var(--accent-secondary);text-align:center;margin-top:50px;position:relative;}
+.proc-badge{width:100px;height:100px;border-radius:var(--r-circle);background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:42px;margin:-74px auto 16px;}
+.proc-card h4{font-family:var(--font-display);font-size:34px;text-transform:uppercase;color:var(--text-primary);margin-bottom:8px;}
+.proc-card p{color:var(--text-secondary);font-size:15px;line-height:1.7;margin-bottom:18px;}
+
+/* quote form band */
+.qform{background:var(--surface-dark);border-radius:0;padding:60px;display:grid;grid-template-columns:1fr 1fr;gap:48px;color:#fff;}
+.qform-photo{position:relative;min-height:320px;}
+.qform-photo .orange-block{position:absolute;inset:24px 24px auto auto;width:70%;height:70%;background:var(--accent-secondary);border-radius:var(--r-card);z-index:0;}
+.qform-photo .photo{position:absolute;inset:0 0 24px 24px;background:linear-gradient(135deg,#57B33E33,#12161c);border-radius:var(--r-card);z-index:1;display:flex;align-items:center;justify-content:center;}
+.qform-photo .photo iconify-icon{font-size:72px;color:#fff;opacity:.85;}
+.qform h4{font-family:var(--font-display);font-size:42px;text-transform:uppercase;margin-bottom:20px;}
+.fld{display:flex;flex-direction:column;gap:8px;margin-bottom:16px;}
+.fld input,.fld textarea{background:#fff;border:1px solid var(--border-alt);border-radius:var(--r-control);height:47px;padding:0 14px;font-family:var(--font-body);font-size:15px;color:var(--text-primary);}
+.fld textarea{height:96px;padding:12px 14px;resize:vertical;}
+.fld input::placeholder,.fld textarea::placeholder{color:#9A9AA5;}
+
+/* contact strip */
+.contact-strip{background:var(--accent-primary);border-radius:0;padding:44px 60px;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.contact-item{display:flex;align-items:center;gap:16px;color:#fff;}
+.contact-item .cf{width:56px;height:56px;border-radius:var(--r-circle);border:2px solid rgba(255,255,255,.7);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;}
+.contact-item small{display:block;font-size:13px;opacity:.9;}
+.contact-item strong{font-size:17px;}
+
+@media(max-width:768px){
+  .tst-grid,.svc-grid,.qform,.contact-strip{grid-template-columns:1fr;}
+  .proc-grid{grid-template-columns:1fr;}
+  .promo-strip{grid-template-columns:1fr;}
+  .proof-checks{grid-template-columns:1fr;}
+  .qform{padding:40px 24px;}
+  .comp-head h3{font-size:34px;}
+}
+</style>
+<section id="components" class="band" aria-label="Components">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The Kit</span>
+      <h2>Every Part, In Its Place</h2>
+      <p>Distinct green button sizes, one exclusive orange pill, uniform card grids and a charcoal band that resets attention.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · 100px tall · edge-to-edge</span></div>
+      <div class="comp-stage" style="padding:0;overflow:hidden;">
+        <div class="nav" style="border-bottom:1px solid var(--border);">
+          <div class="nav-inner">
+            <span class="logo"><iconify-icon icon="lucide:leaf" aria-hidden="true"></iconify-icon>Verdant</span>
+            <ul class="nav-links">
+              <li><a href="#components">Home</a></li>
+              <li><a href="#components">Services</a></li>
+              <li><a href="#components">Projects</a></li>
+              <li><a href="#components">About</a></li>
+            </ul>
+            <span class="nav-spacer"></span>
+            <button class="btn-nav-outline" type="button">Get A Quote <iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--nav · fill <b>background #FFFFFF</b> · radius <b>0</b> · height <b>100</b> · border <b>border #D1D1D1</b><br>outline cta · fill <b>transparent</b> · border <b>border</b> · radius <b>r-control 5</b> · height <b>70</b> · type <b>label-md</b></div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block" data-tier-a-component="button-primary-body">
+      <div class="comp-head"><h3>Buttons — Variant × State</h3><span class="count">green fill · 5px radius · three heights</span></div>
+      <div class="comp-stage">
+        <div style="overflow-x:auto;">
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Primary — Nav (70px)</td>
+              <td><button class="btn-green b-nav" type="button">Get A Quote</button></td>
+              <td><button class="btn-green b-nav" type="button" style="background:#489330;">Get A Quote</button></td>
+              <td><button class="btn-green b-nav" type="button" style="background:#3d7f29;">Get A Quote</button></td>
+              <td><button class="btn-green b-nav" type="button" disabled>Get A Quote</button></td>
+            </tr>
+            <tr>
+              <td>Primary — Body (47px)</td>
+              <td><button class="btn-green b-body" type="button">Read More</button></td>
+              <td><button class="btn-green b-body" type="button" style="background:#489330;">Read More</button></td>
+              <td><button class="btn-green b-body" type="button" style="background:#3d7f29;">Read More</button></td>
+              <td><button class="btn-green b-body" type="button" disabled>Read More</button></td>
+            </tr>
+            <tr>
+              <td>Primary — Compact (36px)</td>
+              <td><button class="btn-green b-compact" type="button">Enquire</button></td>
+              <td><button class="btn-green b-compact" type="button" style="background:#489330;">Enquire</button></td>
+              <td><button class="btn-green b-compact" type="button" style="background:#3d7f29;">Enquire</button></td>
+              <td><button class="btn-green b-compact" type="button" disabled>Enquire</button></td>
+            </tr>
+            <tr>
+              <td>Outline — Nav CTA (47px)</td>
+              <td><button class="btn-outline" type="button">Get A Quote</button></td>
+              <td><button class="btn-outline" type="button" style="border-color:var(--accent-primary);color:var(--accent-primary);">Get A Quote</button></td>
+              <td><button class="btn-outline" type="button" style="background:var(--surface-muted);">Get A Quote</button></td>
+              <td><button class="btn-outline" type="button" disabled>Get A Quote</button></td>
+            </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+      <div class="spec-card">--btn-primary-body · fill <b>accent-primary #57B33E</b> · text <b>#FFFFFF</b> · radius <b>r-control 5</b> · height <b>47</b> · padding <b>11px 30px</b> · type <b>label-md</b> · motion <b>all .3s ease</b><br>hover <b>#489330</b> · disabled <b>#A9CFA0</b></div>
+    </div>
+
+    <!-- HERO CTA -->
+    <div class="comp-block" data-tier-a-component="button-primary-hero">
+      <div class="comp-head"><h3>Hero Primary CTA</h3><span class="count">×1 · true primary action</span></div>
+      <div class="comp-stage">
+        <div class="btn-row">
+          <button class="btn-hero" type="button">Get A Free Quote <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card">--button-primary-hero · fill <b>accent-primary</b> · text <b>#FFFFFF</b> · radius <b>r-control 5</b> · height <b>47</b> · type <b>label-md</b></div>
+    </div>
+
+    <!-- COMPACT CTA -->
+    <div class="comp-block" data-tier-a-component="button-primary-compact">
+      <div class="comp-head"><h3>Button — Primary (Compact)</h3><span class="count">×1 · 36px · smallest CTA</span></div>
+      <div class="comp-stage">
+        <div class="btn-row"><button class="btn-green b-compact" type="button">Request Callback</button></div>
+      </div>
+      <div class="spec-card">--button-primary-compact · fill <b>accent-primary</b> · radius <b>r-control 5</b> · height <b>36</b> · padding <b>6px 12px</b></div>
+    </div>
+
+    <!-- NAV CTA GREEN -->
+    <div class="comp-block" data-tier-a-component="button-primary-nav">
+      <div class="comp-head"><h3>Button — Primary (Nav)</h3><span class="count">×1 · 70px · tallest green variant</span></div>
+      <div class="comp-stage">
+        <div class="btn-row"><button class="btn-green b-nav" type="button">Get A Quote</button></div>
+      </div>
+      <div class="spec-card">--button-primary-nav · fill <b>accent-primary</b> · radius <b>r-control 5</b> · height <b>70</b> · padding <b>0</b></div>
+    </div>
+
+    <!-- ACCENT PILL -->
+    <div class="comp-block" data-tier-a-component="button-accent-pill">
+      <div class="comp-head"><h3>Button — Accent Pill</h3><span class="count">×1 · used exactly once</span></div>
+      <div class="comp-stage" style="display:flex;justify-content:center;">
+        <button class="btn-pill" type="button">Limited Offer <iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="spec-card">--button-accent-banner · fill <b>accent-secondary #FF7029</b> · text <b>#FFFFFF</b> · radius <b>r-pill 126</b> · height <b>64</b> · padding <b>23px 5px 20px 12px</b></div>
+    </div>
+
+    <!-- TESTIMONIAL -->
+    <div class="comp-block" data-tier-a-component="card-testimonial">
+      <div class="comp-head"><h3>Testimonial Cards</h3><span class="count">×2 · below hero fold</span></div>
+      <div class="tst-grid">
+        <div class="tst-card">
+          <div class="tst-quote"><iconify-icon icon="lucide:quote" aria-hidden="true"></iconify-icon></div>
+          <p class="tst-body">The install crew were in and out in a day and the readings matched every number they quoted. Our bill dropped the first month.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">RS</div>
+            <div><div class="tst-name">Ravi Sharma</div><div class="tst-cap">Customer</div></div>
+          </div>
+        </div>
+        <div class="tst-card">
+          <div class="tst-quote"><iconify-icon icon="lucide:quote" aria-hidden="true"></iconify-icon></div>
+          <p class="tst-body">Straight answers, fair pricing, and a service team that actually calls back. We've since fitted panels across two more sites.</p>
+          <div class="tst-person">
+            <div class="tst-avatar">MK</div>
+            <div><div class="tst-name">Meena Kapoor</div><div class="tst-cap">Customer</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--card-testimonial · fill <b>#FFFFFF</b> · radius <b>r-card 3</b> · padding <b>20px 24px</b> · border <b>1px solid border #D1D1D1</b> · quote glyph <b>accent-primary</b></div>
+    </div>
+
+    <!-- SERVICE (dark band) -->
+    <div class="comp-block" data-tier-a-component="card-service">
+      <div class="comp-head"><h3>Service Cards</h3><span class="count">×2 · on charcoal band</span></div>
+      <div class="comp-stage dark">
+        <div class="svc-grid">
+          <div class="svc-card">
+            <div class="svc-photo"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon></div>
+            <div class="svc-badge"><iconify-icon icon="lucide:panel-top" aria-hidden="true"></iconify-icon></div>
+            <div class="svc-body">
+              <h4>Solar Installation</h4>
+              <p>Rooftop and ground-mount arrays sized to your load, installed by certified crews.</p>
+              <a class="svc-link" href="#components">Read More <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-photo"><iconify-icon icon="lucide:wind" aria-hidden="true"></iconify-icon></div>
+            <div class="svc-badge"><iconify-icon icon="lucide:battery-charging" aria-hidden="true"></iconify-icon></div>
+            <div class="svc-body">
+              <h4>Storage & Backup</h4>
+              <p>Battery systems that keep the lights on and shave your peak-hour costs.</p>
+              <a class="svc-link" href="#components">Read More <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--card-service · fill <b>#FFFFFF</b> · radius <b>0</b> · padding <b>0 0 60px</b> · on <b>surface-dark #1F242C</b> · badge radius <b>r-circle 50</b> · link <b>accent-primary</b></div>
+    </div>
+
+    <!-- PROOF PANEL -->
+    <div class="comp-block" data-tier-a-component="proof-panel">
+      <div class="comp-head"><h3>Proof Panel</h3><span class="count">×1 · scrim over photography</span></div>
+      <div class="proof-wrap">
+        <div class="proof-card">
+          <h4>Why Choose Us</h4>
+          <p>Fifteen years of installs, one standard of service. Here's what every project gets, without asking.</p>
+          <div class="proof-checks">
+            <div class="proof-item"><span class="ck"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Certified Engineers</div>
+            <div class="proof-item"><span class="ck"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Transparent Pricing</div>
+            <div class="proof-item"><span class="ck"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Guaranteed Output</div>
+            <div class="proof-item"><span class="ck"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>Lifetime Support</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--proof-panel · scrim <b>surface-dark @ .88</b> · text <b>text-on-dark</b> · radius <b>r-card 3</b> · check glyph <b>accent-secondary #FF7029</b> · circle <b>r-circle</b></div>
+    </div>
+
+    <!-- PROMO STRIP -->
+    <div class="comp-block" data-tier-a-component="promotional-media-strip">
+      <div class="comp-head"><h3>Promotional Media Strip</h3><span class="count">×3 · equal thirds · one pill CTA</span></div>
+      <div class="promo-strip">
+        <div class="promo-card a"><iconify-icon icon="lucide:sun-medium" aria-hidden="true"></iconify-icon></div>
+        <div class="promo-card b">
+          <iconify-icon icon="lucide:home" aria-hidden="true"></iconify-icon>
+          <div class="promo-pill-wrap"><button class="btn-pill" type="button">Book A Survey <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></div>
+        </div>
+        <div class="promo-card c"><iconify-icon icon="lucide:factory" aria-hidden="true"></iconify-icon></div>
+      </div>
+      <div class="spec-card">--promotional-media-strip · uniform <b>1fr / 1fr / 1fr</b> · full-bleed cover imagery · radius <b>0</b> · single <b>accent-pill</b> overlay</div>
+    </div>
+
+    <!-- PROCESS -->
+    <div class="comp-block" data-tier-a-component="card-process">
+      <div class="comp-head"><h3>Process Cards</h3><span class="count">×3 · light section · orange top-rule</span></div>
+      <div class="proc-grid">
+        <div class="proc-card">
+          <div class="proc-badge"><iconify-icon icon="lucide:clipboard-check" aria-hidden="true"></iconify-icon></div>
+          <h4>01 Survey</h4>
+          <p>We assess your roof, load and sunlight to size the right system.</p>
+          <button class="btn-green b-body" type="button">Read More <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div class="proc-card">
+          <div class="proc-badge"><iconify-icon icon="lucide:wrench" aria-hidden="true"></iconify-icon></div>
+          <h4>02 Install</h4>
+          <p>Certified crews fit and wire everything in a single visit.</p>
+          <button class="btn-green b-body" type="button">Read More <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div class="proc-card">
+          <div class="proc-badge"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></div>
+          <h4>03 Monitor</h4>
+          <p>Live output tracking and service that shows up when needed.</p>
+          <button class="btn-green b-body" type="button">Read More <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card">--card-process · fill <b>#FFFFFF</b> · radius <b>r-card 3</b> · padding <b>24px 30px</b> · shadow <b>rgba(0,0,0,.06) 0 3px 36px</b> · badge <b>surface-muted #F0F4F9</b> · top-rule <b>accent-secondary</b></div>
+    </div>
+
+    <!-- QUOTE FORM -->
+    <div class="comp-block" data-tier-a-component="quote-contact-form-band">
+      <div class="comp-head"><h3>Quote / Contact Form Band</h3><span class="count">×1 · two-column on charcoal</span></div>
+      <div class="qform">
+        <div class="qform-photo">
+          <div class="orange-block"></div>
+          <div class="photo"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon></div>
+        </div>
+        <div>
+          <h4>Request Your Quote</h4>
+          <div class="fld"><input type="text" placeholder="Your Name" aria-label="Your name"></div>
+          <div class="fld"><input type="email" placeholder="Email Address" aria-label="Email address"></div>
+          <div class="fld"><input type="text" placeholder="Subject" aria-label="Subject"></div>
+          <div class="fld"><textarea placeholder="Tell us about your site" aria-label="Message"></textarea></div>
+          <button class="btn-green b-body" type="button">Send Request <iconify-icon icon="lucide:send" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card">--card-panel-dark · fill <b>surface-dark #1F242C</b> · radius <b>0</b> · padding <b>60</b> · input border <b>border-alt #E2EEFF</b> · input radius <b>r-control 5</b> · orange corner <b>accent-secondary</b></div>
+    </div>
+
+    <!-- CONTACT STRIP -->
+    <div class="comp-block" data-tier-a-component="contact-info-strip">
+      <div class="comp-head"><h3>Contact Info Strip</h3><span class="count">×1 · only full-width green surface</span></div>
+      <div class="contact-strip">
+        <div class="contact-item"><span class="cf"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon></span><span><small>Address</small><strong>12 Solar Way, Pune</strong></span></div>
+        <div class="contact-item"><span class="cf"><iconify-icon icon="lucide:phone" aria-hidden="true"></iconify-icon></span><span><small>Phone</small><strong>+91 98765 43210</strong></span></div>
+        <div class="contact-item"><span class="cf"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></span><span><small>Email</small><strong>hello@verdant.in</strong></span></div>
+      </div>
+      <div class="spec-card">--contact-info-strip · fill <b>accent-primary #57B33E</b> · text <b>text-on-dark</b> · icon frame <b>r-circle 50</b> · three-up equal columns</div>
+    </div>
+
+    <!-- FOOTER COMPONENT -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <div class="comp-head"><h3>Footer</h3><span class="count">×1 · multi-column · orange subscribe</span></div>
+      <div class="comp-stage">
+        <div style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:var(--gap);">
+          <div>
+            <span class="logo" style="margin-bottom:12px;"><iconify-icon icon="lucide:leaf" aria-hidden="true"></iconify-icon>Verdant</span>
+            <p style="color:var(--text-secondary);font-size:14px;line-height:1.7;margin:10px 0 14px;">Clean energy engineered to last, backed by service you can measure.</p>
+            <div style="display:flex;gap:10px;">
+              <a href="#footer" aria-label="Facebook" style="width:36px;height:36px;border-radius:50%;background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;"><iconify-icon icon="lucide:facebook" aria-hidden="true"></iconify-icon></a>
+              <a href="#footer" aria-label="Instagram" style="width:36px;height:36px;border-radius:50%;background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+              <a href="#footer" aria-label="LinkedIn" style="width:36px;height:36px;border-radius:50%;background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+            </div>
+          </div>
+          <div>
+            <h4 style="font-size:24px;text-transform:uppercase;margin-bottom:12px;">Company</h4>
+            <ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2.2;color:var(--text-secondary);">
+              <li><a href="#footer" style="text-decoration:none;">About Us</a></li>
+              <li><a href="#footer" style="text-decoration:none;">Our Team</a></li>
+              <li><a href="#footer" style="text-decoration:none;">Careers</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:24px;text-transform:uppercase;margin-bottom:12px;">Services</h4>
+            <ul style="list-style:none;padding:0;margin:0;font-size:14px;line-height:2.2;color:var(--text-secondary);">
+              <li><a href="#footer" style="text-decoration:none;">Solar Install</a></li>
+              <li><a href="#footer" style="text-decoration:none;">Storage</a></li>
+              <li><a href="#footer" style="text-decoration:none;">Maintenance</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:24px;text-transform:uppercase;margin-bottom:12px;">Subscribe</h4>
+            <p style="color:var(--text-secondary);font-size:14px;margin-bottom:10px;">Latest news, straight to your inbox.</p>
+            <div style="display:flex;gap:8px;">
+              <input type="email" placeholder="Your email" aria-label="Email to subscribe" style="flex:1;height:47px;border:1px solid var(--border);border-radius:var(--r-control);padding:0 12px;font-family:var(--font-body);font-size:14px;">
+              <button type="button" aria-label="Subscribe" style="background:var(--accent-secondary);color:#fff;border:none;border-radius:var(--r-control);height:47px;width:47px;cursor:pointer;display:flex;align-items:center;justify-content:center;"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--footer · fill <b>background/transparent</b> · links <b>text-secondary</b> · subscribe btn <b>accent-secondary #FF7029</b> · social <b>r-circle</b></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background);}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.depth-card{background:#fff;padding:32px;}
+.depth-card h4{font-size:28px;text-transform:uppercase;color:var(--text-primary);margin-bottom:6px;}
+.depth-card p{font-size:13px;color:var(--text-secondary);font-family:monospace;}
+.r-demos{display:flex;gap:var(--gap);flex-wrap:wrap;margin-top:32px;}
+.r-demo{width:150px;height:110px;background:var(--surface-muted);border:1px solid var(--border);display:flex;align-items:flex-end;justify-content:center;padding-bottom:10px;font-family:monospace;font-size:12px;color:var(--text-secondary);}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr;}}
+</style>
+<section id="surface-depth" class="band" aria-label="Surface and depth">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Surface & Depth</span>
+      <h2>Gentle Lift, Tight Corners</h2>
+      <p>Soft wide-spread shadows raise cards a hair off the page; radii stay small and engineered.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card" style="box-shadow:var(--shadow-light);border-radius:var(--r-card);">
+        <h4>Light Surface</h4>
+        <p>rgba(0,0,0,0.03) 0 5px 50px 0</p>
+      </div>
+      <div class="depth-card" style="box-shadow:var(--shadow-process);border-radius:var(--r-card);">
+        <h4>Process Card</h4>
+        <p>rgba(0,0,0,0.06) 0 3px 36px 0</p>
+      </div>
+      <div class="depth-card" style="box-shadow:var(--shadow-deep);border-radius:var(--r-card);">
+        <h4>Deep Panel</h4>
+        <p>rgba(0,0,0,0.05) 0 10px 30px 3</p>
+      </div>
+    </div>
+    <div class="r-demos">
+      <div class="r-demo" style="border-radius:3px;">r-card · 3px</div>
+      <div class="r-demo" style="border-radius:5px;">r-control · 5px</div>
+      <div class="r-demo" style="border-radius:50%;width:110px;">r-circle · 50%</div>
+      <div class="r-demo" style="border-radius:126px;width:220px;">r-pill · 126px</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface-muted);}
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.motion-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:28px;text-align:center;}
+.motion-card h4{font-size:24px;text-transform:uppercase;margin-bottom:14px;color:var(--text-primary);}
+.motion-dot{width:44px;height:44px;border-radius:var(--r-control);background:var(--accent-primary);margin:0 auto 18px;transform:translateX(-40px);}
+.motion-card.play .motion-dot{transform:translateX(40px);}
+.mc1 .motion-dot{transition:transform .3s ease;}
+.mc2 .motion-dot{transition:transform .4s ease;}
+.mc3 .motion-dot{transition:transform .5s ease-in-out;}
+.motion-card p{font-family:monospace;font-size:12px;color:var(--text-secondary);}
+.replay{margin-top:14px;background:transparent;border:1px solid var(--border);border-radius:var(--r-control);padding:8px 16px;font-family:var(--font-body);font-weight:700;font-size:14px;cursor:pointer;color:var(--text-primary);}
+.replay:hover{border-color:var(--accent-primary);color:var(--accent-primary);}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+<section id="motion" class="band" aria-label="Motion">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Motion</span>
+      <h2>Quick, Conservative, Functional</h2>
+      <p>Short ease transitions on hover and interaction — no bounce, no parallax. Click to replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card mc1"><h4>Standard</h4><div class="motion-dot"></div><p>all 0.3s ease</p><button class="replay" type="button">Replay</button></div>
+      <div class="motion-card mc2"><h4>Hover Slow</h4><div class="motion-dot"></div><p>all 0.4s ease</p><button class="replay" type="button">Replay</button></div>
+      <div class="motion-card mc3"><h4>Panel</h4><div class="motion-dot"></div><p>all 0.5s ease-in-out</p><button class="replay" type="button">Replay</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background);}
+.mock{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-deep);}
+.mock-nav{height:72px;background:#fff;border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 28px;gap:24px;}
+.mock-nav .logo{font-size:26px;}
+.mock-nav ul{display:flex;gap:20px;list-style:none;margin:0 0 0 auto;padding:0;font-weight:700;font-size:14px;}
+.mock-nav a{text-decoration:none;color:var(--text-primary);}
+.mock-hero{padding:56px 40px;display:grid;grid-template-columns:1.1fr .9fr;gap:32px;align-items:center;background:var(--surface-muted);}
+.mock-hero h3{font-size:60px;text-transform:uppercase;margin-bottom:14px;}
+.mock-hero p{color:var(--text-secondary);margin-bottom:20px;}
+.mock-hero .art{background:#fff;border-radius:var(--r-card);aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-light);}
+.mock-hero .art iconify-icon{font-size:80px;color:var(--accent-primary);}
+.mock-cards{padding:40px;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);background:#fff;}
+.mock-card{border:1px solid var(--border);border-radius:var(--r-card);padding:24px;box-shadow:var(--shadow-process);}
+.mock-card .bd{width:56px;height:56px;border-radius:50%;background:var(--surface-muted);color:var(--accent-primary);display:flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:14px;}
+.mock-card h4{font-size:26px;text-transform:uppercase;margin-bottom:6px;}
+.mock-card p{font-size:14px;color:var(--text-secondary);line-height:1.7;}
+.mock-cta{background:var(--surface-dark);color:#fff;padding:48px 40px;text-align:center;}
+.mock-cta h3{font-size:48px;text-transform:uppercase;margin-bottom:8px;}
+.mock-cta p{color:#D5D8DE;margin-bottom:22px;}
+@media(max-width:768px){.mock-hero{grid-template-columns:1fr;}.mock-hero h3{font-size:44px;}.mock-cards{grid-template-columns:1fr;}.mock-nav ul{display:none;}}
+</style>
+<section id="composition" class="band" aria-label="In composition">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">In Composition</span>
+      <h2>The System, Assembled</h2>
+      <p>Nav, hero, a uniform three-up and a charcoal CTA — every part drawn from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo"><iconify-icon icon="lucide:leaf" aria-hidden="true"></iconify-icon>Verdant</span>
+        <ul><li><a href="#composition">Home</a></li><li><a href="#composition">Services</a></li><li><a href="#composition">Contact</a></li></ul>
+        <button class="btn-nav-outline" type="button" style="height:44px;margin-left:20px;">Get A Quote</button>
+      </div>
+      <div class="mock-hero">
+        <div>
+          <span class="eyebrow">Clean Energy Partner</span>
+          <h3>Switch To<br>Solar Today</h3>
+          <p>Systems sized to your site, installed by certified crews, backed by measurable output.</p>
+          <button class="btn-hero" type="button">Get A Free Quote <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div class="art" role="img" aria-label="Solar illustration"><iconify-icon icon="lucide:sun-medium" aria-hidden="true"></iconify-icon></div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="bd"><iconify-icon icon="lucide:sun" aria-hidden="true"></iconify-icon></div><h4>Solar</h4><p>Rooftop and ground arrays sized to your load.</p></div>
+        <div class="mock-card"><div class="bd"><iconify-icon icon="lucide:battery-charging" aria-hidden="true"></iconify-icon></div><h4>Storage</h4><p>Batteries that shave peak-hour costs.</p></div>
+        <div class="mock-card"><div class="bd"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></div><h4>Monitor</h4><p>Live tracking and responsive service.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3>Ready To Power Green?</h3>
+        <p>Book a free site survey and get a transparent quote in 48 hours.</p>
+        <button class="btn-hero" type="button" style="margin:0 auto;">Book A Survey <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface-dark);color:#fff;padding:60px 0 40px;}
+#footer h2{font-size:44px;text-transform:uppercase;margin-bottom:8px;}
+#footer .fmeta{color:#D5D8DE;font-size:14px;line-height:1.9;}
+#footer a{color:var(--accent-primary);text-decoration:none;}
+#footer a:hover{text-decoration:underline;}
+.foot-line{border-top:1px solid #3a4451;margin-top:32px;padding-top:20px;font-size:13px;color:#9BA1AC;}
+</style>
+<footer id="footer" aria-label="Footer">
+  <div class="container">
+    <h2>Verdant Grid Corporate</h2>
+    <p class="fmeta">
+      Source: <a href="https://sekhmetenergyindia.com/" target="_blank" rel="noopener">sekhmetenergyindia.com</a><br>
+      Design system captured and rendered by r3xdec.design
+    </p>
+    <div class="foot-line">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.motion-card .replay').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var card=btn.closest('.motion-card');
+    card.classList.remove('play');
+    void card.offsetWidth;
+    card.classList.add('play');
+  });
+});
+</script>
+
+</body>
+</html>

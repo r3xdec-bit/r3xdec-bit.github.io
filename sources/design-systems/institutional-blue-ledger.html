@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Institutional Blue Ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Yeseva+One&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#0060A8;
+  --surface:#F1F5F8;
+  --hero-fill:#0066AE;
+  --footer-fill:#031120;
+  --text-primary:#000000;
+  --text-secondary:#6C6C6C;
+  --text-on-blue:#FFFFFF;
+  --accent:#1473E6;
+  --white:#FFFFFF;
+  --offwhite:#F0F0F0;
+  --base:8px;
+  --gap:28px;
+  --section-padding:50px;
+  --r-control:10px;
+  --r-card:10px;
+  --r-pill:9999px;
+  --r-panel:16px;
+  --hairline:rgba(255,255,255,0.35);
+  --news-shadow:rgba(0,0,0,0.1) 0px 1px 3px 0px, rgba(0,0,0,0.1) 0px 1px 2px -1px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  font-family:"BCASans","Open Sans",system-ui,sans-serif;
+  background:var(--surface);
+  color:var(--text-primary);
+  font-size:16px;
+  line-height:1.45;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p{margin:0}
+a{color:var(--accent);text-decoration:none}
+.container{max-width:1170px;margin:0 auto;padding:0 24px}
+.band{padding:var(--section-padding) 0}
+.accent-display{font-family:"cordon-bleu","Yeseva One",serif;line-height:1.1}
+.eyebrow{
+  font-size:24px;line-height:1.33;color:var(--accent);
+  display:inline-block;padding-bottom:6px;
+  border-bottom:3px solid var(--accent);
+}
+.section-label{font-size:11px;line-height:1.45;color:var(--text-secondary);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+
+/* HERO / NAV */
+#hero{background:var(--hero-fill)}
+.util-strip{background:#fff;width:100%}
+.util-strip .container{display:flex;justify-content:flex-end;align-items:center;height:44px}
+.util-login{display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:16px}
+.util-login iconify-icon{font-size:20px}
+.mega{width:100%;background:var(--hero-fill)}
+.mega-inner{max-width:1170px;margin:0 auto;padding:24px}
+.mega-row{
+  display:flex;justify-content:flex-end;align-items:center;gap:14px;
+  height:104px;width:100%;border-radius:0;
+  border-bottom:1px solid var(--hairline);
+  color:var(--text-on-blue);cursor:pointer;
+  transition:all .15s cubic-bezier(0.4,0,0.2,1);
+}
+.mega-row:first-child{border-top:1px solid var(--hairline)}
+.mega-row:hover{padding-right:8px}
+.mega-row .lbl{font-size:24px;line-height:1.33;color:var(--text-on-blue)}
+.mega-row iconify-icon{font-size:28px;color:var(--text-on-blue)}
+.hero-cta-zone{max-width:1170px;margin:0 auto;padding:24px 24px 50px}
+.btn-hero{
+  background:var(--hero-fill);color:var(--text-on-blue);
+  border:1px solid rgba(255,255,255,.9);
+  border-radius:var(--r-pill);height:64px;
+  padding:0 40px;font-size:16px;font-family:inherit;
+  cursor:pointer;display:inline-flex;align-items:center;gap:10px;
+  transition:all .15s cubic-bezier(0.4,0,0.2,1);
+}
+.btn-hero:hover{background:#00507f}
+.btn-link{
+  background:transparent;color:var(--text-on-blue);
+  border:0;border-radius:0;height:32px;padding:0;
+  font-size:16px;font-family:inherit;cursor:pointer;
+  text-decoration:underline;
+}
+@media(max-width:768px){
+  .mega-row{height:76px}
+  .mega-row .lbl{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="util-strip" role="navigation" aria-label="Utility">
+    <div class="container">
+      <a class="util-login" href="#" aria-label="Login">
+        Login <iconify-icon icon="lucide:log-in" aria-hidden="true"></iconify-icon>
+      </a>
+    </div>
+  </div>
+  <nav class="mega" aria-label="Primary">
+    <div class="mega-inner">
+      <div class="mega-row"><span class="lbl">Produk</span><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon></div>
+      <div class="mega-row"><span class="lbl">Layanan</span><iconify-icon icon="lucide:hand-coins" aria-hidden="true"></iconify-icon></div>
+      <div class="mega-row"><span class="lbl">Promo</span><iconify-icon icon="lucide:tag" aria-hidden="true"></iconify-icon></div>
+      <div class="mega-row"><span class="lbl">Webform BCA</span><iconify-icon icon="lucide:file-text" aria-hidden="true"></iconify-icon></div>
+      <div class="mega-row"><span class="lbl">Chat</span><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon></div>
+      <div class="mega-row"><span class="lbl">Hubungi Kami</span><iconify-icon icon="lucide:phone" aria-hidden="true"></iconify-icon></div>
+    </div>
+  </nav>
+  <div class="hero-cta-zone">
+    <button class="btn-hero" type="button">
+      Buka Rekening <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+    </button>
+    <button class="btn-link" type="button" style="margin-left:20px">Pelajari lebih lanjut</button>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{background:var(--white)}
+.pal-title{font-size:24px;line-height:1.33;margin-bottom:6px}
+.pal-sub{font-size:16px;color:var(--text-secondary);margin-bottom:32px;max-width:640px}
+.pal-group{margin-bottom:36px}
+.pal-group h3{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--text-secondary);margin-bottom:14px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--gap)}
+.swatch{border:1px solid #e2e8ee;border-radius:var(--r-card);overflow:hidden;background:#fff}
+.swatch .chip{height:96px}
+.swatch .meta{padding:12px 14px}
+.swatch .name{font-size:16px}
+.swatch .val{font-size:11px;color:var(--text-secondary);font-family:"Open Sans",monospace;margin-top:2px}
+.swatch .note{font-size:11px;color:var(--text-secondary);margin-top:8px;line-height:1.45}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" class="band">
+  <div class="container">
+    <p class="section-label">Palette</p>
+    <h2 class="pal-title">One primary hue, one link-blue, neutral ink.</h2>
+    <p class="pal-sub">Entirely blue and neutral — no warm hue, no secondary color family. Blue carries the navigation mass; ink and gray do the rest.</p>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:var(--hero-fill)"></div><div class="meta"><div class="name" style="color:var(--text-primary)">Hero fill</div><div class="val">#0066AE</div><div class="note">Solid primary-blue navigation panel — the dominant mass of the first screen.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface);border-bottom:1px solid #e2e8ee"></div><div class="meta"><div class="name">Surface</div><div class="val">#F1F5F8</div><div class="note">Light body canvas hosting the card grids.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--white);border-bottom:1px solid #e2e8ee"></div><div class="meta"><div class="name">White</div><div class="val">#FFFFFF</div><div class="note">Flat card fill across every card family.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--footer-fill)"></div><div class="meta"><div class="name">Footer ink</div><div class="val">#031120</div><div class="note">Near-black navy terminus band — only large dark surface besides the nav.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">Text primary</div><div class="val">#000000</div><div class="note">Pure ink for headlines and running copy.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#6C6C6C"></div><div class="meta"><div class="name">Text secondary</div><div class="val">#6C6C6C</div><div class="note">Dates, captions and metadata at every size.</div></div></div>
+        <div class="swatch"><div class="chip checker"><div style="height:100%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;color:#0066AE;font-size:11px">on blue</div></div><div class="meta"><div class="name">Text on blue</div><div class="val">#FFFFFF</div><div class="note">Labels and icons over the blue panel and footer.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accent</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="name" style="color:var(--accent)">Link blue</div><div class="val">#1473E6</div><div class="note">Rationed strictly to text links and thin utility controls — never a fill.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--surface)}
+.spec{border-top:1px solid #dbe3ea;padding:28px 0;display:grid;grid-template-columns:1fr 240px;gap:28px;align-items:baseline}
+.spec .metrics{font-size:11px;color:var(--text-secondary);font-family:"Open Sans",monospace;line-height:1.6}
+.t-headline{font-size:24px;line-height:1.33;font-weight:400}
+.t-label{font-size:24px;line-height:1.33;font-weight:400;color:var(--accent)}
+.t-body{font-size:16px;line-height:1.45;font-weight:400}
+.t-bodysm{font-size:11px;line-height:1.45;font-weight:400;color:var(--text-secondary)}
+.t-display{font-size:56px}
+@media(max-width:640px){.spec{grid-template-columns:1fr}.t-display{font-size:40px}}
+</style>
+<section id="type-scale" class="band">
+  <div class="container">
+    <p class="section-label">Type scale</p>
+    <h2 class="t-headline" style="margin-bottom:8px">BCASans, one humanist sans at nearly every size.</h2>
+    <div class="spec">
+      <div class="t-headline">Perbankan yang dapat Anda percayai</div>
+      <div class="metrics">headline-md<br>BCASans · 24px · 400 · lh 1.33</div>
+    </div>
+    <div class="spec">
+      <div class="t-label">Promo Terbaru</div>
+      <div class="metrics">label-md<br>BCASans · 24px · 400 · lh 1.33 · #1473E6</div>
+    </div>
+    <div class="spec">
+      <div class="t-body">Sistem korporat yang tenang: satu warna primer, satu biru tautan, dan tata letak grid yang rapat menjadi identitasnya. Kepadatan dan keteraturan, bukan kejutan gradien.</div>
+      <div class="metrics">body-md<br>BCASans · 16px · 400 · lh 1.45</div>
+    </div>
+    <div class="spec">
+      <div class="t-bodysm"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon> 01 Jan 2024 – 31 Mar 2024 · Berlaku syarat dan ketentuan</div>
+      <div class="metrics">body-sm<br>BCASans · 11px · 400 · lh 1.45 · #6C6C6C</div>
+    </div>
+    <div class="spec">
+      <div class="accent-display t-display">Cordon Bleu</div>
+      <div class="metrics">accent-display<br>cordon-bleu · 400 · lh 1.1<br>signature card graphic only — never running copy</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--white)}
+.comp-block{margin-bottom:56px}
+.comp-head{font-size:24px;line-height:1.33;margin-bottom:4px}
+.comp-desc{font-size:16px;color:var(--text-secondary);max-width:680px;margin-bottom:20px}
+.comp-count{display:inline-block;font-size:11px;color:var(--text-secondary);border:1px solid #dbe3ea;border-radius:var(--r-pill);padding:2px 10px;margin-left:8px;vertical-align:middle}
+.speccard{
+  font-family:"Open Sans",monospace;font-size:11px;color:var(--text-secondary);
+  background:var(--surface);border-radius:var(--r-control);
+  padding:14px 16px;line-height:1.7;margin-top:20px;
+}
+.speccard b{color:var(--text-primary);font-weight:600}
+
+/* nav demo */
+.nav-demo{background:var(--hero-fill);border-radius:0;overflow:hidden}
+.nav-demo .util{background:#fff;display:flex;justify-content:flex-end;height:44px;align-items:center;padding:0 20px}
+.nav-demo .util a{display:inline-flex;gap:8px;align-items:center}
+.nav-demo .r{display:flex;justify-content:flex-end;align-items:center;gap:12px;height:104px;padding:0 20px;border-bottom:1px solid var(--hairline);color:#fff;transition:all .15s cubic-bezier(0.4,0,0.2,1)}
+.nav-demo .r:hover{padding-right:8px}
+.nav-demo .r span{font-size:24px}
+.nav-demo .r iconify-icon{font-size:28px}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid #dbe3ea;vertical-align:middle}
+.matrix th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-secondary);font-weight:600}
+.mbtn-hero{background:var(--hero-fill);color:#fff;border:0;border-radius:var(--r-pill);height:64px;padding:0 32px;font-family:inherit;font-size:16px;cursor:pointer;transition:all .15s cubic-bezier(0.4,0,0.2,1)}
+.mbtn-hero:hover{background:#00507f}
+.mbtn-hero.act{background:#003f63}
+.mbtn-hero.dis{background:#9fbdd2;cursor:not-allowed}
+.mlink{background:transparent;color:var(--accent);border:0;border-radius:0;height:32px;padding:0;font-family:inherit;font-size:16px;cursor:pointer;transition:all .15s cubic-bezier(0.4,0,0.2,1)}
+.mlink:hover{text-decoration:underline}
+.mlink.act{color:#0f5bb5}
+.mlink.dis{color:#9aa3ab;cursor:not-allowed}
+
+/* section heading + tab row */
+.tabrow{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:12px;border-bottom:1px solid #dbe3ea;padding-bottom:0;margin-bottom:24px}
+.tabrow .tabs{display:flex;gap:24px;align-items:flex-end}
+.tabrow .tab{font-size:24px;line-height:1.33;color:var(--text-secondary);padding-bottom:8px;cursor:pointer}
+.tabrow .tab.sel{color:var(--accent);border-bottom:3px solid var(--accent)}
+.tabrow .viewall{font-size:16px;color:var(--accent);display:inline-flex;align-items:center;gap:4px;padding-bottom:8px}
+
+/* promo grid */
+.promo-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.promo-card{background:#fff;border-radius:var(--r-card);padding:0;overflow:hidden;box-shadow:var(--news-shadow);transition:transform .3s cubic-bezier(0,1.4,1,1)}
+.promo-card:hover{transform:translateY(-4px)}
+.promo-thumb{position:relative;height:120px;background:linear-gradient(135deg,#0066AE,#0060A8)}
+.promo-thumb.t2{background:linear-gradient(135deg,#1473E6,#0066AE)}
+.promo-thumb.t3{background:linear-gradient(135deg,#004f80,#0066AE)}
+.promo-thumb.scrim::after{content:"";position:absolute;inset:0;background:linear-gradient(to left,rgba(0,0,0,0),rgba(0,0,0,0.8))}
+.promo-badge{position:absolute;top:10px;left:10px;width:34px;height:34px;border-radius:var(--r-pill);background:#fff;display:flex;align-items:center;justify-content:center;color:var(--hero-fill);z-index:2;box-shadow:var(--news-shadow)}
+.promo-cb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:2}
+.promo-cb .accent-display{color:#fff;font-size:26px}
+.promo-body{padding:14px}
+.promo-body .h{font-size:16px;line-height:1.3;color:#000;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.promo-body .d{font-size:11px;color:var(--text-secondary);margin-top:10px;display:flex;align-items:center;gap:5px}
+
+/* news grid */
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.news-card{background:#fff;border-radius:var(--r-card);padding:0;overflow:hidden;box-shadow:var(--news-shadow);display:flex;transition:transform .3s cubic-bezier(0,1.4,1,1)}
+.news-card:hover{transform:translateY(-4px)}
+.news-card .thumb{width:30%;min-width:96px;background:linear-gradient(135deg,#0066AE,#004f80);flex-shrink:0}
+.news-card .nbody{padding:14px}
+.news-card .cap{font-size:11px;color:var(--text-secondary)}
+.news-card .h{font-size:16px;line-height:1.3;color:#000;margin-top:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.news-hero{grid-column:span 1;flex-direction:column}
+.news-hero .thumb{width:100%;height:150px;position:relative;display:flex;align-items:center;justify-content:center}
+.news-hero .thumb .accent-display{color:#fff;font-size:32px}
+@media(max-width:1024px){.promo-grid{grid-template-columns:repeat(2,1fr)}.news-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.promo-grid,.news-grid{grid-template-columns:1fr}}
+</style>
+<section id="components" class="band">
+  <div class="container">
+    <p class="section-label">Components</p>
+    <h2 class="comp-head" style="margin-bottom:24px">The inventory, rendered from its own tokens.</h2>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar-mega-menu">
+      <h3 class="comp-head">Navbar — Transparent Blue Mega-Menu<span class="comp-count">×1</span></h3>
+      <p class="comp-desc">Edge-to-edge square bar, 104px tall, transparent fill over a solid-blue panel. Twelve items resolve to six full-width stacked rows — navigation-as-hero, never a floating capsule.</p>
+      <div class="nav-demo">
+        <div class="util"><a class="util-login" href="#" aria-label="Login">Login <iconify-icon icon="lucide:log-in" aria-hidden="true"></iconify-icon></a></div>
+        <div class="r"><span>Produk</span><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Layanan</span><iconify-icon icon="lucide:hand-coins" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Promo</span><iconify-icon icon="lucide:tag" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Webform BCA</span><iconify-icon icon="lucide:file-text" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Chat</span><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Hubungi Kami</span><iconify-icon icon="lucide:phone" aria-hidden="true"></iconify-icon></div>
+      </div>
+      <div class="speccard">
+        <b>--navbar-menu-row</b> · fill <b>transparent</b> over hero-fill #0066AE · text text-on-blue #FFFFFF<br>
+        radius <b>0</b> · height <b>104</b> · width 100% · inset 0 · divider hairline rgba(255,255,255,.35)<br>
+        utility login · text accent #1473E6 · height 44 · motion ease 0.15s cubic-bezier(0.4,0,0.2,1)
+      </div>
+    </div>
+
+    <!-- HERO PRIMARY BUTTON + LINK MATRIX -->
+    <div class="comp-block" data-tier-a-component="button-hero-primary">
+      <h3 class="comp-head">Button — Hero Primary Pill<span class="comp-count">×1</span></h3>
+      <p class="comp-desc">The single full-pill in the system: solid #0066AE, white text, 64px tall. The most prominent control on the first screen. Full-pill 9999px is reserved solely for this button.</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Hero primary pill</td>
+            <td><button class="mbtn-hero" type="button">Buka Rekening</button></td>
+            <td><button class="mbtn-hero" style="background:#00507f" type="button">Buka Rekening</button></td>
+            <td><button class="mbtn-hero act" type="button">Buka Rekening</button></td>
+            <td><button class="mbtn-hero dis" type="button" disabled>Buka Rekening</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="speccard">
+        <b>--button-hero-primary</b> · fill hero-fill <b>#0066AE</b> · text text-on-blue #FFFFFF<br>
+        radius <b>pill 9999</b> · height <b>64</b> · padding 0 (inline padding for legibility)<br>
+        hover #00507f (darken pattern) · disabled lowest legible step of hero-fill · motion ease 0.15s
+      </div>
+    </div>
+
+    <!-- LINK UTILITY -->
+    <div class="comp-block" data-tier-a-component="button-link-utility">
+      <h3 class="comp-head">Button — Text / Link Utility<span class="comp-count">×3</span></h3>
+      <p class="comp-desc">Flat text-link treatment, transparent fill, sharp 0px radius, #1473E6 rationed to text only. Appears three times near the page end for "view all" and social / media links.</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Text / link utility</td>
+            <td><button class="mlink" type="button">Lihat semua</button></td>
+            <td><button class="mlink" style="text-decoration:underline" type="button">Lihat semua</button></td>
+            <td><button class="mlink act" type="button">Lihat semua</button></td>
+            <td><button class="mlink dis" type="button" disabled>Lihat semua</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="speccard">
+        <b>--button-link-utility</b> · fill <b>transparent</b> · text accent <b>#1473E6</b><br>
+        radius <b>0</b> · height <b>32</b> · padding 0 · ×3 footer-adjacent<br>
+        disabled #9aa3ab (muted step) · motion ease 0.15s cubic-bezier(0.4,0,0.2,1)
+      </div>
+    </div>
+
+    <!-- SECTION HEADING + TAB ROW -->
+    <div class="comp-block" data-tier-a-component="section-heading-tab-row">
+      <h3 class="comp-head">Section Heading + Tab Row<span class="comp-count">×2</span></h3>
+      <p class="comp-desc">Left-aligned eyebrow in accent blue with a short underline rule, gray sibling tabs unselected, and a right-aligned chevron "view all" link. Repeats above each card grid.</p>
+      <div class="tabrow">
+        <div class="tabs">
+          <span class="tab sel">Promo Terbaru</span>
+          <span class="tab">Kartu Kredit</span>
+          <span class="tab">Tabungan</span>
+        </div>
+        <a class="viewall" href="#">Lihat semua <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></a>
+      </div>
+      <div class="tabrow">
+        <div class="tabs">
+          <span class="tab sel">News &amp; Features</span>
+          <span class="tab">Siaran Pers</span>
+        </div>
+        <a class="viewall" href="#">Lihat semua <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></a>
+      </div>
+      <div class="speccard">
+        <b>eyebrow</b> · text accent #1473E6 · underline accent 3px · type label-md 24/1.33<br>
+        sibling tabs text-secondary #6C6C6C · view-all accent #1473E6 · chevron 16 · ×2
+      </div>
+    </div>
+
+    <!-- PROMO GRID -->
+    <div class="comp-block" data-tier-a-component="card-promo">
+      <h3 class="comp-head">Card — Promo Grid<span class="comp-count">×8</span></h3>
+      <p class="comp-desc">4-column uniform grid, 28px gaps, top-bleed thumbnail with a circular logo badge, two-line headline, and a clock-prefixed date-range caption. One card carries a scrim; one carries the cordon-bleu display wordmark.</p>
+      <div class="promo-grid">
+        <div class="promo-card"><div class="promo-thumb"><span class="promo-badge"><iconify-icon icon="lucide:credit-card" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Cashback 20% belanja kebutuhan harian dengan kartu debit</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>01 Jan – 31 Mar 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb t2 scrim"><span class="promo-badge"><iconify-icon icon="lucide:plane" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Diskon tiket penerbangan hingga 30% untuk kartu kredit</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>05 Feb – 30 Apr 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb t3"><span class="promo-cb"><span class="accent-display">Cordon</span></span></div><div class="promo-body"><div class="h">Santap istimewa di restoran pilihan dengan promo eksklusif</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>10 Jan – 28 Feb 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb"><span class="promo-badge"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Cicilan 0% untuk pembelian gawai terbaru</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>01 Mar – 30 Jun 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb t2"><span class="promo-badge"><iconify-icon icon="lucide:shopping-bag" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Poin ganda untuk transaksi ritel setiap akhir pekan</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>15 Jan – 15 Apr 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb t3"><span class="promo-badge"><iconify-icon icon="lucide:fuel" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Hemat bahan bakar dengan potongan langsung di SPBU</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>01 Feb – 31 Mar 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb"><span class="promo-badge"><iconify-icon icon="lucide:hotel" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Menginap lebih nyaman dengan tarif spesial kartu kredit</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>20 Jan – 20 May 2024</div></div></div>
+        <div class="promo-card"><div class="promo-thumb t2"><span class="promo-badge"><iconify-icon icon="lucide:gift" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Hadiah menarik untuk nasabah baru tabungan digital</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>01 Jan – 31 Dec 2024</div></div></div>
+      </div>
+      <div class="speccard">
+        <b>--card-promo</b> · fill white <b>#FFFFFF</b> · radius <b>10</b> · padding <b>0</b> (image bleeds)<br>
+        thumb top-bleed · badge radius pill · headline body-md 16 · caption body-sm 11 #6C6C6C<br>
+        scrim linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,.8)) · 4-col · gap 28
+      </div>
+    </div>
+
+    <!-- NEWS GRID -->
+    <div class="comp-block" data-tier-a-component="card-news">
+      <h3 class="comp-head">Card — News / Features Grid<span class="comp-count">×7</span></h3>
+      <p class="comp-desc">3-column grid at 3/2/2, near-flat soft shadow, side-thumbnail layout. The leftmost hero variant is taller and carries the bold cordon-bleu display face. Never merged with the promo grid.</p>
+      <div class="news-grid">
+        <div class="news-card news-hero"><div class="thumb"><span class="accent-display">Ledger</span></div><div class="nbody"><div class="cap">28 Feb 2024 · Korporasi</div><div class="h">Laporan keberlanjutan tahunan menegaskan komitmen tata kelola</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">24 Feb 2024 · Layanan</div><div class="h">Peluncuran layanan digital baru untuk nasabah bisnis</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">21 Feb 2024 · Edukasi</div><div class="h">Tips mengelola keuangan keluarga di awal tahun</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">18 Feb 2024 · Keamanan</div><div class="h">Waspada modus penipuan digital dan cara melindungi akun</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">14 Feb 2024 · Investasi</div><div class="h">Memahami instrumen reksa dana untuk pemula</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">10 Feb 2024 · Korporasi</div><div class="h">Kolaborasi strategis mendukung UMKM naik kelas</div></div></div>
+        <div class="news-card"><div class="thumb"></div><div class="nbody"><div class="cap">07 Feb 2024 · Layanan</div><div class="h">Jaringan cabang diperluas untuk jangkauan lebih luas</div></div></div>
+      </div>
+      <div class="speccard">
+        <b>--card-news</b> · fill white #FFFFFF · radius <b>10</b> · padding 0<br>
+        shadow <b>rgba(0,0,0,.1) 0 1px 3px 0, rgba(0,0,0,.1) 0 1px 2px -1px</b><br>
+        side-thumb ~30% · caption body-sm 11 #6C6C6C · headline body-md 16 · hero variant cordon-bleu · 3-col 3/2/2
+      </div>
+    </div>
+
+    <!-- FOOTER COMPONENT -->
+    <div class="comp-block" data-tier-a-component="footer-navy-band">
+      <h3 class="comp-head">Footer — Navy Terminus Band<span class="comp-count">×1</span></h3>
+      <p class="comp-desc">Full-bleed dark band strictly #031120 with labeled link columns, a social row, a divider rule, and a fine-print disclosure line. The rendered instance sits at the foot of this page.</p>
+      <div class="speccard">
+        <b>--footer-fill</b> · fill <b>#031120</b> near-black navy · text white / light-gray<br>
+        14 links in labeled columns · divider hairline · fine-print body-sm 11 · two inline underlined links
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--surface)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);margin-top:24px}
+.depth-card{background:#fff;padding:24px}
+.depth-card .t{font-size:16px}
+.depth-card .m{font-size:11px;color:var(--text-secondary);font-family:"Open Sans",monospace;margin-top:8px}
+.d-control{border-radius:var(--r-control)}
+.d-card{border-radius:var(--r-card)}
+.d-panel{border-radius:var(--r-panel)}
+.d-pill{border-radius:var(--r-pill)}
+.d-flat{box-shadow:var(--news-shadow)}
+</style>
+<section id="surface-depth" class="band">
+  <div class="container">
+    <p class="section-label">Surface &amp; depth</p>
+    <h2 class="comp-head" style="margin-bottom:6px">Consistent soft radii, one near-flat elevation.</h2>
+    <p class="comp-desc">Card elevation is a single subtle shadow closer to 1dp than a dramatic drop. Radii stay soft and consistent across families.</p>
+    <div class="depth-grid">
+      <div class="depth-card d-control d-flat"><div class="t">Control radius</div><div class="m">--r-control · 10px</div></div>
+      <div class="depth-card d-card d-flat"><div class="t">Card radius</div><div class="m">--r-card · 10px</div></div>
+      <div class="depth-card d-panel d-flat"><div class="t">Panel radius</div><div class="m">--r-panel · 16px</div></div>
+      <div class="depth-card d-pill d-flat" style="text-align:center"><div class="t">Pill radius</div><div class="m">--r-pill · 9999px · hero CTA only</div></div>
+      <div class="depth-card d-card d-flat"><div class="t">Near-flat elevation</div><div class="m">rgba(0,0,0,.1) 0 1px 3px 0,<br>rgba(0,0,0,.1) 0 1px 2px -1px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--white)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--gap);margin-top:24px}
+.motion-card{background:var(--surface);border-radius:var(--r-card);padding:24px}
+.motion-card .t{font-size:16px;margin-bottom:16px}
+.mover{width:44px;height:44px;border-radius:var(--r-control);background:var(--hero-fill)}
+.mover.snap{transition:transform .15s cubic-bezier(0.4,0,0.2,1)}
+.mover.fade{transition:opacity .4s ease}
+.mover.spring{transition:transform .3s cubic-bezier(0,1.4,1,1)}
+.motion-card.go .mover.snap{transform:translateX(140px)}
+.motion-card.go .mover.fade{opacity:.15}
+.motion-card.go .mover.spring{transform:translateX(140px)}
+.motion-card .m{font-size:11px;color:var(--text-secondary);font-family:"Open Sans",monospace;margin-top:16px}
+.replay{margin-top:14px;background:transparent;border:0;color:var(--accent);font-family:inherit;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+@media(prefers-reduced-motion:reduce){.mover{transition:none!important}}
+</style>
+<section id="motion" class="band">
+  <div class="container">
+    <p class="section-label">Motion</p>
+    <h2 class="comp-head" style="margin-bottom:6px">Fast, mechanical, occasionally springy.</h2>
+    <p class="comp-desc">State changes resolve near-instantly; content reveals fade or arrive with a light overshoot.</p>
+    <div class="motion-grid">
+      <div class="motion-card"><div class="t">State change</div><div class="mover snap"></div><div class="m">all 0.15s<br>cubic-bezier(0.4,0,0.2,1)</div><button class="replay" type="button">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button></div>
+      <div class="motion-card"><div class="t">Content fade</div><div class="mover fade"></div><div class="m">opacity 0.4s ease</div><button class="replay" type="button">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button></div>
+      <div class="motion-card"><div class="t">Panel entrance</div><div class="mover spring"></div><div class="m">opacity, transform 0.3s<br>cubic-bezier(0,1.4,1,1)</div><button class="replay" type="button">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--surface)}
+.mock{max-width:1000px;margin:24px auto 0;border-radius:var(--r-panel);overflow:hidden;box-shadow:var(--news-shadow);background:#fff}
+.mock-util{background:#fff;height:44px;display:flex;justify-content:flex-end;align-items:center;padding:0 20px;border-bottom:1px solid #e2e8ee}
+.mock-nav{background:var(--hero-fill);padding:16px 20px}
+.mock-nav .r{display:flex;justify-content:flex-end;align-items:center;gap:12px;color:#fff;padding:14px 0;border-bottom:1px solid var(--hairline)}
+.mock-nav .r span{font-size:24px}
+.mock-nav .r iconify-icon{font-size:24px}
+.mock-body{padding:32px 24px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:20px}
+.mock-cta{margin-top:28px;text-align:center}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" class="band">
+  <div class="container">
+    <p class="section-label">In composition</p>
+    <h2 class="comp-head" style="margin-bottom:6px">The system, assembled.</h2>
+    <p class="comp-desc">Utility strip over the blue navigation panel, an eyebrow heading, a card grid, and the single hero pill — every value drawn from the tokens above.</p>
+    <div class="mock">
+      <div class="mock-util"><a class="util-login" href="#" aria-label="Login">Login <iconify-icon icon="lucide:log-in" aria-hidden="true"></iconify-icon></a></div>
+      <div class="mock-nav">
+        <div class="r"><span>Produk</span><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon></div>
+        <div class="r"><span>Layanan</span><iconify-icon icon="lucide:hand-coins" aria-hidden="true"></iconify-icon></div>
+        <div class="r" style="border-bottom:0"><span>Promo</span><iconify-icon icon="lucide:tag" aria-hidden="true"></iconify-icon></div>
+      </div>
+      <div class="mock-body">
+        <div class="tabrow">
+          <div class="tabs"><span class="tab sel">Promo Terbaru</span><span class="tab">Tabungan</span></div>
+          <a class="viewall" href="#">Lihat semua <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></a>
+        </div>
+        <div class="mock-cards">
+          <div class="promo-card"><div class="promo-thumb"><span class="promo-badge"><iconify-icon icon="lucide:credit-card" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Cashback belanja harian dengan kartu debit</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>01 Jan – 31 Mar 2024</div></div></div>
+          <div class="promo-card"><div class="promo-thumb t2"><span class="promo-badge"><iconify-icon icon="lucide:plane" aria-hidden="true"></iconify-icon></span></div><div class="promo-body"><div class="h">Diskon tiket penerbangan kartu kredit</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>05 Feb – 30 Apr 2024</div></div></div>
+          <div class="promo-card"><div class="promo-thumb t3"><span class="promo-cb"><span class="accent-display">Cordon</span></span></div><div class="promo-body"><div class="h">Santap istimewa promo eksklusif</div><div class="d"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon>10 Jan – 28 Feb 2024</div></div></div>
+        </div>
+        <div class="mock-cta">
+          <button class="mbtn-hero" type="button">Buka Rekening Sekarang</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--footer-fill);color:#fff}
+#footer .container{padding-top:var(--section-padding);padding-bottom:var(--section-padding)}
+.f-cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--gap)}
+#footer h4{font-size:16px;color:#fff;margin-bottom:14px}
+#footer p,#footer a{font-size:11px;line-height:1.9;color:#d3dce4}
+#footer .col a{display:block}
+#footer .social{display:flex;gap:14px;margin-top:14px}
+#footer .social a{font-size:22px;color:#fff}
+.f-div{border:0;border-top:1px solid rgba(255,255,255,.18);margin:28px 0}
+.f-fine{font-size:11px;color:#9fb0bd;line-height:1.7}
+.f-fine a{color:#d3dce4;text-decoration:underline}
+.f-brand{font-size:24px;line-height:1.33;color:#fff;margin-bottom:20px}
+@media(max-width:768px){.f-cols{grid-template-columns:1fr}}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="f-brand">Institutional Blue Ledger</div>
+    <div class="f-cols">
+      <div class="col">
+        <h4>Hubungi Kami</h4>
+        <p>Menara Ledger, Jl. Institusi No. 1<br>Jakarta Pusat 10310, Indonesia</p>
+        <a href="#">Telepon: 1500-888</a>
+        <a href="#">Email: halo@bluledger.example</a>
+        <a href="#">Chat: BLU Assistant</a>
+        <div class="social">
+          <a href="#" aria-label="Facebook"><iconify-icon icon="lucide:facebook" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="YouTube"><iconify-icon icon="lucide:youtube" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="X"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="col">
+        <h4>Produk</h4>
+        <a href="#">Tabungan</a>
+        <a href="#">Kartu Kredit</a>
+        <a href="#">Pinjaman</a>
+        <a href="#">Investasi</a>
+      </div>
+      <div class="col">
+        <h4>Layanan</h4>
+        <a href="#">Mobile Banking</a>
+        <a href="#">Internet Banking</a>
+        <a href="#">Webform BCA</a>
+        <a href="#">Pusat Bantuan</a>
+      </div>
+    </div>
+    <hr class="f-div">
+    <p class="f-fine">Terdaftar dan diawasi oleh otoritas jasa keuangan. Dengan mengakses layanan ini Anda menyetujui <a href="#">Syarat &amp; Ketentuan</a> dan <a href="#">Kebijakan Privasi</a> kami.</p>
+    <p class="f-fine" style="margin-top:20px">Institutional Blue Ledger · Source: https://www.bca.co.id/ · Design system captured and rendered by r3xdec.design</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.motion-card .replay').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var card=btn.closest('.motion-card');
+    card.classList.remove('go');
+    void card.offsetWidth;
+    card.classList.add('go');
+  });
+});
+</script>
+</body>
+</html>

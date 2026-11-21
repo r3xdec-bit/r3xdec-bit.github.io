@@ -1,0 +1,651 @@
+<!doctype html>
+<html lang="en">
+<head><script>function __threeuiStorageImage(...args){const image=new Image(...args);const property=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");Object.defineProperty(image,"src",{configurable:true,get(){return property.get.call(this)},set(value){try{const url=new URL(value,document.baseURI);if(this.crossOrigin===null&&(url.href.startsWith("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/")||url.origin===new URL(document.baseURI).origin))this.crossOrigin="anonymous"}catch{}property.set.call(this,value)}});return image;}
+</script><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ÉTALE · Yachts for still water</title>
+<meta name="description" content="ÉTALE builds large electric yachts for the still hour: silent at anchor, silent under way.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/landing-pages/week-2026-11-03/16fe3019d06331843eae4e1484d1e628.css" rel="stylesheet">
+<style>
+/* Grounds are sampled from each plate's own edge pixels so every join is the same colour on both sides. */
+:root{
+--ink:#18202a; --ink2:rgba(24,32,42,.72); --light:#f4f2ee; --light2:rgba(244,242,238,.74);
+--slate:#3f5873; --dusk:#24364a;
+--g-hero:#9fbbd4; --g-strip:#eceef1; --g-hull-a:#c4d0de; --g-hull-b:#a6bdd3; --g-paper:#b6c3d3; --g-paper-a:#cdd1d8; --g-paper-b:#a2b2c6;
+--g-relief-top:#c1dbf3; --g-relief-bot:#8b9fb6; --g-glass:#dfe6eb; --g-sheet:#f3f5f8; --g-fog:#c3cdd8; --g-rock:#535556; --g-deep:#0b1119;
+--serif:"Bodoni Moda",Didot,"Times New Roman",serif; --sans:"Geist",Inter,system-ui,sans-serif; --mono:"Geist Mono",ui-monospace,monospace;
+--s1:4px; --s2:8px; --s3:16px; --s4:24px; --s5:40px; --s6:64px; --s7:104px; --s8:168px;
+--t-cap:11px; --t-small:14px; --t-body:17px; --t-lead:22px; --t-h3:34px; --t-h2:clamp(44px,6.4vw,96px); --t-mega:min(max(52px,22.5vw),max(88px,19vw),300px);
+--nav:64px; --pad:clamp(16px,4vw,56px);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;position:relative;color:var(--ink);background:var(--g-hero);font:400 var(--t-body)/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%}
+a{color:inherit}
+.cap{font:500 var(--t-cap)/1.5 var(--sans);letter-spacing:.22em;text-transform:uppercase}
+section{position:relative}
+section[id]{scroll-margin-top:var(--nav)}
+/* feathering: an image fades into its ground on the sides named */
+.fv{-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent)}
+.f4{-webkit-mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent,#000 12%,#000 88%,transparent),linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-composite:intersect}
+/* nav: fixed, never hides; ink follows the section under it */
+.nav{position:fixed;inset:0 0 auto 0;height:var(--nav);z-index:40;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:0 var(--pad);color:var(--ink);transition:color .4s}
+.nav::before{content:"";position:absolute;inset:0 0 -24px 0;z-index:-1;background:linear-gradient(180deg,var(--navbg,rgba(236,240,244,.82)),transparent);pointer-events:none}
+body[data-nav="dark"] .nav{color:var(--light)}
+body[data-nav="dark"] .nav::before{--navbg:rgba(14,16,20,.7)}
+.nav .word{font:500 15px/1 var(--serif);letter-spacing:.42em;text-decoration:none}
+.nav ul{display:flex;gap:var(--s5);list-style:none;margin:0;padding:0}
+.nav a.l,.nav .enq,.nav .menu{font:500 var(--t-cap)/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;text-decoration:none;background:none;border:0;color:inherit;padding:0;cursor:pointer}
+.nav .enq{justify-self:end}
+.nav .menu{display:none;justify-self:end}
+.sheetnav{position:fixed;inset:0;z-index:39;background:rgba(236,240,244,.97);display:grid;align-content:center;gap:var(--s4);padding:0 var(--pad);opacity:0;pointer-events:none;transition:opacity .35s}
+.sheetnav a{font:400 44px/1.1 var(--serif);text-decoration:none;color:var(--ink)}
+body.menuopen .sheetnav{opacity:1;pointer-events:auto}
+body.menuopen .nav{color:var(--ink)}
+@media (max-width:820px){.nav ul,.nav .enq{display:none}.nav{grid-template-columns:1fr auto}.nav .menu{display:block}.nav::before{--navbg:rgba(236,240,244,.92)}body[data-nav="dark"] .nav::before{--navbg:rgba(14,16,20,.86)}}
+/* 0 · hero */
+.hero{position:relative;height:100svh;min-height:620px;overflow:hidden;isolation:isolate;color:var(--ink)}
+.hero .film{position:absolute;inset:0;z-index:-2;background:var(--g-hero)}
+.hero .film img,.hero .film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .film video{opacity:0;transition:opacity 1s linear}
+.hero .film video.on{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(220,232,244,.35),rgba(220,232,244,0) 18%,rgba(159,187,212,0) 70%,var(--g-hero) 100%)}
+.hero .lede{position:absolute;left:var(--pad);right:var(--pad);top:calc(var(--nav) + 6svh);display:grid;justify-items:center;gap:20px}
+.hero .top{margin:0;text-align:center;font:italic 400 var(--t-lead)/1.3 var(--serif);color:var(--ink);text-wrap:balance}
+.hero .row{display:flex;justify-content:center;gap:clamp(16px,4vw,64px);flex-wrap:wrap}
+.hero .row span{font:500 11px/1.4 var(--sans);letter-spacing:.24em;text-transform:uppercase;color:var(--ink)}
+.hero .row span b{font-weight:500;color:rgba(24,32,42,.82)}
+.hero h1{position:absolute;left:0;right:0;bottom:3svh;margin:0;text-align:center;font:400 var(--t-mega)/.8 var(--serif);font-variation-settings:"opsz" 96;letter-spacing:.06em;color:#f6f4f0;padding-left:.06em;animation:rise 1.8s cubic-bezier(.2,.75,.15,1) .2s backwards}
+@keyframes rise{from{clip-path:inset(100% 0 -.2em 0);transform:translateY(.12em)}to{clip-path:inset(-.45em 0 -.2em 0);transform:none}}
+@media (prefers-reduced-motion:reduce){.hero h1{animation:none}}
+@media (max-width:820px){
+.hero .lede{gap:12px}
+.hero .row{gap:var(--s2) var(--s4)}
+.hero .row span:nth-child(n+3){display:none}
+.hero .top{font-size:19px}
+}
+/* 1 · reflection (ref 2): one strip through the world, its bands settle as it arrives */
+.reflect{min-height:132svh;padding:var(--s7) var(--pad) var(--s6);overflow-x:clip;background:var(--g-strip)}
+.strip{position:sticky;top:7svh;margin:0 auto;width:min(48svh,540px);height:86svh;z-index:2}
+.strip b{position:absolute;background-repeat:no-repeat;will-change:transform}
+.reflect .words{position:relative;z-index:3;display:grid;grid-template-columns:1fr min(48svh,540px) 1fr;gap:var(--s5);margin-top:-72svh;align-items:start}
+.reflect .l{display:grid;gap:var(--s4);max-width:30ch;justify-self:end;text-align:right;padding-top:14svh}
+.reflect .l p{margin:0;font-size:15px;line-height:1.7;color:var(--ink2)}
+.reflect .r{margin:6svh 0 0;font:italic 400 clamp(44px,5.4vw,80px)/.98 var(--serif);letter-spacing:-.01em;max-width:8ch;text-wrap:balance}
+@media (max-width:820px){.reflect{min-height:0}.reflect .words{grid-template-columns:1fr;margin-top:var(--s6)}.reflect .l{justify-self:start;text-align:left;padding-top:0}.reflect .r{margin-top:0}.strip{position:relative;top:auto;width:78vw;height:139vw}}
+/* 2 · hull (ref 4): a sliced profile that closes as you scroll, inside a heavy and italic type collage */
+.hull{--bw:min(96vw,1560px);--bh:calc(var(--bw) * 1536 / 2752);background:#89accc}
+.hull .track{height:170svh}
+/* the stage is the hull image's own fog and water, sampled from its edge columns at the same heights, so the plate has no box */
+.hull .stick{position:sticky;top:0;height:100svh;overflow:hidden;display:grid;grid-template-columns:minmax(0,1fr);place-items:center;background:linear-gradient(180deg,var(--g-strip) 0%,#c3ccdb calc(50% - var(--bh) / 2),#c0cbdb calc(50% + var(--bh) * 0),#b9c7d9 calc(50% + var(--bh) * .08),#b4c6d9 calc(50% + var(--bh) * .1),#a7bfd9 calc(50% + var(--bh) * .12),#a4bdd9 calc(50% + var(--bh) * .2),#9eb8d5 calc(50% + var(--bh) * .3),#92b1ce calc(50% + var(--bh) * .4),#89accc calc(50% + var(--bh) / 2),#89accc 100%)}
+.slices{position:relative;width:var(--bw);aspect-ratio:2752/1536;z-index:2;justify-self:center}
+.slices .part{position:absolute;left:0;right:0}
+.slices b{position:absolute;top:0;bottom:0;background-repeat:no-repeat;will-change:transform}
+.hull .specs{position:absolute;left:var(--pad);top:calc(var(--nav) + 8svh);display:grid;gap:6px;font:400 12px/1.5 var(--mono);color:var(--ink2);z-index:3}
+.hull .specs b{font:500 var(--t-cap)/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--ink);margin-bottom:var(--s2)}
+.hull .sayline{position:absolute;right:var(--pad);bottom:6svh;display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:baseline;column-gap:clamp(12px,1.6vw,26px);z-index:3}
+.hull .heavy{margin:0;font:900 clamp(64px,10vw,168px)/.85 var(--serif);font-variation-settings:"opsz" 96;letter-spacing:-.03em;color:#3f5873}
+.hull .script{font:italic 400 clamp(30px,3.6vw,58px)/1 var(--serif);color:#1f3247}
+.hull .rot{position:absolute;left:calc(var(--pad) + .9em);bottom:10svh;transform:rotate(-90deg);transform-origin:left bottom;font:900 clamp(40px,5vw,84px)/.8 var(--serif);color:#4f6782;letter-spacing:-.02em;white-space:nowrap;z-index:3}
+@media (max-width:820px){.hull{--bw:112vw}.hull .rot{display:none}.hull .specs{top:calc(var(--nav) + 3svh)}}
+/* 3 · in numbers (ref 3): paper plates side by side, panned along by scroll, the specs set beside the numeral */
+.numbers{color:var(--ink);background:linear-gradient(180deg,var(--g-paper-a),var(--g-paper-b))}
+.numbers .track{height:430svh}
+.numbers .stick{position:sticky;top:0;height:100svh;overflow:hidden}
+.nums{position:absolute;inset:0;z-index:2;background:#8d9fb5}
+.nums .pl{position:absolute;inset:0;overflow:hidden;background:linear-gradient(180deg,var(--g-paper-a),var(--g-paper-b));box-shadow:0 0 56px rgba(22,33,46,.22);will-change:transform}
+.nums img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.nums picture{position:absolute;inset:0;overflow:hidden;display:block}
+/* each numeral's entrance film: its props arrive once and it stops on the still beneath it (desktop for now) */
+.nums video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;pointer-events:none}
+.nums video[src]{display:block}
+/* above 820px the film is always shown at full width (never cropped at the sides, where the numerals sit) and centred
+in the plate; in a window taller than 16:9 the bands above and below are the plate's own paper, the film fading into
+it (portrait windows use the phone layout below). The push-in is anchored at the numerals' left edge (6%), so no numeral ever leaves the frame. */
+@media (min-width:821px) and (min-aspect-ratio:1001/1000){.nums img,.nums video{inset:auto;left:0;top:calc(50% - 100vw * 1536 / 2752 / 2);width:100%;height:calc(100vw * 1536 / 2752);transform:translateX(var(--px,0%)) scale(1.12);transform-origin:6% 58%;-webkit-mask-image:linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(180deg,transparent,#000 9%,#000 91%,transparent)}}
+.numbers .kick{position:absolute;left:60%;right:var(--pad);top:calc(var(--nav) + var(--s4));text-align:left;color:var(--ink2);letter-spacing:.42em;z-index:6}
+.numbers .fline{position:absolute;left:60%;right:var(--pad);bottom:6svh;text-align:left;margin:0;font:italic 400 19px/1 var(--serif);color:var(--ink2);z-index:6}
+/* each card is set in the paper beside its numeral, as ref 3 sets its lines against the 2 */
+.card{position:absolute;left:var(--cx,61%);top:var(--cy,50%);width:min(300px,30vw);transform:translateY(-50%);z-index:6}
+.card .n{font:400 12px/1 var(--mono);color:rgba(24,32,42,.5);letter-spacing:.08em}
+.card .cap{display:block;margin-top:var(--s3);color:var(--ink)}
+.card p{margin:var(--s3) 0 0;font:400 15px/1.65 var(--sans);color:var(--ink2)}
+@media (max-width:820px),(max-aspect-ratio:1/1){.numbers .kick,.numbers .fline{left:0;right:0;text-align:center}.nums picture,.nums video{--nb:min(100vw,max(240px,calc(66svh - var(--nav) - 44px)));inset:auto;top:calc(var(--nav) + 44px);left:calc(50% - var(--nb) / 2);width:var(--nb);height:min(calc(var(--nb) * 1.2),max(var(--nb),calc(64svh - var(--nav) - 44px)));-webkit-mask-image:linear-gradient(180deg,transparent,#000 9%,#000 84%,transparent),linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);-webkit-mask-composite:source-in;mask-image:linear-gradient(180deg,transparent,#000 9%,#000 84%,transparent),linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-composite:intersect}.nums img,.nums video{object-position:9% 50%}.card{left:var(--pad);right:var(--pad);width:auto;top:auto;bottom:12svh;transform:none}}
+/* 4 · atrium (ref 1): the relief poster, a small column on the open sky, the seal */
+.atrium{background:linear-gradient(180deg,var(--g-relief-top),var(--g-relief-top) 50%,var(--g-relief-bot))}
+.poster{position:relative;z-index:2;margin:0;height:100svh;min-height:620px;overflow:hidden}
+.poster>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.06);will-change:transform}
+.pcol{position:absolute;left:var(--pad);top:calc(var(--nav) + 9svh);display:grid;gap:var(--s4);max-width:230px;z-index:3}
+.pcol h2{margin:0;font:400 15px/1.2 var(--serif);letter-spacing:.32em;text-transform:uppercase}
+.pcol p{margin:0;font:400 11px/1.8 var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)}
+.poster .sweep{position:absolute;inset:0;z-index:1;pointer-events:none;mix-blend-mode:screen;opacity:.5;-webkit-mask-image:linear-gradient(180deg,transparent 8%,#000 26%,#000 74%,transparent 90%);mask-image:linear-gradient(180deg,transparent 8%,#000 26%,#000 74%,transparent 90%);background:linear-gradient(100deg,transparent calc(var(--sx,50%) - 9%),rgba(255,226,190,.35) var(--sx,50%),transparent calc(var(--sx,50%) + 9%)),radial-gradient(30% 40% at var(--sx,50%) 56%,rgba(255,206,150,.9),rgba(255,206,150,0) 70%)}
+.pword{position:absolute;left:var(--pad);bottom:10svh;margin:0;max-width:11ch;font:italic 400 clamp(44px,5.4vw,84px)/1 var(--serif);letter-spacing:-.01em;text-wrap:balance;z-index:3}
+@media (max-width:820px){
+.poster{height:auto;min-height:0;display:flex;flex-direction:column}
+.poster>img{position:relative;order:2;height:auto;aspect-ratio:4/5;object-position:84% center;transform:none;-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 80%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 80%,transparent)}
+.poster .sweep{display:none}
+.pcol,.pword{position:relative;left:auto;top:auto;bottom:auto;padding:0 var(--pad)}
+.pcol{order:0;padding-top:calc(var(--nav) + var(--s5))}
+.pword{order:1;margin:var(--s5) 0}
+}
+/* 4b · salon (refs 8 and 5): you stand in the glass hall; three lines are lowered on cords from one eave as you scroll */
+/* the hall plate hangs from its own plaster eave just under the nav; --hh is its rendered height (cover, top-aligned) */
+.salon{--salon-top:var(--g-relief-bot);--salon-bot:#c3ccd2;--hh:max(calc(100svh - var(--nav)),calc(100vw * 1536 / 2752));--eave:calc(var(--nav) + var(--hh) * .0749);background:var(--g-sheet)}
+.salon .track{height:180svh}
+.salon .stick{position:sticky;top:0;height:100svh;overflow:hidden;background:linear-gradient(180deg,var(--salon-top) 0,var(--salon-top) var(--nav),var(--salon-bot))}
+@media (prefers-reduced-motion:reduce){.salon .stick{background:linear-gradient(180deg,var(--g-relief-bot) 0,#e1e1e1 var(--nav),var(--salon-bot))}}
+.salon .hall{position:absolute;left:0;top:var(--nav);width:100%;height:calc(100% - var(--nav));object-fit:cover;object-position:50% 0;-webkit-mask-image:linear-gradient(180deg,transparent,#000 3%);mask-image:linear-gradient(180deg,transparent,#000 3%)}
+.salon .eave{position:absolute;left:0;right:0;top:var(--eave);z-index:3}
+.salon .eave h2{position:absolute;left:var(--pad);top:calc(var(--hh) * -.04);transform:translateY(-50%);margin:0;font:500 13px/1 var(--sans);letter-spacing:.32em;text-transform:uppercase}
+.cord{position:absolute;left:var(--x);top:var(--eave);width:min(17vw,240px)}
+.cord::before{content:"";position:absolute;z-index:3;left:0;top:0;width:1px;height:calc(var(--d) * var(--k,0));background:rgba(24,32,42,.5)}
+.cord .t{position:absolute;left:-18px;top:var(--d);width:100%;padding:16px 18px 15px;background:linear-gradient(160deg,rgba(246,249,250,.78),rgba(226,236,240,.62));-webkit-backdrop-filter:blur(16px) saturate(1.08);backdrop-filter:blur(16px) saturate(1.08);z-index:4;border:1px solid transparent;background-clip:padding-box;box-shadow:inset 0 0 0 1px rgba(255,255,255,.5),inset 0 1px 0 rgba(255,255,255,.75);opacity:max(0,min(1,calc((var(--k,0) - .72) * 3.6)));transform:translateY(calc((1 - var(--k,0)) * -10px))}
+.cord p{margin:0;font:italic 400 clamp(19px,1.7vw,24px)/1.3 var(--serif)}
+.cord small{display:block;margin-top:8px;font:400 12px/1.4 var(--mono);color:var(--ink2)}
+@media (max-width:820px){.cord{left:calc(var(--pad) + 18px);width:64vw}.cord::before{left:calc(100% - 58px)}.cord:nth-of-type(2){--d:4svh!important}.cord:nth-of-type(3){--d:18svh!important}.cord:nth-of-type(4){--d:32svh!important}}
+@media (prefers-reduced-motion:reduce){.cord{--k:1}}
+/* 5 · voyages (ref 6): huge type over the photo, an editorial row under it */
+.voyages{background:var(--g-sheet);padding:var(--s7) var(--pad)}
+.sheet6{max-width:1180px;margin:0 auto}
+.win{position:relative;z-index:2;margin:0;overflow:hidden}
+.win img{display:block;width:100%;aspect-ratio:2271/1666;object-fit:cover}
+.mega{position:absolute;left:0;right:0;top:4%;margin:0;text-align:center;font:900 clamp(80px,14.4vw,204px)/.9 var(--serif);font-variation-settings:"opsz" 96;letter-spacing:-.02em;color:#fbfaf7}
+.voyages[data-baked] .mega{width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);left:0;right:auto}
+.info{display:grid;gap:var(--s3);padding-top:var(--s4)}
+.info .labels{display:flex;justify-content:space-between;font:500 12px/1 var(--sans);letter-spacing:.04em;color:var(--slate)}
+.info h3{margin:var(--s3) 0 0;font:400 clamp(28px,2.6vw,38px)/1.15 var(--serif);color:var(--ink)}
+.info h3 .bar{opacity:.6;padding:0 .15em}
+.info p{margin:0;max-width:62ch;font-size:15px;line-height:1.65;color:var(--ink)}
+.info b{font:500 13px/1.4 var(--sans);color:var(--slate)}
+.info .meta{display:flex;justify-content:space-between;margin-top:var(--s5);font:400 12px/1 var(--mono);color:var(--ink2)}
+@media (max-width:820px){.mega{font-size:15vw}}
+/* 6 · enquire (ref 7): a framed window onto the sea, the form below on deep water */
+.trials{height:175svh;background:#c6ced8}
+.trials .plate{position:sticky;top:0;height:100svh;min-height:620px;margin:0;overflow:hidden}
+.trials .plate img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.trials .rocks{z-index:1;will-change:transform}
+@media (max-width:820px){.trials .plate img{top:auto;height:min(100%,calc(100vw / .78),calc(100% - var(--nav) - 15rem));-webkit-mask-image:linear-gradient(180deg,transparent,#000 7%);mask-image:linear-gradient(180deg,transparent,#000 7%)}}
+.trials .say{position:absolute;left:var(--pad);top:26%;width:min(22vw,360px);color:var(--ink);z-index:3}
+.trials .say .cap{color:var(--ink2)}
+.trials h2{margin:var(--s3) 0 0;font:400 clamp(36px,3.5vw,58px)/1 var(--serif)}
+.enquire{color:var(--light);background:var(--dusk);padding:calc(var(--nav) + var(--s7)) var(--pad) var(--s6);overflow:hidden}
+.enquire .inner{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:var(--s6);align-items:start;z-index:2}
+.enquire .lead .cap{color:var(--light2)}
+.enquire h2{margin:var(--s3) 0 var(--s4);font:400 clamp(34px,3.2vw,52px)/1.02 var(--serif)}
+.enquire .note{margin:0;max-width:38ch;font-size:15px;line-height:1.7;color:var(--light2)}
+.enquire form{display:grid;gap:var(--s4)}
+.enquire label{display:grid;gap:var(--s2);font:500 var(--t-cap)/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--light2)}
+.enquire input,.enquire select{appearance:none;background:transparent;border:0;border-bottom:1px solid rgba(244,242,238,.4);color:var(--light);font:400 var(--t-body)/1.4 var(--sans);padding:var(--s2) 0;border-radius:0}
+.enquire select{background-image:linear-gradient(45deg,transparent 50%,var(--light) 50%),linear-gradient(135deg,var(--light) 50%,transparent 50%);background-position:calc(100% - 13px) 55%,calc(100% - 8px) 55%;background-size:5px 5px;background-repeat:no-repeat;padding-right:var(--s5)}
+.enquire input:focus,.enquire select:focus{outline:none;border-bottom-color:var(--light)}
+.enquire select option{color:#111}
+.enquire button{justify-self:start;appearance:none;border:1px solid rgba(244,242,238,.6);background:transparent;color:var(--light);border-radius:999px;padding:14px 28px;font:500 var(--t-cap)/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;cursor:pointer}
+.enquire button:hover{background:rgba(244,242,238,.1)}
+.mirror{position:relative;margin-top:var(--s8);text-align:center;font:400 var(--t-mega)/.8 var(--serif);letter-spacing:.06em}
+.mirror span{display:block}
+.mirror span+span{margin-top:-.073em;transform:scaleY(-1);opacity:.32;filter:url(#ripple) blur(.6px);-webkit-mask-image:linear-gradient(0deg,#000,transparent 75%);mask-image:linear-gradient(0deg,#000,transparent 75%)}
+.foot{position:relative;display:flex;justify-content:space-between;flex-wrap:wrap;gap:var(--s3);padding-top:var(--s5);font:400 12px/1.4 var(--mono);color:var(--light2)}
+@media (max-width:820px){.enquire .inner{grid-template-columns:1fr}.trials .say{width:auto;right:var(--pad);top:calc(var(--nav) + var(--s5))}}
+.rv{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}}
+:focus-visible{outline:2px solid var(--slate);outline-offset:3px}
+/* sections are sheets (desktop): each one stops when its end is reached and the next slides over it like the
+numerals' paper, its top edge shadowed, while the one beneath dims under one fixed veil; no fades between grounds */
+@media (min-width:821px){
+.sheet{position:sticky;top:var(--stick,0px)}
+main>.sheet{box-shadow:0 -26px 60px -22px rgba(22,33,46,.34)}
+.veil{position:fixed;inset:0;pointer-events:none;background:#16212e;opacity:0}
+}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+</style>
+<script src="/landing-pages/week-2026-11-03/176e894661aa9cdc9a5cba6c720044cb.js"></script>
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script></head>
+<body data-nav="light">
+<div id="cdn" data-r="VanhDc/aura-assets" data-t="etale-v1" data-p="etale" hidden></div>
+<script>window.__A=(p)=>({"assets/frame-bg|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/37338098758c2052195390c3081bd4e64e6bc533fee1236f5c65a39c45b55a84.webp","assets/strip-art|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/d412c22212597b7579b38636728209a060705347dabd67ddf9ffbe5353761194.webp","clips/num52-in|mp4":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/ee57293b41f7fc57f4013dcc66ca5a1dc83d418a0e28072bd5f84e7a0e82a4cd.webm","assets/num52|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/04c011e251aedd8f07cd4e098c91237e4d0515d7d1c0fef6ec09bd2fd2672a3d.webp","assets/hero-m|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/5a7c98632fd69c30c8b4770bea049bc774c8ef7d19225ffab54d752cb5d0ba37.jpg","assets/num0|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/a79a4a1704f59173e813129afea162ae6b5c4bba0e64486c02d0c3df41f7562f.jpg","clips/num0-in|mp4":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/1a8f2d83ba3a6cc02a57d29e83a9cdbcba2f915d6b986ec70fafa474ed7c6392.webm","assets/frame-rocks|webp":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/0335d40f923c6ef6f9d71a69694d3685f450c2e1f24774cde3db031a25360720.webp","assets/hull|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/987ddb9fbccd5ec2fcdece973442a866988fa96c335b32ba4845f3cab0ee7bc7.webp","clips/num60-in|mp4":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/34da38f3754ce052886ef20e6a41d6c258dbf0d75c7c9e65b043f643e4341354.webm","clips/hero-preview|mp4":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/e1602953e5b545d170499a14dd9dff03fece3ac5f8e75e858b24680d1f45ecf5.webm","assets/num60|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/72310fca0f03a2866fe8b7bd6a6b3cfe79185dfb39dc20f36234d962da7ad641.webp","clips/hero-preview-m|mp4":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/d1674c5109202bc6b9afa1813e516fe449bf7140ca69a44bd0c4785a283441d5.mp4","assets/relief|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/5a367358f991460e18012fa029836a84ee5f036f87c0fcb3a2bc1d3189999983.webp","assets/glass|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/d0ef64d79d4697df74b8b96fc7d3d26a4e5faacf969affd5051fffdc82e56cde.webp","assets/hero|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/fa936a6d0fc8d9be5135624cba90a2482c7ad4a796b185f45891257d484d8331.jpg","assets/voyages|jpg":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-weekly-2026-11/874151e35a14dd00df6511a65066bd2e9cf0c7cb077c4fd255eafe4ab504da49.webp"})[p];</script>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="ripple" x="-5%" y="-20%" width="110%" height="140%"><feTurbulence type="fractalNoise" baseFrequency="0.0025 0.035" numOctaves="2" seed="7"><animate id="rippleMove" attributeName="baseFrequency" values="0.0025 0.035;0.0025 0.042;0.0025 0.035" dur="9s" repeatCount="indefinite"/></feTurbulence><feDisplacementMap in="SourceGraphic" scale="6"/></filter></svg>
+
+<nav class="nav" aria-label="Main">
+  <a class="word" href="#top">ÉTALE</a>
+  <ul><li><a class="l" href="#hull">Yachts</a></li><li><a class="l" href="#atrium">Interior</a></li><li><a class="l" href="#voyages">Voyages</a></li></ul>
+  <a class="enq" href="#enquire">Enquire</a>
+  <button class="menu" type="button" aria-expanded="false" aria-controls="sheetnav">Menu</button>
+</nav>
+<div class="sheetnav" id="sheetnav" aria-label="Menu">
+  <a href="#hull">Yachts</a><a href="#atrium">Interior</a><a href="#voyages">Voyages</a><a href="#enquire">Enquire</a>
+</div>
+
+<header class="hero" id="top" data-nav="light">
+  <div class="film" id="film">
+    <picture><source media="(max-width:820px)" data-c-srcset="assets/hero-m|jpg"><img data-c="assets/hero|jpg" alt="A white ÉTALE 52 yacht gliding on mirror-still water at dawn in pale blue fog" id="heroStill"></picture>
+  </div>
+  <div class="lede"><p class="top">Built for the still hour between tides.</p>
+  <div class="row"><span>ÉTALE 52</span><span><b>Electric expedition yacht</b></span><span>52 metres</span><span><b>First hull spring 2028</b></span></div></div>
+  <h1>ÉTALE</h1>
+</header>
+
+<main>
+<section class="reflect" id="still" data-nav="light" aria-label="The still hour">
+  <div class="strip" id="strip" role="img" aria-label="The yacht and its reflection inside a tall strip of still water, its edges sliced and displaced into the mist"></div>
+  <div class="words">
+    <div class="l rv">
+      <span class="cap">The still hour</span>
+      <p>Étale is the slack of the tide, the few minutes when the sea stops moving and the surface turns to glass. We build yachts for that moment.</p>
+      <p>Electric under way, silent at anchor, and drawn so low and long that the reflection becomes half of the design.</p>
+    </div>
+    <div aria-hidden="true"></div>
+    <p class="r rv">Half of every yacht is its reflection.</p>
+  </div>
+</section>
+
+<section class="hull" id="hull" data-nav="light" aria-label="The ÉTALE 52">
+  <div class="track"><div class="stick">
+    <div class="slices f4" id="slices" role="img" aria-label="Side profile of the ÉTALE 52, a long low white hull with dark glass, sliced into strips that close as you scroll"></div>
+    <div class="specs rv">
+      <b>ÉTALE 52</b>
+      <span>52.0 m length overall</span>
+      <span>10.4 m beam</span>
+      <span>1.9 MWh battery · 640 m² solar skin</span>
+      <span>4,000 nm hybrid range at 11 kn</span>
+      <span>12 guests · 9 crew</span>
+    </div>
+    <span class="rot" aria-hidden="true">electric</span>
+    <div class="sayline"><span class="script" aria-hidden="true">at any speed</span><p class="heavy">silent.</p></div>
+  </div></div>
+</section>
+
+<section class="numbers" id="numbers" data-nav="light" aria-label="In numbers">
+  <div class="track">
+    <div class="stick">
+      <div class="nums">
+        <div class="pl"><picture><img data-c="assets/num52|jpg" alt="A giant 52 cut out of black paper, a pewter model of the yacht on a silver ribbon at its base, a silver leaf beside the 2"></picture><video muted playsinline preload="auto" data-src="clips/num52-in|mp4" aria-hidden="true"></video></div>
+        <div class="pl"><picture><img data-c="assets/num0|jpg" alt="A giant 0 cut out of black paper, a pewter crescent moon hanging on a thread inside it and the yacht on a silver disc"></picture><video muted playsinline preload="auto" data-src="clips/num0-in|mp4" aria-hidden="true"></video></div>
+        <div class="pl"><picture><img data-c="assets/num60|jpg" alt="A giant 60 cut out of black paper, the pewter yacht riding a silver ribbon that loops through both digits"></picture><video muted playsinline preload="auto" data-src="clips/num60-in|mp4" aria-hidden="true"></video></div>
+      </div>
+      <span class="cap kick">ÉTALE 52 · In numbers</span>
+      <div class="card" data-i="0" style="--cx:60%;--cy:52%"><span class="n">01 / 03</span><span class="cap">Metres, length overall</span><p>Long and low, so the hull sits close to its reflection.</p></div>
+      <div class="card" data-i="1" style="--cx:60%;--cy:56%"><span class="n">02 / 03</span><span class="cap">Generators running at anchor</span><p>A full night on battery. No hum, no fumes, only the water against the hull.</p></div>
+      <div class="card" data-i="2" style="--cx:60%;--cy:36%"><span class="n">03 / 03</span><span class="cap">Nautical miles in silence</span><p>On battery alone at 9 knots, before the hybrid range takes over.</p></div>
+      <p class="fline">Turku · first hull, spring 2028</p>
+    </div>
+  </div>
+</section>
+
+<section class="atrium" id="atrium" data-nav="light" aria-label="Interior">
+  <figure class="poster">
+    <i class="sweep" aria-hidden="true"></i>
+    <img data-c="assets/relief|jpg" alt="The bow of the yacht carved from a white sculpted relief against a pale blue sky, warm light in its folds, a tiny figure on a white step, still water below" id="plateImg">
+    <figcaption class="pcol rv">
+      <h2>The atrium</h2>
+      <p>Main deck<br>Light well 4.2 m<br>Skylight over three decks</p>
+      <p>White lime plaster<br>Oak treads<br>Still pool 6 m</p>
+    </figcaption>
+    <p class="pword rv">Daylight falls three decks to the still pool.</p>
+  </figure>
+</section>
+
+<section class="salon" id="salon" data-nav="light" aria-label="The salon">
+  <div class="track"><div class="stick">
+    <img class="hall" data-c="assets/glass|jpg" alt="A hall of tall teal glass screens hanging from a white plaster eave, etched with pine shadows, a figure in a dark coat in the opening, the yacht tiny on still water in the mist beyond">
+    <div class="eave"><h2>The salon · nine glass screens</h2></div>
+    <div class="cord" style="--x:9%;--d:13svh"><div class="t"><p>They part the rooms without walls.</p><small>Low-iron glass · 3.1 m</small></div></div>
+    <div class="cord" style="--x:66%;--d:24svh"><div class="t"><p>Each one is etched with the shadow of a pine.</p><small>Hand etching · 9 screens</small></div></div>
+    <div class="cord" style="--x:27%;--d:44svh"><div class="t"><p>At night they hold the reflection of the sea.</p><small>Dimmable · 2,700 K</small></div></div>
+  </div></div>
+</section>
+
+<section class="voyages" id="voyages" data-nav="light" data-baked aria-label="Voyages">
+  <div class="sheet6">
+    <figure class="win rv">
+      <img data-c="assets/voyages|jpg" alt="VOYAGES in tall paper letters over an aerial view of granite skerries at dusk, a pine island crossing the word and the yacht leaving a long curving wake">
+      <h2 class="mega">VOYAGES</h2>
+    </figure>
+    <div class="info rv">
+      <div class="labels"><span>Åland</span><span>Skärgård</span><span>Lofoten</span></div>
+      <h3>Delivery voyages <span class="bar">|</span> <em>summer 2028</em></h3>
+      <p>Every ÉTALE 52 is delivered under its own power through the Baltic. Three nights from Turku to Åland among granite skerries, five nights through Stockholm's thirty thousand islands on battery inside every bay, then ten nights north of the Arctic Circle under the midnight sun.</p>
+      <b>Three routes, one yacht, no generator.</b>
+      <div class="meta"><span>ÉTALE Yachts</span><span>Voyage No. 01</span><span>06.2028</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="trials" id="trials" data-nav="light" aria-label="Sea trials">
+  <figure class="plate">
+    <picture><img class="bg" data-c="assets/frame-bg|jpg" alt="A thin black frame standing in sea fog behind a pile of dark wet rocks, the view inside it clear: the yacht at anchor at dusk with its cabin lights on"></picture>
+    <img class="rocks" data-c="assets/frame-rocks|webp" alt="">
+    <figcaption class="say rv"><span class="cap">Sea trials, spring 2028</span><h2>An evening at anchor, with nothing running.</h2></figcaption>
+  </figure>
+</section>
+
+<section class="enquire" id="enquire" data-nav="dark" aria-label="Enquire">
+  <div class="inner">
+    <div class="lead rv"><span class="cap">Enquire</span><h2>Book an evening aboard.</h2>
+    <p class="note">Trials leave Turku in April and May 2028: dinner aboard, a crossing to Nagu on battery alone, then an hour off the skerries where the only sound is the sea against the hull.</p></div>
+    <form class="rv" id="form">
+      <label>Name<input name="name" autocomplete="name" required></label>
+      <label>Email<input name="email" type="email" autocomplete="email" required></label>
+      <label>Cruising region<select name="region"><option>Baltic</option><option>Norwegian Sea</option><option>Mediterranean</option><option>Elsewhere</option></select></label>
+      <button type="submit">Request a sea trial</button>
+    </form>
+  </div>
+  <div class="mirror" aria-hidden="true"><span>ÉTALE</span><span>ÉTALE</span></div>
+  <div class="foot"><span>ÉTALE Yachts · Turku, Finland</span><span>Electric yachts for still water</span></div>
+</section>
+</main>
+
+<script>document.querySelectorAll('[data-c]').forEach(function(e){e.src=__A(e.dataset.c)});document.querySelectorAll('[data-c-srcset]').forEach(function(e){e.srcset=__A(e.dataset.cSrcset)});document.querySelectorAll('video[data-src]').forEach(function(e){e.dataset.src=__A(e.dataset.src)});</script>
+<script src="/landing-pages/week-2026-11-03/28033e449a31ebcc396e5be8b13b6315.js"></script>
+<script src="/landing-pages/week-2026-11-03/ad33c2df9ada8a663c2147357828f980.js"></script>
+<script src="/landing-pages/week-2026-11-03/b2958f142f832f0d5e547cdef77e6fad.js"></script>
+<script>
+const $ = (s, r = document) => r.querySelector(s);
+const still = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
+
+if (still) $('#rippleMove')?.remove();
+document.addEventListener('click', e => { const a = e.target.closest('a[href="#"]'); if (a) e.preventDefault(); });
+$('#form').addEventListener('submit', e => { e.preventDefault(); e.target.querySelector('button').textContent = 'Thank you. We will be in touch.'; });
+
+// phone menu
+const menuBtn = $('.nav .menu');
+function closeMenu(){ document.body.classList.remove('menuopen'); menuBtn.textContent = 'Menu'; menuBtn.setAttribute('aria-expanded', false); }
+menuBtn.addEventListener('click', () => { const open = document.body.classList.toggle('menuopen'); menuBtn.setAttribute('aria-expanded', open); menuBtn.textContent = open ? 'Close' : 'Menu'; });
+document.querySelectorAll('.sheetnav a').forEach(a => a.addEventListener('click', closeMenu));
+
+// nav ink follows whichever section sits under the nav bar
+const themed = [...document.querySelectorAll('header[data-nav], section[data-nav]')];
+function navTheme(){ const y = 40; const s = themed.findLast(el => { const r = el.getBoundingClientRect(); return r.top <= y && r.bottom > y; }); if (s) document.body.dataset.nav = s.dataset.nav; }
+addEventListener('scroll', navTheme, { passive: true }); navTheme();
+
+// reveals fire early, once
+const io = new IntersectionObserver(es => es.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } }), { rootMargin: '0px 0px -6% 0px' });
+document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+// cut one image into bands ('h') or slices ('v'), each piece showing its own part, laid out like object-fit: cover
+function cut(el, n, src, dir){
+  for (let i = 0; i < n; i++) { const b = document.createElement('b'); b.style.backgroundImage = `url(${src})`; el.appendChild(b); }
+  const img = new __threeuiStorageImage(); img.src = src;
+  function layout(){
+    if (!img.naturalWidth) return;
+    const W = el.clientWidth, H = el.clientHeight, s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const iw = img.naturalWidth * s, ih = img.naturalHeight * s, ox = (W - iw) / 2, oy = (H - ih) / 2;
+    [...el.children].forEach((b, i) => {
+      if (dir === 'h') { const h = H / n; Object.assign(b.style, { top: i * h + 'px', height: Math.ceil(h) + 1 + 'px', left: 0, width: W + 'px', backgroundPosition: `${ox}px ${oy - i * h}px` }); }
+      else { const w = W / n; Object.assign(b.style, { left: i * w + 'px', width: Math.ceil(w) + 1 + 'px', top: 0, height: H + 'px', backgroundPosition: `${ox - i * w}px ${oy}px` }); }
+      b.style.backgroundSize = `${iw}px ${ih}px`;
+    });
+  }
+  if (img.complete) layout(); img.onload = layout; addEventListener('resize', layout);
+}
+const BANDS = 72, SLICES = 72;
+cut($('#strip'), BANDS, __A('assets/strip-art|jpg'), 'h');
+// the hull plate in two rows of slices: the yacht above the waterline, its reflection below
+const WL = 0.61, hullRows = [0, 1].map(k => { const d = document.createElement('div'); d.className = 'part'; $('#slices').appendChild(d);
+  for (let i = 0; i < SLICES; i++) { const b = document.createElement('b'); b.style.backgroundImage = 'url("'+__A('assets/hull|jpg')+'")'; d.appendChild(b); } return d; });
+(function(){
+  const host = $('#slices'), img = new __threeuiStorageImage(); img.src = __A('assets/hull|jpg');
+  function layout(){
+    if (!img.naturalWidth) return;
+    const W = host.clientWidth, H = host.clientHeight, s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+    const iw = img.naturalWidth * s, ih = img.naturalHeight * s, ox = (W - iw) / 2, oy = (H - ih) / 2, w = W / SLICES;
+    hullRows.forEach((d, k) => {
+      const y0 = k ? WL * H : 0, h = k ? H - y0 : WL * H; Object.assign(d.style, { top: y0 + 'px', height: Math.ceil(h) + 'px' });
+      [...d.children].forEach((b, i) => Object.assign(b.style, { left: i * w + 'px', width: Math.ceil(w) + 1 + 'px', top: 0, height: Math.ceil(h) + 'px', backgroundSize: `${iw}px ${ih}px`, backgroundPosition: `${ox - i * w}px ${oy - y0}px` }));
+    });
+  }
+  if (img.complete) layout(); img.onload = layout; addEventListener('resize', layout);
+})();
+$('#strip').classList.add('f4');
+// designed, not random: small offsets
+const off = (i, amp) => Math.sin(i * 2.399) * amp * (0.45 + 0.55 * Math.abs(Math.cos(i * 1.31)));
+
+if (!still && window.gsap && window.ScrollTrigger) {
+  gsap.registerPlugin(ScrollTrigger);
+  // smooth scrolling with weight: heavy inertia (the page closes 5 % of the gap to the target per frame, so it keeps
+  // gliding for about a second after the wheel or trackpad stops), so the sheets settle rather than snap
+  if (window.Lenis) { const lenis = new Lenis({ lerp: 0.05, wheelMultiplier: 0.9, touchMultiplier: 1.3, smoothWheel: true });
+    lenis.on('scroll', ScrollTrigger.update); gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+    // anchors glide too; a stuck sheet's box is not where it sits in the flow, so the target is the sum of the heights before it
+    const flow = [$('.hero'), ...document.querySelectorAll('main > section')];
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => { const t = a.getAttribute('href').length > 1 && $(a.getAttribute('href'));
+      const k = flow.indexOf(t); if (k < 0) return; e.preventDefault(); lenis.scrollTo(flow.slice(0, k).reduce((y, s) => y + s.offsetHeight, 0), { duration: 2 }); })); }
+  // reflection: fine bands arrive displaced sideways (ref 2's scanline smear) and settle as the strip centres;
+  // the yacht's rows (45 to 62 % of the strip) never move, so the product is never shredded
+  const AMP = innerWidth > 820 ? 18 : 8;
+  $('#strip').querySelectorAll('b').forEach((b, i) => {
+    const f = (i + .5) / BANDS, calm = clamp(Math.min(Math.abs(f - .45), Math.abs(f - .62), f > .45 && f < .62 ? 0 : 1) / .06);
+    gsap.fromTo(b, { x: off(i, AMP) * calm }, { x: 0, ease: 'power3.out', scrollTrigger: { trigger: '.reflect', start: 'top 85%', end: 'top 10%', scrub: true } });
+  });
+  // hull: a slow 12 px wave across 72 slices (neighbours at most 3 px apart, like the lily's soft steps), and the two
+  // halves held 3 px apart so the ground shows as a seam down the centre until the profile closes
+  const hullST = { trigger: '.hull .track', start: 'top 80%', end: 'top -25%', scrub: true };
+  hullRows.forEach(d => [...d.children].forEach((b, i) => {
+    gsap.fromTo(b, { y: 12 * Math.sin(i * 0.25 + 0.6) }, { y: 0, ease: 'power2.out', scrollTrigger: hullST });
+    gsap.fromTo(b, { x: i < SLICES / 2 ? -4 : 4 }, { x: 0, ease: 'none', scrollTrigger: hullST });
+  }));
+  // at rest the reflection stays sliced like ref 4's stem: each water slice drifts 0 to 3 px down and back, never up into the hull
+  const water = [...hullRows[1].children]; let breathing = false;
+  new IntersectionObserver(es => { breathing = es[0].isIntersecting; if (breathing) requestAnimationFrame(breathe); }).observe($('.hull'));
+  function breathe(t){ water.forEach((b, i) => { b.style.translate = `0 ${(1.5 + 1.5 * Math.sin(t / 1000 * 0.6 + i * 0.25)).toFixed(2)}px`; }); if (breathing) requestAnimationFrame(breathe); }
+  gsap.fromTo('.salon', { '--salon-top': '#8b9fb6' }, { '--salon-top': '#e1e1e1', ease: 'none', scrollTrigger: { trigger: '.salon .track', start: 'top top', end: 'top -15%', scrub: true } });
+  document.querySelectorAll('.cord').forEach((c, i) => {
+    gsap.fromTo(c, { '--k': 0 }, { '--k': 1, ease: 'power2.out', scrollTrigger: { trigger: '.salon .track', start: `top ${30 - i * 22}%`, end: `top ${-10 - i * 22}%`, scrub: true } });
+  });
+  // atrium: the low sun moves across the relief's lit doorway; voyages and the framed view settle as they arrive
+  gsap.fromTo('.poster .sweep', { '--sx': '46%' }, { '--sx': '68%', ease: 'none', scrollTrigger: { trigger: '.atrium', start: 'top bottom', end: 'bottom top', scrub: true } });
+  gsap.fromTo('.win img', { scale: 1.08 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.voyages', start: 'top bottom', end: 'center center', scrub: true } });
+  gsap.fromTo('.trials .bg', { scale: 1.05 }, { scale: 1, ease: 'none', scrollTrigger: { trigger: '.trials', start: 'top bottom', end: 'top top', scrub: true } });
+  // the rocks are their own layer in front of the frame: they rise faster than the sea behind them, and keep rising
+  // while the enquiry sheet covers the view (every width)
+  // the rocks stand in front of the frame; they rise into place as the sheet arrives and through its 75svh hold, so
+  // the parallax plays before the next sheet comes (never above their place: that would show their lower edge)
+  // (entering the window: 30 % to 12 %; then the frame holds still while the rocks keep rising the last 12 %)
+  gsap.timeline({ scrollTrigger: { trigger: '.trials', start: 'top bottom', end: 'bottom bottom', scrub: true } })
+    .fromTo('.trials .rocks', { yPercent: 30 }, { yPercent: 12, ease: 'none', duration: 100 })
+    .to('.trials .rocks', { yPercent: 0, ease: 'power1.out', duration: 75 });
+  gsap.to('#plateImg', { scale: 1, ease: 'none', scrollTrigger: { trigger: '.atrium', start: 'top bottom', end: 'bottom top', scrub: true } });
+}
+
+// sheets (desktop): every section sticks once its end reaches the bottom of the window, so the next one slides over it.
+// The dimming is ONE fixed, window-sized veil slotted between the covered sheet and the one arriving (z-index), and a
+// sheet that is fully covered is hidden: no transform or overlay on the sections themselves, whose layers are up to
+// 2700 px tall (at 2x density those overran the compositor and it drew sections out of order, in patches)
+(function sheets(){
+  if (innerWidth <= 820) return;
+  const list = [$('.hero'), ...document.querySelectorAll('main > section')];
+  list.forEach((s, i) => { s.classList.add('sheet'); s.style.zIndex = 2 * i + 2; });
+  const veil = document.createElement('div'); veil.className = 'veil'; veil.setAttribute('aria-hidden', 'true'); document.body.appendChild(veil);
+  function measure(){ const ih = innerHeight; list.forEach(s => s.style.setProperty('--stick', Math.min(0, ih - s.offsetHeight) + 'px')); }
+  const ease = t => t * t * (3 - 2 * t);
+  let lastVeil = '';
+  function frame(){
+    let active = -1, q = 0;
+    for (let i = 0; i < list.length - 1; i++) {
+      const r = list[i + 1].getBoundingClientRect(), qi = clamp(1 - r.top / innerHeight);
+      if (qi > 0 && qi < 1) { active = i; q = qi; }
+      const hide = r.top <= 0 && r.bottom >= innerHeight;
+      if ((list[i].style.visibility === 'hidden') !== hide) list[i].style.visibility = hide ? 'hidden' : '';
+    }
+    const v = active < 0 || still ? 'none' : `${2 * active + 3}|${(0.3 * ease(q)).toFixed(3)}`;
+    if (v !== lastVeil) { lastVeil = v;
+      if (v === 'none') veil.style.opacity = 0; else { const [z, o] = v.split('|'); veil.style.zIndex = z; veil.style.opacity = o; } }
+    requestAnimationFrame(frame);
+  }
+  measure(); addEventListener('resize', measure); addEventListener('load', measure); requestAnimationFrame(frame);
+})();
+
+// numbers: its own transition, not the page's sheets. The plates stand side by side on a deeper paper and the scroll
+// pans along them: each plate holds while it is read, then an eased push (in-out cubic over 55 % of a plate's scroll)
+// carries it off to the left as the next comes in from the right; inside each plate the picture counter-shifts
+// (22 %) so the pan has depth, and the card travels at half the plate's speed and fades with distance
+(function numbers(){
+  const track = $('.numbers .track'), plates = [...document.querySelectorAll('.nums .pl')], cards = [...document.querySelectorAll('.card')];
+  const n = plates.length, W = 0.55, fline = $('.numbers .fline');
+  const io = t => t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  // entrance films (every width): a numeral's film starts as its plate comes in and stops on its still; it rewinds only
+  // when that plate leaves to the right again (the 52 when the section drops below the window), so scrolling back replays it
+  const films = plates.map(el => el.querySelector('video'));
+  if (!still) films.forEach(v => { v.src = v.dataset.src; });
+  function cue(v, on, off){
+    if (!v || !v.src) return;
+    if (on && !v.dataset.go) { v.dataset.go = 1; v.currentTime = 0; v.play().catch(() => {}); }
+    else if (off && v.dataset.go) { delete v.dataset.go; v.pause(); v.currentTime = 0; }
+  }
+  function frame(){
+    const r = track.getBoundingClientRect(), span = r.height - innerHeight, p = clamp(-r.top / span) * n;
+    let P = 0;
+    for (let k = 1; k < n; k++) P += still ? (p >= k ? 1 : 0) : io(clamp((p - k + W / 2) / W));
+    cue(films[0], r.top < innerHeight * .3, r.top > innerHeight);
+    const gap = Math.round(innerWidth * .018);
+    plates.forEach((el, k) => {
+      const d = k - P;
+      el.style.transform = `translate3d(${(d * (innerWidth + gap)).toFixed(1)}px,0,0)`;
+      el.style.setProperty('--px', `${(-d * 22).toFixed(2)}%`);
+      el.style.visibility = Math.abs(d) >= 1 ? 'hidden' : '';
+      if (k) cue(films[k], d < .3, d > .98);
+    });
+    cards.forEach((c, k) => {
+      const d = k - P;
+      c.style.opacity = clamp(1 - Math.abs(d) * 1.8).toFixed(3);
+      c.style.transform = (innerWidth > 820 && innerWidth > innerHeight ? 'translateY(-50%) ' : '') + `translateX(${(d * innerWidth * .5).toFixed(1)}px)`;
+    });
+    fline.style.opacity = clamp(1 - 4 * Math.abs(P - Math.round(P))).toFixed(3);
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+
+// the hero film: one muted video whose loop is baked into the file (no seam to hide), a portrait cut on phones;
+// reduced motion keeps the still, which is also the film's first frame
+const params = new URLSearchParams(location.search), film = $('#film');
+function makeVideo(src, loop){ const v = document.createElement('video'); v.src = src; v.muted = true; v.playsInline = true; v.loop = !!loop; v.preload = 'auto'; film.appendChild(v); return v; }
+{
+  const src = still ? null : innerWidth > 820 ? __A('clips/hero-preview|mp4') : __A('clips/hero-preview-m|mp4');
+  if (src) { const v = makeVideo(src, true); v.addEventListener('playing', () => v.classList.add('on'), { once: true }); v.play().catch(() => {}); }
+}
+</script>
+</body>
+</html>

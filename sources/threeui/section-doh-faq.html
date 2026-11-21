@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>DOH! — Little Questions · ThreeUI</title><style>@font-face {
+font-family: "DM Sans";
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10-27/80ebf03e4d9f47f33a6e34595b0a29e0a2c68af3d2af946ac3658ca6066198dd.woff") format("woff");
+}
+@font-face {
+font-family: "DM Sans";
+font-style: normal;
+font-weight: 500;
+font-display: swap;
+src: url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10-27/3a65ba6dc4125713063b4ce3e5175049f0cf47f185b3d1358f8bcae2e1742983.woff") format("woff");
+}
+@font-face {
+font-family: "DM Sans";
+font-style: normal;
+font-weight: 600;
+font-display: swap;
+src: url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10-27/969e4479cb9446660011944a5a76886564202ec93c28ca5fce2f715f3d3c4d6d.woff") format("woff");
+}
+@font-face {
+font-family: "DM Sans";
+font-style: normal;
+font-weight: 700;
+font-display: swap;
+src: url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10-27/2c8e82f56a5488c95006c748735f75162e4db9f810099a9078dabd2290d583ee.woff") format("woff");
+}
+@font-face {
+font-family: "Lilita One";
+font-style: normal;
+font-weight: 400;
+font-display: swap;
+src: url("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10-27/1457cd455bc2f7d03f9975f6f4f8f30d3df6569fb78422c4c585a19942a63726.woff") format("woff");
+}
+:root{--pink:#ff98c9;--hot:#ed3888;--yellow:#ffdf49;--green:#086b48;--blue:#96c6ff;--cream:#fff8e7;--ink:#351a42;--font:"DM Sans",Arial,sans-serif;--display:"Lilita One","Arial Rounded MT Bold",sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:110px}
+body{margin:0;background:var(--pink);color:var(--ink);font-family:var(--font);font-size:16px;-webkit-font-smoothing:antialiased}
+summary{touch-action:manipulation}
+summary:focus-visible{outline:3px solid var(--ink);outline-offset:6px}
+::selection{background:var(--yellow);color:var(--ink)}
+.eyebrow{font-size:12px;font-weight:800;letter-spacing:1.5px;line-height:1.6;margin:0 0 22px;display:flex;align-items:center;gap:10px}
+h2,p{margin-top:0}
+h2{font-family:var(--display);font-weight:400}
+em{font-style:normal}
+h2{font-size:clamp(44px,5.3vw,86px);line-height:.98;letter-spacing:-.035em;margin-bottom:27px}
+.content{position:relative;z-index:10;background:var(--cream)}
+@keyframes ticker{to{transform:translateX(-50%)}}
+.section{padding:105px 6.5%}
+.faq-section{display:grid;grid-template-columns:1fr 1.4fr;gap:10%;padding-top:30px}
+.faq-section h2 em{color:var(--green)}
+details{border-bottom:1.5px solid #351a4240}
+summary{font-weight:700;font-size:16px;padding:23px 35px 23px 0;list-style:none;cursor:pointer;position:relative}
+summary::-webkit-details-marker{display:none}
+summary:after{content:"+";position:absolute;right:0;top:19px;font-size:26px;font-weight:400}
+details[open] summary:after{content:"−"}
+details p{font-size:15px;line-height:1.75;padding-right:25px}
+@media (min-width:1500px){.section{padding-inline:max(7%,calc((100vw - 1400px)/2))}}
+@media (max-width:1100px){.section{padding:85px 6%}}
+@media (max-width:800px){.section{padding:70px 6%}
+.section h2{font-size:clamp(39px,8.5vw,60px)}
+.faq-section{grid-template-columns:1fr;gap:15px;padding-top:10px}
+summary{font-size:15px;line-height:1.4}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+*,*:before,*:after{animation:none!important;transition:none!important}}
+:root{--ink:#173c31;--green:#173c31;--cream:#fffaf0;--ease:cubic-bezier(.22,.75,.18,1)}
+body{overflow-x:clip}
+summary:focus-visible{outline:3px solid currentColor;outline-offset:5px}
+.eyebrow{font-size:12px;letter-spacing:1.7px;font-weight:700}
+h2{font-family:var(--font);font-weight:700;letter-spacing:-.065em;line-height:.98}
+h2 em{font-family:var(--display);font-weight:400;letter-spacing:-.025em}
+.content{background:var(--cream)}
+.section{padding:112px 6%}
+.questions summary{font-size:17px}
+.questions p{font-size:16px}
+@keyframes detail-in{from{opacity:0;transform:translateY(25px) scale(.975)}to{opacity:1;transform:none}}
+@media (max-width:800px){.section{padding:78px 6%}
+.eyebrow{font-size:12px;margin-bottom:20px}}
+
+.content{--px-ease:cubic-bezier(.22,.75,.18,1);--px-spring:cubic-bezier(.34,1.56,.64,1)}
+.content>section{position:relative}
+.content>section{border-radius:44px 44px 0 0;margin-top:-44px;box-shadow:0 -18px 40px -24px rgba(23,60,49,.35)}
+.content>section:nth-of-type(1){z-index:2}
+.content>section.faq-section{background:var(--cream)}
+.content>section.faq-section{border-radius:0;margin-top:0;box-shadow:none;padding-bottom:130px}
+@keyframes px-spin{to{transform:rotate(372deg)}}
+.faq-section details{overflow:hidden;transition:background .3s}
+.faq-section details[open]{background:rgba(255,223,73,.18);border-radius:18px}
+.faq-section summary{transition:padding .35s var(--px-ease)}
+.faq-section details[open] summary{padding-left:18px}
+.faq-section details p{padding-left:18px}
+.faq-section summary:after{transition:transform .4s var(--px-ease)}
+.faq-section details[open] summary:after{transform:rotate(180deg)}
+@keyframes px-drop{0%{transform:translateY(-110%) rotate(-10deg);opacity:0}45%{transform:none;opacity:1}55%{transform:scale(1.06,.9)}68%{transform:translateY(-7%) scale(.98,1.03)}82%{transform:scale(1.01,.98)}100%{transform:none;opacity:1}}
+@media (max-width:800px){.content>section{border-radius:28px 28px 0 0;margin-top:-28px}}
+:root{--hero-x:70.5%;--hero-y:45%;--hero-d:min(45vw,67svh)}
+@keyframes hero-stamp{to{transform:rotate(360deg)}}
+@media (max-width:800px){:root{--hero-x:65%;--hero-y:68%;--hero-d:min(68vw,34svh)}}
+
+
+.content{border-top-left-radius:44px;border-top-right-radius:44px}
+.content>section{position:sticky;top:var(--stick-top,0px)}
+.content>section.faq-section{border-radius:44px 44px 0 0;margin-top:-44px;box-shadow:0 -18px 40px -24px rgba(23,60,49,.35)}
+@media (max-width:800px){.content>section.faq-section{border-radius:28px 28px 0 0;margin-top:-28px}}
+@keyframes doh-jelly{
+0%{transform:scale3d(1,1,1)}
+18%{transform:scale3d(1.22,.78,1)}
+32%{transform:scale3d(.82,1.2,1) translateY(-4%)}
+46%{transform:scale3d(1.12,.9,1)}
+60%{transform:scale3d(.95,1.06,1)}
+74%{transform:scale3d(1.04,.97,1)}
+88%{transform:scale3d(.99,1.01,1)}
+100%{transform:scale3d(1,1,1)}}
+@keyframes hero-nudge{0%,70%,100%{transform:none}78%{transform:translate(3px,-3px)}86%{transform:none}}
+:root{--hero-x:63.5%;--hero-y:51%;--hero-d:min(54vw,80.4svh)}
+@media (max-width:800px){:root{--hero-x:65%;--hero-y:68%;--hero-d:min(72vw,36svh)}}
+
+
+@keyframes room-in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+
+
+html{height:auto!important;min-height:100%;overflow-x:hidden!important;overflow-y:auto!important;scroll-behavior:smooth}body{height:auto!important;min-height:100vh;margin:0;overflow-x:hidden!important;overflow-y:auto!important;cursor:auto!important}body>[data-section-ancestor],[data-section-ancestor]{height:auto!important;min-height:0!important;position:relative!important;inset:auto!important;transform:none!important;overflow:visible!important}[data-section-root]{position:relative!important;inset:auto!important;transform:none!important;margin-block:0!important}[data-section-root] :is(.reveal,.rv,[data-reveal],[data-io]){opacity:1!important;visibility:visible!important;clip-path:none!important;transform:none!important}a,button{cursor:pointer}
+.stack-shade{display:none}.px-w{opacity:1!important;transform:none!important}body{background:#faf7ed} [data-section-root]{min-height:100vh}</style></head><body data-threeui-section="section-doh-faq"><main data-section-ancestor=""><div class="content" data-section-ancestor=""><section class="section faq-section" data-section-root="" id="faq"><div><p class="eyebrow">THE LITTLE QUESTIONS</p><h2>Glad<br/><em>you asked.</em></h2></div><div class="questions"><details><summary>How do I keep my donuts soft?</summary><p>They are best enjoyed the same day. Keep them in an airtight box at room temperature, away from sunlight and heat. Donuts without perishable fillings are happiest outside the refrigerator.</p></details><details><summary>Which one should I try first?</summary><p>Pink, please! for the colour and sprinkles. Simply glazed. to fall in love with the dough. And if chocolate or pistachio is your thing, you already know the answer.</p></details><details><summary>What is in the box of six?</summary><p>Two Pink, please!, two Simply glazed., one Choco loco. and one Oh, pistachio! A little tour of all four flavours, available when we open.</p></details><details><summary>What about allergies?</summary><p>Our recipes may contain gluten, milk, eggs and tree nuts. Everything will be made in a shared kitchen, so we cannot guarantee the absence of traces. Full ingredient details will be available at opening.</p></details><details><summary>Where can I find you?</summary><p>The DOH! counter is on its way. Our address and opening date will be announced here. This page is a taste of our world and upcoming menu.</p></details></div></section></div></main><script defer="" src="./runtime.js"></script></body></html>

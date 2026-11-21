@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#070b10"><meta name="description" content="ECLIPSE: The Last Frontier. An interactive cinematic journey through an original science-fiction universe.">
+<title>ECLIPSE — The Last Frontier</title>
+<style id="eclipse-critical">html,body{margin:0;background:#05090e;color:#f2f1e9}body{visibility:hidden}#loading{visibility:visible;position:fixed;inset:0;display:flex;align-items:center;justify-content:center;gap:20px;font:12px system-ui;letter-spacing:3px}#skip-intro{display:none}</style>
+<link rel="stylesheet" href="/landing-pages/week-2026-11-10/eclipse-tailwind.css">
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+// Hash routers need a real hashchange in this frame. Letting the anchor
+// navigate normally would resolve against the parent URL of srcdoc.
+if (href.startsWith('#/') || href.startsWith('#!/')) {
+window.location.hash = href;
+return;
+}
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script></head>
+<body>
+<a class="skip-link" href="#chapter-nav">Skip to chapter navigation</a>
+<div id="cinema" aria-hidden="true">
+  <div id="star-backdrop" class="backdrop" data-art="starfield"></div>
+  <div id="poster" class="backdrop" data-art="01-awakening"></div>
+  <div id="world" class="backdrop" data-art="09-city"></div>
+  <div id="chamber" class="backdrop" data-art="07-temple"></div>
+  <div id="final-orbit" class="backdrop" data-art="12-horizon"></div>
+  <div id="sun-light"></div>
+  <canvas id="universe"></canvas><svg id="engine-wake" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"></svg>
+  <img id="gateway" data-src="city-gateway" alt="">
+  <img id="ruins" class="foreground" data-src="foreground-ruins" alt="">
+  <div id="atmosphere"></div><div id="cloud-veil" data-art="cloud-layer"></div>
+  <div id="living-scene" class="added-scene">
+    <div id="living-back" class="scene-layer scenic-fallback" data-art="11-forest"></div>
+    <canvas id="archive-depth" class="parallax-depth" aria-hidden="true"></canvas>
+    <div class="living-shade"></div>
+  </div>
+  <div id="beyond-scene" class="added-scene">
+    <div id="beyond-back" class="scene-layer scenic-fallback" data-art="05-floating"></div>
+    <canvas id="veil-depth" class="parallax-depth" aria-hidden="true"></canvas>
+    <div class="beyond-wash"></div>
+  </div>
+  <div id="exposure"></div><div class="vignette"></div><div class="grain"></div>
+</div>
+<header class="topbar ui">
+  <a class="identity" href="#awakening" aria-label="Eclipse — back to the awakening"><svg viewBox="0 0 42 42" aria-hidden="true"><circle cx="21" cy="21" r="15"></circle><path d="M7 34 35 6M15 3l-3 9M30 30l-3 9"></path><circle cx="21" cy="21" r="7"></circle></svg><span>ECLIPSE<small>THE LAST FRONTIER</small></span></a>
+  <nav class="toplinks" aria-label="Primary"><button class="text-link" data-jump="0">The journey</button><button class="text-link" id="archive-open">Field archive <span>↗</span></button></nav>
+  <div class="header-actions"><span class="live-tag"><i></i> AN ORIGINAL UNIVERSE</span><button id="menu-open" class="icon-button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button></div>
+</header>
+<main id="journey" aria-label="Eclipse cinematic journey">
+  <div class="copy-stage ui">
+    <article class="chapter active" id="awakening" data-chapter="0" aria-labelledby="hero-heading">
+      <div class="eyebrow"><span class="hairline"></span> 01 / THE AWAKENING</div>
+      <h1 id="hero-heading"><span class="line depth">THE GALAXY</span><span class="line disperse">IS NOT</span><span class="line sweep">FORGOTTEN.</span></h1>
+      <p class="intro">An ancient power is awakening.<br>Your journey begins beyond the known stars.</p>
+      <button class="journey-button magnetic" data-jump="1"><span>BEGIN THE DESCENT</span><span class="button-arrow">↘</span></button>
+      <div class="micro hero-note">BEYOND THE STARS, A FORGOTTEN EMPIRE AWAKENS.</div>
+    </article>
+    <article class="chapter" id="descent" data-chapter="1" aria-labelledby="descent-heading" inert="">
+      <div class="eyebrow"><span class="hairline"></span> 02 / DESCENT</div>
+      <h2 id="descent-heading"><span class="line">FOLLOW</span><span class="line outline">THE LAST</span><span class="line">LIGHT.</span></h2>
+      <p>Orbit locked. Aethra is turning beneath you.<br>Beyond the clouds, a city is still awake.</p>
+      <button class="text-link with-arrow" data-record="1">INTERCEPT THE SIGNAL <span>↗</span></button>
+    </article>
+    <article class="chapter" id="forgotten" data-chapter="2" aria-labelledby="world-heading" inert="">
+      <div class="eyebrow"><span class="hairline"></span> 03 / NACRE PRIME</div>
+      <h2 id="world-heading"><span class="line">THE LAST</span><span class="line">CITY OF</span><span class="line warm">STARLIGHT.</span></h2>
+      <p>Eight million lights. One final refuge.<br>Follow the signal through the citadel doors.</p>
+      <button class="text-link with-arrow" data-jump="3">ENTER THE SANCTUM <span>↗</span></button>
+    </article>
+    <article class="chapter" id="ancient" data-chapter="3" aria-labelledby="crystal-heading" inert="">
+      <div class="eyebrow"><span class="hairline"></span> 04 / INSIDE THE QUIET SANCTUM</div>
+      <h2 id="crystal-heading"><span class="line">IT WAS</span><span class="line outline">NEVER</span><span class="line">DORMANT.</span></h2>
+      <p>One fragment. The memory of a thousand suns.<br>The Lumen remembers everything. Even you.</p>
+      <button id="activate" class="journey-button magnetic"><span>AWAKEN THE LUMEN</span><span class="button-arrow">✧</span></button>
+      <span id="activation-status" class="micro" role="status">CORE STATUS / QUIESCENT</span>
+    </article>
+    <article class="chapter living-chapter" id="living" data-chapter="4" aria-labelledby="living-heading" inert="">
+      <div class="living-caption"><span class="eyebrow"><span class="hairline"></span> 05 / THE LIVING ARCHIVE</span><span class="micro">NOCTURNE · NORTHERN AETHRA</span></div>
+      <div class="living-main">
+        <h2 id="living-heading" data-split="words"><span class="line">THE DARK</span><span class="line">IS <em data-emphasis="">ALIVE.</em></span></h2>
+        <p>Every leaf holds a memory.<br>Every root carries the same impossible signal.</p>
+        <button class="text-link with-arrow" data-record="10">READ THE LIVING ARCHIVE <span>↗</span></button>
+      </div>
+      <div class="signal-observation">
+        <span class="signal-kicker"><i></i> FIRST CONTACT / BIOLOGICAL</span>
+        <div class="signal-reading"><strong>11.04</strong><span>Hz<br>RESONANCE</span></div>
+        <svg class="signal-wave" viewBox="0 0 300 44" aria-hidden="true"><path class="wave-base" d="M0 22H300"></path><path class="wave-live" d="M0 22H38l6-4 5 8 6-17 6 31 6-24 6 12 7-6h28l7-11 6 23 7-32 7 40 7-29 7 15 7-6h28l7-7 7 18 7-29 7 31 7-17 7 6 7-2h45"></path></svg>
+        <p>A forest older than the empire.<br>A heartbeat that answers your own.</p>
+        <div class="signal-status"><span>ORIGIN / UNKNOWN</span><span>CONNECTION / <b>ALIVE</b></span></div>
+      </div>
+      <div class="living-bottom"><span>NOT EVERYTHING LOST<br>WANTS TO BE FOUND.</span><button data-jump="5" class="text-link">FOLLOW THE SIGNAL <span>↗</span></button></div>
+    </article>
+    <article class="chapter finale" id="frontier" data-chapter="5" aria-labelledby="final-heading" inert="">
+      <div class="eyebrow"><span class="hairline"></span> 06 / THE FINAL FRONTIER</div>
+      <h2 id="final-heading"><span class="line">EVERY LEGEND</span><span class="line outline">BEGINS</span><span class="line">BEYOND THE STARS.</span></h2>
+      <p>The star is dying. The frontier is calling.<br>What will you leave in its light?</p>
+      <button class="journey-button magnetic" data-jump="6"><span>BEYOND THE VEIL</span><span class="button-arrow">↗</span></button>
+    </article>
+    <article class="chapter beyond-chapter" id="beyond" data-chapter="6" aria-labelledby="beyond-heading" inert="">
+      <div class="beyond-caption"><span class="eyebrow"><span class="hairline"></span> 07 / BEYOND THE VEIL</span><span>THE SUSPENDED SEA<br><b>18° 04′ N / 71° 09′ E</b></span></div>
+      <div class="beyond-bottom">
+        <h2 id="beyond-heading" data-split="words"><span class="line">SOME LIGHT</span><span class="line"><em data-emphasis="">NEVER DIES.</em></span></h2>
+        <div class="beyond-invitation"><p>Past the last star, a world is waiting.<br>Give its story a beginning.</p><button id="enter-universe" class="journey-button solid magnetic"><span>ENTER THE UNIVERSE</span><span class="button-arrow">→</span></button><span class="micro">YOUR FRONTIER. YOUR FIRST CHAPTER.</span></div>
+      </div>
+    </article>
+  </div>
+  <aside id="last-transmission" class="ui" aria-label="The Vesper’s final transmission" aria-hidden="true">
+    <span class="eyebrow">VESPER / FINAL TRANSMISSION</span>
+    <div class="transmission-line"><span></span></div>
+    <p id="transmission-copy">We followed a dying star.<br>It led us to a living world.</p>
+    <span class="transmission-note">THE SIGNAL WAS NEVER A WARNING.</span>
+    <span class="micro">SCROLL TO CROSS THE VEIL <span aria-hidden="true">↓</span></span>
+  </aside>
+  <div class="scene-interface ui">
+    <div id="orbit-controls" hidden="">
+      <div id="orbit-drag" role="slider" tabindex="0" aria-label="Orbit Aethra. Drag horizontally or use the arrow keys." aria-valuemin="-12" aria-valuemax="12" aria-valuenow="0" aria-valuetext="Centered orbit"></div>
+      <button id="shuttle-hit" aria-label="Boost the shuttle engines" title="Boost the shuttle engines"><span>BOOST ENGINES ↗</span></button>
+      <div class="orbit-toolbar"><span id="orbit-hint">↔ DRAG THE PLANET</span><button id="flight-boost">BOOST ENGINES ↗</button><button id="orbit-reset" aria-label="Reset the orbital view">RESET</button></div>
+      <span id="flight-status" class="sr-only" role="status" aria-live="polite">Shuttle cruising. Click the shuttle to boost its engines.</span>
+    </div>
+    <div class="coordinates"><span id="sector-label">AETHRA SYSTEM</span><span id="coordinate-value">RA 08h 41m · DEC −21°</span><i></i></div>
+    <button id="location-hotspot" class="hotspot" data-jump="2" aria-label="Descend to Nacre Prime"><span class="hotspot-dot">↘</span><span class="hotspot-label">NACRE PRIME<small>SELECT TO DESCEND</small></span></button>
+    <button id="temple-hotspot" class="hotspot" data-jump="3" aria-label="Fly into the Quiet Sanctum" hidden=""><span class="hotspot-dot">↗</span><span class="hotspot-label">THE QUIET SANCTUM<small>ENTER THE INNER ROOM</small></span></button>
+    <button id="ship-hotspot" class="hotspot" data-record="5" aria-label="Inspect the Vesper flagship" hidden=""><span class="hotspot-dot">+</span><span class="hotspot-label">VESPER<small>FRONTIER CLASS / FLAGSHIP</small></span></button>
+    <div id="crystal-controls" hidden=""><div id="crystal-drag" tabindex="0" role="slider" aria-label="Rotate the Lumen crystal. Use left and right arrow keys." aria-valuemin="-28" aria-valuemax="28" aria-valuenow="0"><span class="drag-corners"></span></div><div class="drag-label"><span>↔</span> DRAG TO EXPLORE <button id="crystal-reset">RESET</button></div></div>
+  </div>
+  <div class="scroll-space" aria-hidden="true"></div>
+</main>
+<footer class="bottom-hud ui">
+  <div class="travel-hint"><span class="scroll-mouse"></span><span id="scroll-label">SCROLL TO EXPLORE</span></div>
+  <nav id="chapter-nav" aria-label="Journey chapters"><div class="route-track"><div id="route-progress"></div></div><button data-jump="0" aria-current="step"><b>01</b><span>Awakening</span></button><button data-jump="1"><b>02</b><span>Descent</span></button><button data-jump="2"><b>03</b><span>Nacre Prime</span></button><button data-jump="3"><b>04</b><span>The sanctum</span></button><button data-jump="4"><b>05</b><span>Living archive</span></button><button data-jump="5"><b>06</b><span>Final frontier</span></button><button data-jump="6"><b>07</b><span>Beyond the veil</span></button></nav>
+  <div class="utilities"><button id="sound" aria-pressed="false" aria-label="Enable ambient sound"><span class="sound-bars"><i></i><i></i><i></i><i></i></span><span>SOUND OFF</span></button><button id="motion" aria-pressed="false" aria-label="Pause ambient motion">Ⅱ</button><button id="motion-mode" aria-pressed="false" aria-label="Use reduced motion">REDUCE MOTION</button><button id="quality" aria-label="Switch rendering quality" title="Rendering quality">AUTO</button></div>
+</footer>
+<div id="loading" role="status"><span class="loading-orbit"></span><span>ESTABLISHING UPLINK</span><button id="skip-intro">SKIP INTRO →</button></div>
+<div id="cursor" aria-hidden="true"><span>EXPLORE</span></div>
+<aside id="diagnostics" hidden="" aria-label="Rendering diagnostics"></aside>
+<dialog id="menu-dialog" class="menu-dialog"><button class="dialog-close" data-close="" aria-label="Close navigation">×</button><span class="eyebrow">ECLIPSE / JOURNEY INDEX</span><div class="menu-chapters"><button data-jump="0"><small>01</small>The awakening<span>↗</span></button><button data-jump="1"><small>02</small>Descent<span>↗</span></button><button data-jump="2"><small>03</small>Nacre Prime<span>↗</span></button><button data-jump="3"><small>04</small>The quiet sanctum<span>↗</span></button><button data-jump="4"><small>05</small>The living archive<span>↗</span></button><button data-jump="5"><small>06</small>The final frontier<span>↗</span></button><button data-jump="6"><small>07</small>Beyond the veil<span>↗</span></button></div><div class="menu-bottom"><span>Beyond the stars, a forgotten empire awakens.</span><button class="text-link" id="menu-archive">OPEN FIELD ARCHIVE ↗</button><small>AN ORIGINAL SCI-FI UNIVERSE · © 2026 ECLIPSE</small></div></dialog>
+<dialog id="archive-dialog" class="archive-dialog"><button class="dialog-close" data-close="" aria-label="Close field archive">×</button><div class="archive-heading"><span class="eyebrow">TRANSMISSIONS FROM THE FRONTIER</span><h2>THE FIELD ARCHIVE<span>12</span></h2><p>Fragments of a universe waiting to be discovered.</p></div><div class="archive-grid" id="archive-grid"></div><footer>ORIGINAL WORLDS. UNWRITTEN HISTORIES. <span>ECLIPSE / 001—012</span></footer></dialog>
+<dialog id="record-dialog" class="record-dialog"><button class="dialog-close" data-close="" aria-label="Close transmission">×</button><div class="record-art"><img id="record-image" alt=""><div class="record-scanline"></div><span id="record-number"></span></div><div class="record-content"><span id="record-type" class="eyebrow"></span><h2 id="record-title"></h2><p id="record-description"></p><dl id="record-stats"></dl><div class="record-actions"><button id="record-prev" aria-label="Previous transmission">←</button><span id="record-count"></span><button id="record-next" aria-label="Next transmission">→</button></div></div></dialog>
+<dialog id="universe-dialog" class="universe-dialog"><button class="dialog-close" data-close="" aria-label="Close universe briefing">×</button><img data-src="04-warrior" class="warrior" alt="An original ivory-armored frontier sentinel"><div class="universe-copy"><span class="eyebrow">YOUR JOURNEY IS ONLY BEGINNING</span><h2>CHOOSE WHAT<br>SURVIVES.</h2><p>Three factions. One dying star.<br>No future without a choice.</p><div role="group" aria-label="Choose a faction" class="factions"><button data-faction="0" aria-pressed="true"><span>◈</span> THE WAYFARERS</button><button data-faction="1" aria-pressed="false"><span>⌁</span> THE VESPER ACCORD</button><button data-faction="2" aria-pressed="false"><span>⟁</span> THE KEEPERS</button></div><p id="faction-lore">Explorers without a flag. You believe the frontier belongs to everyone willing to cross it.</p><button class="journey-button solid" id="faction-enter"><span>ENTER AS A WAYFARER</span><span>→</span></button><span id="faction-status" class="micro" role="status">EXPLORE THE UNIVERSE · NO ACCOUNT REQUIRED</span></div></dialog>
+<noscript><style>#loading{display:none}.chapter:first-child{opacity:1!important}.backdrop#poster{opacity:1}</style><div class="no-script">Enable JavaScript for the interactive journey. Scene imagery is hosted in Aura Assets.</div></noscript>
+<script src="/landing-pages/week-2026-11-10/eclipse-three.js" crossorigin="anonymous"></script><script src="/landing-pages/week-2026-11-10/bf5b26673eeed42ba8e7ea6fc6ca1393.js" crossorigin="anonymous"></script><script src="/landing-pages/week-2026-11-10/8275e947aa32ef1d03bb040757d26dc1.js" crossorigin="anonymous"></script>
+
+
+
+<script type="module" src="/landing-pages/week-2026-11-10/a61526a77c442221298119426f94d25b.js"></script>
+
+</body></html>

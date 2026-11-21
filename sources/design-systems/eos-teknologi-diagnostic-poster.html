@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>EOS Teknologi Diagnostic Poster — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Clash+Grotesk:wght@400;500;700&family=Satoshi:wght@400;500;700&family=ui-sans-serif:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#050A30; font-family:'Satoshi',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Clash Grotesk',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Clash Grotesk',sans-serif; font-size: 22px; border-bottom: 1px solid #050A30; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#050A30; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#050A30; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #050A30; border-radius:32px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#050A30; }
+  .swatch-meta p { color:#050A30; font-size: 12px; }
+  .specimen { border: 1px solid #050A30; border-radius:32px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#050A30; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#050A30; }
+  .bar { height: 10px; background:#050A30; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #050A30; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #050A30; border-radius:32px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:16px; font-size: 14px; border: 1px solid #050A30; }
+  .btn-primary { background:#050A30; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#050A30; }
+  footer { border-top: 1px solid #050A30; padding-top: 20px; font-size: 13px; color:#050A30; }
+  footer a { color:#050A30; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>EOS Teknologi Diagnostic Poster</h1>
+    <p class="tagline">A cobalt-to-cyan radial-gradient panel bearing stacked glass status rows, condensed display type in cyan-on-white, and a numbered-badge card rhythm.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#050A30"></div>
+        <div class="swatch-meta"><strong>background-deep</strong><code>#050A30</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#00F2FF"></div>
+        <div class="swatch-meta"><strong>background-glow</strong><code>#00F2FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface-card</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#050A30"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#050A30</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-on-blue</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#22D3EE"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#22D3EE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#00F2FF"></div>
+        <div class="swatch-meta"><strong>accent-strong</strong><code>#00F2FF</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Clash Grotesk',sans-serif;font-size:92px;font-weight:700;line-height:0.9">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Clash Grotesk · 92px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Satoshi',sans-serif;font-size:32px;font-weight:500;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Satoshi · 32px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Satoshi',sans-serif;font-size:26px;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-caption · Satoshi · 26px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:20px;font-weight:700;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · ui-sans-serif · 20px / w700</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 48px</span>
+        <div class="bar" style="width:min(48px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:16px">control<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:32px">card<br><code>32px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#050A30;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

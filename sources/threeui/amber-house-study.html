@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amber House Lounge Chair — r3xdec 3D</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 45%, #181a20, #08090c 75%); font-family: ui-sans-serif, system-ui, sans-serif; color: #f5f3ee; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .hud {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 999px;
+      background: rgba(12, 14, 20, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .lbl { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #a1a8b8; font-family: ui-monospace, monospace; white-space: nowrap; }
+    .swatch { width: 18px; height: 18px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .swatch.active, .swatch:hover { transform: scale(1.2); border-color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <span class="lbl">MID-CENTURY · COGNAC LEATHER LOUNGE CHAIR</span>
+    
+  </div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(2.4, 2, 3.8);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxDistance = 25;
+    controls.minDistance = 1.5;
+
+    // Studio Lighting
+    const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+    scene.add(ambient);
+
+    const keyLight = new THREE.DirectionalLight(0xfff5ea, 2.5);
+    keyLight.position.set(5, 8, 6);
+    keyLight.castShadow = true;
+    keyLight.shadow.mapSize.width = 1024;
+    keyLight.shadow.mapSize.height = 1024;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x7090ff, 1.2);
+    fillLight.position.set(-6, 3, -4);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.6);
+    rimLight.position.set(0, 7, -6);
+    scene.add(rimLight);
+
+    // Floor shadow/reflection plane
+    const floorGeo = new THREE.PlaneGeometry(30, 30);
+    const floorMat = new THREE.MeshStandardMaterial({
+      color: 0x07080b,
+      roughness: 0.85,
+      metalness: 0.15,
+    });
+    const floor = new THREE.Mesh(floorGeo, floorMat);
+    floor.rotation.x = -Math.PI / 2;
+    floor.position.y = -1.8;
+    floor.receiveShadow = true;
+    scene.add(floor);
+
+    const root = new THREE.Group();
+    scene.add(root);
+
+    
+    const leatherMat = new THREE.MeshStandardMaterial({ color: 0xa16207, roughness: 0.65 });
+    const walnutMat = new THREE.MeshStandardMaterial({ color: 0x451a03, roughness: 0.45 });
+    const metalMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.3, metalness: 0.85 });
+
+    // Seat Shell & Cushion
+    const seatShell = new THREE.Mesh(new THREE.BoxGeometry(1.8, 0.15, 1.6), walnutMat);
+    seatShell.position.set(0, -0.2, 0);
+    root.add(seatShell);
+
+    const seatCushion = new THREE.Mesh(new THREE.BoxGeometry(1.65, 0.25, 1.45), leatherMat);
+    seatCushion.position.set(0, -0.05, 0);
+    root.add(seatCushion);
+
+    // Backrest Shell & Cushion
+    const backShell = new THREE.Mesh(new THREE.BoxGeometry(1.6, 1.4, 0.15), walnutMat);
+    backShell.position.set(0, 0.7, -0.7);
+    backShell.rotation.x = -Math.PI / 10;
+    root.add(backShell);
+
+    const backCushion = new THREE.Mesh(new THREE.BoxGeometry(1.45, 1.25, 0.22), leatherMat);
+    backCushion.position.set(0, 0.7, -0.58);
+    backCushion.rotation.x = -Math.PI / 10;
+    root.add(backCushion);
+
+    // Swivel Base Star
+    const baseStem = new THREE.Mesh(new THREE.CylinderGeometry(0.08, 0.08, 0.6, 16), metalMat);
+    baseStem.position.y = -0.6;
+    root.add(baseStem);
+  
+
+    let clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      const time = clock.getElapsedTime();
+
+      // Subtle idle breathing motion
+      root.rotation.y += 0.005;
+      root.position.y = Math.sin(time * 1.2) * 0.04;
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

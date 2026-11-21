@@ -1,0 +1,865 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Titanium Studio Light — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface-dark:#1A1A1A;
+  --surface-muted:#F2F2F2;
+  --text-primary:#000000;
+  --text-on-dark:#FFFFFF;
+  --accent:#112BAF;
+  --r-control:8px;
+  --r-pill:9999px;
+  --r-card:12px;
+  --r-capsule-nav:50px;
+  --space-base:8px;
+  --space-gap:16px;
+  --section-pad:120px;
+  --ring-inset:rgb(140,140,140) 0px 0px 0px 1px inset;
+  --glass-shadow:rgba(0,0,0,0.1) 0px 2px 8.1px 0px;
+  --ease-press:cubic-bezier(0.22,1,0.36,1);
+  --ease-fade:cubic-bezier(0.32,0.08,0.24,1);
+  --font-display:"Geist",system-ui,sans-serif;
+  --font-body:"Geist",system-ui,sans-serif;
+  --font-mono:"JetBrains Mono",monospace;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-weight:400;
+  font-size:16px;
+  line-height:1.6;
+  color:var(--text-primary);
+  background:var(--background);
+}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1440px;margin:0 auto;padding-left:40px;padding-right:40px}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:12px;
+  line-height:1.4;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  color:var(--text-primary);
+}
+.display-lg{font-family:var(--font-display);font-size:56px;font-weight:400;line-height:1.2;letter-spacing:-2px}
+.headline-md{font-family:var(--font-display);font-size:48px;font-weight:400;line-height:1.2;letter-spacing:-1px}
+.label-md{font-family:var(--font-display);font-size:24px;font-weight:400;line-height:1.2;letter-spacing:-1px}
+.body-md{font-size:16px;line-height:1.6}
+section{padding-top:var(--section-pad);padding-bottom:var(--section-pad)}
+
+/* Hero critical */
+#hero{
+  position:relative;
+  padding:0;
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 60% 55%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.15) 100%),
+    linear-gradient(135deg,#D8C0A8 0%,#C0C0A8 55%,#2a2622 100%);
+  display:flex;
+  flex-direction:column;
+  color:var(--text-on-dark);
+  overflow:hidden;
+}
+.nav{
+  position:relative;
+  z-index:5;
+  height:57px;
+  width:100%;
+  background:transparent;
+  border-radius:0;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:0 40px;
+}
+.nav iconify-icon{font-size:22px}
+.nav-logo{
+  flex:1;
+  text-align:center;
+  font-family:var(--font-display);
+  font-size:20px;
+  letter-spacing:-1px;
+}
+.nav-links{display:flex;gap:24px;font-size:14px}
+.nav-links a{text-decoration:none}
+.nav-cta{
+  background:var(--accent);
+  color:#fff;
+  border:none;
+  border-radius:var(--r-capsule-nav);
+  height:37px;
+  padding:0 20px;
+  font-family:var(--font-body);
+  font-size:14px;
+  cursor:pointer;
+}
+.nav-right{display:flex;align-items:center;gap:18px}
+.hero-body{
+  flex:1;
+  display:flex;
+  align-items:flex-end;
+  padding:0 40px 100px;
+  position:relative;
+  z-index:4;
+}
+.hero-inner{max-width:1440px;margin:0 auto;width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.hero-copy{max-width:560px}
+.hero-copy .eyebrow{color:#fff;margin-bottom:20px}
+.hero-copy h1{margin-bottom:28px}
+.hero-copy p{margin-bottom:32px;max-width:440px}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap}
+.btn-hero-primary{
+  background:#0a1540;
+  color:#fff;
+  border:none;
+  height:48px;
+  padding:0 32px;
+  border-radius:var(--r-capsule-nav);
+  font-family:var(--font-body);
+  font-size:16px;
+  cursor:pointer;
+}
+.btn-hero-secondary{
+  background:transparent;
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.6);
+  height:48px;
+  padding:0 28px;
+  border-radius:var(--r-capsule-nav);
+  font-family:var(--font-body);
+  font-size:16px;
+  cursor:pointer;
+}
+.hero-stats{display:flex;gap:40px}
+.hero-stat .n{font-family:var(--font-display);font-size:40px;letter-spacing:-1px;line-height:1}
+.hero-stat .c{font-size:13px;opacity:0.85;margin-top:8px}
+@media(max-width:768px){
+  .display-lg{font-size:38px;letter-spacing:-1px}
+  .headline-md{font-size:30px}
+  .nav-links{display:none}
+  .hero-stats{gap:24px}
+  .hero-stat .n{font-size:28px}
+  section{padding-top:72px;padding-bottom:72px}
+}
+@media(max-width:640px){
+  .wrap{padding-left:20px;padding-right:20px}
+  .display-lg{font-size:30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <nav class="nav" aria-label="Primary">
+    <button aria-label="Open menu" style="background:none;border:none;color:#fff;cursor:pointer;display:flex"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+    <div class="nav-links">
+      <a href="#" style="text-decoration:none">Ring</a>
+      <a href="#" style="text-decoration:none">Science</a>
+      <a href="#" style="text-decoration:none">Reviews</a>
+    </div>
+    <div class="nav-logo">Titanium</div>
+    <div class="nav-right">
+      <a href="#" style="text-decoration:none;font-size:14px;display:flex;align-items:center;gap:4px"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon> US</a>
+      <button aria-label="Cart" style="background:none;border:none;color:#fff;cursor:pointer;display:flex"><iconify-icon icon="lucide:shopping-bag" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-cta">Buy now</button>
+    </div>
+  </nav>
+  <div class="hero-body">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="eyebrow">Titanium Studio Light</div>
+        <h1 class="display-lg">Engineered to be<br>worn, not watched.</h1>
+        <p class="body-md">A warm studio portrait of precision hardware. One ring, machined from aerospace titanium, photographed the way it deserves — then sold without the noise.</p>
+        <div class="hero-ctas">
+          <button class="btn-hero-primary">Configure yours</button>
+          <button class="btn-hero-secondary">See the science</button>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat"><div class="n">6<span style="font-size:18px;vertical-align:super">d</span></div><div class="c">Battery, measured</div></div>
+        <div class="hero-stat"><div class="n">2.4<span style="font-size:18px;vertical-align:super">g</span></div><div class="c">On the hand</div></div>
+        <div class="hero-stat"><div class="n">4.9<span style="font-size:18px;vertical-align:super">★</span></div><div class="c">Owner rating</div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{background:var(--background)}
+.sec-head{margin-bottom:56px;max-width:640px}
+.sec-head .eyebrow{margin-bottom:16px;display:block}
+.sec-head p{margin-top:16px;color:#111}
+.pal-group{margin-bottom:48px}
+.pal-group h3{margin-bottom:20px}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.swatch{border:1px solid var(--surface-muted);border-radius:var(--r-card);overflow:hidden}
+.swatch .chip{height:96px}
+.swatch .meta{padding:16px}
+.swatch .meta .name{font-size:15px}
+.swatch .meta .val{font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;color:#111;margin-top:6px}
+.swatch .meta .use{font-size:13px;color:#111;margin-top:8px;line-height:1.5}
+.checker{
+  background-image:
+    linear-gradient(45deg,#ddd 25%,transparent 25%),
+    linear-gradient(-45deg,#ddd 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#ddd 75%),
+    linear-gradient(-45deg,transparent 75%,#ddd 75%);
+  background-size:16px 16px;
+  background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Palette</span>
+      <h2 class="headline-md">Mostly white, rationed black, one indigo.</h2>
+      <p class="body-md">A light commerce system. White carries the proof; near-black appears only in the two cinematic bands; indigo is reserved exclusively for the act of buying.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3 class="label-md">Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--surface-muted)"></div>
+          <div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="use">The dominant field — proof, specs, and footer sit here.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#1A1A1A"></div>
+          <div class="meta"><div class="name">Surface Dark</div><div class="val">#1A1A1A</div><div class="use">Rationed cinematic bands — configuration and specs.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#F2F2F2;border-bottom:1px solid #e2e2e2"></div>
+          <div class="meta"><div class="name">Surface Muted</div><div class="val">#F2F2F2</div><div class="use">Structural neutral for tiles and dividers.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3 class="label-md">Text</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#000000"></div>
+          <div class="meta"><div class="name">Text Primary</div><div class="val">#000000</div><div class="use">All ink on white — headings and body.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--surface-muted);color:#000;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:28px">Aa</div>
+          <div class="meta"><div class="name">Text on Dark</div><div class="val">#FFFFFF</div><div class="use">Type and glyphs over the dark interludes.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3 class="label-md">Accent</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#112BAF"></div>
+          <div class="meta"><div class="name">Accent — Indigo</div><div class="val">#112BAF</div><div class="use">Transaction only: navbar CTA and purchase buttons.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip checker" style="position:relative"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.08);backdrop-filter:blur(12px)"></div></div>
+          <div class="meta"><div class="name">Glass fill</div><div class="val">rgba(0,0,0,0.08)</div><div class="use">Translucent body of frosted glass controls.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--surface-muted)}
+.spec-row{background:#fff;border:1px solid #e4e4e4;border-radius:var(--r-card);padding:32px 32px;margin-bottom:16px}
+.spec-row .specimen{margin-bottom:16px}
+.spec-row .metrics{font-family:var(--font-mono);font-size:12px;letter-spacing:0.04em;color:#111;display:flex;flex-wrap:wrap;gap:16px}
+.spec-row .role{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:#555;margin-bottom:12px}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Type Scale</span>
+      <h2 class="headline-md">Geist, held at 400.</h2>
+      <p class="body-md">Hierarchy is built entirely from scale and negative tracking. Weight never exceeds 400 — a flattened, engineering-catalog voice.</p>
+    </div>
+
+    <div class="spec-row">
+      <div class="role">display-lg</div>
+      <div class="specimen display-lg">Worn, not watched.</div>
+      <div class="metrics"><span>56px</span><span>weight 400</span><span>lh 1.2</span><span>tracking -2px</span><span>Geist</span></div>
+    </div>
+    <div class="spec-row">
+      <div class="role">headline-md</div>
+      <div class="specimen headline-md">Precision, photographed properly.</div>
+      <div class="metrics"><span>48px</span><span>weight 400</span><span>lh 1.2</span><span>tracking -1px</span><span>Geist</span></div>
+    </div>
+    <div class="spec-row">
+      <div class="role">label-md</div>
+      <div class="specimen label-md">Titanium ring — Graphite finish</div>
+      <div class="metrics"><span>24px</span><span>weight 400</span><span>lh 1.2</span><span>tracking -1px</span><span>Geist</span></div>
+    </div>
+    <div class="spec-row">
+      <div class="role">body-md</div>
+      <div class="specimen body-md" style="max-width:620px">Every surface below is assembled from the system's own tokens — a near-white page interrupted twice by cinematic dark, with a single indigo kept exclusively for the moment of purchase.</div>
+      <div class="metrics"><span>16px</span><span>weight 400</span><span>lh 1.6</span><span>Geist</span></div>
+    </div>
+    <div class="spec-row">
+      <div class="role">label-mono</div>
+      <div class="specimen eyebrow" style="font-size:12px">SCIENCE · PARTNERS · SPECIFICATIONS</div>
+      <div class="metrics"><span>12px</span><span>weight 400</span><span>lh 1.4</span><span>tracking 0.08em</span><span>JetBrains Mono</span></div>
+    </div>
+    <div class="spec-row">
+      <div class="role">accent-serif</div>
+      <div class="specimen" style="font-family:'Times New Roman',serif;font-size:16px;font-style:italic">An incidental serif note, used sparingly.</div>
+      <div class="metrics"><span>16px</span><span>weight 400</span><span>Times New Roman</span></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--background)}
+.comp-block{margin-bottom:88px}
+.comp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.comp-head h3{margin-bottom:8px}
+.comp-head .count{font-family:var(--font-mono);font-size:12px;letter-spacing:0.08em;color:#555;text-transform:uppercase}
+.comp-stage{background:#fff;border:1px solid #e4e4e4;border-radius:var(--r-card);padding:40px;margin-bottom:16px}
+.comp-stage.dark{background:var(--surface-dark);border:none;border-radius:0}
+.spec-card{
+  font-family:var(--font-mono);font-size:11.5px;line-height:1.7;letter-spacing:0.02em;
+  color:#111;background:var(--surface-muted);border-radius:var(--r-card);padding:18px 20px;
+}
+.spec-card b{font-weight:500;color:#000}
+/* buttons */
+.btn-indigo{background:var(--accent);color:#fff;border:none;border-radius:var(--r-capsule-nav);height:48px;padding:0 28px;font-family:var(--font-body);font-size:16px;cursor:pointer;transition:transform .1705s var(--ease-press)}
+.btn-indigo:active{transform:scale(0.97)}
+.btn-dark-pill{background:#0a1540;color:#fff;border:none;border-radius:var(--r-capsule-nav);height:48px;padding:0 28px;font-family:var(--font-body);font-size:16px;cursor:pointer;transition:transform .1705s var(--ease-press)}
+.btn-dark-pill:active{transform:scale(0.97)}
+.btn-outline-dark{background:transparent;color:#000;border:1px solid #000;border-radius:var(--r-capsule-nav);height:48px;padding:0 28px;font-size:16px;cursor:pointer}
+.btn-black-pill{background:#000;color:#fff;border:1px solid #000;border-radius:var(--r-capsule-nav);height:32px;padding:0 16px;font-size:14px;cursor:pointer}
+.btn-slab{background:linear-gradient(90deg,rgb(28,28,28),rgb(42,42,42));color:#fff;border:none;border-radius:12px;height:72px;padding:0 40px;font-size:16px;cursor:pointer;transition:transform .1705s var(--ease-press)}
+.btn-slab:active{transform:scale(0.98)}
+.btn-glass{background:rgba(0,0,0,0.08);backdrop-filter:blur(12px);color:#000;border:none;border-radius:50%;width:48px;height:48px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:var(--glass-shadow);font-size:20px}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,0);border-radius:var(--r-capsule-nav);height:37px;padding:0 20px;font-size:14px;cursor:pointer}
+.row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid #e4e4e4;vertical-align:middle}
+.matrix th{font-family:var(--font-mono);font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#555;font-weight:400}
+.matrix td.rl{font-family:var(--font-mono);font-size:12px;color:#111}
+/* dark panel */
+.dark-panel{display:grid;grid-template-columns:1fr 1fr;background:#1A1A1A;color:#fff;border-radius:0}
+.dp-media{position:relative;min-height:420px;background:linear-gradient(135deg,#D8C0A8,#8a7a66,#2a2622)}
+.dp-caption{position:absolute;left:0;bottom:0;padding:0 0 32px 40px;background:transparent}
+.dp-caption .eyebrow{color:#fff}
+.dp-caption .line{font-family:var(--font-display);font-size:24px;letter-spacing:-1px;margin-top:8px}
+.dp-right{padding:48px 40px}
+.dp-price{font-family:var(--font-display);font-size:56px;letter-spacing:-2px;margin:12px 0 28px}
+.dp-list{list-style:none;padding:0;margin:0 0 32px}
+.dp-list li{display:flex;align-items:center;gap:14px;padding:16px 0;border-bottom:1px solid rgba(255,255,255,0.14);font-size:15px}
+.dp-list li:first-child{border-top:1px solid rgba(255,255,255,0.14)}
+.dp-ico{width:34px;height:34px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.dp-buy{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r-capsule-nav);height:48px;font-size:16px;cursor:pointer;font-family:var(--font-body)}
+/* review cards */
+.review-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#F2F2F2;border:1px solid #F2F2F2;border-radius:var(--r-card);overflow:hidden}
+.review-card{background:#fff;padding:32px;box-shadow:var(--ring-inset);display:flex;flex-direction:column;min-height:220px}
+.review-logo{font-family:var(--font-display);font-size:18px;letter-spacing:-0.5px;color:#777;margin-bottom:20px}
+.review-quote{font-size:16px;line-height:1.5;flex:1}
+.review-link{display:inline-flex;align-items:center;gap:6px;font-size:14px;margin-top:20px;text-decoration:none;color:#000;transition:color .48s ease}
+.review-link:hover{color:var(--accent)}
+/* stat row */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr)}
+.stat-item{padding:8px 24px;border-left:1px solid #F2F2F2}
+.stat-item:first-child{border-left:none;padding-left:0}
+.stat-num{font-family:var(--font-display);font-size:56px;letter-spacing:-2px;line-height:1}
+.stat-num sup{font-size:20px;letter-spacing:0}
+.stat-cap{font-size:14px;color:#555;margin-top:12px}
+/* payment tile */
+.pay-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pay-card{background:#F2F2F2;border-radius:0;overflow:hidden;display:flex;flex-direction:column;min-height:360px}
+.pay-media{height:66%;min-height:220px;display:flex;align-items:center;justify-content:center}
+.pay-media.photo{background:linear-gradient(135deg,#D8C0A8,#9a8a72)}
+.pay-media.icons{background:#F2F2F2;gap:16px}
+.pay-media.warm{background:linear-gradient(135deg,#C0C0A8,#6f6450)}
+.pay-badge{width:56px;height:56px;border-radius:var(--r-card);background:#fff;display:flex;align-items:center;justify-content:center;font-size:24px;box-shadow:var(--ring-inset)}
+.pay-body{padding:24px 28px;background:#fff;flex:1;display:flex;flex-direction:column}
+.pay-body h4{font-family:var(--font-display);font-size:24px;letter-spacing:-1px;margin-bottom:8px}
+.pay-body p{font-size:15px;flex:1}
+.pay-link{font-size:14px;text-decoration:none;color:#000;margin-top:16px;display:inline-flex;gap:6px;align-items:center;transition:color .48s ease}
+.pay-link:hover{color:var(--accent)}
+/* logo strip */
+.logo-strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:32px;align-items:center}
+.logo-strip span{font-family:var(--font-display);font-size:20px;letter-spacing:-0.5px;color:#999}
+/* icon row */
+.icon-row{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.icon-cell{background:#fff;border-radius:0}
+.icon-cell .ic{font-size:28px;margin-bottom:16px;display:block}
+.icon-cell h4{font-family:var(--font-display);font-size:24px;letter-spacing:-1px;margin-bottom:8px}
+.icon-cell p{font-size:15px;color:#111}
+.ghost-stage{background:linear-gradient(135deg,#8a7a66,#2a2622);border-radius:var(--r-card)}
+@media(max-width:768px){
+  .dark-panel,.review-grid,.pay-grid,.icon-row{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:repeat(2,1fr);gap:24px}
+  .stat-item{border-left:none;padding-left:0}
+  .stat-num{font-size:40px}
+}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Components</span>
+      <h2 class="headline-md">The full inventory.</h2>
+      <p class="body-md">Every control, card, and band — rendered from the system's own tokens, in the system's own rhythm.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><div><h3 class="label-md">Navbar</h3></div><div class="count">×1 · 57px · 0px radius</div></div>
+      <div class="comp-stage" style="padding:0;overflow:hidden;background:linear-gradient(135deg,#C0C0A8,#2a2622)">
+        <nav class="nav" aria-label="Demo navigation">
+          <button aria-label="Menu" style="background:none;border:none;color:#fff;display:flex;cursor:pointer"><iconify-icon icon="lucide:menu"></iconify-icon></button>
+          <div class="nav-links"><a href="#" style="text-decoration:none">Ring</a><a href="#" style="text-decoration:none">Science</a></div>
+          <div class="nav-logo">Titanium</div>
+          <div class="nav-right">
+            <a href="#" style="text-decoration:none;font-size:14px">US</a>
+            <button aria-label="Cart" style="background:none;border:none;color:#fff;display:flex;cursor:pointer"><iconify-icon icon="lucide:shopping-bag"></iconify-icon></button>
+            <button class="nav-cta">Buy now</button>
+          </div>
+        </nav>
+      </div>
+      <div class="spec-card"><b>--navbar</b> · bg transparent · height 57 · radius 0 · 12 items<br><b>cta</b> fill accent #112BAF · text text-on-dark · radius capsule-nav 50</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block" data-tier-a-component="hero-primary-cta">
+      <div class="comp-head"><div><h3 class="label-md">Buttons — variant × state</h3></div><div class="count">rest · hover · active · disabled</div></div>
+      <div class="comp-stage">
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rl">Hero primary (filled pill)</td>
+              <td><button class="btn-dark-pill">Configure yours</button></td>
+              <td><button class="btn-dark-pill" style="background:#060d28">Configure yours</button></td>
+              <td><button class="btn-dark-pill" style="transform:scale(0.97)">Configure yours</button></td>
+              <td><button class="btn-dark-pill" style="opacity:0.4" disabled>Configure yours</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Indigo transactional</td>
+              <td><button class="btn-indigo">Buy now</button></td>
+              <td><button class="btn-indigo" style="background:#0d2290">Buy now</button></td>
+              <td><button class="btn-indigo" style="transform:scale(0.97)">Buy now</button></td>
+              <td><button class="btn-indigo" style="opacity:0.4" disabled>Buy now</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Secondary outline</td>
+              <td><button class="btn-outline-dark">See science</button></td>
+              <td><button class="btn-outline-dark" style="background:#000;color:#fff">See science</button></td>
+              <td><button class="btn-outline-dark" style="transform:scale(0.97)">See science</button></td>
+              <td><button class="btn-outline-dark" style="opacity:0.4" disabled>See science</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><b>--btn-primary-hero</b> · fill #0a1540 (near-black/navy) · text #FFFFFF · radius capsule-nav 50 · height 48 · type body-md · motion transform 0.1705s ease-press<br><b>hover</b> darken fill · <b>active</b> scale 0.97 · <b>disabled</b> opacity ladder</div>
+    </div>
+
+    <!-- GLASS ROUND -->
+    <div class="comp-block" data-tier-a-component="glass-round-icon-button">
+      <div class="comp-head"><div><h3 class="label-md">Glass round icon button</h3></div><div class="count">×1 · 48px · 50% radius</div></div>
+      <div class="comp-stage ghost-stage" style="display:flex;gap:20px">
+        <button class="btn-glass" aria-label="Size help"><iconify-icon icon="lucide:ruler"></iconify-icon></button>
+        <button class="btn-glass" aria-label="Help"><iconify-icon icon="lucide:help-circle"></iconify-icon></button>
+        <button class="btn-glass" aria-label="Information"><iconify-icon icon="lucide:info"></iconify-icon></button>
+      </div>
+      <div class="spec-card"><b>--button-glass-round</b> · fill rgba(0,0,0,0.08) · backdrop-filter blur(12px) · radius 50% · height 48 · icon #000000 · shadow rgba(0,0,0,0.1) 0 2px 8.1px</div>
+    </div>
+
+    <!-- DARK SLAB -->
+    <div class="comp-block" data-tier-a-component="dark-gradient-slab-button">
+      <div class="comp-head"><div><h3 class="label-md">Dark gradient slab button</h3></div><div class="count">×1 · 72px · 12px radius</div></div>
+      <div class="comp-stage" style="display:flex;gap:16px;flex-wrap:wrap">
+        <button class="btn-slab">Select Graphite finish</button>
+        <button class="btn-slab">Select Titanium finish</button>
+      </div>
+      <div class="spec-card"><b>--button-dark-slab</b> · fill linear-gradient(90deg, rgb(28,28,28), rgb(42,42,42)) · radius control·card 12 · height 72 · text body-md · motion transform 0.1705s ease-press</div>
+    </div>
+
+    <!-- BLACK PILL -->
+    <div class="comp-block" data-tier-a-component="black-pill-cta">
+      <div class="comp-head"><div><h3 class="label-md">Black pill CTA</h3></div><div class="count">×1 · 32px · 50px radius</div></div>
+      <div class="comp-stage" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center">
+        <button class="btn-black-pill">Add to bag</button>
+        <button class="btn-black-pill">Compare</button>
+        <button class="btn-black-pill" style="opacity:0.4" disabled>Sold out</button>
+      </div>
+      <div class="spec-card"><b>--button-black-pill</b> · fill #000000 · text #FFFFFF · radius capsule-nav 50 · height 32 · border 1px solid #000 · padding-x 16</div>
+    </div>
+
+    <!-- OUTLINE GHOST ×9 -->
+    <div class="comp-block" data-tier-a-component="outline-ghost-pill">
+      <div class="comp-head"><div><h3 class="label-md">Outline ghost pills</h3></div><div class="count">×9 · 37px · over imagery</div></div>
+      <div class="comp-stage ghost-stage">
+        <div class="row">
+          <button class="btn-ghost">All</button>
+          <button class="btn-ghost">Sleep</button>
+          <button class="btn-ghost">Recovery</button>
+          <button class="btn-ghost">Movement</button>
+          <button class="btn-ghost">Heart</button>
+          <button class="btn-ghost">Stress</button>
+          <button class="btn-ghost">Temperature</button>
+          <button class="btn-ghost">Oxygen</button>
+          <button class="btn-ghost">Insights</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--button-outline-ghost</b> · fill transparent · text #FFFFFF · radius capsule-nav 50 · height 37 · border 1px solid rgba(0,0,0,0) · reads directly on media</div>
+    </div>
+
+    <!-- DARK SPEC/PURCHASE PANEL -->
+    <div class="comp-block" data-tier-a-component="dark-spec-purchase-panel">
+      <div class="comp-head"><div><h3 class="label-md">Dark spec / purchase panel</h3></div><div class="count">×1 · full-bleed · 0px radius</div></div>
+      <div class="dark-panel">
+        <div class="dp-media" role="img" aria-label="Macro photograph of the titanium ring">
+          <div class="dp-caption">
+            <div class="eyebrow">Graphite · Series 2</div>
+            <div class="line">Machined, not moulded.</div>
+          </div>
+        </div>
+        <div class="dp-right">
+          <div class="eyebrow" style="color:#fff">Configure &amp; buy</div>
+          <div class="dp-price">$349</div>
+          <ul class="dp-list">
+            <li><span class="dp-ico"><iconify-icon icon="lucide:battery-charging"></iconify-icon></span> Six-day battery, independently measured</li>
+            <li><span class="dp-ico"><iconify-icon icon="lucide:shield-check"></iconify-icon></span> Aerospace-grade titanium shell</li>
+            <li><span class="dp-ico"><iconify-icon icon="lucide:droplets"></iconify-icon></span> Water resistant to 100 metres</li>
+            <li><span class="dp-ico"><iconify-icon icon="lucide:activity"></iconify-icon></span> Continuous recovery &amp; sleep tracking</li>
+            <li><span class="dp-ico"><iconify-icon icon="lucide:refresh-ccw"></iconify-icon></span> 30-day return, no questions asked</li>
+          </ul>
+          <button class="dp-buy">Buy now</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-dark-panel</b> · bg #1A1A1A · radius 0 · padding 0 · 5 checklist rows w/ hairline dividers · terminates in indigo #112BAF Buy pill full-width<br><b>caption</b> --card-media-caption · bg transparent · radius 0 · padding 0 0 0 40</div>
+    </div>
+
+    <!-- MEDIA CAPTION CARD -->
+    <div class="comp-block" data-tier-a-component="card-media-caption">
+      <div class="comp-head"><div><h3 class="label-md">Media caption card</h3></div><div class="count">×1 · transparent · 0px radius</div></div>
+      <div class="comp-stage" style="padding:0;overflow:hidden;background:linear-gradient(135deg,#9a8a72,#2a2622);min-height:200px;display:flex;align-items:flex-end;border-radius:0;border:none">
+        <div style="padding:0 0 32px 40px;color:#fff">
+          <div class="eyebrow" style="color:#fff">Studio frame 04</div>
+          <div style="font-family:var(--font-display);font-size:24px;letter-spacing:-1px;margin-top:8px">Light does the talking.</div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-media-caption</b> · bg transparent · radius 0 · padding 0 0 0 40 · overlaid on media regions</div>
+    </div>
+
+    <!-- REVIEW CARDS ×6 -->
+    <div class="comp-block" data-tier-a-component="review-card">
+      <div class="comp-head"><div><h3 class="label-md">Review card family</h3></div><div class="count">×6 · 3-per-row · 12px radius</div></div>
+      <div class="review-grid">
+        <div class="review-card"><div class="review-logo">The Verge</div><p class="review-quote">"The most convincing case yet for wearing your data on one finger."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        <div class="review-card"><div class="review-logo">WIRED</div><p class="review-quote">"Restrained hardware that lets the measurements speak for themselves."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        <div class="review-card"><div class="review-logo">GQ</div><p class="review-quote">"It disappears on the hand — which is exactly the point."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        <div class="review-card"><div class="review-logo">Forbes</div><p class="review-quote">"A commerce-first wearable that refuses to shout about itself."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        <div class="review-card"><div class="review-logo">TechRadar</div><p class="review-quote">"Battery life finally matches the ambition of the sensors."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        <div class="review-card"><div class="review-logo">Engadget</div><p class="review-quote">"Studio-grade product photography backed by honest numbers."</p><a class="review-link" href="#">Read story <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+      </div>
+      <div class="spec-card"><b>--card-review</b> · bg #FFFFFF · radius card 12 · border 1px solid #F2F2F2 · shadow ring-inset rgb(140,140,140) 0 0 0 1px inset · grayscale logotype → quote → arrow link</div>
+    </div>
+
+    <!-- STAT ROW -->
+    <div class="comp-block" data-tier-a-component="stat-numeral-row">
+      <div class="comp-head"><div><h3 class="label-md">Stat / numeral row</h3></div><div class="count">×1 · 4 items · 25% each</div></div>
+      <div class="comp-stage">
+        <div class="stat-row">
+          <div class="stat-item"><div class="stat-num">6<sup>d</sup></div><div class="stat-cap">Battery between charges</div></div>
+          <div class="stat-item"><div class="stat-num">100<sup>m</sup></div><div class="stat-cap">Water resistance depth</div></div>
+          <div class="stat-item"><div class="stat-num">2.4<sup>g</sup></div><div class="stat-cap">Weight on the hand</div></div>
+          <div class="stat-item"><div class="stat-num">4.9<sup>★</sup></div><div class="stat-cap">Verified owner rating</div></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--stat-row</b> · numeral type display-lg 56 / tracking -2 · superscript qualifier · caption body muted · hairline vertical dividers #F2F2F2</div>
+    </div>
+
+    <!-- PAYMENT TILE ×3 -->
+    <div class="comp-block" data-tier-a-component="payment-trust-tile">
+      <div class="comp-head"><div><h3 class="label-md">Payment / trust tile row</h3></div><div class="count">×3 · 49/49 split + third</div></div>
+      <div class="pay-grid">
+        <div class="pay-card">
+          <div class="pay-media photo" role="img" aria-label="Lifestyle photograph of the ring in use"></div>
+          <div class="pay-body"><h4>Pay over time</h4><p>Split your order across interest-free monthly instalments at checkout.</p><a class="pay-link" href="#">How it works <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        </div>
+        <div class="pay-card">
+          <div class="pay-media icons" style="display:flex">
+            <span class="pay-badge"><iconify-icon icon="lucide:credit-card"></iconify-icon></span>
+            <span class="pay-badge"><iconify-icon icon="lucide:wallet"></iconify-icon></span>
+            <span class="pay-badge"><iconify-icon icon="lucide:banknote"></iconify-icon></span>
+          </div>
+          <div class="pay-body"><h4>Every method</h4><p>Cards, wallets and bank transfer — all protected end to end.</p><a class="pay-link" href="#">View options <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        </div>
+        <div class="pay-card">
+          <div class="pay-media warm" role="img" aria-label="Warm product photograph"></div>
+          <div class="pay-body"><h4>Keep it covered</h4><p>Two-year warranty and a 30-day return window on every ring.</p><a class="pay-link" href="#">View options <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-payment-tile</b> · bg #F2F2F2 · radius 0 · media bleed ~66% card height · heading label-md · body body-md · text-link CTA at foot</div>
+    </div>
+
+    <!-- ICON ROW ×3 -->
+    <div class="comp-block" data-tier-a-component="card-icon-row">
+      <div class="comp-head"><div><h3 class="label-md">Icon / feature row</h3></div><div class="count">×3 · 33/33 | 33</div></div>
+      <div class="comp-stage">
+        <div class="icon-row">
+          <div class="icon-cell"><span class="ic"><iconify-icon icon="lucide:moon"></iconify-icon></span><h4>Sleep staging</h4><p class="body-md">Four-stage sleep analysis, logged continuously through the night.</p></div>
+          <div class="icon-cell"><span class="ic"><iconify-icon icon="lucide:heart-pulse"></iconify-icon></span><h4>Recovery score</h4><p class="body-md">A single number that tells you whether to push or to rest today.</p></div>
+          <div class="icon-cell"><span class="ic"><iconify-icon icon="lucide:thermometer"></iconify-icon></span><h4>Skin temperature</h4><p class="body-md">Nightly baseline tracking surfaces the smallest shifts early.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-icon-row</b> · bg #FFFFFF · radius 0 · uniform 3-col grid · icon glyph → heading label-md → body body-md · last item wraps alone</div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip">
+      <div class="comp-head"><div><h3 class="label-md">Logo strip</h3></div><div class="count">×8 · grayscale · on white</div></div>
+      <div class="comp-stage">
+        <div class="eyebrow" style="margin-bottom:28px;color:#555">Validated with</div>
+        <div class="logo-strip">
+          <span>Stanford</span><span>MIT Media</span><span>Mayo</span><span>Oxford</span>
+          <span>UCSF</span><span>Karolinska</span><span>ETH</span><span>Johns Hopkins</span>
+        </div>
+      </div>
+      <div class="spec-card"><b>--logo-strip</b> · 8 grayscale wordmarks · no card chrome · on #FFFFFF · mono eyebrow label above</div>
+    </div>
+
+    <!-- FOOTER family (rendered fully in #footer) -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <div class="comp-head"><div><h3 class="label-md">Footer</h3></div><div class="count">×1 · 4 columns · pure list</div></div>
+      <div class="comp-stage">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px">
+          <div>
+            <div class="eyebrow" style="color:#555;margin-bottom:16px">Product</div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+              <a href="#" style="text-decoration:none">Ring</a><a href="#" style="text-decoration:none">Finishes</a><a href="#" style="text-decoration:none">Sizing kit</a>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color:#555;margin-bottom:16px">Science</div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+              <a href="#" style="text-decoration:none">Research</a><a href="#" style="text-decoration:none">Accuracy</a><a href="#" style="text-decoration:none">Partners</a>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color:#555;margin-bottom:16px">Support</div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+              <a href="#" style="text-decoration:none">Help centre</a><a href="#" style="text-decoration:none">Warranty</a><a href="#" style="text-decoration:none">Returns</a>
+            </div>
+          </div>
+          <div>
+            <div class="eyebrow" style="color:#555;margin-bottom:16px">Company</div>
+            <div style="display:flex;flex-direction:column;gap:12px;font-size:14px">
+              <a href="#" style="text-decoration:none">About</a><a href="#" style="text-decoration:none">Careers</a><a href="#" style="text-decoration:none">Press</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--footer</b> · bg #FFFFFF · four mono-style column headers · vertical link stacks · no card treatment · pure list</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--surface-muted)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.depth-card{background:#fff;padding:32px;min-height:200px;display:flex;flex-direction:column;justify-content:space-between}
+.depth-label{font-family:var(--font-mono);font-size:12px;letter-spacing:0.06em;color:#111}
+.depth-name{font-family:var(--font-display);font-size:24px;letter-spacing:-1px}
+.d-r-control{border-radius:var(--r-control)}
+.d-r-card{border-radius:var(--r-card)}
+.d-r-pill{border-radius:var(--r-capsule-nav)}
+.d-r-sharp{border-radius:0}
+.d-ring{box-shadow:var(--ring-inset)}
+.d-glass-shadow{box-shadow:var(--glass-shadow)}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Surface &amp; Depth</span>
+      <h2 class="headline-md">Radii split by context.</h2>
+      <p class="body-md">12px for bordered cards, 50px for every pill, 0px for structural and dark panels. Depth is a 1px inset ring on flat cards, a soft lift on glass.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card d-r-control d-ring"><div class="depth-name">Control 8px</div><div class="depth-label">radius control · r-control</div></div>
+      <div class="depth-card d-r-card d-ring"><div class="depth-name">Card 12px</div><div class="depth-label">radius card · bordered review / image</div></div>
+      <div class="depth-card d-r-pill d-ring"><div class="depth-name">Pill 50px</div><div class="depth-label">radius capsule-nav · buttons &amp; chips</div></div>
+      <div class="depth-card d-r-sharp d-ring"><div class="depth-name">Sharp 0px</div><div class="depth-label">radius 0 · navbar &amp; dark panels</div></div>
+      <div class="depth-card d-r-card d-glass-shadow"><div class="depth-name">Glass lift</div><div class="depth-label">shadow rgba(0,0,0,0.1) 0 2px 8.1px</div></div>
+      <div class="depth-card d-r-card d-ring"><div class="depth-name">Inset ring</div><div class="depth-label">rgb(140,140,140) 0 0 0 1px inset</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--background)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.motion-card{border:1px solid #e4e4e4;border-radius:var(--r-card);padding:32px}
+.motion-card h4{font-family:var(--font-display);font-size:24px;letter-spacing:-1px;margin-bottom:8px}
+.motion-card .meta{font-family:var(--font-mono);font-size:12px;color:#555;margin-bottom:24px}
+.motion-dot{width:48px;height:48px;border-radius:50%;background:var(--accent)}
+.replay{margin-top:20px;background:none;border:1px solid #000;border-radius:var(--r-capsule-nav);height:37px;padding:0 20px;font-size:14px;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.m-press.run{animation:mPress .1705s cubic-bezier(0.22,1,0.36,1)}
+@keyframes mPress{0%{transform:translateX(0)}50%{transform:translateX(120px)}100%{transform:translateX(100px)}}
+.m-fade.run{animation:mFade .15s cubic-bezier(0.32,0.08,0.24,1)}
+@keyframes mFade{0%{opacity:0}100%{opacity:1}}
+.m-color.run{animation:mColor .48s ease}
+@keyframes mColor{0%{background:#000}100%{background:var(--accent)}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Motion</span>
+      <h2 class="headline-md">Quick, physical, brief.</h2>
+      <p class="body-md">Controls settle with a slight overshoot; fades are near-instant; text colour crosses over more slowly. Press replay on any card.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Press settle</h4>
+        <div class="meta">transform · 0.1705s · cubic-bezier(0.22,1,0.36,1)</div>
+        <div class="motion-dot m-press"></div>
+        <button class="replay" data-anim="m-press"><iconify-icon icon="lucide:rotate-ccw"></iconify-icon> Replay</button>
+      </div>
+      <div class="motion-card">
+        <h4>Fade</h4>
+        <div class="meta">opacity · 0.15s · cubic-bezier(0.32,0.08,0.24,1)</div>
+        <div class="motion-dot m-fade"></div>
+        <button class="replay" data-anim="m-fade"><iconify-icon icon="lucide:rotate-ccw"></iconify-icon> Replay</button>
+      </div>
+      <div class="motion-card">
+        <h4>Colour crossfade</h4>
+        <div class="meta">color · 0.48s · ease</div>
+        <div class="motion-dot m-color"></div>
+        <button class="replay" data-anim="m-color"><iconify-icon icon="lucide:rotate-ccw"></iconify-icon> Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--surface-muted);padding-bottom:var(--section-pad)}
+.mock{max-width:1080px;margin:0 auto;border:1px solid #ddd;border-radius:var(--r-card);overflow:hidden;background:#fff;box-shadow:var(--glass-shadow)}
+.mock-hero{position:relative;min-height:380px;background:radial-gradient(circle at 60% 60%,rgba(0,0,0,0.72),rgba(0,0,0,0.5) 60%,rgba(0,0,0,0.15)),linear-gradient(135deg,#D8C0A8,#C0C0A8,#2a2622);display:flex;flex-direction:column}
+.mock-nav{height:57px;display:flex;align-items:center;padding:0 28px;gap:16px;color:#fff}
+.mock-nav .lg{flex:1;text-align:center;font-family:var(--font-display);font-size:18px;letter-spacing:-1px}
+.mock-hero-body{flex:1;display:flex;align-items:flex-end;padding:0 32px 40px;color:#fff}
+.mock-hero-body h3{font-family:var(--font-display);font-size:40px;letter-spacing:-1.5px;line-height:1.1;margin-bottom:20px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#F2F2F2}
+.mock-card{background:#fff;padding:24px}
+.mock-card .l{font-family:var(--font-display);color:#777;font-size:15px;margin-bottom:12px}
+.mock-card p{font-size:14px}
+.mock-cta{padding:40px 32px;text-align:center;background:#1A1A1A;color:#fff}
+.mock-cta h3{font-family:var(--font-display);font-size:28px;letter-spacing:-1px;margin-bottom:20px}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}.mock-hero-body h3{font-size:28px}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">In Composition</span>
+      <h2 class="headline-md">The whole system, assembled.</h2>
+      <p class="body-md">Warm-photo hero into white proof into one dark transactional close — built entirely from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div class="mock-nav">
+          <iconify-icon icon="lucide:menu"></iconify-icon>
+          <div class="lg">Titanium</div>
+          <button class="nav-cta">Buy now</button>
+        </div>
+        <div class="mock-hero-body">
+          <div>
+            <div class="eyebrow" style="color:#fff;margin-bottom:12px">Series 2 · Graphite</div>
+            <h3>Worn, not watched.</h3>
+            <div style="display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn-dark-pill">Configure yours</button>
+              <button class="btn-hero-secondary">See science</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="l">WIRED</div><p>"Restrained hardware that lets the data speak."</p></div>
+        <div class="mock-card"><div class="l">The Verge</div><p>"The best case yet for one finger."</p></div>
+        <div class="mock-card"><div class="l">GQ</div><p>"It disappears on the hand."</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3>$349 — ready to ship.</h3>
+        <button class="dp-buy" style="max-width:220px;margin:0 auto">Buy now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#FFFFFF;border-top:1px solid #F2F2F2;padding:80px 0 56px}
+.foot-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;margin-bottom:56px}
+.foot-grid .eyebrow{color:#555;margin-bottom:16px;display:block}
+.foot-grid a{text-decoration:none;font-size:14px;display:block;margin-bottom:12px}
+.foot-base{border-top:1px solid #F2F2F2;padding-top:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;font-size:13px;color:#555}
+.foot-base a{color:#555;text-decoration:none}
+@media(max-width:640px){.foot-grid{grid-template-columns:1fr 1fr}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <span class="eyebrow">Product</span>
+        <a href="#">Titanium Ring</a><a href="#">Finishes</a><a href="#">Sizing kit</a><a href="#">Accessories</a>
+      </div>
+      <div>
+        <span class="eyebrow">Science</span>
+        <a href="#">Research</a><a href="#">Accuracy</a><a href="#">Partners</a><a href="#">Whitepapers</a>
+      </div>
+      <div>
+        <span class="eyebrow">Support</span>
+        <a href="#">Help centre</a><a href="#">Warranty</a><a href="#">Returns</a><a href="#">Contact</a>
+      </div>
+      <div>
+        <span class="eyebrow">Company</span>
+        <a href="#">About</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Legal</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>Titanium Studio Light</span>
+      <a href="https://www.ultrahuman.com/us/">www.ultrahuman.com/us</a>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.replay').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var sel='.'+btn.getAttribute('data-anim');
+    var el=btn.parentElement.querySelector(sel);
+    if(!el)return;
+    el.classList.remove('run');
+    void el.offsetWidth;
+    el.classList.add('run');
+  });
+});
+</script>
+</body>
+</html>

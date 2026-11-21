@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>بازپرس - میز کار بررسی‌کننده — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#09090B; color:#F4F4F5; font-family:'Vazirmatn',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Vazirmatn',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Vazirmatn',sans-serif; font-size: 22px; border-bottom: 1px solid #71717A; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#71717A; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#71717A; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#18181B; border: 1px solid #71717A; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#71717A; }
+  .swatch-meta p { color:#71717A; font-size: 12px; }
+  .specimen { border: 1px solid #71717A; border-radius:12px; padding: 20px; background:#18181B; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#71717A; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#71717A; }
+  .bar { height: 10px; background:#F4F4F5; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #F4F4F5; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#18181B; border: 1px solid #71717A; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:12px; font-size: 14px; border: 1px solid #F4F4F5; }
+  .btn-primary { background:#F4F4F5; color:#09090B; }
+  .btn-secondary { background: transparent; color:#F4F4F5; }
+  footer { border-top: 1px solid #71717A; padding-top: 20px; font-size: 13px; color:#71717A; }
+  footer a { color:#F4F4F5; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · dark mode</div>
+    <h1>بازپرس - میز کار بررسی‌کننده</h1>
+    <p class="tagline">RTL dark-mode-default forensic dashboard: near-black glass surfaces, a single rationed emerald accent for status and progress, and dense ui-sans card grid of case tiles.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#09090B"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#09090B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#18181B"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#18181B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#27272A"></div>
+        <div class="swatch-meta"><strong>surface-border</strong><code>#27272A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F4F4F5"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#F4F4F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#71717A"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#71717A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#10B981"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#10B981</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#34D399"></div>
+        <div class="swatch-meta"><strong>accent-strong</strong><code>#34D399</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(16, 185, 129, 0.1)"></div>
+        <div class="swatch-meta"><strong>accent-tint-fill</strong><code>rgba(16, 185, 129, 0.1)</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(16, 185, 129, 0.2)"></div>
+        <div class="swatch-meta"><strong>accent-tint-border</strong><code>rgba(16, 185, 129, 0.2)</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Vazirmatn',sans-serif;font-size:24px;font-weight:700;line-height:1.33">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Vazirmatn · 24px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Vazirmatn',sans-serif;font-size:14px;font-weight:400;line-height:1.43">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Vazirmatn · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Vazirmatn',sans-serif;font-size:16px;font-weight:700;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Vazirmatn · 16px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Vazirmatn',sans-serif;font-size:14px;font-weight:700;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono-badge · Vazirmatn · 14px / w700</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>unit-sm · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>unit-md · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>unit-lg · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>unit-xl · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:4px">control-sm<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:12px">control<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:12px">card<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#71717A;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

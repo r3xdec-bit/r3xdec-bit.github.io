@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Klein Terminal Classical — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=displayFont:wght@400;500;700&family=monoFont:wght@400;500;700&family=ui-sans-serif:wght@400;500;700&family=Times+New+Roman:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#0000F2; color:#F5F5F5; font-family:'monoFont',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'displayFont',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'displayFont',sans-serif; font-size: 22px; border-bottom: 1px solid #0000F2; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#0000F2; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#0000F2; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #0000F2; border-radius:4px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#0000F2; }
+  .swatch-meta p { color:#0000F2; font-size: 12px; }
+  .specimen { border: 1px solid #0000F2; border-radius:4px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#0000F2; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#0000F2; }
+  .bar { height: 10px; background:#F5F5F5; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #F5F5F5; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #0000F2; border-radius:4px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:4px; font-size: 14px; border: 1px solid #F5F5F5; }
+  .btn-primary { background:#F5F5F5; color:#0000F2; }
+  .btn-secondary { background: transparent; color:#F5F5F5; }
+  footer { border-top: 1px solid #0000F2; padding-top: 20px; font-size: 13px; color:#0000F2; }
+  footer a { color:#F5F5F5; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from hermes-agent.nousresearch.com · dark mode</div>
+    <h1>Klein Terminal Classical</h1>
+    <p class="tagline">A single-hue ultramarine field paired with condensed Didone display serif, monospace labels, and duotone halftone imagery — Swiss-terminal rigor staged as classical engraving.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#0000F2"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#0000F2</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5F5F5"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#F5F5F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0000F2"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#0000F2</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EDFF45"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#EDFF45</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'displayFont',sans-serif;font-size:107px;font-weight:300;line-height:0.88">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · displayFont · 107px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'displayFont',sans-serif;font-size:52px;font-weight:300;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · displayFont · 52px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'monoFont',sans-serif;font-size:15px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · monoFont · 15px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:14px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">ui-label · ui-sans-serif · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Times New Roman',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Times New Roman ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 98px</span>
+        <div class="bar" style="width:min(98px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:4px">control<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:4px">card<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:4px">pill<br><code>4px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#0000F2;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

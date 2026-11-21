@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" class="loaded"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Light Navigation · ThreeUI</title><link rel="stylesheet" href="./sunseto-nav-light.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script></head><body data-template="sunseto-nav-light" data-kind="UI Elements" data-dark="false"><div class="element-stage"><svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lgLens" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+  <feImage id="lgMap" x="0" y="0" width="600" height="58" preserveAspectRatio="none" result="map"/>
+  <feDisplacementMap in="SourceGraphic" in2="map" scale="34" xChannelSelector="R" yChannelSelector="G" result="dR"/>
+  <feColorMatrix in="dR" type="matrix" values="1 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1 0" result="cR"/>
+  <feDisplacementMap in="SourceGraphic" in2="map" scale="30" xChannelSelector="R" yChannelSelector="G" result="dG"/>
+  <feColorMatrix in="dG" type="matrix" values="0 0 0 0 0  0 1 0 0 0  0 0 0 0 0  0 0 0 1 0" result="cG"/>
+  <feDisplacementMap in="SourceGraphic" in2="map" scale="26" xChannelSelector="R" yChannelSelector="G" result="dB"/>
+  <feColorMatrix in="dB" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 1 0 0  0 0 0 1 0" result="cB"/>
+  <feBlend in="cR" in2="cG" mode="screen" result="rg"/>
+  <feBlend in="rg" in2="cB" mode="screen"/>
+</filter></svg><header class="site-header" id="header">
+  <div class="nav-pill">
+    <a class="logo" href="#" aria-label="Sunseto home"><img crossorigin="anonymous" class="lg-dark" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/51926b15039196df21b7c63807f0760cabf9260e7f2f45701a9356e09d7fc0df.webp" alt="Sunseto"><img crossorigin="anonymous" class="lg-light" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/17baa2f6d3d8125212ad12523cd04064601eb3f5d5ad0295e0644ba5b64c2a98.webp" alt="" aria-hidden="true"></a>
+    <nav aria-label="Primary"><a href="#hiw">How it works</a><a href="#usp">Homes</a><a href="#network">Network</a><a href="#pricing">Pricing</a><a href="#why">Company</a></nav>
+    <a class="get-started" href="#cta"><div class="view" data-view="btn"><canvas></canvas></div><span>Check my roof</span></a>
+    <button class="menu-btn" aria-label="Menu"><i></i><i></i><i></i></button>
+  </div>
+</header></div><script type="module" src="./sunseto-nav-light.ui.js"></script></body></html>

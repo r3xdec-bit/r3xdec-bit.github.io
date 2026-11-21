@@ -1,0 +1,849 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nocturne Codex — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Tiro+Devanagari+Sanskrit&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#12121E;
+  --surface:#161527;
+  --surface-raised:#1B1A2E;
+  --text-primary:#EEEBF7;
+  --text-secondary:#C4BFD9;
+  --text-tertiary:#A29CBB;
+  --accent-amber:#E7C580;
+  --accent-mint:#96D8C8;
+  --border:rgba(255,255,255,0.16);
+  --border-strong:rgba(255,255,255,0.28);
+  --gold-grad:linear-gradient(rgb(243,215,160) 0%, rgb(226,187,114) 100%);
+  --gold-ink:#1D1626;
+  --r-control:12px;
+  --r-card:20px;
+  --r-card-lg:26px;
+  --r-pill:9999px;
+  --base:8px;
+  --gap:20px;
+  --section-padding:124px;
+  --section-gap:112px;
+  --serif:"Instrument Serif",Georgia,serif;
+  --ui:"Inter",system-ui,sans-serif;
+  --deva:"Tiro Devanagari Sanskrit","Instrument Serif",serif;
+  --ease-color:0.35s ease;
+  --ease-spring:cubic-bezier(0.22,0.8,0.24,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--ui);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+.eyebrow{
+  font-family:var(--ui);font-size:12px;font-weight:600;
+  letter-spacing:1.7px;text-transform:uppercase;color:var(--text-tertiary);
+}
+.band{
+  max-width:1156px;margin:0 auto;padding:var(--section-gap) 24px;
+}
+.band-head{display:flex;flex-direction:column;gap:14px;margin-bottom:48px;max-width:720px}
+.band-head .chip{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:var(--r-control);
+  background:var(--surface);border:1px solid var(--border);
+  color:var(--accent-amber);font-size:20px;
+}
+.band-head h2{font-size:54px;line-height:1.03;letter-spacing:-0.8px}
+.band-head p{color:var(--text-secondary);font-size:16px;max-width:600px}
+iconify-icon{display:inline-block;vertical-align:middle}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;width:100%;height:57px;
+  background:#12121E;background:rgba(18,18,30,0.82);
+  backdrop-filter:blur(20px) saturate(1.5);
+  -webkit-backdrop-filter:blur(20px) saturate(1.5);
+  border-bottom:1px solid var(--border);
+  border-radius:0;
+  display:flex;align-items:center;gap:24px;
+  padding:0 24px;
+}
+.nav .logo{font-family:var(--serif);font-size:24px;letter-spacing:-0.5px;color:var(--text-primary);white-space:nowrap}
+.nav-links{display:flex;gap:18px;overflow:hidden;flex:1;min-width:0}
+.nav-links a{
+  font-size:12px;font-weight:600;letter-spacing:0.6px;color:var(--text-tertiary);
+  white-space:nowrap;transition:color var(--ease-color);
+}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-pill{
+  flex:none;background:rgba(255,255,255,0.06);color:#FFFFFF;
+  border:1px solid var(--border-strong);border-radius:var(--r-pill);
+  height:34px;padding:0 18px;font-size:12px;font-weight:600;
+  display:inline-flex;align-items:center;cursor:pointer;
+  transition:background var(--ease-color);
+}
+.nav-pill:hover{background:rgba(255,255,255,0.12)}
+
+/* HERO */
+#hero{
+  position:relative;overflow:hidden;
+  background:linear-gradient(rgb(13,13,26) 0%, rgb(19,18,40) 62%, rgb(18,18,30) 100%);
+  padding:96px 24px 128px;
+}
+.starfield{
+  position:absolute;inset:0;pointer-events:none;opacity:0.5;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 70% 20%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(1px 1px at 55% 45%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 12% 80%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(1px 1px at 92% 88%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(1px 1px at 33% 12%, rgba(255,255,255,0.55), transparent);
+  background-size:cover;
+}
+.hero-card{
+  position:relative;max-width:1156px;margin:0 auto;
+  border-radius:var(--r-card-lg);
+  border:1px solid var(--border);
+  overflow:hidden;
+  background:
+    radial-gradient(50% 55% at 70% 40%, rgba(92,80,176,0.34), rgba(0,0,0,0) 70%),
+    radial-gradient(40% 46% at 4% 98%, rgba(120,90,82,0.22), rgba(0,0,0,0) 72%),
+    var(--surface);
+  display:grid;grid-template-columns:1.1fr 0.9fr;
+}
+.hero-text{padding:72px 56px}
+.hero-text .eyebrow{margin-bottom:22px}
+.hero-text h1{font-size:72px;line-height:1.0;letter-spacing:-1.4px;margin-bottom:22px}
+.hero-text h1 em{font-style:italic}
+.hero-text .lede{color:var(--text-secondary);font-size:16px;max-width:460px;margin-bottom:34px}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.btn-gold{
+  background:var(--gold-grad);color:var(--gold-ink);
+  border:none;border-radius:14px;height:46px;padding:0 26px;
+  font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;
+  box-shadow:rgba(255,255,255,0.55) 0px 1px 0px 0px inset, rgba(0,0,0,0.8) 0px 10px 22px -14px;
+  transition:transform 0.5s var(--ease-spring);
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-gold:hover{transform:translateY(-1px)}
+.btn-platform{
+  background:var(--surface-raised);color:var(--text-primary);
+  border:1px solid var(--border);border-radius:14px;height:46px;padding:0 20px;
+  font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:border-color 0.4s var(--ease-spring);
+}
+.btn-platform:hover{border-color:var(--border-strong)}
+.hero-illus{position:relative;display:flex;align-items:center;justify-content:center;min-height:420px}
+.halo{
+  position:absolute;width:360px;height:360px;border-radius:50%;
+  background:radial-gradient(closest-side, rgba(255,240,206,0.42), rgba(255,200,170,0.26) 38%, rgba(214,140,170,0.16) 60%, rgba(120,90,176,0.08) 78%, transparent 100%);
+}
+.seated{
+  position:relative;z-index:1;
+  font-size:160px;line-height:1;color:var(--accent-amber);
+  filter:drop-shadow(0 0 30px rgba(231,197,128,0.4));
+}
+@media(max-width:900px){
+  .hero-card{grid-template-columns:1fr}
+  .hero-text{padding:48px 32px}
+  .hero-text h1{font-size:52px}
+  .hero-illus{min-height:300px;order:-1}
+}
+@media(max-width:640px){
+  .hero-text h1{font-size:40px}
+  .band-head h2{font-size:38px}
+  .nav-links{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <span class="logo">Nocturne</span>
+  <div class="nav-links">
+    <a href="#hero">Home</a><a href="#palette">Reading</a><a href="#type-scale">Dohas</a>
+    <a href="#components">Chapters</a><a href="#composition">Themes</a><a href="#surface-depth">Speakers</a>
+    <a href="#motion">Commentary</a><a href="#footer">Glossary</a><a href="#hero">Daily</a>
+    <a href="#palette">Library</a><a href="#type-scale">Verses</a><a href="#components">Scripture</a>
+    <a href="#composition">Collections</a><a href="#surface-depth">Mandals</a><a href="#motion">Audio</a>
+    <a href="#footer">About</a><a href="#footer">Support</a>
+  </div>
+  <button class="nav-pill">Sign in</button>
+</nav>
+
+<header id="hero">
+  <div class="starfield" aria-hidden="true"></div>
+  <div class="hero-card">
+    <div class="hero-text">
+      <div class="eyebrow">Scripture in Samadhi</div>
+      <h1>Read the verses<br><em>by aurora light.</em></h1>
+      <p class="lede">A dark-first devotional reader. Near-black pages lit by a single rationed violet-amber wash, carrying the dohas in their own serif voice.</p>
+      <div class="hero-ctas">
+        <button class="btn-gold"><iconify-icon icon="lucide:book-open" aria-hidden="true"></iconify-icon>Begin reading</button>
+        <button class="btn-platform"><iconify-icon icon="lucide:apple" aria-hidden="true"></iconify-icon>Get the app</button>
+      </div>
+    </div>
+    <div class="hero-illus" aria-hidden="true">
+      <div class="halo"></div>
+      <iconify-icon class="seated" icon="lucide:flower-2"></iconify-icon>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="marquee">
+#marquee{
+  overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);
+  background:rgba(22,21,39,0.4);padding:18px 0;
+}
+.marquee-track{
+  display:inline-flex;gap:14px;white-space:nowrap;
+  animation:marquee 28s linear infinite;
+}
+.marquee-track .m-chip{
+  font-family:var(--deva);font-size:18px;color:var(--text-secondary);
+  padding:4px 0;
+}
+.m-plus{color:var(--accent-amber);margin:0 6px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+</style>
+<section id="marquee" aria-label="Devanagari phrase rail">
+  <div class="marquee-track">
+    <span class="m-chip">सत्यं ज्ञानम्<span class="m-plus">+</span>आनन्दं<span class="m-plus">+</span>शान्तिः<span class="m-plus">+</span>प्रेम<span class="m-plus">+</span>मुक्तिः<span class="m-plus">+</span>ध्यानम्<span class="m-plus">+</span>अमृतम्<span class="m-plus">+</span>प्रकाशः<span class="m-plus">+</span></span>
+    <span class="m-chip">सत्यं ज्ञानम्<span class="m-plus">+</span>आनन्दं<span class="m-plus">+</span>शान्तिः<span class="m-plus">+</span>प्रेम<span class="m-plus">+</span>मुक्तिः<span class="m-plus">+</span>ध्यानम्<span class="m-plus">+</span>अमृतम्<span class="m-plus">+</span>प्रकाशः<span class="m-plus">+</span></span>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+.pal-group{margin-bottom:56px}
+.pal-group h3{font-size:28px;margin-bottom:20px;letter-spacing:-0.4px}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap)}
+.sw{
+  border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;
+  background:var(--surface);
+}
+.sw .chip{height:88px;position:relative}
+.checker{
+  background-image:
+    linear-gradient(45deg,#2a2a3a 25%,transparent 25%),
+    linear-gradient(-45deg,#2a2a3a 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#2a2a3a 75%),
+    linear-gradient(-45deg,transparent 75%,#2a2a3a 75%);
+  background-size:16px 16px;
+  background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+.sw .meta{padding:14px 16px}
+.sw .meta .name{font-size:13px;font-weight:600;color:var(--text-primary)}
+.sw .meta .val{font-size:12px;color:var(--text-tertiary);font-family:ui-monospace,monospace;margin-top:4px}
+.sw .meta .note{font-size:12px;color:var(--text-secondary);margin-top:8px;line-height:1.5}
+</style>
+<section class="band" id="palette">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:palette"></iconify-icon></span>
+    <div class="eyebrow">The Ink &amp; The Light</div>
+    <h2>A rationed palette</h2>
+    <p>Near-black violet carries three-quarters of every pixel. Colour arrives as an event — never as wallpaper.</p>
+  </div>
+
+  <div class="pal-group">
+    <h3>Surfaces</h3>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:#12121E"></div><div class="meta"><div class="name">background</div><div class="val">#12121E</div><div class="note">Page ink — the near-black violet field.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#161527"></div><div class="meta"><div class="name">surface</div><div class="val">#161527</div><div class="note">Card ground for chapters &amp; speaker tiles.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#1B1A2E"></div><div class="meta"><div class="name">surface-raised</div><div class="val">#1B1A2E</div><div class="note">Raised card / secondary button fill.</div></div></div>
+    </div>
+  </div>
+
+  <div class="pal-group">
+    <h3>Text</h3>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:#EEEBF7"></div><div class="meta"><div class="name">text-primary</div><div class="val">#EEEBF7</div><div class="note">Lavender-white ink — never pure white.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#C4BFD9"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#C4BFD9</div><div class="note">Body &amp; lede copy, one step down.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#A29CBB"></div><div class="meta"><div class="name">text-tertiary</div><div class="val">#A29CBB</div><div class="note">Muted eyebrows and meta.</div></div></div>
+    </div>
+  </div>
+
+  <div class="pal-group">
+    <h3>Accents &amp; washes</h3>
+    <div class="sw-grid">
+      <div class="sw"><div class="chip" style="background:var(--gold-grad)"></div><div class="meta"><div class="name">accent-amber gradient</div><div class="val">rgb(243,215,160)→rgb(226,187,114)</div><div class="note">The single highest-emphasis CTA per screen.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#E7C580"></div><div class="meta"><div class="name">accent-amber</div><div class="val">#E7C580</div><div class="note">Tag chip ink and icon highlights.</div></div></div>
+      <div class="sw"><div class="chip" style="background:#96D8C8"></div><div class="meta"><div class="name">accent-mint</div><div class="val">#96D8C8</div><div class="note">Rare inset ring on bordered elements.</div></div></div>
+      <div class="sw"><div class="chip checker"><div style="position:absolute;inset:0;background:radial-gradient(50% 55% at 70% 40%, rgba(92,80,176,0.34), rgba(0,0,0,0) 70%)"></div></div><div class="meta"><div class="name">indigo wash</div><div class="val">rgba(92,80,176,0.34)</div><div class="note">Upper-right radial inside the hero card only.</div></div></div>
+      <div class="sw"><div class="chip checker"><div style="position:absolute;inset:0;background:radial-gradient(40% 46% at 4% 98%, rgba(120,90,82,0.22), rgba(0,0,0,0) 72%)"></div></div><div class="meta"><div class="name">rust wash</div><div class="val">rgba(120,90,82,0.22)</div><div class="note">Lower-left radial inside the hero card only.</div></div></div>
+      <div class="sw"><div class="chip checker"><div style="position:absolute;inset:0;background:rgba(255,255,255,0.16)"></div></div><div class="meta"><div class="name">border</div><div class="val">rgba(255,255,255,0.16)</div><div class="note">Near-invisible hairline separation.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+.spec{border-top:1px solid var(--border);padding:36px 0;display:grid;grid-template-columns:1fr 240px;gap:32px;align-items:baseline}
+.spec:last-child{border-bottom:1px solid var(--border)}
+.spec .demo{min-width:0}
+.spec .m{font-family:ui-monospace,monospace;font-size:12px;color:var(--text-tertiary);line-height:1.8}
+.t-display{font-family:var(--serif);font-size:54px;line-height:1.03;letter-spacing:-0.8px}
+.t-headline{font-family:var(--ui);font-size:16px;font-weight:400;line-height:1.6;color:var(--text-primary)}
+.t-body{font-family:var(--ui);font-size:13px;font-weight:500;line-height:1.2;color:var(--text-secondary)}
+.t-label{font-family:var(--ui);font-size:12px;font-weight:600;line-height:1.6;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-tertiary)}
+.t-deva{font-family:var(--deva);font-size:30px;line-height:1.4;color:var(--text-primary)}
+@media(max-width:640px){.spec{grid-template-columns:1fr}.t-display{font-size:38px}}
+</style>
+<section class="band" id="type-scale">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:type"></iconify-icon></span>
+    <div class="eyebrow">An Editorial Voice</div>
+    <h2>The type scale</h2>
+    <p>Instrument Serif for every headline; a compact grotesque for all chrome at three disciplined sizes.</p>
+  </div>
+
+  <div class="spec"><div class="demo"><div class="t-display">The lamp that reads itself</div></div>
+    <div class="m">display-lg<br>Instrument Serif · 54px · 400<br>line-height 1.03 · tracking -0.8px</div></div>
+  <div class="spec"><div class="demo"><div class="t-headline">Conversational copy runs here, in the system's quiet grotesque — set for comfortable reading beside serif headings.</div></div>
+    <div class="m">headline-md<br>fontUiLatin · 16px · 400<br>line-height 1.6</div></div>
+  <div class="spec"><div class="demo"><div class="t-body">Dense card body text sits at thirteen pixels, medium weight, tight leading — the register that fills every tile.</div></div>
+    <div class="m">body-md<br>fontUiLatin · 13px · 500<br>line-height 1.2</div></div>
+  <div class="spec"><div class="demo"><div class="t-label">Commentary · Daily Reading · Mandal</div></div>
+    <div class="m">label-md<br>fontUiLatin · 12px · 600<br>line-height 1.6 · tracking 1.7px</div></div>
+  <div class="spec"><div class="demo"><div class="t-deva">सत्यं वद धर्मं चर</div></div>
+    <div class="m">accent-devanagari<br>fontScriptureDeva · 400<br>large conversational scale</div></div>
+</section>
+
+<style data-section-styles="components">
+#components .sub{font-family:var(--serif);font-size:30px;letter-spacing:-0.4px;margin:72px 0 24px}
+#components .sub:first-of-type{margin-top:0}
+.cmp{display:grid;grid-template-columns:1fr 280px;gap:32px;align-items:start;margin-bottom:40px}
+.cmp .render{min-width:0}
+.speccard{
+  font-family:ui-monospace,monospace;font-size:11.5px;line-height:1.9;
+  color:var(--text-tertiary);background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-control);padding:16px 18px;
+}
+.speccard b{color:var(--text-secondary);font-weight:600}
+.count{font-size:11px;color:var(--accent-amber);letter-spacing:1px;text-transform:uppercase;font-family:var(--ui);font-weight:600}
+@media(max-width:860px){.cmp{grid-template-columns:1fr}}
+
+/* buttons */
+.btn-midgold{background:var(--gold-grad);color:var(--gold-ink);border:none;border-radius:16px;height:54px;padding:0 30px;font-family:var(--ui);font-size:15px;font-weight:600;cursor:pointer;box-shadow:rgba(255,255,255,0.55) 0 1px 0 0 inset, rgba(0,0,0,0.8) 0 10px 22px -14px;transition:transform 0.5s var(--ease-spring)}
+.btn-midgold:hover{transform:translateY(-1px)}
+.btn-out{background:transparent;color:var(--text-primary);border:1px solid var(--border);border-radius:14px;height:50px;padding:0 24px;font-family:var(--ui);font-size:14px;font-weight:600;cursor:pointer;transition:border-color 0.4s var(--ease-spring)}
+.btn-out:hover{border-color:var(--border-strong)}
+.matrix{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden}
+.matrix table{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:18px 16px;text-align:left;border-bottom:1px solid var(--border);vertical-align:middle}
+.matrix tr:last-child td{border-bottom:none}
+.matrix thead th{font-family:var(--ui);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-tertiary)}
+.matrix .rowlabel{font-family:var(--ui);font-size:12px;font-weight:600;color:var(--text-secondary)}
+.btn-disabled{opacity:0.4;cursor:not-allowed}
+.btn-active{transform:translateY(1px)}
+
+/* daily panel */
+.daily{background:transparent;border-radius:0;padding:48px 0;border-top:1px solid var(--border)}
+.daily .head-row{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+.daily .ic{width:40px;height:40px;border-radius:var(--r-control);background:var(--surface);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-amber);font-size:20px}
+.daily .date{font-size:12px;color:var(--text-tertiary);font-weight:600;letter-spacing:1px}
+.verse{font-family:var(--serif);font-size:40px;line-height:1.2;max-width:820px;margin-bottom:28px}
+.gloss{border-bottom:1px dotted var(--accent-amber);cursor:help}
+.rule{height:1px;background:var(--border);margin:28px 0}
+.daily-body{color:var(--text-secondary);font-size:16px;max-width:680px;margin:14px 0 28px}
+.action-row{display:flex;gap:10px;margin-top:24px}
+.action-row button{width:44px;height:44px;border-radius:var(--r-control);background:var(--surface);border:1px solid var(--border);color:var(--text-secondary);cursor:pointer;font-size:18px;display:inline-flex;align-items:center;justify-content:center;transition:border-color 0.4s var(--ease-spring)}
+.action-row button:hover{border-color:var(--border-strong)}
+
+.daily-layout{display:grid;grid-template-columns:59% 41%;gap:var(--gap)}
+@media(max-width:860px){.daily-layout{grid-template-columns:1fr}}
+
+/* glass media */
+.glass-col{display:flex;flex-direction:column;gap:var(--gap)}
+.glass-card{border-radius:20px;overflow:hidden;background:linear-gradient(rgba(255,255,255,0.067),rgba(255,255,255,0.024));backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);box-shadow:rgba(255,255,255,0.07) 0 1px 0 0 inset, rgba(0,0,0,0.35) 0 1px 2px 0, rgba(2,1,12,0.95) 0 24px 48px -24px}
+.glass-img{height:120px;background:linear-gradient(135deg,#2C4C6B,#1B1A2E);position:relative;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.5);font-size:34px}
+.glass-body{padding:18px 20px 22px}
+.glass-body .eb{font-size:11px;color:var(--accent-amber);letter-spacing:1.4px;text-transform:uppercase;font-weight:600}
+.glass-body h4{font-family:var(--serif);font-size:24px;margin:8px 0 6px;letter-spacing:-0.3px}
+.glass-body p{font-size:13px;color:var(--text-secondary);line-height:1.4}
+.glass-link{display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--accent-amber);transition:gap var(--ease-color)}
+.glass-link:hover{gap:10px}
+
+/* short reads */
+.sr-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+.sr-large{grid-column:span 7;border-radius:20px;overflow:hidden;background:var(--surface)}
+.sr-s1{grid-column:span 5}
+.sr-s2{grid-column:span 5}
+.sr-s3{grid-column:span 5}
+.sr-s4{grid-column:span 7}
+.sr-img{height:200px;background:linear-gradient(to bottom,rgba(44,76,107,0.5),rgba(15,14,37,0.9)),linear-gradient(135deg,#2C4C6B,#1B1A2E);position:relative;display:flex;align-items:flex-end;padding:16px;gap:8px}
+.ovpill{background:rgba(18,18,30,0.72);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:var(--r-pill);padding:5px 12px;font-size:11px;font-weight:600;color:var(--text-primary)}
+.ovpill.today{color:var(--accent-amber);border-color:var(--border-strong)}
+.sr-large h4{font-family:var(--serif);font-size:26px;letter-spacing:-0.3px;padding:18px 20px 6px}
+.sr-meta{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-tertiary);padding:0 20px 20px}
+.sr-small{display:flex;gap:14px;align-items:center;padding:4px 0;border-radius:0;background:transparent}
+.sr-thumb{width:84px;height:84px;flex:none;border-radius:var(--r-control);background:linear-gradient(135deg,#2C4C6B,#1B1A2E);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.4);font-size:22px}
+.sr-small .eb{font-size:10px;color:var(--accent-amber);letter-spacing:1.2px;text-transform:uppercase;font-weight:600}
+.sr-small h4{font-family:var(--serif);font-size:19px;margin:5px 0 4px;letter-spacing:-0.2px}
+.sr-small .d{font-size:12px;color:var(--text-tertiary)}
+@media(max-width:860px){.sr-grid{grid-template-columns:1fr}.sr-large,.sr-s1,.sr-s2,.sr-s3,.sr-s4{grid-column:auto}}
+
+/* chapter cards */
+.row4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+@media(max-width:860px){.row4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.row4{grid-template-columns:1fr}}
+.chap-card{position:relative;overflow:hidden;background:#161527;border-radius:20px;padding:24px;min-height:180px}
+.chap-card .eb{font-size:11px;color:var(--accent-amber);letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.chap-card .mandal{font-size:11px;color:var(--text-tertiary);margin-top:2px}
+.chap-card h4{font-family:var(--deva);font-size:30px;margin:16px 0 4px;position:relative;z-index:1}
+.chap-card .open{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--text-primary);position:relative;z-index:1;transition:gap var(--ease-color)}
+.chap-card .open:hover{gap:10px}
+.watermark{position:absolute;right:-14px;bottom:-40px;font-family:var(--serif);font-size:160px;line-height:1;color:rgba(255,255,255,0.04);z-index:0}
+
+/* speaker */
+.speaker-intro{background:#161527;border-radius:20px;padding:24px;display:flex;align-items:center;gap:22px;margin-bottom:var(--gap)}
+.avatar{width:72px;height:72px;border-radius:50%;flex:none;background:linear-gradient(135deg,#2C4C6B,#1B1A2E);display:flex;align-items:center;justify-content:center;color:var(--text-primary);font-size:28px}
+.speaker-intro .eb{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:var(--accent-amber);letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.speaker-intro h4{font-family:var(--serif);font-size:28px;margin:6px 0 4px;letter-spacing:-0.3px}
+.speaker-intro p{font-size:13px;color:var(--text-secondary)}
+.tript{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+@media(max-width:860px){.tript{grid-template-columns:1fr}}
+.tript-card{background:transparent;border-radius:0}
+.tript-img{height:140px;border-radius:0;position:relative;background:linear-gradient(135deg,rgba(44,76,107,0.7),rgba(27,26,46,0.9));display:flex;align-items:flex-start;padding:12px}
+.part-pill{background:rgba(18,18,30,0.72);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:var(--r-pill);padding:4px 11px;font-size:11px;font-weight:600;color:var(--accent-amber)}
+.tript-card h4{font-family:var(--deva);font-size:24px;margin:14px 0 2px}
+.tript-card .sub{font-family:var(--serif);font-style:italic;font-size:17px;color:var(--text-secondary);margin:0 0 10px}
+.tript-card p{font-size:13px;color:var(--text-secondary);line-height:1.4}
+.name-row{display:flex;align-items:center;gap:10px;margin-top:14px}
+.name-row .av{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,#2C4C6B,#1B1A2E);flex:none}
+.name-row .nm{font-size:12px;font-weight:600;color:var(--text-primary)}
+.name-row .arr{margin-left:auto;color:var(--accent-amber)}
+
+/* theme */
+.theme-card{position:relative;overflow:hidden;border-radius:20px;min-height:240px;display:flex;flex-direction:column;justify-content:flex-end;padding:22px;background:linear-gradient(135deg,#2C4C6B,#1B1A2E)}
+.theme-scrim{position:absolute;inset:0;background:linear-gradient(rgb(15,14,37) 0%, rgba(23,21,56,0.4) 42%, rgba(31,26,66,0.1) 72%, rgba(21,18,43,0.6) 100%)}
+.theme-card>*{position:relative;z-index:1}
+.theme-card .eb{font-size:11px;color:var(--accent-amber);letter-spacing:1.3px;text-transform:uppercase;font-weight:600}
+.theme-card h4{font-family:var(--serif);font-size:26px;margin:8px 0 2px;letter-spacing:-0.3px}
+.theme-card .it{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--text-secondary)}
+.theme-card .cnt{font-size:12px;color:var(--text-tertiary);margin-top:8px}
+.start-pill{position:absolute;right:18px;bottom:18px;background:rgba(231,197,128,0.18);border:1px solid var(--border-strong);color:var(--accent-amber);border-radius:var(--r-pill);height:34px;padding:0 16px;font-size:12px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;z-index:2}
+</style>
+<section class="band" id="components">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:layout-grid"></iconify-icon></span>
+    <div class="eyebrow">The Inventory</div>
+    <h2>Components</h2>
+    <p>Every tile, panel and control in the reader, rendered in its own fill, radius and shadow family.</p>
+  </div>
+
+  <!-- NAVBAR -->
+  <div class="sub">Navbar</div>
+  <div class="cmp" data-tier-a-component="navbar">
+    <div class="render">
+      <div style="border:1px solid var(--border);border-radius:var(--r-control);overflow:hidden">
+        <div style="height:57px;background:rgba(18,18,30,0.9);backdrop-filter:blur(20px) saturate(1.5);display:flex;align-items:center;gap:18px;padding:0 18px;border-radius:0">
+          <span class="logo" style="font-family:var(--serif);font-size:22px">Nocturne</span>
+          <div style="display:flex;gap:14px;overflow:hidden;flex:1">
+            <a style="font-size:12px;font-weight:600;color:var(--text-tertiary)">Reading</a>
+            <a style="font-size:12px;font-weight:600;color:var(--text-tertiary)">Dohas</a>
+            <a style="font-size:12px;font-weight:600;color:var(--text-tertiary)">Chapters</a>
+            <a style="font-size:12px;font-weight:600;color:var(--text-tertiary)">Themes</a>
+            <a style="font-size:12px;font-weight:600;color:var(--text-tertiary)">Speakers</a>
+          </div>
+          <button class="nav-pill">Sign in</button>
+        </div>
+      </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:12px">Edge-to-edge zero-radius square bar · 57px · 17 nav items + utility pill.</p>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br><b>fill</b> background #12121E<br><b>backdrop</b> blur(20) saturate(1.5)<br><b>height</b> 57 · <b>radius</b> 0 all corners<br><b>pill</b> util-bg 0.06 · border 0.28 · r-pill · 34</div>
+  </div>
+
+  <!-- GRADIENT GOLD -->
+  <div class="sub">Gradient-gold Primary Button</div>
+  <div class="cmp" data-tier-a-component="button-gradient-gold">
+    <div class="render">
+      <div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+        <div><button class="btn-gold"><iconify-icon icon="lucide:book-open" aria-hidden="true"></iconify-icon>Begin reading</button><div style="font-size:11px;color:var(--text-tertiary);margin-top:8px">Hero · 14px radius · 46px</div></div>
+        <div><button class="btn-midgold">Continue the doha</button><div style="font-size:11px;color:var(--text-tertiary);margin-top:8px">Mid-page · 16px radius · 54px</div></div>
+      </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:14px">Exactly one gold CTA per view. Lifts 1px on hover.</p>
+    </div>
+    <div class="speccard"><span class="count">×2</span><br><b>fill</b> gold-grad 243,215,160→226,187,114<br><b>text</b> #1D1626<br><b>radius</b> 14 / 16 · <b>height</b> 46 / 54<br><b>shadow</b> inset 0.55 + 0 10 22 -14<br><b>motion</b> spring 0.5s translateY(-1px)</div>
+  </div>
+
+  <!-- NAV UTILITY PILL -->
+  <div class="sub">Nav Utility Pill</div>
+  <div class="cmp" data-tier-a-component="button-nav-utility-pill">
+    <div class="render">
+      <button class="nav-pill">Sign in</button>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:14px">Navbar only — never substituted for the hero primary action.</p>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br><b>fill</b> rgba(255,255,255,0.06)<br><b>text</b> #FFFFFF<br><b>border</b> 1px rgba(255,255,255,0.28)<br><b>radius</b> r-pill 9999 · <b>height</b> 34</div>
+  </div>
+
+  <!-- OUTLINE -->
+  <div class="sub">Outline Button</div>
+  <div class="cmp" data-tier-a-component="button-outline">
+    <div class="render">
+      <div style="display:flex;gap:14px;flex-wrap:wrap">
+        <button class="btn-out">Listen</button>
+        <button class="btn-out">Save verse</button>
+        <button class="btn-out">Share</button>
+        <button class="btn-out">Commentary</button>
+      </div>
+      <p style="font-size:12px;color:var(--text-tertiary);margin-top:14px">Secondary actions beside media cards — never a gold fill.</p>
+    </div>
+    <div class="speccard"><span class="count">×4</span><br><b>fill</b> transparent<br><b>border</b> 1px rgba(255,255,255,0.16)<br><b>text</b> #EEEBF7<br><b>radius</b> 14 · <b>height</b> 50</div>
+  </div>
+
+  <!-- BUTTON MATRIX -->
+  <div class="sub">Variant × state matrix</div>
+  <div class="cmp">
+    <div class="render">
+      <div class="matrix">
+        <table>
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr><td class="rowlabel">Gold primary</td>
+              <td><button class="btn-gold" style="height:40px;font-size:13px">Read</button></td>
+              <td><button class="btn-gold" style="height:40px;font-size:13px;transform:translateY(-1px)">Read</button></td>
+              <td><button class="btn-gold btn-active" style="height:40px;font-size:13px">Read</button></td>
+              <td><button class="btn-gold btn-disabled" style="height:40px;font-size:13px" disabled>Read</button></td></tr>
+            <tr><td class="rowlabel">Outline</td>
+              <td><button class="btn-out" style="height:40px;font-size:13px">Save</button></td>
+              <td><button class="btn-out" style="height:40px;font-size:13px;border-color:rgba(255,255,255,0.28)">Save</button></td>
+              <td><button class="btn-out btn-active" style="height:40px;font-size:13px">Save</button></td>
+              <td><button class="btn-out btn-disabled" style="height:40px;font-size:13px" disabled>Save</button></td></tr>
+            <tr><td class="rowlabel">Nav pill</td>
+              <td><button class="nav-pill">Sign in</button></td>
+              <td><button class="nav-pill" style="background:rgba(255,255,255,0.12)">Sign in</button></td>
+              <td><button class="nav-pill btn-active">Sign in</button></td>
+              <td><button class="nav-pill btn-disabled" disabled>Sign in</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="speccard"><b>hover</b> gold translateY(-1px) · outline border→0.28<br><b>active</b> translateY(1px)<br><b>disabled</b> text-opacity floor (0.4)<br>no documented focus ring — native only</div>
+  </div>
+
+  <!-- DAILY READING -->
+  <div class="sub">Daily-reading Flat Panel</div>
+  <div class="cmp" data-tier-a-component="daily-reading-flat-panel">
+    <div class="render">
+      <div class="daily">
+        <div class="head-row">
+          <span class="ic"><iconify-icon icon="lucide:sun"></iconify-icon></span>
+          <div><div class="t-label" style="color:var(--text-tertiary)">Daily Reading</div><div class="date">14 FEBRUARY · MANDAL I</div></div>
+        </div>
+        <div class="verse">When the <span class="gloss">deepa</span> is lit within,<br>the long night of <span class="gloss">maya</span> ends.</div>
+        <div class="rule"></div>
+        <div class="t-label">Commentary</div>
+        <p class="daily-body">The flame is not fetched from outside. It was always burning; the verse only asks you to notice the glow already resting beneath the ribs — steady, patient, undimmed.</p>
+        <button class="btn-midgold">Read the full passage</button>
+        <div class="action-row">
+          <button aria-label="Share"><iconify-icon icon="lucide:share-2"></iconify-icon></button>
+          <button aria-label="Copy"><iconify-icon icon="lucide:copy"></iconify-icon></button>
+          <button aria-label="Save"><iconify-icon icon="lucide:bookmark"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br><b>fill</b> transparent · <b>radius</b> 0<br><b>padding</b> 48 0 124<br>dotted-underline glossary words<br>icon chip + eyebrow + verse + rule + commentary + gold CTA + 3-icon row</div>
+  </div>
+
+  <!-- GLASS MEDIA -->
+  <div class="sub">Glass Media Card</div>
+  <div class="cmp" data-tier-a-component="glass-media-card">
+    <div class="render">
+      <div class="glass-col">
+        <div class="glass-card"><div class="glass-img"><iconify-icon icon="lucide:trees"></iconify-icon></div><div class="glass-body"><div class="eb">Forest</div><h4>Walking the quiet path</h4><p>A guided reading set among cedar and mist.</p><a class="glass-link">Open <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div></div>
+        <div class="glass-card"><div class="glass-img"><iconify-icon icon="lucide:sparkles"></iconify-icon></div><div class="glass-body"><div class="eb">Aurora</div><h4>Light over the ridge</h4><p>Night verses paired with slow ambient scenes.</p><a class="glass-link">Open <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div></div>
+        <div class="glass-card"><div class="glass-img"><iconify-icon icon="lucide:mountain"></iconify-icon></div><div class="glass-body"><div class="eb">Summit</div><h4>The stillness at altitude</h4><p>Commentary read against high quiet places.</p><a class="glass-link">Open <iconify-icon icon="lucide:arrow-right"></iconify-icon></a></div></div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×3</span><br><b>fill</b> grad 0.067→0.024 white<br><b>backdrop</b> blur(18) saturate(1.4)<br><b>radius</b> 20 · 41% footprint<br><b>shadow</b> inset 0.07 + 0.35 + 2,1,12 24 48 -24</div>
+  </div>
+
+  <!-- SHORT READS -->
+  <div class="sub">Short-reads Grid</div>
+  <div class="cmp" data-tier-a-component="short-reads-grid">
+    <div class="render">
+      <div class="sr-grid">
+        <div class="sr-large">
+          <div class="sr-img"><span class="ovpill">Reflection</span><span class="ovpill today">Today</span></div>
+          <h4>Three breaths before the lamp</h4>
+          <div class="sr-meta"><iconify-icon icon="lucide:clock"></iconify-icon> 6 min read</div>
+        </div>
+        <div class="sr-s1 sr-small"><div class="sr-thumb"><iconify-icon icon="lucide:feather"></iconify-icon></div><div><div class="eb">Doha</div><h4>The unmade sound</h4><div class="d">3 min</div></div></div>
+        <div class="sr-s2 sr-small"><div class="sr-thumb"><iconify-icon icon="lucide:moon"></iconify-icon></div><div><div class="eb">Night</div><h4>What the dark teaches</h4><div class="d">4 min</div></div></div>
+        <div class="sr-s3 sr-small"><div class="sr-thumb"><iconify-icon icon="lucide:droplet"></iconify-icon></div><div><div class="eb">Water</div><h4>The river's single vow</h4><div class="d">5 min</div></div></div>
+        <div class="sr-s4 sr-small"><div class="sr-thumb"><iconify-icon icon="lucide:flame"></iconify-icon></div><div><div class="eb">Flame</div><h4>Keeping the small light</h4><div class="d">2 min</div></div></div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">1 + 4</span><br>asymmetric 12-col 58/41→41/41→41/58<br><b>gap</b> 20 · large image 60%+<br>two overlaid pills at seam<br>small cards transparent · radius 0</div>
+  </div>
+
+  <!-- RANDOM CHAPTER -->
+  <div class="sub">Random-chapter Card</div>
+  <div class="cmp" data-tier-a-component="random-chapter-card">
+    <div class="render">
+      <div class="row4">
+        <div class="chap-card"><div class="eb">Chapter 2·7</div><div class="mandal">Mandal II</div><h4>प्रकाशः</h4><a class="open">Open chapter <iconify-icon icon="lucide:arrow-right"></iconify-icon></a><span class="watermark">7</span></div>
+        <div class="chap-card"><div class="eb">Chapter 3·1</div><div class="mandal">Mandal III</div><h4>शान्तिः</h4><a class="open">Open chapter <iconify-icon icon="lucide:arrow-right"></iconify-icon></a><span class="watermark">1</span></div>
+        <div class="chap-card"><div class="eb">Chapter 1·9</div><div class="mandal">Mandal I</div><h4>आनन्दं</h4><a class="open">Open chapter <iconify-icon icon="lucide:arrow-right"></iconify-icon></a><span class="watermark">9</span></div>
+        <div class="chap-card"><div class="eb">Chapter 4·3</div><div class="mandal">Mandal IV</div><h4>अमृतम्</h4><a class="open">Open chapter <iconify-icon icon="lucide:arrow-right"></iconify-icon></a><span class="watermark">3</span></div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×4</span><br><b>fill</b> #161527 · <b>radius</b> 20<br><b>padding</b> 24<br>Devanagari heading (fontScriptureDeva)<br>pale numeral watermark bleeds bottom-right</div>
+  </div>
+
+  <!-- SPEAKER INTRO -->
+  <div class="sub">Speaker Intro Card</div>
+  <div class="cmp" data-tier-a-component="speaker-intro-card">
+    <div class="render">
+      <div class="speaker-intro">
+        <div class="avatar"><iconify-icon icon="lucide:user"></iconify-icon></div>
+        <div>
+          <span class="eb"><iconify-icon icon="lucide:mic"></iconify-icon> Narrator</span>
+          <h4>Swami Anand</h4>
+          <p>Reads the evening passages in the original meter, with a slow bilingual gloss.</p>
+        </div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br><b>fill</b> #161527 · <b>radius</b> 20 · <b>padding</b> 24<br>circular avatar · mic eyebrow<br>serif name + one-line body</div>
+  </div>
+
+  <!-- TRIPTYCH -->
+  <div class="sub">Speaker / media Triptych</div>
+  <div class="cmp" data-tier-a-component="speaker-media-triptych">
+    <div class="render">
+      <div class="tript">
+        <div class="tript-card"><div class="tript-img"><span class="part-pill">Part 1</span></div><h4>प्रथमः</h4><p class="sub">The first lamp</p><p>An opening on the nature of attention before any word is spoken.</p><div class="name-row"><span class="av"></span><span class="nm">Swami Anand</span><span class="arr"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></div></div>
+        <div class="tript-card"><div class="tript-img"><span class="part-pill">Part 2</span></div><h4>द्वितीयः</h4><p class="sub">The middle silence</p><p>Where the verse pauses, the commentary lets the quiet do the teaching.</p><div class="name-row"><span class="av"></span><span class="nm">Swami Anand</span><span class="arr"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></div></div>
+        <div class="tript-card"><div class="tript-img"><span class="part-pill">Part 3</span></div><h4>तृतीयः</h4><p class="sub">The returning light</p><p>The closing passage circles back to the lamp first lit at dawn.</p><div class="name-row"><span class="av"></span><span class="nm">Swami Anand</span><span class="arr"><iconify-icon icon="lucide:arrow-right"></iconify-icon></span></div></div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×3</span><br>transparent flat · <b>radius</b> 0<br>Part n pill overlaid top-left<br>Devanagari heading + italic serif sub<br>avatar + name row with arrow</div>
+  </div>
+
+  <!-- THEME -->
+  <div class="sub">Theme-collection Card</div>
+  <div class="cmp" data-tier-a-component="theme-collection-card">
+    <div class="render">
+      <div class="row4">
+        <div class="theme-card"><div class="theme-scrim"></div><div class="eb">Theme</div><h4>On Stillness</h4><div class="it">quiet as practice</div><div class="cnt">18 dohas</div><button class="start-pill">Start <iconify-icon icon="lucide:play"></iconify-icon></button></div>
+        <div class="theme-card" style="background:linear-gradient(135deg,#78564E,#1B1A2E)"><div class="theme-scrim" style="background:linear-gradient(135deg,rgba(15,14,37,0.2),rgba(23,21,56,0.9))"></div><div class="eb">Theme</div><h4>On the Lamp</h4><div class="it">light within light</div><div class="cnt">24 dohas</div><button class="start-pill">Start <iconify-icon icon="lucide:play"></iconify-icon></button></div>
+        <div class="theme-card"><div class="theme-scrim"></div><div class="eb">Theme</div><h4>On the River</h4><div class="it">one continuous vow</div><div class="cnt">12 dohas</div><button class="start-pill">Start <iconify-icon icon="lucide:play"></iconify-icon></button></div>
+        <div class="theme-card" style="background:linear-gradient(135deg,#5C50B0,#1B1A2E)"><div class="theme-scrim"></div><div class="eb">Theme</div><h4>On the Night</h4><div class="it">what the dark gives</div><div class="cnt">20 dohas</div><button class="start-pill">Start <iconify-icon icon="lucide:play"></iconify-icon></button></div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×4</span><br>photographic full-bleed + bottom scrim<br><b>radius</b> 20<br>THEME eyebrow · serif title · italic subtitle · count<br>Start pill rgba tint · r-pill · bottom-right</div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="sub">Marquee Rail</div>
+  <div class="cmp" data-tier-a-component="marquee-rail">
+    <div class="render">
+      <div style="overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;background:rgba(22,21,39,0.4)">
+        <div class="marquee-track" style="animation-duration:22s">
+          <span class="m-chip">ध्यानम्<span class="m-plus">+</span>प्रेम<span class="m-plus">+</span>शान्तिः<span class="m-plus">+</span>मुक्तिः<span class="m-plus">+</span>सत्यं<span class="m-plus">+</span>प्रकाशः<span class="m-plus">+</span></span>
+          <span class="m-chip">ध्यानम्<span class="m-plus">+</span>प्रेम<span class="m-plus">+</span>शान्तिः<span class="m-plus">+</span>मुक्तिः<span class="m-plus">+</span>सत्यं<span class="m-plus">+</span>प्रकाशः<span class="m-plus">+</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br>transparent dark ground<br>plus-separated Devanagari chips<br>dedicated marquee keyframe loop</div>
+  </div>
+
+  <!-- HERO CARD -->
+  <div class="sub">Hero Card</div>
+  <div class="cmp" data-tier-a-component="hero-card">
+    <div class="render">
+      <div style="position:relative;border-radius:var(--r-card-lg);border:1px solid var(--border);overflow:hidden;background:radial-gradient(50% 55% at 70% 40%, rgba(92,80,176,0.34), rgba(0,0,0,0) 70%),radial-gradient(40% 46% at 4% 98%, rgba(120,90,82,0.22), rgba(0,0,0,0) 72%),var(--surface);display:grid;grid-template-columns:1.1fr 0.9fr;min-height:240px">
+        <div style="padding:36px 32px">
+          <div class="eyebrow" style="margin-bottom:14px">Scripture in Samadhi</div>
+          <h4 style="font-family:var(--serif);font-size:38px;line-height:1.02;letter-spacing:-0.8px">Read the verses by aurora light.</h4>
+          <div style="display:flex;gap:12px;margin-top:22px">
+            <button class="btn-gold" style="height:42px;font-size:13px">Begin</button>
+            <button class="btn-platform" style="height:42px;font-size:13px"><iconify-icon icon="lucide:apple"></iconify-icon> App</button>
+          </div>
+        </div>
+        <div style="position:relative;display:flex;align-items:center;justify-content:center">
+          <div class="halo" style="width:200px;height:200px"></div>
+          <iconify-icon icon="lucide:flower-2" style="position:relative;font-size:96px;color:var(--accent-amber);filter:drop-shadow(0 0 24px rgba(231,197,128,0.4))"></iconify-icon>
+        </div>
+      </div>
+    </div>
+    <div class="speccard"><span class="count">×1</span><br>bounded card · not full-bleed<br>two radial washes in card bg only (~¼)<br>closest-side halo aureole behind illustration<br>star-field on surrounding canvas</div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+@media(max-width:860px){.depth-grid{grid-template-columns:1fr}}
+.depth-card{background:var(--surface);padding:28px;min-height:150px;display:flex;flex-direction:column;justify-content:space-between}
+.depth-card .lbl{font-size:12px;color:var(--text-tertiary);font-weight:600;letter-spacing:1px}
+.depth-card h4{font-family:var(--serif);font-size:24px}
+.depth-card .v{font-family:ui-monospace,monospace;font-size:12px;color:var(--text-secondary)}
+</style>
+<section class="band" id="surface-depth">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:layers"></iconify-icon></span>
+    <div class="eyebrow">Elevation Without Edges</div>
+    <h2>Surface &amp; depth</h2>
+    <p>Radii stay distinct by family; elevation reads through soft layered shadow and blur rather than borders.</p>
+  </div>
+  <div class="depth-grid">
+    <div class="depth-card" style="border-radius:0;border-top:1px solid var(--border)"><div><div class="lbl">FLAT PANEL</div><h4>No radius</h4></div><div class="v">radius 0px · transparent</div></div>
+    <div class="depth-card" style="border-radius:12px"><div><div class="lbl">CONTROL</div><h4>Buttons &amp; chips</h4></div><div class="v">r-control 12px</div></div>
+    <div class="depth-card" style="border-radius:20px"><div><div class="lbl">CARD</div><h4>Glass &amp; media</h4></div><div class="v">r-card 20px</div></div>
+    <div class="depth-card" style="border-radius:26px"><div><div class="lbl">LARGE CARD</div><h4>Hero panel</h4></div><div class="v">r-card-lg 26px</div></div>
+    <div class="depth-card" style="border-radius:20px;box-shadow:rgba(255,255,255,0.07) 0 1px 0 0 inset, rgba(0,0,0,0.35) 0 1px 2px 0, rgba(2,1,12,0.95) 0 24px 48px -24px"><div><div class="lbl">GLASS SHADOW</div><h4>Layered lift</h4></div><div class="v">inset + 0.35 + 24 48 -24</div></div>
+    <div class="depth-card" style="border-radius:9999px;min-height:auto;padding:18px 28px;flex-direction:row;align-items:center;justify-content:space-between"><div><div class="lbl">PILL</div></div><div class="v">r-pill 9999px</div></div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+@media(max-width:860px){.motion-grid{grid-template-columns:1fr}}
+.motion-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:28px;text-align:center}
+.motion-card h4{font-family:var(--serif);font-size:22px;margin-bottom:6px}
+.motion-card .m{font-family:ui-monospace,monospace;font-size:11px;color:var(--text-tertiary);margin-bottom:20px}
+.mover{width:52px;height:52px;border-radius:var(--r-control);background:var(--gold-grad);margin:0 auto}
+.m1.play{animation:lift 0.5s var(--ease-spring)}
+.m2.play{animation:colshift 0.35s ease}
+.m3.play{animation:linkmove 0.25s ease}
+@keyframes lift{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+@keyframes colshift{0%{filter:brightness(1)}50%{filter:brightness(1.3)}100%{filter:brightness(1)}}
+@keyframes linkmove{0%{transform:translateX(0)}50%{transform:translateX(10px)}100%{transform:translateX(0)}}
+.replay{margin-top:18px;background:transparent;border:1px solid var(--border);color:var(--text-secondary);border-radius:var(--r-control);height:40px;padding:0 18px;font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer}
+</style>
+<section class="band" id="motion">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:activity"></iconify-icon></span>
+    <div class="eyebrow">Quiet &amp; Ambient</div>
+    <h2>Motion</h2>
+    <p>Motion serves the reading rhythm — gentle lifts, slow colour fades, no snap.</p>
+  </div>
+  <div class="motion-grid">
+    <div class="motion-card"><h4>Hover lift</h4><div class="m">cubic-bezier(.22,.8,.24,1) · 0.5s</div><div class="mover m1" id="mv1"></div><button class="replay" onclick="document.getElementById('mv1').classList.remove('play');void document.getElementById('mv1').offsetWidth;document.getElementById('mv1').classList.add('play')">Replay</button></div>
+    <div class="motion-card"><h4>Colour fade</h4><div class="m">ease · 0.35s</div><div class="mover m2" id="mv2"></div><button class="replay" onclick="document.getElementById('mv2').classList.remove('play');void document.getElementById('mv2').offsetWidth;document.getElementById('mv2').classList.add('play')">Replay</button></div>
+    <div class="motion-card"><h4>Link nudge</h4><div class="m">ease · 0.25s</div><div class="mover m3" id="mv3"></div><button class="replay" onclick="document.getElementById('mv3').classList.remove('play');void document.getElementById('mv3').offsetWidth;document.getElementById('mv3').classList.add('play')">Replay</button></div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+.mock{border:1px solid var(--border);border-radius:var(--r-card-lg);overflow:hidden;background:linear-gradient(rgb(13,13,26) 0%, rgb(19,18,40) 62%, rgb(18,18,30) 100%)}
+.mock-nav{height:57px;background:rgba(18,18,30,0.9);backdrop-filter:blur(20px) saturate(1.5);display:flex;align-items:center;gap:16px;padding:0 20px;border-bottom:1px solid var(--border)}
+.mock-nav .logo{font-family:var(--serif);font-size:20px}
+.mock-nav a{font-size:12px;font-weight:600;color:var(--text-tertiary)}
+.mock-nav .nav-pill{margin-left:auto}
+.mock-hero{padding:48px 32px;position:relative}
+.mock-hero h3{font-family:var(--serif);font-size:40px;letter-spacing:-0.8px;max-width:440px}
+.mock-hero p{color:var(--text-secondary);font-size:15px;max-width:380px;margin:12px 0 22px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding:0 32px 40px}
+@media(max-width:700px){.mock-cards{grid-template-columns:1fr}.mock-nav a{display:none}}
+.mock-cta{margin:0 32px 40px;background:var(--surface);border-radius:var(--r-card);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.mock-cta h4{font-family:var(--serif);font-size:26px}
+</style>
+<section class="band" id="composition">
+  <div class="band-head">
+    <span class="chip"><iconify-icon icon="lucide:panels-top-left"></iconify-icon></span>
+    <div class="eyebrow">It Holds Together</div>
+    <h2>In composition</h2>
+    <p>Nav, bounded hero, glass tiles and a single gold CTA — the whole system in one frame.</p>
+  </div>
+  <div class="mock">
+    <div class="mock-nav"><span class="logo">Nocturne</span><a>Reading</a><a>Dohas</a><a>Themes</a><button class="nav-pill">Sign in</button></div>
+    <div class="mock-hero">
+      <div class="starfield" aria-hidden="true" style="opacity:0.35"></div>
+      <h3 style="position:relative">Tonight's passage waits.</h3>
+      <p style="position:relative">Pick up where the lamp was left — one verse, read slowly, in its own light.</p>
+      <button class="btn-gold" style="position:relative"><iconify-icon icon="lucide:book-open"></iconify-icon> Resume reading</button>
+    </div>
+    <div class="mock-cards">
+      <div class="glass-card"><div class="glass-img"><iconify-icon icon="lucide:trees"></iconify-icon></div><div class="glass-body"><div class="eb">Forest</div><h4>Quiet path</h4><p>A guided evening set.</p></div></div>
+      <div class="chap-card"><div class="eb">Chapter 1·4</div><div class="mandal">Mandal I</div><h4>शान्तिः</h4><a class="open">Open <iconify-icon icon="lucide:arrow-right"></iconify-icon></a><span class="watermark">4</span></div>
+      <div class="theme-card"><div class="theme-scrim"></div><div class="eb">Theme</div><h4>On Stillness</h4><div class="it">quiet as practice</div><button class="start-pill">Start <iconify-icon icon="lucide:play"></iconify-icon></button></div>
+    </div>
+    <div class="mock-cta">
+      <div><h4>Begin your evening reading</h4><p style="color:var(--text-secondary);font-size:14px;margin-top:6px">One doha a night, lit by aurora.</p></div>
+      <button class="btn-midgold">Open the reader</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{border-top:1px solid var(--border);padding:72px 24px 48px;background:transparent}
+.foot-wrap{max-width:1156px;margin:0 auto}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+@media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.foot-top{grid-template-columns:1fr}}
+.foot-brand .logo{font-family:var(--serif);font-size:28px}
+.foot-brand p{color:var(--text-secondary);font-size:14px;max-width:280px;margin:12px 0 20px}
+.btn-mac{background:transparent;border:1px solid transparent;background-image:linear-gradient(var(--background),var(--background)),var(--gold-grad);background-origin:border-box;background-clip:padding-box,border-box;color:var(--accent-amber);border-radius:var(--r-control);height:48px;padding:0 20px;font-family:var(--ui);font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.foot-col h5{font-family:var(--ui);font-size:12px;font-weight:600;letter-spacing:1.7px;text-transform:uppercase;color:var(--text-tertiary);margin:0 0 16px}
+.foot-col a{display:block;font-size:13px;color:var(--text-secondary);margin-bottom:10px;transition:color var(--ease-color)}
+.foot-col a:hover{color:var(--text-primary)}
+.foot-callout{background:#161527;border-radius:var(--r-card);padding:24px;margin-bottom:40px;display:flex;align-items:center;gap:16px}
+.foot-callout iconify-icon{font-size:24px;color:var(--accent-amber)}
+.foot-callout p{font-size:14px;color:var(--text-secondary)}
+.foot-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:28px;border-top:1px solid var(--border);flex-wrap:wrap}
+.foot-bar .legal{font-size:12px;color:var(--text-tertiary)}
+.lang-toggle{display:inline-flex;border:1px solid var(--border);border-radius:var(--r-pill);overflow:hidden}
+.lang-toggle button{background:transparent;border:none;color:var(--text-tertiary);font-family:var(--ui);font-size:12px;font-weight:600;height:34px;padding:0 16px;cursor:pointer}
+.lang-toggle button.on{background:rgba(255,255,255,0.06);color:var(--text-primary)}
+.credit{font-size:12px;color:var(--text-tertiary);text-align:center;margin-top:28px}
+.credit a{color:var(--text-secondary)}
+</style>
+<footer id="footer">
+  <div class="foot-wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="logo">Nocturne Codex</div>
+        <p>A dark-first devotional reader. Scripture in samadhi, lit by a single rationed aurora.</p>
+        <button class="btn-mac"><iconify-icon icon="lucide:apple"></iconify-icon> Download for Mac</button>
+      </div>
+      <div class="foot-col"><h5>Read</h5><a>Daily passage</a><a>Short reads</a><a>Random chapter</a><a>Themes</a></div>
+      <div class="foot-col"><h5>Listen</h5><a>Narrators</a><a>Media parts</a><a>Audio library</a><a>Commentary</a></div>
+      <div class="foot-col"><h5>About</h5><a>The project</a><a>Glossary</a><a>Support</a><a>Contact</a></div>
+    </div>
+    <div class="foot-callout">
+      <iconify-icon icon="lucide:moon-star"></iconify-icon>
+      <p>New verses are published each evening — the lamp is never left dark for long.</p>
+    </div>
+    <div class="foot-bar">
+      <span class="legal">© 2024 Nocturne Codex. Read slowly.</span>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="on">EN</button>
+        <button>हिं</button>
+      </div>
+    </div>
+    <div class="credit">Design system captured and rendered by <a href="https://r3xdec.design">r3xdec.design</a> · Source: <a href="https://swarved-new.vercel.app/en">swarved-new.vercel.app/en</a></div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.lang-toggle button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    b.parentElement.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+  });
+});
+</script>
+</body>
+</html>

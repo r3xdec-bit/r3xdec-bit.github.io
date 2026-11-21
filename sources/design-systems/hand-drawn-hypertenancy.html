@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Hand-drawn hypertenancy — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aeonik+Fono:wght@400;500;700&family=Inter:wght@400;500;700&family=Aeonik+Mono:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&family=Source+Code+Pro:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F4EFEA; color:#383838; font-family:'Inter',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Aeonik Fono',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Aeonik Fono',sans-serif; font-size: 22px; border-bottom: 1px solid #383838; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#383838; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#383838; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #383838; border-radius:14px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#383838; }
+  .swatch-meta p { color:#383838; font-size: 12px; }
+  .specimen { border: 1px solid #383838; border-radius:14px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#383838; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#383838; }
+  .bar { height: 10px; background:#383838; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #383838; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #383838; border-radius:14px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #383838; }
+  .btn-primary { background:#383838; color:#F4EFEA; }
+  .btn-secondary { background: transparent; color:#383838; }
+  footer { border-top: 1px solid #383838; padding-top: 20px; font-size: 13px; color:#383838; }
+  footer a { color:#383838; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from motherduck.com · light mode</div>
+    <h1>Hand-drawn hypertenancy</h1>
+    <p class="tagline">A cream-and-sky-blue flat illustrative system built on a monospaced display face, square-cornered utility controls, and a mascot-led technical-diagram aesthetic.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F4EFEA"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F4EFEA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#97D4FF"></div>
+        <div class="swatch-meta"><strong>background-alt</strong><code>#97D4FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#383838"></div>
+        <div class="swatch-meta"><strong>surface-dark</strong><code>#383838</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F8F8F7"></div>
+        <div class="swatch-meta"><strong>surface-muted</strong><code>#F8F8F7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#383838"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#383838</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-on-dark</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#383838"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#383838</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D7D7D7"></div>
+        <div class="swatch-meta"><strong>hairline</strong><code>#D7D7D7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#818181"></div>
+        <div class="swatch-meta"><strong>text-muted</strong><code>#818181</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFDE00"></div>
+        <div class="swatch-meta"><strong>accent-yellow</strong><code>#FFDE00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF9538"></div>
+        <div class="swatch-meta"><strong>accent-orange</strong><code>#FF9538</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#B0FFF4"></div>
+        <div class="swatch-meta"><strong>accent-mint</strong><code>#B0FFF4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#CEEBFF"></div>
+        <div class="swatch-meta"><strong>accent-sky-pale</strong><code>#CEEBFF</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Aeonik Fono',sans-serif;font-size:44px;font-weight:400;line-height:1.09">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Aeonik Fono · 44px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Aeonik Fono',sans-serif;font-size:40px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Aeonik Fono · 40px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:18px;font-weight:300;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter · 18px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Aeonik Fono',sans-serif;font-size:32px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Aeonik Fono · 32px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Aeonik Mono',sans-serif;font-size:16px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-mono · Aeonik Mono · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'JetBrains Mono',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-code · JetBrains Mono · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Source Code Pro',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono-alt · Source Code Pro · 14px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 220px</span>
+        <div class="bar" style="width:min(220px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:2px">sharp<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:14px">card<br><code>14px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#383838;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

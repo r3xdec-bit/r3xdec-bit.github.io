@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" class="loaded"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sunseto Pricing · ThreeUI</title><link rel="stylesheet" href="./sunseto-pricing.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script></head><body data-template="sunseto-pricing" data-kind="Sections" data-dark="false"><section id="pricing" aria-labelledby="prTitle">
+    <div class="vlines" aria-hidden="true"><i></i><i></i></div>
+    <div class="pr-grid">
+      <div class="pr-intro">
+        <small class="mono line-mask sv"><span>Pricing</span></small>
+        <h2 id="prTitle"><span class="line-mask sv"><span>One plan, sized</span></span><span class="line-mask sv"><span>to your evenings</span></span></h2>
+        <p>Tell us who lives at home. We size the panels and the battery so the afternoon carries you into the night, and charge one monthly price for all of it.</p>
+        <div class="pr-size">
+          <div class="row"><label class="mono" for="prPeople">Who lives at home</label><output id="prPeopleOut" for="prPeople">3 people</output></div>
+          <div class="pr-range"><input type="range" id="prPeople" min="1" max="6" step="1" value="3" aria-valuetext="3 people"><div class="pr-ticks" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6+</span></div></div>
+          <div class="pr-tiers" role="group" aria-label="Plans">
+            <button type="button" data-plan="ko" data-p="2" aria-pressed="false"><b>小</b><span>Ko</span><em>1–2 people</em></button>
+            <button type="button" data-plan="naka" data-p="3" aria-pressed="true"><b>中</b><span>Naka</span><em>3–4 people</em></button>
+            <button type="button" data-plan="o" data-p="5" aria-pressed="false"><b>大</b><span>Ō</span><em>5–6 people</em></button>
+          </div>
+        </div>
+      </div>
+      <article class="pr-card" aria-live="polite">
+        <div class="pr-sky">
+          <div class="view" data-view="priceSky"><canvas></canvas></div>
+          <div class="pr-kanji" id="prKanji" aria-hidden="true">中</div>
+          <div class="pr-until mono"><span>Carries your evening to</span><b id="prUntil">12:10 am</b></div>
+        </div>
+        <div class="pr-body">
+          <div class="pr-name"><b id="prName">Naka</b><span class="mono" id="prFor">3–4 people</span></div>
+          <div class="pr-price"><span class="yen">¥</span><b id="prPrice">13,800</b><span class="per">a month</span></div>
+          <ul class="pr-list">
+            <li><span>Panels</span><b id="prPanels">4.8 kW, 16 panels</b></li>
+            <li><span>Battery</span><b id="prBatt">10 kWh</b></li>
+            <li><span>Fitting</span><b>One day, one local crew</b></li>
+            <li><span>Monitoring and repairs</span><b>Included</b></li>
+            <li><span>Up front</span><b>¥0</b></li>
+          </ul>
+          <a class="btn" href="#hero"><span>Check my roof</span></a>
+          <p class="pr-note">Prices include tax. We confirm yours after we have looked at your roof.</p>
+        </div>
+      </article>
+    </div>
+  </section><script type="module" src="./sunseto-pricing.ui.js"></script></body></html>

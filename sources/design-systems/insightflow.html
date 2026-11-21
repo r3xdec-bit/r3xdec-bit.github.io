@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>InsightFlow - 智能问数模块 — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=ui-sans-serif:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#050508; color:#E2E8F0; font-family:'Plus Jakarta Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Plus Jakarta Sans',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Plus Jakarta Sans',sans-serif; font-size: 22px; border-bottom: 1px solid #818CF8; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#818CF8; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#818CF8; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#0F0F1A; border: 1px solid #818CF8; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#818CF8; }
+  .swatch-meta p { color:#818CF8; font-size: 12px; }
+  .specimen { border: 1px solid #818CF8; border-radius:12px; padding: 20px; background:#0F0F1A; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#818CF8; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#818CF8; }
+  .bar { height: 10px; background:#E2E8F0; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #E2E8F0; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#0F0F1A; border: 1px solid #818CF8; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #E2E8F0; }
+  .btn-primary { background:#E2E8F0; color:#050508; }
+  .btn-secondary { background: transparent; color:#E2E8F0; }
+  footer { border-top: 1px solid #818CF8; padding-top: 20px; font-size: 13px; color:#818CF8; }
+  footer a { color:#E2E8F0; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · dark mode</div>
+    <h1>InsightFlow - 智能问数模块</h1>
+    <p class="tagline">Near-black conversational-analytics console with a violet-to-fuchsia gradient accent rationed to primary actions and data bars, glass utility surfaces, and a dense three-pane app shell.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#050508"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#050508</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0F0F1A"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#0F0F1A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(255, 255, 255, 0.05)"></div>
+        <div class="swatch-meta"><strong>surface-glass</strong><code>rgba(255, 255, 255, 0.05)</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E2E8F0"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#E2E8F0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#818CF8"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#818CF8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6366F1"></div>
+        <div class="swatch-meta"><strong>accent-primary</strong><code>#6366F1</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#A855F7"></div>
+        <div class="swatch-meta"><strong>accent-secondary</strong><code>#A855F7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#3B82F6"></div>
+        <div class="swatch-meta"><strong>accent-neon</strong><code>#3B82F6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(255, 255, 255, 0.05)"></div>
+        <div class="swatch-meta"><strong>border-hairline</strong><code>rgba(255, 255, 255, 0.05)</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;font-weight:400;line-height:1.63">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Plus Jakarta Sans · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:600;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Plus Jakarta Sans · 16px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:13px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · ui-sans-serif · 13px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:12px">card<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:6px">input<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#818CF8;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

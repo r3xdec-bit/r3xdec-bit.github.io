@@ -1,0 +1,802 @@
+{
+  "models": [
+    {
+      "id": "google/gemini-3.1-flash-image",
+      "displayName": "Nano Banana 2",
+      "description": "Fast image generation and editing",
+      "agentNotes": "Fast edits; best reference-image following (paid default)",
+      "operation": "image_generation",
+      "outputKind": "image",
+      "capabilities": {
+        "aspectRatios": [
+          "1:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "4:5",
+          "5:4",
+          "9:16",
+          "16:9",
+          "21:9"
+        ],
+        "imageSizes": [
+          "1K"
+        ],
+        "maxReferenceImages": 10
+      },
+      "pricing": [
+        {
+          "credits": 10
+        }
+      ],
+      "params": [
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "1:1",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:3",
+            "4:5",
+            "5:4",
+            "9:16",
+            "16:9",
+            "21:9"
+          ],
+          "description": "Output aspect ratio"
+        },
+        {
+          "name": "imageSize",
+          "kind": "enum",
+          "values": [
+            "1K"
+          ],
+          "default": "1K",
+          "description": "Output size tier"
+        }
+      ],
+      "lockedForPlan": true
+    },
+    {
+      "id": "google/gemini-3-pro-image",
+      "displayName": "Nano Banana Pro",
+      "description": "Studio-quality detail, text, and control",
+      "agentNotes": "Studio-grade detail and text rendering, up to 2K",
+      "operation": "image_generation",
+      "outputKind": "image",
+      "capabilities": {
+        "aspectRatios": [
+          "1:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "4:5",
+          "5:4",
+          "9:16",
+          "16:9",
+          "21:9"
+        ],
+        "imageSizes": [
+          "1K",
+          "2K"
+        ],
+        "maxReferenceImages": 10
+      },
+      "pricing": [
+        {
+          "credits": 20
+        }
+      ],
+      "params": [
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "1:1",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:3",
+            "4:5",
+            "5:4",
+            "9:16",
+            "16:9",
+            "21:9"
+          ],
+          "description": "Output aspect ratio"
+        },
+        {
+          "name": "imageSize",
+          "kind": "enum",
+          "values": [
+            "1K",
+            "2K"
+          ],
+          "default": "1K",
+          "description": "Output size tier"
+        }
+      ],
+      "lockedForPlan": true
+    },
+    {
+      "id": "bytedance/seedream-5.0-lite",
+      "displayName": "Seedream 5 Lite",
+      "description": "Cinematic quality for posters and rich visuals",
+      "agentNotes": "Cinematic lighting - posters and rich visuals; the only free image model",
+      "operation": "image_generation",
+      "outputKind": "image",
+      "capabilities": {
+        "aspectRatios": [
+          "1:1",
+          "2:3",
+          "3:2",
+          "3:4",
+          "4:3",
+          "4:5",
+          "5:4",
+          "9:16",
+          "16:9",
+          "21:9"
+        ],
+        "imageSizes": [
+          "2K",
+          "4K"
+        ],
+        "maxReferenceImages": 4
+      },
+      "pricing": [
+        {
+          "credits": 6
+        }
+      ],
+      "params": [
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "1:1",
+            "2:3",
+            "3:2",
+            "3:4",
+            "4:3",
+            "4:5",
+            "5:4",
+            "9:16",
+            "16:9",
+            "21:9"
+          ],
+          "description": "Output aspect ratio"
+        },
+        {
+          "name": "imageSize",
+          "kind": "enum",
+          "values": [
+            "2K",
+            "4K"
+          ],
+          "default": "2K",
+          "description": "Output size tier"
+        }
+      ],
+      "lockedForPlan": false
+    },
+    {
+      "id": "bytedance/seedance-1-pro-fast",
+      "displayName": "Seedance 1.0 Fast",
+      "description": "Natural, smooth motion",
+      "agentNotes": "Natural smooth motion; cheap short clips (per-second pricing); text-to-video supported",
+      "operation": "video_generation",
+      "outputKind": "video",
+      "capabilities": {
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "durations": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "defaultDuration": 5,
+        "videoAspectRatios": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "21:9",
+          "9:21"
+        ],
+        "sourceImage": "optional",
+        "supportsCameraFixed": true,
+        "supportsSeed": true,
+        "maxReferenceImages": 1
+      },
+      "pricing": [
+        {
+          "resolution": "480p",
+          "credits": 15,
+          "perSecondCredits": 3
+        },
+        {
+          "resolution": "720p",
+          "credits": 20,
+          "perSecondCredits": 4
+        },
+        {
+          "resolution": "1080p",
+          "credits": 45,
+          "perSecondCredits": 9
+        }
+      ],
+      "params": [
+        {
+          "name": "resolution",
+          "kind": "enum",
+          "values": [
+            "480p",
+            "720p",
+            "1080p"
+          ],
+          "default": "480p",
+          "affectsPrice": true,
+          "description": "Output resolution",
+          "lockedValues": [
+            "720p",
+            "1080p"
+          ]
+        },
+        {
+          "name": "duration",
+          "kind": "integer",
+          "values": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "default": 5,
+          "affectsPrice": true,
+          "description": "Clip length in seconds"
+        },
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "21:9",
+            "9:21"
+          ],
+          "default": "16:9",
+          "description": "Frame ratio; text-to-video only (a source image sets the ratio)"
+        },
+        {
+          "name": "cameraFixed",
+          "kind": "boolean",
+          "default": false,
+          "description": "Pin the camera in place"
+        },
+        {
+          "name": "seed",
+          "kind": "integer",
+          "description": "Seed for reproducible generation"
+        }
+      ],
+      "constraints": [
+        {
+          "when": {
+            "param": "image",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "aspectRatio"
+          },
+          "message": "aspectRatio only applies to text-to-video; with a source image the output follows the image"
+        }
+      ],
+      "lockedForPlan": false,
+      "lockedResolutions": [
+        "720p",
+        "1080p"
+      ]
+    },
+    {
+      "id": "bytedance/seedance-1-pro",
+      "displayName": "Seedance 1.0 Pro",
+      "description": "Highest quality, can end on a target frame",
+      "agentNotes": "Highest-quality Seedance; can condition on an end frame (2.5x fast-tier price)",
+      "operation": "video_generation",
+      "outputKind": "video",
+      "capabilities": {
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "durations": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "defaultDuration": 5,
+        "supportsLastFrame": true,
+        "videoAspectRatios": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "21:9",
+          "9:21"
+        ],
+        "sourceImage": "optional",
+        "supportsCameraFixed": true,
+        "supportsSeed": true,
+        "maxReferenceImages": 1
+      },
+      "pricing": [
+        {
+          "resolution": "480p",
+          "credits": 25,
+          "perSecondCredits": 5
+        },
+        {
+          "resolution": "720p",
+          "credits": 50,
+          "perSecondCredits": 10
+        },
+        {
+          "resolution": "1080p",
+          "credits": 120,
+          "perSecondCredits": 24
+        }
+      ],
+      "params": [
+        {
+          "name": "resolution",
+          "kind": "enum",
+          "values": [
+            "480p",
+            "720p",
+            "1080p"
+          ],
+          "default": "480p",
+          "affectsPrice": true,
+          "description": "Output resolution"
+        },
+        {
+          "name": "duration",
+          "kind": "integer",
+          "values": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "default": 5,
+          "affectsPrice": true,
+          "description": "Clip length in seconds"
+        },
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "21:9",
+            "9:21"
+          ],
+          "default": "16:9",
+          "description": "Frame ratio; text-to-video only (a source image sets the ratio)"
+        },
+        {
+          "name": "cameraFixed",
+          "kind": "boolean",
+          "default": false,
+          "description": "Pin the camera in place"
+        },
+        {
+          "name": "seed",
+          "kind": "integer",
+          "description": "Seed for reproducible generation"
+        }
+      ],
+      "constraints": [
+        {
+          "when": {
+            "param": "image",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "aspectRatio"
+          },
+          "message": "aspectRatio only applies to text-to-video; with a source image the output follows the image"
+        }
+      ],
+      "lockedForPlan": true
+    },
+    {
+      "id": "bytedance/seedance-2.0",
+      "displayName": "Seedance 2.0",
+      "description": "Multimodal references, native audio, end frames",
+      "agentNotes": "Multimodal flagship: up to 9 reference images for character/style consistency, native audio incl. dialogue, end-frame conditioning",
+      "operation": "video_generation",
+      "outputKind": "video",
+      "capabilities": {
+        "resolutions": [
+          "480p",
+          "720p",
+          "1080p"
+        ],
+        "durations": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "defaultDuration": 5,
+        "supportsLastFrame": true,
+        "supportsAudio": true,
+        "supportsAudioToggle": true,
+        "videoAspectRatios": [
+          "16:9",
+          "4:3",
+          "1:1",
+          "3:4",
+          "9:16",
+          "21:9",
+          "9:21",
+          "adaptive"
+        ],
+        "sourceImage": "optional",
+        "supportsSeed": true,
+        "maxReferenceImages": 1,
+        "videoReferenceImages": 9
+      },
+      "pricing": [
+        {
+          "resolution": "480p",
+          "credits": 55,
+          "perSecondCredits": 11
+        },
+        {
+          "resolution": "720p",
+          "credits": 125,
+          "perSecondCredits": 25
+        },
+        {
+          "resolution": "1080p",
+          "credits": 280,
+          "perSecondCredits": 56
+        }
+      ],
+      "params": [
+        {
+          "name": "resolution",
+          "kind": "enum",
+          "values": [
+            "480p",
+            "720p",
+            "1080p"
+          ],
+          "default": "480p",
+          "affectsPrice": true,
+          "description": "Output resolution"
+        },
+        {
+          "name": "duration",
+          "kind": "integer",
+          "values": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default": 5,
+          "affectsPrice": true,
+          "description": "Clip length in seconds"
+        },
+        {
+          "name": "aspectRatio",
+          "kind": "enum",
+          "values": [
+            "16:9",
+            "4:3",
+            "1:1",
+            "3:4",
+            "9:16",
+            "21:9",
+            "9:21",
+            "adaptive"
+          ],
+          "default": "16:9",
+          "description": "Frame ratio; text-to-video only (a source image sets the ratio)"
+        },
+        {
+          "name": "audio",
+          "kind": "boolean",
+          "default": true,
+          "description": "Generate native audio with the clip (free; does not change the price)"
+        },
+        {
+          "name": "seed",
+          "kind": "integer",
+          "description": "Seed for reproducible generation"
+        }
+      ],
+      "constraints": [
+        {
+          "when": {
+            "param": "image",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "aspectRatio"
+          },
+          "message": "aspectRatio only applies to text-to-video; with a source image the output follows the image"
+        },
+        {
+          "when": {
+            "param": "referenceImages",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "image"
+          },
+          "message": "reference images cannot be combined with a first-frame image; pass one or the other"
+        },
+        {
+          "when": {
+            "param": "referenceImages",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "lastFrameImage"
+          },
+          "message": "reference images cannot be combined with an end frame"
+        }
+      ],
+      "lockedForPlan": true
+    },
+    {
+      "id": "minimax/hailuo-2.3-fast",
+      "displayName": "Hailuo",
+      "description": "Dynamic, stylized effects",
+      "agentNotes": "Dynamic stylized motion from a first frame",
+      "operation": "video_generation",
+      "outputKind": "video",
+      "capabilities": {
+        "resolutions": [
+          "720p",
+          "1080p"
+        ],
+        "durations": [
+          6,
+          10
+        ],
+        "defaultDuration": 6,
+        "sourceImage": "required",
+        "supportsPromptOptimizer": true,
+        "maxReferenceImages": 1
+      },
+      "pricing": [
+        {
+          "resolution": "720p",
+          "credits": 30,
+          "perSecondCredits": 5
+        },
+        {
+          "resolution": "1080p",
+          "credits": 50
+        }
+      ],
+      "params": [
+        {
+          "name": "resolution",
+          "kind": "enum",
+          "values": [
+            "720p",
+            "1080p"
+          ],
+          "default": "720p",
+          "affectsPrice": true,
+          "description": "Output resolution"
+        },
+        {
+          "name": "duration",
+          "kind": "integer",
+          "values": [
+            6,
+            10
+          ],
+          "default": 6,
+          "affectsPrice": true,
+          "description": "Clip length in seconds"
+        },
+        {
+          "name": "promptOptimizer",
+          "kind": "boolean",
+          "default": true,
+          "description": "Provider-side prompt rewriting"
+        }
+      ],
+      "constraints": [
+        {
+          "when": {
+            "param": "duration",
+            "value": 10
+          },
+          "require": {
+            "param": "resolution",
+            "oneOf": [
+              "720p"
+            ]
+          },
+          "message": "10s clips are only available at 720p"
+        }
+      ],
+      "lockedForPlan": true
+    },
+    {
+      "id": "minimax/h3",
+      "displayName": "MiniMax H3",
+      "description": "Premium video with native audio",
+      "agentNotes": "Premium clips (4-15s) with native audio and end-frame control",
+      "operation": "video_generation",
+      "outputKind": "video",
+      "capabilities": {
+        "resolutions": [
+          "768p",
+          "2k"
+        ],
+        "durations": [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15
+        ],
+        "defaultDuration": 5,
+        "supportsLastFrame": true,
+        "sourceImage": "required",
+        "supportsAudio": true,
+        "maxReferenceImages": 1,
+        "videoReferenceImages": 9
+      },
+      "pricing": [
+        {
+          "resolution": "768p",
+          "credits": 60,
+          "perSecondCredits": 12
+        },
+        {
+          "resolution": "2k",
+          "credits": 100,
+          "perSecondCredits": 20
+        }
+      ],
+      "params": [
+        {
+          "name": "resolution",
+          "kind": "enum",
+          "values": [
+            "768p",
+            "2k"
+          ],
+          "default": "768p",
+          "affectsPrice": true,
+          "description": "Output resolution"
+        },
+        {
+          "name": "duration",
+          "kind": "integer",
+          "values": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "default": 5,
+          "affectsPrice": true,
+          "description": "Clip length in seconds"
+        }
+      ],
+      "constraints": [
+        {
+          "when": {
+            "param": "referenceImages",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "image"
+          },
+          "message": "reference images cannot be combined with a first-frame image; pass one or the other"
+        },
+        {
+          "when": {
+            "param": "referenceImages",
+            "value": "present"
+          },
+          "forbid": {
+            "param": "lastFrameImage"
+          },
+          "message": "reference images cannot be combined with an end frame"
+        }
+      ],
+      "lockedForPlan": true
+    }
+  ]
+}

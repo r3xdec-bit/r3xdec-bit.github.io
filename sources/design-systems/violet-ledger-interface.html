@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Violet Ledger Interface — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface-tint:#F8FAFC;
+  --surface-panel:#F3F3F4;
+  --text-primary:#000000;
+  --text-secondary:#0D162F;
+  --text-muted:#868A97;
+  --border:#E6E7EA;
+  --accent-primary:#6056FF;
+  --accent-primary-deep:#4B40D6;
+  --accent-teal:#0E9384;
+  --ink-dark:#1A192B;
+  --ghost-text:#374151;
+  --gradient-cta:radial-gradient(circle, rgb(96,86,255), rgb(59,50,249));
+  --gradient-panel:linear-gradient(160deg, rgb(230,230,251) 0%, rgb(226,227,250) 50%, rgb(223,226,250) 100%);
+  --pill:9999px;
+  --r-control:6px;
+  --r-nav-cta:5px;
+  --r-card-tight:8px;
+  --r-card:12px;
+  --r-card-loose:16px;
+  --base:8px;
+  --gap-tight:6px;
+  --gap-control:10px;
+  --gap-standard:12px;
+  --gap-loose:20px;
+  --section-padding:64px;
+  --container:1300px;
+  --shadow-card:rgba(13,22,47,0.06) 0px 1px 2px 0px, rgba(13,22,47,0.14) 0px 6px 18px -4px, rgba(255,255,255,0.9) 0px 1px 0px 0px inset;
+  --shadow-flat:rgba(255,255,255,0.8) 0px 1px 0px 0px inset, rgba(13,22,47,0.07) 0px 2px 8px 0px;
+  --shadow-cta:rgba(59,50,249,0.25) 0px 1.6px 6.4px 0px;
+  --shadow-cta-hover:rgba(59,50,249,0.35) 0px 3.2px 9.6px 0px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--background);color:var(--text-primary);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:'Sora','Inter',sans-serif;font-weight:400;margin:0}
+p{margin:0}
+a{color:var(--accent-primary);text-decoration:none}
+.container{max-width:var(--container);margin:0 auto;padding-left:32px;padding-right:32px}
+.band{padding-top:var(--section-padding);padding-bottom:var(--section-padding)}
+.eyebrow{font-size:14px;font-weight:500;letter-spacing:-0.5px;color:var(--text-muted);text-transform:uppercase}
+.section-title{font-size:36px;line-height:1.35;letter-spacing:-0.9px;color:var(--ink-dark)}
+.section-lead{font-size:16px;color:var(--text-secondary);max-width:60ch;margin-top:12px}
+iconify-icon{display:inline-block;vertical-align:middle}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:50;height:65px;background:rgba(255,255,255,0.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:var(--container);margin:0 auto;height:65px;display:flex;align-items:center;gap:24px;padding:0 32px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Sora';font-weight:600;font-size:18px;letter-spacing:-0.5px;color:var(--ink-dark)}
+.logo-mark{width:26px;height:26px;border-radius:var(--pill);background:var(--gradient-cta);flex:0 0 auto}
+.nav-links{display:flex;gap:20px;align-items:center;margin-left:12px}
+.nav-links a{color:var(--text-secondary);font-size:15px;font-weight:500;display:inline-flex;align-items:center;gap:4px}
+.nav-links a:hover{color:var(--accent-primary)}
+.nav-right{margin-left:auto;display:flex;gap:12px;align-items:center}
+.btn-nav-outline{height:42px;padding:10px 20px;border-radius:var(--r-nav-cta);background:transparent;color:var(--text-secondary);border:1px solid var(--border);font-family:'Inter';font-size:15px;font-weight:500;cursor:pointer;transition:background .15s var(--ease)}
+.btn-nav-outline:hover{background:var(--surface-tint)}
+.btn-nav-cta{height:42px;padding:10px 20px;border-radius:var(--r-nav-cta);background:var(--gradient-cta);color:#fff;border:none;font-family:'Inter';font-size:15px;font-weight:500;cursor:pointer;box-shadow:var(--shadow-cta);transition:box-shadow .2s var(--ease)}
+.btn-nav-cta:hover{box-shadow:var(--shadow-cta-hover)}
+.nav-toggle{display:none}
+
+/* hero */
+#hero{position:relative;overflow:hidden}
+.hero-washes{position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:
+    radial-gradient(90% 80% at 12% 0%, rgba(138,105,255,0.55) 0%, rgba(138,105,255,0) 62%),
+    radial-gradient(85% 75% at 92% 10%, rgba(109,74,255,0.55) 0%, rgba(109,74,255,0) 62%),
+    radial-gradient(85% 85% at 82% 100%, rgba(138,105,255,0.5) 0%, rgba(138,105,255,0) 60%),
+    radial-gradient(80% 70% at 22% 100%, rgba(199,207,255,0.6) 0%, rgba(199,207,255,0) 65%);}
+.hero-inner{position:relative;z-index:1;max-width:var(--container);margin:0 auto;padding:72px 32px 64px}
+.hero-top{display:grid;grid-template-columns:1.05fr 0.95fr;gap:80px;align-items:end}
+.hero-headline{font-size:48px;line-height:1.2;letter-spacing:-2.4px;color:var(--ink-dark)}
+.hero-right{display:flex;flex-direction:column;gap:20px}
+.hero-body{font-size:16px;color:var(--text-secondary)}
+.hero-ctas{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.btn-primary{height:42px;padding:10px 20px;border-radius:var(--pill);background:var(--gradient-cta);color:#fff;border:none;font-family:'Inter';font-size:15px;font-weight:500;cursor:pointer;box-shadow:var(--shadow-cta);transition:box-shadow .2s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.btn-primary:hover{box-shadow:var(--shadow-cta-hover)}
+.btn-ghost{height:38px;padding:8px 16px;border-radius:var(--r-control);background:transparent;color:var(--ghost-text);border:1px solid transparent;font-family:'Inter';font-size:15px;font-weight:500;cursor:pointer;transition:background .15s var(--ease)}
+.btn-ghost:hover{background:#F9FAFB}
+@media(max-width:1024px){
+  .hero-top{grid-template-columns:1fr;gap:32px;align-items:start}
+  .hero-headline{font-size:40px;letter-spacing:-1.8px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .container,.hero-inner,.nav-inner{padding-left:20px;padding-right:20px}
+  .hero-headline{font-size:32px;letter-spacing:-1.2px}
+  .section-title{font-size:28px}
+}
+@media(max-width:640px){
+  .hero-headline{font-size:27px;letter-spacing:-1px}
+}
+@media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <a class="logo" href="#hero" aria-label="Violet Ledger home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>Violet Ledger</span>
+    </a>
+    <div class="nav-links">
+      <a href="#components">Platform <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+      <a href="#composition">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+      <a href="#type-scale">Docs</a>
+      <a href="#palette">Pricing</a>
+      <a href="#motion">Customers</a>
+    </div>
+    <div class="nav-right">
+      <button class="btn-nav-outline">Sign in</button>
+      <button class="btn-nav-cta">Book a demo</button>
+    </div>
+  </div>
+</nav>
+
+<header id="hero">
+  <div class="hero-washes" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <div class="hero-top">
+      <div>
+        <h1 class="hero-headline">The operational ledger<br>your agents run on.</h1>
+      </div>
+      <div class="hero-right">
+        <p class="hero-body">Deploy autonomous agents against your busiest workflows and watch every task, cost, and outcome settle into one dense, auditable view. Built for teams that measure work in rows, not vibes.</p>
+        <div class="hero-ctas">
+          <button class="btn-primary"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Start building</button>
+          <button class="btn-ghost">Watch the walkthrough</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- dense operational preview -->
+    <div style="margin-top:56px;display:grid;grid-template-columns:1.55fr 1fr;gap:40px;align-items:start">
+      <div>
+        <!-- metric row -->
+        <div data-tier-a-component="metric-numeral-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px 24px;margin-bottom:40px">
+          <div class="metric">
+            <div class="metric-label">Tasks resolved</div>
+            <div class="metric-num">12,480</div>
+            <div class="metric-delta up">+18.2% wk</div>
+            <div class="spark" aria-hidden="true"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Avg. cost / task</div>
+            <div class="metric-num">$0.041</div>
+            <div class="metric-delta down">−9.4% wk</div>
+            <div class="spark" aria-hidden="true"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Automation rate</div>
+            <div class="metric-num">87%</div>
+            <div class="metric-delta up">+3.1% wk</div>
+            <div class="spark" aria-hidden="true"></div>
+          </div>
+          <div class="metric">
+            <div class="metric-label">Active agents</div>
+            <div class="metric-num">36</div>
+            <div class="metric-delta">stable</div>
+            <div class="spark" aria-hidden="true"></div>
+          </div>
+        </div>
+        <!-- task table -->
+        <div data-tier-a-component="task-data-table" class="task-table" role="table" aria-label="Task ledger">
+          <div class="tt-row tt-head" role="row">
+            <span role="columnheader">Task</span>
+            <span role="columnheader">Owner</span>
+            <span role="columnheader">Model</span>
+            <span role="columnheader">Success</span>
+            <span role="columnheader" style="text-align:right">Cost</span>
+          </div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></span>Enrich inbound leads</span><span class="tt-owner" role="cell"><span class="avatar">AK</span>Growth</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> gpt-router</span><span class="tt-pct teal" role="cell">98.1%</span><span class="tt-cost" role="cell">$0.03</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:file-text" aria-hidden="true"></iconify-icon></span>Summarise contracts</span><span class="tt-owner" role="cell"><span class="avatar">MR</span>Legal</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> claude-ops</span><span class="tt-pct" role="cell">94.7%</span><span class="tt-cost" role="cell">$0.09</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></span>Research competitors</span><span class="tt-owner" role="cell"><span class="avatar">JD</span>Product</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> gpt-router</span><span class="tt-pct teal" role="cell">96.3%</span><span class="tt-cost" role="cell">$0.12</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:ticket" aria-hidden="true"></iconify-icon></span>Triage support tickets</span><span class="tt-owner" role="cell"><span class="avatar">SL</span>Support</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> mistral-fast</span><span class="tt-pct" role="cell">91.0%</span><span class="tt-cost" role="cell">$0.02</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:database" aria-hidden="true"></iconify-icon></span>Reconcile invoices</span><span class="tt-owner" role="cell"><span class="avatar">PT</span>Finance</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> claude-ops</span><span class="tt-pct teal" role="cell">99.4%</span><span class="tt-cost" role="cell">$0.07</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:megaphone" aria-hidden="true"></iconify-icon></span>Draft campaign copy</span><span class="tt-owner" role="cell"><span class="avatar">EN</span>Marketing</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> gpt-router</span><span class="tt-pct" role="cell">88.9%</span><span class="tt-cost" role="cell">$0.05</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon></span>Flag compliance risk</span><span class="tt-owner" role="cell"><span class="avatar">RV</span>Risk</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> claude-ops</span><span class="tt-pct teal" role="cell">97.6%</span><span class="tt-cost" role="cell">$0.11</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:calendar" aria-hidden="true"></iconify-icon></span>Schedule follow-ups</span><span class="tt-owner" role="cell"><span class="avatar">HC</span>Sales</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> mistral-fast</span><span class="tt-pct" role="cell">93.2%</span><span class="tt-cost" role="cell">$0.02</span></div>
+        </div>
+      </div>
+      <!-- chat panel -->
+      <div data-tier-a-component="agent-chat-panel" class="chat-panel">
+        <div class="chat-attach"><iconify-icon icon="lucide:paperclip" aria-hidden="true"></iconify-icon> q3-workflows.csv</div>
+        <div class="chat-user">Build me an agent that reconciles these invoices nightly and flags anomalies.</div>
+        <ol class="chat-steps">
+          <li><span class="step-n">1</span> Parsed 4,210 invoice rows <iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></li>
+          <li><span class="step-n">2</span> Matched against ledger entries <iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></li>
+          <li><span class="step-n">3</span> Configured nightly schedule <iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></li>
+          <li><span class="step-n">4</span> Drafting anomaly report <span class="shimmer" aria-hidden="true"></span></li>
+        </ol>
+        <div class="chat-input">
+          <input type="text" placeholder="Message your agent…" aria-label="Message your agent">
+          <button class="send-btn" aria-label="Send message"><iconify-icon icon="lucide:arrow-up" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="hero">
+.metric{background:transparent;border-radius:0;padding:0}
+.metric-label{font-size:14px;font-weight:500;color:var(--text-muted)}
+.metric-num{font-family:'Sora';font-weight:600;font-size:34px;letter-spacing:-1.4px;color:var(--text-primary);margin-top:4px;font-variant-numeric:tabular-nums}
+.metric-delta{font-size:14px;font-weight:500;color:var(--text-muted);margin-top:2px;font-variant-numeric:tabular-nums}
+.metric-delta.up{color:var(--accent-teal)}
+.metric-delta.down{color:var(--text-secondary)}
+.spark{height:24px;margin-top:12px;background:linear-gradient(90deg,rgba(96,86,255,0.15),rgba(59,50,249,0.35));border-radius:var(--r-control);-webkit-mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='24'><polyline points='0,20 15,14 30,17 45,8 60,12 75,4 100,9' fill='none' stroke='black' stroke-width='2'/></svg>") no-repeat;mask:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='24'><polyline points='0,20 15,14 30,17 45,8 60,12 75,4 100,9' fill='none' stroke='black' stroke-width='2'/></svg>") no-repeat;-webkit-mask-size:100% 100%;mask-size:100% 100%}
+.task-table{background:transparent;border-radius:0;border-top:1px solid var(--border)}
+.tt-row{display:grid;grid-template-columns:2fr 1.1fr 1.1fr 0.7fr 0.6fr;align-items:center;gap:16px;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px}
+.tt-head span{font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.02em}
+.tt-task{display:flex;align-items:center;gap:10px;color:var(--text-secondary);font-weight:500}
+.tt-tool{width:26px;height:26px;border-radius:var(--r-control);background:var(--surface-panel);display:inline-flex;align-items:center;justify-content:center;color:var(--accent-primary);font-size:14px;flex:0 0 auto}
+.tt-owner{display:flex;align-items:center;gap:8px;color:var(--text-secondary)}
+.avatar{width:24px;height:24px;border-radius:var(--pill);background:var(--surface-panel);display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:var(--text-secondary)}
+.tt-chip{display:inline-flex;align-items:center;gap:6px;background:var(--surface-tint);border:1px solid var(--border);border-radius:var(--pill);padding:3px 10px;font-size:13px;color:var(--text-secondary);width:fit-content}
+.tt-pct{font-weight:600;font-variant-numeric:tabular-nums;color:var(--text-primary)}
+.tt-pct.teal{color:var(--accent-teal)}
+.tt-cost{text-align:right;font-variant-numeric:tabular-nums;color:var(--text-secondary);font-weight:500}
+.chat-panel{background:var(--background);border:1px solid var(--border);border-radius:var(--r-card-loose);box-shadow:var(--shadow-card);padding:20px;display:flex;flex-direction:column;gap:14px}
+.chat-attach{display:inline-flex;align-items:center;gap:8px;background:var(--surface-panel);border-radius:var(--pill);padding:6px 12px;font-size:13px;font-weight:500;color:var(--text-secondary);width:fit-content}
+.chat-user{background:var(--surface-tint);border:1px solid var(--border);border-radius:var(--r-card);padding:12px 14px;font-size:15px;color:var(--text-secondary)}
+.chat-steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.chat-steps li{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-secondary)}
+.step-n{width:22px;height:22px;border-radius:var(--pill);background:var(--gradient-cta);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;flex:0 0 auto}
+.chat-steps li iconify-icon{color:var(--accent-teal);margin-left:auto}
+.shimmer{margin-left:auto;width:60px;height:8px;border-radius:var(--pill);background:linear-gradient(90deg,var(--surface-panel),#fff,var(--surface-panel));background-size:200% 100%;animation:tw-shimmer 1.4s linear infinite}
+@keyframes tw-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+.chat-input{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:var(--pill);padding:6px 6px 6px 14px}
+.chat-input input{border:none;outline:none;flex:1;font-family:'Inter';font-size:14px;color:var(--text-primary);background:transparent}
+.chat-input input::placeholder{color:var(--text-muted)}
+.send-btn{width:34px;height:34px;border-radius:var(--pill);background:var(--gradient-cta);color:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;box-shadow:var(--shadow-cta)}
+@media(max-width:1024px){
+  .hero-inner>div[style]{grid-template-columns:1fr !important}
+  .task-table .tt-row{grid-template-columns:2fr 1fr 0.6fr 0.6fr}
+  .task-table .tt-row span:nth-child(3){display:none}
+}
+@media(max-width:768px){
+  .metric-num{font-size:26px}
+  .hero-inner>div[style]{gap:24px !important}
+  div[data-tier-a-component="metric-numeral-row"]{grid-template-columns:repeat(2,1fr) !important}
+}
+</style>
+
+<!-- PALETTE -->
+<style data-section-styles="palette">
+#palette{background:var(--surface-tint)}
+.pal-head{margin-bottom:40px}
+.pal-group{margin-bottom:40px}
+.pal-group h3{font-size:20px;font-weight:500;letter-spacing:-0.5px;font-family:'Inter';color:var(--text-secondary);margin-bottom:16px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.swatch{background:var(--background);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-flat)}
+.swatch-chip{height:88px;position:relative}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.swatch-body{padding:12px 14px}
+.swatch-name{font-size:14px;font-weight:600;color:var(--text-primary)}
+.swatch-val{font-size:13px;color:var(--text-muted);font-variant-numeric:tabular-nums;margin-top:2px}
+.swatch-note{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.5}
+</style>
+<section id="palette" class="band">
+  <div class="container">
+    <div class="pal-head">
+      <div class="eyebrow">Colour</div>
+      <h2 class="section-title">A three-step ink scale and one rationed violet.</h2>
+      <p class="section-lead">Everything is grayscale ink on near-white surface. The indigo gradient is the only saturated hue in the system — reserved for action.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="swatch-body"><div class="swatch-name">background</div><div class="swatch-val">#FFFFFF</div><div class="swatch-note">The dominant canvas — 84–92% of every screen.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#F8FAFC"></div><div class="swatch-body"><div class="swatch-name">surface-tint</div><div class="swatch-val">#F8FAFC</div><div class="swatch-note">Lavender-tinted fill for chips and soft panels.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#F3F3F4"></div><div class="swatch-body"><div class="swatch-name">surface-panel</div><div class="swatch-val">#F3F3F4</div><div class="swatch-note">Card fills and the active tab shade.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#E6E7EA"></div><div class="swatch-body"><div class="swatch-name">border</div><div class="swatch-val">#E6E7EA</div><div class="swatch-note">Hairline dividers across tables, cards, and pills.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text ink</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip" style="background:#000000"></div><div class="swatch-body"><div class="swatch-name">text-primary</div><div class="swatch-val">#000000</div><div class="swatch-note">True black for primary copy and numerals.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#0D162F"></div><div class="swatch-body"><div class="swatch-name">text-secondary</div><div class="swatch-val">#0D162F</div><div class="swatch-note">Near-black navy for UI labels and secondary copy.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#868A97"></div><div class="swatch-body"><div class="swatch-name">text-muted</div><div class="swatch-val">#868A97</div><div class="swatch-note">Tertiary captions and metadata.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#1A192B"></div><div class="swatch-body"><div class="swatch-name">ink-dark</div><div class="swatch-val">#1A192B</div><div class="swatch-note">Wordmark and the darkest display headings.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="swatch-chip" style="background:var(--gradient-cta)"></div><div class="swatch-body"><div class="swatch-name">accent gradient</div><div class="swatch-val">#6056FF → #3B32F9</div><div class="swatch-note">The signature — every primary action, active icon, and corner wash.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#6056FF"></div><div class="swatch-body"><div class="swatch-name">accent-primary</div><div class="swatch-val">#6056FF</div><div class="swatch-note">Gradient start and interactive link ink.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#4B40D6"></div><div class="swatch-body"><div class="swatch-name">accent-primary-deep</div><div class="swatch-val">#4B40D6</div><div class="swatch-note">Advanced-level labels in the maturity table.</div></div></div>
+        <div class="swatch"><div class="swatch-chip" style="background:#0E9384"></div><div class="swatch-body"><div class="swatch-name">accent-teal</div><div class="swatch-val">#0E9384</div><div class="swatch-note">Rare status and checkmark accent only.</div></div></div>
+        <div class="swatch"><div class="swatch-chip checker"><div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(96,86,255,0.07) 14%,rgba(96,86,255,0.07) 86%,rgba(0,0,0,0) 100%)"></div></div><div class="swatch-body"><div class="swatch-name">media scrim</div><div class="swatch-val">rgba(96,86,255,0.07)</div><div class="swatch-note">Edge-fade over logo rows and screenshot bands.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TYPE SCALE -->
+<style data-section-styles="type-scale">
+.type-spec{border-top:1px solid var(--border);padding:28px 0;display:grid;grid-template-columns:1fr 220px;gap:32px;align-items:baseline}
+.type-spec:last-child{border-bottom:1px solid var(--border)}
+.type-meta{font-size:13px;color:var(--text-muted);font-variant-numeric:tabular-nums;line-height:1.7}
+.type-meta b{color:var(--text-secondary);font-weight:600}
+.t-display{font-family:'Sora';font-size:48px;font-weight:400;line-height:1.2;letter-spacing:-2.4px;color:var(--ink-dark)}
+.t-headline{font-family:'Sora';font-size:36px;font-weight:400;line-height:1.35;letter-spacing:-0.9px;color:var(--ink-dark)}
+.t-label{font-family:'Inter';font-size:20px;font-weight:500;line-height:1.4;letter-spacing:-0.5px;color:var(--text-primary)}
+.t-body{font-family:'Inter';font-size:16px;font-weight:400;line-height:1.6;color:var(--text-primary)}
+.t-data{font-family:'Inter';font-size:14px;font-weight:500;line-height:1.4;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.weight-ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:8px}
+.weight-ramp span{font-family:'Sora';font-size:32px;letter-spacing:-1.2px;color:var(--ink-dark)}
+@media(max-width:768px){.type-spec{grid-template-columns:1fr;gap:12px}.t-display{font-size:32px;letter-spacing:-1.2px}.t-headline{font-size:26px}}
+</style>
+<section id="type-scale" class="band">
+  <div class="container">
+    <div class="eyebrow">Typography</div>
+    <h2 class="section-title">Sora sets the tone. Inter does the work.</h2>
+    <p class="section-lead" style="margin-bottom:24px">A strict two-family pairing. Sora carries display at relaxed 400 weight with tight negative tracking; Inter handles every label, paragraph, and tabular figure.</p>
+
+    <div class="type-spec">
+      <div class="t-display">Settle every task into one ledger.</div>
+      <div class="type-meta"><b>display-lg</b> · Sora<br>48px / 400 / 1.2<br>tracking −2.4px</div>
+    </div>
+    <div class="type-spec">
+      <div class="t-headline">Density is the governing value.</div>
+      <div class="type-meta"><b>headline-md</b> · Sora<br>36px / 400 / 1.35<br>tracking −0.9px</div>
+    </div>
+    <div class="type-spec">
+      <div class="t-label">Automation rate, at a glance</div>
+      <div class="type-meta"><b>label-md</b> · Inter<br>20px / 500 / 1.4<br>tracking −0.5px</div>
+    </div>
+    <div class="type-spec">
+      <div class="t-body">Body copy runs at sixteen pixels with generous line height, in true black, so a table full of tasks stays readable at density. Muted navy carries secondary detail without shouting.</div>
+      <div class="type-meta"><b>body-md</b> · Inter<br>16px / 400 / 1.6</div>
+    </div>
+    <div class="type-spec">
+      <div class="t-data">98.1%&nbsp;&nbsp;$0.041&nbsp;&nbsp;12,480&nbsp;&nbsp;+18.2%</div>
+      <div class="type-meta"><b>label-mono-data</b> · Inter<br>14px / 500 / 1.4<br>tabular figures</div>
+    </div>
+    <div class="type-spec">
+      <div class="weight-ramp"><span style="font-weight:300">Light</span><span style="font-weight:400">Regular</span><span style="font-weight:500">Medium</span><span style="font-weight:600">Semibold</span></div>
+      <div class="type-meta"><b>Sora ramp</b><br>300 · 400 · 500 · 600<br>display uses 400</div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPONENTS -->
+<style data-section-styles="components">
+#components{background:var(--surface-tint)}
+.comp-block{margin-bottom:64px}
+.comp-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:24px}
+.comp-head h3{font-family:'Sora';font-size:26px;font-weight:400;letter-spacing:-0.8px;color:var(--ink-dark)}
+.comp-head p{font-size:15px;color:var(--text-secondary);max-width:52ch;margin-top:6px}
+.inst-count{font-size:13px;font-weight:600;color:var(--accent-primary);background:var(--surface-panel);border-radius:var(--pill);padding:4px 12px;white-space:nowrap}
+.stage{background:var(--background);border:1px solid var(--border);border-radius:var(--r-card);padding:28px;box-shadow:var(--shadow-flat)}
+.spec-card{margin-top:16px;background:var(--surface-panel);border:1px solid var(--border);border-radius:var(--r-card-tight);padding:14px 16px;font-family:'Inter';font-size:12.5px;line-height:1.8;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.spec-card b{color:var(--text-primary);font-weight:600}
+.spec-card span{color:var(--text-muted)}
+/* buttons matrix */
+.btn-matrix{display:grid;grid-template-columns:160px repeat(3,1fr);gap:16px;align-items:center}
+.btn-matrix .mh{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted)}
+.btn-matrix .rl{font-size:13px;font-weight:600;color:var(--text-secondary)}
+.cell{display:flex}
+.b{font-family:'Inter';font-size:15px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;justify-content:center}
+.b-primary{height:42px;padding:10px 20px;border-radius:var(--pill);background:var(--gradient-cta);color:#fff;border:none;box-shadow:var(--shadow-cta)}
+.b-primary.hover{box-shadow:var(--shadow-cta-hover)}
+.b-primary.disabled{opacity:0.45;cursor:not-allowed;box-shadow:none}
+.b-navcta{height:42px;padding:10px 20px;border-radius:var(--r-nav-cta);background:var(--gradient-cta);color:#fff;border:none;box-shadow:var(--shadow-cta)}
+.b-navcta.hover{box-shadow:var(--shadow-cta-hover)}
+.b-navcta.disabled{opacity:0.45;cursor:not-allowed;box-shadow:none}
+.b-navout{height:42px;padding:10px 20px;border-radius:var(--r-nav-cta);background:transparent;color:var(--text-secondary);border:1px solid var(--border)}
+.b-navout.hover{background:var(--surface-tint)}
+.b-navout.disabled{opacity:0.45;cursor:not-allowed}
+.b-ghost{height:38px;padding:8px 16px;border-radius:var(--r-control);background:transparent;color:var(--ghost-text);border:1px solid transparent}
+.b-ghost.hover{background:#F9FAFB}
+.b-ghost.disabled{opacity:0.45;cursor:not-allowed}
+@media(max-width:768px){.btn-matrix{grid-template-columns:1fr;gap:10px}.btn-matrix .mh{display:none}}
+</style>
+<section id="components" class="band">
+  <div class="container">
+    <div class="eyebrow">Components</div>
+    <h2 class="section-title" style="margin-bottom:8px">The full inventory.</h2>
+    <p class="section-lead" style="margin-bottom:48px">Every family the system ships, rendered live from its own tokens — from the transparent nav to the 43-link footer.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Sticky Transparent Navbar</h3><p>65px tall, transparent, inheriting page white on scroll. Ten items: logo, dropdown menus, utility links, plus an outline button and squarer gradient CTA.</p></div>
+        <span class="inst-count">×1</span>
+      </div>
+      <div class="stage" data-tier-a-component="navbar" style="padding:0;overflow:hidden">
+        <div style="height:65px;display:flex;align-items:center;gap:20px;padding:0 20px;background:rgba(255,255,255,0.72);backdrop-filter:blur(10px)">
+          <span class="logo"><span class="logo-mark" aria-hidden="true"></span>Violet Ledger</span>
+          <span style="display:flex;gap:18px;margin-left:8px">
+            <a href="#components" style="color:var(--text-secondary);font-size:15px;font-weight:500">Platform <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+            <a href="#composition" style="color:var(--text-secondary);font-size:15px;font-weight:500">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a>
+            <a href="#type-scale" style="color:var(--text-secondary);font-size:15px;font-weight:500">Docs</a>
+          </span>
+          <span style="margin-left:auto;display:flex;gap:12px">
+            <button class="btn-nav-outline">Sign in</button>
+            <button class="btn-nav-cta">Book a demo</button>
+          </span>
+        </div>
+      </div>
+      <div class="spec-card"><b>--button-nav-outline</b> · <span>fill</span> transparent · <span>text</span> #0D162F · <span>border</span> 1px #E6E7EA · <span>radius</span> nav-cta 4.8px · <span>height</span> 42 · <span>type</span> body-md<br><b>--button-nav-cta</b> · <span>fill</span> accent gradient · <span>text</span> #FFFFFF · <span>radius</span> nav-cta 4.8px <em>(not full pill)</em> · <span>height</span> 42 · <span>shadow</span> rgba(59,50,249,0.25)</div>
+    </div>
+
+    <!-- HERO CTAs -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Hero CTA Pair</h3><p>The true primary — a gradient-fill pill at full 9999px radius — paired with a grayscale outline-ghost secondary that never turns violet.</p></div>
+        <span class="inst-count">×1 each</span>
+      </div>
+      <div class="stage" style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+        <span data-tier-a-component="button-primary-pill"><button class="btn-primary"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Start building</button></span>
+        <span data-tier-a-component="button-ghost-secondary"><button class="btn-ghost">Watch the walkthrough</button></span>
+      </div>
+      <div class="spec-card"><b>--button-primary</b> · <span>fill</span> accent gradient · <span>text</span> #FFFFFF · <span>radius</span> pill 9999px · <span>height</span> 42 · <span>pad</span> 10px 20px · <span>shadow</span> cta<br><b>--button-ghost-secondary</b> · <span>fill</span> transparent · <span>text</span> #374151 · <span>radius</span> control 6px · <span>height</span> 38 · <span>hover</span> #F9FAFB</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Button variant × state matrix</h3><p>Four documented fills across rest, hover, and disabled. Focus stays native — the system records no branded focus ring.</p></div>
+      </div>
+      <div class="stage">
+        <div class="btn-matrix">
+          <span></span><span class="mh">Rest</span><span class="mh">Hover</span><span class="mh">Disabled</span>
+          <span class="rl">Primary pill</span>
+          <span class="cell"><button class="b b-primary">Start building</button></span>
+          <span class="cell"><button class="b b-primary hover">Start building</button></span>
+          <span class="cell"><button class="b b-primary disabled" disabled>Start building</button></span>
+          <span class="rl">Nav CTA</span>
+          <span class="cell"><button class="b b-navcta">Book a demo</button></span>
+          <span class="cell"><button class="b b-navcta hover">Book a demo</button></span>
+          <span class="cell"><button class="b b-navcta disabled" disabled>Book a demo</button></span>
+          <span class="rl">Nav outline</span>
+          <span class="cell"><button class="b b-navout">Sign in</button></span>
+          <span class="cell"><button class="b b-navout hover">Sign in</button></span>
+          <span class="cell"><button class="b b-navout disabled" disabled>Sign in</button></span>
+          <span class="rl">Ghost secondary</span>
+          <span class="cell"><button class="b b-ghost">Learn more</button></span>
+          <span class="cell"><button class="b b-ghost hover">Learn more</button></span>
+          <span class="cell"><button class="b b-ghost disabled" disabled>Learn more</button></span>
+        </div>
+      </div>
+      <div class="spec-card"><span>hover swaps run</span> <b>0.15s cubic-bezier(0.4,0,0.2,1)</b> · <span>disabled</span> lowest ink-opacity step · <span>focus</span> native (undocumented → not authored)</div>
+    </div>
+
+    <!-- METRIC ROW (rendered live in hero; restated here for inventory clarity) -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Metric / Numeral Card Row</h3><p>Four equal cards in one row on transparent ground — muted label, oversized numeral, delta caption, gradient sparkline. Zero radius, zero padding.</p></div>
+        <span class="inst-count">×4</span>
+      </div>
+      <div class="stage" data-tier-a-component="metric-numeral-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:40px 24px">
+        <div class="metric"><div class="metric-label">Hours saved / wk</div><div class="metric-num">1,940</div><div class="metric-delta up">+22% wk</div><div class="spark" aria-hidden="true"></div></div>
+        <div class="metric"><div class="metric-label">Agents live</div><div class="metric-num">36</div><div class="metric-delta">stable</div><div class="spark" aria-hidden="true"></div></div>
+        <div class="metric"><div class="metric-label">Spend / task</div><div class="metric-num">$0.041</div><div class="metric-delta down">−9.4% wk</div><div class="spark" aria-hidden="true"></div></div>
+        <div class="metric"><div class="metric-label">Success rate</div><div class="metric-num">97%</div><div class="metric-delta up">+1.8% wk</div><div class="spark" aria-hidden="true"></div></div>
+      </div>
+      <div class="spec-card"><b>metric card</b> · <span>surface</span> transparent · <span>radius</span> 0 · <span>pad</span> 0 · <span>numeral</span> Sora 600 tabular · <span>label</span> label-mono-data #868A97 · <span>delta</span> teal / muted</div>
+    </div>
+
+    <!-- TASK TABLE restated inventory -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Task / Data Table</h3><p>Eight-plus dense rows on transparent surface with hairline dividers, tabular figures, tool-icon clusters, model chips, and right-aligned cost.</p></div>
+        <span class="inst-count">8+ rows</span>
+      </div>
+      <div class="stage" data-tier-a-component="task-data-table" style="padding:20px 28px">
+        <div class="task-table" role="table" aria-label="Task ledger sample">
+          <div class="tt-row tt-head" role="row"><span role="columnheader">Task</span><span role="columnheader">Owner</span><span role="columnheader">Model</span><span role="columnheader">Success</span><span role="columnheader" style="text-align:right">Cost</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></span>Enrich inbound leads</span><span class="tt-owner" role="cell"><span class="avatar">AK</span>Growth</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> gpt-router</span><span class="tt-pct teal" role="cell">98.1%</span><span class="tt-cost" role="cell">$0.03</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:database" aria-hidden="true"></iconify-icon></span>Reconcile invoices</span><span class="tt-owner" role="cell"><span class="avatar">PT</span>Finance</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> claude-ops</span><span class="tt-pct teal" role="cell">99.4%</span><span class="tt-cost" role="cell">$0.07</span></div>
+          <div class="tt-row" role="row"><span class="tt-task" role="cell"><span class="tt-tool"><iconify-icon icon="lucide:ticket" aria-hidden="true"></iconify-icon></span>Triage support tickets</span><span class="tt-owner" role="cell"><span class="avatar">SL</span>Support</span><span class="tt-chip" role="cell"><iconify-icon icon="lucide:cpu" aria-hidden="true"></iconify-icon> mistral-fast</span><span class="tt-pct" role="cell">91.0%</span><span class="tt-cost" role="cell">$0.02</span></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>task row</b> · <span>surface</span> transparent · <span>radius</span> 0 · <span>divider</span> 1px #E6E7EA · <span>data</span> label-mono-data tabular · <span>chip</span> pill · <span>success</span> teal / black</div>
+    </div>
+
+    <!-- CHAT PANEL restated -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Agent Chat / Build Panel</h3><p>File chip, user bubble, a stepped numbered build checklist, and an input bar with circular gradient send button. Data steps carry a shimmer loading state.</p></div>
+        <span class="inst-count">×1</span>
+      </div>
+      <div class="stage" data-tier-a-component="agent-chat-panel" style="max-width:460px">
+        <div class="chat-panel" style="box-shadow:none;border-color:var(--border)">
+          <div class="chat-attach"><iconify-icon icon="lucide:paperclip" aria-hidden="true"></iconify-icon> q3-workflows.csv</div>
+          <div class="chat-user">Reconcile these invoices nightly and flag anomalies.</div>
+          <ol class="chat-steps">
+            <li><span class="step-n">1</span> Parsed 4,210 rows <iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></li>
+            <li><span class="step-n">2</span> Matched to ledger <iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></li>
+            <li><span class="step-n">3</span> Drafting report <span class="shimmer" aria-hidden="true"></span></li>
+          </ol>
+          <div class="chat-input"><input type="text" placeholder="Message your agent…" aria-label="Message your agent"><button class="send-btn" aria-label="Send message"><iconify-icon icon="lucide:arrow-up" aria-hidden="true"></iconify-icon></button></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>chat panel</b> · <span>surface</span> #FFFFFF · <span>radius</span> card-loose 16 · <span>step badge</span> accent gradient pill · <span>send</span> circular gradient · <span>loading</span> tw-shimmer 1.4s</div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Grayscale Logo Strip</h3><p>A single row of monochrome brand marks, some paired with a Case study link, under a linear edge-fade scrim.</p></div>
+        <span class="inst-count">×2 on page</span>
+      </div>
+      <div class="stage" data-tier-a-component="logo-strip" style="position:relative;padding:32px 28px">
+        <div class="logo-scrim" aria-hidden="true"></div>
+        <div class="logo-row">
+          <span class="brandmark"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon> Northwind</span>
+          <span class="brandmark"><iconify-icon icon="lucide:box" aria-hidden="true"></iconify-icon> Corva</span>
+          <span class="brandmark"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon> Apex</span>
+          <span class="brandmark"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon> Orbit</span>
+          <span class="brandmark"><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon> Kessel</span>
+          <span class="brandmark"><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon> Facet</span>
+        </div>
+        <div class="case-links"><a href="#composition">Case study</a><span></span><a href="#composition">Case study</a></div>
+      </div>
+      <div class="spec-card"><b>logo strip</b> · <span>marks</span> grayscale #868A97 · <span>scrim</span> linear rgba(96,86,255,0.07) 14%→86% · <span>case link</span> accent-teal</div>
+    </div>
+
+    <!-- THREE-STAGE PROCESS CARDS -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Three-Stage Numbered Process Cards</h3><p>Uneven widths — first card widest and gradient-filled, the other two plain white. Checklist pills, a Weeks eyebrow, a bold heading, muted body.</p></div>
+        <span class="inst-count">×3</span>
+      </div>
+      <div class="stage" data-tier-a-component="three-stage-process-cards" style="background:transparent;border:none;box-shadow:none;padding:0">
+        <div class="process-row">
+          <div class="proc-card proc-gradient">
+            <div class="proc-pills"><span class="cpill"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon> Scoping</span><span class="cpill"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon> Data access</span></div>
+            <div class="proc-eyebrow">Weeks 1–2</div>
+            <h4 class="proc-title">Map the workflow</h4>
+            <p class="proc-body">We shadow your team's busiest processes and turn them into a ledger of discrete, measurable tasks.</p>
+          </div>
+          <div class="proc-card">
+            <div class="proc-pills"><span class="cpill"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon> Agents</span></div>
+            <div class="proc-eyebrow">Weeks 3–4</div>
+            <h4 class="proc-title">Build & route</h4>
+            <p class="proc-body">Agents are wired to tools and routed by cost and confidence.</p>
+          </div>
+          <div class="proc-card">
+            <div class="proc-pills"><span class="cpill"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon> Live</span></div>
+            <div class="proc-eyebrow">Weeks 5+</div>
+            <h4 class="proc-title">Measure & scale</h4>
+            <p class="proc-body">Every run settles into the ledger with its cost and outcome.</p>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-gradient-panel</b> · <span>fill</span> linear(160deg) lavender · <span>radius</span> card-loose 16 · <span>pad</span> 24<br><b>plain card</b> · <span>fill</span> #FFFFFF · <span>radius</span> 16 · <span>heading</span> label-md · <span>body</span> body-md muted · <span>pill</span> teal check</div>
+    </div>
+
+    <!-- FLOW DIAGRAM CARD -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Flow-Diagram Card on Violet Ground</h3><p>Node-and-edge diagram with trigger chips, agent nodes, dotted routing lines and percentage badges. A backdrop-blur toggle floats bottom-right; connectors trace on view.</p></div>
+        <span class="inst-count">×1</span>
+      </div>
+      <div class="stage" data-tier-a-component="flow-diagram-card" style="padding:0;border:none;box-shadow:none">
+        <div class="flow-ground">
+          <svg class="flow-svg" viewBox="0 0 640 220" aria-hidden="true" preserveAspectRatio="none">
+            <path class="dashdraw" d="M120 60 H240" /><path class="dashdraw" d="M360 60 H480" />
+            <path class="dashdraw" d="M120 160 H240" /><path class="dashdraw" d="M300 90 V130" />
+          </svg>
+          <div class="flow-node trig" style="left:12px;top:38px"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon> Trigger</div>
+          <div class="flow-node trig" style="left:12px;top:138px"><iconify-icon icon="lucide:inbox" aria-hidden="true"></iconify-icon> Inbound</div>
+          <div class="flow-node agent" style="left:250px;top:38px"><iconify-icon icon="lucide:bot" aria-hidden="true"></iconify-icon> Classify <span class="node-badge">96%</span></div>
+          <div class="flow-node agent" style="left:250px;top:138px"><iconify-icon icon="lucide:bot" aria-hidden="true"></iconify-icon> Enrich <span class="node-badge">92%</span></div>
+          <div class="flow-node agent" style="left:490px;top:88px"><iconify-icon icon="lucide:check-circle" aria-hidden="true"></iconify-icon> Resolve <span class="node-badge">98%</span></div>
+          <div class="flow-toggle"><button class="ft-tab active">Relevance</button><button class="ft-tab">Competitor</button></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>flow card</b> · <span>ground</span> violet gradient · <span>radius</span> media 0 · <span>connectors</span> dashdraw · <span>node</span> #FFFFFF pill · <span>badge</span> accent · <span>toggle</span> backdrop-blur(8–12px) shaded #F3F3F4 active</div>
+    </div>
+
+    <!-- VIDEO TESTIMONIAL BAND -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Video Testimonial Band</h3><p>A 2-column split — quote, attribution and a Read more pill on the left; embedded video with a circular play control on the right — topped by a thin three-logo strip.</p></div>
+        <span class="inst-count">×1</span>
+      </div>
+      <div class="stage" data-tier-a-component="video-testimonial-band" style="padding:0;overflow:hidden">
+        <div class="vt-topstrip"><span class="brandmark">Northwind</span><span class="brandmark">Corva</span><span class="brandmark">Apex</span></div>
+        <div class="vt-split">
+          <div class="vt-left">
+            <blockquote class="vt-quote">"We replaced three spreadsheets and a nightly standup with one ledger. Every task now has a cost and an owner attached to it."</blockquote>
+            <div class="vt-attr">— Dana Reyes, VP Operations, Northwind</div>
+            <button class="btn-primary" style="margin-top:8px">Read the case study</button>
+          </div>
+          <div class="vt-video">
+            <button class="vt-play" aria-label="Play testimonial video"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>testimonial band</b> · <span>media card</span> radius 0 · <span>quote</span> headline-md · <span>attr</span> body-md muted · <span>play</span> circular gradient · <span>read more</span> primary pill</div>
+    </div>
+
+    <!-- COMPLIANCE BADGE ROW -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Compliance Badge Row</h3><p>Centered rounded-square badge marks with teal checkmarks under a heading and body pair.</p></div>
+        <span class="inst-count">×2 marks</span>
+      </div>
+      <div class="stage" data-tier-a-component="compliance-badge-row" style="text-align:center">
+        <h4 style="font-family:'Sora';font-weight:400;font-size:26px;letter-spacing:-0.8px;color:var(--ink-dark)">Built for the boardroom.</h4>
+        <p style="font-size:15px;color:var(--text-secondary);max-width:46ch;margin:8px auto 24px">Every run is auditable, encrypted, and retained to your policy. Compliance is a default, not an add-on.</p>
+        <div class="badge-row">
+          <div class="cbadge"><span class="cbadge-check"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span><span>SOC 2</span></div>
+          <div class="cbadge"><span class="cbadge-check"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span><span>GDPR</span></div>
+          <div class="cbadge"><span class="cbadge-check"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span><span>ISO 27001</span></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>compliance badge</b> · <span>mark</span> surface-panel radius card-tight 8 · <span>check</span> accent-teal · <span>heading</span> headline-md · <span>layout</span> centered</div>
+    </div>
+
+    <!-- MATURITY FRAMEWORK TABLE -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Maturity Framework Comparison Table</h3><p>A pill-group tab switcher — active tab shaded #F3F3F4 — above a four-column comparison table with mini flow illustrations and indigo labels on advanced levels only.</p></div>
+        <span class="inst-count">×1</span>
+      </div>
+      <div class="stage" data-tier-a-component="maturity-framework-table">
+        <div class="tab-group" role="tablist" aria-label="Framework dimension">
+          <button class="tabp active" role="tab" aria-selected="true">Automation</button>
+          <button class="tabp" role="tab" aria-selected="false">Governance</button>
+          <button class="tabp" role="tab" aria-selected="false">Cost control</button>
+        </div>
+        <div class="mat-grid">
+          <div class="mat-col"><div class="mat-mini" aria-hidden="true"></div><div class="mat-level">Level 1 · Manual</div><p class="mat-desc">Work runs by hand across scattered tools with no shared record.</p></div>
+          <div class="mat-col"><div class="mat-mini" aria-hidden="true"></div><div class="mat-level">Level 2 · Assisted</div><p class="mat-desc">Agents draft; people approve. Tasks begin landing in the ledger.</p></div>
+          <div class="mat-col"><div class="mat-mini" aria-hidden="true"></div><div class="mat-level adv">Level 3 · Orchestrated</div><p class="mat-desc">Routing by cost and confidence, with humans on exceptions only.</p></div>
+          <div class="mat-col"><div class="mat-mini" aria-hidden="true"></div><div class="mat-level adv">Level 4 · Autonomous</div><p class="mat-desc">The ledger reconciles itself; teams manage policy, not tasks.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>maturity table</b> · <span>tab</span> pill · <span>active</span> shaded #F3F3F4 · <span>advanced level</span> accent-primary-deep #4B40D6 · <span>divider</span> 1px #E6E7EA · <span>header</span> bordered</div>
+    </div>
+
+    <!-- PRESS / RATING STRIP -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Press / Rating Strip</h3><p>Two rows of four grayscale wordmarks; the second row adds quote captions and a G2 star-rating readout.</p></div>
+        <span class="inst-count">×2 rows</span>
+      </div>
+      <div class="stage" data-tier-a-component="press-rating-strip">
+        <div class="press-row">
+          <span class="brandmark">FORTUNE</span><span class="brandmark">Forbes</span><span class="brandmark">WIRED</span><span class="brandmark">TechCrunch</span>
+        </div>
+        <div class="press-row press-quotes">
+          <div class="pq"><span class="brandmark">The Verge</span><p>"Operational software, finally legible."</p></div>
+          <div class="pq"><span class="brandmark">Bloomberg</span><p>"A ledger for the agent era."</p></div>
+          <div class="pq"><span class="brandmark">VentureBeat</span><p>"Density done right."</p></div>
+          <div class="pq g2"><div class="stars"><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:star-half" aria-hidden="true"></iconify-icon></div><p>4.8 / 5 on G2</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>press strip</b> · <span>wordmarks</span> grayscale #868A97 · <span>stars</span> accent-teal · <span>caption</span> label-mono-data · <span>rows</span> 2 × 4</div>
+    </div>
+
+    <!-- FOOTER inventory (multi-column) -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><h3>Multi-Column Footer</h3><p>Transparent, five columns totalling 43 links, with wordmark, tagline and social icons at far left and a compliance seal row beneath.</p></div>
+        <span class="inst-count">43 links · 5 cols</span>
+      </div>
+      <div class="stage" data-tier-a-component="footer" style="background:transparent">
+        <div class="footer-preview">
+          <div class="fp-brand">
+            <span class="logo"><span class="logo-mark" aria-hidden="true"></span>Violet Ledger</span>
+            <p class="fp-tag">The operational ledger your agents run on.</p>
+            <div class="fp-social"><a href="#footer" aria-label="Twitter"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a><a href="#footer" aria-label="LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a><a href="#footer" aria-label="GitHub"><iconify-icon icon="lucide:github" aria-hidden="true"></iconify-icon></a></div>
+          </div>
+          <div class="fp-col"><h5>Product</h5><a href="#">Platform</a><a href="#">Agents</a><a href="#">Ledger</a><a href="#">Integrations</a><a href="#">Pricing</a><a href="#">Changelog</a><a href="#">Roadmap</a><a href="#">Status</a></div>
+          <div class="fp-col"><h5>Solutions</h5><a href="#">Finance</a><a href="#">Support</a><a href="#">Sales</a><a href="#">Legal</a><a href="#">Operations</a><a href="#">Marketing</a><a href="#">Risk</a><a href="#">Enterprise</a></div>
+          <div class="fp-col"><h5>Resources</h5><a href="#">Docs</a><a href="#">API</a><a href="#">Guides</a><a href="#">Templates</a><a href="#">Case studies</a><a href="#">Blog</a><a href="#">Community</a><a href="#">Webinars</a></div>
+          <div class="fp-col"><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Security</a><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a><a href="#">Press</a></div>
+        </div>
+        <div class="fp-seals"><span class="cbadge sm"><span class="cbadge-check"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>SOC 2</span><span class="cbadge sm"><span class="cbadge-check"><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon></span>GDPR</span></div>
+      </div>
+      <div class="spec-card"><b>footer</b> · <span>background</span> transparent · <span>columns</span> 5 / 43 links · <span>link</span> body-md #0D162F · <span>seals</span> compliance badges · <span>divider</span> 1px #E6E7EA</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="components-extra">
+.logo-row{display:flex;gap:36px;flex-wrap:wrap;align-items:center;justify-content:center;position:relative;z-index:1}
+.brandmark{display:inline-flex;align-items:center;gap:8px;color:var(--text-muted);font-weight:600;font-size:16px;letter-spacing:-0.3px;filter:grayscale(1)}
+.logo-scrim{position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,0) 0%,rgba(96,86,255,0.07) 14%,rgba(96,86,255,0.07) 86%,rgba(0,0,0,0) 100%);pointer-events:none}
+.case-links{display:flex;gap:60px;justify-content:center;margin-top:16px;position:relative;z-index:1}
+.case-links a{color:var(--accent-teal);font-size:14px;font-weight:600}
+.process-row{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:20px}
+.proc-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card-loose);padding:24px;box-shadow:var(--shadow-flat)}
+.proc-gradient{background:var(--gradient-panel);border-color:transparent}
+.proc-pills{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.cpill{display:inline-flex;align-items:center;gap:5px;background:rgba(255,255,255,0.7);border:1px solid var(--border);border-radius:var(--pill);padding:4px 12px;font-size:13px;font-weight:500;color:var(--text-secondary)}
+.cpill iconify-icon{color:var(--accent-teal)}
+.proc-card:not(.proc-gradient) .cpill{background:var(--surface-panel)}
+.proc-eyebrow{font-size:14px;font-weight:500;color:var(--text-muted)}
+.proc-title{font-family:'Inter';font-weight:600;font-size:20px;letter-spacing:-0.5px;color:var(--text-primary);margin:6px 0 8px}
+.proc-body{font-size:15px;color:var(--text-secondary)}
+.flow-ground{position:relative;background:linear-gradient(135deg,rgba(96,86,255,0.9),rgba(59,50,249,0.95));border-radius:0;padding:40px;min-height:240px;overflow:hidden}
+.flow-svg{position:absolute;inset:40px;width:calc(100% - 80px);height:calc(100% - 80px)}
+.flow-svg path{fill:none;stroke:rgba(255,255,255,0.65);stroke-width:2;stroke-dasharray:6 6}
+.dashdraw{animation:dashdraw 1.4s linear forwards}
+@keyframes dashdraw{from{stroke-dashoffset:200}to{stroke-dashoffset:0}}
+.flow-node{position:absolute;display:inline-flex;align-items:center;gap:8px;background:#fff;border-radius:var(--pill);padding:8px 14px;font-size:14px;font-weight:600;color:var(--text-secondary);box-shadow:var(--shadow-flat);z-index:2}
+.flow-node.trig{color:var(--accent-primary)}
+.flow-node.agent iconify-icon{color:var(--accent-primary)}
+.node-badge{background:var(--surface-panel);border-radius:var(--pill);padding:1px 8px;font-size:12px;color:var(--accent-primary-deep);font-variant-numeric:tabular-nums}
+.flow-toggle{position:absolute;right:20px;bottom:20px;display:flex;gap:4px;background:rgba(255,255,255,0.7);backdrop-filter:blur(10px);border-radius:var(--pill);padding:4px;z-index:3}
+.ft-tab{border:none;background:transparent;border-radius:var(--pill);padding:6px 14px;font-family:'Inter';font-size:13px;font-weight:500;color:var(--text-secondary);cursor:pointer}
+.ft-tab.active{background:#fff;box-shadow:var(--shadow-flat)}
+.vt-topstrip{display:flex;gap:32px;justify-content:center;padding:16px;border-bottom:1px solid var(--border)}
+.vt-split{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.vt-left{padding:36px}
+.vt-quote{font-family:'Sora';font-weight:400;font-size:24px;line-height:1.35;letter-spacing:-0.6px;color:var(--ink-dark);margin:0}
+.vt-attr{font-size:15px;color:var(--text-secondary);margin:16px 0}
+.vt-video{background:linear-gradient(135deg,rgba(96,86,255,0.9),rgba(59,50,249,0.95));display:flex;align-items:center;justify-content:center;min-height:240px}
+.vt-play{width:64px;height:64px;border-radius:var(--pill);background:#fff;border:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;color:var(--accent-primary);font-size:26px;box-shadow:var(--shadow-card)}
+.badge-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.cbadge{display:inline-flex;align-items:center;gap:10px;background:var(--surface-panel);border:1px solid var(--border);border-radius:var(--r-card-tight);padding:14px 20px;font-weight:600;font-size:15px;color:var(--text-secondary)}
+.cbadge.sm{padding:6px 12px;font-size:13px}
+.cbadge-check{width:24px;height:24px;border-radius:var(--pill);background:var(--accent-teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 auto}
+.cbadge.sm .cbadge-check{width:18px;height:18px;font-size:11px}
+.tab-group{display:inline-flex;gap:4px;background:var(--surface-tint);border:1px solid var(--border);border-radius:var(--pill);padding:4px;margin-bottom:24px}
+.tabp{border:none;background:transparent;border-radius:var(--pill);padding:8px 18px;font-family:'Inter';font-size:14px;font-weight:500;color:var(--text-secondary);cursor:pointer}
+.tabp.active{background:var(--surface-panel);box-shadow:var(--shadow-flat)}
+.mat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--border)}
+.mat-col{padding:20px;border-right:1px solid var(--border)}
+.mat-col:last-child{border-right:none}
+.mat-mini{height:56px;border-radius:var(--r-card-tight);background:var(--surface-tint);margin-bottom:16px;background-image:radial-gradient(circle at 30% 50%,var(--accent-primary) 0 4px,transparent 5px),radial-gradient(circle at 70% 50%,var(--accent-primary-deep) 0 4px,transparent 5px);background-repeat:no-repeat}
+.mat-level{font-weight:600;font-size:15px;color:var(--text-primary)}
+.mat-level.adv{color:var(--accent-primary-deep)}
+.mat-desc{font-size:14px;color:var(--text-secondary);margin-top:8px}
+.press-row{display:flex;gap:36px;justify-content:space-between;flex-wrap:wrap;align-items:center;padding:20px 0;border-bottom:1px solid var(--border)}
+.press-quotes{border-bottom:none;align-items:flex-start}
+.pq{flex:1;min-width:150px}
+.pq p{font-size:14px;color:var(--text-secondary);margin-top:8px}
+.stars{color:var(--accent-teal);font-size:16px}
+.footer-preview{display:grid;grid-template-columns:1.4fr repeat(4,1fr);gap:24px}
+.fp-tag{font-size:14px;color:var(--text-secondary);margin:12px 0 16px;max-width:24ch}
+.fp-social{display:flex;gap:12px}
+.fp-social a{color:var(--text-muted);font-size:18px}
+.fp-social a:hover{color:var(--accent-primary)}
+.fp-col h5{font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:var(--text-muted);margin:0 0 12px}
+.fp-col a{display:block;font-size:14px;color:var(--text-secondary);margin-bottom:8px}
+.fp-col a:hover{color:var(--accent-primary)}
+.fp-seals{display:flex;gap:12px;margin-top:28px;padding-top:20px;border-top:1px solid var(--border)}
+@media(max-width:1024px){.process-row{grid-template-columns:1fr}.mat-grid{grid-template-columns:repeat(2,1fr)}.mat-col:nth-child(2n){border-right:none}.footer-preview{grid-template-columns:1fr 1fr}.vt-split{grid-template-columns:1fr}}
+@media(max-width:640px){.mat-grid{grid-template-columns:1fr}.mat-col{border-right:none}.footer-preview{grid-template-columns:1fr}}
+</style>
+
+<!-- SURFACE & DEPTH -->
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:32px}
+.depth-card{background:#fff;padding:24px;border:1px solid var(--border)}
+.depth-card .dl{font-size:14px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
+.depth-card .dv{font-size:13px;color:var(--text-muted);font-variant-numeric:tabular-nums}
+.radii-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:32px}
+.radii-demo{width:120px;height:80px;background:var(--gradient-panel);border:1px solid var(--border);display:flex;align-items:flex-end;padding:8px;font-size:12px;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+</style>
+<section id="surface-depth" class="band">
+  <div class="container">
+    <div class="eyebrow">Surface &amp; depth</div>
+    <h2 class="section-title">Elevation from hairlines, not heavy shadow.</h2>
+    <p class="section-lead">Cards lift on soft composite shadows with a bright inner top edge. Media-bleed panels stay flush at 0px even beside rounded siblings.</p>
+
+    <div class="radii-row">
+      <div class="radii-demo" style="border-radius:0">0 · media</div>
+      <div class="radii-demo" style="border-radius:5px">5 · nav-cta</div>
+      <div class="radii-demo" style="border-radius:6px">6 · control</div>
+      <div class="radii-demo" style="border-radius:8px">8 · card-tight</div>
+      <div class="radii-demo" style="border-radius:12px">12 · card</div>
+      <div class="radii-demo" style="border-radius:16px">16 · card-loose</div>
+      <div class="radii-demo" style="border-radius:9999px;width:160px">9999 · pill</div>
+    </div>
+
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:16px;box-shadow:var(--shadow-card)"><div class="dl">Lifted card</div><div class="dv">composite + inner highlight</div></div>
+      <div class="depth-card" style="border-radius:12px;box-shadow:var(--shadow-flat)"><div class="dl">Flat control</div><div class="dv">soft 2/8 + inner highlight</div></div>
+      <div class="depth-card" style="border-radius:12px;box-shadow:none"><div class="dl">Hairline only</div><div class="dv">1px #E6E7EA border</div></div>
+      <div class="depth-card" style="border-radius:9999px;box-shadow:var(--shadow-cta);background:var(--gradient-cta);color:#fff;border-color:transparent"><div class="dl" style="color:#fff">CTA shadow</div><div class="dv" style="color:rgba(255,255,255,0.85)">rgba(59,50,249,0.25)</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- MOTION -->
+<style data-section-styles="motion">
+#motion{background:var(--surface-tint)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px;margin-top:32px}
+.motion-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:24px;box-shadow:var(--shadow-flat)}
+.motion-card h4{font-family:'Inter';font-weight:600;font-size:16px;color:var(--text-primary);margin-bottom:4px}
+.motion-card .mv{font-size:13px;color:var(--text-muted);font-variant-numeric:tabular-nums;margin-bottom:16px}
+.demo-box{width:56px;height:56px;border-radius:var(--r-card-tight);background:var(--gradient-cta)}
+.replay{margin-top:16px;font-size:13px;font-weight:600;color:var(--accent-primary);background:none;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.anim-shadow{transition:box-shadow .2s var(--ease);box-shadow:var(--shadow-cta)}
+.anim-shadow.go{box-shadow:var(--shadow-cta-hover)}
+.anim-lift{transition:transform .3s var(--ease)}
+.anim-lift.go{transform:translateY(-8px)}
+.anim-color{transition:background .15s var(--ease);background:var(--surface-panel)}
+.anim-color.go{background:var(--gradient-cta)}
+.mini-svg{width:100%;height:56px}
+.mini-svg path{fill:none;stroke:var(--accent-primary);stroke-width:3;stroke-dasharray:180}
+.mini-svg.go path{animation:dashdraw2 1.4s linear forwards}
+@keyframes dashdraw2{from{stroke-dashoffset:180}to{stroke-dashoffset:0}}
+</style>
+<section id="motion" class="band">
+  <div class="container">
+    <div class="eyebrow">Motion</div>
+    <h2 class="section-title">Fast, utilitarian, never a bounce.</h2>
+    <p class="section-lead">One easing curve carries the whole system. Buttons lift by intensifying their gradient shadow; connectors trace themselves on view.</p>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Shadow lift</h4><div class="mv">0.2s · cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="demo-box anim-shadow" id="m1"></div>
+        <button class="replay" data-target="m1">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="motion-card">
+        <h4>Card transform</h4><div class="mv">0.3s · cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="demo-box anim-lift" id="m2"></div>
+        <button class="replay" data-target="m2">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="motion-card">
+        <h4>Colour swap</h4><div class="mv">0.15s · cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="demo-box anim-color" id="m3"></div>
+        <button class="replay" data-target="m3">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="motion-card">
+        <h4>dashdraw</h4><div class="mv">1.4s · connector trace on view</div>
+        <svg class="mini-svg" id="m4" viewBox="0 0 240 56" aria-hidden="true"><path d="M8 48 C80 48 60 8 120 8 S200 48 232 12"/></svg>
+        <button class="replay" data-target="m4">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPOSITION -->
+<style data-section-styles="composition">
+#composition{background:var(--background);position:relative;overflow:hidden}
+.mock{max-width:1100px;margin:32px auto 0;border:1px solid var(--border);border-radius:var(--r-card-loose);overflow:hidden;box-shadow:var(--shadow-card)}
+.mock-nav{height:56px;display:flex;align-items:center;gap:16px;padding:0 20px;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.8);backdrop-filter:blur(10px)}
+.mock-nav .logo{font-size:15px}
+.mock-nav .sp{margin-left:auto;display:flex;gap:10px}
+.mock-hero{position:relative;padding:44px 32px;background:
+  radial-gradient(70% 80% at 8% 0%, rgba(138,105,255,0.35) 0%, rgba(138,105,255,0) 60%),
+  radial-gradient(70% 80% at 95% 8%, rgba(109,74,255,0.3) 0%, rgba(109,74,255,0) 60%);}
+.mock-hero h3{font-family:'Sora';font-weight:400;font-size:34px;letter-spacing:-1.6px;line-height:1.2;color:var(--ink-dark);max-width:20ch}
+.mock-hero p{font-size:15px;color:var(--text-secondary);max-width:44ch;margin:14px 0 20px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:0 32px 32px}
+.mc{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:20px;box-shadow:var(--shadow-flat)}
+.mc .lab{font-size:13px;color:var(--text-muted)}
+.mc .num{font-family:'Sora';font-weight:600;font-size:26px;letter-spacing:-1px;color:var(--text-primary);margin-top:4px;font-variant-numeric:tabular-nums}
+.mc .dl{font-size:13px;color:var(--accent-teal);margin-top:2px}
+.mock-cta{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px 32px;border-top:1px solid var(--border);background:var(--surface-tint)}
+.mock-cta h4{font-family:'Sora';font-weight:400;font-size:22px;letter-spacing:-0.7px;color:var(--ink-dark)}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:26px}}
+</style>
+<section id="composition" class="band">
+  <div class="container">
+    <div class="eyebrow">In composition</div>
+    <h2 class="section-title">The system, holding together.</h2>
+    <p class="section-lead">A full screen assembled only from the tokens above — nav, hero fragment, metric cards, and a closing CTA.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo"><span class="logo-mark" aria-hidden="true"></span>Violet Ledger</span>
+        <span style="display:flex;gap:16px;font-size:14px;color:var(--text-secondary)"><a href="#" style="color:var(--text-secondary)">Platform</a><a href="#" style="color:var(--text-secondary)">Docs</a></span>
+        <span class="sp"><button class="btn-nav-outline" style="height:36px;padding:8px 16px;font-size:14px">Sign in</button><button class="btn-nav-cta" style="height:36px;padding:8px 16px;font-size:14px">Demo</button></span>
+      </div>
+      <div class="mock-hero">
+        <h3>One ledger for every agent you run.</h3>
+        <p>Tasks, costs and outcomes settle into a single auditable view your whole team can read.</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap"><button class="btn-primary">Start building</button><button class="btn-ghost">Book a demo</button></div>
+      </div>
+      <div class="mock-cards">
+        <div class="mc"><div class="lab">Tasks resolved</div><div class="num">12,480</div><div class="dl">+18.2% this week</div></div>
+        <div class="mc"><div class="lab">Cost / task</div><div class="num">$0.041</div><div class="dl">−9.4% this week</div></div>
+        <div class="mc"><div class="lab">Automation rate</div><div class="num">87%</div><div class="dl">+3.1% this week</div></div>
+      </div>
+      <div class="mock-cta">
+        <h4>Ready to settle the ledger?</h4>
+        <button class="btn-primary"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon> Get started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<style data-section-styles="footer">
+#footer{background:var(--background);border-top:1px solid var(--border)}
+.foot{display:flex;flex-direction:column;gap:8px;align-items:center;text-align:center;padding:48px 0}
+.foot .logo{font-size:18px}
+.foot .src{font-size:14px;color:var(--text-secondary)}
+.foot .cred{font-size:13px;color:var(--text-muted)}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="foot">
+      <span class="logo"><span class="logo-mark" aria-hidden="true"></span>Violet Ledger Interface</span>
+      <p class="src"><a href="https://relevanceai.com/">relevanceai.com</a></p>
+      <p class="cred">Design system captured and rendered by r3xdec.design</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('.replay').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.dataset.target);
+      if(!el)return;
+      el.classList.remove('go');
+      void el.offsetWidth;
+      el.classList.add('go');
+      if(el.tagName.toLowerCase()==='svg'){
+        el.classList.remove('go');void el.offsetWidth;el.classList.add('go');
+      }
+    });
+  });
+  document.querySelectorAll('.tabp').forEach(function(t){
+    t.addEventListener('click',function(){
+      var group=t.closest('.tab-group');
+      group.querySelectorAll('.tabp').forEach(function(x){x.classList.remove('active');x.setAttribute('aria-selected','false');});
+      t.classList.add('active');t.setAttribute('aria-selected','true');
+    });
+  });
+  document.querySelectorAll('.ft-tab').forEach(function(t){
+    t.addEventListener('click',function(){
+      t.parentElement.querySelectorAll('.ft-tab').forEach(function(x){x.classList.remove('active');});
+      t.classList.add('active');
+    });
+  });
+})();
+</script>
+</body>
+</html>

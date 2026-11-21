@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>ARK Software — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500;700&family=IBM+Plex+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#0a0a0a; color:#fafafa; font-family:'system-ui',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'system-ui',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'system-ui',sans-serif; font-size: 22px; border-bottom: 1px solid #fafafa; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#fafafa; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#fafafa; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#141414; border: 1px solid #fafafa; border-radius:8px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#fafafa; }
+  .swatch-meta p { color:#fafafa; font-size: 12px; }
+  .specimen { border: 1px solid #fafafa; border-radius:8px; padding: 20px; background:#141414; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#fafafa; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#fafafa; }
+  .bar { height: 10px; background:#fafafa; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #fafafa; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#141414; border: 1px solid #fafafa; border-radius:8px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:4px; font-size: 14px; border: 1px solid #fafafa; }
+  .btn-primary { background:#fafafa; color:#0a0a0a; }
+  .btn-secondary { background: transparent; color:#fafafa; }
+  footer { border-top: 1px solid #fafafa; padding-top: 20px; font-size: 13px; color:#fafafa; }
+  footer a { color:#fafafa; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · uploaded design.md · dark mode</div>
+    <h1>ARK Software</h1>
+    <p class="tagline">Dark-default near-monochrome product system for ARK tools, HQ and client portals: the IBM Plex superfamily in three widths, monospace chrome that labels rather than speaks, achromatic neutrals and a near-invisible derived hairline, zero elevation, cuts instead of transitions, and exactly two colours — ARK sage on the primary control and clay on failure. Values below are the dark edition; a light edition toggles via data-edition and is documented in full in the body.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#0A0A0A"></div>
+        <div class="swatch-meta"><strong>paper</strong><code>#0A0A0A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#141414"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#141414</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1F1F1F"></div>
+        <div class="swatch-meta"><strong>field</strong><code>#1F1F1F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2E2E2E"></div>
+        <div class="swatch-meta"><strong>select</strong><code>#2E2E2E</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#262626"></div>
+        <div class="swatch-meta"><strong>line</strong><code>#262626</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#8A8A8A"></div>
+        <div class="swatch-meta"><strong>muted</strong><code>#8A8A8A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F0F0F0"></div>
+        <div class="swatch-meta"><strong>ink</strong><code>#F0F0F0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6B8354"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#6B8354</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0A0A0A"></div>
+        <div class="swatch-meta"><strong>accent-on</strong><code>#0A0A0A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#7C9860"></div>
+        <div class="swatch-meta"><strong>accent-hover</strong><code>#7C9860</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E06B4F"></div>
+        <div class="swatch-meta"><strong>clay</strong><code>#E06B4F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2A0F08"></div>
+        <div class="swatch-meta"><strong>clay-fill</strong><code>#2A0F08</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(0, 0, 0, 0.7)"></div>
+        <div class="swatch-meta"><strong>backdrop</strong><code>rgba(0, 0, 0, 0.7)</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Serif',sans-serif;font-size:64px;font-weight:700;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">hero-metric · IBM Plex Serif · 64px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Serif',sans-serif;font-size:48px;font-weight:600;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">hero-stamp · IBM Plex Serif · 48px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Serif',sans-serif;font-size:40px;font-weight:600;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">hero-empty · IBM Plex Serif · 40px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Serif',sans-serif;font-size:15px;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">prose · IBM Plex Serif · 15px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Sans',sans-serif;font-size:24px;font-weight:700;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">page-title · IBM Plex Sans · 24px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">card-title · IBM Plex Sans · 15px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body · IBM Plex Sans · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">button · IBM Plex Sans · 13px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">small · IBM Plex Sans · 12px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:16px;font-weight:700;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">wordmark · IBM Plex Mono · 16px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:12px;font-weight:500;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">nav · IBM Plex Mono · 12px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:10px;font-weight:600;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label · IBM Plex Mono · 10px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:11px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">meta · IBM Plex Mono · 11px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:13px;font-weight:500;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">figure · IBM Plex Mono · 13px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'IBM Plex Mono',sans-serif;font-size:10px;font-weight:500;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">kbd · IBM Plex Mono · 10px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap-tight · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap-sm · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap-md · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>control-padding · 8px 12px</span>
+        <div class="bar" style="width:min(8px 12px, 100%)"></div></div>
+<div class="bar-row"><span>input-padding · 12px 16px</span>
+        <div class="bar" style="width:min(12px 16px, 100%)"></div></div>
+<div class="bar-row"><span>card-padding · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>card-gap · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>sidebar-padding · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>main-padding · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>label-gap · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>content-max-width · 960px</span>
+        <div class="bar" style="width:min(960px, 100%)"></div></div>
+<div class="bar-row"><span>main-max-width · 1120px</span>
+        <div class="bar" style="width:min(1120px, 100%)"></div></div>
+<div class="bar-row"><span>sidebar-width · 240px</span>
+        <div class="bar" style="width:min(240px, 100%)"></div></div>
+<div class="bar-row"><span>reading-measure · 560px</span>
+        <div class="bar" style="width:min(560px, 100%)"></div></div>
+<div class="bar-row"><span>auth-card-width · 400px</span>
+        <div class="bar" style="width:min(400px, 100%)"></div></div>
+<div class="bar-row"><span>record-label-gutter · 160px</span>
+        <div class="bar" style="width:min(160px, 100%)"></div></div>
+<div class="bar-row"><span>topbar-height · 56px</span>
+        <div class="bar" style="width:min(56px, 100%)"></div></div>
+<div class="bar-row"><span>control-height · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>input-height · 36px</span>
+        <div class="bar" style="width:min(36px, 100%)"></div></div>
+<div class="bar-row"><span>row-height · 44px</span>
+        <div class="bar" style="width:min(44px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:4px">control<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:8px">card<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:16px">chip<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:2px">kbd<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:2px">checkbox<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:2px">heatmap-cell<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:0px">image<br><code>0px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#fafafa;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

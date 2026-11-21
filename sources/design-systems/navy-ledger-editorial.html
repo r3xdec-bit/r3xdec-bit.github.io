@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Navy Ledger Editorial — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Oswald:wght@400;500;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --brand-navy:#1F2B5E;
+  --surface:#E3E5EB;
+  --text-primary:#FFFFFF;
+  --muted:#626C95;
+  --ink:#1F2B5E;
+  --ink-alt:#1D2A5C;
+  --category-sea:#222A4C;
+  --category-evergreen:#36614D;
+  --r-control:0px;
+  --r-card:0px;
+  --r-pill:0px;
+  --base:8px;
+  --gap:50px;
+  --section-padding:86px;
+  --micro-gap:10px;
+  --btn-height:59px;
+  --measure:672px;
+  --ease-reveal:cubic-bezier(0.18,0.13,0,0.99);
+  --ease-soft:cubic-bezier(0.16,1,0.3,1);
+  --ease-drive:cubic-bezier(0.7,0.6,0,1);
+  --font-display:"Google Sans","Public Sans",system-ui,sans-serif;
+  --font-body:"Google Sans","Public Sans",system-ui,sans-serif;
+  --font-label:"Monument Extended","Oswald",system-ui,sans-serif;
+  --font-serif:"Roslindale Display","Playfair Display",Georgia,serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--brand-navy);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:17px;
+  line-height:1.35;
+  font-weight:500;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:500;letter-spacing:-0.3px;line-height:1.3;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1500px;margin:0 auto;padding-left:38px;padding-right:38px;}
+.measure{max-width:var(--measure);}
+.eyebrow{font-family:var(--font-label);text-transform:uppercase;font-size:14px;letter-spacing:1px;color:var(--muted);font-weight:500;}
+.section{padding-top:var(--section-padding);padding-bottom:var(--section-padding);}
+
+/* Navbar critical */
+.nav{
+  position:sticky;top:0;z-index:50;width:100%;
+  background:var(--surface);
+  border-radius:0;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 38px;
+  min-height:72px;
+}
+.nav .logo{font-family:var(--font-label);text-transform:uppercase;color:var(--ink);font-size:18px;font-weight:500;letter-spacing:0.5px;}
+.nav ul{list-style:none;display:flex;gap:38px;margin:0;padding:0;}
+.nav ul a{color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;transition:color .68s var(--ease-soft);}
+.nav ul a:hover{color:var(--muted);}
+.nav-cta{
+  background:var(--brand-navy);color:var(--text-primary);
+  border:none;border-radius:0;height:var(--btn-height);
+  padding:0 28px;font-family:var(--font-label);text-transform:uppercase;
+  font-size:15px;font-weight:500;letter-spacing:0.5px;cursor:pointer;
+  transition:background .68s var(--ease-soft);
+}
+.nav-cta:hover{background:var(--category-sea);}
+.nav-toggle{display:none;}
+
+/* Hero critical */
+#hero{padding-top:120px;padding-bottom:140px;text-align:center;}
+.hero-tile{
+  width:313px;max-width:70vw;margin:0 auto;
+  background:#FFFFFF;padding:18px;border-radius:0;
+}
+.hero-tile .photo{
+  aspect-ratio:1/1;width:100%;border-radius:0;
+  background:linear-gradient(135deg,#2b3766,#222A4C 60%,#36614D);
+  display:flex;align-items:flex-end;justify-content:flex-start;
+}
+.hero-quotes{
+  font-family:var(--font-serif);font-size:56px;line-height:1;color:#FFFFFF;
+  margin-top:24px;
+}
+.hero-lead{
+  font-family:var(--font-display);font-size:33px;line-height:1.3;letter-spacing:-0.3px;
+  font-weight:500;margin:40px auto 0;max-width:var(--measure);
+}
+.hero-sub{color:var(--muted);margin:24px auto 0;max-width:520px;}
+@media(max-width:1024px){.wrap{padding-left:24px;padding-right:24px;}}
+@media(max-width:768px){
+  .nav ul{display:none;}
+  .nav-toggle{display:inline-flex;background:none;border:none;color:var(--ink);cursor:pointer;font-size:24px;}
+  .hero-lead{font-size:26px;}
+  .hero-quotes{font-size:44px;}
+}
+@media(max-width:640px){
+  #hero{padding-top:80px;padding-bottom:90px;}
+  .hero-lead{font-size:22px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <span class="logo">Realevate</span>
+  <ul>
+    <li><a href="#palette">Field</a></li>
+    <li><a href="#type-scale">Type</a></li>
+    <li><a href="#components">System</a></li>
+    <li><a href="#composition">Editorial</a></li>
+    <li><a href="#footer">Archive</a></li>
+  </ul>
+  <button class="nav-cta" type="button">Request access</button>
+  <button class="nav-toggle" type="button" aria-label="Open menu"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+</nav>
+</header>
+
+<main>
+
+<section id="hero" aria-label="Introduction">
+  <div class="wrap">
+    <figure class="hero-tile" style="margin-bottom:0;">
+      <div class="photo" role="img" aria-label="A single matted photographic tile floating on the navy field"></div>
+    </figure>
+    <div class="hero-quotes" aria-hidden="true">&ldquo;&rdquo;</div>
+    <p class="hero-lead">A near-monochrome navy field, broken only by a single matted photograph — held like an artifact against the wall.</p>
+    <p class="hero-sub">Square institutional structure. Sharp corners throughout. Slow, cinematic reveal motion. Colour arrives only through the image.</p>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .role-group{margin-bottom:64px;}
+#palette .role-title{font-size:22px;margin-bottom:8px;}
+#palette .role-note{color:var(--muted);max-width:var(--measure);margin-bottom:32px;}
+.swatch-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);}
+.swatch{border:1px solid var(--muted);}
+.swatch .chip{height:120px;}
+.swatch .meta{padding:16px 18px;background:var(--category-sea);}
+.swatch .name{font-family:var(--font-label);text-transform:uppercase;font-size:14px;letter-spacing:0.5px;}
+.swatch .val{color:var(--muted);font-size:14px;margin-top:6px;}
+.swatch .use{font-size:14px;margin-top:12px;line-height:1.4;}
+.checker{
+  background-image:linear-gradient(45deg,#3a4680 25%,transparent 25%),linear-gradient(-45deg,#3a4680 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#3a4680 75%),linear-gradient(-45deg,transparent 75%,#3a4680 75%);
+  background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0;
+}
+</style>
+<section id="palette" class="section" aria-label="Palette">
+  <div class="wrap">
+    <p class="eyebrow">01 — The field</p>
+    <h2 style="font-size:33px;margin:12px 0 48px;">Navy, white, and a single muted slate</h2>
+
+    <div class="role-group">
+      <h3 class="role-title">Surfaces</h3>
+      <p class="role-note">Navy is both the canvas and the primary UI fill, dominating over 94% of rendered pixels. The one light surface is reserved for the institutional navbar.</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#1F2B5E;"></div>
+          <div class="meta"><div class="name">Brand Navy</div><div class="val">#1F2B5E · --brand-navy</div><div class="use">Page canvas, button fill, dominant field.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#E3E5EB;"></div>
+          <div class="meta"><div class="name">Navbar Neutral</div><div class="val">#E3E5EB · --surface</div><div class="use">The one light surface — the sticky square navbar.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#222A4C;"></div>
+          <div class="meta"><div class="name">By The Sea</div><div class="val">#222A4C · --category-by-the-sea-color</div><div class="use">Thin categorical accent; deep navy tint.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#36614D;"></div>
+          <div class="meta"><div class="name">Evergreen</div><div class="val">#36614D · --category-evergreen-color</div><div class="use">Thin categorical accent; muted green.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3 class="role-title">Text</h3>
+      <p class="role-note">White ink on navy carries all hierarchy; the muted slate softens secondary text; navy ink is held for the light navbar field.</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#FFFFFF;"></div>
+          <div class="meta"><div class="name">Primary Ink</div><div class="val">#FFFFFF · text-primary</div><div class="use">Headlines and body over navy; the mat border.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#626C95;"></div>
+          <div class="meta"><div class="name">Muted Slate</div><div class="val">#626C95 · --muted</div><div class="use">Secondary and tertiary text where hierarchy softens.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip checker" style="position:relative;"><div style="position:absolute;inset:0;background:#1F2B5E;"></div></div>
+          <div class="meta"><div class="name">Navy Ink (on light)</div><div class="val">#1D2A5C · --ink-alt</div><div class="use">Text and controls on the light navbar field.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3 class="role-title">Accent</h3>
+      <p class="role-note">There is no bright accent. The system is deliberately navy-and-white — saturation is borrowed entirely from photography.</p>
+      <div class="swatch-row">
+        <div class="swatch">
+          <div class="chip" style="background:#1F2B5E;"></div>
+          <div class="meta"><div class="name">Accent = Navy</div><div class="val">#1F2B5E · accent</div><div class="use">Interactive fill and border; the rationed colour is restraint itself.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{color:var(--muted);font-size:14px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;margin-top:12px;}
+.specimen{border-top:1px solid var(--muted);padding:38px 0;}
+.sp-display{font-family:var(--font-display);font-size:33px;font-weight:500;line-height:1.3;letter-spacing:-0.3px;}
+.sp-body{font-family:var(--font-body);font-size:17px;font-weight:500;line-height:1.35;max-width:var(--measure);}
+.sp-label{font-family:var(--font-label);font-size:18px;font-weight:500;line-height:1.35;text-transform:uppercase;letter-spacing:1px;}
+.sp-serif{font-family:var(--font-serif);font-size:44px;font-weight:400;line-height:1.2;}
+@media(max-width:640px){.sp-display{font-size:26px;}.sp-serif{font-size:32px;}}
+</style>
+<section id="type-scale" class="section" aria-label="Type scale">
+  <div class="wrap">
+    <p class="eyebrow">02 — Type</p>
+    <h2 style="font-size:33px;margin:12px 0 32px;">Geometric structure, one serif interruption</h2>
+
+    <div class="specimen">
+      <div class="sp-display">The photograph sits centred, given equal breathing room on every side.</div>
+      <div class="spec">Display LG · Google Sans · 33px · 500 · 1.3 · -0.3px</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-body">A restrained, almost archival editorial voice. Running text is kept to a short measure of 672px so the reading column stays deliberate against the wide navy canvas, never sprawling edge to edge.</div>
+      <div class="spec">Body · Google Sans · 17px · 500 · 1.35</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-label">Emphasis label face</div>
+      <div class="spec">Label Mono · Monument Extended · 18px · 500 · 1.35</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-serif">An editorial interruption.</div>
+      <div class="spec">Accent Serif · Roslindale Display · 400 · used sparingly</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid var(--muted);padding:64px 0;}
+#components .comp-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;align-items:baseline;margin-bottom:40px;}
+#components .comp-title{font-size:24px;}
+#components .comp-desc{color:var(--muted);max-width:var(--measure);margin-top:12px;font-size:15px;}
+.spec-card{
+  font-family:var(--font-label);text-transform:uppercase;font-size:12px;letter-spacing:0.5px;
+  color:var(--muted);line-height:1.9;border-left:2px solid var(--muted);padding-left:16px;
+  min-width:260px;
+}
+.spec-card b{color:var(--text-primary);font-weight:500;}
+.demo-nav{
+  width:100%;background:var(--surface);display:flex;align-items:center;justify-content:space-between;
+  padding:0 24px;min-height:72px;border-radius:0;
+}
+.demo-nav .logo{font-family:var(--font-label);text-transform:uppercase;color:var(--ink);font-size:16px;letter-spacing:0.5px;}
+.demo-nav ul{list-style:none;display:flex;gap:24px;margin:0;padding:0;}
+.demo-nav ul a{color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;}
+.demo-nav .slab{background:var(--brand-navy);color:#fff;border:none;height:59px;padding:0 22px;font-family:var(--font-label);text-transform:uppercase;font-size:14px;letter-spacing:0.5px;border-radius:0;cursor:pointer;transition:background .68s var(--ease-soft);}
+.demo-nav .slab:hover{background:var(--category-sea);}
+
+.btn-matrix{border-collapse:collapse;width:100%;}
+.btn-matrix th,.btn-matrix td{padding:18px;text-align:left;border-bottom:1px solid var(--muted);vertical-align:middle;}
+.btn-matrix th{font-family:var(--font-label);text-transform:uppercase;font-size:12px;letter-spacing:0.5px;color:var(--muted);font-weight:500;}
+.slab-btn{background:var(--brand-navy);color:#fff;border:none;height:59px;padding:0 28px;font-family:var(--font-label);text-transform:uppercase;font-size:14px;letter-spacing:0.5px;border-radius:0;cursor:pointer;transition:background .68s var(--ease-soft);}
+.slab-btn:hover{background:var(--category-sea);}
+.slab-btn.active{background:var(--ink-alt);}
+.slab-btn.disabled{background:var(--muted);cursor:not-allowed;}
+
+.card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:49.9px;}
+@media(max-width:1024px){.card-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){.card-grid{grid-template-columns:1fr;}}
+.media-card{background:transparent;border-radius:0;padding:0;}
+.media-card .img{aspect-ratio:4/5;width:100%;border-radius:0;}
+.media-card .cap{color:var(--muted);font-size:13px;margin-top:10px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;}
+.body-card{background:transparent;border-radius:0;padding:0;}
+.body-card p{font-size:17px;line-height:1.35;}
+.body-card .meta{color:var(--muted);font-size:13px;margin-top:12px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;}
+
+.tile-demo{display:flex;flex-direction:column;align-items:center;padding:60px 0;}
+.tile-frame{width:313px;max-width:80vw;background:#fff;padding:18px;border-radius:0;}
+.tile-frame .ph{aspect-ratio:1/1;width:100%;background:linear-gradient(135deg,#2b3766,#36614D);border-radius:0;}
+.tile-quotes{font-family:var(--font-serif);font-size:48px;line-height:1;color:#fff;margin-top:20px;}
+
+.footer-demo{padding:40px 0;color:var(--muted);font-size:13px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;}
+</style>
+<section id="components" class="section" aria-label="Components">
+  <div class="wrap">
+    <p class="eyebrow">03 — The system</p>
+    <h2 style="font-size:33px;margin:12px 0;">A sharp-cornered institutional inventory</h2>
+
+    <!-- Navbar -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Square Institutional Navbar ×1</h3>
+          <p class="comp-desc">Edge-to-edge, full viewport width, 0px insets, all four corners square, sticky on scroll. Light neutral fill breaks from the navy field. Five nav items and one embedded slab button.</p>
+        </div>
+        <div class="spec-card">
+          fill <b>--surface #E3E5EB</b><br>
+          ink <b>--ink-alt #1D2A5C</b><br>
+          radius <b>r-control 0px</b><br>
+          height <b>72px</b> · items <b>5</b><br>
+          motion <b>ease-soft 0.68s</b>
+        </div>
+      </div>
+      <nav class="demo-nav" aria-label="Navbar specimen">
+        <span class="logo">Realevate</span>
+        <ul>
+          <li><a href="#components">Journeys</a></li>
+          <li><a href="#components">By The Sea</a></li>
+          <li><a href="#components">Evergreen</a></li>
+          <li><a href="#components">Stories</a></li>
+          <li><a href="#components">Archive</a></li>
+        </ul>
+        <button class="slab" type="button">Request access</button>
+      </nav>
+    </div>
+
+    <!-- Primary slab button -->
+    <div class="comp" data-tier-a-component="button-primary">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Primary Slab Button ×1</h3>
+          <p class="comp-desc">A flat navy slab: solid fill, white label, hard rectangular corners at 0px, 59px tall. Never a pill. The full source-supported state matrix is shown below.</p>
+        </div>
+        <div class="spec-card">
+          fill <b>accent #1F2B5E</b><br>
+          text <b>text-primary #FFFFFF</b><br>
+          radius <b>r-control 0px</b><br>
+          height <b>59px</b><br>
+          hover <b>category-sea #222A4C</b><br>
+          motion <b>ease-soft 0.68s</b>
+        </div>
+      </div>
+      <table class="btn-matrix">
+        <thead>
+          <tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Solid navy</td>
+            <td><button class="slab-btn" type="button">Request access</button></td>
+            <td><button class="slab-btn" type="button" style="background:var(--category-sea);">Request access</button></td>
+            <td><button class="slab-btn active" type="button">Request access</button></td>
+            <td><button class="slab-btn disabled" type="button" disabled>Request access</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Media card family -->
+    <div class="comp" data-tier-a-component="card-media">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Media Card Family ×4</h3>
+          <p class="comp-desc">Transparent background, 0px radius, 0px padding. Media-top-bleed: the image runs full-width to the card's top edge with no matting or inset. Laid out on the 12-column grid with ~49.9px gutters.</p>
+        </div>
+        <div class="spec-card">
+          bg <b>transparent</b><br>
+          radius <b>r-card 0px</b><br>
+          padding <b>0px</b><br>
+          gutter <b>gap 49.9px</b><br>
+          anatomy <b>media-top-bleed</b>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="media-card"><div class="img" style="background:linear-gradient(135deg,#2b3766,#222A4C);"></div><div class="cap">By the sea — 01</div></div>
+        <div class="media-card"><div class="img" style="background:linear-gradient(135deg,#36614D,#222A4C);"></div><div class="cap">Evergreen — 02</div></div>
+        <div class="media-card"><div class="img" style="background:linear-gradient(135deg,#3a4680,#1F2B5E);"></div><div class="cap">Harbour — 03</div></div>
+        <div class="media-card"><div class="img" style="background:linear-gradient(135deg,#222A4C,#36614D);"></div><div class="cap">Ridge — 04</div></div>
+      </div>
+    </div>
+
+    <!-- Body-text card family -->
+    <div class="comp" data-tier-a-component="card-body">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Body-Text Card Family ×4</h3>
+          <p class="comp-desc">Pure body-text blocks sitting directly on the navy field. No heading chip, no icon, no border. Transparent, 0px radius, 0px padding — paired with the media cards.</p>
+        </div>
+        <div class="spec-card">
+          bg <b>transparent</b><br>
+          radius <b>r-card 0px</b><br>
+          padding <b>0px</b><br>
+          type <b>body-md 17px</b><br>
+          anatomy <b>body-text</b>
+        </div>
+      </div>
+      <div class="card-grid">
+        <div class="body-card"><p>A quiet cove reached only at low tide, where the water holds the colour of the sky.</p><div class="meta">Notes — 01</div></div>
+        <div class="body-card"><p>Old-growth stands that have never been cut, kept in cool and permanent shade.</p><div class="meta">Notes — 02</div></div>
+        <div class="body-card"><p>The working harbour at first light, before the boats break the still water.</p><div class="meta">Notes — 03</div></div>
+        <div class="body-card"><p>A ridge line walked at dusk, the valley falling away into a deep navy dark.</p><div class="meta">Notes — 04</div></div>
+      </div>
+    </div>
+
+    <!-- Hero image tile -->
+    <div class="comp" data-tier-a-component="hero-image-tile">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Cream-Matted Hero Image Tile ×1</h3>
+          <p class="comp-desc">A single centred photographic tile, ~313px square, held in a thick cream mat, floating with equal navy breathing room on all sides. It occupies well under 10% of the frame. A pair of white quotation glyphs sits below, signalling an editorial quote — not a hero banner.</p>
+        </div>
+        <div class="spec-card">
+          mat <b>text-primary #FFFFFF</b><br>
+          mat width <b>~18px</b><br>
+          footprint <b>~313px</b><br>
+          radius <b>0px</b> · no scrim<br>
+          glyph <b>accent-serif</b>
+        </div>
+      </div>
+      <div class="tile-demo">
+        <figure class="tile-frame" style="margin:0;">
+          <div class="ph" role="img" aria-label="Matted photographic tile specimen"></div>
+        </figure>
+        <div class="tile-quotes" aria-hidden="true">&ldquo;&rdquo;</div>
+      </div>
+    </div>
+
+    <!-- Footer component -->
+    <div class="comp" data-tier-a-component="footer">
+      <div class="comp-head">
+        <div>
+          <h3 class="comp-title">Minimal Footer ×1</h3>
+          <p class="comp-desc">Transparent background, stripped chrome, no links — content-forward restraint carried to the very bottom of the page.</p>
+        </div>
+        <div class="spec-card">
+          bg <b>transparent</b><br>
+          links <b>0</b><br>
+          type <b>label-mono</b>
+        </div>
+      </div>
+      <div class="footer-demo">Realevate — Navy Ledger Editorial</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+@media(max-width:768px){#surface-depth .depth-grid{grid-template-columns:1fr;}}
+.depth-card{border:1px solid var(--muted);}
+.depth-card .body{padding:24px;background:var(--category-sea);}
+.depth-card .r-demo{height:100px;background:#fff;border-radius:0;}
+.depth-card h4{font-size:18px;margin-bottom:8px;}
+.depth-card p{color:var(--muted);font-size:14px;}
+</style>
+<section id="surface-depth" class="section" aria-label="Surface and depth">
+  <div class="wrap">
+    <p class="eyebrow">04 — Surface</p>
+    <h2 style="font-size:33px;margin:12px 0 40px;">Every corner is square, every surface is flat</h2>
+    <div class="depth-grid">
+      <div class="depth-card">
+        <div class="r-demo"></div>
+        <div class="body"><h4>Control radius — 0px</h4><p>Buttons and the navbar. A hard rectangle, never a pill.</p></div>
+      </div>
+      <div class="depth-card">
+        <div class="r-demo"></div>
+        <div class="body"><h4>Card radius — 0px</h4><p>Media and body cards. Sharp corners are the institutional character.</p></div>
+      </div>
+      <div class="depth-card">
+        <div class="r-demo"></div>
+        <div class="body"><h4>No shadow, no scrim</h4><p>The field reads flat and clean — depth comes from the mat border alone, not elevation.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+@media(max-width:768px){#motion .motion-grid{grid-template-columns:1fr;}}
+.motion-cell{border:1px solid var(--muted);padding:24px;}
+.motion-track{height:8px;background:var(--category-sea);margin:24px 0 16px;position:relative;}
+.motion-dot{width:32px;height:32px;background:#fff;position:absolute;top:-12px;left:0;border-radius:0;}
+.motion-cell.play .motion-dot{left:calc(100% - 32px);}
+.motion-cell .m1{transition:left .8s var(--ease-reveal);}
+.motion-cell .m2{transition:left .68s var(--ease-soft);}
+.motion-cell .m3{transition:left .7s var(--ease-drive);}
+.motion-cell h4{font-size:16px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;}
+.motion-cell p{color:var(--muted);font-size:13px;}
+.motion-cell button{background:var(--brand-navy);color:#fff;border:none;height:40px;padding:0 18px;font-family:var(--font-label);text-transform:uppercase;font-size:12px;letter-spacing:0.5px;cursor:pointer;border-radius:0;}
+</style>
+<section id="motion" class="section" aria-label="Motion">
+  <div class="wrap">
+    <p class="eyebrow">05 — Motion</p>
+    <h2 style="font-size:33px;margin:12px 0 12px;">Slow, cinematic, never snappy</h2>
+    <p class="comp-desc" style="color:var(--muted);max-width:var(--measure);margin-bottom:40px;">Transitions run long — 0.68s to 0.8s — on pronounced custom cubic-bezier curves. Reveals feel like a gallery slowly coming into view. Click to replay each curve.</p>
+    <div class="motion-grid">
+      <div class="motion-cell">
+        <h4>Reveal</h4>
+        <p>0.8s · cubic-bezier(0.18,0.13,0,0.99)</p>
+        <div class="motion-track"><span class="motion-dot m1"></span></div>
+        <button type="button" onclick="this.closest('.motion-cell').classList.toggle('play')">Replay</button>
+      </div>
+      <div class="motion-cell">
+        <h4>Soft ease</h4>
+        <p>0.68s · cubic-bezier(0.16,1,0.3,1)</p>
+        <div class="motion-track"><span class="motion-dot m2"></span></div>
+        <button type="button" onclick="this.closest('.motion-cell').classList.toggle('play')">Replay</button>
+      </div>
+      <div class="motion-cell">
+        <h4>Drive</h4>
+        <p>0.7s · cubic-bezier(0.7,0.6,0,1)</p>
+        <div class="motion-track"><span class="motion-dot m3"></span></div>
+        <button type="button" onclick="this.closest('.motion-cell').classList.toggle('play')">Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid var(--muted);background:var(--brand-navy);overflow:hidden;}
+.mock-nav{background:var(--surface);display:flex;align-items:center;justify-content:space-between;padding:0 24px;min-height:64px;}
+.mock-nav .logo{font-family:var(--font-label);text-transform:uppercase;color:var(--ink);font-size:15px;letter-spacing:0.5px;}
+.mock-nav ul{list-style:none;display:flex;gap:20px;margin:0;padding:0;}
+.mock-nav ul a{color:var(--ink);text-decoration:none;font-size:13px;font-weight:500;}
+.mock-nav .slab{background:var(--brand-navy);color:#fff;border:none;height:59px;padding:0 20px;font-family:var(--font-label);text-transform:uppercase;font-size:13px;letter-spacing:0.5px;border-radius:0;}
+.mock-hero{text-align:center;padding:80px 20px 60px;}
+.mock-tile{width:240px;max-width:70%;margin:0 auto;background:#fff;padding:16px;}
+.mock-tile .ph{aspect-ratio:1/1;background:linear-gradient(135deg,#2b3766,#36614D);}
+.mock-q{font-family:var(--font-serif);font-size:40px;color:#fff;margin-top:16px;line-height:1;}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:49.9px;padding:0 40px 40px;}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-nav ul{display:none;}}
+.mock-cards .c .img{aspect-ratio:4/5;}
+.mock-cards .c p{font-size:15px;margin-top:12px;}
+.mock-cards .c .m{color:var(--muted);font-size:12px;font-family:var(--font-label);text-transform:uppercase;letter-spacing:0.5px;margin-top:8px;}
+.mock-cta{text-align:center;padding:20px 20px 70px;}
+.mock-cta button{background:var(--brand-navy);color:#fff;border:1px solid #fff;height:59px;padding:0 32px;font-family:var(--font-label);text-transform:uppercase;font-size:14px;letter-spacing:0.5px;border-radius:0;cursor:pointer;}
+</style>
+<section id="composition" class="section" aria-label="In composition">
+  <div class="wrap">
+    <p class="eyebrow">06 — In composition</p>
+    <h2 style="font-size:33px;margin:12px 0 40px;">The whole system, holding together</h2>
+    <div class="mock">
+      <nav class="mock-nav" aria-label="Mock navigation">
+        <span class="logo">Realevate</span>
+        <ul><li><a href="#composition">Journeys</a></li><li><a href="#composition">Stories</a></li><li><a href="#composition">Archive</a></li></ul>
+        <button class="slab" type="button">Request access</button>
+      </nav>
+      <div class="mock-hero">
+        <figure class="mock-tile" style="margin:0 auto;"><div class="ph" role="img" aria-label="Centred matted tile in composition"></div></figure>
+        <div class="mock-q" aria-hidden="true">&ldquo;&rdquo;</div>
+        <p class="measure" style="margin:24px auto 0;color:var(--muted);max-width:420px;">One image, one quote, an ocean of navy. The composition rejects the full-bleed hero.</p>
+      </div>
+      <div class="mock-cards">
+        <div class="c"><div class="img" style="background:linear-gradient(135deg,#2b3766,#222A4C);"></div><p>A cove reached only at low tide.</p><div class="m">By the sea</div></div>
+        <div class="c"><div class="img" style="background:linear-gradient(135deg,#36614D,#222A4C);"></div><p>Old-growth stands, kept in shade.</p><div class="m">Evergreen</div></div>
+        <div class="c"><div class="img" style="background:linear-gradient(135deg,#3a4680,#1F2B5E);"></div><p>The working harbour at first light.</p><div class="m">Harbour</div></div>
+      </div>
+      <div class="mock-cta"><button type="button">Begin the archive</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:80px 0 60px;}
+#footer .brand{font-family:var(--font-label);text-transform:uppercase;font-size:20px;letter-spacing:0.5px;}
+#footer .src{color:var(--muted);font-size:14px;margin-top:16px;}
+#footer .src a{color:var(--muted);}
+#footer .credit{color:var(--muted);font-size:13px;margin-top:8px;}
+</style>
+<footer id="footer" aria-label="Footer">
+  <div class="wrap">
+    <div class="brand">Navy Ledger Editorial</div>
+    <div class="src"><a href="https://realevate.agency/">realevate.agency</a></div>
+    <div class="credit">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.motion-cell').forEach(function(cell){
+  cell.addEventListener('click',function(){});
+});
+</script>
+</body>
+</html>

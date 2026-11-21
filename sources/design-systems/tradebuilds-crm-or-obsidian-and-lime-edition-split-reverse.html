@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>TradeBuilds CRM | Obsidian &amp; Lime Edition (Split-Reverse) — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#0C0C0C; color:#FFFFFF; font-family:'Space Grotesk',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Space Grotesk',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Space Grotesk',sans-serif; font-size: 22px; border-bottom: 1px solid #D8D8D8; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#D8D8D8; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#D8D8D8; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#000000; border: 1px solid #D8D8D8; border-radius:16px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#D8D8D8; }
+  .swatch-meta p { color:#D8D8D8; font-size: 12px; }
+  .specimen { border: 1px solid #D8D8D8; border-radius:16px; padding: 20px; background:#000000; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#D8D8D8; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#D8D8D8; }
+  .bar { height: 10px; background:#FFFFFF; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #FFFFFF; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#000000; border: 1px solid #D8D8D8; border-radius:16px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #FFFFFF; }
+  .btn-primary { background:#FFFFFF; color:#0C0C0C; }
+  .btn-secondary { background: transparent; color:#FFFFFF; }
+  footer { border-top: 1px solid #D8D8D8; padding-top: 20px; font-size: 13px; color:#D8D8D8; }
+  footer a { color:#FFFFFF; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · dark mode</div>
+    <h1>TradeBuilds CRM | Obsidian &amp; Lime Edition (Split-Reverse)</h1>
+    <p class="tagline">Near-black brutalist-technical system with a rationed acid-lime accent, oversized condensed display type, and a persistent hairline grid texture.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#0C0C0C"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#0C0C0C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D8D8D8"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#D8D8D8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#CCFF00"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#CCFF00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#10B981"></div>
+        <div class="swatch-meta"><strong>accent-secondary</strong><code>#10B981</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Space Grotesk',sans-serif;font-size:120px;font-weight:700;line-height:0.82">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Space Grotesk · 120px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Space Grotesk',sans-serif;font-size:72px;font-weight:700;line-height:0.85">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Space Grotesk · 72px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Space Grotesk',sans-serif;font-size:24px;font-weight:300;line-height:1.63">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Space Grotesk · 24px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;line-height:1.56">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Space Grotesk · 18px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'JetBrains Mono',sans-serif;font-size:12px;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · JetBrains Mono · 12px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:16px">card<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:40px">card-lg<br><code>40px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#D8D8D8;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

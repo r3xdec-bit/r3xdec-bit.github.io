@@ -1,0 +1,790 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ember Ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:#180000;
+  --surface-raised:#300000;
+  --text-primary:#FFFFFF;
+  --text-secondary:#767676;
+  --accent:#D32800;
+  --accent-alt:#FC6D01;
+  --accent-tertiary:#F53F16;
+  --positive:#0CBE4D;
+  --link:#0000EE;
+  --hairline:#767676;
+  --r-control:12px;
+  --r-card:20px;
+  --r-pill:9999px;
+  --r-capsule:100px;
+  --r-button-alt:30px;
+  --r-bar:60px;
+  --space-base:8px;
+  --space-sm:4px;
+  --space-md:12px;
+  --gap:24px;
+  --section-pad:100px;
+  --maxw:1320px;
+  --ease:cubic-bezier(0.22,0.61,0.36,1);
+  --ember:linear-gradient(116deg,rgb(211,40,0) 0%,rgba(211,40,0,0.3) 100%);
+  --cta-grad:linear-gradient(129deg,rgb(0,0,0) 0%,rgb(30,6,0) 100%);
+  --glass:rgba(10,10,10,0.6);
+  --card-shadow:rgba(0,0,0,0.17) 0px 0.6px 1.57px -1.5px,rgba(0,0,0,0.14) 0px 2.29px 5.95px -3px,rgba(0,0,0,0.02) 0px 10px 26px -4.5px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Manrope",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--accent);
+  border-radius:var(--r-pill);
+  padding:8px 18px;font-size:14px;color:var(--text-primary);
+}
+.d-lg{font-size:64px;font-weight:400;line-height:1.2;letter-spacing:-2.5px}
+.h-md{font-size:52px;font-weight:400;line-height:1.2;letter-spacing:-0.5px}
+.l-md{font-size:32px;font-weight:500;line-height:1.28;letter-spacing:-0.5px}
+.body{font-size:16px;font-weight:400;line-height:1.6}
+.dim{color:rgba(255,255,255,0.32)}
+.muted{color:var(--text-secondary)}
+
+/* navbar */
+.navbar{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:107px;border-radius:0;
+  background:transparent;
+  display:flex;align-items:center;
+  backdrop-filter:blur(2px);
+}
+.navbar .inner{max-width:var(--maxw);margin:0 auto;width:100%;padding:0 24px;display:flex;align-items:center;gap:40px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:600;letter-spacing:-0.5px}
+.logo iconify-icon{color:var(--accent);font-size:26px}
+.nav-links{display:flex;gap:28px;margin-left:8px}
+.nav-links a{color:var(--text-primary);font-size:15px;opacity:0.85}
+.nav-links a:hover{opacity:1}
+.nav-cta{
+  margin-left:auto;
+  background:var(--accent);color:var(--link);
+  border:none;border-radius:60px;height:59px;padding:0 28px;
+  font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;
+  transition:opacity .3s var(--ease);
+}
+.nav-cta:hover{opacity:0.88}
+
+/* hero */
+#hero{padding:72px 0 0;position:relative}
+.hero-inner{text-align:center;padding-bottom:40px}
+.hero-inner .eyebrow{margin-bottom:28px}
+.hero-h{margin:0 auto;max-width:14ch}
+.hero-sub{max-width:52ch;margin:24px auto 36px;color:var(--text-secondary);font-size:18px}
+.hero-cta{
+  background:var(--accent);color:#fff;border:none;
+  border-radius:8px;height:48px;padding:0 28px;
+  font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;
+  transition:opacity .3s var(--ease);
+}
+.hero-cta:hover{opacity:0.9}
+.hero-ctas{display:flex;gap:16px;justify-content:center;align-items:center;flex-wrap:wrap}
+.hero-ghost{color:var(--text-primary);font-size:16px;display:inline-flex;align-items:center;gap:8px;opacity:0.8}
+.hero-ghost:hover{opacity:1}
+.device{
+  max-width:1000px;margin:56px auto -80px;
+  height:360px;border-radius:var(--r-card);
+  background:var(--glass);backdrop-filter:blur(20px);
+  box-shadow:inset 0 0 0 1px rgb(0,0,0),var(--card-shadow);
+  position:relative;overflow:hidden;
+}
+.device::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,0.85) 100%);z-index:2;
+}
+.device .panel{position:absolute;border-radius:14px;background:var(--ember);opacity:0.9}
+.device .p1{top:32px;left:40px;width:260px;height:160px}
+.device .p2{top:32px;left:320px;width:200px;height:72px;background:var(--surface-raised)}
+.device .p3{top:120px;left:320px;width:200px;height:72px;background:var(--surface);border:1px solid var(--hairline)}
+.device .p4{bottom:48px;left:40px;width:480px;height:80px;background:var(--glass);backdrop-filter:blur(2px);border:1px solid var(--hairline)}
+.device .tag{position:absolute;z-index:3;bottom:28px;left:48px;font-size:14px;color:#fff}
+
+section{padding:var(--section-pad) 0}
+.band-head{max-width:720px;margin-bottom:48px}
+.band-head .eyebrow{margin-bottom:22px}
+.band-head p{color:var(--text-secondary);margin-top:16px}
+
+@media(max-width:1024px){
+  .d-lg{font-size:52px;letter-spacing:-1.5px}
+  .h-md{font-size:40px}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .d-lg{font-size:40px;letter-spacing:-1px}
+  .h-md{font-size:32px}
+  .l-md{font-size:26px}
+  section{padding:64px 0}
+  .navbar{height:80px}
+  .device{height:260px;margin-bottom:-60px}
+}
+@media(max-width:640px){
+  .d-lg{font-size:32px}
+  .device .p1,.device .p2,.device .p3,.device .p4{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="navbar" data-tier-a-component="navbar">
+  <div class="inner">
+    <a class="logo" href="#hero" aria-label="Ember Ledger home">
+      <iconify-icon icon="lucide:flame" aria-hidden="true"></iconify-icon>
+      Ember Ledger
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#palette">Markets</a>
+      <a href="#components">Platform</a>
+      <a href="#surface-depth">Security</a>
+      <a href="#motion">Docs</a>
+      <a href="#composition">Pricing</a>
+    </nav>
+    <button class="nav-cta" data-tier-a-component="button-nav-cta">Open Ledger</button>
+  </div>
+</header>
+
+<main>
+<section id="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon>Infrastructure for on-chain capital</span>
+    <h1 class="d-lg hero-h"><span class="dim">Settle every position</span><br>on one dark ledger.</h1>
+    <p class="hero-sub">Ember Ledger is the near-black trading surface that keeps your book legible — rationed signal, zero noise.</p>
+    <div class="hero-ctas">
+      <button class="hero-cta" data-tier-a-component="button-primary-hero">Start settling</button>
+      <a href="#components" class="hero-ghost">See the system <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+    </div>
+    <div class="device" role="img" aria-label="Device mockup showing the Ember Ledger market dashboard">
+      <div class="panel p1"></div>
+      <div class="panel p2"></div>
+      <div class="panel p3"></div>
+      <div class="panel p4"></div>
+      <span class="tag">Live book · 3 open positions</span>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface);border-top:1px solid rgba(118,118,118,0.25)}
+.pal-group{margin-bottom:48px}
+.pal-group h3{font-size:14px;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:20px}
+.swatches{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.swatch{border-radius:var(--r-card);overflow:hidden;background:var(--surface-raised);border:1px solid rgba(118,118,118,0.3)}
+.swatch .chip{height:96px}
+.swatch .meta{padding:14px 16px}
+.swatch .name{font-size:15px;font-weight:600}
+.swatch .val{font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums;margin-top:2px}
+.swatch .use{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.5}
+.checker{background-image:linear-gradient(45deg,#333 25%,transparent 25%),linear-gradient(-45deg,#333 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#333 75%),linear-gradient(-45deg,transparent 75%,#333 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+@media(max-width:768px){.swatches{grid-template-columns:repeat(2,1fr)}}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">Palette</span>
+      <h2 class="h-md">One ember, rationed.</h2>
+      <p>Black dominates the field. Maroon carries elevation. Orange is spent only where it earns attention.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#000"></div><div class="meta"><div class="name">background</div><div class="val">#000000</div><div class="use">Page and section field — ~71% of rendered area.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#180000"></div><div class="meta"><div class="name">surface</div><div class="val">#180000</div><div class="use">Card fills and the next elevation tier.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#300000"></div><div class="meta"><div class="name">surface-raised</div><div class="val">#300000</div><div class="use">Deepest maroon beneath raised panels.</div></div></div>
+        <div class="swatch"><div class="chip checker" style="position:relative"><div style="position:absolute;inset:0;background:var(--glass);backdrop-filter:blur(20px)"></div></div><div class="meta"><div class="name">glass-panel</div><div class="val">rgba(10,10,10,0.6)</div><div class="use">Frosted panel, blur(20px), inset hairline edge.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#FFF"></div><div class="meta"><div class="name">text-primary</div><div class="val">#FFFFFF</div><div class="use">All primary copy and icon ink.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#767676"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#767676</div><div class="use">Muted labels, captions, hairline dividers.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#D32800"></div><div class="meta"><div class="name">accent</div><div class="val">#D32800</div><div class="use">Brand ember — pills, CTAs, gradient washes.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FC6D01"></div><div class="meta"><div class="name">accent-alt</div><div class="val">#FC6D01</div><div class="use">Warmer ember step for gradient range.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F53F16"></div><div class="meta"><div class="name">accent-tertiary</div><div class="val">#F53F16</div><div class="use">Mid ember within the gradient family.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#0CBE4D"></div><div class="meta"><div class="name">positive</div><div class="val">#0CBE4D</div><div class="use">Sole success tone — market gain figures.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#0000EE"></div><div class="meta"><div class="name">link</div><div class="val">#0000EE</div><div class="use">Ink-on-fill link blue — nav CTA text only.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{border-top:1px solid rgba(118,118,118,0.25)}
+.spec{border-bottom:1px solid rgba(118,118,118,0.3);padding:32px 0}
+.spec .specimen{margin-bottom:16px}
+.spec .metrics{display:flex;flex-wrap:wrap;gap:20px;font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.spec .metrics span strong{color:var(--text-primary);font-weight:500}
+.weight-ramp{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px}
+.weight-ramp div{font-size:40px;letter-spacing:-1px}
+.serif-note{font-family:"Times New Roman",serif;font-style:italic;font-size:28px}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">Type scale</span>
+      <h2 class="h-md">Manrope, held tight.</h2>
+      <p>Hierarchy built from size and opacity, never weight. One family does all the work.</p>
+    </div>
+
+    <div class="spec">
+      <div class="specimen d-lg">Settle every position</div>
+      <div class="metrics"><span><strong>display-lg</strong></span><span>64px</span><span>400</span><span>1.2</span><span>-2.5px</span></div>
+    </div>
+    <div class="spec">
+      <div class="specimen h-md">Markets, cleared in one place</div>
+      <div class="metrics"><span><strong>headline-md</strong></span><span>52px</span><span>400</span><span>1.2</span><span>-0.5px</span></div>
+    </div>
+    <div class="spec">
+      <div class="specimen l-md">Daily settlement volume</div>
+      <div class="metrics"><span><strong>label-md</strong></span><span>32px</span><span>500</span><span>1.28</span><span>-0.5px</span></div>
+    </div>
+    <div class="spec">
+      <div class="specimen body" style="max-width:60ch">Ember Ledger keeps the surface near-black so the one ember accent reads instantly. Body copy sits at a generous line-height for legibility against the dark field.</div>
+      <div class="metrics"><span><strong>body-md</strong></span><span>16px</span><span>400</span><span>1.6</span></div>
+    </div>
+    <div class="spec" style="border-bottom:none">
+      <div class="specimen serif-note">a rare editorial interruption</div>
+      <div class="metrics"><span><strong>accent-serif</strong></span><span>Times New Roman</span><span>italic</span><span>brand-voice emphasis only</span></div>
+    </div>
+
+    <div class="weight-ramp">
+      <div style="font-weight:400">Regular 400</div>
+      <div style="font-weight:500">Medium 500</div>
+      <div style="font-weight:600">Semibold 600</div>
+      <div style="font-weight:700">Bold 700</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface);border-top:1px solid rgba(118,118,118,0.25)}
+.comp{margin-bottom:96px}
+.comp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:28px;flex-wrap:wrap}
+.comp-head h3{font-size:28px;letter-spacing:-0.5px;font-weight:600}
+.comp-head .count{font-size:13px;color:var(--text-secondary)}
+.speccard{
+  background:var(--background);border:1px solid rgba(118,118,118,0.3);
+  border-radius:var(--r-control);padding:14px 16px;font-size:12.5px;
+  color:var(--text-secondary);line-height:1.7;font-variant-numeric:tabular-nums;
+  margin-top:24px;
+}
+.speccard b{color:var(--text-primary);font-weight:500}
+.demo{background:var(--background);border:1px solid rgba(118,118,118,0.3);border-radius:var(--r-card);padding:40px}
+
+/* button matrix */
+.matrix{overflow-x:auto}
+.matrix table{border-collapse:collapse;width:100%;min-width:620px}
+.matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid rgba(118,118,118,0.25)}
+.matrix th{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);font-weight:500}
+.matrix td.rowlabel{font-size:14px;color:var(--text-primary);white-space:nowrap}
+.btn-nav{background:var(--accent);color:var(--link);border:none;border-radius:60px;height:59px;padding:0 24px;font-family:inherit;font-weight:600;cursor:pointer;transition:opacity .3s var(--ease)}
+.btn-hero{background:var(--accent);color:#fff;border:none;border-radius:8px;height:48px;padding:0 24px;font-family:inherit;font-weight:600;cursor:pointer;transition:opacity .3s var(--ease)}
+.btn-foot{background:var(--accent);color:#000;border:none;border-radius:60px;height:52px;padding:13px 17px 13px 14px;font-family:inherit;font-weight:600;cursor:pointer;transition:opacity .3s var(--ease)}
+.st-hover{opacity:0.88}
+.st-active{opacity:0.72}
+.st-disabled{opacity:0.4;cursor:not-allowed}
+button:hover:not(:disabled){opacity:0.88}
+
+/* glass panel */
+.glass-panel{background:var(--glass);backdrop-filter:blur(20px);border-radius:var(--r-card);box-shadow:inset 0 0 0 1px rgb(0,0,0),var(--card-shadow);padding:32px;max-width:420px}
+.glass-panel .l-md{margin-bottom:10px}
+
+/* logo strip */
+.logo-strip{overflow:hidden;position:relative;mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.logo-track{display:flex;gap:var(--gap);width:max-content;animation:marquee 28s linear infinite}
+.logo-chip{flex:0 0 auto;width:200px;height:96px;background:var(--surface-raised);border:1px solid rgba(118,118,118,0.4);border-radius:var(--r-card);display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-weight:600}
+.logo-chip iconify-icon{color:var(--accent);font-size:24px}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 12px))}}
+
+/* stat rows */
+.stat-rows{max-width:760px}
+.stat-row{display:flex;align-items:baseline;justify-content:space-between;padding:28px 0;border-bottom:1px solid var(--hairline)}
+.stat-row:first-child{border-top:1px solid var(--hairline)}
+.stat-num{font-size:64px;font-weight:400;letter-spacing:-2.5px;line-height:1}
+.stat-lab{font-size:16px;color:var(--text-secondary);text-align:right;max-width:40%}
+
+/* feature bento */
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.bento .full{grid-column:1 / -1;display:flex;gap:28px;align-items:stretch}
+.gcard{background:var(--ember);border-radius:var(--r-card);padding:24px;position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:flex-end}
+.gcard .illus{position:absolute;top:24px;left:24px;color:rgba(255,255,255,0.9);font-size:52px}
+.gcard h4{font-size:24px;font-weight:600;letter-spacing:-0.5px;margin-bottom:8px}
+.gcard p{font-size:15px;color:rgba(255,255,255,0.85);max-width:40ch}
+.bento .full .gcard:first-child{flex:1 1 60%}
+.bento .full .gcard:last-child{flex:1 1 40%}
+
+/* platform pairing */
+.pair-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap);margin-bottom:var(--gap)}
+.pair-3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.pcard{background:var(--ember);border-radius:var(--r-card);padding:24px;min-height:200px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden}
+.pcard .illus{position:absolute;top:24px;left:24px;font-size:40px;color:rgba(255,255,255,0.9)}
+.pcard h4{font-size:20px;font-weight:600;margin-bottom:6px}
+.pcard p{font-size:14px;color:rgba(255,255,255,0.85)}
+
+/* coin grid */
+.coin-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.coin{background:var(--surface);border:1px solid var(--hairline);border-radius:var(--r-card);padding:24px;display:flex;flex-direction:column}
+.coin .badge{width:40px;height:40px;border-radius:var(--r-pill);background:var(--surface-raised);display:flex;align-items:center;justify-content:center;color:var(--accent-alt);font-size:20px;margin-bottom:16px}
+.coin .tick{font-size:18px;font-weight:600}
+.coin .sub{font-size:13px;color:var(--text-secondary);margin-bottom:24px}
+.coin .pct{color:var(--positive);font-size:14px;font-weight:600;margin-bottom:4px}
+.coin .price{font-size:28px;font-weight:700;letter-spacing:-0.5px}
+
+/* email capture */
+.capture{display:flex;gap:12px;max-width:520px;flex-wrap:wrap}
+.capture input{flex:1;min-width:200px;height:52px;border-radius:var(--r-capsule);background:var(--surface);border:1px solid var(--hairline);color:#fff;padding:0 22px;font-family:inherit;font-size:15px}
+.capture input::placeholder{color:var(--text-secondary)}
+.capture button{background:var(--accent);color:#fff;border:none;border-radius:var(--r-capsule);height:52px;padding:0 28px;font-family:inherit;font-weight:600;cursor:pointer;transition:opacity .3s var(--ease)}
+
+/* cta band */
+.cta-band{background:var(--cta-grad);border-radius:var(--r-card);padding:100px 24px;text-align:center}
+.cta-band h3{margin-bottom:16px}
+.cta-band p{color:var(--text-secondary);max-width:46ch;margin:0 auto 32px}
+
+@media(max-width:1024px){.coin-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:768px){
+  .bento,.pair-2{grid-template-columns:1fr}
+  .bento .full{flex-direction:column}
+  .pair-3{grid-template-columns:1fr}
+  .coin-grid{grid-template-columns:1fr}
+  .cta-band{padding:60px 20px}
+}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">Components</span>
+      <h2 class="h-md">The full inventory.</h2>
+      <p>Every family rendered live, true to its measured composition.</p>
+    </div>
+
+    <!-- Navbar -->
+    <div class="comp">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · edge-to-edge · 107px</span></div>
+      <div class="demo" style="padding:0" data-tier-a-component="navbar">
+        <div style="height:107px;display:flex;align-items:center;padding:0 28px;gap:36px;border-radius:0">
+          <span class="logo"><iconify-icon icon="lucide:flame" aria-hidden="true"></iconify-icon>Ember Ledger</span>
+          <nav class="nav-links" aria-label="Demo navigation" style="display:flex">
+            <a href="#components">Markets</a><a href="#components">Platform</a><a href="#components">Security</a><a href="#components">Docs</a><a href="#components">Pricing</a>
+          </nav>
+          <button class="nav-cta" style="margin-left:auto">Open Ledger</button>
+        </div>
+      </div>
+      <div class="speccard">--navbar height <b>107</b> · radius <b>0px</b> all corners · bg <b>transparent</b> · position <b>sticky</b> · items <b>7</b></div>
+    </div>
+
+    <!-- Nav CTA button -->
+    <div class="comp">
+      <div class="comp-head"><h3>Nav CTA Pill Button</h3><span class="count">×1</span></div>
+      <div class="demo" data-tier-a-component="button-nav-cta">
+        <button class="btn-nav">Open Ledger</button>
+      </div>
+      <div class="speccard">--button-nav-cta · fill <b>#D32800</b> · text <b>#0000EE</b> · radius <b>60px</b> · height <b>59</b> · motion <b>ease-out 0.3s</b></div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp">
+      <div class="comp-head"><h3>Button variants × states</h3><span class="count">3 documented families</span></div>
+      <div class="demo matrix">
+        <table>
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rowlabel">Hero primary<br><span class="muted" style="font-size:12px">flat solid · r8 · 48h</span></td>
+              <td><button class="btn-hero">Start settling</button></td>
+              <td><button class="btn-hero st-hover">Start settling</button></td>
+              <td><button class="btn-hero st-active">Start settling</button></td>
+              <td><button class="btn-hero st-disabled" disabled>Start settling</button></td>
+            </tr>
+            <tr>
+              <td class="rowlabel">Nav CTA<br><span class="muted" style="font-size:12px">pill · r60 · 59h · ink blue</span></td>
+              <td><button class="btn-nav">Open Ledger</button></td>
+              <td><button class="btn-nav st-hover">Open Ledger</button></td>
+              <td><button class="btn-nav st-active">Open Ledger</button></td>
+              <td><button class="btn-nav st-disabled" disabled>Open Ledger</button></td>
+            </tr>
+            <tr>
+              <td class="rowlabel">Footer prominent<br><span class="muted" style="font-size:12px">pill · r60 · 52h · ink black</span></td>
+              <td><button class="btn-foot">Subscribe</button></td>
+              <td><button class="btn-foot st-hover">Subscribe</button></td>
+              <td><button class="btn-foot st-active">Subscribe</button></td>
+              <td><button class="btn-foot st-disabled" disabled>Subscribe</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="speccard" data-tier-a-component="button-primary-hero">--button-primary-hero · fill <b>#D32800</b> · text <b>#FFFFFF</b> · radius <b>8px</b> · height <b>48</b> · motion <b>ease-out 0.3s</b></div>
+      <div class="speccard" data-tier-a-component="button-footer-prominent">--button-footer-prominent · fill <b>#D32800</b> · text <b>#000000</b> · radius <b>60px</b> · height <b>52</b> · padding <b>13 17 13 14</b></div>
+    </div>
+
+    <!-- Glass panel -->
+    <div class="comp">
+      <div class="comp-head"><h3>Glass Panel Card</h3><span class="count">×1 · blur(20px)</span></div>
+      <div class="demo" data-tier-a-component="card-glass-panel">
+        <div class="glass-panel">
+          <div class="l-md">Frosted surface</div>
+          <p class="body muted">rgba(10,10,10,0.6) over black with a 1px inset edge and a soft triple-layer elevation shadow.</p>
+        </div>
+      </div>
+      <div class="speccard">--card-glass-panel · bg <b>rgba(10,10,10,0.6)</b> · backdrop <b>blur(20px)</b> · radius <b>20px</b> · border <b>inset 1px #000</b> · shadow <b>0.6/2.3/10px</b></div>
+    </div>
+
+    <!-- Logo strip -->
+    <div class="comp">
+      <div class="comp-head"><h3>Logo Strip Marquee</h3><span class="count">×9 chips · continuous</span></div>
+      <div class="demo" style="padding:28px" data-tier-a-component="logo-strip">
+        <div class="logo-strip">
+          <div class="logo-track">
+            <div class="logo-chip"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon>Nodeworks</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:box" aria-hidden="true"></iconify-icon>Blockline</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Voltpay</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon>Orbital</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Keyvault</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon>Delta</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:circle-dot" aria-hidden="true"></iconify-icon>Coreum</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon>Stackly</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:command" aria-hidden="true"></iconify-icon>Mesh</div>
+            <!-- duplicate for seamless loop -->
+            <div class="logo-chip"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon>Nodeworks</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:box" aria-hidden="true"></iconify-icon>Blockline</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Voltpay</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon>Orbital</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Keyvault</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon>Delta</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:circle-dot" aria-hidden="true"></iconify-icon>Coreum</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon>Stackly</div>
+            <div class="logo-chip"><iconify-icon icon="lucide:command" aria-hidden="true"></iconify-icon>Mesh</div>
+          </div>
+        </div>
+      </div>
+      <div class="speccard">chip bg <b>#300000</b> · border <b>1px #767676</b> · radius <b>20px</b> · motion <b>linear marquee</b></div>
+    </div>
+
+    <!-- Stat rows -->
+    <div class="comp">
+      <div class="comp-head"><h3>Stat / Numeral Row</h3><span class="count">×3 · stacked</span></div>
+      <div class="demo" data-tier-a-component="stat-numeral-row">
+        <div class="stat-rows">
+          <div class="stat-row"><span class="stat-num">$4.2B</span><span class="stat-lab">Settled on-chain across all markets</span></div>
+          <div class="stat-row"><span class="stat-num">120k</span><span class="stat-lab">Positions cleared every day</span></div>
+          <div class="stat-row"><span class="stat-num">99.99%</span><span class="stat-lab">Ledger uptime over the trailing year</span></div>
+        </div>
+      </div>
+      <div class="speccard">numeral <b>64px/400/-2.5px</b> · label <b>body-md</b> · divider <b>1px #767676</b> · layout <b>stacked rows</b></div>
+    </div>
+
+    <!-- Feature bento -->
+    <div class="comp">
+      <div class="comp-head"><h3>Feature Gradient Bento Card</h3><span class="count">×3 · [1 full][2 even]</span></div>
+      <div class="demo" data-tier-a-component="card-feature-gradient">
+        <div class="bento">
+          <div class="full">
+            <div class="gcard">
+              <iconify-icon class="illus" icon="lucide:network" aria-hidden="true"></iconify-icon>
+              <h4>Unified settlement graph</h4>
+              <p>Every venue, counterparty and position resolves to one node graph you can reason about.</p>
+            </div>
+            <div class="gcard">
+              <iconify-icon class="illus" icon="lucide:activity" aria-hidden="true"></iconify-icon>
+              <h4>Live exposure</h4>
+              <p>Net risk recomputed on each fill.</p>
+            </div>
+          </div>
+          <div class="gcard">
+            <iconify-icon class="illus" icon="lucide:git-branch" aria-hidden="true"></iconify-icon>
+            <h4>Routing</h4>
+            <p>Orders fan out across venues automatically.</p>
+          </div>
+          <div class="gcard">
+            <iconify-icon class="illus" icon="lucide:lock" aria-hidden="true"></iconify-icon>
+            <h4>Custody</h4>
+            <p>Keys stay sharded, never pooled.</p>
+          </div>
+        </div>
+      </div>
+      <div class="speccard">--card-feature-gradient · bg <b>linear-gradient(116deg,#D32800,rgba(211,40,0,.3))</b> · radius <b>20px</b> · padding <b>24px</b> · layout <b>1 full + 2 even</b></div>
+    </div>
+
+    <!-- Platform pairing -->
+    <div class="comp">
+      <div class="comp-head"><h3>Platform Pairing Band Card</h3><span class="count">×5 · [2 even][3 even]</span></div>
+      <div class="demo" data-tier-a-component="platform-pairing-card">
+        <div class="pair-2">
+          <div class="pcard"><iconify-icon class="illus" icon="lucide:server" aria-hidden="true"></iconify-icon><h4>Infrastructure</h4><p>Colocated matching for sub-ms settlement.</p></div>
+          <div class="pcard"><iconify-icon class="illus" icon="lucide:shield-check" aria-hidden="true"></iconify-icon><h4>Security</h4><p>Audited key management end to end.</p></div>
+        </div>
+        <div class="pair-3">
+          <div class="pcard"><iconify-icon class="illus" icon="lucide:key" aria-hidden="true"></iconify-icon><h4>Keys</h4><p>HSM-backed signing.</p></div>
+          <div class="pcard"><iconify-icon class="illus" icon="lucide:eye" aria-hidden="true"></iconify-icon><h4>Monitoring</h4><p>Real-time anomaly watch.</p></div>
+          <div class="pcard"><iconify-icon class="illus" icon="lucide:file-check" aria-hidden="true"></iconify-icon><h4>Audits</h4><p>Continuous proof of reserves.</p></div>
+        </div>
+      </div>
+      <div class="speccard">ember gradient family · radius <b>20px</b> · layout <b>2 even + 3 even</b> (denser scale)</div>
+    </div>
+
+    <!-- Coin grid -->
+    <div class="comp">
+      <div class="comp-head"><h3>Market / Coin Data Card</h3><span class="count">×8 · uniform 4-up</span></div>
+      <div class="demo" data-tier-a-component="card-coin-list">
+        <div class="coin-grid">
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:bitcoin" aria-hidden="true"></iconify-icon></div><div class="tick">BTC</div><div class="sub">Bitcoin</div><div class="pct">+2.4%</div><div class="price">$64,210</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:gem" aria-hidden="true"></iconify-icon></div><div class="tick">ETH</div><div class="sub">Ethereum</div><div class="pct">+1.8%</div><div class="price">$3,420</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon></div><div class="tick">SOL</div><div class="sub">Solana</div><div class="pct">+5.1%</div><div class="price">$148.90</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon></div><div class="tick">AVAX</div><div class="sub">Avalanche</div><div class="pct">+3.3%</div><div class="price">$38.12</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon></div><div class="tick">DOT</div><div class="sub">Polkadot</div><div class="pct">+0.9%</div><div class="price">$7.44</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:link" aria-hidden="true"></iconify-icon></div><div class="tick">LINK</div><div class="sub">Chainlink</div><div class="pct">+4.0%</div><div class="price">$18.27</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon></div><div class="tick">MATIC</div><div class="sub">Polygon</div><div class="pct">+2.1%</div><div class="price">$0.72</div></div>
+          <div class="coin"><div class="badge"><iconify-icon icon="lucide:droplet" aria-hidden="true"></iconify-icon></div><div class="tick">UNI</div><div class="sub">Uniswap</div><div class="pct">+6.5%</div><div class="price">$11.08</div></div>
+        </div>
+      </div>
+      <div class="speccard">--card-coin-list · bg <b>#180000</b> · radius <b>20px</b> · padding <b>24px</b> · border <b>1px #767676</b> · pct <b>#0CBE4D</b> · grid <b>uniform 4-up</b></div>
+    </div>
+
+    <!-- Email capture -->
+    <div class="comp">
+      <div class="comp-head"><h3>Email-Capture / Subscribe Molecule</h3><span class="count">×1</span></div>
+      <div class="demo" data-tier-a-component="email-capture-band">
+        <form class="capture" onsubmit="return false">
+          <label for="sub-demo" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <input id="sub-demo" type="email" placeholder="you@fund.com">
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <div class="speccard">input bg <b>#180000</b> · border <b>1px #767676</b> · radius <b>100px</b> · height <b>52</b> · button fill <b>#D32800</b></div>
+    </div>
+
+    <!-- CTA band -->
+    <div class="comp">
+      <div class="comp-head"><h3>CTA Callout Band</h3><span class="count">×1 · darkest gradient</span></div>
+      <div class="demo" style="padding:0;border:none" data-tier-a-component="footer-cta-band">
+        <div class="cta-band">
+          <h3 class="h-md">Bring your book on-chain.</h3>
+          <p>One ledger, rationed signal, no noise. Start settling in minutes.</p>
+          <button class="btn-hero">Start settling</button>
+        </div>
+      </div>
+      <div class="speccard">--footer-cta-band · bg <b>linear-gradient(129deg,#000,#1E0600)</b> · radius <b>20px</b> · padding <b>100px 24px</b></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{border-top:1px solid rgba(118,118,118,0.25)}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.depth-card{padding:32px;background:var(--surface);min-height:200px;display:flex;flex-direction:column;justify-content:flex-end}
+.depth-card .cap{font-size:13px;color:var(--text-secondary);margin-top:8px}
+.depth-card h4{font-size:18px;font-weight:600}
+.r-control{border-radius:var(--r-control)}
+.r-card{border-radius:var(--r-card)}
+.r-pill{border-radius:var(--r-pill)}
+.shadow-soft{box-shadow:var(--card-shadow)}
+.shadow-glass{background:var(--glass);backdrop-filter:blur(20px);box-shadow:inset 0 0 0 1px #000,var(--card-shadow)}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">Surface &amp; depth</span>
+      <h2 class="h-md">Radii and elevation.</h2>
+      <p>Depth is carried by soft layered shadow and a hairline edge — never by new hues.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card r-control" style="border:1px solid var(--hairline)"><h4>Control corner</h4><div class="cap">radius --control · 12px</div></div>
+      <div class="depth-card r-card" style="border:1px solid var(--hairline)"><h4>Card corner</h4><div class="cap">radius --card · 20px</div></div>
+      <div class="depth-card r-pill" style="border:1px solid var(--hairline);align-items:center;text-align:center"><h4>Pill</h4><div class="cap">radius --pill · 9999px</div></div>
+      <div class="depth-card r-card shadow-soft"><h4>Soft elevation</h4><div class="cap">triple-layer · 0.6 / 2.3 / 10px</div></div>
+      <div class="depth-card r-card shadow-glass"><h4>Glass elevation</h4><div class="cap">blur(20px) · inset 1px edge</div></div>
+      <div class="depth-card r-card" style="background:var(--surface-raised)"><h4>Raised maroon</h4><div class="cap">surface-raised · #300000</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface);border-top:1px solid rgba(118,118,118,0.25)}
+.motion-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:var(--gap)}
+.motion-card{background:var(--background);border:1px solid rgba(118,118,118,0.3);border-radius:var(--r-card);padding:32px}
+.motion-card h4{font-size:18px;font-weight:600;margin-bottom:6px}
+.motion-card .cap{font-size:13px;color:var(--text-secondary);margin-bottom:24px}
+.mover{width:52px;height:52px;border-radius:var(--r-control);background:var(--accent)}
+.mover.run{animation:slide 1.3s var(--ease)}
+@keyframes slide{0%{transform:translateX(0)}50%{transform:translateX(220px)}100%{transform:translateX(0)}}
+.fade-demo{font-size:40px;letter-spacing:-1px}
+.fade-demo .l1{color:rgba(255,255,255,0.3)}
+.fade-demo.run .l1{animation:fadein 1.3s var(--ease)}
+@keyframes fadein{from{color:rgba(255,255,255,0.3)}to{color:#fff}}
+.replay{margin-top:24px;background:transparent;border:1px solid var(--hairline);color:#fff;border-radius:var(--r-pill);padding:8px 18px;font-family:inherit;cursor:pointer;font-size:14px}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">Motion</span>
+      <h2 class="h-md">Calm, eased, settling.</h2>
+      <p>No springy overshoot — everything resolves on one ease-out curve.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Ease-out settle</h4>
+        <div class="cap">cubic-bezier(0.22,0.61,0.36,1) · 0.3s</div>
+        <div class="mover" id="mover"></div>
+        <button class="replay" data-replay="mover">Replay</button>
+      </div>
+      <div class="motion-card">
+        <h4>Two-tone headline fade</h4>
+        <div class="cap">dim line → full white on enter</div>
+        <div class="fade-demo" id="fade"><span class="l1">Settle every position</span></div>
+        <button class="replay" data-replay="fade">Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{border-top:1px solid rgba(118,118,118,0.25)}
+.mock{border:1px solid rgba(118,118,118,0.3);border-radius:var(--r-card);overflow:hidden;background:var(--background)}
+.mock-nav{display:flex;align-items:center;gap:28px;padding:20px 28px}
+.mock-nav .nav-links{display:flex}
+.mock-hero{text-align:center;padding:64px 24px 48px}
+.mock-hero .d-lg{font-size:44px;letter-spacing:-1.5px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding:0 28px 48px}
+.mock-cta{background:var(--cta-grad);margin:0 28px 28px;border-radius:var(--r-card);padding:48px 24px;text-align:center}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-nav .nav-links{display:none}.mock-hero .d-lg{font-size:32px}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <div class="band-head">
+      <span class="eyebrow">In composition</span>
+      <h2 class="h-md">The system, assembled.</h2>
+      <p>Nav, hero, a card row, and a callout — built only from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo"><iconify-icon icon="lucide:flame" aria-hidden="true"></iconify-icon>Ember Ledger</span>
+        <nav class="nav-links" aria-label="Mock navigation"><a href="#composition">Markets</a><a href="#composition">Platform</a><a href="#composition">Docs</a></nav>
+        <button class="nav-cta" style="margin-left:auto;height:48px">Open Ledger</button>
+      </div>
+      <div class="mock-hero">
+        <span class="eyebrow" style="margin-bottom:20px">Live markets</span>
+        <h3 class="d-lg"><span class="dim">Trade the whole book</span><br>on one surface.</h3>
+        <p class="hero-sub" style="margin-bottom:28px">A single ember, rationed across a near-black field.</p>
+        <button class="hero-cta">Start settling</button>
+      </div>
+      <div class="mock-cards">
+        <div class="coin"><div class="badge"><iconify-icon icon="lucide:bitcoin" aria-hidden="true"></iconify-icon></div><div class="tick">BTC</div><div class="sub">Bitcoin</div><div class="pct">+2.4%</div><div class="price">$64,210</div></div>
+        <div class="gcard" style="min-height:180px"><iconify-icon class="illus" icon="lucide:network" aria-hidden="true"></iconify-icon><h4>Settlement graph</h4><p>One node graph for every venue.</p></div>
+        <div class="coin"><div class="badge"><iconify-icon icon="lucide:gem" aria-hidden="true"></iconify-icon></div><div class="tick">ETH</div><div class="sub">Ethereum</div><div class="pct">+1.8%</div><div class="price">$3,420</div></div>
+      </div>
+      <div class="mock-cta">
+        <h3 class="l-md" style="margin-bottom:16px">Bring your book on-chain.</h3>
+        <button class="btn-foot">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{border-top:1px solid rgba(118,118,118,0.25);background:transparent;padding:80px 0 48px}
+.foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 2fr;gap:var(--gap);margin-bottom:48px}
+.foot-brand .logo{margin-bottom:16px}
+.foot-brand p{color:var(--text-secondary);max-width:28ch}
+.foot-col h4{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:16px}
+.foot-col a{display:block;color:#fff;opacity:0.82;font-size:15px;margin-bottom:12px}
+.foot-col a:hover{opacity:1}
+.foot-sub h4{font-size:13px;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:16px}
+.foot-divider{border:none;border-top:1px solid var(--hairline);margin:0 0 24px}
+.foot-bottom{color:var(--text-secondary);font-size:14px}
+@media(max-width:768px){.foot-grid{grid-template-columns:1fr 1fr}.foot-sub{grid-column:1/-1}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <span class="logo"><iconify-icon icon="lucide:flame" aria-hidden="true"></iconify-icon>Ember Ledger</span>
+        <p>The near-black settlement surface for on-chain capital.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#components">Markets</a>
+        <a href="#components">Platform</a>
+        <a href="#components">Settlement</a>
+        <a href="#components">Custody</a>
+        <a href="#components">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#footer">About</a>
+        <a href="#footer">Security</a>
+        <a href="#footer">Docs</a>
+        <a href="#footer">Status</a>
+        <a href="#footer">Careers</a>
+        <a href="#footer">Contact</a>
+      </div>
+      <div class="foot-sub">
+        <h4>Stay posted</h4>
+        <form class="capture" onsubmit="return false">
+          <label for="foot-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <input id="foot-email" type="email" placeholder="you@fund.com">
+          <button type="submit" class="btn-foot" style="padding:0 24px">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <hr class="foot-divider">
+    <div class="foot-bottom">
+      <p>Ember Ledger · <a href="https://cryonix.framer.website/" style="color:#fff">cryonix.framer.website</a></p>
+      <p style="margin-top:6px">Design system captured and rendered by r3xdec.design</p>
+    </div>
+  </div>
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('[data-replay]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.getAttribute('data-replay'));
+    if(!el)return;
+    el.classList.remove('run');void el.offsetWidth;el.classList.add('run');
+  });
+});
+document.querySelectorAll('.mover,.fade-demo').forEach(function(el){
+  el.addEventListener('click',function(){el.classList.remove('run');void el.offsetWidth;el.classList.add('run');});
+});
+</script>
+</body>
+</html>

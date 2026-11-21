@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Send-It | Your Dashboard</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"><style>body{font-family:'Inter',sans-serif;background-color:#FFF8E1;color:#171717}.text-sapphire{color:#002D72}.bg-sapphire{background-color:#002D72}.border-sapphire{border-color:#002D72}.text-royal{color:#1E88E5}.bg-royal{background-color:#1E88E5}.text-golden{color:#F9A825}.bg-golden{background-color:#F9A825}.border-golden{border-color:#F9A825}.card-base{background-color:#FFFFFF;border:1px solid #E0DDD6;border-radius:16px;padding:24px;box-shadow:0 1px 2px rgba(0,0,0,0.05);transition:transform 200ms ease,box-shadow 200ms ease}.card-base:hover{box-shadow:0 4px 6px rgba(0,0,0,0.1);transform:translateY(-2px)}.btn-primary{background-color:#F9A825;color:#002D72;font-weight:700;padding:12px 24px;border-radius:10px;transition:all 150ms ease;display:inline-flex;align-items:center;justify-center;gap:8px}.btn-primary:hover{opacity:0.9;transform:scale(1.02)}.btn-primary:focus{outline:none;ring:2px;ring-color:#002D72;ring-offset:2px}.btn-secondary{background-color:transparent;color:#002D72;border:2px solid #002D72;font-weight:700;padding:10px 22px;border-radius:10px;transition:all 150ms ease;display:inline-flex;align-items:center;justify-center;gap:8px}.btn-secondary:hover{background-color:#F4F1EC}.no-scrollbar::-webkit-scrollbar{display:none}.no-scrollbar{-ms-overflow-style:none;scrollbar-width:none}@view-transition{navigation:auto}</style>
+<meta name="preview-version" content="e2501e16-91c0-4435-9c59-7f63f3eeb7e7" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.921Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "e2501e16-91c0-4435-9c59-7f63f3eeb7e7");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "e2501e16-91c0-4435-9c59-7f63f3eeb7e7",
+      timestamp: "2026-11-20T00:19:42.921Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "e2501e16-91c0-4435-9c59-7f63f3eeb7e7";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head><body class="antialiased"><div class="min-h-screen flex flex-col xl:flex-row bg-[#FFF8E1]"><div class="hidden xl:block w-[1440px] mx-auto min-h-screen relative"><header class="sticky top-0 z-50 bg-white border-b border-[#E0DDD6] h-16 flex items-center px-8 shadow-sm"><div class="flex-1 flex items-center gap-4"><a href="/" id="nav-logo" class="flex items-center gap-2"><div class="w-8 h-8 bg-sapphire rounded-lg flex items-center justify-center"><iconify-icon icon="lucide:truck" class="text-white text-xl"></iconify-icon></div><span class="text-xl font-black tracking-tighter text-sapphire uppercase">Send-It<span class="text-golden">.</span></span></a></div><nav class="flex-1 flex items-center justify-center gap-10"><a href="#" id="nav-send" class="text-sm font-bold text-sapphire relative pb-1 border-b-2 border-golden">Send</a><a href="#" id="nav-track" class="text-sm font-semibold text-sapphire hover:text-royal transition-colors">Track</a><a href="#" id="nav-manage" class="text-sm font-semibold text-sapphire hover:text-royal transition-colors">Manage</a><a href="#" id="nav-account" class="text-sm font-semibold text-sapphire hover:text-royal transition-colors">Account</a></nav><div class="flex-1 flex items-center justify-end gap-3"><div class="text-right"><p class="text-xs font-bold text-sapphire uppercase tracking-widest">Johannesburg Hub</p></div><div class="w-10 h-10 rounded-full bg-[#F4F1EC] border border-[#E0DDD6] overflow-hidden"><img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Johannesburg" alt="User Avatar" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a1a1a/888?text=Image';"></div></div></header><main class="max-w-[1200px] mx-auto px-8 py-10 space-y-8"><div class="space-y-1"><h2 class="text-3xl font-bold text-sapphire tracking-tight">Your Dashboard</h2><p class="text-sm text-[#666666]">Overview of your current logistics and account activity.</p></div><div class="grid grid-cols-1 md:grid-cols-2 gap-8"><section class="card-base flex flex-col"><div class="flex justify-between items-start mb-6"><div><h3 class="text-2xl font-bold text-sapphire">Active Deliveries</h3><p class="text-xs text-[#666666] uppercase font-bold tracking-widest">Real-time status</p></div><a href="#" id="track-cta" class="btn-primary">Track Package</a></div><div class="bg-[#F4F1EC] rounded-xl p-5 mb-6 flex items-center justify-between"><div class="flex items-center gap-4"> <iconify-icon icon="lucide:package-check" class="text-3xl text-sapphire"></iconify-icon><div><p class="text-sm font-bold text-sapphire">Cape Town Central</p><p class="text-xs text-[#666666]">Est. tomorrow, 2–4pm</p></div></div><span class="px-3 py-1 bg-golden text-sapphire text-[10px] font-bold uppercase rounded-full tracking-wider">In Transit</span></div><div class="relative px-2 pt-4"><div class="absolute left-[20px] top-6 bottom-6 w-0.5 bg-[#D1D5DB]"></div><div class="absolute left-[20px] top-6 h-[50%] w-0.5 bg-[#10B981]"></div><div class="space-y-8 relative"><div class="flex items-start gap-6"><div class="z-10 w-4 h-4 rounded-full bg-[#10B981] flex items-center justify-center"><iconify-icon icon="lucide:check" class="text-[8px] text-white"></iconify-icon></div><div><p class="text-sm font-bold text-sapphire">Booked</p><p class="text-[10px] text-[#666666]">22 Aug, 09:12</p></div></div><div class="flex items-start gap-6"><div class="z-10 w-4 h-4 rounded-full bg-[#10B981] flex items-center justify-center"><iconify-icon icon="lucide:check" class="text-[8px] text-white"></iconify-icon></div><div><p class="text-sm font-bold text-sapphire">Collected</p><p class="text-[10px] text-[#666666]">23 Aug, 10:30</p></div></div><div class="flex items-start gap-6"><div class="z-10 w-4 h-4 rounded-full bg-golden flex items-center justify-center ring-4 ring-orange-50"><iconify-icon icon="lucide:arrow-right" class="text-[8px] text-sapphire"></iconify-icon></div><div><p class="text-sm font-bold text-sapphire">In Transit</p><p class="text-[10px] text-[#666666]">Active Now</p></div></div><div class="flex items-start gap-6"><div class="z-10 w-4 h-4 rounded-full bg-[#D1D5DB]"></div><div><p class="text-sm font-bold text-[#D1D5DB]">Delivered</p><p class="text-[10px] text-[#666666]">Pending</p></div></div></div></div></section><section class="card-base flex flex-col"><div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-sapphire">Recent Quotes</h3><a href="#" id="view-all-quotes" class="text-sm font-bold text-royal hover:underline">View All</a></div><div class="divide-y divide-[#E0DDD6] border-t border-[#E0DDD6]"><div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-[#F9F8F6] px-2 transition-colors rounded-lg"><div class="space-y-1"><p class="text-sm font-bold text-sapphire">JHB → CPT</p><p class="text-xs text-[#666666]">2.5kg Parcel • 2 hours ago</p></div><span class="px-3 py-1 bg-golden/20 text-sapphire text-[10px] font-bold uppercase rounded-full">Active</span></div><div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-[#F9F8F6] px-2 transition-colors rounded-lg"><div class="space-y-1"><p class="text-sm font-bold text-sapphire">DBN → PTA</p><p class="text-xs text-[#666666]">15kg Freight • Yesterday</p></div><span class="px-3 py-1 bg-sapphire/10 text-sapphire text-[10px] font-bold uppercase rounded-full">Quoted</span></div><div class="py-4 flex items-center justify-between group cursor-pointer hover:bg-[#F9F8F6] px-2 transition-colors rounded-lg"><div class="space-y-1"><p class="text-sm font-bold text-sapphire">PE → BFN</p><p class="text-xs text-[#666666]">0.5kg Document • 2 days ago</p></div><span class="px-3 py-1 bg-[#D1D5DB]/30 text-[#666666] text-[10px] font-bold uppercase rounded-full">Expired</span></div></div></section><section class="card-base flex flex-col"><div class="flex justify-between items-center mb-6"><h3 class="text-2xl font-bold text-sapphire">Saved Addresses</h3><button id="add-address-btn" class="btn-secondary">Add Address</button></div><div class="space-y-4"><div class="p-4 border border-[#E0DDD6] rounded-xl flex items-center justify-between hover:bg-[#F9F8F6] transition-colors group"><div class="flex items-center gap-4"> <iconify-icon icon="lucide:home" class="text-xl text-[#666666] group-hover:text-sapphire"></iconify-icon><div><p class="text-sm font-bold text-sapphire">Head Office</p><p class="text-xs text-[#666666]">123 Rivonia Rd, Sandton, 2196</p></div></div><div class="flex gap-3 text-[#666666]"><iconify-icon icon="lucide:pencil" class="text-lg cursor-pointer hover:text-sapphire transition-colors"></iconify-icon><iconify-icon icon="lucide:trash-2" class="text-lg cursor-pointer hover:text-red-500 transition-colors"></iconify-icon></div></div><div class="p-4 border border-[#E0DDD6] rounded-xl flex items-center justify-between hover:bg-[#F9F8F6] transition-colors group"><div class="flex items-center gap-4"> <iconify-icon icon="lucide:briefcase" class="text-xl text-[#666666] group-hover:text-sapphire"></iconify-icon><div><p class="text-sm font-bold text-sapphire">Warehouse B</p><p class="text-xs text-[#666666]">45 Jet Park, Boksburg, 1459</p></div></div><div class="flex gap-3 text-[#666666]"><iconify-icon icon="lucide:pencil" class="text-lg cursor-pointer hover:text-sapphire transition-colors"></iconify-icon><iconify-icon icon="lucide:trash-2" class="text-lg cursor-pointer hover:text-red-500 transition-colors"></iconify-icon></div></div></div></section><section class="card-base flex flex-col"><h4 class="text-xl font-bold text-sapphire mb-6">Account Details</h4><div class="space-y-4"><div class="flex items-center gap-4"><div class="w-12 h-12 rounded-xl bg-sapphire/5 flex items-center justify-center"><iconify-icon icon="lucide:user" class="text-2xl text-sapphire"></iconify-icon></div><div><p class="text-base font-bold text-sapphire">Johannesburg Hub</p><p class="text-sm text-[#666666]">hub@company.co.za</p></div></div><div class="pt-2"><p class="text-xs font-bold text-[#666666] uppercase tracking-[0.15em] mb-4">Membership</p><p class="text-sm text-sapphire font-semibold">Premium Business Account</p><p class="text-xs text-[#666666]">Joined February 2024</p></div><div class="border-t border-[#E0DDD6] pt-4 flex flex-col gap-3"><a href="#" id="account-settings" class="text-sm font-bold text-royal hover:underline">Manage Account Settings</a><a href="#" id="logout-btn" class="text-sm font-bold text-royal hover:underline">Sign Out</a></div></div></section></div></main></div><div class="xl:hidden w-full max-w-[390px] mx-auto bg-[#FFF8E1] min-h-screen relative flex flex-col"><header class="bg-white border-b border-[#E0DDD6] h-16 flex items-center px-6 sticky top-0 z-50 justify-between"><a href="/" id="mob-logo" class="flex items-center gap-2"><div class="w-8 h-8 bg-sapphire rounded-lg flex items-center justify-center"><iconify-icon icon="lucide:truck" class="text-white text-xl"></iconify-icon></div><span class="text-xl font-black tracking-tighter text-sapphire uppercase">Send-It<span class="text-golden">.</span></span></a><button class="p-2 text-sapphire"><iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon></button></header><main class="flex-1 p-4 space-y-6 no-scrollbar pb-24"><div class="space-y-1"><h2 class="text-2xl font-bold text-sapphire">Your Dashboard</h2><p class="text-xs text-[#666666]">Quick overview of your active tasks.</p></div><section class="card-base"><div class="flex justify-between items-center mb-6"><h3 class="text-xl font-bold text-sapphire">Active Deliveries</h3><span class="px-2 py-1 bg-golden text-sapphire text-[9px] font-bold uppercase rounded-full">1 Active</span></div><div class="bg-[#F4F1EC] rounded-xl p-4 mb-4"><p class="text-sm font-bold text-sapphire">CPT Central</p><p class="text-[10px] text-[#666666]">Est. tomorrow, 2–4pm</p></div><button id="mob-track-btn" class="w-full btn-primary py-3">Track Shipment</button></section><section class="card-base"><div class="flex justify-between items-center mb-6"><h3 class="text-xl font-bold text-sapphire">Recent Quotes</h3><a href="#" class="text-xs font-bold text-royal">View All</a></div><div class="space-y-4"><div class="flex justify-between items-center"><div class="space-y-0.5"><p class="text-xs font-bold text-sapphire">JHB → CPT</p><p class="text-[10px] text-[#666666]">2 hours ago</p></div><span class="px-2 py-0.5 bg-golden/20 text-sapphire text-[9px] font-bold uppercase rounded-full">Active</span></div><div class="flex justify-between items-center"><div class="space-y-0.5"><p class="text-xs font-bold text-sapphire">DBN → PTA</p><p class="text-[10px] text-[#666666]">Yesterday</p></div><span class="px-2 py-0.5 bg-sapphire/10 text-sapphire text-[9px] font-bold uppercase rounded-full">Quoted</span></div></div></section><section class="card-base"><h3 class="text-xl font-bold text-sapphire mb-6">Account</h3><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-full bg-sapphire/5 flex items-center justify-center font-bold text-sapphire">JH</div><div><p class="text-sm font-bold text-sapphire">Johannesburg Hub</p><a href="#" class="text-xs font-bold text-royal">Manage Account</a></div></div></section></main><nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-[#E0DDD6] px-6 py-4 flex justify-between items-center z-50"><a href="#" id="mob-nav-dash" class="text-royal flex flex-col items-center gap-1"><iconify-icon icon="lucide:layout-dashboard" class="text-xl"></iconify-icon><span class="text-[9px] font-bold uppercase tracking-widest">Dashboard</span></a><a href="#" id="mob-nav-send" class="text-[#666666] flex flex-col items-center gap-1"><iconify-icon icon="lucide:send" class="text-xl"></iconify-icon><span class="text-[9px] font-bold uppercase tracking-widest">Send</span></a><a href="#" id="mob-nav-track" class="text-[#666666] flex flex-col items-center gap-1"><iconify-icon icon="lucide:map-pin" class="text-xl"></iconify-icon><span class="text-[9px] font-bold uppercase tracking-widest">Track</span></a><a href="#" id="mob-nav-acc" class="text-[#666666] flex flex-col items-center gap-1"><iconify-icon icon="lucide:user" class="text-xl"></iconify-icon><span class="text-[9px] font-bold uppercase tracking-widest">Account</span></a></nav></div></div></body></html>

@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Overnight Thread Light — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;450;500;600;700;800&family=Lora:wght@450;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#EEEEF9;
+  --surface-alt:#FAFAFC;
+  --text-primary:#121212;
+  --text-secondary:#2F2F31;
+  --accent:#6355FF;
+  --ink-black:#000000;
+  --border:#141414;
+  --hairline:#0D0D0D;
+  --r-control:14px;
+  --r-card:16px;
+  --r-card-lg:22px;
+  --r-glass:24px;
+  --r-pill:50px;
+  --r-nav-cta:11px;
+  --sp-base:8px;
+  --sp-gap:24px;
+  --sp-section:140px;
+  --ease-spring:cubic-bezier(0.23,1,0.32,1);
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --serif:"Lora",Georgia,serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--sans);
+  font-size:16px;
+  color:var(--text-primary);
+  background:var(--background);
+  line-height:1.38;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px}
+.band{padding:var(--sp-section) 0}
+.band-lav{background:var(--surface)}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.02em;color:var(--text-secondary)}
+.disp{
+  font-weight:800;
+  line-height:1;
+  letter-spacing:-2.8px;
+  color:var(--ink-black);
+  font-size:clamp(44px,8.5vw,88px);
+}
+.section-h{
+  font-weight:800;line-height:1;letter-spacing:-1.6px;
+  font-size:clamp(34px,5vw,58px);color:var(--text-primary);
+}
+.lead{font-size:17.5px;line-height:1.5;color:var(--text-secondary);max-width:56ch}
+
+/* NAV */
+.nav{
+  position:sticky;top:0;z-index:50;
+  height:64px;width:100%;background:transparent;
+  backdrop-filter:saturate(1.4) blur(6px);
+  border-radius:0;
+}
+.nav-inner{
+  max-width:1280px;margin:0 auto;height:64px;padding:0 32px;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.logo{font-weight:800;letter-spacing:-1px;font-size:22px;color:var(--ink-black);display:flex;align-items:center;gap:8px}
+.logo iconify-icon{color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:22px}
+.nav-link{font-size:13px;font-weight:600;color:var(--text-primary);text-decoration:none}
+.nav-cta{
+  height:40px;border:0;border-radius:var(--r-nav-cta);
+  background:var(--text-secondary);color:#fff;font-family:var(--sans);
+  font-size:13px;font-weight:600;padding:0 18px;cursor:pointer;
+  transition:background .2s ease;
+}
+.nav-cta:hover{background:#242426}
+
+/* HERO */
+#hero{padding:80px 0 120px;background:#fff;text-align:center;overflow:hidden}
+#hero .disp{margin:0 auto;max-width:14ch}
+.hero-accent{font-family:var(--serif);font-weight:450;letter-spacing:-1px;color:var(--accent)}
+.hero-sub{margin:28px auto 0;max-width:44ch;font-size:17.5px;line-height:1.5;color:var(--text-secondary)}
+.hero-cta-wrap{margin-top:36px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.btn-pill{
+  height:56px;border:0;border-radius:9999px;background:var(--text-primary);
+  color:#fff;font-family:var(--sans);font-weight:600;font-size:15px;
+  padding:11px 22px 11px 14px;display:inline-flex;align-items:center;gap:10px;
+  cursor:pointer;transition:transform .25s var(--ease-spring),filter .25s var(--ease-spring);
+}
+.btn-pill:hover{transform:translateY(-2px);filter:brightness(1.15)}
+.chat-dot{width:26px;height:26px;border-radius:50%;background:#2ec26b;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.text-link{font-size:14px;color:var(--text-secondary);text-decoration:underline;text-underline-offset:3px;background:none;border:0;cursor:pointer;font-family:var(--sans)}
+
+/* hero cluster */
+.hero-cluster{position:relative;margin:64px auto 0;max-width:900px;height:420px}
+.hero-panel{position:absolute;backdrop-filter:blur(0.0625px)}
+.dot-scrim{
+  background-image:radial-gradient(rgba(0,0,0,0.10) 1px,rgba(0,0,0,0) 1px);
+  background-size:9px 9px;
+}
+.panel-polaroid{
+  left:4%;top:30px;width:230px;background:#fff;padding:12px 12px 44px;
+  border-radius:8px;box-shadow:rgba(0,0,0,0.22) 0px 6px 14px -10px;transform:rotate(-7deg);
+}
+.panel-polaroid .ph{height:180px;border-radius:4px;background:linear-gradient(135deg,#dfe0ef,#c7c8e6)}
+.panel-polaroid .cap{margin-top:12px;font-family:var(--serif);font-size:15px;color:var(--text-primary)}
+.panel-phone{
+  left:50%;top:0;transform:translateX(-50%);width:250px;height:410px;background:#fff;
+  border-radius:38px;border:8px solid #111;box-shadow:rgba(0,0,0,0.32) 0px 20px 50px -24px;overflow:hidden;
+}
+.notch{width:90px;height:22px;background:#121212;border-radius:0 0 14px 14px;margin:0 auto}
+.phone-thread{padding:14px 12px;display:flex;flex-direction:column;gap:8px}
+.bub{max-width:78%;font-size:13px;line-height:1.35;padding:9px 12px;border-radius:16px}
+.bub-l{align-self:flex-start;background:#EFEFF3;color:var(--text-primary);border-bottom-left-radius:5px}
+.bub-r{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:5px}
+.panel-social{
+  right:2%;top:120px;width:240px;background:#fff;border-radius:var(--r-card);padding:14px;
+  box-shadow:rgba(0,0,0,0.32) 0px 20px 50px -24px;transform:rotate(5deg);
+}
+.social-head{display:flex;align-items:center;gap:9px;margin-bottom:10px}
+.av{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#6355FF,#9a8fff)}
+.social-name{font-size:13px;font-weight:700}
+.social-role{font-size:11px;color:var(--text-secondary)}
+.social-body{font-size:13px;line-height:1.4;color:var(--text-primary)}
+.social-stats{display:flex;gap:16px;margin-top:12px;font-size:12px;color:var(--text-secondary)}
+.social-stats span{display:inline-flex;align-items:center;gap:4px}
+
+@media(max-width:768px){
+  .hero-cluster{height:auto;display:flex;flex-direction:column;align-items:center;gap:24px}
+  .hero-panel{position:static;transform:none!important}
+  .panel-phone{left:auto}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-tier-a-component="navbar">
+  <div class="nav-inner">
+    <div class="logo"><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon>Stanley</div>
+    <div class="nav-right">
+      <a class="nav-link" href="#">Log in</a>
+      <button class="nav-cta" data-tier-a-component="button-nav-cta">Get started</button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section id="hero" aria-label="Overnight Thread Light hero">
+  <div class="wrap">
+    <h1 class="disp">The whole team, in one <span class="hero-accent">thread</span></h1>
+    <p class="hero-sub">Plan, draft, and ship every post from a single conversation. Stanley keeps the whole calendar moving while you sleep.</p>
+    <div class="hero-cta-wrap">
+      <button class="btn-pill" data-tier-a-component="button-primary-hero">
+        <span class="chat-dot"><iconify-icon icon="lucide:message-square" aria-hidden="true"></iconify-icon></span>
+        Start a thread
+        <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+      </button>
+      <button class="text-link">See how it works</button>
+    </div>
+
+    <div class="hero-cluster" data-tier-a-component="hero-panel-cluster">
+      <figure class="hero-panel panel-polaroid dot-scrim" aria-label="Photo card">
+        <div class="ph" role="img" aria-label="Team photo placeholder"></div>
+        <figcaption class="cap">launch day ✦</figcaption>
+      </figure>
+      <div class="hero-panel panel-phone" aria-label="Chat mockup">
+        <div class="notch"></div>
+        <div class="phone-thread">
+          <div class="bub bub-l">Draft for tomorrow ready?</div>
+          <div class="bub bub-r">Just queued it — 9am 🎯</div>
+          <div class="bub bub-l">Perfect. Ship it.</div>
+          <div class="bub bub-r">Overnight, done ✨</div>
+        </div>
+      </div>
+      <div class="hero-panel panel-social dot-scrim" aria-label="Social post card">
+        <div class="social-head">
+          <div class="av"></div>
+          <div>
+            <div class="social-name">Priya N.</div>
+            <div class="social-role">Head of Content</div>
+          </div>
+        </div>
+        <p class="social-body">Ten posts scheduled before my coffee. Stanley just runs the room.</p>
+        <div class="social-stats">
+          <span><iconify-icon icon="lucide:heart" aria-hidden="true"></iconify-icon>248</span>
+          <span><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon>36</span>
+          <span><iconify-icon icon="lucide:share" aria-hidden="true"></iconify-icon>12</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;margin-top:48px}
+.sw{border:1px solid #ececf2;border-radius:var(--r-card);overflow:hidden;background:#fff}
+.sw-chip{height:96px}
+.sw-meta{padding:14px 16px}
+.sw-name{font-size:14px;font-weight:700}
+.sw-val{font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums}
+.sw-note{font-size:12.5px;color:var(--text-secondary);margin-top:6px;line-height:1.4}
+.role-h{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-secondary);margin:44px 0 0}
+.check{background-image:linear-gradient(45deg,#e7e7ef 25%,transparent 25%),linear-gradient(-45deg,#e7e7ef 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7e7ef 75%),linear-gradient(-45deg,transparent 75%,#e7e7ef 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <p class="eyebrow">01 — Palette</p>
+    <h2 class="section-h">Ink, paper, one signal.</h2>
+    <p class="lead" style="margin-top:20px">A near-monochrome system. White carries the page, one pale lavender tints alternating bands, and indigo appears only where it means something.</p>
+
+    <h3 class="role-h">Surfaces</h3>
+    <div class="grid">
+      <div class="sw"><div class="sw-chip" style="background:#FFFFFF;border-bottom:1px solid #ececf2"></div><div class="sw-meta"><div class="sw-name">Background</div><div class="sw-val">#FFFFFF</div><div class="sw-note">Paper-white, carries almost every body section.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#EEEEF9"></div><div class="sw-meta"><div class="sw-name">Surface</div><div class="sw-val">#EEEEF9</div><div class="sw-note">Pale lavender — alternating bands and footer only.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#FAFAFC;border-bottom:1px solid #ececf2"></div><div class="sw-meta"><div class="sw-name">Surface alt</div><div class="sw-val">#FAFAFC</div><div class="sw-note">Barely-off-white for layered card fills.</div></div></div>
+    </div>
+
+    <h3 class="role-h">Text &amp; ink</h3>
+    <div class="grid">
+      <div class="sw"><div class="sw-chip" style="background:#121212"></div><div class="sw-meta"><div class="sw-name">Text primary</div><div class="sw-val">#121212</div><div class="sw-note">Primary text and icon ink.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#2F2F31"></div><div class="sw-meta"><div class="sw-name">Text secondary</div><div class="sw-val">#2F2F31</div><div class="sw-note">Secondary copy and the nav CTA fill.</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#000000"></div><div class="sw-meta"><div class="sw-name">Ink black</div><div class="sw-val">#000000</div><div class="sw-note">Heaviest display headlines and the logotype.</div></div></div>
+    </div>
+
+    <h3 class="role-h">Accent</h3>
+    <div class="grid">
+      <div class="sw"><div class="sw-chip" style="background:#6355FF"></div><div class="sw-meta"><div class="sw-name">Accent indigo</div><div class="sw-val">#6355FF</div><div class="sw-note">Rationed to sender bubbles, tinted button, small icon fills, highlight bars.</div></div></div>
+      <div class="sw"><div class="sw-chip check" style="position:relative"><div style="position:absolute;inset:0;background:rgba(99,85,255,0.09)"></div></div><div class="sw-meta"><div class="sw-name">Accent tint 9%</div><div class="sw-val">rgba(99,85,255,0.09)</div><div class="sw-note">The tinted button fill — never a full wash.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid #ececf2;padding:36px 0;display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:baseline}
+#type-scale .spec:last-child{border-bottom:1px solid #ececf2}
+.spec .metrics{font-size:12.5px;color:var(--text-secondary);line-height:1.7;font-variant-numeric:tabular-nums}
+.spec .metrics b{color:var(--text-primary);font-weight:600}
+.ramp{display:flex;flex-wrap:wrap;gap:28px;margin-top:40px}
+.ramp span{font-size:40px;letter-spacing:-1.4px;color:var(--text-primary)}
+@media(max-width:768px){#type-scale .spec{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" class="band band-lav">
+  <div class="wrap">
+    <p class="eyebrow">02 — Type scale</p>
+    <h2 class="section-h">Two families. One workhorse, one interruption.</h2>
+
+    <div class="spec">
+      <div class="disp" style="letter-spacing:-2.8px">Overnight, done.</div>
+      <div class="metrics"><b>display-lg</b><br>Plus Jakarta Sans<br>88px · 800 · lh 1 · -2.8px</div>
+    </div>
+    <div class="spec">
+      <div class="section-h">Ship while you sleep</div>
+      <div class="metrics"><b>headline-md</b><br>Plus Jakarta Sans<br>88px · 800 · lh 1 · -2.8px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--serif);font-size:23px;font-weight:450;line-height:1;color:var(--accent)">thread</div>
+      <div class="metrics"><b>accent-serif</b> · label-md<br>Lora<br>23px · 450 · lh 1</div>
+    </div>
+    <div class="spec">
+      <p style="font-size:17.5px;line-height:1.5;max-width:52ch;color:var(--text-primary)">Body copy stays quiet and even — plain Plus Jakarta Sans, no all-caps, no mono. The type does its job and gets out of the way.</p>
+      <div class="metrics"><b>body</b><br>Plus Jakarta Sans<br>17.5px · 400 · lh 1.5</div>
+    </div>
+    <div class="spec">
+      <p style="font-size:13px;line-height:1.38;color:var(--text-secondary)">Labels and captions ride the same family at small size.</p>
+      <div class="metrics"><b>body-md · label-mono</b><br>Plus Jakarta Sans<br>13px · 400 · lh 1.38</div>
+    </div>
+
+    <div class="ramp" aria-label="Weight ramp">
+      <span style="font-weight:400">Aa 400</span>
+      <span style="font-weight:500">Aa 500</span>
+      <span style="font-weight:600">Aa 600</span>
+      <span style="font-weight:700">Aa 700</span>
+      <span style="font-weight:800">Aa 800</span>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .csub{font-size:13px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--text-secondary);margin:0 0 8px}
+.comp{border-top:1px solid #ececf2;padding:56px 0}
+.comp-grid{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:start}
+.spec-card{
+  background:var(--surface-alt);border:1px solid #ececf2;border-radius:var(--r-card);
+  padding:18px 20px;font-size:12px;line-height:1.8;color:var(--text-secondary);
+  font-variant-numeric:tabular-nums;
+}
+.spec-card b{color:var(--text-primary);font-weight:600}
+.comp-name{font-size:24px;font-weight:800;letter-spacing:-.8px;margin-bottom:18px}
+
+/* buttons */
+.btn-tint{background:rgba(99,85,255,0.09);color:var(--text-primary);border:0;border-radius:14px;height:63px;padding:11px 24px;font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:filter .2s ease}
+.btn-tint:hover{filter:brightness(0.97)}
+.btn-ghost{background:transparent;color:var(--text-primary);border:0;border-radius:14px;height:63px;padding:11px 24px;font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:background .2s ease}
+.btn-ghost:hover{background:rgba(18,18,18,0.04)}
+.btn-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+.matrix{width:100%;border-collapse:collapse;margin-top:8px}
+.matrix th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--text-secondary);text-align:left;padding:8px 14px;font-weight:600}
+.matrix td{padding:12px 14px;border-top:1px solid #ececf2;vertical-align:middle}
+.matrix .rl{font-size:13px;font-weight:700}
+.dis{opacity:.4;cursor:not-allowed}
+
+/* testimonial + inbox */
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+@media(max-width:768px){.split2{grid-template-columns:1fr}.comp-grid{grid-template-columns:1fr;gap:28px}}
+.tcard{background:#fff;border-radius:22px;box-shadow:rgba(0,0,0,0.04) 0 1px 2px 0,rgba(0,0,0,0.32) 0 20px 50px -24px;padding:24px 26px}
+.tcard-head{display:flex;align-items:center;gap:12px}
+.tcard-head .av{width:44px;height:44px}
+.tdiv{height:1px;background:#ececf2;margin:18px 0}
+.qbub{background:#EFEFF3;color:var(--text-primary);font-size:13px;line-height:1.4;padding:10px 14px;border-radius:16px;border-bottom-left-radius:5px;max-width:90%;margin-bottom:8px}
+.qbub.me{background:var(--accent);color:#fff;margin-left:auto;border-radius:16px;border-bottom-right-radius:5px}
+.tfoot{margin-top:14px;font-size:12px;color:var(--text-secondary);display:flex;align-items:center;gap:6px}
+.inbox{background:#fff;border-radius:var(--r-card);border:1px solid #ececf2;overflow:hidden}
+.inbox-row{display:flex;gap:12px;padding:14px 16px;border-bottom:1px solid #f1f1f6;align-items:center}
+.inbox-row:last-child{border-bottom:0}
+.inbox-row .av{width:38px;height:38px;flex:0 0 auto}
+.ir-top{display:flex;justify-content:space-between;font-size:13px}
+.ir-name{font-weight:700}
+.ir-time{color:var(--text-secondary);font-size:12px}
+.ir-prev{font-size:12.5px;color:var(--text-secondary);margin-top:2px}
+
+/* glass feature stack */
+.glass-stack{display:flex;flex-direction:column;gap:16px}
+.gcard{
+  background:rgba(255,255,255,0.68);backdrop-filter:blur(24px);border-radius:24px;padding:14px;
+  display:flex;align-items:center;gap:14px;
+  box-shadow:rgba(0,0,0,0.06) 0 0 0 0.5px,rgba(0,0,0,0.18) 0 12px 30px -12px,rgba(255,255,255,0.95) 0 40px 10px -40px inset,rgba(190,190,190,0.35) 0 -40px 10px -40px inset,rgb(255,255,255) 0 40px 30px -40px inset;
+}
+.gcard .gic{width:44px;height:44px;border-radius:12px;background:rgba(99,85,255,0.09);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:22px;flex:0 0 auto}
+.gcard p{font-size:14px;color:var(--text-primary)}
+.glass-bg{background:linear-gradient(135deg,#dfe0ef,#eeeef9);border-radius:var(--r-card);padding:28px}
+
+/* calendar */
+.calband{background:#EEEEF9;border-radius:var(--r-card);padding:32px;position:relative;overflow:hidden}
+.cal-scrim{position:absolute;left:0;right:0;bottom:0;height:60px;background:linear-gradient(rgba(238,238,249,0),rgb(238,238,249) 90%)}
+.cal-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:640px){.cal-row{grid-template-columns:1fr}}
+.ctile{background:#fff;border-radius:16px;box-shadow:rgba(0,0,0,0.2) 0 12px 28px -16px;padding:14px 16px 15px}
+.ctile-h{font-size:13px;font-weight:700}
+.ctile-h span{color:var(--text-secondary);font-weight:400}
+.cpost{display:flex;gap:8px;align-items:flex-start;margin-top:12px}
+.cbadge{width:26px;height:26px;border-radius:7px;background:rgba(99,85,255,0.09);color:var(--accent);display:flex;align-items:center;justify-content:center;font-size:14px;flex:0 0 auto}
+.cpost-t{font-size:11px;color:var(--text-secondary)}
+.cpost-p{font-size:12.5px;color:var(--text-primary);line-height:1.35}
+.annot{position:absolute;right:36px;top:20px;background:#fff;border-radius:12px;padding:10px 14px;font-size:12.5px;box-shadow:rgba(255,255,255,0.9) 0 0 0 1.5px,rgba(0,0,0,0.2) 0 12px 28px -16px;max-width:180px;z-index:2}
+
+/* chat panel */
+.thread{display:flex;flex-direction:column;gap:10px;max-width:520px}
+.vnote{display:flex;align-items:center;gap:10px;background:var(--accent);color:#fff;border-radius:16px;border-bottom-right-radius:5px;padding:10px 14px;align-self:flex-end;max-width:78%}
+.wave{display:flex;align-items:center;gap:3px;height:22px}
+.wave i{width:3px;background:rgba(255,255,255,0.85);border-radius:2px;display:block}
+.vplay{border:0;background:rgba(255,255,255,0.25);width:28px;height:28px;border-radius:50%;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+
+/* platform row */
+.plat-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.plat{width:60px;height:60px;border-radius:16px;background:#fff;border:1px solid #ececf2;display:flex;align-items:center;justify-content:center;font-size:26px;color:var(--text-primary);box-shadow:rgba(0,0,0,0.2) 0 12px 28px -16px}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <p class="eyebrow">03 — Components</p>
+    <h2 class="section-h">Built from a conversation.</h2>
+    <p class="lead" style="margin-top:20px">Every surface is chat chrome: bubbles, device frames, and social cards, stacked one per row with room to breathe.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-name">Navbar</div>
+          <p class="csub">Edge-to-edge · 64px · 0px radius · 3 items</p>
+          <div style="border:1px solid #ececf2;border-radius:12px;overflow:hidden">
+            <div style="height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:#fff">
+              <div class="logo" style="font-size:20px"><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon>Stanley</div>
+              <div class="nav-right">
+                <a class="nav-link" href="#">Log in</a>
+                <button class="nav-cta">Get started</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--navbar</b><br>height <b>64</b> · radius <b>0</b><br>fill <b>transparent</b><br>logo · link · nav-cta<br>full-bleed, 0px inset
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO PRIMARY CTA -->
+    <div class="comp" data-tier-a-component="button-primary-hero">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-name">Hero primary CTA</div>
+          <p class="csub">Pill · 56px · #121212 · green chat inset</p>
+          <div class="hero-cta-wrap" style="align-items:flex-start">
+            <button class="btn-pill">
+              <span class="chat-dot"><iconify-icon icon="lucide:message-square" aria-hidden="true"></iconify-icon></span>
+              Start a thread
+              <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+            </button>
+            <button class="text-link">See how it works</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-primary-hero</b><br>fill <b>text-primary #121212</b><br>text <b>#FFFFFF</b> · radius <b>pill 9999</b><br>height <b>56</b> · padding <b>11 12</b><br>motion <b>spring 0.25s</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAV CTA -->
+    <div class="comp" data-tier-a-component="button-nav-cta">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-name">Button — nav CTA</div>
+          <p class="csub">#2F2F31 · 40px · 12px radius</p>
+          <div class="btn-row">
+            <button class="nav-cta">Get started</button>
+            <button class="nav-cta" style="background:#242426">Get started · hover</button>
+            <button class="nav-cta dis" disabled>Get started</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-nav-cta</b><br>fill <b>text-secondary #2F2F31</b><br>text <b>#FFFFFF</b> · radius <b>nav-cta 12</b><br>height <b>40</b> · hover <b>#242426</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- TINTED + GHOST -->
+    <div class="comp" data-tier-a-component="button-tint">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-name">Button — tinted</div>
+          <p class="csub">rgba(99,85,255,0.09) · 63px · 14px radius</p>
+          <div class="btn-row">
+            <button class="btn-tint">Schedule post</button>
+            <button class="btn-tint dis" disabled>Schedule post</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-tint</b><br>fill <b>accent 9% tint</b><br>text <b>#121212</b> · radius <b>control 14</b><br>height <b>63</b> · padding <b>11 12</b>
+        </div>
+      </div>
+    </div>
+
+    <div class="comp" data-tier-a-component="button-ghost">
+      <div class="comp-grid">
+        <div>
+          <div class="comp-name">Button — ghost</div>
+          <p class="csub">Transparent · 63px · hover rgba(18,18,18,0.04)</p>
+          <div class="btn-row" style="background:#fafafc;border:1px solid #ececf2;border-radius:14px;padding:14px">
+            <button class="btn-ghost">Save draft</button>
+            <button class="btn-ghost" style="background:rgba(18,18,18,0.04)">Save draft · hover</button>
+            <button class="btn-ghost dis" disabled>Save draft</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-ghost</b><br>fill <b>transparent</b><br>text <b>#121212</b> · radius <b>control 14</b><br>height <b>63</b> · hover <b>ink 4% tint</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp">
+      <div class="comp-name">Button matrix</div>
+      <p class="csub">Variants × source-supported states</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="rl">Hero pill</td>
+            <td><button class="btn-pill" style="height:44px;font-size:13px"><span class="chat-dot" style="width:20px;height:20px;font-size:12px"><iconify-icon icon="lucide:message-square"></iconify-icon></span>Start</button></td>
+            <td><button class="btn-pill" style="height:44px;font-size:13px;filter:brightness(1.15);transform:translateY(-2px)"><span class="chat-dot" style="width:20px;height:20px;font-size:12px"><iconify-icon icon="lucide:message-square"></iconify-icon></span>Start</button></td>
+            <td><button class="btn-pill dis" disabled style="height:44px;font-size:13px"><span class="chat-dot" style="width:20px;height:20px;font-size:12px"><iconify-icon icon="lucide:message-square"></iconify-icon></span>Start</button></td>
+          </tr>
+          <tr>
+            <td class="rl">Nav CTA</td>
+            <td><button class="nav-cta">Get started</button></td>
+            <td><button class="nav-cta" style="background:#242426">Get started</button></td>
+            <td><button class="nav-cta dis" disabled>Get started</button></td>
+          </tr>
+          <tr>
+            <td class="rl">Tinted</td>
+            <td><button class="btn-tint" style="height:44px">Schedule</button></td>
+            <td><button class="btn-tint" style="height:44px;filter:brightness(0.97)">Schedule</button></td>
+            <td><button class="btn-tint dis" disabled style="height:44px">Schedule</button></td>
+          </tr>
+          <tr>
+            <td class="rl">Ghost</td>
+            <td><button class="btn-ghost" style="height:44px">Save</button></td>
+            <td><button class="btn-ghost" style="height:44px;background:rgba(18,18,18,0.04)">Save</button></td>
+            <td><button class="btn-ghost dis" disabled style="height:44px">Save</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- HERO CLUSTER (component) -->
+    <div class="comp" data-tier-a-component="hero-panel-cluster">
+      <div class="comp-name">Full-bleed hero panel cluster</div>
+      <p class="csub">Three overlapping media cards · transparent · blur(0.0625px)</p>
+      <div class="glass-bg" style="background:#fff;border:1px solid #ececf2">
+        <div class="hero-cluster" style="max-width:760px;margin-top:0;height:380px">
+          <figure class="hero-panel panel-polaroid dot-scrim"><div class="ph"></div><figcaption class="cap">launch day ✦</figcaption></figure>
+          <div class="hero-panel panel-phone"><div class="notch"></div><div class="phone-thread"><div class="bub bub-l">Draft ready?</div><div class="bub bub-r">Queued — 9am 🎯</div><div class="bub bub-l">Ship it.</div></div></div>
+          <div class="hero-panel panel-social dot-scrim"><div class="social-head"><div class="av"></div><div><div class="social-name">Priya N.</div><div class="social-role">Content</div></div></div><p class="social-body">Ten posts before coffee.</p><div class="social-stats"><span><iconify-icon icon="lucide:heart"></iconify-icon>248</span><span><iconify-icon icon="lucide:message-circle"></iconify-icon>36</span></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIAL + INBOX -->
+    <div class="comp" data-tier-a-component="card-testimonial">
+      <div class="comp-name">Testimonial card</div>
+      <p class="csub">White · 22px radius · beside inbox-list panel</p>
+      <div class="split2">
+        <div class="tcard">
+          <div class="tcard-head">
+            <div class="av"></div>
+            <div><div class="social-name">Marcus Lee</div><div class="social-role">Founder, Field Notes</div></div>
+          </div>
+          <div class="tdiv"></div>
+          <div class="qbub">How are you shipping this fast?</div>
+          <div class="qbub me">Stanley drafts overnight — I just approve.</div>
+          <div class="tfoot"><iconify-icon icon="lucide:check-check" aria-hidden="true"></iconify-icon>Delivered · 7:02 AM</div>
+        </div>
+        <div class="inbox" aria-label="Inbox list">
+          <div class="inbox-row"><div class="av"></div><div style="flex:1"><div class="ir-top"><span class="ir-name">Content Queue</span><span class="ir-time">9:00</span></div><div class="ir-prev">4 posts scheduled for tomorrow</div></div></div>
+          <div class="inbox-row"><div class="av" style="background:linear-gradient(135deg,#2ec26b,#7be3a5)"></div><div style="flex:1"><div class="ir-top"><span class="ir-name">Approvals</span><span class="ir-time">8:41</span></div><div class="ir-prev">Priya approved the launch thread</div></div></div>
+          <div class="inbox-row"><div class="av" style="background:linear-gradient(135deg,#6355FF,#9a8fff)"></div><div style="flex:1"><div class="ir-top"><span class="ir-name">Analytics</span><span class="ir-time">8:12</span></div><div class="ir-prev">Reach up 18% this week</div></div></div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:24px;max-width:340px">
+        <b>--card-testimonial</b><br>fill <b>#FFFFFF</b> · radius <b>card-lg 22</b><br>shadow <b>0 1 2 / 0 20 50 -24</b><br>padding <b>24 26</b>
+      </div>
+    </div>
+
+    <!-- GLASS FEATURE ×3 -->
+    <div class="comp" data-tier-a-component="card-glass-feature">
+      <div class="comp-name">Glass feature card <span style="font-size:14px;color:var(--text-secondary);font-weight:400">×3 stacked</span></div>
+      <p class="csub">rgba(255,255,255,0.68) · blur(24px) · one per row</p>
+      <div class="glass-bg">
+        <div class="glass-stack">
+          <div class="gcard"><div class="gic"><iconify-icon icon="lucide:calendar-clock" aria-hidden="true"></iconify-icon></div><p>Auto-schedule a week of posts from one thread.</p></div>
+          <div class="gcard"><div class="gic"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div><p>Drafts written overnight, in your voice.</p></div>
+          <div class="gcard"><div class="gic"><iconify-icon icon="lucide:bar-chart-3" aria-hidden="true"></iconify-icon></div><p>See what landed — reach, replies, saves.</p></div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:24px;max-width:340px">
+        <b>--card-glass-feature</b><br>fill <b>white 68%</b> · blur <b>24</b><br>radius <b>glass-card 24</b> · padding <b>14</b><br>compound inset+drop shadow
+      </div>
+    </div>
+
+    <!-- CALENDAR ×3 -->
+    <div class="comp" data-tier-a-component="card-calendar-tile">
+      <div class="comp-name">Calendar day tile <span style="font-size:14px;color:var(--text-secondary);font-weight:400">×3</span></div>
+      <p class="csub">White · 16px radius · lavender band</p>
+      <div class="calband">
+        <div class="annot"><b style="color:var(--accent)">Moved →</b> Reels now go out Thursday 5pm.</div>
+        <div class="cal-row">
+          <div class="ctile"><div class="ctile-h">Mon <span>· 14</span></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:video"></iconify-icon></div><div><div class="cpost-t">9:00 AM</div><div class="cpost-p">Behind the scenes clip</div></div></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:at-sign"></iconify-icon></div><div><div class="cpost-t">1:00 PM</div><div class="cpost-p">Thread: launch recap</div></div></div>
+          </div>
+          <div class="ctile"><div class="ctile-h">Tue <span>· 15</span></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:camera"></iconify-icon></div><div><div class="cpost-t">10:30 AM</div><div class="cpost-p">Product carousel</div></div></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:bookmark"></iconify-icon></div><div><div class="cpost-t">4:00 PM</div><div class="cpost-p">Save-worthy tips list</div></div></div>
+          </div>
+          <div class="ctile"><div class="ctile-h">Wed <span>· 16</span></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:x"></iconify-icon></div><div><div class="cpost-t">8:00 AM</div><div class="cpost-p">Hot take of the day</div></div></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:linkedin"></iconify-icon></div><div><div class="cpost-t">12:00 PM</div><div class="cpost-p">Case study drop</div></div></div>
+          </div>
+        </div>
+        <div class="cal-scrim"></div>
+      </div>
+    </div>
+
+    <!-- CHAT THREAD ×3 -->
+    <div class="comp" data-tier-a-component="chat-thread-panel">
+      <div class="comp-name">Chat thread panel <span style="font-size:14px;color:var(--text-secondary);font-weight:400">×3 · dominant pattern</span></div>
+      <p class="csub">Transparent · gray left / indigo right · voice note</p>
+      <div class="split2">
+        <div class="thread">
+          <div class="bub bub-l">Can we push the newsletter?</div>
+          <div class="bub bub-r">Already rescheduled for Friday ✅</div>
+          <div class="bub bub-l">You're a machine.</div>
+          <div class="vnote">
+            <button class="vplay" aria-label="Play voice note"><iconify-icon icon="lucide:play"></iconify-icon></button>
+            <span class="wave" aria-hidden="true"><i style="height:8px"></i><i style="height:16px"></i><i style="height:22px"></i><i style="height:12px"></i><i style="height:18px"></i><i style="height:9px"></i><i style="height:14px"></i><i style="height:20px"></i></span>
+            <span style="font-size:12px">0:14</span>
+          </div>
+        </div>
+        <div class="thread">
+          <div class="bub bub-l">Analytics look good?</div>
+          <div class="bub bub-r">Reach up 18%, saves doubled 📈</div>
+          <div class="bub bub-r">Want the breakdown?</div>
+          <div class="bub bub-l">Yes please 🙏</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PLATFORM ROW -->
+    <div class="comp" data-tier-a-component="platform-icon-row">
+      <div class="comp-name">Platform-icon row</div>
+      <p class="csub">Six flat rounded-square tiles · centered</p>
+      <div class="plat-row">
+        <div class="plat"><iconify-icon icon="lucide:video" aria-label="Video"></iconify-icon></div>
+        <div class="plat"><iconify-icon icon="lucide:x" aria-label="X"></iconify-icon></div>
+        <div class="plat"><iconify-icon icon="lucide:linkedin" aria-label="Professional network"></iconify-icon></div>
+        <div class="plat"><iconify-icon icon="lucide:at-sign" aria-label="Threads"></iconify-icon></div>
+        <div class="plat"><iconify-icon icon="lucide:camera" aria-label="Camera"></iconify-icon></div>
+        <div class="plat"><iconify-icon icon="lucide:bookmark" aria-label="Bookmark"></iconify-icon></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px;margin-top:48px}
+.dcard{background:#fff;padding:26px;font-size:13px;color:var(--text-secondary)}
+.dcard b{color:var(--text-primary);display:block;font-size:15px;margin-bottom:6px}
+</style>
+<section id="surface-depth" class="band band-lav">
+  <div class="wrap">
+    <p class="eyebrow">04 — Surface &amp; depth</p>
+    <h2 class="section-h">Soft light, hairline edges.</h2>
+    <div class="cards">
+      <div class="dcard" style="border-radius:14px;box-shadow:rgba(0,0,0,0.2) 0 12px 28px -16px"><b>Control · 14px</b>Tight radius for buttons and small controls.</div>
+      <div class="dcard" style="border-radius:16px;box-shadow:rgba(0,0,0,0.2) 0 12px 28px -16px"><b>Card · 16px</b>Calendar tiles and standard containers.</div>
+      <div class="dcard" style="border-radius:22px;box-shadow:rgba(0,0,0,0.04) 0 1px 2px 0,rgba(0,0,0,0.32) 0 20px 50px -24px"><b>Card-lg · 22px</b>Testimonial card — deepest lift.</div>
+      <div class="dcard" style="border-radius:24px;box-shadow:rgba(0,0,0,0.06) 0 0 0 0.5px,rgba(0,0,0,0.18) 0 12px 30px -12px"><b>Glass · 24px</b>Frosted feature cards with inset highlight.</div>
+      <div class="dcard" style="border-radius:50px;box-shadow:rgba(0,0,0,0.22) 0 6px 14px -10px"><b>Pill · 50px</b>Rounded ends for the hero CTA.</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .mrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px;margin-top:48px}
+.mtile{background:#fff;border:1px solid #ececf2;border-radius:var(--r-card);padding:24px}
+.mball{width:44px;height:44px;border-radius:12px;background:var(--accent);margin-bottom:20px}
+.mtile.run .mball{animation:slidein .38s var(--ease-spring)}
+@keyframes slidein{from{transform:translateX(-40px);opacity:.2}to{transform:translateX(0);opacity:1}}
+.pulse{width:18px;height:18px;border-radius:50%;background:#2ec26b;animation:pulse 1.8s var(--ease-spring) infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,194,107,.5)}70%{box-shadow:0 0 0 12px rgba(46,194,107,0)}100%{box-shadow:0 0 0 0 rgba(46,194,107,0)}}
+.mmeta{font-size:12.5px;color:var(--text-secondary);line-height:1.6}
+.mmeta b{color:var(--text-primary)}
+.replay{margin-top:14px;font-size:13px;background:rgba(99,85,255,0.09);color:var(--text-primary);border:0;border-radius:14px;padding:8px 16px;cursor:pointer}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <p class="eyebrow">05 — Motion</p>
+    <h2 class="section-h">Like a live conversation.</h2>
+    <div class="mrow">
+      <div class="mtile run" id="m1"><div class="mball"></div><div class="mmeta"><b>Enter</b> — cards &amp; bubbles rise in<br>0.38s · cubic-bezier(0.23,1,0.32,1)</div><button class="replay" data-target="m1">Replay</button></div>
+      <div class="mtile" id="m2"><div class="mball" style="transition:transform .25s var(--ease-spring),filter .25s var(--ease-spring)"></div><div class="mmeta"><b>Press</b> — hover/press feedback<br>0.25s · spring decel</div><button class="replay" data-target="m2">Replay</button></div>
+      <div class="mtile"><div class="pulse"></div><div class="mmeta" style="margin-top:20px"><b>Live pulse</b> — mascot &amp; status dot<br>looping</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid #ececf2;border-radius:22px;overflow:hidden;margin-top:48px;box-shadow:rgba(0,0,0,0.32) 0 20px 50px -24px}
+.mock-nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:#fff;border-bottom:1px solid #f1f1f6}
+.mock-hero{text-align:center;padding:64px 28px 48px;background:#fff}
+.mock-hero h3{font-weight:800;letter-spacing:-1.6px;font-size:clamp(30px,5vw,52px);line-height:1;color:var(--ink-black)}
+.mock-hero .hero-accent{font-size:.9em}
+.mock-band{background:#EEEEF9;padding:48px 28px}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}}
+.mock-cta{text-align:center;padding:56px 28px;background:#fff}
+</style>
+<section id="composition" class="band band-lav">
+  <div class="wrap">
+    <p class="eyebrow">06 — In composition</p>
+    <h2 class="section-h">The whole system, holding together.</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="logo" style="font-size:19px"><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon>Stanley</div>
+        <div class="nav-right"><a class="nav-link" href="#">Log in</a><button class="nav-cta">Get started</button></div>
+      </div>
+      <div class="mock-hero">
+        <h3>Post more, <span class="hero-accent">overnight</span></h3>
+        <p style="margin:20px auto 0;max-width:40ch;font-size:17.5px;color:var(--text-secondary)">One thread runs your whole calendar.</p>
+        <div class="hero-cta-wrap" style="margin-top:28px">
+          <button class="btn-pill"><span class="chat-dot"><iconify-icon icon="lucide:message-square" aria-hidden="true"></iconify-icon></span>Start a thread<iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+          <button class="text-link">See how it works</button>
+        </div>
+      </div>
+      <div class="mock-band">
+        <div class="mock-cards">
+          <div class="tcard">
+            <div class="tcard-head"><div class="av"></div><div><div class="social-name">Ana R.</div><div class="social-role">Solo creator</div></div></div>
+            <div class="tdiv"></div>
+            <div class="qbub">Did the recap go out?</div>
+            <div class="qbub me">Live at 9 sharp ✨</div>
+          </div>
+          <div class="ctile" style="align-self:start">
+            <div class="ctile-h">Thu <span>· 17</span></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:video"></iconify-icon></div><div><div class="cpost-t">9:00 AM</div><div class="cpost-p">Reel: workflow tour</div></div></div>
+            <div class="cpost"><div class="cbadge"><iconify-icon icon="lucide:at-sign"></iconify-icon></div><div><div class="cpost-t">3:00 PM</div><div class="cpost-p">Thread: 5 lessons</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <h3 style="font-weight:800;letter-spacing:-1px;font-size:28px">Ready to sleep on it?</h3>
+        <div style="margin-top:20px"><button class="btn-tint">Schedule your first week</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#EEEEF9;padding:96px 0 48px;text-align:center;position:relative;overflow:hidden}
+.f-links{display:flex;gap:32px;justify-content:center;flex-wrap:wrap;font-size:14px;font-weight:600}
+.f-links a{color:var(--text-primary);text-decoration:none}
+.f-links a:hover{text-decoration:underline}
+.f-lockup{position:relative;margin:56px 0 40px}
+.f-word{font-weight:800;letter-spacing:-4px;font-size:clamp(64px,16vw,180px);line-height:1;color:var(--text-primary)}
+.f-sphere{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#fff,#9a8fff 45%,#6355FF 80%);box-shadow:0 12px 28px -8px rgba(99,85,255,.5);animation:pulse 2.4s var(--ease-spring) infinite}
+.f-plat{display:flex;gap:12px;justify-content:center;margin:36px 0 24px}
+.f-plat button{width:42px;height:42px;border-radius:12px;border:0;background:#fff;color:var(--text-primary);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;box-shadow:rgba(0,0,0,0.2) 0 12px 28px -16px}
+.f-copy{font-size:12.5px;color:var(--text-secondary)}
+.f-cred{font-size:12.5px;color:var(--text-secondary);margin-top:8px}
+.f-cred a{color:var(--text-primary)}
+@media(prefers-reduced-motion:reduce){.f-sphere{animation:none}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <nav class="f-links" aria-label="Footer">
+      <a href="#">Product</a><a href="#">Pricing</a><a href="#">Changelog</a><a href="#">Contact</a>
+    </nav>
+    <div class="f-lockup">
+      <div class="f-word">Stanley</div>
+      <div class="f-sphere" role="img" aria-label="Stanley mascot"></div>
+    </div>
+    <div class="f-plat">
+      <button aria-label="Video"><iconify-icon icon="lucide:video"></iconify-icon></button>
+      <button aria-label="X"><iconify-icon icon="lucide:x"></iconify-icon></button>
+      <button aria-label="Professional network"><iconify-icon icon="lucide:linkedin"></iconify-icon></button>
+      <button aria-label="Threads"><iconify-icon icon="lucide:at-sign"></iconify-icon></button>
+      <button aria-label="Camera"><iconify-icon icon="lucide:camera"></iconify-icon></button>
+    </div>
+    <p class="f-copy">© 2024 Stanley · getstanley.ai/welcome</p>
+    <p class="f-cred">Design system captured and rendered by <a href="https://r3xdec.design">r3xdec.design</a></p>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.replay').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.target);
+    if(!t)return;
+    if(t.id==='m2'){var ball=t.querySelector('.mball');ball.style.transform='scale(.9) translateY(2px)';ball.style.filter='brightness(1.2)';setTimeout(function(){ball.style.transform='';ball.style.filter='';},260);return;}
+    t.classList.remove('run');void t.offsetWidth;t.classList.add('run');
+  });
+});
+</script>
+</body>
+</html>

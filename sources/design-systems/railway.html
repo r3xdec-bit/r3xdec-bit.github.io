@@ -1,0 +1,767 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nocturne rail — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:wght@400;500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#13111C;
+    --surface:#1C1A28;
+    --surface-alt:#0B0B0F;
+    --border:#33323E;
+    --text-primary:#F7F7F8;
+    --text-secondary:#A1A0AB;
+    --text-tertiary:#6B7280;
+    --accent:#59497A;
+    --accent-midpage:#291839;
+    --accent-success:#428A72;
+    --accent-pink:#F9A8D4;
+    --white:#FFFFFF;
+    --r-control:6px;
+    --r-control-alt:8px;
+    --r-card:12px;
+    --r-card-lg:16px;
+    --r-pill:9999px;
+    --gap:24px;
+    --gap-lg:32px;
+    --section-padding:96px;
+    --serif:"IBM Plex Serif",Georgia,serif;
+    --ui:"Inter",Helvetica,Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--ui);
+    font-size:14px;
+    line-height:1.4;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{font-family:var(--serif);font-weight:400;margin:0}
+  p{margin:0}
+  a{color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  section{padding:var(--section-padding) 0}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:0;color:var(--text-secondary);margin-bottom:16px}
+  .sec-title{font-size:36px;line-height:1.33;letter-spacing:-0.7px;color:var(--text-primary)}
+  .sec-lead{color:var(--text-secondary);font-size:16px;max-width:640px;margin-top:16px;line-height:1.4}
+  iconify-icon{display:inline-block;vertical-align:middle}
+
+  /* Hero critical */
+  #hero{position:relative;padding:0;overflow:hidden;background:var(--background)}
+  .hero-illustration{
+    position:absolute;top:0;left:0;right:0;height:860px;z-index:0;
+    background:
+      radial-gradient(120% 80% at 70% 10%, rgba(89,73,122,0.55), transparent 60%),
+      radial-gradient(90% 70% at 20% 20%, rgba(200,140,150,0.35), transparent 55%),
+      radial-gradient(140% 90% at 50% 40%, rgba(40,90,110,0.45), transparent 60%),
+      linear-gradient(to bottom, #2a2440 0%, #241e38 35%, #1a1628 65%, var(--background) 100%);
+  }
+  .hero-mountains{
+    position:absolute;left:0;right:0;bottom:0;height:340px;z-index:1;
+    background:
+      linear-gradient(to top, rgba(19,17,28,1) 8%, rgba(19,17,28,0) 60%),
+      radial-gradient(60% 120% at 25% 100%, rgba(30,26,45,0.9), transparent 70%),
+      radial-gradient(50% 110% at 72% 100%, rgba(24,20,38,0.9), transparent 70%);
+    clip-path:polygon(0 60%,12% 42%,26% 58%,40% 30%,54% 55%,68% 36%,82% 60%,100% 44%,100% 100%,0 100%);
+  }
+  .hero-illustration::after{
+    content:"";position:absolute;top:70px;right:22%;width:120px;height:6px;border-radius:3px;
+    background:linear-gradient(90deg,rgba(249,168,212,0.6),rgba(89,73,122,0.4));
+    box-shadow:-30px 3px 0 -1px rgba(200,140,150,0.35),-60px 2px 0 -2px rgba(89,73,122,0.3);
+  }
+  .navbar{
+    position:relative;z-index:5;height:64px;display:flex;align-items:center;gap:32px;
+    background:transparent;
+  }
+  .navbar .wrap{display:flex;align-items:center;gap:28px;width:100%}
+  .logo{display:flex;align-items:center;gap:9px;font-family:var(--serif);font-size:18px;color:var(--text-primary);text-decoration:none;font-weight:500}
+  .logo .mark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,var(--accent),var(--accent-midpage));display:grid;place-items:center;color:var(--text-primary);font-size:15px}
+  .nav-items{display:flex;align-items:center;gap:4px}
+  .nav-ghost{
+    display:inline-flex;align-items:center;gap:5px;background:transparent;border:0;cursor:pointer;
+    color:var(--text-primary);font-family:var(--ui);font-size:14px;
+    border-radius:var(--r-control);height:32px;padding:6px 12px;text-decoration:none;
+    transition:background-color .2s ease-out;
+  }
+  .nav-ghost:hover{background:rgba(255,255,255,0.05)}
+  .nav-right{margin-left:auto;display:flex;align-items:center;gap:8px}
+  .nav-signin{color:var(--text-primary);text-decoration:none;font-size:14px;padding:0 8px}
+  .nav-signin:hover{color:var(--text-secondary)}
+  .nav-cta{
+    display:inline-flex;align-items:center;background:transparent;border:0;cursor:pointer;
+    color:var(--text-primary);font-family:var(--ui);font-size:14px;
+    border-radius:var(--r-control);height:40px;padding:0 12px;
+    transition:background-color .2s ease-out;
+  }
+  .nav-cta:hover{background:rgba(255,255,255,0.05)}
+
+  .hero-content{position:relative;z-index:4;text-align:center;padding:120px 24px 0}
+  .hero-h1{font-family:var(--serif);font-weight:500;font-size:54px;line-height:1.12;letter-spacing:-2px;color:var(--white);max-width:820px;margin:0 auto}
+  .hero-sub{font-family:Helvetica,var(--ui);font-size:16px;line-height:1.5;color:var(--text-secondary);max-width:560px;margin:24px auto 0}
+  .hero-cta-cluster{display:flex;gap:12px;justify-content:center;margin-top:32px}
+  .btn-primary{
+    display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--text-primary);
+    border:0;cursor:pointer;font-family:var(--ui);font-size:14px;font-weight:500;
+    border-radius:var(--r-control-alt);height:40px;padding:0 20px;text-decoration:none;
+    transition:transform .15s cubic-bezier(0.4,0,1,1),opacity .15s ease-in-out;
+  }
+  .btn-primary:hover{opacity:.92}
+  .btn-primary:active{transform:translateY(1px)}
+  .btn-outline{
+    display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text-primary);
+    border:1px solid var(--border);cursor:pointer;font-family:var(--ui);font-size:14px;
+    border-radius:var(--r-control-alt);height:40px;padding:0 20px;text-decoration:none;
+    transition:background-color .2s ease-out;
+  }
+  .btn-outline:hover{background:rgba(255,255,255,0.03)}
+
+  .hero-console{
+    position:relative;z-index:3;max-width:1000px;margin:64px auto 0;
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card) var(--r-card) 0 0;
+    overflow:hidden;
+  }
+  @media(max-width:768px){
+    .hero-h1{font-size:38px;letter-spacing:-1.2px}
+    .nav-items,.nav-signin{display:none}
+  }
+  @media(max-width:640px){
+    .hero-h1{font-size:30px;letter-spacing:-0.8px}
+    .hero-content{padding-top:72px}
+  }
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-illustration" aria-hidden="true"><div class="hero-mountains"></div></div>
+  <nav class="navbar" aria-label="Primary">
+    <div class="wrap">
+      <a href="#hero" class="logo"><span class="mark" aria-hidden="true"><iconify-icon icon="lucide:train-front"></iconify-icon></span>Nocturne</a>
+      <div class="nav-items">
+        <button class="nav-ghost">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+        <button class="nav-ghost">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+        <button class="nav-ghost">Docs <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+        <button class="nav-ghost">Company <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+        <a href="#components" class="nav-ghost">Pricing</a>
+      </div>
+      <div class="nav-right">
+        <a href="#" class="nav-signin">Sign in</a>
+        <button class="nav-cta">Book a demo</button>
+      </div>
+    </div>
+  </nav>
+  <div class="hero-content">
+    <h1 class="hero-h1">Ship the whole journey, from first commit to the last mile.</h1>
+    <p class="hero-sub">A dark-by-default console that carries your infrastructure the way a night train carries the coast — quietly, on rails you can trust.</p>
+    <div class="hero-cta-cluster">
+      <a href="#components" class="btn-primary">Start deploying <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+      <a href="#composition" class="btn-outline">Read the docs</a>
+    </div>
+    <div class="hero-console" role="img" aria-label="Console architecture mockup preview">
+      <div style="display:flex;align-items:center;gap:2px;padding:0 12px;height:40px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-secondary)">
+        <span style="padding:0 12px;color:var(--text-primary);border-bottom:2px solid var(--accent);height:40px;display:flex;align-items:center">Architecture</span>
+        <span style="padding:0 12px">Observability</span>
+        <span style="padding:0 12px">Logs</span>
+        <span style="padding:0 12px">Settings</span>
+        <span style="padding:0 12px">Share</span>
+      </div>
+      <div style="position:relative;height:220px;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.05)),var(--surface-alt)">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:40px">
+          <div style="width:100px;height:56px;border:1px solid var(--border);border-radius:8px;background:var(--surface);display:grid;place-items:center;color:var(--text-secondary);font-size:12px">web</div>
+          <div style="width:100px;height:56px;border:1px solid var(--border);border-radius:8px;background:var(--surface);display:grid;place-items:center;color:var(--text-secondary);font-size:12px">api</div>
+          <div style="width:100px;height:56px;border:1px solid var(--border);border-radius:8px;background:var(--surface);display:grid;place-items:center;color:var(--text-secondary);font-size:12px">postgres</div>
+        </div>
+        <div style="position:absolute;right:20px;bottom:20px;background:var(--surface);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:12px 16px;display:flex;align-items:center;gap:10px">
+          <span style="width:8px;height:8px;border-radius:50%;background:var(--accent-success)"></span>
+          <span style="font-size:13px;color:var(--text-primary)">Deploy successful</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+  .palette-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:48px}
+  .swatch{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
+  .swatch .chip{height:96px}
+  .swatch .meta{padding:14px 16px}
+  .swatch .name{font-size:14px;color:var(--text-primary);font-weight:500}
+  .swatch .val{font-family:var(--mono);font-size:13px;color:var(--text-secondary);margin-top:4px}
+  .swatch .note{font-size:13px;color:var(--text-tertiary);margin-top:8px;line-height:1.4}
+  .role-label{grid-column:1/-1;font-family:var(--mono);font-size:13px;color:var(--text-secondary);margin-top:24px;text-transform:uppercase;letter-spacing:1px}
+  .checker{background-image:linear-gradient(45deg,#2a2836 25%,transparent 25%),linear-gradient(-45deg,#2a2836 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2a2836 75%),linear-gradient(-45deg,transparent 75%,#2a2836 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+  @media(max-width:768px){.palette-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:640px){.palette-grid{grid-template-columns:1fr}}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <p class="eyebrow">01 / Palette</p>
+    <h2 class="sec-title">Grayscale ink on near-black, colour kept on a ration.</h2>
+    <p class="sec-lead">The system runs on warm charcoal-violet surfaces. Violet, teal and pink each earn one or two roles — everything structural stays grayscale.</p>
+    <div class="palette-grid">
+      <div class="role-label">Surfaces</div>
+      <div class="swatch"><div class="chip" style="background:#13111C"></div><div class="meta"><div class="name">background</div><div class="val">#13111C</div><div class="note">Page field — reads as true black across three quarters of area.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#1C1A28"></div><div class="meta"><div class="name">surface</div><div class="val">#1C1A28</div><div class="note">Console panels, mockup cards, one step up from the field.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#0B0B0F"></div><div class="meta"><div class="name">surface-alt</div><div class="val">#0B0B0F</div><div class="note">Deepest recessed canvas beneath diagram nodes.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#33323E"></div><div class="meta"><div class="name">border</div><div class="val">#33323E</div><div class="note">Hairline dividers — elevation lives here, not in shadow.</div></div></div>
+
+      <div class="role-label">Text</div>
+      <div class="swatch"><div class="chip" style="background:#F7F7F8"></div><div class="meta"><div class="name">text-primary</div><div class="val">#F7F7F8</div><div class="note">Primary copy ink on every dark surface.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><div class="name">white</div><div class="val">#FFFFFF</div><div class="note">Reserved for hero headline emphasis.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#A1A0AB"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#A1A0AB</div><div class="note">Body support lines and metadata.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#6B7280"></div><div class="meta"><div class="name">text-tertiary</div><div class="val">#6B7280</div><div class="note">The most muted labels and captions.</div></div></div>
+
+      <div class="role-label">Accents</div>
+      <div class="swatch"><div class="chip" style="background:#59497A"></div><div class="meta"><div class="name">accent</div><div class="val">#59497A</div><div class="note">Violet — the single hero primary action and the rail.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#291839"></div><div class="meta"><div class="name">accent midpage</div><div class="val">#291839</div><div class="note">Darker violet for the mid-page solid button.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#428A72"></div><div class="meta"><div class="name">accent-success</div><div class="val">#428A72</div><div class="note">Teal-green status and success dots.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#F9A8D4"></div><div class="meta"><div class="name">accent-pink</div><div class="val">#F9A8D4</div><div class="note">Pink link underline in the footer.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+  .type-row{border-top:1px solid var(--border);padding:36px 0;display:grid;grid-template-columns:1fr 260px;gap:32px;align-items:baseline}
+  .type-row:first-of-type{border-top:0}
+  .type-metrics{font-family:var(--mono);font-size:13px;color:var(--text-secondary);line-height:1.7}
+  .type-metrics .tk{color:var(--text-tertiary)}
+  .weight-ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:48px;align-items:baseline}
+  .weight-ramp span{font-family:var(--serif);font-size:40px;color:var(--text-primary)}
+  .weight-ramp small{display:block;font-family:var(--mono);font-size:12px;color:var(--text-tertiary);margin-top:6px}
+  @media(max-width:768px){.type-row{grid-template-columns:1fr}}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <p class="eyebrow">02 / Type scale</p>
+    <h2 class="sec-title">IBM Plex Serif states, Inter runs the console.</h2>
+    <p class="sec-lead">A hard hierarchy break: the serif is for editorial moments only, never body copy or UI chrome.</p>
+    <div style="margin-top:48px">
+      <div class="type-row">
+        <div style="font-family:var(--serif);font-weight:500;font-size:54px;line-height:1.12;letter-spacing:-2px;color:var(--white)">Ship the whole journey.</div>
+        <div class="type-metrics"><span class="tk">display-lg</span><br>IBM Plex Serif · 54px<br>weight 500 · lh 1.12<br>tracking -2px</div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:var(--serif);font-weight:400;font-size:36px;line-height:1.33;letter-spacing:-0.7px;color:var(--text-primary)">Connect to a private network.</div>
+        <div class="type-metrics"><span class="tk">headline-md</span><br>IBM Plex Serif · 36px<br>weight 400 · lh 1.33<br>tracking -0.7px</div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:Helvetica,var(--ui);font-size:16px;line-height:1.5;color:var(--text-secondary)">Every claim gets room to breathe — one sentence of support copy beneath the headline, kept in Helvetica so the console stays legible.</div>
+        <div class="type-metrics"><span class="tk">body-md</span><br>Helvetica · 16px<br>weight 400 · lh 1.5</div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:var(--ui);font-size:14px;line-height:1.4;color:var(--text-primary)">Nav items, chips and mockup labels run Inter at fourteen, with secondary tone for metadata.</div>
+        <div class="type-metrics"><span class="tk">body-ui</span><br>Inter · 14px<br>weight 400 · lh 1.4</div>
+      </div>
+      <div class="type-row">
+        <div style="font-family:var(--mono);font-size:13px;line-height:1.4;color:var(--accent-success)">● all systems operational — us-west-1</div>
+        <div class="type-metrics"><span class="tk">label-mono</span><br>JetBrains Mono · 13px<br>weight 400 · lh 1.4</div>
+      </div>
+    </div>
+    <div class="weight-ramp">
+      <div><span style="font-weight:400">Regular</span><small>IBM Plex Serif 400</small></div>
+      <div><span style="font-weight:500">Medium</span><small>IBM Plex Serif 500</small></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+  .comp-block{border-top:1px solid var(--border);padding:56px 0}
+  .comp-head{display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+  .comp-name{font-family:var(--serif);font-size:24px;color:var(--text-primary)}
+  .comp-count{font-family:var(--mono);font-size:12px;color:var(--text-tertiary)}
+  .spec{font-family:var(--mono);font-size:12px;color:var(--text-secondary);line-height:1.7;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:14px 16px;margin-top:24px}
+  .spec .tk{color:var(--accent-pink)}
+  .comp-desc{color:var(--text-secondary);font-size:15px;line-height:1.5;max-width:640px;margin-bottom:24px}
+
+  .matrix{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;margin-top:8px}
+  .matrix table{width:100%;border-collapse:collapse}
+  .matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);vertical-align:middle}
+  .matrix th{font-family:var(--mono);font-size:12px;color:var(--text-secondary);font-weight:400;background:var(--surface)}
+  .matrix tr:last-child td{border-bottom:0}
+  .matrix th:last-child,.matrix td:last-child{border-right:0}
+  .matrix .rowlabel{font-family:var(--mono);font-size:12px;color:var(--text-secondary)}
+
+  .cluster{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .midpage-solid{background:var(--accent-midpage);color:var(--text-primary);border:0;cursor:pointer;font-family:var(--ui);font-size:14px;border-radius:var(--r-control-alt);height:32px;padding:0 14px;transition:opacity .15s ease-in-out}
+  .midpage-solid:hover{opacity:.9}
+
+  .mockup-card{background:var(--surface);border-radius:var(--r-card);border:1px solid var(--border);padding:16px;position:relative}
+  .glow{box-shadow:rgba(65,78,166,0.28) 0px -12px 90px 0px}
+  .badge-glass{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:12px;color:var(--text-primary);padding:4px 10px;border-radius:var(--r-pill);box-shadow:rgba(255,255,255,0.2) 0 0 0 1.5px inset}
+  .pixbars{display:flex;gap:3px;align-items:flex-end;height:48px}
+  .pixbars i{width:8px;display:block;border-radius:2px}
+
+  .eyebrow-chip{display:inline-flex;align-items:center;gap:6px;border-radius:var(--r-pill);border:1px solid;background:transparent;padding:4px 12px;font-family:var(--ui);font-size:12px;color:var(--text-primary)}
+
+  .feature-stage{display:grid;grid-template-columns:48px 1fr 1fr;gap:32px;align-items:start;padding:40px 0}
+  .rail{position:relative;display:flex;flex-direction:column;align-items:center}
+  .rail-line{position:absolute;top:0;bottom:-40px;width:0;border-left:1px dotted var(--border)}
+  .rail-rung{position:relative;z-index:2;width:28px;height:28px;border-radius:8px;background:var(--surface);border:1px solid var(--border);display:grid;place-items:center;color:var(--accent)}
+  .feature-text .flink{display:inline-flex;align-items:center;gap:6px;color:var(--text-primary);text-decoration:none;font-size:14px;margin-top:8px}
+  .feature-text .flink:hover{color:var(--text-secondary)}
+  .checklist{margin-top:24px;border-top:1px solid var(--border)}
+  .check-row{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}
+  .check-row iconify-icon{color:var(--accent-success);font-size:18px;flex-shrink:0;margin-top:1px}
+  .check-row .cl-label{font-weight:600;font-size:14px;color:var(--text-primary)}
+  .check-row .cl-sent{font-size:13px;color:var(--text-secondary);margin-top:3px;line-height:1.4}
+  .alt-cluster{display:flex;align-items:center;gap:8px;margin-top:16px;color:var(--text-tertiary);font-size:13px}
+  .alt-cluster iconify-icon{font-size:18px}
+
+  .dash-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:16px;background:var(--surface-alt)}
+  .dash-tile{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:12px}
+  .dash-tile .lbl{font-family:var(--mono);font-size:11px;color:var(--text-tertiary)}
+  .dash-line{height:44px;margin-top:8px;border-radius:4px}
+
+  .mini-status{background:var(--surface);border-radius:var(--r-card);padding:16px;border:1px solid rgba(255,255,255,0.2);max-width:280px}
+  .mini-status .dot{width:9px;height:9px;border-radius:50%;background:var(--accent-success);display:inline-block}
+
+  .console-chrome{display:flex;align-items:center;gap:2px;padding:0 12px;height:40px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-secondary)}
+  .console-chrome .active{color:var(--text-primary);border-bottom:2px solid var(--accent);height:40px;display:flex;align-items:center;padding:0 12px}
+  .console-chrome span{padding:0 12px}
+
+  .logo-strip{border:1px solid var(--border);display:grid;grid-template-columns:repeat(6,1fr);grid-template-rows:repeat(2,1fr);overflow:hidden}
+  .logo-cell{padding:24px;border:1px solid var(--border);margin:-0.5px;display:grid;place-items:center;color:var(--text-secondary)}
+  .logo-cell iconify-icon{font-size:26px}
+
+  @media(max-width:900px){.feature-stage{grid-template-columns:32px 1fr}.feature-mock-col{grid-column:1/-1;margin-top:16px}}
+  @media(max-width:640px){.logo-strip{grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr)}.matrix{overflow-x:auto}}
+</style>
+<section id="components">
+  <div class="wrap">
+    <p class="eyebrow">03 / Components</p>
+    <h2 class="sec-title">The inventory, on rails.</h2>
+    <p class="sec-lead">Every control traces to a token. Violet stays on the primary action; elevation stays in hairline borders.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><div class="comp-name">Fixed top navbar</div><div class="comp-count">×1 · ~64px height</div></div>
+      <p class="comp-desc">Transparent over the illustration: logo-left, five nav items (four with chevrons, one plain), a Sign in link, and a taller utility CTA.</p>
+      <div style="background:linear-gradient(135deg,#2a2440,#1a1628);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden">
+        <div style="display:flex;align-items:center;gap:16px;padding:0 16px;height:64px">
+          <a href="#" class="logo" style="pointer-events:none"><span class="mark"><iconify-icon icon="lucide:train-front"></iconify-icon></span>Nocturne</a>
+          <div class="nav-items">
+            <button class="nav-ghost">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <button class="nav-ghost">Docs <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <a href="#" class="nav-ghost">Pricing</a>
+          </div>
+          <div class="nav-right"><a href="#" class="nav-signin">Sign in</a><button class="nav-cta">Book a demo</button></div>
+        </div>
+      </div>
+      <div class="spec"><span class="tk">--button-nav-ghost</span> · fill transparent · text text-primary · radius r-control 6 · height 32 · pad 6/12<br><span class="tk">--button-nav-cta</span> · height 40 · pad 0/12 · hover rgba(255,255,255,0.05) · motion ease-out 0.2s</div>
+    </div>
+
+    <!-- HERO PRIMARY BUTTON + matrix -->
+    <div class="comp-block" data-tier-a-component="hero-primary-button">
+      <div class="comp-head"><div class="comp-name">Hero primary button</div><div class="comp-count">×1 · most emphasized control</div></div>
+      <p class="comp-desc">Solid violet fill with a trailing arrow — a slightly-rounded 8px rectangle, never glass, never a nav ghost.</p>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>active</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rowlabel">primary (solid)</td>
+              <td><span class="btn-primary" style="pointer-events:none">Start deploying <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></td>
+              <td><span class="btn-primary" style="pointer-events:none;opacity:.92">Start deploying <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></td>
+              <td><span class="btn-primary" style="pointer-events:none;transform:translateY(1px)">Start deploying <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec"><span class="tk">--button-primary</span> · fill accent #59497A · text text-primary · radius r-control-alt 8 · height 40 · pad 0/20 · motion transform 0.15s cubic-bezier(0.4,0,1,1)</div>
+    </div>
+
+    <!-- HERO SECONDARY -->
+    <div class="comp-block" data-tier-a-component="hero-secondary-button">
+      <div class="comp-head"><div class="comp-name">Hero secondary outline button</div><div class="comp-count">×1</div></div>
+      <p class="comp-desc">The quieter half of the cluster: transparent fill, one hairline border, no fill weight.</p>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>active</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rowlabel">outline</td>
+              <td><span class="btn-outline" style="pointer-events:none">Read the docs</span></td>
+              <td><span class="btn-outline" style="pointer-events:none;background:rgba(255,255,255,0.03)">Read the docs</span></td>
+              <td><span class="btn-outline" style="pointer-events:none;background:rgba(255,255,255,0.05)">Read the docs</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec"><span class="tk">--button-secondary-outline</span> · fill transparent · border 1px border #33323E · text text-primary · radius r-control-alt 8 · height 40 · pad 0/20</div>
+    </div>
+
+    <!-- CONSOLE / ARCHITECTURE MOCKUP -->
+    <div class="comp-block" data-tier-a-component="console-architecture-mockup">
+      <div class="comp-head"><div class="comp-name">Console / architecture mockup card</div><div class="comp-count">×1 · full content-width</div></div>
+      <p class="comp-desc">A nested tab bar over an infra canvas, dimmed by a scrim, with a floating deploy toast — teasing the product cropped at the fold.</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:0;overflow:hidden">
+        <div class="console-chrome"><span class="active">Architecture</span><span>Observability</span><span>Logs</span><span>Settings</span><span>Share</span></div>
+        <div style="position:relative;height:200px;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.05)),var(--surface-alt)">
+          <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:40px">
+            <div class="mockup-card" style="width:110px;text-align:center;font-size:12px;color:var(--text-secondary)">web</div>
+            <div class="mockup-card" style="width:110px;text-align:center;font-size:12px;color:var(--text-secondary)">worker</div>
+            <div class="mockup-card" style="width:110px;text-align:center;font-size:12px;color:var(--text-secondary)">postgres</div>
+          </div>
+          <div style="position:absolute;right:20px;bottom:20px" class="mini-status">
+            <div style="display:flex;align-items:center;gap:10px"><span class="dot"></span><span style="font-size:13px">Deploy successful · 12s</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec"><span class="tk">--card-console-panel</span> · fill surface #1C1A28 · radius 0 at scale · border 1px border · scrim linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.05))</div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block" data-tier-a-component="logo-strip-band">
+      <div class="comp-head"><div class="comp-name">Logo strip band</div><div class="comp-count">×1 · 2 rows × 6 cols</div></div>
+      <p class="comp-desc">A strict uniform grid of twelve bordered cells, each a monochrome partner mark — a flat trust signal, not cards.</p>
+      <div class="logo-strip">
+        <div class="logo-cell"><iconify-icon icon="lucide:box" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:cloud" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:database" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:git-branch" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:hexagon" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:layers" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:server" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:globe" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:cpu" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:terminal" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:shield" aria-label="Partner logo"></iconify-icon></div>
+        <div class="logo-cell"><iconify-icon icon="lucide:zap" aria-label="Partner logo"></iconify-icon></div>
+      </div>
+      <div class="spec"><span class="tk">--card-logo-tile</span> · fill transparent · radius 0 · pad 24 · border 1px border · dividers border #33323E · motion logos marquee</div>
+    </div>
+
+    <!-- FEATURE STAGE RAIL ENTRIES ×4 -->
+    <div class="comp-block" data-tier-a-component="feature-stage-rail-entry">
+      <div class="comp-head"><div class="comp-name">Feature-stage rail entries</div><div class="comp-count">×4 · build → network → scale → observe</div></div>
+      <p class="comp-desc">Each stage is a fixed two-column split pinned to the vertical timeline rail — never a bento grid.</p>
+
+      <!-- Stage 1 build -->
+      <div class="feature-stage">
+        <div class="rail"><span class="rail-line"></span><span class="rail-rung"><iconify-icon icon="lucide:ship-wheel" aria-hidden="true"></iconify-icon></span></div>
+        <div class="feature-text">
+          <span class="eyebrow-chip" style="border-color:var(--accent)">Build</span>
+          <h3 style="font-size:28px;line-height:1.2;letter-spacing:-0.7px;margin:16px 0 12px">Push to deploy,<br>nothing in between.</h3>
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.5">Connect a repo and Nocturne builds, containerizes and ships every commit automatically.</p>
+          <a href="#" class="flink">See how builds work <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+          <div class="checklist">
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Zero-config detection</div><div class="cl-sent">Language and framework picked up from the repository.</div></div></div>
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Instant rollbacks</div><div class="cl-sent">Every deploy is immutable and reversible in one click.</div></div></div>
+          </div>
+          <div class="alt-cluster"><span>Alternative to</span><iconify-icon icon="lucide:box" aria-label="competitor"></iconify-icon><iconify-icon icon="lucide:hexagon" aria-label="competitor"></iconify-icon></div>
+        </div>
+        <div class="feature-mock-col">
+          <div class="mockup-card glow">
+            <span class="badge-glass"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-success);display:inline-block"></span>TCP · 443</span>
+            <div style="margin-top:14px;font-family:var(--mono);font-size:12px;color:var(--text-secondary);line-height:1.9">
+              → building image…<br>→ pushing layers 3/3<br><span style="color:var(--accent-success)">✓ deploy live in 11s</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 2 network -->
+      <div class="feature-stage">
+        <div class="rail"><span class="rail-line"></span><span class="rail-rung"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon></span></div>
+        <div class="feature-text">
+          <span class="eyebrow-chip" style="border-color:var(--accent-success)">Network</span>
+          <h3 style="font-size:28px;line-height:1.2;letter-spacing:-0.7px;margin:16px 0 12px">A private mesh<br>between services.</h3>
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.5">Services talk over a private network with zero public exposure and no egress fees inside the graph.</p>
+          <a href="#" class="flink">Explore networking <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+          <div class="checklist">
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Private DNS</div><div class="cl-sent">Reach any service by internal hostname automatically.</div></div></div>
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Zero-fee internal traffic</div><div class="cl-sent">Traffic inside the mesh never hits the meter.</div></div></div>
+          </div>
+          <div class="alt-cluster"><span>Alternative to</span><iconify-icon icon="lucide:globe" aria-label="competitor"></iconify-icon><iconify-icon icon="lucide:shield" aria-label="competitor"></iconify-icon></div>
+        </div>
+        <div class="feature-mock-col">
+          <div class="mockup-card glow">
+            <span class="badge-glass"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-success);display:inline-block"></span>mesh · healthy</span>
+            <div style="display:flex;gap:24px;justify-content:center;margin-top:20px">
+              <div style="text-align:center;color:var(--text-secondary);font-size:12px"><iconify-icon icon="lucide:server" style="font-size:24px;color:var(--accent)"></iconify-icon><br>api</div>
+              <iconify-icon icon="lucide:arrow-left-right" style="font-size:18px;color:var(--text-tertiary);align-self:center"></iconify-icon>
+              <div style="text-align:center;color:var(--text-secondary);font-size:12px"><iconify-icon icon="lucide:database" style="font-size:24px;color:var(--accent)"></iconify-icon><br>db</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 3 scale -->
+      <div class="feature-stage">
+        <div class="rail"><span class="rail-line"></span><span class="rail-rung"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon></span></div>
+        <div class="feature-text">
+          <span class="eyebrow-chip" style="border-color:#B58838">Scale</span>
+          <h3 style="font-size:28px;line-height:1.2;letter-spacing:-0.7px;margin:16px 0 12px">Grow without<br>redrawing anything.</h3>
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.5">Vertical and horizontal scaling respond to load — you set the ceiling, the graph does the rest.</p>
+          <a href="#" class="flink">Read scaling docs <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+          <div class="checklist">
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Usage-based autoscale</div><div class="cl-sent">Replicas track live demand within your limits.</div></div></div>
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Regional replicas</div><div class="cl-sent">Place workloads closer to your users, per region.</div></div></div>
+          </div>
+          <div class="alt-cluster"><span>Alternative to</span><iconify-icon icon="lucide:layers" aria-label="competitor"></iconify-icon><iconify-icon icon="lucide:cpu" aria-label="competitor"></iconify-icon></div>
+        </div>
+        <div class="feature-mock-col">
+          <div class="mockup-card glow" style="background:linear-gradient(to top,rgb(49,60,60),rgba(40,52,52,0)),var(--surface)">
+            <div style="font-family:var(--mono);font-size:11px;color:var(--text-tertiary);margin-bottom:10px">CPU utilisation</div>
+            <div class="pixbars">
+              <i style="height:14px;background:var(--accent-success)"></i><i style="height:22px;background:var(--accent-success)"></i><i style="height:18px;background:var(--accent-success)"></i><i style="height:34px;background:var(--accent-success)"></i><i style="height:28px;background:#3f4b4b"></i><i style="height:40px;background:#3f4b4b"></i><i style="height:24px;background:#3f4b4b"></i><i style="height:30px;background:#3f4b4b"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 4 observe -->
+      <div class="feature-stage">
+        <div class="rail"><span class="rail-line" style="bottom:0"></span><span class="rail-rung"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></span></div>
+        <div class="feature-text">
+          <span class="eyebrow-chip" style="border-color:var(--accent)">Observe</span>
+          <h3 style="font-size:28px;line-height:1.2;letter-spacing:-0.7px;margin:16px 0 12px">See the whole line<br>from one platform.</h3>
+          <p style="color:var(--text-secondary);font-size:15px;line-height:1.5">Metrics, logs and traces stream into one console so you never leave the graph to debug.</p>
+          <a href="#" class="flink">Open observability <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a>
+          <div class="checklist">
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Live log tail</div><div class="cl-sent">Follow structured logs across every replica in real time.</div></div></div>
+            <div class="check-row"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon><div><div class="cl-label">Metric alerts</div><div class="cl-sent">Threshold rules notify you before users notice.</div></div></div>
+          </div>
+          <div class="alt-cluster"><span>Alternative to</span><iconify-icon icon="lucide:activity" aria-label="competitor"></iconify-icon><iconify-icon icon="lucide:terminal" aria-label="competitor"></iconify-icon></div>
+        </div>
+        <div class="feature-mock-col">
+          <div class="mockup-card glow">
+            <span class="badge-glass"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-success);display:inline-block"></span>uptime 99.98%</span>
+            <div style="margin-top:16px;height:44px;border-radius:6px;background:linear-gradient(90deg,rgba(89,73,122,0.5),rgba(66,138,114,0.4))"></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec"><span class="tk">rail</span> dotted border · rung surface + border r-control-alt 8 · <span class="tk">eyebrow-chip</span> radius pill · 1px colored border · <span class="tk">mockup</span> surface · radius card 12 · glow rgba(65,78,166,0.28)</div>
+    </div>
+
+    <!-- FEATURE MOCKUP CARD family -->
+    <div class="comp-block" data-tier-a-component="feature-mockup-card">
+      <div class="comp-head"><div class="comp-name">Floating feature-stage mockup card</div><div class="comp-count">×4 · one per stage</div></div>
+      <p class="comp-desc">Surface cards floating on a soft upward violet glow — status panels with glass-edge chips, or pixel-grid resource bars.</p>
+      <div class="cluster" style="align-items:stretch">
+        <div class="mockup-card glow" style="width:220px"><span class="badge-glass"><span style="width:7px;height:7px;border-radius:50%;background:var(--accent-success);display:inline-block"></span>TCP · 443</span><div style="margin-top:12px;font-family:var(--mono);font-size:12px;color:var(--text-secondary)">connections 1.2k/s</div></div>
+        <div class="mockup-card" style="width:220px;background:linear-gradient(to top,rgb(49,60,60),rgba(40,52,52,0)),var(--surface)"><div style="font-family:var(--mono);font-size:11px;color:var(--text-tertiary);margin-bottom:10px">memory</div><div class="pixbars"><i style="height:20px;background:var(--accent-success)"></i><i style="height:28px;background:var(--accent-success)"></i><i style="height:16px;background:#3f4b4b"></i><i style="height:36px;background:#3f4b4b"></i><i style="height:24px;background:#3f4b4b"></i><i style="height:30px;background:#3f4b4b"></i></div></div>
+      </div>
+      <div class="spec"><span class="tk">--card-feature-mockup</span> · fill surface #1C1A28 · radius card 12 · glow rgba(65,78,166,0.28) 0 -12px · inset ring rgba(255,255,255,0.2) 0 0 0 1.5px · base-fade linear-gradient(to top,rgb(49,60,60),rgba(40,52,52,0))</div>
+    </div>
+
+    <!-- OBSERVABILITY DASHBOARD -->
+    <div class="comp-block" data-tier-a-component="observability-dashboard-mockup">
+      <div class="comp-head"><div class="comp-name">Observability dashboard mockup</div><div class="comp-count">×1 · 3 × 2 uniform grid</div></div>
+      <p class="comp-desc">Console chrome over six equal chart tiles — the only place the multi-colour chart palette is allowed to appear.</p>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden">
+        <div class="console-chrome"><span>Architecture</span><span class="active">Observability</span><span>Logs</span><span>Settings</span><span>Share</span></div>
+        <div class="dash-grid">
+          <div class="dash-tile"><div class="lbl">CPU</div><div class="dash-line" style="background:linear-gradient(90deg,#4C6EF5,transparent)"></div></div>
+          <div class="dash-tile"><div class="lbl">Memory</div><div class="dash-line" style="background:linear-gradient(90deg,#F9A8D4,transparent)"></div></div>
+          <div class="dash-tile"><div class="lbl">Frontend hit/error</div><div class="dash-line" style="background:linear-gradient(90deg,#B58838,transparent)"></div></div>
+          <div class="dash-tile"><div class="lbl">Disk</div><div class="dash-line" style="background:linear-gradient(90deg,#8B5CF6,transparent)"></div></div>
+          <div class="dash-tile"><div class="lbl">5XX</div><div class="dash-line" style="background:linear-gradient(90deg,#F9A8D4,transparent)"></div></div>
+          <div class="dash-tile"><div class="lbl">Egress</div><div class="dash-line" style="background:linear-gradient(90deg,#4C6EF5,transparent)"></div></div>
+        </div>
+      </div>
+      <div class="spec"><span class="tk">dash-tile</span> · fill surface · border 1px border · radius 8 · ~35% width · axis labels JetBrains Mono label-mono · chart colours confined here</div>
+    </div>
+
+    <!-- MIDPAGE SOLID BUTTON -->
+    <div class="comp-block" data-tier-a-component="midpage-solid-button">
+      <div class="comp-head"><div class="comp-name">Mid-page solid button</div><div class="comp-count">×1</div></div>
+      <p class="comp-desc">The darker violet variant — one of only two violet-accented buttons on the page.</p>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>active</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rowlabel">midpage solid</td>
+              <td><span class="midpage-solid" style="pointer-events:none">Deploy now</span></td>
+              <td><span class="midpage-solid" style="pointer-events:none;opacity:.9">Deploy now</span></td>
+              <td><span class="midpage-solid" style="pointer-events:none;opacity:.82">Deploy now</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec"><span class="tk">--button-midpage-solid</span> · fill accent-midpage #291839 · text text-primary · radius r-control-alt 8 · height 32 · pad 0</div>
+    </div>
+
+    <!-- MINI STATUS CARD -->
+    <div class="comp-block" data-tier-a-component="mini-status-card">
+      <div class="comp-head"><div class="comp-name">Mini status card</div><div class="comp-count">×1</div></div>
+      <p class="comp-desc">A small standalone panel with a brighter border and a teal success dot.</p>
+      <div class="mini-status">
+        <div style="display:flex;align-items:center;gap:10px"><span class="dot" id="statusDot"></span><span style="font-size:14px;color:var(--text-primary)">Production · healthy</span></div>
+        <div style="font-family:var(--mono);font-size:12px;color:var(--text-secondary);margin-top:8px">3 services · 0 incidents</div>
+      </div>
+      <div class="spec"><span class="tk">--card-mini-status</span> · fill surface #1C1A28 · radius card 12 · pad 16 · border 1px rgba(255,255,255,0.2) · dot accent-success #428A72 · motion flash/bounce</div>
+    </div>
+
+    <!-- Tier B: inline link -->
+    <div class="comp-block">
+      <div class="comp-head"><div class="comp-name">Inline link</div><div class="comp-count">derived</div></div>
+      <p class="comp-desc">Plain text link with the pink underline reserved for the footer, shown here in context.</p>
+      <p style="font-size:15px;color:var(--text-secondary);max-width:560px">Traffic inside the mesh is free — <a href="#" style="color:var(--text-primary);text-decoration:underline;text-decoration-color:var(--accent-pink);text-underline-offset:3px">read the networking guide</a> to see how the private graph is wired.</p>
+      <div class="spec"><span class="tk">link</span> · text text-primary · underline accent-pink #F9A8D4 · hover text-secondary</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+  .depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px}
+  .depth-card{padding:24px;background:var(--surface)}
+  .depth-card h4{font-family:var(--serif);font-size:18px;margin-bottom:8px}
+  .depth-card p{font-size:13px;color:var(--text-secondary)}
+  .depth-card .tk{font-family:var(--mono);font-size:12px;color:var(--text-tertiary);margin-top:12px;display:block}
+  @media(max-width:768px){.depth-grid{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <p class="eyebrow">04 / Surface &amp; depth</p>
+    <h2 class="sec-title">Elevation in hairlines, not in shadow.</h2>
+    <p class="sec-lead">Radii step from control to card; depth is a single soft upward violet glow, never a hard drop.</p>
+    <div class="depth-grid">
+      <div class="depth-card" style="border:1px solid var(--border);border-radius:var(--r-control)"><h4>Control</h4><p>Nav ghost buttons and utility CTAs.</p><span class="tk">radius r-control · 6px</span></div>
+      <div class="depth-card" style="border:1px solid var(--border);border-radius:var(--r-control-alt)"><h4>Control alt</h4><p>Hero primary and outline buttons.</p><span class="tk">radius r-control-alt · 8px</span></div>
+      <div class="depth-card" style="border:1px solid var(--border);border-radius:var(--r-card)"><h4>Card</h4><p>Console panels and mockup cards.</p><span class="tk">radius r-card · 12px</span></div>
+      <div class="depth-card" style="border:1px solid var(--border);border-radius:var(--r-card-lg)"><h4>Card large</h4><p>Larger container framing.</p><span class="tk">radius r-card-lg · 16px</span></div>
+      <div class="depth-card" style="border:1px solid var(--border);border-radius:var(--r-card);box-shadow:rgba(65,78,166,0.28) 0px -12px 90px 0px"><h4>Ambient glow</h4><p>Lifts one floating mockup off the black field.</p><span class="tk">rgba(65,78,166,0.1) 0 -12px 127px</span></div>
+      <div class="depth-card" style="border-radius:var(--r-card);box-shadow:rgba(255,255,255,0.2) 0 0 0 1.5px inset"><h4>Inset ring</h4><p>Glass-edge chips like the TCP status badge.</p><span class="tk">rgba(255,255,255,0.2) inset 1.5px</span></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+  .motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px}
+  .motion-card{border:1px solid var(--border);border-radius:var(--r-card);padding:24px;background:var(--surface);text-align:center}
+  .motion-box{width:56px;height:56px;border-radius:var(--r-control-alt);background:var(--accent);margin:12px auto 20px}
+  .m1:active .motion-box{transform:translateY(6px);transition:transform .15s cubic-bezier(0.4,0,1,1)}
+  .m2:active .motion-box{opacity:.3;transition:opacity .15s ease-in-out}
+  .m3:active .motion-box{transform:translateX(40px);transition:transform .4s ease}
+  .motion-card .tk{font-family:var(--mono);font-size:12px;color:var(--text-secondary);display:block;margin-top:8px}
+  .motion-card button{margin-top:8px;background:transparent;border:1px solid var(--border);color:var(--text-primary);border-radius:var(--r-control);height:32px;padding:0 12px;cursor:pointer;font-family:var(--ui);font-size:13px}
+  @keyframes flash{0%,100%{opacity:1}50%{opacity:.35}}
+  .flash-dot{width:12px;height:12px;border-radius:50%;background:var(--accent-success);margin:12px auto 20px;animation:flash 1.4s ease-in-out infinite}
+  @media(max-width:768px){.motion-grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <p class="eyebrow">05 / Motion</p>
+    <h2 class="sec-title">Quick and mechanical, not springy.</h2>
+    <p class="sec-lead">Press feedback is fast; larger repositioning is a slower ease. Click each to replay.</p>
+    <div class="motion-grid">
+      <div class="motion-card m1"><div class="motion-box"></div><span class="tk">transform 0.15s<br>cubic-bezier(0.4,0,1,1)</span><button onclick="this.closest('.motion-card').classList.remove('m1');void this.offsetWidth;this.closest('.motion-card').classList.add('m1')">Replay press</button></div>
+      <div class="motion-card m2"><div class="motion-box"></div><span class="tk">opacity 0.15s<br>ease-in-out</span><button>Replay fade</button></div>
+      <div class="motion-card m3"><div class="motion-box"></div><span class="tk">transform 0.4s ease<br>card reposition</span><button>Replay float</button></div>
+      <div class="motion-card"><div class="flash-dot"></div><span class="tk">flash keyframe<br>status attention</span></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+  .mock-screen{border:1px solid var(--border);border-radius:var(--r-card-lg);overflow:hidden;margin-top:48px;background:var(--background)}
+  .mock-hero{position:relative;padding:56px 32px;text-align:center;background:linear-gradient(to bottom,#2a2440,#1a1628 70%,var(--background))}
+  .mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;padding:32px}
+  .mock-cta{padding:0 32px 40px;text-align:center}
+  @media(max-width:768px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <p class="eyebrow">06 / In composition</p>
+    <h2 class="sec-title">The system, holding together.</h2>
+    <p class="sec-lead">A nav, a hero fragment, three cards and a CTA — every value drawn from the tokens above.</p>
+    <div class="mock-screen">
+      <div style="display:flex;align-items:center;gap:16px;padding:0 16px;height:64px;border-bottom:1px solid var(--border)">
+        <a href="#" class="logo" style="pointer-events:none"><span class="mark"><iconify-icon icon="lucide:train-front"></iconify-icon></span>Nocturne</a>
+        <div class="nav-items" style="margin-left:8px"><button class="nav-ghost">Product <iconify-icon icon="lucide:chevron-down"></iconify-icon></button><a href="#" class="nav-ghost">Docs</a></div>
+        <div class="nav-right"><a href="#" class="nav-signin">Sign in</a><button class="nav-cta">Book a demo</button></div>
+      </div>
+      <div class="mock-hero">
+        <h3 style="font-family:var(--serif);font-weight:500;font-size:36px;line-height:1.12;letter-spacing:-1px;color:var(--white)">Infrastructure that runs on rails.</h3>
+        <p style="font-family:Helvetica,var(--ui);font-size:16px;color:var(--text-secondary);margin:16px auto 0;max-width:440px">From first commit to full-scale, on one quiet platform.</p>
+        <div style="display:flex;gap:12px;justify-content:center;margin-top:24px">
+          <a href="#" class="btn-primary" style="pointer-events:none">Start deploying <iconify-icon icon="lucide:arrow-right"></iconify-icon></a>
+          <a href="#" class="btn-outline" style="pointer-events:none">Read the docs</a>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="mockup-card"><span class="eyebrow-chip" style="border-color:var(--accent)">Build</span><h4 style="font-family:var(--serif);font-size:18px;margin:12px 0 8px">Push to deploy</h4><p style="font-size:13px;color:var(--text-secondary)">Every commit builds and ships automatically.</p></div>
+        <div class="mockup-card"><span class="eyebrow-chip" style="border-color:var(--accent-success)">Network</span><h4 style="font-family:var(--serif);font-size:18px;margin:12px 0 8px">Private mesh</h4><p style="font-size:13px;color:var(--text-secondary)">Services reach each other with no public exposure.</p></div>
+        <div class="mockup-card glow"><span class="eyebrow-chip" style="border-color:#B58838">Scale</span><h4 style="font-family:var(--serif);font-size:18px;margin:12px 0 8px">Grow on demand</h4><p style="font-size:13px;color:var(--text-secondary)">Replicas follow load within your set ceiling.</p></div>
+      </div>
+      <div class="mock-cta"><button class="midpage-solid">Deploy now</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+  #footer{border-top:1px solid var(--border);background:transparent}
+  .foot-callouts{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:640px;margin-bottom:56px}
+  .callout{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:20px}
+  .callout p{font-size:14px;color:var(--text-secondary);line-height:1.5}
+  .callout .lead{color:var(--text-primary);font-weight:600}
+  .callout a.inline{color:var(--text-primary);text-decoration:underline;text-decoration-color:var(--accent-pink);text-underline-offset:3px}
+  .callout a.under{display:inline-flex;align-items:center;gap:5px;margin-top:12px;color:var(--text-primary);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+  .foot-cols{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+  .foot-cols h5{font-family:var(--ui);font-size:13px;color:var(--text-primary);margin:0 0 14px;font-weight:600}
+  .foot-cols a{display:block;color:var(--text-secondary);font-size:13px;text-decoration:none;margin-bottom:9px}
+  .foot-cols a:hover{color:var(--text-primary)}
+  .foot-close{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;border-top:1px solid var(--border);margin-top:48px;padding-top:24px}
+  .foot-status{font-family:var(--mono);font-size:13px;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+  .foot-status .op{color:var(--accent-success)}
+  .foot-badges{display:flex;gap:12px;color:var(--text-tertiary)}
+  .foot-badges iconify-icon{font-size:22px}
+  @media(max-width:768px){.foot-cols{grid-template-columns:repeat(2,1fr)}.foot-callouts{grid-template-columns:1fr}}
+</style>
+<footer id="footer">
+  <div class="wrap" style="padding-top:var(--section-padding);padding-bottom:48px">
+    <div class="foot-callouts">
+      <div class="callout"><p><span class="lead">Deploy your first app free.</span> Start on <a href="#" class="inline">the hobby plan</a> and pay only when you scale past it.</p><a href="#" class="under">Get started <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+      <div class="callout"><p><span class="lead">Talk to an engineer.</span> Bring a workload and <a href="#" class="inline">we'll map the migration</a> with you, live.</p><a href="#" class="under">Book a demo <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></a></div>
+    </div>
+    <div class="foot-cols">
+      <div><h5>Product</h5><a href="#">Deploys</a><a href="#">Networking</a><a href="#">Databases</a><a href="#">Observability</a><a href="#">Pricing</a><a href="#">Changelog</a><a href="#">Status</a></div>
+      <div><h5>Compare</h5><a href="#">vs Heroku</a><a href="#">vs Render</a><a href="#">vs Fly</a><a href="#">vs Vercel</a><a href="#">vs AWS</a><a href="#">Migrate</a></div>
+      <div><h5>Resources</h5><a href="#">Docs</a><a href="#">Guides</a><a href="#">Templates</a><a href="#">Blog</a><a href="#">Community</a><a href="#">Support</a><a href="#">API</a></div>
+      <div><h5>Company</h5><a href="#">About</a><a href="#">Careers</a><a href="#">Customers</a><a href="#">Brand</a><a href="#">Contact</a><a href="#">Partners</a></div>
+      <div><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Security</a><a href="#">DPA</a><a href="#">Subprocessors</a><a href="#">Compliance</a></div>
+    </div>
+    <div class="foot-close">
+      <div class="foot-status"><span class="op">●</span> all systems operational — us-west-1 · 99.98% uptime</div>
+      <div class="foot-badges"><iconify-icon icon="lucide:shield-check" aria-label="SOC 2 compliant"></iconify-icon><iconify-icon icon="lucide:badge-check" aria-label="ISO 27001 certified"></iconify-icon></div>
+    </div>
+    <div style="margin-top:32px;color:var(--text-tertiary);font-size:13px">
+      <div style="font-family:var(--serif);font-size:18px;color:var(--text-primary);margin-bottom:8px">Nocturne rail</div>
+      <a href="https://railway.com" style="color:var(--text-secondary);text-decoration:none">railway.com</a>
+      <p style="margin-top:12px">Design system captured and rendered by r3xdec.design</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.motion-card button').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.motion-card');
+      var box=card.querySelector('.motion-box');
+      if(!box)return;
+      var cls=card.className.match(/m[123]/);
+      if(!cls)return;
+      card.classList.remove(cls[0]);
+      void card.offsetWidth;
+      card.classList.add(cls[0]);
+    });
+  });
+</script>
+</body>
+</html>

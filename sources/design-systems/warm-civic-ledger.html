@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm civic ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F4EBDD;
+  --surface:#FAF4EA;
+  --surface-alt:#FFFFFF;
+  --surface-dark:#2A2A2A;
+  --footer:#111111;
+  --text-primary:#121212;
+  --text-secondary:#6F6A62;
+  --accent:#CA352B;
+  --accent-active:#A82E25;
+  --accent-soft:#E4A59D;
+  --border:#D8CFC2;
+  --image-tile:#E4D9CA;
+  --r-control:6px;
+  --r-card:8px;
+  --r-panel:6px;
+  --r-pill:9999px;
+  --base:8px;
+  --gap:24px;
+  --section-padding:100px;
+  --section-gap:49px;
+  --maxw:1100px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+  --shadow-card:rgba(0,0,0,0.06) 0px 2px 12px 0px;
+  --shadow-btn:rgba(0,0,0,0.1) 0px 10px 15px -3px, rgba(0,0,0,0.1) 0px 4px 6px -4px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.6;
+}
+h1,h2,h3,h4{font-family:"Inter Tight","Inter Tight",sans-serif;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+img{max-width:100%;display:block;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+.eyebrow{
+  font-family:"Inter Tight",sans-serif;
+  font-size:12px;font-weight:600;line-height:1.5;
+  letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);
+}
+.section-title{
+  font-size:60px;font-weight:700;line-height:1.1;letter-spacing:-1.5px;
+}
+.lead{font-size:20px;line-height:1.6;color:var(--text-secondary);}
+band{display:block;}
+.band{padding:var(--section-padding) 0;}
+
+/* NAVBAR */
+.nav{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:64px;border-radius:0;
+  background:var(--background);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;
+}
+.nav .wrap{display:flex;align-items:center;gap:24px;width:100%;}
+.nav-logo{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.6px;}
+.nav-logo .dot{color:var(--accent);}
+.nav-links{display:flex;gap:24px;margin-left:auto;list-style:none;padding:0;margin-top:0;margin-bottom:0;}
+.nav-links a{font-size:16px;color:var(--text-primary);text-decoration:none;transition:color .15s var(--ease);}
+.nav-links a:hover{color:var(--accent);}
+.nav-cta{
+  background:var(--accent);color:#fff;border:none;
+  border-radius:var(--r-control);height:44px;padding:0 28px;
+  font-family:"Inter Tight",sans-serif;font-weight:600;font-size:16px;
+  cursor:pointer;transition:background .15s var(--ease),transform .2s var(--ease);
+}
+.nav-cta:hover{background:var(--accent-active);transform:translateY(-1px);}
+
+/* HERO */
+#hero{position:relative;color:#fff;overflow:hidden;min-height:640px;display:flex;align-items:flex-end;}
+.hero-photo{position:absolute;inset:0;background:
+  linear-gradient(120deg,#3a2f28,#6f6a62 55%,#c9bda9);}
+.hero-scrim{position:absolute;inset:0;background:linear-gradient(to right top,rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.15) 100%);}
+.hero-inner{position:relative;z-index:2;padding-top:120px;padding-bottom:80px;max-width:760px;}
+.hero h1{font-size:60px;font-weight:700;line-height:1.1;letter-spacing:-1.5px;color:#fff;}
+.hero .support{font-size:20px;line-height:1.6;margin-top:20px;color:#f4ebdd;}
+.hero .declar{font-family:"Inter Tight",sans-serif;font-weight:700;font-size:24px;letter-spacing:-0.6px;margin-top:24px;}
+.hero .body{font-size:16px;margin-top:12px;max-width:520px;color:#f0e7da;}
+.hero-btns{display:flex;gap:16px;margin-top:32px;flex-wrap:wrap;}
+.btn-pill-primary{
+  background:var(--accent);color:#fff;border:none;
+  border-radius:var(--r-pill);height:56px;padding:0 36px;
+  font-family:"Inter Tight",sans-serif;font-weight:600;font-size:16px;
+  cursor:pointer;box-shadow:var(--shadow-btn);
+  transition:background .15s var(--ease),transform .2s var(--ease);
+}
+.btn-pill-primary:hover{background:var(--accent-active);transform:translateY(-1px);}
+.btn-pill-outline{
+  background:transparent;color:#fff;border:1px solid #fff;
+  border-radius:var(--r-pill);height:56px;padding:0 36px;
+  font-family:"Inter Tight",sans-serif;font-weight:600;font-size:16px;cursor:pointer;
+  transition:background .15s var(--ease);
+}
+.btn-pill-outline:hover{background:rgba(255,255,255,0.12);}
+.hero-caption{font-style:italic;font-size:14px;margin-top:24px;color:#e4d9ca;}
+@media(max-width:768px){
+  .hero h1,.section-title{font-size:40px;letter-spacing:-1px;}
+  .band{padding:64px 0;}
+}
+@media(max-width:640px){
+  .hero h1,.section-title{font-size:32px;}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <div class="nav-logo">Newtown<span class="dot">.</span></div>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#palette">Services</a></li>
+        <li><a href="#components">Programs</a></li>
+        <li><a href="#composition">Notices</a></li>
+        <li><a href="#surface-depth">About</a></li>
+        <li><a href="#footer">Contact</a></li>
+      </ul>
+    </nav>
+    <button class="nav-cta">Get started</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" aria-label="Introduction">
+  <div class="hero-photo" role="img" aria-label="Documentary photograph of a neighbourhood street scene"></div>
+  <div class="hero-scrim"></div>
+  <div class="wrap hero hero-inner">
+    <p class="eyebrow" style="color:var(--accent-soft)">A community notice board, digitised</p>
+    <h1>The plain-spoken way a neighbourhood gets things done.</h1>
+    <p class="support">Newtown is where local services, programs, and notices live — organised like a paper ledger, legible as a hand-lettered sign.</p>
+    <p class="declar">Cream paper. Ink type. One red pen.</p>
+    <p class="body">No glossy decks, no gradients for their own sake. Just the information a resident needs, set the way a printed service sheet would set it.</p>
+    <div class="hero-btns">
+      <button class="btn-pill-primary">Post a notice</button>
+      <button class="btn-pill-outline">Browse services</button>
+    </div>
+    <p class="hero-caption">Photographed on Maple Street, spring session.</p>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface);}
+.palette-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);margin-top:48px;}
+.pal-group h3{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;margin-bottom:16px;}
+.swatch{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;margin-bottom:16px;background:var(--surface-alt);}
+.swatch .chip{height:72px;}
+.swatch .meta{padding:12px 14px;}
+.swatch .name{font-family:"Inter Tight";font-weight:600;font-size:16px;}
+.swatch .val{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--text-secondary);margin-top:2px;}
+.swatch .use{font-size:14px;color:var(--text-secondary);margin-top:6px;line-height:1.5;}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+@media(max-width:768px){.palette-grid{grid-template-columns:1fr;}}
+</style>
+<section id="palette" class="band" aria-label="Colour palette">
+  <div class="wrap">
+    <p class="eyebrow">The vocabulary</p>
+    <h2 class="section-title">Cream, ink, and one red.</h2>
+    <p class="lead" style="margin-top:16px;max-width:640px;">The entire colour system: warm neutral surfaces, near-black ink, and a single rationed vermilion that carries all emphasis.</p>
+    <div class="palette-grid">
+      <div class="pal-group">
+        <h3>Surfaces</h3>
+        <div class="swatch"><div class="chip" style="background:#F4EBDD"></div><div class="meta"><div class="name">background</div><div class="val">#F4EBDD</div><div class="use">The true canvas — paper-and-ink cream, 52% of the page.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FAF4EA"></div><div class="meta"><div class="name">surface</div><div class="val">#FAF4EA</div><div class="use">Panel and light-card fill, one step above the canvas.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="meta"><div class="name">surface-alt</div><div class="val">#FFFFFF</div><div class="use">Elevated cards and the white checklist panel.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#2A2A2A"></div><div class="meta"><div class="name">surface-dark</div><div class="val">#2A2A2A</div><div class="use">The charcoal marquee band and dark offer cards.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#111111"></div><div class="meta"><div class="name">footer</div><div class="val">#111111</div><div class="use">The single darkest surface, reserved for the footer.</div></div></div>
+      </div>
+      <div class="pal-group">
+        <h3>Text</h3>
+        <div class="swatch"><div class="chip" style="background:#121212"></div><div class="meta"><div class="name">text-primary</div><div class="val">#121212</div><div class="use">Headings and primary reading ink.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#6F6A62"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#6F6A62</div><div class="use">Supporting lines and muted qualifiers.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#D8CFC2"></div><div class="meta"><div class="name">border</div><div class="val">#D8CFC2</div><div class="use">Hairline outlines on cards and inputs only.</div></div></div>
+      </div>
+      <div class="pal-group">
+        <h3>Accents</h3>
+        <div class="swatch"><div class="chip" style="background:#CA352B"></div><div class="meta"><div class="name">accent</div><div class="val">#CA352B</div><div class="use">The one red pen — CTAs, icons, dots. Under 1% of area.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#A82E25"></div><div class="meta"><div class="name">accent-active</div><div class="val">#A82E25</div><div class="use">Hover and pressed state for accented controls.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E4A59D"></div><div class="meta"><div class="name">accent-soft</div><div class="val">#E4A59D</div><div class="use">Soft tint reserved for gentle hover surfaces.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background);}
+.spec{border-top:1px solid var(--border);padding:32px 0;display:grid;grid-template-columns:1fr 220px;gap:24px;align-items:baseline;}
+.spec .metrics{font-family:"IBM Plex Mono",monospace;font-size:14px;color:var(--text-secondary);line-height:1.7;}
+.t-display{font-family:"Inter Tight";font-size:60px;font-weight:700;line-height:1.1;letter-spacing:-1.5px;}
+.t-label{font-family:"Inter Tight";font-size:24px;font-weight:600;line-height:1.5;letter-spacing:-0.6px;}
+.t-headline{font-family:"Inter Tight";font-size:12px;font-weight:600;line-height:1.5;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);}
+.t-body-md{font-family:"Inter";font-size:20px;font-weight:400;line-height:1.6;}
+.t-body-base{font-family:"Inter";font-size:16px;font-weight:400;line-height:1.6;}
+.t-mono{font-family:"IBM Plex Mono";font-size:14px;font-weight:400;line-height:1.5;}
+@media(max-width:640px){.spec{grid-template-columns:1fr;}.t-display{font-size:34px;letter-spacing:-1px;}}
+</style>
+<section id="type-scale" class="band" aria-label="Type scale">
+  <div class="wrap">
+    <p class="eyebrow">Set like a service sheet</p>
+    <h2 class="section-title">Two families, one accent voice.</h2>
+    <div class="spec"><div class="t-display">Notices, plainly set.</div><div class="metrics">display-lg · Inter Tight<br>60px / 700<br>lh 1.1 · ls -1.5px</div></div>
+    <div class="spec"><div class="t-label">Card and sub-section heading</div><div class="metrics">label-md · Inter Tight<br>24px / 600<br>lh 1.5 · ls -0.6px</div></div>
+    <div class="spec"><div class="t-headline">All-caps eyebrow label</div><div class="metrics">headline-md · Inter Tight<br>12px / 600<br>lh 1.5 · ls +1.2px</div></div>
+    <div class="spec"><div class="t-body-md">Larger body copy for the hero and lead paragraphs, set generously for editorial breathing room.</div><div class="metrics">body-md · Inter<br>20px / 400<br>lh 1.6</div></div>
+    <div class="spec"><div class="t-body-base">Body-base carries the dense paragraph and list content across every flat panel on the page.</div><div class="metrics">body-base · Inter<br>16px / 400<br>lh 1.6</div></div>
+    <div class="spec"><div class="t-mono">DELIVERED / FILED / STAMPED / POSTED</div><div class="metrics">label-mono · IBM Plex Mono<br>14px / 400<br>lh 1.5</div></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface);}
+.comp{padding:56px 0;border-top:1px solid var(--border);}
+.comp:first-of-type{border-top:none;}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:28px;}
+.comp-head h3{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.comp-head .count{font-family:"IBM Plex Mono";font-size:14px;color:var(--text-secondary);}
+.speccard{font-family:"IBM Plex Mono";font-size:13px;line-height:1.7;color:var(--text-secondary);background:var(--surface-alt);border:1px solid var(--border);border-radius:var(--r-card);padding:14px 16px;margin-top:20px;}
+.speccard b{color:var(--text-primary);font-weight:500;}
+.demo{display:flex;flex-wrap:wrap;gap:16px;align-items:center;}
+
+/* nav demo */
+.nav-demo{width:100%;height:64px;background:var(--background);border:1px solid var(--border);display:flex;align-items:center;padding:0 20px;gap:20px;}
+.nav-demo .l{font-family:"Inter Tight";font-weight:700;letter-spacing:-0.6px;}
+.nav-demo ul{list-style:none;display:flex;gap:18px;margin:0 0 0 auto;padding:0;font-size:14px;}
+.nav-demo .cta{background:var(--accent);color:#fff;border:none;border-radius:6px;height:44px;padding:0 28px;font-family:"Inter Tight";font-weight:600;cursor:pointer;transition:background .15s var(--ease),transform .2s var(--ease);}
+.nav-demo .cta:hover{background:var(--accent-active);transform:translateY(-1px);}
+@media(max-width:640px){.nav-demo ul{display:none;}}
+
+/* button matrix */
+.matrix{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;background:var(--surface-alt);}
+.matrix table{border-collapse:collapse;width:100%;}
+.matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid var(--border);border-right:1px solid var(--border);font-size:13px;font-family:"IBM Plex Mono";color:var(--text-secondary);vertical-align:middle;}
+.matrix th{background:var(--surface);color:var(--text-primary);}
+.matrix tr:last-child td{border-bottom:none;}
+.matrix td:last-child,.matrix th:last-child{border-right:none;}
+.b-primary{background:var(--accent);color:#fff;border:none;border-radius:var(--r-pill);height:56px;padding:0 28px;font-family:"Inter Tight";font-weight:600;font-size:15px;cursor:pointer;box-shadow:var(--shadow-btn);transition:background .15s var(--ease),transform .2s var(--ease);}
+.b-primary:hover{background:var(--accent-active);transform:translateY(-1px);}
+.b-outline{background:transparent;color:var(--text-primary);border:1px solid var(--surface-dark);border-radius:var(--r-pill);height:56px;padding:0 28px;font-family:"Inter Tight";font-weight:600;font-size:15px;cursor:pointer;transition:background .15s var(--ease);}
+.b-outline:hover{background:rgba(42,42,42,0.06);}
+.b-mid{background:var(--accent);color:#fff;border:1px solid var(--accent);border-radius:8px;height:50px;padding:0 24px;font-family:"Inter Tight";font-weight:600;font-size:15px;cursor:pointer;transition:background .15s var(--ease);}
+.b-mid:hover{background:var(--accent-active);}
+.b-split{background:var(--accent);color:#fff;border:none;border-radius:0 8px 8px 0;height:39px;padding:0 16px;font-family:"Inter Tight";font-weight:600;font-size:14px;cursor:pointer;transition:background .15s var(--ease);}
+.b-split:hover{background:var(--accent-active);}
+.is-active{background:var(--accent-active)!important;transform:translateY(1px);}
+.is-disabled{opacity:.45;pointer-events:none;box-shadow:none;}
+
+/* feature row */
+.feature-row{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;}
+.feat h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;margin:12px 0 8px;}
+.feat p{font-size:16px;color:var(--text-secondary);}
+.feat iconify-icon{font-size:28px;color:var(--accent);}
+@media(max-width:768px){.feature-row{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.feature-row{grid-template-columns:1fr;}}
+
+/* marquee */
+.marquee{background:var(--surface-dark);color:#EDE7DC;overflow:hidden;white-space:nowrap;padding:22px 0;border-radius:0;}
+.marquee-track{display:inline-block;font-family:"IBM Plex Mono";font-size:14px;letter-spacing:.5px;animation:marquee 26s linear infinite;}
+.marquee-track span{padding:0 8px;color:#B9B2A6;}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* checklist */
+.checklist{background:#fff;padding:64px;border-radius:0;}
+.checklist h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.checklist p{color:var(--text-secondary);margin-top:12px;max-width:620px;}
+.checklist ul{list-style:none;padding:0;margin:24px 0 0;}
+.checklist li{display:flex;align-items:baseline;gap:12px;padding:8px 0;font-size:16px;}
+.checklist .mk{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;transform:translateY(-1px);}
+
+/* start-here panel */
+.start{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;}
+.start h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.start p{color:var(--text-secondary);margin-top:12px;}
+.callout{background:#fff;border-left:4px solid var(--accent);border-radius:0 var(--r-card) var(--r-card) 0;padding:14px 18px;font-weight:600;margin-top:20px;box-shadow:var(--shadow-card);}
+.start .alts{list-style:none;padding-left:16px;margin:16px 0 24px;color:var(--text-secondary);font-size:15px;}
+.start .alts li{padding:4px 0;}
+.start-img{background:var(--image-tile);border-radius:8px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#a7998a;}
+.start-img iconify-icon{font-size:40px;}
+@media(max-width:768px){.start{grid-template-columns:1fr;}}
+
+/* pricing */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.price-row2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:24px;}
+.pcard{background:var(--surface);border-radius:var(--r-card);padding:32px;box-shadow:var(--shadow-card);}
+.pcard.dark{background:var(--surface-dark);color:#fff;}
+.pcard h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.pcard .desc{margin-top:10px;font-size:15px;color:var(--text-secondary);}
+.pcard.dark .desc{color:#CFC8BC;}
+.pcard hr{border:none;border-top:1px solid var(--border);margin:20px 0;}
+.pcard.dark hr{border-top-color:#4a4a4a;}
+.pcard .goodfor{font-family:"Inter Tight";font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--accent);}
+.pcard .qual{font-size:14px;color:var(--text-secondary);margin-top:6px;}
+.pcard.dark .qual{color:#B9B2A6;}
+.pcard .price{font-family:"Inter Tight";font-size:24px;font-weight:700;letter-spacing:-0.6px;margin-top:14px;}
+.pcard .pbtn{margin-top:20px;width:100%;background:transparent;color:var(--text-primary);border:1px solid var(--surface-dark);border-radius:var(--r-control);height:44px;font-family:"Inter Tight";font-weight:600;cursor:pointer;transition:background .15s var(--ease);}
+.pcard .pbtn:hover{background:rgba(42,42,42,0.06);}
+.pcard.dark .pbtn{color:#fff;border-color:#fff;}
+.pcard.dark .pbtn:hover{background:rgba(255,255,255,0.12);}
+@media(max-width:768px){.price-row{grid-template-columns:1fr;}.price-row2{grid-template-columns:1fr;}}
+
+/* proof */
+.proof{display:grid;grid-template-columns:1fr 1fr;gap:64px;}
+.proof h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.proof p{color:var(--text-secondary);margin-top:10px;}
+.proof .media{margin-top:20px;background:linear-gradient(135deg,#1e1e1e,#333);aspect-ratio:16/10;border-radius:0;display:flex;align-items:center;justify-content:center;}
+.proof .media iconify-icon{font-size:44px;color:#8a8378;}
+@media(max-width:768px){.proof{grid-template-columns:1fr;}}
+
+/* contact */
+.contact{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-card);padding:32px;max-width:560px;}
+.contact label{display:block;font-family:"Inter Tight";font-weight:600;font-size:14px;margin:16px 0 6px;}
+.contact input,.contact textarea{width:100%;border:1px solid var(--border);border-radius:var(--r-control);padding:12px 14px;font-family:"Inter";font-size:16px;background:#fff;color:var(--text-primary);}
+.contact input::placeholder,.contact textarea::placeholder{color:var(--text-secondary);}
+.contact .submit{margin-top:20px;width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--r-control);height:50px;font-family:"Inter Tight";font-weight:600;cursor:pointer;transition:background .15s var(--ease);}
+.contact .submit:hover{background:var(--accent-active);}
+.contact .micro{font-size:13px;color:var(--text-secondary);margin-top:12px;}
+.field-inline{display:flex;align-items:stretch;margin-top:20px;}
+.field-inline input{border-radius:8px 0 0 8px;border-right:none;}
+</style>
+<section id="components" class="band" aria-label="Component inventory">
+  <div class="wrap">
+    <p class="eyebrow">The inventory</p>
+    <h2 class="section-title">Every part, as it ships.</h2>
+
+    <!-- NAVBAR -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · sticky</span></div>
+      <div class="nav-demo">
+        <span class="l">Newtown<span style="color:var(--accent)">.</span></span>
+        <ul><li>Home</li><li>Services</li><li>Programs</li><li>Notices</li><li>About</li><li>Contact</li></ul>
+        <button class="cta">Get started</button>
+      </div>
+      <div class="speccard"><b>--navbar</b> · height <b>64</b> · radius <b>0</b> · bg <b>background</b> · border-bottom <b>border</b><br>cta: fill <b>accent</b> · text <b>#FFFFFF</b> · radius <b>r-control</b> · height <b>44</b> · pad <b>14/28</b> · hover <b>accent-active</b> +translateY(-1px)</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp" data-tier-a-component="button-hero-primary">
+      <div class="comp-head"><h3>Buttons — variant × state</h3><span class="count">solid pill · outline pill · mid-page · split-tab</span></div>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr data-tier-a-component="button-hero-primary">
+              <td>Hero primary</td>
+              <td><button class="b-primary">Post a notice</button></td>
+              <td><button class="b-primary is-active">Post a notice</button></td>
+              <td><button class="b-primary is-active">Post a notice</button></td>
+              <td><button class="b-primary is-disabled">Post a notice</button></td>
+            </tr>
+            <tr data-tier-a-component="button-hero-secondary">
+              <td>Hero secondary</td>
+              <td><button class="b-outline">Browse</button></td>
+              <td><button class="b-outline" style="background:rgba(42,42,42,0.06)">Browse</button></td>
+              <td><button class="b-outline" style="background:rgba(42,42,42,0.06)">Browse</button></td>
+              <td><button class="b-outline is-disabled">Browse</button></td>
+            </tr>
+            <tr data-tier-a-component="button-midpage">
+              <td>Mid-page CTA</td>
+              <td><button class="b-mid">Learn more</button></td>
+              <td><button class="b-mid" style="background:var(--accent-active)">Learn more</button></td>
+              <td><button class="b-mid" style="background:var(--accent-active)">Learn more</button></td>
+              <td><button class="b-mid is-disabled">Learn more</button></td>
+            </tr>
+            <tr data-tier-a-component="button-split-tab">
+              <td>Split-tab</td>
+              <td><button class="b-split">Search</button></td>
+              <td><button class="b-split" style="background:var(--accent-active)">Search</button></td>
+              <td><button class="b-split" style="background:var(--accent-active)">Search</button></td>
+              <td><button class="b-split is-disabled">Search</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="speccard">
+        <b>button-hero-primary</b> · fill <b>accent</b> · text <b>#FFFFFF</b> · radius <b>r-pill</b> · height <b>56</b> · shadow <b>shadow-btn</b><br>
+        <b>button-secondary-outline</b> · fill transparent · border <b>1px surface-dark</b> · text <b>text-primary</b> · radius <b>r-pill</b> · height <b>56</b><br>
+        <b>button-midpage</b> · fill <b>accent</b> · border <b>1px accent</b> · radius <b>8</b> · height <b>50</b> · pad <b>12/24</b><br>
+        <b>button-split-tab</b> · fill <b>accent</b> · radius <b>0 8 8 0</b> · height <b>39</b> · pad <b>8/16</b> · motion <b>ease 0.15s</b>
+      </div>
+    </div>
+
+    <!-- FEATURE ROW -->
+    <div class="comp" data-tier-a-component="feature-icon-row">
+      <div class="comp-head"><h3>Four-up icon feature row</h3><span class="count">×4 columns</span></div>
+      <p class="eyebrow" style="margin-bottom:24px;">What Newtown keeps track of</p>
+      <div class="feature-row">
+        <div class="feat"><iconify-icon icon="lucide:megaphone" aria-hidden="true"></iconify-icon><h4>Notices</h4><p>Every local announcement, filed and dated like a ledger entry.</p></div>
+        <div class="feat"><iconify-icon icon="lucide:calendar-days" aria-hidden="true"></iconify-icon><h4>Programs</h4><p>Seasonal sessions residents can browse and sign up for.</p></div>
+        <div class="feat"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon><h4>Places</h4><p>The rooms, halls, and corners where things actually happen.</p></div>
+        <div class="feat"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon><h4>People</h4><p>Coordinators and volunteers who keep the board current.</p></div>
+      </div>
+      <div class="speccard"><b>card-feature-icon</b> · bg transparent · radius <b>0</b> · pad <b>0</b><br>eyebrow <b>headline-md</b> accent · icon <b>accent</b> 28px · heading <b>label-md</b> · body <b>body-base</b></div>
+    </div>
+
+    <!-- MARQUEE -->
+    <div class="comp" data-tier-a-component="marquee-word-rail">
+      <div class="comp-head"><h3>Marquee word rail</h3><span class="count">×1 · looping</span></div>
+    </div>
+  </div>
+  <div class="marquee" role="marquee" aria-label="Scrolling ledger terms">
+    <div class="marquee-track">
+      <span>DELIVERED</span>/<span>FILED</span>/<span>STAMPED</span>/<span>POSTED</span>/<span>SIGNED</span>/<span>LOGGED</span>/<span>NOTED</span>/<span>SENT</span>/
+      <span>DELIVERED</span>/<span>FILED</span>/<span>STAMPED</span>/<span>POSTED</span>/<span>SIGNED</span>/<span>LOGGED</span>/<span>NOTED</span>/<span>SENT</span>/
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="comp" style="border-top:none;padding-top:24px;">
+      <div class="speccard"><b>marquee word rail</b> · bg <b>surface-dark</b> · ink neutral · type <b>label-mono</b> IBM Plex Mono · radius <b>0</b> · motion <b>marquee 26s linear</b></div>
+    </div>
+
+    <!-- CHECKLIST -->
+    <div class="comp" data-tier-a-component="checklist-panel">
+      <div class="comp-head"><h3>Checklist panel</h3><span class="count">×1 · full-width white</span></div>
+      <div class="checklist">
+        <h4>What a good notice includes</h4>
+        <p>Keep it plain. A resident reading fast should know the what, the when, and the where before they finish the first line.</p>
+        <p>Everything below is optional, but every entry that has them gets read more.</p>
+        <ul>
+          <li><span class="mk"></span>A clear, single-sentence headline</li>
+          <li><span class="mk"></span>An exact date and start time</li>
+          <li><span class="mk"></span>A named place, not just a neighbourhood</li>
+          <li><span class="mk"></span>One way to get in touch</li>
+        </ul>
+      </div>
+      <div class="speccard"><b>card-panel-list</b> · bg <b>#FFFFFF</b> · radius <b>0</b> · pad <b>64</b> · marker dot <b>accent</b> 8px · heading <b>label-md</b> · body <b>body-base</b></div>
+    </div>
+
+    <!-- START-HERE -->
+    <div class="comp" data-tier-a-component="alternating-start-here-panel">
+      <div class="comp-head"><h3>Alternating start-here panel</h3><span class="count">×1 · two-column</span></div>
+      <div class="start">
+        <div>
+          <h4>Not sure where to start?</h4>
+          <p>Most people begin by posting a single notice and watching who responds. It takes about two minutes.</p>
+          <div class="callout">Start with one notice — you can always add more later.</div>
+          <ul class="alts">
+            <li>— Or browse existing programs first</li>
+            <li>— Or ask a coordinator to post for you</li>
+            <li>— Or subscribe to weekly notices only</li>
+          </ul>
+          <button class="btn-pill-primary" style="height:56px;">Post your first notice</button>
+        </div>
+        <div class="start-img" role="img" aria-label="Placeholder illustration tile"><iconify-icon icon="lucide:image" aria-hidden="true"></iconify-icon></div>
+      </div>
+      <div class="speccard"><b>start-here panel</b> · image tile <b>#E4D9CA</b> radius <b>8</b> · callout border-left <b>4px accent</b> on <b>#FFFFFF</b> · cta <b>button-hero-primary</b></div>
+    </div>
+
+    <!-- PRICING -->
+    <div class="comp" data-tier-a-component="pricing-offer-card-row">
+      <div class="comp-head"><h3>Pricing / offer card row</h3><span class="count">×5 · 3 + 2</span></div>
+      <div class="price-row">
+        <div class="pcard">
+          <h4>Resident</h4><p class="desc">For anyone posting the occasional local notice.</p>
+          <hr><div class="goodfor">Good for</div><div class="qual">Neighbours and households</div>
+          <div class="price">Free</div><button class="pbtn">Choose Resident</button>
+        </div>
+        <div class="pcard">
+          <h4>Coordinator</h4><p class="desc">Manage a recurring program and its sessions.</p>
+          <hr><div class="goodfor">Good for</div><div class="qual">Clubs and organisers</div>
+          <div class="price">$6 / mo</div><button class="pbtn">Choose Coordinator</button>
+        </div>
+        <div class="pcard">
+          <h4>Council</h4><p class="desc">Publish across multiple neighbourhoods at once.</p>
+          <hr><div class="goodfor">Good for</div><div class="qual">Civic teams</div>
+          <div class="price">$24 / mo</div><button class="pbtn">Choose Council</button>
+        </div>
+      </div>
+      <div class="price-row2">
+        <div class="pcard dark">
+          <h4>Patron</h4><p class="desc">Support the board and keep it ad-free for everyone.</p>
+          <hr><div class="goodfor">Good for</div><div class="qual">Long-time supporters</div>
+          <div class="price">$10 / mo</div><button class="pbtn">Become a Patron</button>
+        </div>
+        <div class="pcard dark">
+          <h4>Archive</h4><p class="desc">Full read-only access to every notice ever filed.</p>
+          <hr><div class="goodfor">Good for</div><div class="qual">Historians and researchers</div>
+          <div class="price">$15 / mo</div><button class="pbtn">Open the Archive</button>
+        </div>
+      </div>
+      <div class="speccard"><b>card-panel-tiled / card-dark-panel</b> · light fill <b>surface</b> · dark fill <b>surface-dark</b> text <b>#FFFFFF</b> · radius <b>r-card</b> · pad <b>32</b> · outline btn radius <b>r-control</b> · grid 3-col <b>gap 24</b></div>
+    </div>
+
+    <!-- PROOF -->
+    <div class="comp" data-tier-a-component="proof-credibility-section">
+      <div class="comp-head"><h3>Proof / credibility section</h3><span class="count">×2 columns</span></div>
+      <div class="proof">
+        <div>
+          <h4>Read on any device</h4>
+          <p>The board renders the same on a phone at the bus stop as on a library desktop.</p>
+          <div class="media" role="img" aria-label="Phone mockup showing the notice board"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon></div>
+        </div>
+        <div>
+          <h4>Every entry, dated</h4>
+          <p>Nothing disappears. Filed notices stay searchable long after the event has passed.</p>
+          <div class="media" role="img" aria-label="Phone mockup showing an archived notice"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon></div>
+        </div>
+      </div>
+      <div class="speccard"><b>card-media-bleed</b> · media radius <b>0</b> · image-top-bleed · grid 2-col <b>gap 64</b> · heading <b>label-md</b> · body <b>body-base</b></div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="comp" data-tier-a-component="contact-form-panel">
+      <div class="comp-head"><h3>Contact form panel</h3><span class="count">×1 · bordered card</span></div>
+      <form class="contact" onsubmit="return false">
+        <label for="c-email">Email</label>
+        <input id="c-email" type="email" placeholder="you@street.org">
+        <label for="c-phone">Phone</label>
+        <input id="c-phone" type="tel" placeholder="(000) 000-0000">
+        <label for="c-msg">Message</label>
+        <textarea id="c-msg" rows="4" placeholder="Tell us what you'd like to post…"></textarea>
+        <button class="submit" type="submit">Send message</button>
+        <p class="micro">We reply within one working day. No mailing list, no resale.</p>
+      </form>
+      <div class="speccard"><b>contact-form-panel</b> · card bg <b>surface</b> border <b>border</b> radius <b>r-card</b> · inputs border <b>border</b> radius <b>r-control</b> · submit fill <b>accent</b> text <b>#FFFFFF</b> height <b>50</b></div>
+    </div>
+
+    <!-- TIER B: inline link -->
+    <div class="comp">
+      <div class="comp-head"><h3>Inline link</h3><span class="count">Tier B</span></div>
+      <p style="font-size:16px;">Read the <a href="#hero" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">community guidelines</a> before posting, or hover to see the <a href="#hero" style="color:var(--accent-active);text-decoration:underline;text-underline-offset:3px;">active state</a>.</p>
+      <div class="speccard"><b>inline link</b> · color <b>accent</b> · hover <b>accent-active</b> · body <b>body-base</b></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background);}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.depth-card{background:#fff;padding:28px;}
+.depth-card h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.depth-card p{font-size:14px;color:var(--text-secondary);margin-top:8px;}
+.depth-card .tok{font-family:"IBM Plex Mono";font-size:13px;color:var(--text-secondary);margin-top:14px;}
+.d-flat{border-radius:0;border:1px solid var(--border);box-shadow:none;}
+.d-panel{border-radius:var(--r-panel);box-shadow:rgba(0,0,0,0.05) 0px 1px 2px 0px;}
+.d-card{border-radius:var(--r-card);box-shadow:var(--shadow-card);}
+.d-btn{border-radius:var(--r-card);box-shadow:var(--shadow-btn);}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr;}}
+</style>
+<section id="surface-depth" class="band" aria-label="Surface and depth">
+  <div class="wrap">
+    <p class="eyebrow">Quiet elevation</p>
+    <h2 class="section-title">Flat by default, softened by hand.</h2>
+    <div class="depth-grid">
+      <div class="depth-card d-flat"><h4>Full-bleed panel</h4><p>Panels and media tiles stay flat and square — architectural, not floating.</p><div class="tok">radius 0 · border 1px · no shadow</div></div>
+      <div class="depth-card d-panel"><h4>Discrete panel</h4><p>A near-zero hairline lift, used sparingly on light surfaces.</p><div class="tok">radius r-panel 6 · shadow 0 1 2 .05</div></div>
+      <div class="depth-card d-card"><h4>Elevated card</h4><p>The white floating card — the softest we let the page go.</p><div class="tok">radius r-card 8 · shadow 0 2 12 .06</div></div>
+      <div class="depth-card d-btn"><h4>Primary control</h4><p>Buttons carry the deepest ambient shadow to earn their emphasis.</p><div class="tok">radius r-card 8 · shadow 0 10 15 / 0 4 6</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface);}
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.motion-card{background:#fff;border:1px solid var(--border);border-radius:var(--r-card);padding:28px;}
+.motion-card h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.motion-card .tok{font-family:"IBM Plex Mono";font-size:13px;color:var(--text-secondary);margin-top:8px;}
+.mbox{width:44px;height:44px;background:var(--accent);border-radius:var(--r-control);margin-top:20px;}
+.m-state .mbox{transition:transform .15s var(--ease),background .15s var(--ease);}
+.m-state.play .mbox{transform:translateX(180px);background:var(--accent-active);}
+.m-lift .mbox{transition:transform .2s var(--ease);}
+.m-lift.play .mbox{transform:translateY(-12px);}
+.m-reveal .mbox{transition:transform .7s var(--ease-out),opacity .7s var(--ease-out);}
+.m-reveal.play .mbox{transform:translateX(180px);opacity:.4;}
+.replay{margin-top:20px;background:transparent;border:1px solid var(--surface-dark);border-radius:var(--r-control);height:40px;padding:0 18px;font-family:"Inter Tight";font-weight:600;cursor:pointer;}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr;}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+<section id="motion" class="band" aria-label="Motion">
+  <div class="wrap">
+    <p class="eyebrow">Restrained by design</p>
+    <h2 class="section-title">Quick feedback, one loop.</h2>
+    <div class="motion-grid">
+      <div class="motion-card m-state"><h4>State shift</h4><div class="tok">all 0.15s · cubic-bezier(0.4,0,0.2,1)</div><div class="mbox"></div><button class="replay">Play</button></div>
+      <div class="motion-card m-lift"><h4>Press lift</h4><div class="tok">transform 0.2s · cubic-bezier(0.4,0,0.2,1)</div><div class="mbox"></div><button class="replay">Play</button></div>
+      <div class="motion-card m-reveal"><h4>Reveal</h4><div class="tok">all 0.7s · cubic-bezier(0,0,0.2,1)</div><div class="mbox"></div><button class="replay">Play</button></div>
+    </div>
+    <p class="lead" style="margin-top:32px;">The only ambient, looping motion on the page is the charcoal marquee — everything else is momentary state feedback.</p>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background);}
+.mock{border:1px solid var(--border);border-radius:var(--r-card);overflow:hidden;margin-top:48px;box-shadow:var(--shadow-card);background:var(--background);}
+.mock-nav{height:64px;background:var(--background);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 24px;gap:18px;}
+.mock-nav .l{font-family:"Inter Tight";font-weight:700;letter-spacing:-0.6px;}
+.mock-nav ul{list-style:none;display:flex;gap:16px;margin:0 0 0 auto;padding:0;font-size:14px;}
+.mock-nav .cta{background:var(--accent);color:#fff;border:none;border-radius:6px;height:44px;padding:0 24px;font-family:"Inter Tight";font-weight:600;}
+.mock-hero{position:relative;color:#fff;min-height:280px;display:flex;align-items:flex-end;}
+.mock-hero .ph{position:absolute;inset:0;background:linear-gradient(120deg,#3a2f28,#6f6a62 55%,#c9bda9);}
+.mock-hero .sc{position:absolute;inset:0;background:linear-gradient(to right top,rgba(0,0,0,0.7),rgba(0,0,0,0.4) 50%,rgba(0,0,0,0.15));}
+.mock-hero .ct{position:relative;z-index:2;padding:32px;}
+.mock-hero h3{font-family:"Inter Tight";font-size:34px;font-weight:700;letter-spacing:-1.2px;line-height:1.1;}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:32px;}
+.mock-cards .c{background:#fff;border-radius:var(--r-card);padding:24px;box-shadow:var(--shadow-card);}
+.mock-cards h4{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+.mock-cards p{font-size:14px;color:var(--text-secondary);margin-top:8px;}
+.mock-cta{background:var(--surface);text-align:center;padding:40px 32px;border-top:1px solid var(--border);}
+.mock-cta h3{font-family:"Inter Tight";font-size:24px;font-weight:600;letter-spacing:-0.6px;}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr;}.mock-nav ul{display:none;}}
+</style>
+<section id="composition" class="band" aria-label="In composition">
+  <div class="wrap">
+    <p class="eyebrow">All of it, together</p>
+    <h2 class="section-title">One page, from one system.</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="l">Newtown<span style="color:var(--accent)">.</span></span>
+        <ul><li>Services</li><li>Programs</li><li>Notices</li></ul>
+        <button class="cta">Get started</button>
+      </div>
+      <div class="mock-hero">
+        <div class="ph"></div><div class="sc"></div>
+        <div class="ct">
+          <p class="eyebrow" style="color:var(--accent-soft)">Spring session open</p>
+          <h3>The board for the block.</h3>
+          <div style="margin-top:20px;display:flex;gap:12px;flex-wrap:wrap;">
+            <button class="btn-pill-primary" style="height:48px;padding:0 26px;">Post a notice</button>
+            <button class="btn-pill-outline" style="height:48px;padding:0 26px;">Browse</button>
+          </div>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="c"><h4>Notices</h4><p>Announcements filed and dated.</p></div>
+        <div class="c"><h4>Programs</h4><p>Seasonal sessions to sign up for.</p></div>
+        <div class="c"><h4>Places</h4><p>Where the block gathers.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3>Ready to post your first notice?</h3>
+        <div style="margin-top:20px;"><button class="b-mid">Get started</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<style data-section-styles="footer">
+#footer{background:var(--footer);color:#EDE7DC;padding:72px 0 32px;}
+#footer .cols{display:grid;grid-template-columns:2fr 1fr 1.5fr;gap:48px;}
+#footer .l{font-family:"Inter Tight";font-weight:700;font-size:20px;letter-spacing:-0.6px;color:#fff;}
+#footer p{color:#B9B2A6;font-size:15px;margin-top:12px;max-width:320px;}
+#footer h5{font-family:"Inter Tight";font-size:12px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:#B9B2A6;margin:0 0 14px;}
+#footer ul{list-style:none;padding:0;margin:0;}
+#footer li{padding:5px 0;}
+#footer a{color:#EDE7DC;text-decoration:none;font-size:15px;}
+#footer a:hover{color:#fff;}
+.join{display:flex;margin-top:14px;}
+.join input{flex:1;background:#1c1c1c;border:1px solid #3a3a3a;color:#fff;border-radius:6px 0 0 6px;border-right:none;padding:10px 12px;font-family:"Inter";font-size:14px;}
+.join input::placeholder{color:#8a8378;}
+.join button{background:var(--accent);color:#fff;border:none;border-radius:0 6px 6px 0;padding:0 18px;font-family:"Inter Tight";font-weight:600;cursor:pointer;transition:background .15s var(--ease);}
+.join button:hover{background:var(--accent-active);}
+.socials{display:flex;gap:16px;margin-top:20px;}
+.socials a{color:#B9B2A6;font-size:20px;}
+.socials a:hover{color:#fff;}
+.foot-rule{border-top:1px solid #2a2a2a;margin-top:48px;padding-top:24px;font-size:13px;color:#8a8378;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.foot-rule a{color:#B9B2A6;}
+@media(max-width:768px){#footer .cols{grid-template-columns:1fr;}}
+</style>
+<footer id="footer" aria-label="Footer">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="l">Newtown<span style="color:var(--accent)">.</span></div>
+        <p>A community notice board, digitised — cream paper, ink type, one red pen. Built to keep a neighbourhood informed.</p>
+        <div class="socials">
+          <a href="#footer" aria-label="Newtown on Instagram"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+          <a href="#footer" aria-label="Newtown on Twitter"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+          <a href="#footer" aria-label="Newtown by email"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div>
+        <h5>Board</h5>
+        <ul><li><a href="#hero">Notices</a></li><li><a href="#components">Programs</a></li><li><a href="#composition">Places</a></li><li><a href="#footer">People</a></li></ul>
+      </div>
+      <div>
+        <h5>Weekly notices</h5>
+        <p style="margin-top:0;">One digest each week. No mailing list resale.</p>
+        <form class="join" onsubmit="return false">
+          <input type="email" placeholder="you@street.org" aria-label="Email address">
+          <button type="submit">Join</button>
+        </form>
+      </div>
+    </div>
+    <div class="foot-rule">
+      <span>© Newtown · <a href="https://newtown.digital/">newtown.digital</a></span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.replay').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var card=btn.closest('.motion-card');
+    card.classList.remove('play');
+    void card.offsetWidth;
+    card.classList.add('play');
+    setTimeout(function(){card.classList.remove('play');},1000);
+  });
+});
+document.querySelectorAll('.matrix .is-active').forEach(function(el){});
+</script>
+</body>
+</html>

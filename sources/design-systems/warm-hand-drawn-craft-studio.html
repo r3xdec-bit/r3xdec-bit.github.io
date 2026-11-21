@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm hand-drawn craft studio — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,400;0,500;0,600;1,400&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F0F0F0;
+  --surface:#FFFFFF;
+  --surface-alt:#FBFBFB;
+  --text-primary:#171717;
+  --text-ink:#000000;
+  --text-on-dark:#FFFFFF;
+  --espresso:#241209;
+  --accent-blue:#3385F9;
+  --accent-blue-grad:linear-gradient(rgb(61,139,250) 0%,rgb(91,162,249) 100%);
+  --accent-blue-shadow:rgba(58,137,253,0.5) 0px 6px 12px -5px;
+  --danger:#E7000B;
+  --cream:#F0F0D8;
+  --pink-cream:#F0D8D8;
+  --sand:#D8D8C0;
+  --secondary-light:#F3F3F3;
+  --btn-light-shadow:rgba(0,0,0,0.024) 0px 4px 4px 0px, rgba(0,0,0,0.07) 0px 0px 0px 1px, rgba(255,255,255,0.75) 0px 1px 0px 0px inset;
+  --card-shadow:rgba(0,0,0,0.086) 0px 6px 10px -6px;
+  --r-control:13px;
+  --r-card:13px;
+  --r-pill:9999px;
+  --sp-1:8px;
+  --sp-2:13px;
+  --sp-3:17px;
+  --sp-4:21px;
+  --gap:13px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --font-body:"Inter Tight",system-ui,sans-serif;
+  --font-script:"Caveat","Inter Tight",cursive;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.38;
+  color:var(--text-primary);
+  background:
+    radial-gradient(60% 50% at 20% 15%, #F0F0D8 0%, rgba(240,240,216,0) 60%),
+    radial-gradient(55% 45% at 85% 25%, #F0D8D8 0%, rgba(240,216,216,0) 60%),
+    radial-gradient(50% 50% at 60% 90%, #D8D8C0 0%, rgba(216,216,192,0) 65%),
+    #F0F0F0;
+  background-attachment:fixed;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+.script{font-family:var(--font-script);font-weight:700;line-height:1.0;color:var(--espresso)}
+
+/* Navbar */
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  height:70px;background:transparent;
+}
+.wordmark{font-family:var(--font-script);font-weight:700;font-size:30px;color:var(--espresso);line-height:1}
+.nav-right{display:flex;align-items:center;gap:var(--gap)}
+.capsule-dark{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:44px;padding:0 24px;border-radius:var(--r-pill);
+  background:var(--text-primary);color:var(--text-on-dark);
+  border:none;font-family:var(--font-body);font-size:18px;font-weight:500;
+  cursor:pointer;transition:opacity .3s var(--ease),filter .3s var(--ease);
+}
+.capsule-dark:hover{filter:brightness(1.4)}
+.menu-trigger{
+  width:44px;height:44px;border-radius:var(--r-pill);border:none;
+  background:var(--text-primary);color:var(--text-on-dark);
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;
+  font-size:22px;transition:filter .3s var(--ease);
+}
+.menu-trigger:hover{filter:brightness(1.4)}
+
+/* Hero */
+#hero{padding:24px 0 90px}
+.hero-line{
+  font-size:clamp(64px,13vw,120px);
+  text-align:center;margin:56px 0 40px;letter-spacing:-.01em;
+}
+.hero-copy-row{display:flex;justify-content:flex-end;margin-bottom:var(--sp-4)}
+.hero-copy{max-width:36ch;text-align:right;font-size:16px;color:var(--text-primary)}
+.hero-cta-cluster{display:flex;gap:var(--gap);justify-content:flex-start}
+.capsule-espresso{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:44px;padding:0 24px;border-radius:var(--r-pill);
+  background:var(--espresso);color:var(--text-on-dark);border:none;
+  font-family:var(--font-body);font-size:18px;font-weight:500;cursor:pointer;
+  transition:filter .3s var(--ease);
+}
+.capsule-espresso:hover{filter:brightness(1.6)}
+.pill-white{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:44px;padding:0 24px;border-radius:var(--r-pill);
+  background:var(--surface);color:var(--text-primary);
+  border:none;font-family:var(--font-body);font-size:18px;font-weight:500;cursor:pointer;
+  box-shadow:var(--btn-light-shadow);transition:filter .3s var(--ease);
+}
+.pill-white:hover{filter:brightness(.97)}
+@media(max-width:640px){
+  .hero-copy{text-align:left}
+  .hero-copy-row{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+
+<header class="wrap" role="banner">
+  <nav class="nav" aria-label="Primary">
+    <span class="wordmark">Camellia</span>
+    <div class="nav-right">
+      <button class="capsule-dark">Order Now</button>
+      <button class="menu-trigger" aria-label="Open menu">
+        <iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="hero" aria-labelledby="hero-heading">
+  <div class="wrap">
+    <h1 id="hero-heading" class="script hero-line">Slow mornings,<br>strong coffee</h1>
+    <div class="hero-copy-row">
+      <p class="hero-copy">A small-batch roastery on the corner. Beans picked by hand, pulled by feel, poured a little warmer than most.</p>
+    </div>
+    <div class="hero-cta-cluster">
+      <button class="capsule-espresso">Order Now</button>
+      <button class="pill-white">See the menu</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{padding:64px 0}
+.section-head{font-family:var(--font-script);font-weight:700;color:var(--espresso);font-size:clamp(40px,7vw,64px);line-height:1;margin-bottom:8px}
+.section-sub{font-size:16px;color:var(--text-primary);max-width:52ch;margin-bottom:40px}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:var(--gap)}
+.swatch{background:var(--surface);border-radius:var(--r-card);padding:8px;box-shadow:var(--card-shadow)}
+.chip{height:96px;border-radius:9px;margin-bottom:10px;border:1px solid rgba(0,0,0,0.07)}
+.swatch-name{font-size:18px;font-weight:500;padding:0 6px}
+.swatch-val{font-size:14px;color:#555;padding:2px 6px 4px;font-variant-numeric:tabular-nums}
+.swatch-note{font-size:14px;color:#555;padding:0 6px 8px}
+.role-label{font-family:var(--font-body);font-weight:600;font-size:18px;color:var(--espresso);margin:32px 0 14px}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" aria-labelledby="palette-heading">
+  <div class="wrap">
+    <h2 id="palette-heading" class="section-head">The palette</h2>
+    <p class="section-sub">Warm neutrals do the heavy lifting. Ink carries contrast, one small blue is rationed for a single control, and cream is left uncolored on purpose.</p>
+
+    <div class="role-label">Surfaces</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#F0F0F0"></div><div class="swatch-name">Background</div><div class="swatch-val">#F0F0F0</div><div class="swatch-note">Warm-white field, ~40% of page.</div></div>
+      <div class="swatch"><div class="chip" style="background:#F0F0D8"></div><div class="swatch-name">Cream</div><div class="swatch-val">#F0F0D8</div><div class="swatch-note">Blends into the soft hero drift.</div></div>
+      <div class="swatch"><div class="chip" style="background:#F0D8D8"></div><div class="swatch-name">Pink-cream</div><div class="swatch-val">#F0D8D8</div><div class="swatch-note">Dusty warmth in the gradient wash.</div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="swatch-name">Surface</div><div class="swatch-val">#FFFFFF</div><div class="swatch-note">Cards, pills and photo chrome.</div></div>
+      <div class="swatch"><div class="chip" style="background:#FBFBFB"></div><div class="swatch-name">Surface alt</div><div class="swatch-val">#FBFBFB</div><div class="swatch-note">Media-frame backing.</div></div>
+    </div>
+
+    <div class="role-label">Text &amp; ink</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#171717"></div><div class="swatch-name">Text primary</div><div class="swatch-val">#171717</div><div class="swatch-note">Body copy and dark capsules.</div></div>
+      <div class="swatch"><div class="chip" style="background:#000000"></div><div class="swatch-name">Ink</div><div class="swatch-val">#000000</div><div class="swatch-note">Deepest contrast weight.</div></div>
+      <div class="swatch"><div class="chip" style="background:#241209"></div><div class="swatch-name">Espresso</div><div class="swatch-val">#241209</div><div class="swatch-note">Hand lettering &amp; hero capsule.</div></div>
+    </div>
+
+    <div class="role-label">Accents (rationed)</div>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:var(--accent-blue-grad)"></div><div class="swatch-name">Blue gradient</div><div class="swatch-val">61,139,250 → 91,162,249</div><div class="swatch-note">One utility button only — ~0.3% of page.</div></div>
+      <div class="swatch"><div class="chip checker"><div style="height:100%;border-radius:9px;background:rgba(255,255,255,0.75)"></div></div><div class="swatch-name">Inset sheen</div><div class="swatch-val">rgba(255,255,255,0.75)</div><div class="swatch-note">Pressed-paper highlight on light fills.</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:64px 0}
+.specimen{border-top:1px solid rgba(0,0,0,0.08);padding:26px 0;display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:baseline}
+.specimen:last-child{border-bottom:1px solid rgba(0,0,0,0.08)}
+.spec-meta{font-size:14px;color:#555;line-height:1.7}
+.spec-meta b{color:var(--espresso);font-weight:600}
+@media(max-width:640px){.specimen{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" aria-labelledby="type-heading">
+  <div class="wrap">
+    <h2 id="type-heading" class="section-head">Type, two voices</h2>
+    <p class="section-sub">A wobbling hand-lettered script against tightly-tracked grotesk. No serif anywhere — the contrast is script versus sans, nothing else.</p>
+
+    <div class="specimen">
+      <div class="script" style="font-size:clamp(56px,10vw,96px)">Fresh today</div>
+      <div class="spec-meta"><b>accent-handlettered</b><br>~120px display · weight 400<br>line-height 1.0 · script<br>Hero wordmark only</div>
+    </div>
+    <div class="specimen">
+      <div class="script" style="font-size:40px">In-photo signage</div>
+      <div class="spec-meta"><b>accent-handlettered</b> (small)<br>signage motif · line-height 1.0<br>Repeated inside media frames</div>
+    </div>
+    <div class="specimen">
+      <div style="font-size:18px;font-weight:500">Order Now · label weight</div>
+      <div class="spec-meta"><b>label-md</b><br>18px · weight 500<br>line-height 1.38 · Inter Tight<br>Buttons &amp; small UI</div>
+    </div>
+    <div class="specimen">
+      <div style="font-size:16px;font-weight:400;max-width:44ch">Beans picked by hand, roasted in small batches, and pulled a little warmer than most. This is the body voice — quiet, tight, unhurried.</div>
+      <div class="spec-meta"><b>body-md</b><br>16px · weight 400<br>line-height 1.38 · Inter Tight<br>All paragraph copy in #171717</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:64px 0}
+.comp-block{margin-bottom:56px}
+.comp-title{font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--espresso);margin-bottom:6px}
+.comp-desc{font-size:16px;color:var(--text-primary);max-width:60ch;margin-bottom:20px}
+.comp-stage{background:var(--surface);border-radius:var(--r-card);padding:28px;box-shadow:var(--card-shadow)}
+.spec-card{margin-top:16px;font-size:13px;color:#555;line-height:1.7;background:var(--surface-alt);border-radius:9px;padding:14px 16px;border:1px solid rgba(0,0,0,0.06)}
+.spec-card code{font-family:ui-monospace,Menlo,monospace;color:var(--espresso)}
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:14px 12px;text-align:left;font-size:14px;border-bottom:1px solid rgba(0,0,0,0.07)}
+.matrix th{font-weight:600;color:#555;font-size:13px}
+.util-cluster{display:grid;grid-template-columns:auto auto;gap:12.7px;justify-content:start;align-items:center}
+.btn-gradient{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 25.4px;border-radius:13px;background:var(--accent-blue-grad);color:#fff;border:none;font-family:var(--font-body);font-size:18px;font-weight:500;box-shadow:var(--accent-blue-shadow);cursor:pointer;transition:filter .3s var(--ease)}
+.btn-gradient:hover{filter:brightness(1.06)}
+.btn-light{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 25.4px;border-radius:13px;background:var(--secondary-light);color:#000;border:none;font-family:var(--font-body);font-size:18px;font-weight:500;box-shadow:var(--btn-light-shadow);cursor:pointer;transition:filter .3s var(--ease)}
+.btn-light:hover{filter:brightness(.97)}
+.collage{position:relative;max-width:640px}
+.media-frame{background:var(--surface-alt);border-radius:13px;padding:17px;box-shadow:var(--card-shadow)}
+.media-photo{border-radius:9px;height:300px;position:relative;overflow:hidden;background:
+  radial-gradient(80% 90% at 30% 20%,#E7D9C4 0%,rgba(231,217,196,0) 60%),
+  radial-gradient(70% 80% at 80% 80%,#C9B49A 0%,rgba(201,180,154,0) 65%),
+  #D8CBB4;display:flex;align-items:flex-end;justify-content:flex-end}
+.media-signage{font-family:var(--font-script);font-weight:700;color:var(--espresso);font-size:34px;padding:20px;opacity:.85}
+.accent-card{position:absolute;left:-18px;bottom:-30px;width:170px;background:var(--surface);border-radius:13px;padding:8px;box-shadow:var(--card-shadow)}
+.accent-card .ph{height:110px;border-radius:8px;background:
+  radial-gradient(70% 80% at 40% 30%,#D9C3A0 0%,rgba(217,195,160,0) 60%),#B99C77}
+.accent-card .cap{font-family:var(--font-script);font-weight:600;font-size:20px;color:var(--espresso);padding:6px 4px 2px}
+.cookie-panel{max-width:360px;background:var(--surface);border-radius:13px;padding:20px;box-shadow:var(--card-shadow)}
+.cookie-panel h3{font-size:18px;font-weight:600;margin-bottom:8px;color:var(--text-primary)}
+.cookie-panel p{font-size:14px;color:#555;margin-bottom:16px}
+.cookie-panel a{color:var(--text-primary);text-decoration:underline}
+.cookie-row{display:flex;gap:12.7px;justify-content:flex-end}
+.btn-accept{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:9999px;background:var(--accent-blue);color:#fff;border:none;font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer;transition:filter .3s var(--ease)}
+.btn-accept:hover{filter:brightness(1.06)}
+.btn-decline{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 20px;border-radius:13px;background:var(--secondary-light);color:#000;border:none;font-family:var(--font-body);font-size:16px;font-weight:500;cursor:pointer;box-shadow:var(--btn-light-shadow)}
+.mini-nav{display:flex;align-items:center;justify-content:space-between;background:transparent}
+.disabled-cell{opacity:.4;pointer-events:none}
+@media(max-width:640px){.matrix{display:block;overflow-x:auto}}
+</style>
+<section id="components" aria-labelledby="components-heading">
+  <div class="wrap">
+    <h2 id="components-heading" class="section-head">The kit</h2>
+    <p class="section-sub">Every measured part of the studio, rendered live. Pills for the loud actions, soft-shadowed frames for the photography, one blue button kept on a very short leash.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-title">Navbar</div>
+      <p class="comp-desc">A link-free header over cream. Wordmark left; a dark capsule CTA and a circular hamburger trigger on the right. Navigation lives entirely behind the trigger.</p>
+      <div class="comp-stage" style="background:#F0F0F0">
+        <div class="mini-nav">
+          <span class="wordmark">Camellia</span>
+          <div class="nav-right">
+            <button class="capsule-dark">Order Now</button>
+            <button class="menu-trigger" aria-label="Open menu"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><code>button-dark-capsule</code> · fill <code>text-primary #171717</code> · text <code>text-on-dark</code> · radius <code>pill 9999px</code> · height <code>44</code> · trigger <code>44×44 filled circle</code> · type <code>label-md</code></div>
+    </div>
+
+    <!-- HERO PRIMARY CTA -->
+    <div class="comp-block" data-tier-a-component="hero-primary-cta">
+      <div class="comp-title">Hero primary CTA — espresso capsule</div>
+      <p class="comp-desc">The single most emphasized control on the first screen. Solid espresso-brown fill, white label, fully rounded — never the blue gradient.</p>
+      <div class="comp-stage">
+        <table class="matrix" aria-label="Hero primary CTA states">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Espresso capsule</td>
+              <td><button class="capsule-espresso">Order Now</button></td>
+              <td><button class="capsule-espresso" style="filter:brightness(1.6)">Order Now</button></td>
+              <td><button class="capsule-espresso" style="filter:brightness(1.3)">Order Now</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><code>hero-primary</code> · fill <code>espresso #241209</code> · text <code>text-on-dark</code> · radius <code>pill 9999px</code> · height <code>44</code> · padding <code>0 24</code> · motion <code>filter .3s ease</code></div>
+    </div>
+
+    <!-- HERO SECONDARY CTA -->
+    <div class="comp-block" data-tier-a-component="hero-secondary-cta">
+      <div class="comp-title">Hero secondary CTA — white pill</div>
+      <p class="comp-desc">Lower-emphasis companion to the espresso capsule. Same height and rounding, white fill, dark text.</p>
+      <div class="comp-stage">
+        <table class="matrix" aria-label="Hero secondary CTA states">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>White pill</td>
+              <td><button class="pill-white">See the menu</button></td>
+              <td><button class="pill-white" style="filter:brightness(.97)">See the menu</button></td>
+              <td><button class="pill-white" style="filter:brightness(.94)">See the menu</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><code>button-white-pill</code> · fill <code>surface #FFFFFF</code> · text <code>text-primary</code> · radius <code>pill 9999px</code> · height <code>44</code> · padding <code>0 24</code></div>
+    </div>
+
+    <!-- UTILITY BUTTON PAIR -->
+    <div class="comp-block" data-tier-a-component="utility-button-pair">
+      <div class="comp-title">Utility button pair — gradient + light</div>
+      <p class="comp-desc">A later utility cluster, 2 columns with a 12.7px gap and 48px rows. Button A holds the only saturated blue on the page; Button B carries a pressed-paper inset sheen.</p>
+      <div class="comp-stage">
+        <div class="util-cluster">
+          <button class="btn-gradient">Save changes</button>
+          <button class="btn-light">Cancel</button>
+        </div>
+        <table class="matrix" style="margin-top:22px" aria-label="Utility button states">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Gradient</td>
+              <td><button class="btn-gradient">Save</button></td>
+              <td><button class="btn-gradient" style="filter:brightness(1.06)">Save</button></td>
+              <td class="disabled-cell"><button class="btn-gradient">Save</button></td>
+            </tr>
+            <tr>
+              <td>Light</td>
+              <td><button class="btn-light">Cancel</button></td>
+              <td><button class="btn-light" style="filter:brightness(.97)">Cancel</button></td>
+              <td class="disabled-cell"><button class="btn-light">Cancel</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><code>button-primary-gradient</code> · fill <code>blue 61,139,250→91,162,249</code> · radius <code>r-control 13</code> · height <code>40</code> · pad <code>0 25.4</code> · shadow <code>blue .5 0 6 12 -5</code> · <code>button-secondary-light</code> fill <code>#F3F3F3</code> · inset <code>white .75 0 1 0</code></div>
+    </div>
+
+    <!-- PRIMARY PHOTO FRAME + OVERLAPPING ACCENT CARD -->
+    <div class="comp-block" data-tier-a-component="primary-photo-frame">
+      <div class="comp-title">Primary photo frame</div>
+      <p class="comp-desc">One large landscape frame with generous 17px internal padding and a soft ambient shadow. The hand-lettered wordmark returns small as in-scene signage.</p>
+      <div class="comp-stage" style="background:#F0F0F0;padding-bottom:52px">
+        <div class="collage">
+          <div class="media-frame">
+            <div class="media-photo" role="img" aria-label="Warm interior of the coffee studio with signage">
+              <span class="media-signage">Camellia</span>
+            </div>
+          </div>
+          <div class="accent-card" data-tier-a-component="overlapping-accent-card">
+            <div class="ph" role="img" aria-label="Cropped photo of a poured latte"></div>
+            <div class="cap">today's pour</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><code>card-media-frame</code> · fill <code>surface-alt #FBFBFB</code> · radius <code>13</code> · padding <code>17</code> · shadow <code>card-shadow</code> · signage <code>accent-handlettered</code></div>
+    </div>
+
+    <!-- OVERLAPPING ACCENT CARD spec -->
+    <div class="comp-block">
+      <div class="comp-title">Overlapping accent card</div>
+      <p class="comp-desc">The scrapbook moment — a small card offset over the frame's lower-left corner, breaking the edge rather than sitting in a grid cell. Shown in context above.</p>
+      <div class="spec-card"><code>card-photo</code> · fill <code>surface #FFFFFF</code> · radius <code>13</code> · padding <code>8</code> · shadow <code>rgba(0,0,0,.086) 0 6 10 -6</code> · caption <code>accent-handlettered</code> · offset overlap, never grid-aligned</div>
+    </div>
+
+    <!-- COOKIE CONSENT PANEL -->
+    <div class="comp-block" data-tier-a-component="cookie-consent-panel">
+      <div class="comp-title">Cookie consent panel</div>
+      <p class="comp-desc">A bottom-right white rounded panel: short heading, one underlined inline link, then a neutral Decline beside a flat blue Accept — the only other place blue appears.</p>
+      <div class="comp-stage" style="display:flex;justify-content:flex-end;background:#F0F0F0">
+        <div class="cookie-panel" role="region" aria-label="Cookie consent">
+          <h3>A quick note on cookies</h3>
+          <p>We use a few to keep the shop running smoothly. Read our <a href="#">cookie policy</a> if you'd like the details.</p>
+          <div class="cookie-row">
+            <button class="btn-decline">Decline</button>
+            <button class="btn-accept">Accept</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><code>panel</code> · fill <code>surface #FFFFFF</code> · radius <code>13</code> · Decline <code>button-secondary-light</code> · Accept flat <code>accent-blue #3385F9</code> · text <code>text-on-dark</code> · link <code>text-primary underline</code></div>
+    </div>
+
+    <!-- TIER B: Inline link -->
+    <div class="comp-block">
+      <div class="comp-title">Inline link</div>
+      <p class="comp-desc">Body-weight text with a documented underline treatment, drawn from the consent panel's inline link.</p>
+      <div class="comp-stage">
+        <p style="font-size:16px">Find us on the corner — <a href="#" style="color:var(--text-primary);text-decoration:underline">see opening hours</a> before you stop by.</p>
+      </div>
+      <div class="spec-card"><code>inline-link</code> · text <code>text-primary #171717</code> · underline · type <code>body-md 16</code></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:64px 0}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.depth-card{background:var(--surface);padding:24px}
+.depth-title{font-weight:600;font-size:18px;color:var(--espresso);margin-bottom:6px}
+.depth-note{font-size:14px;color:#555}
+</style>
+<section id="surface-depth" aria-labelledby="depth-heading">
+  <div class="wrap">
+    <h2 id="depth-heading" class="section-head">Surface &amp; depth</h2>
+    <p class="section-sub">One radius, one soft shadow. Depth here is paper-cutout, not glass — cards feel lifted off the cream, never floating in space.</p>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:13px;box-shadow:var(--card-shadow)">
+        <div class="depth-title">Photo card lift</div>
+        <div class="depth-note">radius 13px · rgba(0,0,0,0.086) 0 6 10 -6</div>
+      </div>
+      <div class="depth-card" style="border-radius:13px;box-shadow:var(--btn-light-shadow)">
+        <div class="depth-title">Pressed-paper sheen</div>
+        <div class="depth-note">radius 13px · inset white .75 highlight</div>
+      </div>
+      <div class="depth-card" style="border-radius:9999px;box-shadow:var(--card-shadow);text-align:center">
+        <div class="depth-title">Capsule</div>
+        <div class="depth-note">radius 9999px pill</div>
+      </div>
+      <div class="depth-card" style="border-radius:13px;box-shadow:var(--accent-blue-shadow)">
+        <div class="depth-title">Blue glow (rationed)</div>
+        <div class="depth-note">radius 13px · rgba(58,137,253,.5) 0 6 12 -5</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:64px 0}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:24px}
+.motion-card{background:var(--surface);border-radius:13px;padding:24px;box-shadow:var(--card-shadow)}
+.motion-title{font-weight:600;font-size:18px;color:var(--espresso);margin-bottom:14px}
+.motion-dot{width:44px;height:44px;border-radius:9999px;background:var(--espresso)}
+.mv-fade .motion-dot{transition:opacity .3s}
+.mv-fade.play .motion-dot{opacity:.15}
+.mv-slide .motion-dot{transition:transform .2s ease-out}
+.mv-slide.play .motion-dot{transform:translateX(150px)}
+.mv-all .motion-dot{transition:all .3s cubic-bezier(0.4,0,0.2,1)}
+.mv-all.play .motion-dot{transform:translateX(150px) scale(1.15);border-radius:13px;background:var(--accent-blue)}
+.replay{margin-top:16px;font-size:14px;color:#555;background:none;border:none;cursor:pointer;display:inline-flex;gap:6px;align-items:center;text-decoration:underline}
+.sweep{height:44px;border-radius:13px;background-size:200% 100%;background-image:linear-gradient(100deg,#F0F0D8,#F0D8D8,#D8D8C0,#F0F0D8);animation:sweep 6s linear infinite}
+@keyframes sweep{to{background-position:200% 0}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" aria-labelledby="motion-heading">
+  <div class="wrap">
+    <h2 id="motion-heading" class="section-head">Motion</h2>
+    <p class="section-sub">Short and utilitarian — quick settles, no springy overshoot. The only looping motion is a slow, low-saturation gradient sweep.</p>
+    <div class="motion-grid">
+      <div class="motion-card mv-fade">
+        <div class="motion-title">fadeInOpacity</div><div class="motion-dot"></div>
+        <button class="replay" data-play>Replay · opacity 0.3s</button>
+      </div>
+      <div class="motion-card mv-slide">
+        <div class="motion-title">fadeInTranslate</div><div class="motion-dot"></div>
+        <button class="replay" data-play>Replay · 0.2s ease-out</button>
+      </div>
+      <div class="motion-card mv-all">
+        <div class="motion-title">state settle</div><div class="motion-dot"></div>
+        <button class="replay" data-play>Replay · all 0.3s cubic-bezier(.4,0,.2,1)</button>
+      </div>
+      <div class="motion-card">
+        <div class="motion-title">gradientScan (ambient)</div>
+        <div class="sweep"></div>
+        <div style="margin-top:16px;font-size:14px;color:#555">Looping warm sweep · 6s linear</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:64px 0}
+.mock{background:#F0F0F0;border-radius:13px;padding:28px;box-shadow:var(--card-shadow);
+  background-image:
+   radial-gradient(60% 50% at 20% 15%,#F0F0D8 0%,rgba(240,240,216,0) 60%),
+   radial-gradient(55% 45% at 85% 25%,#F0D8D8 0%,rgba(240,216,216,0) 60%),
+   radial-gradient(50% 50% at 60% 95%,#D8D8C0 0%,rgba(216,216,192,0) 65%);}
+.mock-hero{font-family:var(--font-script);font-weight:700;color:var(--espresso);font-size:clamp(40px,8vw,72px);text-align:center;line-height:1;margin:36px 0 24px}
+.mock-copy{max-width:34ch;margin:0 auto 24px;text-align:center;font-size:16px}
+.mock-ctas{display:flex;gap:13px;justify-content:center;margin-bottom:36px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
+.mock-card{background:#fff;border-radius:13px;padding:8px;box-shadow:var(--card-shadow)}
+.mock-card .ph{height:120px;border-radius:8px;background:radial-gradient(70% 80% at 40% 30%,#D9C3A0 0%,rgba(217,195,160,0) 60%),#B99C77}
+.mock-card .cap{font-family:var(--font-script);font-weight:600;font-size:20px;color:var(--espresso);padding:6px 4px 2px}
+.mock-cta-band{text-align:center;margin-top:36px}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" aria-labelledby="comp2-heading">
+  <div class="wrap">
+    <h2 id="comp2-heading" class="section-head">In composition</h2>
+    <p class="section-sub">Every piece together — nav, hero fragment, a small collage of cards, and one closing call to action. All built from the tokens above.</p>
+    <div class="mock">
+      <div class="mini-nav">
+        <span class="wordmark">Camellia</span>
+        <div class="nav-right">
+          <button class="capsule-dark">Order Now</button>
+          <button class="menu-trigger" aria-label="Open menu"><iconify-icon icon="lucide:menu" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="mock-hero">Warm from<br>the first pour</div>
+      <p class="mock-copy">Small-batch beans, roasted this week, poured a little warmer than most.</p>
+      <div class="mock-ctas">
+        <button class="capsule-espresso">Order Now</button>
+        <button class="pill-white">See the menu</button>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="ph" role="img" aria-label="Latte"></div><div class="cap">house latte</div></div>
+        <div class="mock-card"><div class="ph" role="img" aria-label="Pour over"></div><div class="cap">slow pour-over</div></div>
+        <div class="mock-card"><div class="ph" role="img" aria-label="Beans"></div><div class="cap">this week's roast</div></div>
+      </div>
+      <div class="mock-cta-band">
+        <button class="capsule-espresso">Find the shop</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<style data-section-styles="footer">
+#footer{padding:56px 0 72px}
+.foot-brand{font-family:var(--font-script);font-weight:700;font-size:36px;color:var(--espresso);line-height:1}
+.foot-meta{font-size:14px;color:#555;margin-top:10px;line-height:1.7}
+.foot-meta a{color:var(--text-primary)}
+</style>
+<footer id="footer" role="contentinfo">
+  <div class="wrap">
+    <div class="foot-brand">Camellia</div>
+    <div class="foot-meta">
+      <a href="https://www.webild.io/templates/coffee-shop">www.webild.io/templates/coffee-shop</a><br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-play]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var card=btn.closest('.motion-card');
+    card.classList.remove('play');
+    void card.offsetWidth;
+    card.classList.add('play');
+    setTimeout(function(){card.classList.remove('play')},700);
+  });
+});
+</script>
+</body>
+</html>

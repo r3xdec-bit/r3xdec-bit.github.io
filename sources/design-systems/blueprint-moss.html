@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Blueprint Moss — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;700&family=Switzer:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F6F6F4; color:#050605; font-family:'Switzer',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Switzer',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Switzer',sans-serif; font-size: 22px; border-bottom: 1px solid #474A48; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#474A48; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#474A48; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#EDEFEA; border: 1px solid #474A48; border-radius:16px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#474A48; }
+  .swatch-meta p { color:#474A48; font-size: 12px; }
+  .specimen { border: 1px solid #474A48; border-radius:16px; padding: 20px; background:#EDEFEA; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#474A48; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#474A48; }
+  .bar { height: 10px; background:#050605; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #050605; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#EDEFEA; border: 1px solid #474A48; border-radius:16px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:6px; font-size: 14px; border: 1px solid #050605; }
+  .btn-primary { background:#050605; color:#F6F6F4; }
+  .btn-secondary { background: transparent; color:#050605; }
+  footer { border-top: 1px solid #474A48; padding-top: 20px; font-size: 13px; color:#474A48; }
+  footer a { color:#050605; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from nomic.ai · light mode</div>
+    <h1>Blueprint Moss</h1>
+    <p class="tagline">Warm off-white light system with a technical mono label voice, a forest-moss accent rationed to CTAs and icons, and an ASCII/dot-matrix textured hero over a light field that inverts to charcoal only at section bookends.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F6F6F4"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F6F6F4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EDEFEA"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#EDEFEA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F1F1EA"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#F1F1EA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#050605"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#050605</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#474A48"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#474A48</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#48816D"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#48816D</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#181818"></div>
+        <div class="swatch-meta"><strong>inverse-background</strong><code>#181818</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>inverse-text</strong><code>#FFFFFF</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist Mono',sans-serif;font-size:14px;font-weight:500;line-height:1.43">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Geist Mono · 14px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Switzer',sans-serif;font-size:16px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Switzer · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Switzer',sans-serif;font-size:16px;font-weight:500;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Switzer · 16px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist Mono',sans-serif;font-size:14px;font-weight:500;line-height:1.43">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · Geist Mono · 14px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 48px</span>
+        <div class="bar" style="width:min(48px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap · 676px</span>
+        <div class="bar" style="width:min(676px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:6px">control<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:16px">card<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:4px">chip<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#474A48;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

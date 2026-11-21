@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Chrome Waves — r3xdec 3D</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #07080b; font-family: ui-sans-serif, system-ui, sans-serif; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    .badge {
+      position: fixed; top: 20px; right: 20px; padding: 8px 14px; border-radius: 999px;
+      background: rgba(255,255,255,0.08); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.16);
+      color: #eef2ff; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="badge">Liquid Chrome · Move Cursor</div>
+  <script>
+    const canvas = document.getElementById('c');
+    const gl = canvas.getContext('webgl2', { preserveDrawingBuffer: true });
+    const vs = `#version 300 es
+      in vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }
+    `;
+    const fs = `#version 300 es
+      precision highp float;
+      uniform float u_time;
+      uniform vec2 u_res;
+      uniform vec2 u_mouse;
+      out vec4 o;
+
+      float heightField(vec2 p) {
+        float t = u_time * 0.65;
+        vec2 q = p;
+        for (int i = 1; i <= 4; i++) {
+          float fi = float(i);
+          q.x += 0.35 / fi * sin(fi * 2.2 * q.y + t * (0.8 + 0.15 * fi));
+          q.y += 0.35 / fi * cos(fi * 2.1 * q.x - t * (0.7 + 0.12 * fi));
+        }
+        float d = length(p - u_mouse);
+        float ripple = sin(d * 18.0 - u_time * 5.0) * exp(-d * 3.2) * 0.25;
+        return sin(q.x * 2.6 + q.y * 2.1) * 0.5 + ripple;
+      }
+
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+        float eps = 0.008;
+        float h = heightField(uv);
+        float hx = heightField(uv + vec2(eps, 0.0));
+        float hy = heightField(uv + vec2(0.0, eps));
+        vec3 n = normalize(vec3((h - hx) / eps * 0.35, (h - hy) / eps * 0.35, 1.0));
+
+        vec3 viewDir = normalize(vec3(uv * 0.4, 1.0));
+        vec3 refl = reflect(-viewDir, n);
+        float fresnel = pow(1.0 - max(dot(n, viewDir), 0.0), 3.0);
+
+        // Studio environment reflection bands
+        float env = smoothstep(-0.3, 0.85, refl.y) * 0.8 + pow(max(dot(refl, normalize(vec3(0.5, 0.7, 0.6))), 0.0), 18.0) * 1.4;
+        float rim = pow(max(dot(refl, normalize(vec3(-0.7, -0.3, 0.5))), 0.0), 10.0);
+
+        vec3 irid = 0.5 + 0.5 * cos(6.2831 * (fresnel * 1.1 + h * 0.4 + vec3(0.0, 0.33, 0.67)));
+        vec3 baseChrome = vec3(0.08, 0.09, 0.12) + vec3(0.85, 0.9, 1.0) * env * 0.65;
+        vec3 col = mix(baseChrome, irid * 1.15, 0.38 * fresnel + 0.18);
+        col += vec3(0.45, 0.72, 1.0) * rim * 0.75;
+        o = vec4(col, 1.0);
+      }
+    `;
+    function sh(t, s) { const x = gl.createShader(t); gl.shaderSource(x, s); gl.compileShader(x); return x; }
+    const pr = gl.createProgram();
+    gl.attachShader(pr, sh(gl.VERTEX_SHADER, vs)); gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(pr); gl.useProgram(pr);
+    const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    const l = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(l); gl.vertexAttribPointer(l, 2, gl.FLOAT, false, 0, 0);
+    const uT = gl.getUniformLocation(pr, 'u_time'), uR = gl.getUniformLocation(pr, 'u_res'), uM = gl.getUniformLocation(pr, 'u_mouse');
+
+    let mx = 0, my = 0, tx = 0, ty = 0;
+    window.addEventListener('pointermove', (e) => {
+      const m = Math.min(window.innerWidth, window.innerHeight);
+      tx = (e.clientX - window.innerWidth * 0.5) / m;
+      ty = -(e.clientY - window.innerHeight * 0.5) / m;
+    });
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resize); resize();
+    function tick(ms) {
+      mx += (tx - mx) * 0.08; my += (ty - my) * 0.08;
+      gl.uniform1f(uT, ms * 0.001); gl.uniform2f(uR, canvas.width, canvas.height); gl.uniform2f(uM, mx, my);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>

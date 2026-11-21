@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Redtigercam — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#ffffff; color:#111111; font-family:'Inter',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Inter',sans-serif; font-size: 22px; border-bottom: 1px solid #111111; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#111111; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#111111; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#ffffff; border: 1px solid #111111; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#111111; }
+  .swatch-meta p { color:#111111; font-size: 12px; }
+  .specimen { border: 1px solid #111111; border-radius:12px; padding: 20px; background:#ffffff; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#111111; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#111111; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#ffffff; border: 1px solid #111111; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#ffffff; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #111111; padding-top: 20px; font-size: 13px; color:#111111; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · uploaded design.md · light mode</div>
+    <h1>Redtigercam</h1>
+    <p class="tagline">REDTIGER's design system embodies bold confidence and technological trust,
+anchored by a striking red accent against a sophisticated dark–to–light
+palette. The visual identity projects premium protection and
+innovation—befitting a dash cam brand—through high-contrast typography, sharp
+geometric components, and deliberate use of negative space. The system
+balances aggressive energy (via #FF0000) with approachable clarity, using a
+pure black (#000000) as the structural backbone and white (#FFFFFF) for
+breathing room. Color-blocking rather than layered shadows creates depth,
+reinforcing a modern, no-nonsense aesthetic suited to automotive safety and
+reliability.
+</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF0000"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#FF0000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>canvas</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1A1A1A"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#1A1A1A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>on-primary</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>ink</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0F172A"></div>
+        <div class="swatch-meta"><strong>body</strong><code>#0F172A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#333333"></div>
+        <div class="swatch-meta"><strong>muted</strong><code>#333333</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F0F0F0"></div>
+        <div class="swatch-meta"><strong>hairline</strong><code>#F0F0F0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1A2744"></div>
+        <div class="swatch-meta"><strong>accent-1</strong><code>#1A2744</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#334155"></div>
+        <div class="swatch-meta"><strong>accent-2</strong><code>#334155</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#444444"></div>
+        <div class="swatch-meta"><strong>neutral-1</strong><code>#444444</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#222222"></div>
+        <div class="swatch-meta"><strong>neutral-2</strong><code>#222222</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:44px;font-weight:700;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display · Inter · 44px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:36px;font-weight:600;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-md · Inter · 36px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:36px;font-weight:700;line-height:1.15">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-md-strong · Inter · 36px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:600;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-sm · Inter · 32px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:700;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-sm-strong · Inter · 32px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:32px;font-weight:700;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-sm-2 · Inter · 32px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:28px;font-weight:700;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">heading-xs · Inter · 28px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:16.8px;font-weight:700;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-xl · Inter · 16.8px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-lg · Inter · 16px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:500;line-height:1.65">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-lg-loose · Inter · 16px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:15.2px;font-weight:500;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter · 15.2px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:14px;font-weight:500;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-sm · Inter · 14px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:13.6px;font-weight:600;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-xs · Inter · 13.6px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:20px;font-weight:500;line-height:1.3">Aa — The quick brown fox</div>
+        <div class="specimen-meta">button · Inter · 20px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>xxs · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>xs · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>sm · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>md · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>lg · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>xl · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>xxl · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>xxxl · 40px</span>
+        <div class="bar" style="width:min(40px, 100%)"></div></div>
+<div class="bar-row"><span>section · 48px</span>
+        <div class="bar" style="width:min(48px, 100%)"></div></div>
+<div class="bar-row"><span>band · 64px</span>
+        <div class="bar" style="width:min(64px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:0px">none<br><code>0px</code></div>
+<div class="radius-chip" style="border-radius:6px">xs<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:8px">sm<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:16px">md<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:20px">lg<br><code>20px</code></div>
+<div class="radius-chip" style="border-radius:9999px">full<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#111111;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

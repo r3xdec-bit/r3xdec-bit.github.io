@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal Transit Noir — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#070F0F;
+  --background-deep:#001818;
+  --surface:#000000;
+  --text-primary:#CDD8FC;
+  --text-secondary:#4E5764;
+  --accent:#A8AAE5;
+  --accent-fill:#CDD8FC;
+  --border:#505368;
+  --border-strong:#8090C4;
+  --muted-tint:#989EBB;
+  --r-control:4px;
+  --r-button-md:8px;
+  --r-button-lg:10px;
+  --r-card:12px;
+  --r-pill:9999px;
+  --sp-base:8px;
+  --sp-gap:16px;
+  --sp-micro:4px;
+  --sp-pad:20px;
+  --sp-section:40px;
+  --sans:"Inter","volksans",system-ui,sans-serif;
+  --mono:"Space Mono","decimaMono",ui-monospace,monospace;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 24px}
+.mono{font-family:var(--mono)}
+.eyebrow{
+  font-family:var(--mono);
+  font-size:12px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.section{padding:calc(var(--sp-section)*2) 0;border-top:1px solid var(--border)}
+.section-head{margin-bottom:var(--sp-section)}
+.section-head h2{
+  font-family:var(--sans);
+  font-size:40px;
+  font-weight:500;
+  line-height:1.1;
+  letter-spacing:-0.7px;
+  margin:12px 0 0;
+}
+.section-head p{color:var(--muted-tint);max-width:60ch;margin:12px 0 0}
+
+/* hero */
+#hero{
+  min-height:92vh;
+  display:flex;
+  flex-direction:column;
+  background:
+    radial-gradient(120% 90% at 50% -10%, var(--background-deep), var(--background) 70%);
+}
+.nav{
+  position:sticky;top:0;z-index:50;background:transparent;
+}
+.navbar{
+  height:70px;max-width:1280px;margin:0 auto;
+  width:min(92%,1280px);
+  border-radius:0;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:var(--sp-gap);
+}
+.nav-links{display:flex;gap:24px;align-items:center;list-style:none;margin:0;padding:0}
+.nav-links a{
+  font-family:var(--mono);font-size:12px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted-tint);text-decoration:none;transition:color .15s var(--ease);
+}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-logo{
+  font-family:var(--sans);font-weight:500;font-size:18px;letter-spacing:-0.4px;
+  color:var(--text-primary);display:flex;align-items:center;gap:8px;
+}
+.nav-capsule{
+  background:var(--accent-fill);color:#000;
+  border:none;border-radius:var(--r-pill);
+  height:24px;padding:0 16px;
+  font-family:var(--mono);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  display:inline-flex;align-items:center;cursor:pointer;
+  transition:opacity .15s var(--ease);
+}
+.nav-capsule:hover{opacity:.85}
+@media(max-width:768px){.nav-links{display:none}}
+
+.hero-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:80px 24px}
+.hero-eyebrow{margin-bottom:24px}
+.hero h1{
+  font-family:var(--sans);
+  font-size:54px;font-weight:500;line-height:1.04;letter-spacing:-0.9px;
+  margin:0;max-width:16ch;
+}
+.hero-sup{
+  font-size:20px;line-height:1.32;color:var(--muted-tint);
+  margin:24px 0 0;max-width:46ch;
+}
+.hero-modal{
+  margin-top:40px;
+  border:1px solid var(--border);
+  border-radius:0;
+  padding:20px;
+  display:flex;gap:8px;align-items:center;flex-wrap:wrap;justify-content:center;
+  background:transparent;
+}
+.hero-modal input{
+  background:transparent;border:1px solid var(--border);border-radius:var(--r-control);
+  height:40px;padding:0 12px;color:var(--text-primary);font-family:var(--mono);
+  font-size:13px;min-width:240px;
+}
+.hero-modal input::placeholder{color:var(--text-secondary)}
+.hero-modal input:focus{outline:none;border-color:var(--border-strong)}
+.btn-primary{
+  background:var(--accent-fill);color:#000;border:none;
+  border-radius:var(--r-button-md);height:40px;padding:8px 32px;
+  font-family:var(--sans);font-weight:500;font-size:14px;cursor:pointer;
+  transition:opacity .15s var(--ease);
+}
+.btn-primary:hover{opacity:.85}
+.hero-cta-row{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap;justify-content:center}
+.btn-ghost{
+  background:transparent;color:var(--accent-fill);
+  border:1px solid var(--border);border-radius:var(--r-control);
+  height:28px;padding:4px 8px;font-family:var(--mono);font-size:11px;
+  letter-spacing:0.08em;text-transform:uppercase;cursor:pointer;
+  display:inline-flex;align-items:center;gap:6px;
+  transition:border-color .15s var(--ease),color .15s var(--ease);
+}
+.btn-ghost:hover{border-color:var(--border-strong);color:var(--text-primary)}
+@media(max-width:640px){.hero h1{font-size:38px}.section-head h2{font-size:30px}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <nav class="navbar wrap" aria-label="Primary">
+    <ul class="nav-links">
+      <li><a href="#hero">Index</a></li>
+      <li><a href="#palette">Palette</a></li>
+      <li><a href="#type-scale">Type</a></li>
+      <li><a href="#components">System</a></li>
+    </ul>
+    <div class="nav-logo">
+      <iconify-icon icon="lucide:train-front" aria-hidden="true"></iconify-icon>
+      TTN
+    </div>
+    <div style="display:flex;align-items:center;gap:16px">
+      <ul class="nav-links">
+        <li><a href="#surface-depth">Depth</a></li>
+        <li><a href="#motion">Motion</a></li>
+        <li><a href="#composition">Compose</a></li>
+        <li><a href="#footer">Source</a></li>
+      </ul>
+      <button class="nav-capsule">Board now</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section id="hero">
+  <div class="hero-body">
+    <div class="hero-eyebrow eyebrow">// TERMINAL · TRANSIT · NOIR</div>
+    <h1 class="hero">A blueprint for the dark, wired station to station.</h1>
+    <p class="hero-sup">A near-black ink field ruled into schematic panels, a single periwinkle accent, and a monospace label voice stamped over a rounder sans display.</p>
+    <div class="hero-modal" role="group" aria-label="Request access">
+      <label for="hero-email" style="position:absolute;left:-9999px">Email address</label>
+      <input id="hero-email" type="email" placeholder="you@station.net">
+      <button class="btn-primary">Request a line</button>
+    </div>
+    <div class="hero-cta-row">
+      <button class="btn-ghost"><iconify-icon icon="lucide:map" aria-hidden="true"></iconify-icon> View the map</button>
+      <button class="btn-ghost"><iconify-icon icon="lucide:file-code-2" aria-hidden="true"></iconify-icon> Read the spec</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .roles{display:grid;gap:var(--sp-section)}
+.role-group h3{font-family:var(--mono);font-size:12px;letter-spacing:0.18em;text-transform:uppercase;color:var(--accent);margin:0 0 16px}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.swatch{border:1px solid var(--border);border-radius:0;overflow:hidden}
+.swatch .chip{height:88px}
+.swatch .meta{padding:14px}
+.swatch .name{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase}
+.swatch .val{font-family:var(--mono);font-size:12px;color:var(--muted-tint);margin-top:4px}
+.swatch .note{font-size:13px;color:var(--muted-tint);margin-top:8px;line-height:1.4}
+.checker{background-image:linear-gradient(45deg,#1a1a1a 25%,transparent 25%),linear-gradient(-45deg,#1a1a1a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a1a1a 75%),linear-gradient(-45deg,transparent 75%,#1a1a1a 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 02 · PALETTE</div>
+      <h2>Color, almost entirely withheld</h2>
+      <p>Near-black field, periwinkle ink, one cool accent doing all expressive work. Slate-blue hairlines trace every edge.</p>
+    </div>
+    <div class="roles">
+      <div class="role-group">
+        <h3>Surfaces</h3>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#070F0F"></div><div class="meta"><div class="name">background</div><div class="val">#070F0F</div><div class="note">The deep teal-black ink field — the page's dominant surface.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#001818"></div><div class="meta"><div class="name">background-deep</div><div class="val">#001818</div><div class="note">CRT-phosphor undertone pooled behind the hero.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">surface</div><div class="val">#000000</div><div class="note">Pure black for deep shadow pockets.</div></div></div>
+        </div>
+      </div>
+      <div class="role-group">
+        <h3>Text</h3>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#CDD8FC"></div><div class="meta"><div class="name">text-primary</div><div class="val">#CDD8FC</div><div class="note">Pale periwinkle-white for all headings and primary copy.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#989EBB"></div><div class="meta"><div class="name">muted-tint</div><div class="val">#989EBB</div><div class="note">Supporting copy and quiet captions.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#4E5764"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#4E5764</div><div class="note">Dim blue-gray meta, placeholders, dividers.</div></div></div>
+        </div>
+      </div>
+      <div class="role-group">
+        <h3>Accents &amp; borders</h3>
+        <div class="swatch-grid">
+          <div class="swatch"><div class="chip" style="background:#A8AAE5"></div><div class="meta"><div class="name">accent</div><div class="val">#A8AAE5</div><div class="note">The one cool accent — line-art strokes, icon nodes.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#CDD8FC"></div><div class="meta"><div class="name">accent-fill</div><div class="val">#CDD8FC</div><div class="note">Rationed to interactive fills — capsule, primary buttons.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#505368"></div><div class="meta"><div class="name">border</div><div class="val">#505368</div><div class="note">Muted slate-blue hairline on every panel edge.</div></div></div>
+          <div class="swatch"><div class="chip" style="background:#8090C4"></div><div class="meta"><div class="name">border-strong</div><div class="val">#8090C4</div><div class="note">Stepped-up edge for emphasis and hover.</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .specimen{border-top:1px solid var(--border);padding:28px 0;display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:baseline}
+#type-scale .specimen:last-child{border-bottom:1px solid var(--border)}
+#type-scale .metrics{font-family:var(--mono);font-size:12px;color:var(--muted-tint);line-height:1.8}
+.spec-display{font-family:var(--sans);font-size:54px;font-weight:500;line-height:1.04;letter-spacing:-0.9px}
+.spec-headline{font-family:var(--sans);font-size:40px;font-weight:500;line-height:1.1}
+.spec-label{font-family:var(--sans);font-size:40px;font-weight:500;line-height:1;letter-spacing:-0.7px}
+.spec-body-md{font-family:var(--sans);font-size:20px;font-weight:400;line-height:1.32}
+.spec-body-base{font-family:var(--sans);font-size:16px;font-weight:400;line-height:1.5;max-width:60ch}
+.spec-mono{font-family:var(--mono);font-size:13px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent)}
+@media(max-width:768px){#type-scale .specimen{grid-template-columns:1fr}.spec-display{font-size:36px}.spec-headline,.spec-label{font-size:28px}}
+</style>
+<section id="type-scale" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 03 · TYPE SCALE</div>
+      <h2>Oversized sans, structural mono</h2>
+      <p>volksans carries the emotional beats; decimaMono stamps anything data-like. The hierarchy is strict.</p>
+    </div>
+    <div class="specimen">
+      <div class="spec-display">Last train to the dark field</div>
+      <div class="metrics">display-lg<br>54px / 500<br>lh 1.04 · ls -0.9px<br>volksans</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-headline">Wired station to station</div>
+      <div class="metrics">headline-md<br>40px / 500<br>lh 1.1<br>volksans</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-label">1,248 nodes</div>
+      <div class="metrics">label-md<br>40px / 500<br>lh 1 · ls -0.7px<br>volksans</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-body-md">A short support line sitting beneath the hero headline, kept at the larger body measure for emotional lead-in.</div>
+      <div class="metrics">body-md<br>20px / 400<br>lh 1.32<br>volksans</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-body-base">Long-form paragraph copy runs at the tighter base measure — narrow, legible, and quiet beneath the schematic panels. This is where the system does its reading work, holding the drafting-table rhythm without ever competing with the display face above it.</div>
+      <div class="metrics">body-base<br>16px / 400<br>lh 1.5<br>volksans</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-mono">// EYEBROW · SECTION TAG · DATA READOUT</div>
+      <div class="metrics">accent-mono<br>400<br>eyebrows · tags · readouts<br>decimaMono</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid var(--border);padding:48px 0;display:grid;grid-template-columns:1fr 300px;gap:40px}
+#components .comp:last-child{border-bottom:1px solid var(--border)}
+#components .comp-demo{min-width:0}
+#components .comp h3{font-family:var(--sans);font-size:24px;font-weight:500;margin:0 0 6px;letter-spacing:-0.4px}
+#components .comp-tag{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+.spec-card{border:1px solid var(--border);padding:16px;font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--muted-tint)}
+.spec-card b{color:var(--text-primary);font-weight:400}
+.instances{font-family:var(--mono);font-size:11px;color:var(--text-secondary);margin-top:14px;letter-spacing:0.08em}
+
+/* panels */
+.panel{border:1px solid var(--border);border-radius:0;background:transparent}
+.panel-pad{padding:20px}
+.panel .rule{height:1px;background:var(--border);margin:14px 0}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse;font-family:var(--mono);font-size:11px}
+.matrix th,.matrix td{border:1px solid var(--border);padding:14px;text-align:center;vertical-align:middle}
+.matrix th{color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;font-weight:400}
+.matrix td:first-child{color:var(--muted-tint);text-align:left}
+.btn-sec{background:var(--accent-fill);color:#000;border:none;border-radius:var(--r-button-lg);height:51px;padding:13px 16px 14px;font-family:var(--sans);font-weight:500;font-size:14px;cursor:pointer}
+.is-hover{opacity:.85}
+.is-disabled{opacity:.4;pointer-events:none}
+
+/* stat row */
+.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.stat-tile{border:0;text-align:center;padding:0}
+.stat-num{font-family:var(--sans);font-size:40px;font-weight:500;line-height:1;letter-spacing:-0.7px}
+.stat-ico{color:var(--accent);font-size:18px;margin-bottom:6px}
+.stat-cap{font-family:var(--mono);font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted-tint);margin-top:8px}
+@media(max-width:640px){.stat-row{grid-template-columns:repeat(2,1fr)}}
+
+/* node connector */
+.node-wrap{display:flex;flex-direction:column;align-items:center}
+.node-rail{width:1px;height:40px;background:var(--border)}
+.node-circle{width:56px;height:56px;border:1px solid var(--accent);border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:26px}
+
+/* sponsor */
+.sponsor-grid{display:grid;grid-template-columns:1fr;gap:0}
+.sponsor-tier{font-family:var(--mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);padding:14px 20px;border-bottom:1px solid var(--border)}
+.sponsor-logos{display:flex;gap:28px;flex-wrap:wrap;padding:20px}
+.sponsor-logos .lg{display:flex;align-items:center;gap:8px;color:var(--muted-tint);font-family:var(--mono);font-size:13px;filter:grayscale(1)}
+
+/* media card */
+.media-card{display:grid;grid-template-columns:2fr 1fr}
+.media-frame{aspect-ratio:16/10;background:linear-gradient(135deg,#001818,#0d1420);display:flex;align-items:center;justify-content:center;color:var(--accent);position:relative;border-right:1px solid var(--border)}
+.media-frame iconify-icon{font-size:48px;opacity:.5}
+.media-controls{position:absolute;bottom:12px;left:12px;display:flex;gap:8px}
+.media-cap{padding:20px;display:flex;flex-direction:column}
+.media-cap h4{font-family:var(--sans);font-weight:500;font-size:20px;margin:0 0 10px}
+.media-cap p{font-size:14px;color:var(--muted-tint);margin:0 0 auto}
+
+/* sign off */
+.signoff{text-align:center;padding:60px 20px}
+.signoff h4{font-family:var(--sans);font-size:54px;font-weight:500;line-height:1.04;letter-spacing:-0.9px;margin:0}
+.signoff p{color:var(--muted-tint);font-size:18px;margin:20px 0 28px}
+
+/* footer demo */
+.footer-demo{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:24px 0}
+.footer-demo .fl{display:flex;gap:24px;flex-wrap:wrap}
+.footer-demo a{font-family:var(--mono);font-size:12px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted-tint);text-decoration:none}
+.footer-demo a:hover{color:var(--text-primary)}
+.footer-demo .social{display:flex;gap:14px;color:var(--muted-tint);font-size:18px}
+
+@media(max-width:900px){#components .comp{grid-template-columns:1fr}}
+@media(max-width:640px){.media-card{grid-template-columns:1fr}.media-frame{border-right:0;border-bottom:1px solid var(--border)}.signoff h4{font-size:34px}}
+</style>
+<section id="components" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 04 · COMPONENTS</div>
+      <h2>The schematic inventory</h2>
+      <p>Hard-edged, hairline-bordered, flat. Every panel traces to a documented token.</p>
+    </div>
+
+    <!-- navbar -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-demo">
+        <h3>Navbar</h3>
+        <div class="comp-tag">×1 · centered · square-cornered · sticky</div>
+        <div class="panel" style="border-color:var(--border);padding:0 20px">
+          <div class="navbar" style="width:100%;max-width:none">
+            <ul class="nav-links"><li><a href="#">Lines</a></li><li><a href="#">Nodes</a></li><li><a href="#">Fares</a></li><li><a href="#">Map</a></li></ul>
+            <div class="nav-logo"><iconify-icon icon="lucide:train-front" aria-hidden="true"></iconify-icon> TTN</div>
+            <div style="display:flex;align-items:center;gap:14px">
+              <ul class="nav-links"><li><a href="#">Status</a></li><li><a href="#">Docs</a></li><li><a href="#">About</a></li></ul>
+              <button class="nav-capsule">Board now</button>
+            </div>
+          </div>
+        </div>
+        <div class="instances">8 nav items · center-set logo · one capsule CTA — the one fully-rounded shape</div>
+      </div>
+      <aside class="spec-card">
+        --navbar · height <b>70</b> · width <b>1280</b><br>
+        radius <b>0</b> all corners<br>
+        fill <b>transparent</b> · sticky<br>
+        capsule: fill <b>accent-fill</b> · text <b>#000</b><br>
+        radius <b>pill</b> · height <b>24</b> · pad <b>0 / 16</b>
+      </aside>
+    </div>
+
+    <!-- primary button -->
+    <div class="comp" data-tier-a-component="button-primary">
+      <div class="comp-demo">
+        <h3>Hero primary button</h3>
+        <div class="comp-tag">×1 · solid periwinkle · black ink</div>
+        <table class="matrix">
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>primary solid</td>
+              <td><button class="btn-primary">Request a line</button></td>
+              <td><button class="btn-primary is-hover">Request a line</button></td>
+              <td><button class="btn-primary is-disabled">Request a line</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="instances">Highest-contrast control on the first screen.</div>
+      </div>
+      <aside class="spec-card">
+        --btn-primary · fill <b>accent-fill</b> · text <b>#000</b><br>
+        radius <b>button-md 8</b> · height <b>40</b><br>
+        padding <b>8 / 32</b><br>
+        motion ease <b>0.15s</b> · opacity hover
+      </aside>
+    </div>
+
+    <!-- secondary solid -->
+    <div class="comp" data-tier-a-component="button-secondary-solid">
+      <div class="comp-demo">
+        <h3>Secondary solid button</h3>
+        <div class="comp-tag">×1 · taller · closing actions</div>
+        <table class="matrix">
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>secondary solid</td>
+              <td><button class="btn-sec">Download timetable</button></td>
+              <td><button class="btn-sec is-hover">Download timetable</button></td>
+              <td><button class="btn-sec is-disabled">Download timetable</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <aside class="spec-card">
+        --btn-secondary-solid · fill <b>accent-fill</b> · text <b>#000</b><br>
+        radius <b>button-lg 10</b> · height <b>51</b><br>
+        padding <b>13 / 16 / 14</b>
+      </aside>
+    </div>
+
+    <!-- ghost -->
+    <div class="comp" data-tier-a-component="button-ghost">
+      <div class="comp-demo">
+        <h3>Ghost / ruled buttons</h3>
+        <div class="comp-tag">×5 · transparent · in-panel actions</div>
+        <table class="matrix">
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>ghost ruled</td>
+              <td><button class="btn-ghost"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon> Play</button></td>
+              <td><button class="btn-ghost" style="border-color:var(--border-strong);color:var(--text-primary)"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon> Play</button></td>
+              <td><button class="btn-ghost is-disabled"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon> Play</button></td>
+            </tr>
+          </tbody>
+        </table>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px">
+          <button class="btn-ghost"><iconify-icon icon="lucide:pause" aria-hidden="true"></iconify-icon> Pause</button>
+          <button class="btn-ghost"><iconify-icon icon="lucide:volume-2" aria-hidden="true"></iconify-icon> Audio</button>
+          <button class="btn-ghost"><iconify-icon icon="lucide:maximize" aria-hidden="true"></iconify-icon> Expand</button>
+          <button class="btn-ghost"><iconify-icon icon="lucide:download" aria-hidden="true"></iconify-icon> Clip</button>
+        </div>
+      </div>
+      <aside class="spec-card">
+        --btn-ghost · fill <b>transparent</b> · text <b>accent-fill</b><br>
+        radius <b>control 4</b> · height <b>28</b><br>
+        padding <b>4 / 8</b> · border <b>border</b>
+      </aside>
+    </div>
+
+    <!-- stat tile row -->
+    <div class="comp" data-tier-a-component="stat-tile-row">
+      <div class="comp-demo">
+        <h3>Stat tile row</h3>
+        <div class="comp-tag">×1 · 5-up grid · 6px gap</div>
+        <div class="panel panel-pad">
+          <div class="stat-row">
+            <div class="stat-tile"><div class="stat-ico"><iconify-icon icon="lucide:route" aria-hidden="true"></iconify-icon></div><div class="stat-num">42</div><div class="stat-cap">// lines</div></div>
+            <div class="stat-tile"><div class="stat-ico"><iconify-icon icon="lucide:circle-dot" aria-hidden="true"></iconify-icon></div><div class="stat-num">1,248</div><div class="stat-cap">// nodes</div></div>
+            <div class="stat-tile"><div class="stat-ico"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon></div><div class="stat-num">24/7</div><div class="stat-cap">// uptime</div></div>
+            <div class="stat-tile"><div class="stat-ico"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></div><div class="stat-num">99.9</div><div class="stat-cap">// on-time</div></div>
+            <div class="stat-tile"><div class="stat-ico"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon></div><div class="stat-num">3.1M</div><div class="stat-cap">// riders</div></div>
+          </div>
+        </div>
+      </div>
+      <aside class="spec-card">
+        --card-stat-tile · fill <b>transparent</b><br>
+        radius <b>0</b> · tile pad <b>0</b> · panel pad <b>16</b><br>
+        border <b>1px border</b> on outer panel<br>
+        gap <b>6</b> · numeral <b>label-md</b> · caption <b>mono</b>
+      </aside>
+    </div>
+
+    <!-- schematic text panel -->
+    <div class="comp" data-tier-a-component="schematic-text-panel">
+      <div class="comp-demo">
+        <h3>Schematic text panel</h3>
+        <div class="comp-tag">×3 · bordered rectangle · border-only</div>
+        <div style="display:grid;gap:16px">
+          <div class="panel panel-pad">
+            <div class="eyebrow">// SIGNAL</div>
+            <h4 style="font-family:var(--sans);font-weight:500;font-size:24px;margin:8px 0 0">Hairline over whitespace</h4>
+            <div class="rule"></div>
+            <p class="mono" style="font-size:13px;color:var(--muted-tint);margin:0;line-height:1.7">Panels separate by border, never by shadow. Zero radius, zero corner treatment, flat against the field.</p>
+          </div>
+          <div class="panel panel-pad">
+            <div class="eyebrow">// RHYTHM</div>
+            <h4 style="font-family:var(--sans);font-weight:500;font-size:24px;margin:8px 0 0">A drafting-table cadence</h4>
+            <div class="rule"></div>
+            <p style="font-size:14px;color:var(--muted-tint);margin:0;line-height:1.6">Tight micro-gaps inside tiles, forty-pixel transitions between sections. The spine stays visible.</p>
+          </div>
+          <div class="panel panel-pad">
+            <div class="eyebrow">// INK</div>
+            <h4 style="font-family:var(--sans);font-weight:500;font-size:24px;margin:8px 0 0">One accent, rationed</h4>
+            <div class="rule"></div>
+            <p style="font-size:14px;color:var(--muted-tint);margin:0;line-height:1.6">Color is withheld everywhere except the fills and the line-art strokes.</p>
+          </div>
+        </div>
+      </div>
+      <aside class="spec-card">
+        --card-schematic-panel · fill <b>transparent</b><br>
+        radius <b>0</b> · pad <b>0</b> (content pad <b>20</b>)<br>
+        border <b>1px border</b> · rule <b>1px border</b><br>
+        eyebrow <b>mono accent</b>
+      </aside>
+    </div>
+
+    <!-- node connector -->
+    <div class="comp" data-tier-a-component="node-connector">
+      <div class="comp-demo">
+        <h3>Node connector</h3>
+        <div class="comp-tag">×2 · structural glyph · rail + junction</div>
+        <div class="node-wrap">
+          <div class="node-rail"></div>
+          <div class="node-circle"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div>
+          <div class="node-rail"></div>
+          <div class="node-circle"><iconify-icon icon="lucide:train-front" aria-hidden="true"></iconify-icon></div>
+          <div class="node-rail"></div>
+        </div>
+        <div class="instances">Wires sections together like a subway line — not a card.</div>
+      </div>
+      <aside class="spec-card">
+        node · circle border <b>1px accent</b><br>
+        radius <b>pill</b> · glyph <b>accent stroke</b><br>
+        rail <b>1px border</b> above &amp; below
+      </aside>
+    </div>
+
+    <!-- sponsor panel -->
+    <div class="comp" data-tier-a-component="sponsor-partner-panel">
+      <div class="comp-demo">
+        <h3>Sponsor / partner panel</h3>
+        <div class="comp-tag">×1 · nested sub-panel · grayscale marks</div>
+        <div class="panel">
+          <div class="sponsor-tier">// TERMINAL PARTNERS</div>
+          <div class="sponsor-logos">
+            <span class="lg"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon> NORTHLINE</span>
+            <span class="lg"><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon> MERIDIAN</span>
+            <span class="lg"><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon> AXIS CO</span>
+          </div>
+          <div class="sponsor-tier" style="border-top:1px solid var(--border)">// LINE SPONSORS</div>
+          <div class="sponsor-logos">
+            <span class="lg"><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon> ORBIT</span>
+            <span class="lg"><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon> FACET</span>
+          </div>
+        </div>
+      </div>
+      <aside class="spec-card">
+        sponsor-panel · fill <b>transparent</b><br>
+        radius <b>0</b> · border <b>1px border</b><br>
+        tier label <b>mono accent</b><br>
+        marks <b>grayscale</b>
+      </aside>
+    </div>
+
+    <!-- media card -->
+    <div class="comp" data-tier-a-component="media-card">
+      <div class="comp-demo">
+        <h3>Media card</h3>
+        <div class="comp-tag">×1 · media two-thirds · caption column</div>
+        <div class="panel media-card">
+          <div class="media-frame">
+            <iconify-icon icon="lucide:train-track" aria-hidden="true"></iconify-icon>
+            <div class="media-controls">
+              <button class="btn-ghost"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon></button>
+              <button class="btn-ghost"><iconify-icon icon="lucide:volume-2" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+          <div class="media-cap">
+            <div class="eyebrow">// FOOTAGE</div>
+            <h4>The line at night</h4>
+            <p>A looping transit car crosses the dark field, livery the only warm hue permitted on the page.</p>
+            <button class="btn-ghost" style="align-self:flex-start;margin-top:14px"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon> Watch</button>
+          </div>
+        </div>
+      </div>
+      <aside class="spec-card">
+        --card-media-bleed · fill <b>transparent</b><br>
+        radius <b>0</b> · pad <b>0</b><br>
+        border <b>1px border</b> · media <b>top-bleed</b><br>
+        caption CTA <b>ghost</b>
+      </aside>
+    </div>
+
+    <!-- closing sign-off -->
+    <div class="comp" data-tier-a-component="closing-sign-off-block">
+      <div class="comp-demo">
+        <h3>Closing sign-off block</h3>
+        <div class="comp-tag">×1 · terminal CTA band</div>
+        <div class="panel signoff">
+          <h4>Ride the dark field.<br>Board the last line.</h4>
+          <p>One field, one accent, one way through the station.</p>
+          <button class="btn-sec">Request a line</button>
+        </div>
+      </div>
+      <aside class="spec-card">
+        sign-off · headline <b>display-lg 54</b><br>
+        support <b>body-md</b> · button <b>secondary solid</b><br>
+        centered · terminal CTA role
+      </aside>
+    </div>
+
+    <!-- footer component -->
+    <div class="comp" data-tier-a-component="footer">
+      <div class="comp-demo">
+        <h3>Footer</h3>
+        <div class="comp-tag">×1 · transparent · no border</div>
+        <div class="footer-demo">
+          <div class="fl">
+            <a href="#">Lines</a><a href="#">Status</a><a href="#">Docs</a><a href="#">Contact</a>
+          </div>
+          <div class="social">
+            <iconify-icon icon="lucide:github" aria-label="GitHub"></iconify-icon>
+            <iconify-icon icon="lucide:twitter" aria-label="Twitter"></iconify-icon>
+            <iconify-icon icon="lucide:rss" aria-label="RSS feed"></iconify-icon>
+          </div>
+        </div>
+      </div>
+      <aside class="spec-card">
+        footer · fill <b>transparent</b><br>
+        no border · bottom-aligned<br>
+        4 links <b>mono muted</b> · social glyphs
+      </aside>
+    </div>
+
+    <!-- hero email modal -->
+    <div class="comp" data-tier-a-component="hero-email-modal-panel">
+      <div class="comp-demo">
+        <h3>Hero email modal panel</h3>
+        <div class="comp-tag">×1 · bordered interruption in hero</div>
+        <div class="hero-modal" style="margin:0;justify-content:flex-start">
+          <label for="demo-email" style="position:absolute;left:-9999px">Email address</label>
+          <input id="demo-email" type="email" placeholder="you@station.net">
+          <button class="btn-primary">Request a line</button>
+        </div>
+      </div>
+      <aside class="spec-card">
+        hero-modal · border <b>1px border</b> · radius <b>0</b><br>
+        pad <b>20</b> · input height <b>40</b> · radius <b>control 4</b><br>
+        action <b>btn-primary</b>
+      </aside>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.depth-card{border:1px solid var(--border);padding:28px 20px;background:transparent}
+.depth-card .lbl{font-family:var(--mono);font-size:12px;color:var(--muted-tint);margin-top:16px}
+.depth-card .lbl b{color:var(--text-primary);font-weight:400}
+.radii-row{display:flex;gap:20px;flex-wrap:wrap;margin-bottom:40px}
+.radii-chip{width:120px;height:80px;border:1px solid var(--border);display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font-family:var(--mono);font-size:11px;color:var(--muted-tint)}
+.shadow-float{box-shadow:rgba(0,0,0,0.1) 0px 4px 6px -1px,rgba(0,0,0,0.1) 0px 2px 4px -2px;background:#0d1420;border:1px solid var(--border)}
+.shadow-float-deep{box-shadow:rgba(0,0,0,0.2) 0px 10px 15px -3px,rgba(0,0,0,0.2) 0px 4px 6px -4px;background:#0d1420;border:1px solid var(--border)}
+</style>
+<section id="surface-depth" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 05 · SURFACE &amp; DEPTH</div>
+      <h2>Flat panels, two floating exceptions</h2>
+      <p>Mid-page panels hold at zero radius with no shadow. Soft elevation is reserved only for isolated floating controls.</p>
+    </div>
+    <div class="radii-row">
+      <div class="radii-chip" style="border-radius:4px">control · 4</div>
+      <div class="radii-chip" style="border-radius:8px">button-md · 8</div>
+      <div class="radii-chip" style="border-radius:10px">button-lg · 10</div>
+      <div class="radii-chip" style="border-radius:12px">card · 12</div>
+      <div class="radii-chip" style="border-radius:9999px;width:160px">pill</div>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card">
+        <div class="eyebrow">// PANEL</div>
+        <div class="lbl">radius <b>0</b> · shadow <b>none</b><br>border-only separation</div>
+      </div>
+      <div class="depth-card shadow-float">
+        <div class="eyebrow">// FLOATING</div>
+        <div class="lbl">shadow <b>0 4 6 -1 / 0 2 4 -2</b><br>reserved for toggles</div>
+      </div>
+      <div class="depth-card shadow-float-deep">
+        <div class="eyebrow">// FLOATING · DEEP</div>
+        <div class="lbl">shadow <b>0 10 15 -3 / 0 4 6 -4</b><br>isolated overlays only</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px}
+.motion-card{border:1px solid var(--border);padding:24px}
+.motion-card .m-lbl{font-family:var(--mono);font-size:12px;color:var(--muted-tint);margin-top:18px;line-height:1.7}
+.motion-card .m-lbl b{color:var(--text-primary);font-weight:400}
+.m-box{width:48px;height:48px;border:1px solid var(--accent);background:transparent}
+.m-run.util{transition:transform .2s var(--ease),background .2s var(--ease)}
+.m-run.util.go{transform:translateX(120px);background:var(--accent-fill)}
+.cursor{display:inline-block;width:10px;height:22px;background:var(--accent);vertical-align:middle}
+.cursor.blink{animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.replay{margin-top:16px}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 06 · MOTION</div>
+      <h2>Fast, utilitarian, CRT-flavoured</h2>
+      <p>Short cubic-bezier shifts on state, a slower curve for stroke draws, and a blinking terminal cursor.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="eyebrow">// STATE SHIFT</div>
+        <div style="margin:16px 0"><div class="m-box m-run util" id="mUtil"></div></div>
+        <button class="btn-ghost replay" onclick="document.getElementById('mUtil').classList.toggle('go')"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon> Replay</button>
+        <div class="m-lbl"><b>0.2s</b> · cubic-bezier(0.4,0,0.2,1)<br>color · background · border · fill</div>
+      </div>
+      <div class="motion-card">
+        <div class="eyebrow">// TERMINAL CURSOR</div>
+        <div style="margin:20px 0;font-family:var(--mono);font-size:16px">READY <span class="cursor blink"></span></div>
+        <div class="m-lbl"><b>1s</b> steps · blink<br>cursor-like accent state</div>
+      </div>
+      <div class="motion-card">
+        <div class="eyebrow">// STROKE DRAW</div>
+        <div style="margin:20px 0;color:var(--accent)"><iconify-icon icon="lucide:activity" style="font-size:40px" aria-hidden="true"></iconify-icon></div>
+        <div class="m-lbl"><b>0.4s</b> ease-in-out<br>waveform / line progressively drawn</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid var(--border);background:var(--background-deep)}
+.mock-nav{height:70px;display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+.mock-hero{text-align:center;padding:56px 24px;border-top:1px solid var(--border)}
+.mock-hero h3{font-family:var(--sans);font-size:40px;font-weight:500;line-height:1.1;margin:0;letter-spacing:-0.4px}
+.mock-hero p{color:var(--muted-tint);margin:16px 0 24px;font-size:18px}
+.mock-spine{display:flex;flex-direction:column;align-items:center;padding:20px}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr;gap:0;width:100%;border:1px solid var(--border)}
+.mock-cards .mc{padding:20px}
+.mock-cards .mc:first-child{border-right:1px solid var(--border)}
+.mock-cards .mc h5{font-family:var(--sans);font-weight:500;font-size:18px;margin:8px 0 10px}
+.mock-cards .mc p{color:var(--muted-tint);font-size:14px;margin:0}
+.mock-cta{text-align:center;padding:48px 24px;border-top:1px solid var(--border)}
+.mock-cta h4{font-family:var(--sans);font-size:40px;font-weight:500;letter-spacing:-0.7px;margin:0 0 20px}
+@media(max-width:640px){.mock-cards{grid-template-columns:1fr}.mock-cards .mc:first-child{border-right:0;border-bottom:1px solid var(--border)}.mock-hero h3,.mock-cta h4{font-size:28px}}
+</style>
+<section id="composition" class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">// 07 · IN COMPOSITION</div>
+      <h2>The spine, assembled</h2>
+      <p>Navbar, hero fragment, two panels wired by a node, and a terminal CTA — all from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="nav-logo"><iconify-icon icon="lucide:train-front" aria-hidden="true"></iconify-icon> TTN</div>
+        <ul class="nav-links"><li><a href="#">Lines</a></li><li><a href="#">Status</a></li><li><a href="#">Docs</a></li></ul>
+        <button class="nav-capsule">Board now</button>
+      </div>
+      <div class="mock-hero">
+        <div class="eyebrow">// FIRST SCREEN</div>
+        <h3 style="margin-top:12px">Wired station to station</h3>
+        <p>A visible, diagrammatic spine instead of empty whitespace.</p>
+        <div class="hero-modal" style="margin:0 auto;display:inline-flex">
+          <label for="mock-email" style="position:absolute;left:-9999px">Email</label>
+          <input id="mock-email" type="email" placeholder="you@station.net">
+          <button class="btn-primary">Request a line</button>
+        </div>
+      </div>
+      <div class="mock-spine">
+        <div class="node-rail" style="height:32px"></div>
+        <div class="node-circle"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div>
+        <div class="node-rail" style="height:32px"></div>
+        <div class="mock-cards">
+          <div class="mc"><div class="eyebrow">// NORTH</div><h5>Hairline panels</h5><p>Border-only separation, zero radius, flat against the field.</p></div>
+          <div class="mc"><div class="eyebrow">// SOUTH</div><h5>One cool accent</h5><p>Rationed to fills and strokes — never washed across backgrounds.</p></div>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <h4>Board the last line.</h4>
+        <button class="btn-sec">Request a line</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:60px 0 48px;background:transparent}
+#footer .foot{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:24px}
+#footer .brand{font-family:var(--sans);font-weight:500;font-size:24px;letter-spacing:-0.4px}
+#footer .src{font-family:var(--mono);font-size:12px;color:var(--muted-tint);margin-top:8px}
+#footer .src a{color:var(--accent);text-decoration:none}
+#footer .credit{font-family:var(--mono);font-size:11px;color:var(--text-secondary);letter-spacing:0.08em}
+</style>
+<footer id="footer" class="section">
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <div class="brand">Terminal Transit Noir</div>
+        <div class="src">Source: <a href="https://www.torontotechweek.com/">torontotechweek.com</a></div>
+      </div>
+      <div class="credit">Design system captured and rendered by r3xdec.design</div>
+    </div>
+  </div>
+</footer>
+</main>
+</body>
+</html>

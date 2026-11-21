@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TryGC — SPEAK · CONNECT · IMPACT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Inter:wght@300;400;500;600&family=Sometype+Mono:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --page-bg: #FFFFFF;
+            --alt-band: #F7F5FB;
+            --ink: #1A1523;
+            --body: #55505F;
+            --muted: #6E6880;
+            --line: #ECE8F2;
+            --purple: #592B9B;
+            --purple-soft: rgba(89, 43, 155, 0.03);
+            --purple-border: rgba(89, 43, 155, 0.1);
+            --orange: #F16221;
+            --orange-soft: #FDEDE3;
+            --contact-band: #1A102B;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--page-bg);
+            color: var(--ink);
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            letter-spacing: -0.04em;
+        }
+
+        .mono {
+            font-family: 'Sometype Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .max-container {
+            max-width: 1248px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .glass-card {
+            background: var(--purple-soft);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--purple-border);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        }
+
+        .btn-orange {
+            background-color: var(--orange);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-orange:hover {
+            background-color: #d9531a;
+            transform: scale(1.02);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background: #ef4444;
+            border-radius: 50%;
+            display: inline-block;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .marquee-content {
+            display: flex;
+            gap: 80px;
+            animation: marquee 40s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .headline-massive {
+            font-size: clamp(3rem, 10vw, 8rem);
+            line-height: 0.9;
+            font-weight: 800;
+        }
+
+        .stat-card-depth {
+            perspective: 1000px;
+        }
+
+        .shadow-soft {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+
+        .traffic-light {
+            display: flex;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .traffic-light div {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .bento-image {
+            transition: filter 0.3s ease, transform 0.3s ease;
+            filter: grayscale(100%);
+        }
+
+        .bento-card:hover .bento-image {
+            filter: grayscale(0%);
+            transform: scale(1.05);
+        }
+
+        @view-transition {
+            navigation: auto;
+        }
+    </style>
+
+<meta name="preview-version" content="13a5934c-5ab3-4f8a-b384-7a0f4d4791e2" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.247Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "13a5934c-5ab3-4f8a-b384-7a0f4d4791e2");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "13a5934c-5ab3-4f8a-b384-7a0f4d4791e2",
+      timestamp: "2026-11-20T00:19:43.247Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "13a5934c-5ab3-4f8a-b384-7a0f4d4791e2";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-white/90 backdrop-blur-md border-b border-[#ECE8F2] mix-diff">
+        <div class="max-container py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/945cac17-da09-44be-8352-2370530312b7/1794658201253-d5cb9172/fcheck.png" alt="TryGC Logo" class="h-7" onerror="this.onerror=null;this.src='https://placehold.co/600x28/1a1a1a/888?text=Image';">
+                <div class="pulse-dot"></div>
+            </div>
+            <div class="hidden xl:flex items-center gap-10">
+                <a href="#service" id="nav-the-service" class="text-sm font-semibold hover:text-[#F16221] transition-colors">The Service</a>
+                <a href="#creators" id="nav-creators" class="text-sm font-semibold hover:text-[#F16221] transition-colors">Creators</a>
+                <a href="#clients" id="nav-clients" class="text-sm font-semibold hover:text-[#F16221] transition-colors">Clients</a>
+                <a href="#stories" id="nav-stories" class="text-sm font-semibold hover:text-[#F16221] transition-colors">Stories</a>
+                <a href="#pricing" id="nav-pricing" class="text-sm font-semibold hover:text-[#F16221] transition-colors">Pricing</a>
+                <a href="#faq" id="nav-faq" class="text-sm font-semibold hover:text-[#F16221] transition-colors">FAQ</a>
+                <a href="#" id="nav-theme" class="text-sm font-semibold hover:text-[#F16221] transition-colors">Theme</a>
+            </div>
+            <a href="#contact" id="nav-cta-btn" class="bg-[#F16221] text-white text-xs font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform uppercase tracking-wider">
+                Start a campaign
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex flex-col items-center justify-center pt-20 px-6 text-center">
+        <div class="max-container">
+            <span class="mono text-xs font-bold text-[#592B9B] mb-8 block" style="view-transition-name: kicker">SPEAK · CONNECT · IMPACT</span>
+            <h1 class="headline-massive tracking-tighter mb-10">
+                We Build <span class="text-[#F16221]">Momentum.</span><br>
+                Not Just Campaigns.
+            </h1>
+            <p class="max-w-2xl mx-auto text-lg text-[#55505F] mb-12 leading-relaxed">
+                TryGC keeps creators posting every week for 3–4 months. One flat rate. 87+ countries. Standalone prototype built for lasting brand presence.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                <a href="#contact" id="hero-primary-cta" class="btn-orange">
+                    Start a campaign
+                    <iconify-icon icon="lucide:arrow-up-right"></iconify-icon>
+                </a>
+                <a href="#service" id="hero-secondary-cta" class="px-8 py-4 rounded-full border border-[#ECE8F2] font-semibold hover:bg-[#F7F5FB] transition-colors">
+                    The Service
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Marquee -->
+    <section id="clients" class="py-16 bg-[#F7F5FB] border-y border-[#ECE8F2] overflow-hidden">
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">ZUMA</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">STARBUCKS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">ROKA</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">BRANDS FOR LESS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">SKECHERS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">BLACK TAP</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">MR. CHOW</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">AMERICAN EAGLE</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">TED BAKER</span>
+                <!-- Repeat -->
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">ZUMA</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">STARBUCKS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">ROKA</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">BRANDS FOR LESS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">SKECHERS</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">BLACK TAP</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">MR. CHOW</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">AMERICAN EAGLE</span>
+                <span class="text-2xl font-extrabold opacity-20 tracking-tighter">TED BAKER</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Creators Stats -->
+    <section id="creators" class="py-32 bg-white">
+        <div class="max-container">
+            <div class="mb-20">
+                <span class="mono text-xs font-bold text-[#592B9B] mb-6 block">Proof of Ecosystem</span>
+                <h2 class="text-[7vw] font-bold tracking-tighter leading-none mb-12">
+                    87+ countries.<br>
+                    One TryGC team.
+                </h2>
+            </div>
+            <div class="grid lg:grid-cols-5 gap-6">
+                <div class="glass-card p-10 rounded-3xl">
+                    <p class="text-4xl font-extrabold text-[#592B9B] mb-2">165K</p>
+                    <p class="mono text-[10px] text-[#55505F] font-bold">Verified Creators</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl">
+                    <p class="text-4xl font-extrabold text-[#592B9B] mb-2">50B+</p>
+                    <p class="mono text-[10px] text-[#55505F] font-bold">Follower Reach</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl">
+                    <p class="text-4xl font-extrabold text-[#592B9B] mb-2">500K+</p>
+                    <p class="mono text-[10px] text-[#55505F] font-bold">Content Items</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl">
+                    <p class="text-4xl font-extrabold text-[#592B9B] mb-2">2,000+</p>
+                    <p class="mono text-[10px] text-[#55505F] font-bold">Global Brands</p>
+                </div>
+                <div class="glass-card p-10 rounded-3xl">
+                    <p class="text-4xl font-extrabold text-[#592B9B] mb-2">500+</p>
+                    <p class="mono text-[10px] text-[#55505F] font-bold">Experts 24/7</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Path -->
+    <section id="service" class="py-32 bg-[#F7F5FB]">
+        <div class="max-container">
+            <div class="mb-24">
+                <span class="mono text-xs font-bold text-[#592B9B] mb-6 block">The Service</span>
+                <h2 class="text-[7vw] font-bold tracking-tighter leading-none mb-10">Engineered for Wave after Wave.</h2>
+            </div>
+            <div class="grid md:grid-cols-4 gap-4 mb-20">
+                <div class="p-1 shadow-soft">
+                    <div class="bg-white p-8 rounded-2xl h-full border border-[#ECE8F2]">
+                        <span class="mono text-[10px] text-[#592B9B] mb-4 block">Stage 01</span>
+                        <h4 class="text-xl font-bold mb-3 uppercase tracking-tighter">Buzz</h4>
+                        <p class="text-sm text-[#55505F]">A wave of creators starts the conversation across the entire market.</p>
+                    </div>
+                </div>
+                <div class="p-1 shadow-soft">
+                    <div class="bg-white p-8 rounded-2xl h-full border border-[#ECE8F2]">
+                        <span class="mono text-[10px] text-[#592B9B] mb-4 block">Stage 02</span>
+                        <h4 class="text-xl font-bold mb-3 uppercase tracking-tighter">Maintain</h4>
+                        <p class="text-sm text-[#55505F]">New waves keep momentum high so the attention never fades.</p>
+                    </div>
+                </div>
+                <div class="p-1 shadow-soft">
+                    <div class="bg-white p-8 rounded-2xl h-full border border-[#ECE8F2]">
+                        <span class="mono text-[10px] text-[#592B9B] mb-4 block">Stage 03</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter">Top of Mind</h3>
+                        <p class="text-sm text-[#55505F]">Steady presence makes your brand the local standard.</p>
+                    </div>
+                </div>
+                <div class="p-1 shadow-soft">
+                    <div class="bg-white p-8 rounded-2xl h-full border border-[#ECE8F2]">
+                        <span class="mono text-[10px] text-[#592B9B] mb-4 block">Stage 04</span>
+                        <h3 class="text-xl font-bold mb-3 uppercase tracking-tighter">Repeat</h3>
+                        <p class="text-sm text-[#55505F]">Plan the next wave based on real performance data.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap gap-12 justify-center">
+                <iconify-icon icon="fa-brands:instagram" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+                <iconify-icon icon="fa-brands:tiktok" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+                <iconify-icon icon="fa-brands:snapchat" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+                <iconify-icon icon="fa-brands:youtube" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+                <iconify-icon icon="fa-brands:facebook" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+                <iconify-icon icon="fa-brands:whatsapp" class="text-4xl text-[#592B9B]/40 hover:text-[#592B9B] transition-colors"></iconify-icon>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Bento Grid -->
+    <section id="stories" class="py-32 bg-white">
+        <div class="max-container">
+            <div class="mb-20">
+                <span class="mono text-xs font-bold text-[#592B9B] mb-6 block">Case Studies</span>
+                <h2 class="text-[7vw] font-bold tracking-tighter leading-none mb-10">Momentum Realized.</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-8">
+                <!-- Featured Project -->
+                <div class="lg:col-span-2 glass-card rounded-[32px] overflow-hidden bento-card relative">
+                    <div class="absolute top-6 left-8 z-10 traffic-light">
+                        <div class="bg-[#ff5f56]"></div>
+                        <div class="bg-[#ffbd2e]"></div>
+                        <div class="bg-[#27c93f]"></div>
+                    </div>
+                    <div class="aspect-video w-full relative">
+                        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover bento-image" alt="Tim Hortons" onerror="this.onerror=null;this.src='https://placehold.co/2000x400/1a1a1a/888?text=Image';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#1A1523]/80 to-transparent flex flex-col justify-end p-12">
+                            <div class="max-w-2xl text-white">
+                                <h3 class="text-5xl font-extrabold mb-4">Tim Hortons</h3>
+                                <p class="text-lg opacity-80 mb-8">Making new openings feel like a local event. 1.3K+ creators activated from day one.</p>
+                                <div class="flex gap-12">
+                                    <div><p class="text-2xl font-bold">130M</p><p class="mono text-[10px] opacity-60">Reach</p></div>
+                                    <div><p class="text-2xl font-bold">3.9K+</p><p class="mono text-[10px] opacity-60">Content</p></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Small Cards -->
+                <div class="glass-card rounded-[32px] overflow-hidden bento-card">
+                    <div class="aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover bento-image" alt="Al-Tamimi" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/1a1a1a/888?text=Image';">
+                        <div class="absolute inset-0 bg-[#1A1523]/60 opacity-0 bento-card:hover:opacity-100 transition-opacity flex items-center justify-center text-center p-8">
+                            <div class="text-white">
+                                <h4 class="text-2xl font-bold mb-2">Al-Tamimi Markets</h4>
+                                <p class="mono text-xs mb-4">371+ Creators</p>
+                                <a href="#" id="case-tamimi" class="text-sm font-bold border-b border-white pb-1">View Story</a>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-6 left-8 text-white z-10">
+                            <h4 class="text-xl font-bold">Al-Tamimi Markets</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-[32px] overflow-hidden bento-card">
+                    <div class="aspect-[4/3] relative">
+                        <img src="https://images.unsplash.com/photo-1600880210819-f71814923f91?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover bento-image" alt="Deichmann" onerror="this.onerror=null;this.src='https://placehold.co/1200x400/1a1a1a/888?text=Image';">
+                        <div class="absolute inset-0 bg-[#1A1523]/60 opacity-0 bento-card:hover:opacity-100 transition-opacity flex items-center justify-center text-center p-8">
+                            <div class="text-white">
+                                <h4 class="text-2xl font-bold mb-2">Deichmann</h4>
+                                <p class="mono text-xs mb-4">193+ Creators</p>
+                                <a href="#" id="case-deichmann" class="text-sm font-bold border-b border-white pb-1">View Story</a>
+                            </div>
+                        </div>
+                        <div class="absolute bottom-6 left-8 text-white z-10">
+                            <h4 class="text-xl font-bold">Deichmann</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Showreel Section -->
+    <section class="py-32 bg-[#F7F5FB]">
+        <div class="max-container">
+            <div class="mb-16 text-center">
+                <h2 class="text-[5vw] font-bold tracking-tighter">Watch Real Campaign Stories</h2>
+                <p class="mono text-sm text-[#592B9B] mt-4 font-bold">165,000 creators. 87+ countries.</p>
+            </div>
+            <div class="aspect-video bg-[#1A1523] rounded-[40px] flex items-center justify-center group cursor-pointer relative overflow-hidden">
+                <iconify-icon icon="lucide:play" class="text-8xl text-white opacity-40 group-hover:opacity-100 group-hover:scale-110 transition-all"></iconify-icon>
+                <div class="absolute bottom-10 left-10 flex gap-6 text-white/40 text-[10px] mono font-bold">
+                    <span>01. The Problem</span>
+                    <span>02. Low Recall</span>
+                    <span>03. Always On</span>
+                    <span>04. Your Partner</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 bg-white">
+        <div class="max-container">
+            <div class="mb-20 flex flex-col lg:flex-row lg:items-end justify-between gap-10">
+                <div class="max-w-3xl">
+                    <span class="mono text-xs font-bold text-[#592B9B] mb-6 block">Transparent Value</span>
+                    <h2 class="text-[7vw] font-bold tracking-tighter leading-none">One Flat Rate.</h2>
+                    <p class="text-xl text-[#55505F] mt-8">Scope, creators, and reporting included. No hidden per-creator negotiations.</p>
+                </div>
+                <div class="flex gap-8 border-l border-[#ECE8F2] pl-8">
+                    <div class="text-center">
+                        <p class="text-2xl font-extrabold">Tier 1</p>
+                        <p class="mono text-[10px] text-[#F16221] font-bold">30%</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-extrabold">Tier 2</p>
+                        <p class="mono text-[10px] text-[#F16221] font-bold">45%</p>
+                    </div>
+                    <div class="text-center">
+                        <p class="text-2xl font-extrabold">Tier 3</p>
+                        <p class="mono text-[10px] text-[#F16221] font-bold">20%</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8 items-stretch">
+                <div class="glass-card p-12 rounded-[40px] flex flex-col justify-between opacity-60">
+                    <div>
+                        <h3 class="text-2xl font-extrabold mb-6">Standard Wave</h3>
+                        <p class="text-sm text-[#55505F] mb-10">Perfect for focused market tests and launch moments.</p>
+                        <ul class="space-y-4 mb-12">
+                            <li class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:check" class="text-[#592B9B]"></iconify-icon> Upfront flat rate</li>
+                            <li class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:check" class="text-[#592B9B]"></iconify-icon> Direct manager</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="bg-[#592B9B] p-1 shadow-2xl rounded-[40px]">
+                    <div class="bg-white p-12 rounded-[38px] h-full flex flex-col justify-between border-2 border-[#592B9B]/10">
+                        <div>
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="text-2xl font-extrabold">Momentum Cycle</h3>
+                                <span class="bg-[#FDEDE3] text-[#F16221] text-[10px] font-extrabold px-3 py-1 rounded-full">MOST RELEVANT</span>
+                            </div>
+                            <p class="text-sm text-[#55505F] mb-10">Our core 16-week strategy: Buzz, Maintain, Top of Mind, Repeat.</p>
+                            <ul class="space-y-4 mb-12">
+                                <li class="flex items-center gap-3 text-sm font-bold"><iconify-icon icon="lucide:check-circle-2" class="text-[#F16221]"></iconify-icon> All 4 stages included</li>
+                                <li class="flex items-center gap-3 text-sm font-bold"><iconify-icon icon="lucide:check-circle-2" class="text-[#F16221]"></iconify-icon> Content QA guaranteed</li>
+                                <li class="flex items-center gap-3 text-sm font-bold"><iconify-icon icon="lucide:check-circle-2" class="text-[#F16221]"></iconify-icon> QR visit tracking</li>
+                            </ul>
+                        </div>
+                        <a href="#" id="pricing-momentum" class="btn-orange w-full justify-center">Get Wave Plan</a>
+                    </div>
+                </div>
+                <div class="glass-card p-12 rounded-[40px] flex flex-col justify-between opacity-60">
+                    <div>
+                        <h3 class="text-2xl font-extrabold mb-6">Portfolio</h3>
+                        <p class="text-sm text-[#55505F] mb-10">For groups managing multiple brands across 87+ countries.</p>
+                        <ul class="space-y-4 mb-12">
+                            <li class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:check" class="text-[#592B9B]"></iconify-icon> One group report</li>
+                            <li class="flex items-center gap-3 text-sm"><iconify-icon icon="lucide:check" class="text-[#592B9B]"></iconify-icon> Cross-market pools</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 p-10 bg-[#F7F5FB] rounded-[32px] border border-[#ECE8F2]">
+                <div class="flex flex-col md:flex-row gap-10 items-center">
+                    <div class="flex-1">
+                        <p class="mono text-[10px] text-[#592B9B] mb-2 font-bold">Sample Readout</p>
+                        <h4 class="text-2xl font-bold mb-4">Bloom Café — Market A & B</h4>
+                        <p class="text-sm text-[#55505F]">Estimated Reach: 666K | Fee SAR 102,200 for 20 creators. This is a sample, not a promise. Commitment starts after team review.</p>
+                    </div>
+                    <div class="shrink-0">
+                        <a href="#contact" id="sample-quote" class="btn-orange">Request a quote</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-32 bg-[#F7F5FB]">
+        <div class="max-container">
+            <div class="max-w-4xl">
+                <h2 class="text-[5vw] font-bold tracking-tighter mb-20">Questions?</h2>
+                <div class="space-y-4">
+                    <div class="bg-white rounded-2xl overflow-hidden border border-[#ECE8F2] shadow-soft">
+                        <button class="w-full p-8 flex justify-between items-center text-left hover:bg-[#F7F5FB] transition-colors">
+                            <span class="font-bold">Is TryGC a database?</span>
+                            <iconify-icon icon="lucide:plus" class="text-[#592B9B]"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="bg-white rounded-2xl overflow-hidden border border-[#ECE8F2] shadow-soft">
+                        <button class="w-full p-8 flex justify-between items-center text-left hover:bg-[#F7F5FB] transition-colors">
+                            <span class="font-bold">How fast can we go live?</span>
+                            <iconify-icon icon="lucide:plus" class="text-[#592B9B]"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="bg-white rounded-2xl overflow-hidden border border-[#ECE8F2] shadow-soft">
+                        <button class="w-full p-8 flex justify-between items-center text-left hover:bg-[#F7F5FB] transition-colors">
+                            <span class="font-bold">Does the Brand approve creators?</span>
+                            <iconify-icon icon="lucide:plus" class="text-[#592B9B]"></iconify-icon>
+                        </button>
+                    </div>
+                    <div class="bg-white rounded-2xl overflow-hidden border border-[#ECE8F2] shadow-soft">
+                        <button class="w-full p-8 flex justify-between items-center text-left hover:bg-[#F7F5FB] transition-colors">
+                            <span class="font-bold">Can you work beside our agency?</span>
+                            <iconify-icon icon="lucide:plus" class="text-[#592B9B]"></iconify-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="bg-[#1A102B] py-40 text-white overflow-hidden relative">
+        <div class="max-container relative z-10">
+            <h2 class="text-[8vw] font-bold tracking-tighter leading-none mb-12">
+                Build Your<br>
+                Momentum Now.
+            </h2>
+            <p class="text-2xl opacity-60 mb-20 max-w-xl">From first brief to final report. Total impact, zero friction.</p>
+            <a href="mailto:info@try-gc.com" id="footer-email-cta" class="text-4xl md:text-6xl font-extrabold text-[#F16221] hover:text-white transition-colors">
+                info@try-gc.com
+            </a>
+        </div>
+        <!-- Subtle glow effects from inspiration -->
+        <div class="absolute -bottom-40 -right-40 w-[600px] h-[600px] bg-[#592B9B] blur-[160px] opacity-20"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 bg-white border-t border-[#ECE8F2]">
+        <div class="max-container">
+            <div class="grid lg:grid-cols-4 gap-20 mb-20">
+                <div class="lg:col-span-2">
+                    <img src="https://vgbujcuwptvheqijyjbe.supabase.co/storage/v1/object/public/hmac-uploads/uploads/945cac17-da09-44be-8352-2370530312b7/1794658201253-d5cb9172/fcheck.png" alt="TryGC Logo" class="h-8 mb-8" onerror="this.onerror=null;this.src='https://placehold.co/600x32/1a1a1a/888?text=Image';">
+                    <p class="text-[#55505F] max-w-xs">The momentum-first ecosystem for brands in 87+ countries. One partner. Total control.</p>
+                </div>
+                <div>
+                    <h5 class="mono text-[10px] font-bold text-[#592B9B] mb-8">The Work</h5>
+                    <ul class="space-y-4">
+                        <li><a href="#service" id="footer-link-service" class="text-sm font-semibold hover:text-[#F16221]">The Service</a></li>
+                        <li><a href="#stories" id="footer-link-stories" class="text-sm font-semibold hover:text-[#F16221]">Stories</a></li>
+                        <li><a href="#pricing" id="footer-link-pricing" class="text-sm font-semibold hover:text-[#F16221]">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="mono text-[10px] font-bold text-[#592B9B] mb-8">Company</h5>
+                    <ul class="space-y-4">
+                        <li><a href="#" id="footer-link-privacy" class="text-sm font-semibold hover:text-[#F16221]">Privacy policy</a></li>
+                        <li><a href="#creators" id="footer-link-proof" class="text-sm font-semibold hover:text-[#F16221]">Proof</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-12 border-t border-[#ECE8F2] flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] mono font-bold text-[#6E6880]">
+                <span>© 2026 TRY GC. ALL RIGHTS RESERVED.</span>
+                <span class="flex gap-4">
+                    <span>MARKET G</span>
+                    <span>MARKET A</span>
+                    <span>WORLDWIDE</span>
+                </span>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

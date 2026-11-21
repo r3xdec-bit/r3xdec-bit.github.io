@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void-teal ledger glass — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#090D16;
+  --surface:#0B0F19;
+  --surface-elevated:#111827;
+  --surface-hairline:#1A2333;
+  --panel-hairline:#1F293D;
+  --text-primary:#F3F4F6;
+  --text-inverse:#FFFFFF;
+  --accent-violet:#615EFF;
+  --accent-indigo:#4F39F6;
+  --accent-emerald:#009966;
+  --accent-emerald-hover:#00BC7D;
+  --numeral-emerald:#5EE9B5;
+  --accent-danger:#FF6467;
+  --accent-amber:#FFD230;
+  --glass-violet-text:#DAB2FF;
+  --glass-blue-text:#A3B3FF;
+  --r-control:8px;
+  --r-card:12px;
+  --r-card-lg:16px;
+  --r-chip:6px;
+  --r-pill:9999px;
+  --base:4px;
+  --gap:8px;
+  --card-pad:12px;
+  --section-gap:10px;
+  --btn-glass-shadow:rgba(0,0,0,0.1) 0px 1px 3px 0px, rgba(0,0,0,0.1) 0px 1px 2px -1px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ease-spring:cubic-bezier(0.175,0.885,0.32,1.275);
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Anek Bangla",system-ui,sans-serif;
+  font-size:15px;
+  font-weight:500;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-weight:800;line-height:1.25;margin:0}
+a{color:var(--glass-blue-text)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.band{padding:80px 0;border-bottom:1px solid var(--surface-hairline)}
+.eyebrow{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--glass-blue-text);margin:0 0 12px}
+.band-title{font-size:16px;font-weight:800}
+.lead{font-size:15px;color:var(--text-primary);opacity:.82;max-width:60ch}
+iconify-icon{display:inline-block;vertical-align:-0.125em}
+
+/* HERO */
+#hero{position:relative;padding:120px 0 96px;border-bottom:1px solid var(--surface-hairline);
+  background:
+    radial-gradient(120% 90% at 80% 0%, rgba(95,95,255,0.08), transparent 60%),
+    radial-gradient(90% 80% at 0% 100%, rgba(0,153,102,0.06), transparent 55%),
+    var(--background);
+}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--glass-violet-text);
+  padding:6px 12px;border-radius:var(--r-pill);
+  background:linear-gradient(to right, rgba(120,60,255,0.18), rgba(190,60,150,0.18));
+  border:1px solid rgba(160,120,255,0.4)}
+.hero h1{font-size:56px;font-weight:800;line-height:1.05;letter-spacing:-.01em;margin:24px 0 0;max-width:16ch}
+.hero p{font-size:16px;font-weight:500;color:var(--text-primary);opacity:.78;max-width:52ch;margin:20px 0 0}
+.hero-num{color:var(--numeral-emerald);font-weight:700}
+.hero-cta{display:flex;gap:12px;margin-top:36px;flex-wrap:wrap}
+.btn{font-family:inherit;font-weight:700;cursor:pointer;border:0;display:inline-flex;
+  align-items:center;gap:8px;transition:all .15s var(--ease);font-size:13px}
+.btn-glass{background:linear-gradient(to right, rgba(120,60,255,0.3), rgba(190,60,150,0.3));
+  color:var(--glass-violet-text);border-radius:var(--r-card);height:30px;padding:6px 12px;
+  border:1px solid rgba(160,120,255,0.4);box-shadow:var(--btn-glass-shadow)}
+.btn-emerald{background:var(--accent-emerald);color:#fff;border-radius:var(--r-control);height:34px;padding:0 16px}
+.btn-emerald:hover{background:var(--accent-emerald-hover)}
+.btn-indigo{background:var(--accent-indigo);color:#fff;border-radius:var(--r-control);height:34px;padding:0 16px}
+@media(max-width:768px){.hero h1{font-size:38px}.band{padding:56px 0}}
+@media(max-width:640px){.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="wrap">
+    <span class="hero-badge"><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon> Void-teal ledger glass</span>
+    <h1>A near-black console for money you can actually read.</h1>
+    <p>A dense, single-column ledger on a submerged teal-black field. Structure comes from hairline borders, colour is rationed to three jobs, and the remaining balance — <span class="hero-num">₹18,240</span> — is the only thing that glows.</p>
+    <div class="hero-cta">
+      <a class="btn btn-emerald" href="#components"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon> Add an entry</a>
+      <a class="btn btn-glass" href="#palette"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Open assistant</a>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .grp{margin-top:40px}
+#palette .grp h3{font-size:16px;font-weight:800;margin-bottom:16px}
+#palette .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.sw{border:1px solid var(--surface-hairline);border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
+.sw-chip{height:76px;position:relative}
+.checker{background-image:
+  linear-gradient(45deg,#20242f 25%,transparent 25%),
+  linear-gradient(-45deg,#20242f 25%,transparent 25%),
+  linear-gradient(45deg,transparent 75%,#20242f 75%),
+  linear-gradient(-45deg,transparent 75%,#20242f 75%);
+  background-size:14px 14px;background-position:0 0,0 7px,7px -7px,-7px 0}
+.sw-body{padding:10px 12px}
+.sw-name{font-size:13px;font-weight:700}
+.sw-val{font-size:11px;font-weight:500;font-variant-numeric:tabular-nums;opacity:.7;margin-top:2px}
+.sw-note{font-size:11px;opacity:.6;margin-top:6px;line-height:1.5}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Palette</p>
+    <h2 class="band-title">Colour, rationed by role</h2>
+    <p class="lead">Monochrome surfaces stepped by value, with saturation reserved for the three moments that matter: interact, add, delete.</p>
+
+    <div class="grp">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#090D16"></div><div class="sw-body"><div class="sw-name">background</div><div class="sw-val">#090D16</div><div class="sw-note">Near-black base with a teal cast — the full-viewport field.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#0B0F19"></div><div class="sw-body"><div class="sw-name">surface</div><div class="sw-val">#0B0F19</div><div class="sw-note">Standard card and stat-tile surface.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#111827"></div><div class="sw-body"><div class="sw-name">surface-elevated</div><div class="sw-val">#111827</div><div class="sw-note">Larger panels, one value-step up for shallow depth.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1A2333"></div><div class="sw-body"><div class="sw-name">surface-hairline</div><div class="sw-val">#1A2333</div><div class="sw-note">1px card borders — structure without shadow.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#1F293D"></div><div class="sw-body"><div class="sw-name">panel-hairline</div><div class="sw-val">#1F293D</div><div class="sw-note">Desaturated slate divider for elevated panels.</div></div></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#F3F4F6"></div><div class="sw-body"><div class="sw-name">text-primary</div><div class="sw-val">#F3F4F6</div><div class="sw-note">Soft off-white for primary content and labels.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFFFFF"></div><div class="sw-body"><div class="sw-name">text-inverse</div><div class="sw-val">#FFFFFF</div><div class="sw-note">Pure white numerals inside coloured chips.</div></div></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <h3>Accents</h3>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#615EFF"></div><div class="sw-body"><div class="sw-name">accent-violet</div><div class="sw-val">#615EFF</div><div class="sw-note">Interactive — glass buttons and CTAs.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#4F39F6"></div><div class="sw-body"><div class="sw-name">accent-indigo</div><div class="sw-val">#4F39F6</div><div class="sw-note">Solid submit affordance.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#009966"></div><div class="sw-body"><div class="sw-name">accent-emerald</div><div class="sw-val">#009966</div><div class="sw-note">Positive — the constructive add action.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#5EE9B5"></div><div class="sw-body"><div class="sw-name">numeral-emerald</div><div class="sw-val">#5EE9B5</div><div class="sw-note">Hero remaining-balance figures.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FF6467"></div><div class="sw-body"><div class="sw-name">accent-danger</div><div class="sw-val">#FF6467</div><div class="sw-note">Destructive — delete and expense emphasis.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFD230"></div><div class="sw-body"><div class="sw-name">accent-amber</div><div class="sw-val">#FFD230</div><div class="sw-note">Savings-section label.</div></div></div>
+        <div class="sw"><div class="sw-chip checker"><div style="position:absolute;inset:0;background:rgba(95,95,255,0.2)"></div></div><div class="sw-body"><div class="sw-name">button-hero-glass</div><div class="sw-val">rgba(95,95,255,0.2)</div><div class="sw-note">Translucent reset button fill.</div></div></div>
+        <div class="sw"><div class="sw-chip checker"><div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(120,60,255,0.3), rgba(190,60,150,0.3))"></div></div><div class="sw-body"><div class="sw-name">button-nav-cta</div><div class="sw-val">violet→pink /.3</div><div class="sw-note">Assistant pill gradient, confined to ~30px.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid var(--surface-hairline);padding:28px 0;display:grid;
+  grid-template-columns:1fr 220px;gap:24px;align-items:baseline}
+#type-scale .meta{font-size:11px;font-weight:500;opacity:.6;line-height:1.7;font-variant-numeric:tabular-nums}
+.t-display{font-size:16px;font-weight:800;line-height:1.25}
+.t-numeral{font-size:16px;font-weight:700;color:var(--numeral-emerald)}
+.t-body{font-size:11px;font-weight:500;line-height:1.5;opacity:.85}
+.ramp{display:flex;flex-wrap:wrap;gap:24px;margin-top:12px}
+.ramp span{font-size:20px}
+@media(max-width:640px){#type-scale .spec{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Type scale</p>
+    <h2 class="band-title">One family, hierarchy by weight and colour</h2>
+    <p class="lead">Anek Bangla runs the entire system at deliberately small, dense sizes. Contrast is built from weight (500→700→800) and hue, not a wide size range.</p>
+
+    <div class="spec">
+      <div class="t-display">Monthly budget overview</div>
+      <div class="meta">display-lg<br>Anek Bangla · 16px · 800 · 1.25</div>
+    </div>
+    <div class="spec">
+      <div class="t-numeral">₹18,240 remaining</div>
+      <div class="meta">numeral-emphasis<br>Anek Bangla · 16px · 700 · 1.5 · emerald</div>
+    </div>
+    <div class="spec">
+      <div class="t-body">Enter each day's spend against your remaining daily budget. Labels and helper copy sit at the smallest legible size to keep the ledger dense.</div>
+      <div class="meta">body-md<br>Anek Bangla · 11px · 500 · 1.5</div>
+    </div>
+
+    <div class="spec" style="grid-template-columns:1fr">
+      <div>
+        <div class="meta" style="margin-bottom:4px">Weight ramp</div>
+        <div class="ramp">
+          <span style="font-weight:400">Aa 400</span>
+          <span style="font-weight:500">Aa 500</span>
+          <span style="font-weight:600">Aa 600</span>
+          <span style="font-weight:700">Aa 700</span>
+          <span style="font-weight:800">Aa 800</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .row{display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start;
+  padding:36px 0;border-top:1px solid var(--surface-hairline)}
+#components .demo{min-width:0}
+#components .cname{font-size:16px;font-weight:800;margin-bottom:4px}
+#components .cdesc{font-size:11px;opacity:.6;margin-bottom:18px;max-width:52ch}
+.spec-card{background:var(--surface);border:1px solid var(--surface-hairline);border-radius:var(--r-card);
+  padding:14px;font-size:11px;line-height:1.9;color:var(--text-primary);opacity:.9}
+.spec-card b{color:var(--glass-blue-text);font-weight:700}
+.spec-card .tok{font-variant-numeric:tabular-nums}
+
+/* shared panel primitives */
+.panel{background:var(--surface);border:1px solid var(--surface-hairline);border-radius:var(--r-card);padding:var(--card-pad)}
+.panel-lg{background:var(--surface-elevated);border:1px solid var(--panel-hairline);border-radius:var(--r-card-lg);padding:var(--card-pad)}
+.lbl-row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.lbl{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:700;opacity:.85}
+.lbl iconify-icon{font-size:14px}
+.inp{width:100%;background:var(--surface);border:1px solid var(--surface-hairline);color:var(--text-primary);
+  border-radius:var(--r-control);height:28px;padding:0 10px;font-family:inherit;font-size:11px;font-weight:500}
+.inp::placeholder{color:#5b6472}
+.inp:focus{outline:1px solid var(--accent-violet)}
+.big-num-inp{height:40px;font-size:16px;font-weight:800;padding:0 12px}
+.chip-num{display:inline-flex;align-items:center;background:var(--surface-hairline);color:#fff;
+  border-radius:var(--r-chip);padding:2px 8px;font-size:11px;font-weight:700;font-variant-numeric:tabular-nums}
+.pill-dark{display:inline-flex;flex-direction:column;background:#0b0f19;border:1px solid var(--surface-hairline);
+  border-radius:var(--r-pill);padding:4px 12px;font-size:11px;font-weight:600;line-height:1.2;text-align:right}
+.pill-dark small{font-size:10px;opacity:.6;font-weight:500}
+.icon-badge{width:34px;height:34px;border-radius:var(--r-card);background:var(--surface-elevated);
+  border:1px solid var(--panel-hairline);display:flex;align-items:center;justify-content:center;color:var(--glass-blue-text)}
+.icon-badge iconify-icon{font-size:18px}
+.avatar{width:38px;height:38px;border-radius:var(--r-pill);
+  background:linear-gradient(135deg,#7C5CFF,#E85AA8);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:14px}
+.btn-reset{background:rgba(95,95,255,0.2);color:var(--glass-blue-text);border-radius:var(--r-card);
+  height:27px;padding:4px 10px;border:1px solid rgba(90,120,255,0.3);font-size:11px}
+.btn-reset:hover{background:rgba(97,94,255,0.3)}
+.btn-sm-emerald{background:var(--accent-emerald);color:#fff;border-radius:var(--r-control);height:28px;padding:0 12px;font-size:11px}
+.btn-sm-emerald:hover{background:var(--accent-emerald-hover)}
+.btn-sm-indigo{background:var(--accent-indigo);color:#fff;border-radius:var(--r-control);height:28px;padding:0 12px;font-size:11px}
+.btn-sm-indigo:hover{filter:brightness(1.12)}
+.btn-amber-full{background:var(--accent-amber);color:#1a1400;border-radius:var(--r-control);height:28px;width:100%;
+  justify-content:center;font-size:11px;font-weight:800}
+.btn-amber-full:hover{filter:brightness(1.08)}
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.big-num{font-size:16px;font-weight:800;font-variant-numeric:tabular-nums}
+.oversize{font-size:16px;font-weight:800;letter-spacing:-.01em}
+.callout-indigo{border-color:rgba(95,95,255,0.5);background:rgba(79,57,246,0.08)}
+.callout-emerald{border-color:rgba(0,153,102,0.6);background:rgba(0,153,102,0.06)}
+.del-btn{width:24px;height:24px;border-radius:var(--r-chip);background:#0b0f19;border:1px solid #460809;
+  color:var(--accent-danger);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .15s var(--ease)}
+.del-btn:hover{background:#1a0708}
+.del-btn iconify-icon{font-size:14px}
+.list-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--surface-hairline)}
+.list-row:first-of-type{border-top:0}
+.cbx{width:15px;height:15px;border-radius:4px;border:1px solid var(--panel-hairline);background:var(--surface);
+  display:inline-flex;align-items:center;justify-content:center;color:var(--accent-emerald);flex:0 0 auto}
+.list-lbl{font-size:11px;font-weight:600;flex:1}
+.sec-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.pill-btn{background:#0b0f19;border:1px solid var(--surface-hairline);color:var(--text-primary);
+  border-radius:var(--r-pill);height:24px;padding:0 10px;font-size:11px;opacity:.85}
+.pill-btn:hover{opacity:1}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:separate;border-spacing:10px 0;font-size:11px}
+.matrix th{font-weight:700;opacity:.55;text-align:left;padding-bottom:10px;font-size:11px}
+.matrix td{padding:8px 0}
+.matrix .rl{opacity:.6;font-weight:600}
+.dis{opacity:.4;pointer-events:none;filter:grayscale(.3)}
+@media(max-width:768px){#components .row{grid-template-columns:1fr}}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Components</p>
+    <h2 class="band-title">The ledger inventory</h2>
+    <p class="lead">Every module the console stacks, top to bottom. Full-width panels separated by hairlines and 8–10px gaps, with gradient fill confined to the assistant pill and avatar glyph.</p>
+
+    <!-- HEADER / TITLE BAND -->
+    <div class="row" data-tier-a-component="header-title-band">
+      <div class="demo">
+        <div class="cname">Header / Title Band</div>
+        <div class="cdesc">Icon badge with a two-line title stack at left; a violet-glass assistant pill at far right. ×1</div>
+        <div class="panel">
+          <div class="lbl-row">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="icon-badge"><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon></div>
+              <div>
+                <div style="font-size:16px;font-weight:800;line-height:1.2">Monthly Expenses</div>
+                <div style="font-size:11px;opacity:.6">Track every rupee against budget</div>
+              </div>
+            </div>
+            <button class="btn btn-glass"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Assistant</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>button-nav-cta</b></div>
+        <div class="tok">fill <b>gradient violet→pink /.3</b></div>
+        <div class="tok">text #DAB2FF · radius 12 · height 30</div>
+        <div class="tok">pad 6/12 · border violet /.4</div>
+        <div class="tok">shadow btn-glass · icon lucide 18</div>
+      </div>
+    </div>
+
+    <!-- IDENTITY ROW -->
+    <div class="row" data-tier-a-component="identity-row">
+      <div class="demo">
+        <div class="cname">Identity Row</div>
+        <div class="cdesc">Gradient avatar glyph, two-line name/role, dark pill with day label + countdown. ×1</div>
+        <div class="panel">
+          <div class="lbl-row">
+            <div style="display:flex;align-items:center;gap:10px">
+              <div class="avatar" aria-hidden="true">AR</div>
+              <div>
+                <div style="font-size:13px;font-weight:700;line-height:1.2">Ananya Rao</div>
+                <div style="font-size:11px;opacity:.6">Primary account holder</div>
+              </div>
+            </div>
+            <div class="pill-dark"><span>Day 12</span><small>18 left</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>identity-row</b></div>
+        <div class="tok">avatar radius pill · gradient violet→pink</div>
+        <div class="tok">surface #0B0F19 · border #1A2333</div>
+        <div class="tok">pill-dark radius pill · body-md 11/500</div>
+      </div>
+    </div>
+
+    <!-- PRIMARY AMOUNT PANEL -->
+    <div class="row" data-tier-a-component="primary-amount-panel">
+      <div class="demo">
+        <div class="cname">Primary Amount Panel</div>
+        <div class="cdesc">Label row with reset glass button, full-width numeral input, bordered input + emerald add, then metadata + numeral chip. ×1</div>
+        <div class="panel">
+          <div class="lbl-row" style="margin-bottom:10px">
+            <div class="lbl"><iconify-icon icon="lucide:banknote" aria-hidden="true"></iconify-icon> Total budget</div>
+            <button class="btn btn-reset"><iconify-icon icon="lucide:rotate-ccw" aria-hidden="true"></iconify-icon> Reset</button>
+          </div>
+          <input class="inp big-num-inp" value="45,000" aria-label="Total budget amount">
+          <div style="display:flex;gap:8px;margin-top:8px">
+            <input class="inp" placeholder="Add to budget" aria-label="Add to budget">
+            <button class="btn btn-sm-emerald"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon> Add</button>
+          </div>
+          <div class="lbl-row" style="margin-top:10px">
+            <span style="font-size:11px;opacity:.6">Set for this month</span>
+            <span class="chip-num">₹45,000</span>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>button-hero-glass</b> · <b>button-primary-emerald</b></div>
+        <div class="tok">reset: rgba(95,95,255,.2) · text #A3B3FF · h27 · r12</div>
+        <div class="tok">add: #009966→#00BC7D · h28 · r8</div>
+        <div class="tok">surface #0B0F19 · border #1A2333 · r12</div>
+      </div>
+    </div>
+
+    <!-- STAT TILE PAIR -->
+    <div class="row" data-tier-a-component="stat-tile-pair">
+      <div class="demo">
+        <div class="cname">Stat Tile Pair</div>
+        <div class="cdesc">Two ~49% tiles in an 8px-gap grid, each an icon+label row above one coloured numeral. ×2</div>
+        <div class="stat-grid">
+          <div class="panel">
+            <div class="lbl"><iconify-icon icon="lucide:trending-down" aria-hidden="true"></iconify-icon> Spent</div>
+            <div class="big-num" style="color:var(--accent-danger);margin-top:8px">₹26,760</div>
+          </div>
+          <div class="panel">
+            <div class="lbl"><iconify-icon icon="lucide:piggy-bank" aria-hidden="true"></iconify-icon> Saved</div>
+            <div class="big-num" style="color:var(--accent-amber);margin-top:8px">₹6,500</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>card-stat</b></div>
+        <div class="tok">surface #0B0F19 · radius 12 · pad 12</div>
+        <div class="tok">grid 2-col · gap 8 · ~49/49%</div>
+        <div class="tok">numerals: danger #FF6467 / amber #FFD230</div>
+      </div>
+    </div>
+
+    <!-- DAILY BUDGET CALLOUT -->
+    <div class="row" data-tier-a-component="daily-budget-callout">
+      <div class="demo">
+        <div class="cname">Daily-Budget Callout</div>
+        <div class="cdesc">Indigo-tinted panel; label row with dark day-count pill, oversized numeral below. ×1</div>
+        <div class="panel callout-indigo">
+          <div class="lbl-row" style="margin-bottom:8px">
+            <div class="lbl"><iconify-icon icon="lucide:calendar-days" aria-hidden="true"></iconify-icon> Daily budget</div>
+            <div class="pill-dark"><span>18 days left</span></div>
+          </div>
+          <div class="oversize">₹1,013 / day</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>daily-budget-callout</b></div>
+        <div class="tok">border violet #615EFF · tint indigo /.08</div>
+        <div class="tok">radius 12 · pad 12 · display-lg 16/800</div>
+      </div>
+    </div>
+
+    <!-- REMAINING AMOUNT CALLOUT -->
+    <div class="row" data-tier-a-component="remaining-amount-callout">
+      <div class="demo">
+        <div class="cname">Remaining-Amount Callout</div>
+        <div class="cdesc">Emerald-bordered panel; checkmark + label, one large emerald numeral — the first screen's high point. ×1</div>
+        <div class="panel callout-emerald">
+          <div class="lbl"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon> Remaining this month</div>
+          <div class="t-numeral" style="margin-top:8px">₹18,240</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>remaining-amount-callout</b></div>
+        <div class="tok">border emerald #009966 · tint /.06</div>
+        <div class="tok">numeral-emphasis 16/700 · emerald #5EE9B5</div>
+      </div>
+    </div>
+
+    <!-- DAILY EXPENSE ENTRY ROW -->
+    <div class="row" data-tier-a-component="daily-expense-entry-row">
+      <div class="demo">
+        <div class="cname">Daily-Expense Entry Row</div>
+        <div class="cdesc">Label with inline budget chip, bordered input + indigo submit side by side. ×1</div>
+        <div class="panel">
+          <div class="lbl-row" style="margin-bottom:10px">
+            <div class="lbl"><iconify-icon icon="lucide:receipt" aria-hidden="true"></iconify-icon> Today's spend</div>
+            <span class="chip-num">₹1,013 left</span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <input class="inp" placeholder="Amount spent today" aria-label="Amount spent today">
+            <button class="btn btn-sm-indigo"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon> Log</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>button-primary-indigo</b></div>
+        <div class="tok">fill #4F39F6 · text #fff · h28 · r8</div>
+        <div class="tok">input border #1A2333 · r8 · body-md</div>
+      </div>
+    </div>
+
+    <!-- SAVINGS / EMERGENCY FUND PANEL -->
+    <div class="row" data-tier-a-component="savings-emergency-fund-panel">
+      <div class="demo">
+        <div class="cname">Savings / Emergency-Fund Panel</div>
+        <div class="cdesc">Larger 16px-radius panel; amber section label, bold numeral + edit pencil, sub-label, input, full-width amber add button. ×1</div>
+        <div class="panel-lg">
+          <div class="lbl" style="color:var(--accent-amber);margin-bottom:10px"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon> Emergency fund</div>
+          <div class="lbl-row">
+            <div class="big-num">₹42,000</div>
+            <button class="del-btn" style="border-color:var(--panel-hairline);color:var(--glass-blue-text)" aria-label="Edit savings goal"><iconify-icon icon="lucide:pencil" aria-hidden="true"></iconify-icon></button>
+          </div>
+          <div style="font-size:11px;opacity:.55;margin:4px 0 10px">Goal: 6 months of expenses</div>
+          <input class="inp" placeholder="Add to savings" aria-label="Add to savings" style="margin-bottom:8px">
+          <button class="btn btn-amber-full"><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon> Add to savings</button>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>card-panel</b></div>
+        <div class="tok">surface #111827 · radius 16 · pad 12</div>
+        <div class="tok">border #1F293D · label amber #FFD230</div>
+        <div class="tok">amber button h28 · r8 · full-width</div>
+      </div>
+    </div>
+
+    <!-- EXPENSE CATEGORY LIST ROWS -->
+    <div class="row" data-tier-a-component="expense-category-list-rows">
+      <div class="demo">
+        <div class="cname">Expense-Category List Rows</div>
+        <div class="cdesc">Section header with a dark previous-month pill; repeating rows of checkbox + label + bordered numeral input + red delete. ×3</div>
+        <div class="panel">
+          <div class="sec-head">
+            <div class="lbl"><iconify-icon icon="lucide:list" aria-hidden="true"></iconify-icon> Categories</div>
+            <button class="pill-btn"><iconify-icon icon="lucide:history" aria-hidden="true" style="font-size:12px"></iconify-icon> Previous month</button>
+          </div>
+          <div class="list-row">
+            <span class="cbx"><iconify-icon icon="lucide:check" aria-hidden="true" style="font-size:11px"></iconify-icon></span>
+            <span class="list-lbl">Rent</span>
+            <input class="inp" style="width:96px" value="15,000" aria-label="Rent amount">
+            <button class="del-btn" aria-label="Delete Rent"><iconify-icon icon="lucide:trash-2" aria-hidden="true"></iconify-icon></button>
+          </div>
+          <div class="list-row">
+            <span class="cbx"></span>
+            <span class="list-lbl">Groceries</span>
+            <input class="inp" style="width:96px" value="6,200" aria-label="Groceries amount">
+            <button class="del-btn" aria-label="Delete Groceries"><iconify-icon icon="lucide:trash-2" aria-hidden="true"></iconify-icon></button>
+          </div>
+          <div class="list-row">
+            <span class="cbx"><iconify-icon icon="lucide:check" aria-hidden="true" style="font-size:11px"></iconify-icon></span>
+            <span class="list-lbl">Transport</span>
+            <input class="inp" style="width:96px" value="2,400" aria-label="Transport amount">
+            <button class="del-btn" aria-label="Delete Transport"><iconify-icon icon="lucide:trash-2" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>expense-category list</b></div>
+        <div class="tok">rows: hairline #1A2333 · no gridlines</div>
+        <div class="tok">checkbox r4 · accent emerald</div>
+        <div class="tok">prev-month pill radius pill · h24</div>
+      </div>
+    </div>
+
+    <!-- DELETE ICON BUTTON -->
+    <div class="row" data-tier-a-component="delete-icon-button">
+      <div class="demo">
+        <div class="cname">Delete Icon Button</div>
+        <div class="cdesc">Small square dark chip with a red trash glyph — icon-only, one per list row. ×1</div>
+        <div style="display:flex;gap:12px;align-items:center">
+          <button class="del-btn" aria-label="Delete row"><iconify-icon icon="lucide:trash-2" aria-hidden="true"></iconify-icon></button>
+          <button class="del-btn" aria-label="Delete row hovered" style="background:#1a0708"><iconify-icon icon="lucide:trash-2" aria-hidden="true"></iconify-icon></button>
+          <span style="font-size:11px;opacity:.55">rest · hover</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>delete-icon-button</b></div>
+        <div class="tok">glyph danger #FF6467 · border #460809</div>
+        <div class="tok">radius 6 · icon-only · aria-label required</div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX (Tier A) -->
+    <div class="row">
+      <div class="demo">
+        <div class="cname">Button matrix</div>
+        <div class="cdesc">Every documented fill across its source-supported states. No focus column — the source records no focus treatment.</div>
+        <table class="matrix" aria-label="Button variant and state matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td class="rl">Assistant glass</td>
+              <td><button class="btn btn-glass">Assistant</button></td>
+              <td><button class="btn btn-glass" style="filter:brightness(1.15)">Assistant</button></td>
+              <td><button class="btn btn-glass dis">Assistant</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Reset glass</td>
+              <td><button class="btn btn-reset">Reset</button></td>
+              <td><button class="btn btn-reset" style="background:rgba(97,94,255,0.3)">Reset</button></td>
+              <td><button class="btn btn-reset dis">Reset</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Emerald add</td>
+              <td><button class="btn btn-sm-emerald">Add</button></td>
+              <td><button class="btn btn-sm-emerald" style="background:var(--accent-emerald-hover)">Add</button></td>
+              <td><button class="btn btn-sm-emerald dis">Add</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Indigo submit</td>
+              <td><button class="btn btn-sm-indigo">Log</button></td>
+              <td><button class="btn btn-sm-indigo" style="filter:brightness(1.12)">Log</button></td>
+              <td><button class="btn btn-sm-indigo dis">Log</button></td>
+            </tr>
+            <tr>
+              <td class="rl">Amber savings</td>
+              <td><button class="btn btn-amber-full" style="width:auto;padding:0 14px">Save</button></td>
+              <td><button class="btn btn-amber-full" style="width:auto;padding:0 14px;filter:brightness(1.08)">Save</button></td>
+              <td><button class="btn btn-amber-full dis" style="width:auto;padding:0 14px">Save</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card">
+        <div><b>button tokens</b></div>
+        <div class="tok">nav-cta · hero-glass · emerald · indigo</div>
+        <div class="tok">motion all .15s ease · disabled = opacity ladder</div>
+        <div class="tok">no documented focus ring → omitted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px;margin-top:32px}
+.depth-card{padding:18px}
+.depth-card .cap{font-size:11px;opacity:.6;margin-top:12px}
+.depth-card .cap b{color:var(--glass-blue-text)}
+.r8{border-radius:8px}.r12{border-radius:12px}.r16{border-radius:16px}.r6{border-radius:6px}
+.shadow-glass{box-shadow:var(--btn-glass-shadow)}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Surface &amp; depth</p>
+    <h2 class="band-title">Depth from borders, not shadow</h2>
+    <p class="lead">Panels are separated by hairlines and subtle value steps. Shadow is reserved for interactive glass buttons alone.</p>
+    <div class="cards">
+      <div class="panel r8 depth-card"><div style="font-weight:800;font-size:16px">Control</div><div class="cap">radius <b>8px</b> · compact buttons &amp; inputs</div></div>
+      <div class="panel r12 depth-card"><div style="font-weight:800;font-size:16px">Card</div><div class="cap">radius <b>12px</b> · stat tiles &amp; CTAs</div></div>
+      <div class="panel-lg r16 depth-card"><div style="font-weight:800;font-size:16px">Panel</div><div class="cap">radius <b>16px</b> · larger panels, #111827</div></div>
+      <div class="panel r6 depth-card"><div style="font-weight:800;font-size:16px">Chip</div><div class="cap">radius <b>6px</b> · numeral &amp; delete chips</div></div>
+      <div class="depth-card r12 shadow-glass" style="background:rgba(95,95,255,0.2);border:1px solid rgba(90,120,255,0.3)">
+        <div style="font-weight:800;font-size:16px;color:var(--glass-blue-text)">Glass shadow</div>
+        <div class="cap" style="color:var(--glass-blue-text);opacity:.8">the <b>only</b> elevation cue — rgba(0,0,0,.1) 0 1 3, 0 1 2 -1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .m-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;margin-top:32px}
+.m-card{padding:20px}
+.m-swatch{height:44px;border-radius:8px;background:var(--accent-emerald);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:11px}
+.m-card .cap{font-size:11px;opacity:.6;margin-top:12px;font-variant-numeric:tabular-nums}
+.mv-color{transition:background-color .15s var(--ease)}
+.mv-color.on{background-color:var(--accent-emerald-hover)}
+.mv-spring{transition:transform .5s var(--ease-spring)}
+.mv-spring.on{transform:translateX(40px)}
+.mv-tap{transition:transform .15s var(--ease)}
+.mv-tap.on{transform:scale(.9)}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Motion</p>
+    <h2 class="band-title">Functional feedback, not decoration</h2>
+    <p class="lead">Snappy 0.15s transitions on colour and taps, with a single bouncier spring reserved for position shifts. Click to replay.</p>
+    <div class="m-grid">
+      <div class="panel m-card">
+        <div class="m-swatch mv-color" data-mv="color" role="button" tabindex="0">Replay</div>
+        <div class="cap"><b style="color:var(--glass-blue-text)">color / bg</b> · 0.15s cubic-bezier(0.4,0,0.2,1)</div>
+      </div>
+      <div class="panel m-card">
+        <div class="m-swatch mv-spring" data-mv="spring" style="background:var(--accent-violet)" role="button" tabindex="0">Replay</div>
+        <div class="cap"><b style="color:var(--glass-blue-text)">transform spring</b> · 0.5s cubic-bezier(0.175,0.885,0.32,1.275)</div>
+      </div>
+      <div class="panel m-card">
+        <div class="m-swatch mv-tap" data-mv="tap" style="background:var(--accent-indigo)" role="button" tabindex="0">Replay</div>
+        <div class="cap"><b style="color:var(--glass-blue-text)">micro tap</b> · 0.15s cubic-bezier(0.4,0,0.2,1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .device{max-width:400px;margin:36px auto 0;background:var(--background);
+  border:1px solid var(--panel-hairline);border-radius:20px;padding:14px;display:flex;flex-direction:column;gap:10px}
+#composition .device .panel,#composition .device .panel-lg{padding:12px}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <p class="eyebrow">In composition</p>
+    <h2 class="band-title">The first screen, assembled</h2>
+    <p class="lead">Six modules stacked full-width in order — header, identity, amount, stat pair, daily budget, remaining — the way a user thumbs the ledger top to bottom.</p>
+    <div class="device" role="img" aria-label="Mock first screen of the expense tracker console">
+      <div class="panel">
+        <div class="lbl-row">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="icon-badge"><iconify-icon icon="lucide:wallet" aria-hidden="true"></iconify-icon></div>
+            <div><div style="font-size:16px;font-weight:800;line-height:1.2">Monthly Expenses</div><div style="font-size:11px;opacity:.6">March 2025</div></div>
+          </div>
+          <button class="btn btn-glass"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="lbl-row">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div class="avatar" aria-hidden="true">AR</div>
+            <div><div style="font-size:13px;font-weight:700;line-height:1.2">Ananya Rao</div><div style="font-size:11px;opacity:.6">Account holder</div></div>
+          </div>
+          <div class="pill-dark"><span>Day 12</span><small>18 left</small></div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="lbl-row" style="margin-bottom:8px">
+          <div class="lbl"><iconify-icon icon="lucide:banknote" aria-hidden="true"></iconify-icon> Total budget</div>
+          <button class="btn btn-reset">Reset</button>
+        </div>
+        <input class="inp big-num-inp" value="45,000" aria-label="Total budget">
+      </div>
+      <div class="stat-grid">
+        <div class="panel"><div class="lbl"><iconify-icon icon="lucide:trending-down" aria-hidden="true"></iconify-icon> Spent</div><div class="big-num" style="color:var(--accent-danger);margin-top:6px">₹26,760</div></div>
+        <div class="panel"><div class="lbl"><iconify-icon icon="lucide:piggy-bank" aria-hidden="true"></iconify-icon> Saved</div><div class="big-num" style="color:var(--accent-amber);margin-top:6px">₹6,500</div></div>
+      </div>
+      <div class="panel callout-indigo">
+        <div class="lbl-row" style="margin-bottom:6px"><div class="lbl"><iconify-icon icon="lucide:calendar-days" aria-hidden="true"></iconify-icon> Daily budget</div><div class="pill-dark"><span>18 days</span></div></div>
+        <div class="oversize">₹1,013 / day</div>
+      </div>
+      <div class="panel callout-emerald">
+        <div class="lbl"><iconify-icon icon="lucide:check-circle-2" aria-hidden="true"></iconify-icon> Remaining this month</div>
+        <div class="t-numeral" style="margin-top:6px">₹18,240</div>
+      </div>
+      <div class="panel">
+        <div style="display:flex;gap:8px">
+          <input class="inp" placeholder="Today's spend" aria-label="Today's spend">
+          <button class="btn btn-sm-indigo">Log</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:56px 0;border-bottom:0}
+#footer .f-brand{font-size:16px;font-weight:800}
+#footer .f-meta{font-size:11px;opacity:.55;margin-top:8px;line-height:1.8}
+#footer a{color:var(--glass-blue-text)}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="f-brand">Void-teal ledger glass</div>
+    <div class="f-meta">
+      <a href="https://monthly-expense-tracker-6072.ai.studio/">monthly-expense-tracker-6072.ai.studio</a><br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-mv]').forEach(function(el){
+    function play(){el.classList.add('on');setTimeout(function(){el.classList.remove('on')},600);}
+    el.addEventListener('click',play);
+    el.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play();}});
+  });
+})();
+</script>
+</body>
+</html>

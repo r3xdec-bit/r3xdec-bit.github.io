@@ -1,0 +1,388 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiet Ledger Minimal — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#FFFFFF;
+    --surface:#F0F0F0;
+    --text-primary:#333333;
+    --text-secondary:#7F8C8D;
+    --border:#808080;
+    --base:8px;
+    --gap:16px;
+    --section-padding:24px;
+    --r-control:0px;
+    --r-card:0px;
+    --r-pill:0px;
+    --display-family:"Futura Bk BT","Jost",sans-serif;
+    --serif-family:"Times New Roman",Times,serif;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--display-family);
+    font-size:16px;
+    line-height:1.5;
+    font-weight:400;
+  }
+  h1,h2,h3{font-weight:700;color:var(--text-primary);margin:0;}
+  a{color:var(--text-primary);}
+  .band{padding:96px var(--section-padding);border-bottom:1px solid var(--surface);}
+  .wrap{max-width:960px;margin:0 auto;}
+  .col{max-width:530px;margin:0 auto;}
+  .eyebrow{
+    font-size:16px;font-weight:400;color:var(--text-secondary);
+    letter-spacing:0.04em;margin-bottom:var(--gap);
+  }
+  .section-title{font-size:36px;font-weight:700;line-height:1.1;letter-spacing:-0.01em;}
+  .caption{font-size:16px;color:var(--text-secondary);line-height:1.5;}
+
+  /* Hero critical */
+  #hero{padding:160px var(--section-padding);text-align:center;background:var(--background);}
+  #hero .headline{
+    font-family:var(--display-family);
+    font-weight:700;font-size:36px;line-height:1.1;
+    color:var(--text-primary);letter-spacing:-0.005em;
+  }
+  #hero .hairline{
+    background:var(--border);height:1px;width:530px;max-width:100%;
+    margin:24px auto;border:0;
+  }
+  #hero .meta{color:var(--text-secondary);font-size:16px;line-height:1.5;padding:8px 0;}
+  .cta-row{display:flex;gap:var(--gap);justify-content:center;margin-top:40px;flex-wrap:wrap;}
+  .btn{
+    font-family:var(--display-family);font-size:16px;font-weight:400;
+    border-radius:var(--r-control);padding:12px 24px;cursor:pointer;
+    border:1px solid var(--border);background:var(--background);color:var(--text-primary);
+    line-height:1;
+  }
+  .btn-solid{background:var(--text-primary);color:var(--background);border-color:var(--text-primary);}
+  @media (max-width:640px){
+    #hero .headline,.section-title{font-size:28px;}
+    #hero{padding:110px 16px;}
+    .band{padding:64px 16px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+<section id="hero" class="band" style="border-bottom:none;">
+  <div class="col">
+    <h1 class="headline">This page could not be found.</h1>
+    <hr class="hairline" aria-hidden="true">
+    <p class="meta">Status: 404 — Not Found</p>
+    <p class="meta">Reference: QLM-0000-0404</p>
+    <p class="meta">Return when ready. Nothing here has moved.</p>
+  </div>
+  <div class="cta-row">
+    <button class="btn btn-solid" type="button">Return to home</button>
+    <button class="btn" type="button">Report a problem</button>
+  </div>
+</section>
+</header>
+
+<style data-section-styles="palette">
+  #palette .roles{display:grid;gap:32px;margin-top:40px;}
+  #palette .role h3{font-size:16px;font-weight:700;margin-bottom:16px;}
+  #palette .swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+  .swatch{border:1px solid var(--surface);}
+  .swatch .chip{height:96px;}
+  .swatch .info{padding:12px;}
+  .swatch .name{font-size:16px;color:var(--text-primary);}
+  .swatch .val{font-size:16px;color:var(--text-secondary);font-variant-numeric:tabular-nums;}
+  .swatch .note{font-size:16px;color:var(--text-secondary);margin-top:8px;line-height:1.4;}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <p class="eyebrow">01 — Palette</p>
+    <h2 class="section-title">Achromatic by intent.</h2>
+    <p class="caption" style="margin-top:16px;max-width:530px;">No accent hue exists in this system. Colour is reserved entirely for levels of text-ink contrast against a flat white field.</p>
+    <div class="roles">
+      <div class="role">
+        <h3>Surfaces</h3>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--surface);"></div>
+            <div class="info"><div class="name">background</div><div class="val">#FFFFFF</div><div class="note">The full field, ~98% of every pixel. No tint, no gradient.</div></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background:#F0F0F0;"></div>
+            <div class="info"><div class="name">surface</div><div class="val">#F0F0F0</div><div class="note">Held in reserve for the faintest structural separation.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="role">
+        <h3>Text</h3>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="chip" style="background:#333333;"></div>
+            <div class="info"><div class="name">text-primary</div><div class="val">#333333</div><div class="note">Near-black ink for the sole headline. Maximum contrast.</div></div>
+          </div>
+          <div class="swatch">
+            <div class="chip" style="background:#7F8C8D;"></div>
+            <div class="info"><div class="name">text-secondary</div><div class="val">#7F8C8D</div><div class="note">Muted slate for stacked metadata. The quiet second tier.</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="role">
+        <h3>Line</h3>
+        <div class="swatches">
+          <div class="swatch">
+            <div class="chip" style="background:#808080;"></div>
+            <div class="info"><div class="name">border</div><div class="val">#808080</div><div class="note">The single mid-gray hairline. The only structural mark on the page.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+  #type-scale .specimen{border-top:1px solid var(--surface);padding:32px 0;}
+  #type-scale .specimen:first-of-type{border-top:none;}
+  #type-scale .label{font-size:16px;color:var(--text-secondary);margin-top:16px;font-variant-numeric:tabular-nums;}
+  .spec-display{font-family:var(--display-family);font-weight:700;font-size:36px;line-height:1.1;color:var(--text-primary);}
+  .spec-serif{font-family:var(--serif-family);font-weight:700;font-size:36px;line-height:1.2;color:var(--text-primary);}
+  .spec-body{font-family:var(--display-family);font-weight:400;font-size:16px;line-height:1.5;color:var(--text-secondary);}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <p class="eyebrow">02 — Type scale</p>
+    <h2 class="section-title">Two tiers. Nothing between them.</h2>
+    <div style="margin-top:24px;">
+      <div class="specimen">
+        <div class="spec-display">This page could not be found.</div>
+        <div class="label">display-lg · Futura Bk BT · 36px · weight 700 · line-height 1.1</div>
+      </div>
+      <div class="specimen">
+        <div class="spec-body">Status held in reserve, rendered without ornament.</div>
+        <div class="label">body-md · Futura Bk BT · 16px · weight 400 · line-height 1.5</div>
+      </div>
+      <div class="specimen">
+        <div class="spec-serif">A classical register kept in reserve.</div>
+        <div class="label">accent-serif · Times New Roman · 36px · weight 700 · line-height 1.2</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+  #components .family{border-top:1px solid var(--surface);padding:48px 0;}
+  #components .family:first-of-type{border-top:none;}
+  #components .fam-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;}
+  #components .fam-name{font-size:16px;font-weight:700;}
+  #components .fam-count{font-size:16px;color:var(--text-secondary);}
+  #components .fam-desc{font-size:16px;color:var(--text-secondary);max-width:530px;margin:12px 0 28px;line-height:1.5;}
+  .demo{background:var(--background);padding:48px 24px;border:1px solid var(--surface);}
+  .demo-center{text-align:center;}
+  .spec-card{
+    margin-top:20px;font-size:16px;color:var(--text-secondary);
+    line-height:1.7;border-left:1px solid var(--border);padding-left:16px;
+  }
+  .spec-card b{color:var(--text-primary);font-weight:400;}
+  .demo .headline{font-family:var(--display-family);font-weight:700;font-size:36px;line-height:1.1;color:var(--text-primary);}
+  .demo .hairline{background:var(--border);height:1px;width:530px;max-width:100%;margin:24px auto;border:0;}
+  .demo .meta{color:var(--text-secondary);font-size:16px;line-height:1.5;padding:8px 0;margin:0;}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <p class="eyebrow">03 — Components</p>
+    <h2 class="section-title">The whole inventory. Four quiet parts.</h2>
+
+    <div class="family" data-tier-a-component="headline-text-block">
+      <div class="fam-head"><span class="fam-name">Headline Text Block</span><span class="fam-count">×1</span></div>
+      <p class="fam-desc">A single bold line carries the entire statement — the page's sole heading, with no eyebrow or label above it.</p>
+      <div class="demo demo-center">
+        <div class="headline">This page could not be found.</div>
+      </div>
+      <div class="spec-card">
+        <b>type</b> display-lg · Futura Bk BT · 36 / 700<br>
+        <b>ink</b> text-primary #333333 · <b>leading</b> tight, 1.1<br>
+        <b>accent</b> none · <b>radius</b> r-control 0
+      </div>
+    </div>
+
+    <div class="family" data-tier-a-component="divider-rule">
+      <div class="fam-head"><span class="fam-name">Divider Rule</span><span class="fam-count">×1</span></div>
+      <p class="fam-desc">A 1px flat hairline spanning the content column — the only graphic device on the page. No shadow, blur, glow, or gradient.</p>
+      <div class="demo">
+        <hr class="hairline" aria-hidden="true">
+      </div>
+      <div class="spec-card">
+        <b>background</b> border #808080 · <b>height</b> 1px<br>
+        <b>width</b> 530px · <b>margin</b> 24px auto<br>
+        <b>effects</b> none
+      </div>
+    </div>
+
+    <div class="family" data-tier-a-component="metadata-text-stack">
+      <div class="fam-head"><span class="fam-name">Metadata Text Stack</span><span class="fam-count">×3</span></div>
+      <p class="fam-desc">Three centered key-value status lines in muted gray. No bolding, no icons, no per-line borders — even, generous line spacing throughout.</p>
+      <div class="demo demo-center">
+        <p class="meta">Status: 404 — Not Found</p>
+        <p class="meta">Reference: QLM-0000-0404</p>
+        <p class="meta">Last checked: moments ago</p>
+      </div>
+      <div class="spec-card">
+        <b>type</b> body-md · Futura Bk BT · 16 / 400<br>
+        <b>ink</b> text-secondary #7F8C8D · <b>line-height</b> 1.5<br>
+        <b>padding</b> 8px 0 · <b>radius</b> 0
+      </div>
+    </div>
+
+    <div class="family" data-tier-a-component="page-container">
+      <div class="fam-head"><span class="fam-name">Page Container</span><span class="fam-count">×1</span></div>
+      <p class="fam-desc">The implicit outermost surface — a flat white field with no padding box, shadow, or border. The content island floats free with large asymmetric whitespace above and below.</p>
+      <div class="demo demo-center" style="padding:72px 24px;">
+        <div class="headline">This page could not be found.</div>
+        <hr class="hairline" aria-hidden="true">
+        <p class="meta">Status: 404 — Not Found</p>
+        <p class="meta">Reference: QLM-0000-0404</p>
+        <p class="meta">Return when ready.</p>
+      </div>
+      <div class="spec-card">
+        <b>background</b> #FFFFFF · <b>column</b> 530px centered<br>
+        <b>frame</b> none — no card, shadow, or border<br>
+        <b>radius</b> r-card 0
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+  #surface-depth .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:40px;}
+  .depth-card{background:var(--background);border:1px solid var(--border);border-radius:var(--r-card);padding:24px;}
+  .depth-card .t{font-size:16px;font-weight:700;color:var(--text-primary);}
+  .depth-card .d{font-size:16px;color:var(--text-secondary);margin-top:8px;line-height:1.5;}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <p class="eyebrow">04 — Surface &amp; depth</p>
+    <h2 class="section-title">Flat, and proudly so.</h2>
+    <p class="caption" style="margin-top:16px;max-width:530px;">There is no elevation ladder — one radius, no shadow. Depth in this system is measured in whitespace, not layers.</p>
+    <div class="cards">
+      <div class="depth-card">
+        <div class="t">r-control · 0px</div>
+        <div class="d">Every control corner is a right angle. No softening anywhere.</div>
+      </div>
+      <div class="depth-card">
+        <div class="t">r-card · 0px</div>
+        <div class="d">Cards, when drawn, keep their edges sharp against the white field.</div>
+      </div>
+      <div class="depth-card">
+        <div class="t">shadow · none</div>
+        <div class="d">No elevation. The only separation is a single hairline stroke.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+  #motion .note{margin-top:40px;font-size:16px;color:var(--text-secondary);max-width:530px;line-height:1.6;}
+  #motion .still{margin-top:32px;border:1px solid var(--surface);padding:48px 24px;text-align:center;}
+  #motion .still .headline{font-family:var(--display-family);font-weight:700;font-size:36px;color:var(--text-primary);}
+  #motion .still .meta{color:var(--text-secondary);font-size:16px;padding:8px 0;margin:0;}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <p class="eyebrow">05 — Motion</p>
+    <h2 class="section-title">The page renders once and holds.</h2>
+    <p class="note">This is a single-state view. No transition, no easing curve, no duration is documented — the stillness is the behaviour. The system moves by not moving.</p>
+    <div class="still">
+      <div class="headline">This page could not be found.</div>
+      <hr class="hairline" aria-hidden="true" style="background:var(--border);height:1px;width:530px;max-width:100%;margin:24px auto;border:0;">
+      <p class="meta">Status: held, without animation.</p>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+  #composition .mock{border:1px solid var(--surface);background:var(--background);margin-top:40px;}
+  #composition .mock-nav{display:flex;justify-content:space-between;align-items:center;padding:24px;border-bottom:1px solid var(--surface);}
+  #composition .logo{font-family:var(--display-family);font-weight:700;font-size:16px;color:var(--text-primary);}
+  #composition .mock-links{display:flex;gap:24px;}
+  #composition .mock-links a{font-size:16px;color:var(--text-secondary);text-decoration:none;}
+  #composition .mock-hero{text-align:center;padding:88px 24px 48px;}
+  #composition .mock-hero .headline{font-family:var(--display-family);font-weight:700;font-size:36px;line-height:1.1;color:var(--text-primary);}
+  #composition .mock-hero .meta{color:var(--text-secondary);font-size:16px;padding:8px 0;margin:0;}
+  #composition .hairline{background:var(--border);height:1px;width:530px;max-width:100%;margin:24px auto;border:0;}
+  #composition .mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--surface);}
+  #composition .mock-card{background:var(--background);padding:32px 24px;text-align:center;}
+  #composition .mock-card .t{font-size:16px;font-weight:700;color:var(--text-primary);}
+  #composition .mock-card .d{font-size:16px;color:var(--text-secondary);margin-top:8px;line-height:1.5;}
+  #composition .mock-cta{text-align:center;padding:48px 24px 72px;}
+  @media (max-width:640px){#composition .mock-cards{grid-template-columns:1fr;}#composition .mock-links{display:none;}}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <p class="eyebrow">06 — In composition</p>
+    <h2 class="section-title">The system, assembled.</h2>
+    <div class="mock">
+      <nav class="mock-nav" aria-label="Mock navigation">
+        <span class="logo">Quiet Ledger</span>
+        <div class="mock-links">
+          <a href="#hero">Status</a>
+          <a href="#components">Records</a>
+          <a href="#footer">Contact</a>
+        </div>
+      </nav>
+      <div class="mock-hero">
+        <div class="headline">The record you requested is unavailable.</div>
+        <hr class="hairline" aria-hidden="true">
+        <p class="meta">Status: 404 — Not Found</p>
+        <p class="meta">Reference: QLM-0417-0404</p>
+        <p class="meta">Nothing here has moved.</p>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="t">Ledger</div><div class="d">Entries kept plain, in a single muted register.</div></div>
+        <div class="mock-card"><div class="t">Status</div><div class="d">Every state reads as one quiet line of text.</div></div>
+        <div class="mock-card"><div class="t">Return</div><div class="d">A clear path back, without ornament.</div></div>
+      </div>
+      <div class="mock-cta">
+        <button class="btn btn-solid" type="button">Return to home</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+  #footer{padding:64px var(--section-padding);text-align:center;border-bottom:none;}
+  #footer .brand{font-size:16px;font-weight:700;color:var(--text-primary);}
+  #footer .src{font-size:16px;color:var(--text-secondary);margin-top:12px;}
+  #footer .src a{color:var(--text-secondary);}
+  #footer .by{font-size:16px;color:var(--text-secondary);margin-top:8px;}
+</style>
+<footer id="footer" class="band">
+  <div class="wrap">
+    <div class="brand">Quiet Ledger Minimal</div>
+    <div class="src"><a href="https://www.dior.com/en_au">https://www.dior.com/en_au</a></div>
+    <div class="by">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.btn').forEach(function(b){
+    b.addEventListener('click',function(e){e.preventDefault();});
+  });
+</script>
+</body>
+</html>

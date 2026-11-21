@@ -1,0 +1,731 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Circuit Black Racing Chrome — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;700&family=Archivo+Narrow:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:#131313;
+  --text-primary:#FFFFFF;
+  --text-secondary:#707582;
+  --border-muted:#ECEDEE;
+  --accent:#EB0D3F;
+  --accent-dim:#EB0C3E;
+  --r-control:4px;
+  --r-card:8px;
+  --r-pill:9999px;
+  --sp-base:4px;
+  --sp-gap:12px;
+  --sp-section:40px;
+  --font-helvetica:"Archivo","Helvetica Neue",Helvetica,Arial,sans-serif;
+  --font-audi:"Archivo Narrow","Archivo",sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-helvetica);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit;text-decoration:none}
+.eyebrow{
+  font-family:var(--font-audi);
+  font-size:10px;
+  font-weight:700;
+  line-height:1.5;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-primary);
+}
+.section{padding:var(--sp-section);border-top:1px solid rgba(236,237,238,0.25)}
+.section-lead{color:var(--text-secondary);font-size:14px;max-width:58ch;margin-top:8px}
+.wrap{max-width:1200px;margin:0 auto}
+.section-title{font-family:var(--font-helvetica);font-weight:700;font-size:16px}
+iconify-icon{display:inline-block}
+
+/* Navbar */
+.nav{
+  height:90px;
+  width:100%;
+  background:transparent;
+  border-radius:0;
+  display:flex;
+  align-items:center;
+  gap:20px;
+  padding:0 20px;
+  border-bottom:1px solid rgba(236,237,238,0.35);
+}
+.nav .logo{
+  font-family:var(--font-audi);
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  font-size:16px;
+  color:var(--text-primary);
+}
+.nav-items{display:flex;gap:20px;align-items:center;flex:1;flex-wrap:wrap}
+.nav-items a{
+  font-family:var(--font-audi);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--text-primary);
+  transition:color .2s ease;
+}
+.nav-items a:hover{color:var(--accent)}
+.nav-cta{
+  background:#FFFFFF;
+  color:#000000;
+  border-radius:8px;
+  height:65px;
+  padding:0 24px;
+  border:none;
+  font-family:var(--font-audi);
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+}
+
+/* Hero */
+#hero{
+  position:relative;
+  min-height:78vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 20px;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,0.55),rgba(0,0,0,0.85)),
+    linear-gradient(120deg,#131313 0%,#000000 55%,#131313 100%);
+  overflow:hidden;
+}
+#hero .hero-inner{max-width:1200px;margin:0 auto;width:100%}
+#hero .hero-eyebrow{margin-bottom:20px;color:var(--text-primary)}
+#hero h1{
+  font-family:var(--font-helvetica);
+  font-weight:700;
+  font-size:clamp(40px,9vw,112px);
+  line-height:1.02;
+  letter-spacing:-0.02em;
+  text-transform:uppercase;
+}
+#hero .hero-sub{margin-top:20px;max-width:52ch;color:var(--text-primary);font-size:16px;font-family:var(--font-audi)}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:40px}
+.btn-accent-pill{
+  background:var(--accent);
+  color:#000000;
+  border:1px solid rgb(235,13,63);
+  border-radius:9999px;
+  height:58px;
+  padding:6px 32px;
+  font-family:var(--font-audi);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.btn-white-solid{
+  background:#FFFFFF;
+  color:#212121;
+  border:2px solid rgb(255,255,255);
+  border-radius:4px;
+  height:44px;
+  padding:8px 16px;
+  font-family:var(--font-audi);
+  font-weight:700;
+  font-size:10px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+  display:inline-flex;align-items:center;
+}
+.hero-rule{position:absolute;left:0;right:0;bottom:40px;height:1px;background:rgba(236,237,238,0.35)}
+@media(max-width:768px){
+  .nav{height:auto;flex-wrap:wrap;padding:16px 20px;gap:12px}
+  .nav-cta{height:48px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <span class="logo">Audi Sport</span>
+  <div class="nav-items">
+    <a href="#hero">Racing</a>
+    <a href="#palette">Team</a>
+    <a href="#type-scale">Drivers</a>
+    <a href="#components">Circuit</a>
+    <a href="#surface-depth">Media</a>
+    <a href="#motion">Calendar</a>
+    <a href="#composition">Garage</a>
+    <a href="#footer">Contact</a>
+  </div>
+  <button class="nav-cta">Follow the Grid</button>
+</nav>
+</header>
+
+<main>
+<section id="hero" aria-labelledby="hero-h">
+  <div class="hero-inner">
+    <p class="hero-eyebrow eyebrow">Black field · Racing chrome</p>
+    <h1 id="hero-h">Built for<br>the last<br>tenth</h1>
+    <p class="hero-sub">A near-black stage. Full-bleed footage carries the weight. One racing-red signal, held in reserve like a warning light.</p>
+    <div class="hero-actions">
+      <button class="btn-accent-pill"><iconify-icon icon="lucide:flag" aria-hidden="true"></iconify-icon>Enter the Circuit</button>
+      <button class="btn-white-solid">Watch the Lap</button>
+    </div>
+  </div>
+  <div class="hero-rule" aria-hidden="true"></div>
+</section>
+
+<style data-section-styles="palette">
+#palette .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px}
+#palette .role{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-bottom:12px}
+#palette .col{border:1px solid rgba(236,237,238,0.25);padding:20px}
+.swatch{height:80px;border:1px solid rgba(236,237,238,0.3);margin-bottom:8px}
+.sw-row{margin-bottom:20px}
+.sw-val{font-size:14px;font-weight:700}
+.sw-note{font-size:14px;color:var(--text-secondary);margin-top:2px}
+.checker{
+  background-image:
+    linear-gradient(45deg,#333 25%,transparent 25%),
+    linear-gradient(-45deg,#333 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#333 75%),
+    linear-gradient(-45deg,transparent 75%,#333 75%);
+  background-size:16px 16px;
+  background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+@media(max-width:768px){#palette .grid{grid-template-columns:1fr}}
+</style>
+<section id="palette" class="section" aria-labelledby="palette-h">
+  <div class="wrap">
+    <p class="eyebrow">Palette</p>
+    <h2 id="palette-h" class="section-title">Black dominant, red rationed</h2>
+    <p class="section-lead">Black is both page and card. There is no lightened panel — depth comes from media and hairlines. Red appears once.</p>
+    <div class="grid">
+      <div class="col">
+        <p class="role">Surfaces</p>
+        <div class="sw-row">
+          <div class="swatch" style="background:#000000"></div>
+          <div class="sw-val">#000000</div>
+          <div class="sw-note">Base field — 68–95% of pixels.</div>
+        </div>
+        <div class="sw-row">
+          <div class="swatch" style="background:#131313"></div>
+          <div class="sw-val">#131313</div>
+          <div class="sw-note">Deep charcoal — the only panel step above black.</div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="role">Text</p>
+        <div class="sw-row">
+          <div class="swatch" style="background:#FFFFFF"></div>
+          <div class="sw-val">#FFFFFF</div>
+          <div class="sw-note">Primary text, hairlines, the one solid button.</div>
+        </div>
+        <div class="sw-row">
+          <div class="swatch" style="background:#707582"></div>
+          <div class="sw-val">#707582</div>
+          <div class="sw-note">Secondary text, muted captions.</div>
+        </div>
+        <div class="sw-row">
+          <div class="swatch checker"><div style="height:100%;background:rgba(236,237,238,0.35)"></div></div>
+          <div class="sw-val">#ECEDEE · hairline</div>
+          <div class="sw-note">Muted rule, rendered as a low-alpha stroke.</div>
+        </div>
+      </div>
+      <div class="col">
+        <p class="role">Accent</p>
+        <div class="sw-row">
+          <div class="swatch" style="background:#EB0D3F"></div>
+          <div class="sw-val">#EB0D3F</div>
+          <div class="sw-note">Racing red — single-control signal only.</div>
+        </div>
+        <div class="sw-row">
+          <div class="swatch" style="background:#EB0C3E"></div>
+          <div class="sw-val">#EB0C3E</div>
+          <div class="sw-note">Accent-dim — the paired near-shade.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid rgba(236,237,238,0.25);padding:24px 0;display:grid;grid-template-columns:1fr 240px;gap:24px;align-items:baseline}
+#type-scale .meta{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
+.t-display{font-family:var(--font-helvetica);font-weight:700;font-size:16px;line-height:1.5}
+.t-headline{font-family:var(--font-audi);font-weight:700;font-size:10px;line-height:1.5;letter-spacing:1px;text-transform:uppercase}
+.t-bodybase{font-family:var(--font-audi);font-weight:400;font-size:16px;line-height:1.5}
+.t-bodymd{font-family:var(--font-helvetica);font-weight:400;font-size:14px;line-height:1.5}
+@media(max-width:768px){#type-scale .spec{grid-template-columns:1fr}}
+</style>
+<section id="type-scale" class="section" aria-labelledby="type-h">
+  <div class="wrap">
+    <p class="eyebrow">Type scale</p>
+    <h2 id="type-h" class="section-title">Two grotesques, compressed hierarchy</h2>
+    <p class="section-lead">Helvetica runs the numeric UI. audiType carries the tracked uppercase eyebrow. Scale is carried by weight and tracking, not dramatic jumps.</p>
+    <div class="spec">
+      <div class="t-display">Podium. Pit wall. Payload.</div>
+      <div class="meta">display-lg · helvetica · 16px · 700 · 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="t-headline">Sector Times · Lap Delta</div>
+      <div class="meta">headline-md · audiType · 10px · 700 · 1.5 · +1px</div>
+    </div>
+    <div class="spec">
+      <div class="t-bodybase">The stage stays black so the footage never competes. Structure comes from thin white rules and a single red signal.</div>
+      <div class="meta">body-base · audiType · 16px · 400 · 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="t-bodymd">Dense utility text sits at fourteen pixels, regular weight, reading utilitarian and numeric across the interface.</div>
+      <div class="meta">body-md · helvetica · 14px · 400 · 1.5</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid rgba(236,237,238,0.25);padding:32px 0}
+#components .comp:first-of-type{border-top:none}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:20px}
+.comp-name{font-family:var(--font-helvetica);font-weight:700;font-size:16px}
+.instances{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
+.spec-card{
+  font-family:var(--font-helvetica);
+  font-size:14px;
+  color:var(--text-secondary);
+  border-left:2px solid var(--accent);
+  padding:10px 14px;
+  margin-top:20px;
+  line-height:1.7;
+}
+.spec-card b{color:var(--text-primary);font-weight:700}
+.demo-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+
+/* Ghost buttons */
+.btn-ghost-flush{
+  background:transparent;color:#FFFFFF;border:none;border-radius:0;
+  height:64px;padding:0;
+  font-family:var(--font-audi);font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:color .3s ease;
+}
+.btn-ghost-flush:hover{color:var(--accent)}
+.btn-ghost-outline{
+  background:transparent;color:#FFFFFF;border:2px solid rgb(255,255,255);border-radius:4px;
+  height:44px;padding:8px 16px;
+  font-family:var(--font-audi);font-weight:700;font-size:10px;letter-spacing:1px;text-transform:uppercase;
+  cursor:pointer;transition:background-color .3s ease,color .3s ease;
+}
+.btn-ghost-outline:hover{background:#FFFFFF;color:#000000}
+
+/* Button matrix */
+.matrix{border-collapse:collapse;width:100%;margin-top:8px}
+.matrix th,.matrix td{border:1px solid rgba(236,237,238,0.2);padding:14px;text-align:center;vertical-align:middle}
+.matrix th{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary)}
+.matrix td:first-child{text-align:left;font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-primary)}
+.is-disabled{opacity:0.4;cursor:not-allowed}
+
+/* media bleed */
+.media-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.media-card{background:transparent;border-radius:0;padding:0;overflow:hidden;aspect-ratio:16/10}
+.media-fill{width:100%;height:100%;display:block}
+.mf1{background:linear-gradient(115deg,#000 20%,#2a2a2a 60%,#0a0a0a 100%)}
+.mf2{background:linear-gradient(75deg,#050505 30%,#3a3a3a 70%,#000 100%)}
+.mf3{background:linear-gradient(160deg,#111 10%,#000 50%,#242424 100%)}
+
+/* icon grid 2x2 */
+.icon-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:420px}
+.icon-card{background:transparent;border-radius:0;padding:0;display:flex;align-items:center;justify-content:center;height:120px;border:1px solid rgba(236,237,238,0.25)}
+.icon-card iconify-icon{font-size:40px;color:var(--text-primary)}
+
+/* text block */
+.tb-stack{display:flex;flex-direction:column;gap:24px}
+.tb-card{background:transparent;border-radius:0;padding:0;width:97%}
+.tb-card h3{font-family:var(--font-helvetica);font-weight:700;font-size:16px;text-transform:uppercase}
+.tb-card p{font-family:var(--font-audi);font-size:16px;color:var(--text-secondary);margin-top:8px}
+
+/* footer preview links */
+.footer-links{display:flex;flex-wrap:wrap;gap:20px}
+.footer-links a{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-primary);transition:color .2s ease}
+.footer-links a:hover{color:var(--accent)}
+
+/* loading */
+.load-stage{position:relative;background:#000;height:220px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(236,237,238,0.25)}
+.load-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center}
+.dots{display:flex;gap:10px}
+.dot{width:10px;height:10px;border-radius:9999px;background:#FFFFFF;animation:dotpulse 1.2s ease infinite}
+.dot:nth-child(2){animation-delay:.15s}
+.dot:nth-child(3){animation-delay:.3s}
+.dot:nth-child(4){animation-delay:.45s}
+@keyframes dotpulse{0%,100%{opacity:.25}50%{opacity:1}}
+@media(prefers-reduced-motion:reduce){.dot{animation:none;opacity:.7}}
+@media(max-width:768px){.media-row{grid-template-columns:1fr}.matrix,.matrix tbody,.matrix tr,.matrix td,.matrix th{display:block}.matrix th{border:none}}
+</style>
+<section id="components" class="section" aria-labelledby="comp-h">
+  <div class="wrap">
+    <p class="eyebrow">Components</p>
+    <h2 id="comp-h" class="section-title">The full inventory</h2>
+    <p class="section-lead">Square topology, hairline structure, one red pill. Nothing lifts off the black — depth is media and rules only.</p>
+
+    <!-- Navbar -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head"><span class="comp-name">Navbar</span><span class="instances">×1 · 90px · 8 items</span></div>
+      <div style="border:1px solid rgba(236,237,238,0.25)">
+        <nav class="nav" style="border-bottom:none" aria-label="Component navbar demo">
+          <span class="logo">Audi Sport</span>
+          <div class="nav-items">
+            <a href="#components">Racing</a><a href="#components">Team</a><a href="#components">Drivers</a>
+            <a href="#components">Circuit</a><a href="#components">Media</a><a href="#components">Calendar</a>
+            <a href="#components">Garage</a><a href="#components">Contact</a>
+          </div>
+          <button class="nav-cta">Follow the Grid</button>
+        </nav>
+      </div>
+      <div class="spec-card">
+        <b>nav</b> · background <b>transparent</b> · radius <b>0px</b> · height <b>90px</b> · type headline-md · nav-cta fill <b>#FFFFFF</b> · text <b>#000000</b> · radius r-card <b>8px</b> · height <b>65px</b>
+      </div>
+    </div>
+
+    <!-- Hero primary button -->
+    <div class="comp" data-tier-a-component="hero-primary-button">
+      <div class="comp-head"><span class="comp-name">Hero Primary Button</span><span class="instances">×1 · solid white</span></div>
+      <div class="demo-row">
+        <button class="btn-white-solid">Watch the Lap</button>
+      </div>
+      <div class="spec-card">
+        <b>button-secondary-outline</b> as hero primary · fill <b>#FFFFFF</b> · text <b>#212121</b> · border <b>2px #FFFFFF</b> · radius r-control <b>4px</b> · height <b>44px</b> · padding 8px 16px · type headline-md
+      </div>
+    </div>
+
+    <!-- Secondary accent pill -->
+    <div class="comp" data-tier-a-component="secondary-accent-pill">
+      <div class="comp-head"><span class="comp-name">Secondary Accent Pill</span><span class="instances">×1 · rationed</span></div>
+      <div class="demo-row">
+        <button class="btn-accent-pill"><iconify-icon icon="lucide:flag" aria-hidden="true"></iconify-icon>Enter the Circuit</button>
+      </div>
+      <div class="spec-card">
+        <b>button-primary</b> · fill <b>accent #EB0D3F</b> · text <b>#000000</b> · border 1px #EB0D3F · radius r-pill <b>9999px</b> · height <b>58px</b> · padding 6px · single high-intent control only
+      </div>
+    </div>
+
+    <!-- Ghost flush button -->
+    <div class="comp" data-tier-a-component="ghost-flush-button">
+      <div class="comp-head"><span class="comp-name">Ghost Flush Button</span><span class="instances">×2 · flush rows</span></div>
+      <div class="demo-row">
+        <button class="btn-ghost-flush">Sector Data</button>
+        <button class="btn-ghost-flush">Full Results</button>
+      </div>
+      <div class="spec-card">
+        <b>button-ghost-flush</b> · fill <b>transparent</b> · text <b>#FFFFFF</b> · radius <b>0px</b> · height <b>64px</b> · padding 0 · hover color accent
+      </div>
+    </div>
+
+    <!-- Ghost outline button -->
+    <div class="comp" data-tier-a-component="ghost-outline-button">
+      <div class="comp-head"><span class="comp-name">Ghost Outline Button</span><span class="instances">×2 · outlined</span></div>
+      <div class="demo-row">
+        <button class="btn-ghost-outline">View Grid</button>
+        <button class="btn-ghost-outline">Track Map</button>
+      </div>
+      <div class="spec-card">
+        <b>button-ghost-outline</b> · fill <b>transparent</b> · text <b>#FFFFFF</b> · border <b>2px #FFFFFF</b> · radius r-control <b>4px</b> · height <b>44px</b> · padding 8px 16px
+      </div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp">
+      <div class="comp-head"><span class="comp-name">Variant × State Matrix</span><span class="instances">rest · hover · disabled</span></div>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Accent pill</td>
+            <td><button class="btn-accent-pill">Enter</button></td>
+            <td><button class="btn-accent-pill" style="background:#EB0C3E;border-color:#EB0C3E">Enter</button></td>
+            <td><button class="btn-accent-pill is-disabled" disabled>Enter</button></td>
+          </tr>
+          <tr>
+            <td>White solid</td>
+            <td><button class="btn-white-solid">Watch</button></td>
+            <td><button class="btn-white-solid" style="background:#ECEDEE;border-color:#ECEDEE">Watch</button></td>
+            <td><button class="btn-white-solid is-disabled" disabled>Watch</button></td>
+          </tr>
+          <tr>
+            <td>Ghost outline</td>
+            <td><button class="btn-ghost-outline">View</button></td>
+            <td><button class="btn-ghost-outline" style="background:#FFFFFF;color:#000">View</button></td>
+            <td><button class="btn-ghost-outline is-disabled" disabled>View</button></td>
+          </tr>
+          <tr>
+            <td>Ghost flush</td>
+            <td><button class="btn-ghost-flush">Data</button></td>
+            <td><button class="btn-ghost-flush" style="color:#EB0D3F">Data</button></td>
+            <td><button class="btn-ghost-flush is-disabled" disabled>Data</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spec-card">Disabled uses lowest opacity step. Hover derives from accent-dim <b>#EB0C3E</b> and the white → #ECEDEE pattern. No focus ring authored — native indicator preserved.</div>
+    </div>
+
+    <!-- Media bleed cards -->
+    <div class="comp" data-tier-a-component="media-bleed-card">
+      <div class="comp-head"><span class="comp-name">Media-Bleed Card Family</span><span class="instances">×3 · [100 | 100 | 100]</span></div>
+      <div class="media-row">
+        <div class="media-card"><span class="media-fill mf1" role="img" aria-label="Dark motion-blur automotive still frame"></span></div>
+        <div class="media-card"><span class="media-fill mf2" role="img" aria-label="High-contrast racing still frame"></span></div>
+        <div class="media-card"><span class="media-fill mf3" role="img" aria-label="Low-key circuit night still frame"></span></div>
+      </div>
+      <div class="spec-card">
+        <b>card-media-bleed</b> · background <b>transparent</b> · radius <b>0px</b> (square per guardrail) · padding <b>0px</b> · media top-bleed, no caption · uniform equal-width triptych
+      </div>
+    </div>
+
+    <!-- Icon cards -->
+    <div class="comp" data-tier-a-component="icon-card">
+      <div class="comp-head"><span class="comp-name">Icon Card Family</span><span class="instances">×4 · 2×2 grid</span></div>
+      <div class="icon-grid">
+        <div class="icon-card"><iconify-icon icon="lucide:gauge" aria-label="Telemetry"></iconify-icon></div>
+        <div class="icon-card"><iconify-icon icon="lucide:timer" aria-label="Lap times"></iconify-icon></div>
+        <div class="icon-card"><iconify-icon icon="lucide:trophy" aria-label="Standings"></iconify-icon></div>
+        <div class="icon-card"><iconify-icon icon="lucide:wrench" aria-label="Garage"></iconify-icon></div>
+      </div>
+      <div class="spec-card">
+        <b>card-nav-icon</b> · background <b>transparent</b> · radius <b>0px</b> · padding <b>0px</b> · uniform [50/50 | 50/50] grid · icons at 40px
+      </div>
+    </div>
+
+    <!-- Text block cards -->
+    <div class="comp" data-tier-a-component="text-block-card">
+      <div class="comp-head"><span class="comp-name">Text-Block Card Family</span><span class="instances">×2 · [97 | 97] stacked</span></div>
+      <div class="tb-stack">
+        <div class="tb-card">
+          <h3>Content Is the Payload</h3>
+          <p>The stage stays black so footage carries every gram of visual weight. Structure arrives as thin white rules, never as boxed panels.</p>
+        </div>
+        <div class="tb-card">
+          <h3>One Signal, Held in Reserve</h3>
+          <p>Racing red behaves like a warning light — a single pill, small marks. It never fills a field, and it never repeats.</p>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>card-text-block</b> · background <b>transparent</b> · radius <b>0px</b> · padding <b>0px</b> · heading display-lg · body body-base · rows stacked at 97% width
+      </div>
+    </div>
+
+    <!-- Loading indicator -->
+    <div class="comp" data-tier-a-component="loading-indicator">
+      <div class="comp-head"><span class="comp-name">Loading Overlay Indicator</span><span class="instances">×1 · transient only</span></div>
+      <div class="load-stage">
+        <div class="load-overlay">
+          <div class="dots" role="status" aria-label="Loading">
+            <span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        Centered four-dot indicator · overlay <b>backdrop-filter blur(12px)</b> / blur(4px) · the system's only glassmorphic gesture · transient state only
+      </div>
+    </div>
+
+    <!-- Footer component -->
+    <div class="comp" data-tier-a-component="footer">
+      <div class="comp-head"><span class="comp-name">Footer</span><span class="instances">×1 · 9 links</span></div>
+      <div style="border-top:1px solid rgba(236,237,238,0.35);padding-top:20px">
+        <div class="footer-links">
+          <a href="#footer">Team</a><a href="#footer">Drivers</a><a href="#footer">Calendar</a>
+          <a href="#footer">Results</a><a href="#footer">Media</a><a href="#footer">Careers</a>
+          <a href="#footer">Press</a><a href="#footer">Privacy</a><a href="#footer">Contact</a>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>footer</b> · background <b>transparent</b> · flush against black · white hairline convention only · no card treatment · 9 links · type headline-md
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+.depth-card{background:#131313;padding:24px;border:1px solid rgba(236,237,238,0.25)}
+.depth-card.sq{border-radius:0}
+.depth-card.ctrl{border-radius:4px}
+.depth-card.card8{border-radius:8px}
+.depth-card h3{font-family:var(--font-helvetica);font-weight:700;font-size:16px}
+.depth-card p{font-family:var(--font-audi);font-size:14px;color:var(--text-secondary);margin-top:8px}
+.depth-tag{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--accent);margin-top:16px;display:block}
+@media(max-width:768px){#surface-depth .cards{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth" class="section" aria-labelledby="sd-h">
+  <div class="wrap">
+    <p class="eyebrow">Surface &amp; depth</p>
+    <h2 id="sd-h" class="section-title">Radii, and the absence of shadow</h2>
+    <p class="section-lead">Only #131313 rises above black. There is no box-shadow anywhere — elevation is media contrast and hairline strokes.</p>
+    <div class="cards">
+      <div class="depth-card sq">
+        <h3>Square — 0px</h3>
+        <p>Navbar and media cards. Strictly square topology, top and bottom.</p>
+        <span class="depth-tag">r 0px · #131313 panel</span>
+      </div>
+      <div class="depth-card ctrl">
+        <h3>Control — 4px</h3>
+        <p>The slightly-rounded rectangle used by the white and outline buttons.</p>
+        <span class="depth-tag">r-control 4px</span>
+      </div>
+      <div class="depth-card card8">
+        <h3>Card / CTA — 8px</h3>
+        <p>The nav CTA carries this softer corner. No shadow, hairline only.</p>
+        <span class="depth-tag">r-card 8px</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .m-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:24px}
+.m-card{border:1px solid rgba(236,237,238,0.25);padding:24px}
+.m-card h3{font-family:var(--font-helvetica);font-weight:700;font-size:16px}
+.m-card .meta{font-family:var(--font-audi);font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--text-secondary);margin-top:8px}
+.m-box{width:44px;height:44px;background:var(--accent);border-radius:4px;margin:20px 0}
+.play{margin-top:8px}
+.demo1.run{animation:mrotate .6s ease}
+.demo2.run{animation:mslide .7s ease}
+.demo3.run{animation:mfade .5s cubic-bezier(0.4,0,0.2,1)}
+@keyframes mrotate{from{transform:rotate(0)}to{transform:rotate(90deg)}}
+@keyframes mslide{from{transform:translateX(-40px)}to{transform:translateX(0)}}
+@keyframes mfade{from{opacity:.15}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.demo1.run,.demo2.run,.demo3.run{animation:none}}
+@media(max-width:768px){#motion .m-grid{grid-template-columns:1fr}}
+</style>
+<section id="motion" class="section" aria-labelledby="motion-h">
+  <div class="wrap">
+    <p class="eyebrow">Motion</p>
+    <h2 id="motion-h" class="section-title">Deliberate, engineered, never snappy</h2>
+    <p class="section-lead">Ranges sit between 0.3s and 0.7s. Directional reveals bring bands into view; nothing bounces.</p>
+    <div class="m-grid">
+      <div class="m-card">
+        <h3>Rotate</h3>
+        <div class="m-box demo1"></div>
+        <div class="meta">rotate · 0.6s · ease</div>
+        <button class="btn-ghost-outline play" data-demo="demo1">Replay</button>
+      </div>
+      <div class="m-card">
+        <h3>Slide-right</h3>
+        <div class="m-box demo2"></div>
+        <div class="meta">translate · 0.7s · ease</div>
+        <button class="btn-ghost-outline play" data-demo="demo2">Replay</button>
+      </div>
+      <div class="m-card">
+        <h3>Reveal fade</h3>
+        <div class="m-box demo3"></div>
+        <div class="meta">opacity · 0.5s · cubic-bezier(0.4,0,0.2,1)</div>
+        <button class="btn-ghost-outline play" data-demo="demo3">Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid rgba(236,237,238,0.25);background:#000;overflow:hidden}
+.mock-nav{height:90px;display:flex;align-items:center;gap:16px;padding:0 20px;border-bottom:1px solid rgba(236,237,238,0.35)}
+.mock-nav .logo{font-family:var(--font-audi);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:16px}
+.mock-nav .sp{flex:1}
+.mock-hero{position:relative;min-height:320px;display:flex;flex-direction:column;justify-content:center;padding:40px;background:linear-gradient(180deg,rgba(0,0,0,.4),rgba(0,0,0,.85)),linear-gradient(120deg,#131313,#000 60%,#1a1a1a)}
+.mock-hero h2{font-family:var(--font-helvetica);font-weight:700;font-size:clamp(32px,5vw,56px);text-transform:uppercase;line-height:1.02}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;padding:40px}
+.mock-cta{padding:40px;border-top:1px solid rgba(236,237,238,0.35);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.mock-cta p{font-family:var(--font-audi);font-size:16px}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" class="section" aria-labelledby="comp2-h">
+  <div class="wrap">
+    <p class="eyebrow">In composition</p>
+    <h2 id="comp2-h" class="section-title">The system, assembled</h2>
+    <p class="section-lead">Nav, hero fragment, a media triptych, and one red pill — built only from tokens above.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo">Audi Sport</span>
+        <div class="nav-items" style="flex:none">
+          <a href="#composition">Racing</a><a href="#composition">Team</a><a href="#composition">Media</a>
+        </div>
+        <span class="sp"></span>
+        <button class="nav-cta">Follow the Grid</button>
+      </div>
+      <div class="mock-hero">
+        <p class="eyebrow" style="margin-bottom:16px">Round 14 · Night Session</p>
+        <h2>Chasing<br>the apex</h2>
+        <div class="hero-actions" style="margin-top:24px">
+          <button class="btn-accent-pill"><iconify-icon icon="lucide:flag" aria-hidden="true"></iconify-icon>Enter the Circuit</button>
+          <button class="btn-white-solid">Watch the Lap</button>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="media-card"><span class="media-fill mf1" role="img" aria-label="Braking zone still frame"></span></div>
+        <div class="media-card"><span class="media-fill mf2" role="img" aria-label="Pit lane still frame"></span></div>
+        <div class="media-card"><span class="media-fill mf3" role="img" aria-label="Main straight still frame"></span></div>
+      </div>
+      <div class="mock-cta">
+        <p>Every tenth is logged, every lap is footage. Follow the season live.</p>
+        <button class="btn-ghost-outline">View Full Calendar</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{padding:var(--sp-section);border-top:1px solid rgba(236,237,238,0.35)}
+#footer .fwrap{max-width:1200px;margin:0 auto}
+#footer .brand{font-family:var(--font-audi);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:16px}
+#footer .meta{font-family:var(--font-helvetica);font-size:14px;color:var(--text-secondary);margin-top:20px}
+#footer a.src{color:var(--text-primary);text-decoration:underline}
+</style>
+<footer id="footer">
+  <div class="fwrap">
+    <p class="brand">Circuit Black Racing Chrome</p>
+    <div class="footer-links" style="margin-top:20px">
+      <a href="https://f1.audi.com.au/">Team</a><a href="https://f1.audi.com.au/">Drivers</a>
+      <a href="https://f1.audi.com.au/">Calendar</a><a href="https://f1.audi.com.au/">Results</a>
+      <a href="https://f1.audi.com.au/">Media</a><a href="https://f1.audi.com.au/">Careers</a>
+      <a href="https://f1.audi.com.au/">Press</a><a href="https://f1.audi.com.au/">Privacy</a>
+      <a href="https://f1.audi.com.au/">Contact</a>
+    </div>
+    <p class="meta">Source: <a class="src" href="https://f1.audi.com.au/">https://f1.audi.com.au/</a></p>
+    <p class="meta">Design system captured and rendered by r3xdec.design</p>
+  </div>
+</footer>
+</main>
+
+<script>
+document.querySelectorAll('[data-demo]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.querySelector('.'+btn.dataset.demo);
+    if(!el)return;
+    el.classList.remove('run');
+    void el.offsetWidth;
+    el.classList.add('run');
+  });
+});
+</script>
+</body>
+</html>

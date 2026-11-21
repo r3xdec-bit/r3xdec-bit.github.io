@@ -1,0 +1,720 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="view-transition" content="same-origin">
+    <link rel="prefetch" href="https://draft-ec002b64-663b-4440-96fb-a745ef9fbb44.preview.r3xdec.design" as="document">
+    <link rel="prefetch" href="https://draft-53296d90-c700-45fb-833c-36312e29a9fa.preview.r3xdec.design" as="document">
+    <link rel="prefetch" href="https://draft-289603a7-26c4-4c61-bde6-84fcba821f24.preview.r3xdec.design" as="document">
+    <link rel="prefetch" href="https://draft-44a88ff4-f8e6-4786-b0fb-f4c0d715673c.preview.r3xdec.design" as="document">
+    <link rel="prefetch" href="https://draft-426d0cca-3335-4692-a809-8b31b4dd2a07.preview.r3xdec.design" as="document"><title>VoltFleet OS | EV Scooter Management</title><script src="https://cdn.tailwindcss.com"></script><script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"><style>@view-transition { navigation: auto; }
+        html { background-color: #09090B; }
+        ::view-transition { background-color: #09090B; }
+
+        /* Persistent Nav */
+        #sidebar-nav-container { view-transition-name: main-nav; }
+        #top-bar-nav { view-transition-name: toolbar; }
+
+        ::view-transition-old(main-nav),
+        ::view-transition-new(main-nav),
+        ::view-transition-old(toolbar),
+        ::view-transition-new(toolbar) {
+            animation: none;
+            mix-blend-mode: normal;
+        }
+
+        /* Dynamic Content */
+        #main-viewport { view-transition-name: main-content; }
+        ::view-transition-old(main-content) {
+            animation: 0.25s ease-out both fade-out;
+        }
+        ::view-transition-new(main-content) {
+            animation: 0.25s ease-in 0.1s both fade-in;
+        }
+
+        @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #09090B; color: #FAFAFA; } .mono { font-family: 'JetBrains Mono', monospace; } .custom-scrollbar::-webkit-scrollbar { width: 4px; } .custom-scrollbar::-webkit-scrollbar-track { background: #18181B; } .custom-scrollbar::-webkit-scrollbar-thumb { background: #3F3F46; border-radius: 10px; } .map-gradient { background: radial-gradient(circle at center, transparent 0%, #09090B 100%); } .glass-panel { background: rgba(24, 24, 27, 0.9); backdrop-filter: blur(12px); border: 1px solid rgba(63, 63, 70, 0.4); } @keyframes pulse-dot { 0% { transform: scale(0.9); opacity: 0.7; } 50% { transform: scale(1.3); opacity: 0.2; } 100% { transform: scale(0.9); opacity: 0.7; } } .scooter-dot-pulse { animation: pulse-dot 2s infinite; } @keyframes toast-slide-in { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } } .toast-animation { animation: toast-slide-in 0.4s cubic-bezier(0.4, 0, 0.2, 1); } [data-role-view="maintenance"] { display: none; } .role-maintenance [data-role-view="ops"] { display: none; } .role-maintenance [data-role-view="maintenance"] { display: block; } .role-maintenance [data-role-view="maintenance"].grid { display: grid; } .role-maintenance [data-role-view="maintenance"].flex { display: flex; } </style>
+<meta name="preview-version" content="ab7bf830-194d-4bc0-bf73-a369b0abe600" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.110Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "ab7bf830-194d-4bc0-bf73-a369b0abe600");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "ab7bf830-194d-4bc0-bf73-a369b0abe600",
+      timestamp: "2026-11-20T00:19:43.110Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "ab7bf830-194d-4bc0-bf73-a369b0abe600";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head><body><div id="root-container" class="flex h-screen overflow-hidden bg-[#09090B]"><div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-3 pointer-events-none w-80"><div class="toast-animation pointer-events-auto bg-zinc-900 border border-emerald-500/30 p-4 rounded-2xl shadow-2xl flex gap-3 items-start"><iconify-icon icon="lucide:check-circle" class="text-emerald-500 text-xl mt-0.5"></iconify-icon><div class="flex-1"><p class="text-xs font-bold">System Sync Complete</p><p class="text-[10px] text-zinc-400">420 firmware updates deployed successfully.</p></div><button class="text-zinc-500 hover:text-white"><iconify-icon icon="lucide:x"></iconify-icon></button></div><div class="toast-animation pointer-events-auto bg-zinc-900 border border-red-500/30 p-4 rounded-2xl shadow-2xl flex gap-3 items-start"><iconify-icon icon="lucide:alert-circle" class="text-red-500 text-xl mt-0.5"></iconify-icon><div class="flex-1"><p class="text-xs font-bold">Critical Alert: Hub 04</p><p class="text-[10px] text-zinc-400">Grid power loss at Central Station charging hub.</p></div><button class="text-zinc-500 hover:text-white"><iconify-icon icon="lucide:x"></iconify-icon></button></div></div><div id="sidebar-nav-container">
+    <sd-component componentId="f3b7bc71-e962-493e-bd4c-633cf2cca1bd" name="NavigationSidebar" props='{"activeItem":"overview","overviewHref":"https://draft-ec002b64-663b-4440-96fb-a745ef9fbb44.preview.r3xdec.design","trackingHref":"https://draft-53296d90-c700-45fb-833c-36312e29a9fa.preview.r3xdec.design","healthHref":"https://draft-289603a7-26c4-4c61-bde6-84fcba821f24.preview.r3xdec.design","incidentsHref":"https://draft-44a88ff4-f8e6-4786-b0fb-f4c0d715673c.preview.r3xdec.design","analyticsHref":"#analytics","settingsHref":"#settings","incidentCount":12}'></sd-component>
+</div><main class="flex-1 flex flex-col min-w-0 bg-[#09090B]"><header id="top-bar-nav" class="h-16 border-b border-zinc-800 flex items-center justify-between px-4 md:px-8 bg-[#09090B] z-40"><div class="flex items-center gap-4 flex-1"><button class="lg:hidden p-2 text-zinc-400"><iconify-icon icon="lucide:menu" class="text-2xl"></iconify-icon></button><div class="relative hidden md:block w-72 lg:w-96"><iconify-icon icon="lucide:search" class="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500"></iconify-icon><input type="text" placeholder="Search fleet ID..." class="w-full bg-zinc-900 border border-zinc-800 rounded-lg pl-10 pr-4 py-1.5 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500/50"></div><div class="h-6 w-px bg-zinc-800 hidden md:block"></div><!-- Role Switcher --><div class="flex bg-zinc-900 rounded-full p-1 border border-zinc-800 scale-90 md:scale-100"><button id="toggle-ops" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all bg-blue-600 text-white" onclick="document.getElementById('root-container').classList.remove('role-maintenance'); this.classList.add('bg-blue-600', 'text-white'); document.getElementById('toggle-maint').classList.remove('bg-zinc-800', 'text-white');">Ops</button><button id="toggle-maint" class="px-3 py-1 rounded-full text-[10px] font-bold uppercase transition-all text-zinc-500 hover:text-white" onclick="document.getElementById('root-container').classList.add('role-maintenance'); this.classList.add('bg-zinc-800', 'text-white'); document.getElementById('toggle-ops').classList.remove('bg-blue-600', 'text-white');">Maint</button></div></div><div class="flex items-center gap-4 md:gap-6"><div class="hidden xl:flex items-center gap-2"><div class="text-right"><p class="text-[10px] text-zinc-500 uppercase font-bold">Live Stream</p><p class="text-xs font-medium mono text-emerald-500">ESTABLISHING...</p></div><iconify-icon icon="lucide:wifi" class="text-emerald-500"></iconify-icon></div><button class="relative p-2 text-zinc-400 hover:text-white"><iconify-icon icon="lucide:bell" class="text-xl"></iconify-icon><span class="absolute top-2 right-2 w-2 h-2 bg-blue-500 rounded-full border-2 border-[#09090B]"></span></button></div></header><div id="main-viewport" class="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar space-y-8"><!-- Operations KPIs --><div data-role-view="ops" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 animate-in fade-in duration-500"><sd-component componentId="d61347b8-ca45-4d1a-96b5-7f37f1607e0a" name="KPICard" props='{"value":"1,842","trendValue":"+2.4%"}'></sd-component><sd-component componentId="d61347b8-ca45-4d1a-96b5-7f37f1607e0a" name="KPICard" instance="kpi-health" props='{"value":"94.2%","trendValue":"OPTIMAL"}'></sd-component><sd-component componentId="d61347b8-ca45-4d1a-96b5-7f37f1607e0a" name="KPICard" instance="kpi-utilization" props='{"value":"68.5%","trendValue":"LIVE"}'></sd-component><sd-component componentId="d61347b8-ca45-4d1a-96b5-7f37f1607e0a" name="KPICard" instance="kpi-revenue" props='{"value":"$4,842","trendValue":"+$1.2k"}'></sd-component></div><!-- Maintenance KPIs --><div data-role-view="maintenance" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 animate-in fade-in duration-500"><div class="bg-zinc-900/40 border border-zinc-800/60 p-5 rounded-2xl"><div class="flex justify-between items-start mb-4"><div class="p-2 bg-red-500/10 rounded-lg"><iconify-icon icon="lucide:wrench" class="text-red-500 text-xl"></iconify-icon></div><span class="text-red-500 text-xs font-bold">ACTION</span></div><p class="text-zinc-500 text-[10px] font-bold uppercase mb-1 tracking-widest">Service Tickets</p><h3 class="text-2xl font-bold mono">24 Open</h3></div><div class="bg-zinc-900/40 border border-zinc-800/60 p-5 rounded-2xl"><div class="flex justify-between items-start mb-4"><div class="p-2 bg-orange-500/10 rounded-lg"><iconify-icon icon="lucide:thermometer" class="text-orange-500 text-xl"></iconify-icon></div><span class="text-orange-500 text-xs font-bold">WARM</span></div><p class="text-zinc-500 text-[10px] font-bold uppercase mb-1 tracking-widest">Avg Cell Temp</p><h3 class="text-2xl font-bold mono">34.8°C</h3></div><div class="bg-zinc-900/40 border border-zinc-800/60 p-5 rounded-2xl"><div class="flex justify-between items-start mb-4"><div class="p-2 bg-blue-500/10 rounded-lg"><iconify-icon icon="lucide:refresh-ccw" class="text-blue-500 text-xl"></iconify-icon></div><span class="text-zinc-500 text-xs font-bold">3m AGO</span></div><p class="text-zinc-500 text-[10px] font-bold uppercase mb-1 tracking-widest">Last Sync</p><h3 class="text-2xl font-bold mono">1,842/1,842</h3></div><div class="bg-zinc-900/40 border border-zinc-800/60 p-5 rounded-2xl"><div class="flex justify-between items-start mb-4"><div class="p-2 bg-emerald-500/10 rounded-lg"><iconify-icon icon="lucide:activity" class="text-emerald-500 text-xl"></iconify-icon></div><span class="text-emerald-500 text-xs font-bold">98%</span></div><p class="text-zinc-500 text-[10px] font-bold uppercase mb-1 tracking-widest">Firmware Comply</p><h3 class="text-2xl font-bold mono">v2.4.1</h3></div></div><div class="grid grid-cols-12 gap-6 lg:gap-8"><div class="col-span-12 xl:col-span-8 space-y-6 md:space-y-8"><!-- Advanced Map Layer --><div class="relative bg-[#0F0F12] border border-zinc-800 rounded-3xl overflow-hidden h-[400px] md:h-[540px]"><div class="absolute inset-0 opacity-40"><svg class="w-full h-full" viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg"><path d="M0,100 L200,150 L300,50 L500,200 L800,100 M200,150 L200,300 M300,50 L450,400 M0,250 L800,250" stroke="#3F3F46" fill="none" stroke-width="1.5"></path><!-- Geofence --><path d="M250,150 L450,180 L420,350 L280,320 Z" fill="#3b82f6" fill-opacity="0.1" stroke="#3b82f6" stroke-dasharray="4" id="layer-geofence"></path><!-- Charging Stations --><circle cx="150" cy="200" r="4" fill="#a855f7" class="layer-charging"></circle><circle cx="550" cy="120" r="4" fill="#a855f7" class="layer-charging"></circle><!-- Hubs --><rect x="400" y="280" width="12" height="12" fill="#f97316" rx="2" class="layer-hubs"></rect><!-- Scooters --><circle cx="280" cy="340" r="3" fill="#3b82f6"></circle><circle cx="600" cy="300" r="3" fill="#3b82f6"></circle><circle cx="480" cy="80" r="3" fill="#ef4444" class="scooter-dot-pulse"></circle></svg></div><div class="absolute inset-0 map-gradient"></div><!-- HUD Controls --><div class="absolute top-6 left-6 space-y-3"><div class="glass-panel rounded-xl p-3 flex flex-col gap-2"><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-blue-500 rounded"> <span class="text-[10px] font-bold text-zinc-300">Scooters</span></label><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-purple-500 rounded"> <span class="text-[10px] font-bold text-zinc-300">Charging</span></label><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-orange-500 rounded"> <span class="text-[10px] font-bold text-zinc-300">Hubs</span></label><label class="flex items-center gap-2 cursor-pointer"><input type="checkbox" checked class="accent-blue-400 rounded"> <span class="text-[10px] font-bold text-zinc-300">Geofence</span></label></div></div><div class="absolute top-6 right-6 flex flex-col gap-2"><button class="glass-panel w-9 h-9 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white"><iconify-icon icon="lucide:layers"></iconify-icon></button><button class="glass-panel w-9 h-9 rounded-xl flex items-center justify-center text-zinc-400 hover:text-white"><iconify-icon icon="lucide:maximize"></iconify-icon></button></div></div><!-- Analytics Section --><div class="grid grid-cols-1 md:grid-cols-2 gap-6"><div class="bg-zinc-900 border border-zinc-800 p-6 rounded-3xl"><div class="flex items-center justify-between mb-6"><h4 class="font-bold flex items-center gap-2 text-sm"><iconify-icon icon="lucide:trending-up" class="text-blue-500"></iconify-icon>Maintenance Forecast</h4><iconify-icon icon="lucide:info" class="text-zinc-600"></iconify-icon></div><div class="space-y-4"><div class="flex items-center justify-between p-3 bg-zinc-800/30 rounded-xl"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-orange-500/10 flex items-center justify-center"><iconify-icon icon="lucide:battery" class="text-orange-500"></iconify-icon></div><div><p class="text-xs font-bold">Cell Degrade</p><p class="text-[10px] text-zinc-500">12 Units in 72h</p></div></div><span class="text-[10px] font-bold text-zinc-400 uppercase">Review</span></div><div class="flex items-center justify-between p-3 bg-zinc-800/30 rounded-xl"><div class="flex items-center gap-3"><div class="w-8 h-8 rounded-lg bg-red-500/10 flex items-center justify-center"><iconify-icon icon="lucide:zap-off" class="text-red-500"></iconify-icon></div><div><p class="text-xs font-bold">Critical Health</p><p class="text-[10px] text-zinc-500">4 Units Offline</p></div></div><span class="text-[10px] font-bold text-red-500 uppercase">Urgent</span></div></div><div class="mt-6 pt-6 border-t border-zinc-800/50"><p class="text-[10px] text-zinc-500 font-bold uppercase mb-3">Battery Health Cohorts</p><div class="flex items-end gap-1.5 h-16"><div class="flex-1 bg-emerald-500/20 h-full rounded-sm"></div><div class="flex-1 bg-emerald-500/20 h-5/6 rounded-sm"></div><div class="flex-1 bg-emerald-500/40 h-3/4 rounded-sm"></div><div class="flex-1 bg-orange-500/40 h-1/2 rounded-sm"></div><div class="flex-1 bg-red-500/60 h-1/4 rounded-sm"></div></div></div></div><div class="bg-zinc-900 border border-zinc-800 p-6 rounded-3xl"><div class="flex items-center justify-between mb-6"><h4 class="font-bold flex items-center gap-2 text-sm"><iconify-icon icon="lucide:bar-chart-3" class="text-emerald-500"></iconify-icon>Energy Load Dynamics</h4><select class="bg-zinc-800 text-[10px] border-none rounded-lg px-2 py-1 outline-none text-zinc-400"><option>Fleet Wide</option><option>Zone A</option></select></div><div class="h-44 flex items-end gap-2 px-2 pb-4 border-b border-zinc-800"><div class="flex-1 bg-zinc-800 h-1/2"></div><div class="flex-1 bg-zinc-800 h-2/3"></div><div class="flex-1 bg-blue-500/40 h-3/4"></div><div class="flex-1 bg-blue-500/60 h-full"></div><div class="flex-1 bg-blue-500/80 h-5/6"></div><div class="flex-1 bg-zinc-800 h-2/3"></div></div><div class="mt-4 grid grid-cols-2 gap-4 text-center"><div class="bg-zinc-800/30 p-2 rounded-lg"><p class="text-[9px] text-zinc-500 uppercase">Total Drawn</p><p class="text-xs font-bold mono">1,420 kWh</p></div><div class="bg-zinc-800/30 p-2 rounded-lg"><p class="text-[9px] text-zinc-500 uppercase">Avg Load</p><p class="text-xs font-bold mono">24.8 kW</p></div></div></div></div></div><div class="col-span-12 xl:col-span-4 space-y-6 md:space-y-8"><!-- Alerts Feed --><div class="bg-zinc-900 border border-zinc-800 rounded-3xl overflow-hidden shadow-xl"><div class="p-6 border-b border-zinc-800 flex justify-between items-center"><h4 class="font-bold flex items-center gap-2 text-sm"><iconify-icon icon="lucide:bell" class="text-orange-500"></iconify-icon>Incident Pipeline</h4><a id="nav-link-incidents-archive" href="https://draft-44a88ff4-f8e6-4786-b0fb-f4c0d715673c.preview.r3xdec.design" class="text-[10px] text-blue-500 font-bold uppercase hover:underline">Archive</a></div><div class="divide-y divide-zinc-800/50 max-h-[400px] overflow-y-auto custom-scrollbar"><sd-component componentId="cf27b166-01ce-4e8b-8f1e-9541f16b0825" name="AlertItem" props='{"severity":"critical","title":"Critical Power Fault","time":"2m ago","description":"Unit #EV-9421 lost BMS heartbeats. Proximity: Sector 4.","alertHref":"https://draft-44a88ff4-f8e6-4786-b0fb-f4c0d715673c.preview.r3xdec.design"}'></sd-component><sd-component componentId="cf27b166-01ce-4e8b-8f1e-9541f16b0825" name="AlertItem" instance="alert-geo" props='{"severity":"warning","title":"Geo-Fencing Violation","time":"15m ago","description":"Asset #EV-1022 exited permit zone 42B.","alertHref":"https://draft-44a88ff4-f8e6-4786-b0fb-f4c0d715673c.preview.r3xdec.design"}'></sd-component></div></div><sd-component componentId="0d779fb5-eb09-4190-a33a-8662f7461576" name="UnitInspectorCard" props='{"unitId":"#EV-8824-X","isLive":true,"speed":18.4,"charge":74.2,"range":32.5,"statusText":"MOVING","statusColorClass":"text-blue-500","historyHref":"https://draft-426d0cca-3335-4692-a809-8b31b4dd2a07.preview.r3xdec.design"}'></sd-component><div class="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-3xl p-6 relative overflow-hidden group shadow-xl shadow-blue-900/10"><div class="absolute -bottom-4 -right-4 p-8 opacity-20 group-hover:scale-125 transition-transform duration-500"><iconify-icon icon="lucide:zap" class="text-8xl text-white"></iconify-icon></div><div class="relative z-10"><h4 class="text-white font-bold mb-1 text-sm">Predictive Revenue</h4><p class="text-blue-100 text-[11px] mb-4">Estimated for next 24 hours</p><div class="flex items-baseline gap-2 mb-4"><span class="text-2xl font-bold text-white mono">$12,482</span><span class="text-blue-200 text-[10px] font-bold">+14% EST</span></div><div class="h-1.5 w-full bg-white/20 rounded-full overflow-hidden"><div class="h-full bg-white w-2/3"></div></div></div></div></div></div></div></main></div></body></html>

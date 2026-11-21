@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faceted Plum Institutional — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500&family=Poppins:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#312439;
+  --text-primary:#312439;
+  --text-secondary:#FFFFFF;
+  --accent:#EBBE07;
+  --border:#FFFFFF;
+  --muted-panel:#DEDEDE;
+  --facet:#F0F0F0;
+  --black:#000000;
+  --base:11px;
+  --gap:16px;
+  --block:30px;
+  --section-padding:127px;
+  --panel-offset:63px;
+  --r-control:300px;
+  --r-card:15px;
+  --r-pill:300px;
+  --font-display:"Work Sans",system-ui,sans-serif;
+  --font-eyebrow:"Poppins",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:14px;
+  line-height:1.6;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.eyebrow{
+  font-family:var(--font-eyebrow);
+  font-weight:600;
+  font-size:13px;
+  line-height:1.4;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--accent);
+}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+iconify-icon{display:inline-block}
+
+/* Navbar */
+.nav{
+  width:100%;
+  height:157px;
+  background:var(--surface);
+  display:flex;
+  align-items:center;
+}
+.nav-inner{display:flex;align-items:center;gap:32px;width:100%}
+.logo{display:flex;align-items:center;gap:12px;color:var(--text-secondary);font-weight:300;font-size:22px;letter-spacing:.02em}
+.logo .mark{color:var(--accent);font-size:26px;line-height:1;transform:translateY(1px)}
+.nav-links{display:flex;gap:26px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.nav-links a{color:var(--text-secondary);text-decoration:none;font-weight:300;font-size:15px;opacity:.92}
+.nav-links a:hover{opacity:1}
+.nav-spacer{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav-util{color:var(--text-secondary);background:none;border:0;cursor:pointer;display:inline-flex;font-size:20px}
+.nav-cta{
+  background:var(--accent);
+  color:var(--text-secondary);
+  border:0;
+  border-radius:var(--r-control);
+  height:33px;
+  padding:6.4px 16px;
+  font-family:var(--font-display);
+  font-weight:400;
+  font-size:14px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;
+  white-space:nowrap;
+}
+.nav-cta:hover{opacity:.8}
+
+/* Hero */
+#hero{position:relative;overflow:hidden;background:var(--background)}
+.facets{position:absolute;inset:0;z-index:0;pointer-events:none}
+.facets svg{width:100%;height:100%;display:block}
+.hero-inner{position:relative;z-index:1;padding:120px 24px 140px;text-align:center;max-width:960px;margin:0 auto}
+.hero-inner .eyebrow{margin-bottom:24px}
+.hero-h{
+  font-family:var(--font-display);
+  font-weight:300;
+  font-size:64px;
+  line-height:1.23;
+  letter-spacing:-0.01em;
+  color:var(--text-primary);
+  max-width:12ch;
+  margin:0 auto 28px;
+}
+.hero-sub{font-size:16px;font-weight:300;max-width:52ch;margin:0 auto 40px;color:var(--text-primary)}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.btn-hero-amber{
+  background:var(--accent);color:var(--text-secondary);border:0;
+  border-radius:var(--r-control);height:38px;padding:11px 15px;
+  font-family:var(--font-display);font-weight:400;font-size:15px;
+  display:inline-flex;align-items:center;cursor:pointer;line-height:1;
+}
+.btn-hero-amber:hover{opacity:.8}
+.btn-hero-dark{
+  background:var(--black);color:var(--text-secondary);
+  border:1px solid rgb(255,255,255);
+  border-radius:var(--r-control);height:38px;padding:11px 15px;
+  font-family:var(--font-display);font-weight:400;font-size:15px;
+  display:inline-flex;align-items:center;cursor:pointer;line-height:1;
+}
+.btn-hero-dark:hover{opacity:.8}
+@media(max-width:768px){
+  .hero-h{font-size:44px}
+  .nav{height:auto;padding:20px 0}
+  .nav-inner{flex-wrap:wrap;gap:16px}
+}
+@media(max-width:640px){
+  .hero-h{font-size:34px}
+  .hero-inner{padding:72px 24px 90px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <div class="container nav-inner">
+    <a class="logo" href="#hero" aria-label="Decennial Group home">
+      <span class="mark" aria-hidden="true">◭</span>
+      <span>Decennial</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">About</a></li>
+      <li><a href="#palette">Practice</a></li>
+      <li><a href="#components">Work</a></li>
+      <li><a href="#composition">Insight</a></li>
+      <li><a href="#footer">Contact</a></li>
+    </ul>
+    <div class="nav-spacer">
+      <button class="nav-util" aria-label="Search"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-cta" type="button">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<section id="hero">
+  <div class="facets" aria-hidden="true">
+    <svg viewBox="0 0 1440 720" preserveAspectRatio="none" role="presentation">
+      <polygon points="0,0 620,0 0,520" fill="#F0F0F0"/>
+      <polygon points="1440,0 1440,600 780,0" fill="#F0F0F0"/>
+      <polygon points="0,720 480,720 0,360" fill="#F0F0F0"/>
+      <polygon points="1440,720 900,720 1440,300" fill="#F0F0F0"/>
+    </svg>
+  </div>
+  <div class="hero-inner">
+    <p class="eyebrow">Institutional advisory</p>
+    <h1 class="hero-h">Enduring counsel, built one decade at a time.</h1>
+    <p class="hero-sub">A light-dominant editorial system for an advisory firm that measures its work in generations — thin-weight type, deep plum panels, and one rationed amber for the moments that ask you to act.</p>
+    <div class="hero-ctas">
+      <button class="btn-hero-amber" type="button">Begin the engagement</button>
+      <button class="btn-hero-dark" type="button">See our approach</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{padding:96px 0}
+.section-head{margin-bottom:56px;max-width:720px}
+.section-head .eyebrow{margin-bottom:18px;display:block}
+.section-h{font-family:var(--font-display);font-weight:300;font-size:42px;line-height:1.31;color:var(--text-primary)}
+@media(max-width:640px){.section-h{font-size:30px}}
+.pal-group{margin-bottom:48px}
+.pal-group h3{font-family:var(--font-eyebrow);font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-primary);margin-bottom:20px}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.swatch{border:1px solid var(--muted-panel)}
+.swatch .chip{height:110px}
+.swatch .meta{padding:14px 16px}
+.swatch .name{font-weight:400;font-size:15px;color:var(--text-primary)}
+.swatch .val{font-family:var(--font-eyebrow);font-size:12px;letter-spacing:.06em;color:var(--text-primary);opacity:.7;margin-top:2px}
+.swatch .note{font-size:13px;color:var(--text-primary);opacity:.8;margin-top:8px;line-height:1.5}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+</style>
+<section id="palette">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The palette</span>
+      <h2 class="section-h">Two neutrals, one deep plum, and amber as punctuation.</h2>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#FFFFFF;border-bottom:1px solid var(--muted-panel)"></div>
+          <div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="note">The dominant surface — page ground and default field.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#312439"></div>
+          <div class="meta"><div class="name">Plum surface</div><div class="val">#312439</div><div class="note">Navbar, offset content panels, and footer.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#DEDEDE"></div>
+          <div class="meta"><div class="name">Muted panel</div><div class="val">#DEDEDE</div><div class="note">Light-gray fill beneath the email-capture band.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#F0F0F0"></div>
+          <div class="meta"><div class="name">Facet</div><div class="val">#F0F0F0</div><div class="note">Flat triangular section-break shapes over white.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#312439"></div>
+          <div class="meta"><div class="name">Text primary</div><div class="val">#312439</div><div class="note">Plum ink on white — body and headline on light grounds.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#312439;display:flex;align-items:flex-end;padding:12px"><span style="color:#FFFFFF;font-size:15px">Aa</span></div>
+          <div class="meta"><div class="name">Text on plum</div><div class="val">#FFFFFF</div><div class="note">White type set against plum panels and navbar.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <div class="chip" style="background:#EBBE07;display:flex;align-items:flex-end;padding:12px"><span style="color:#312439;font-size:15px">Aa</span></div>
+          <div class="meta"><div class="name">Amber</div><div class="val">#EBBE07</div><div class="note">Rationed to CTAs, eyebrows, and accordion carets — under 1% of pixels.</div></div>
+        </div>
+        <div class="swatch">
+          <div class="chip" style="background:#000000;display:flex;align-items:flex-end;padding:12px"><span style="color:#FFFFFF;font-size:15px">Aa</span></div>
+          <div class="meta"><div class="name">Near-black</div><div class="val">#000000</div><div class="note">Secondary-emphasis dark fill on the bordered hero button.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:96px 0;background:var(--background)}
+.spec{padding:32px 0;border-bottom:1px solid var(--muted-panel)}
+.spec:last-child{border-bottom:0}
+.spec .demo{color:var(--text-primary)}
+.spec .metrics{font-family:var(--font-eyebrow);font-size:12px;letter-spacing:.06em;color:var(--text-primary);opacity:.7;margin-top:16px}
+.d-lg{font-weight:300;font-size:64px;line-height:1.23}
+.h-md{font-weight:300;font-size:42px;line-height:1.31}
+.l-md{font-weight:300;font-size:27px;line-height:1.36}
+.b-md{font-weight:400;font-size:14px;line-height:1.6;max-width:60ch}
+.ey-demo{font-family:var(--font-eyebrow);font-weight:600;font-size:13px;line-height:1.4;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.ramp{display:flex;gap:32px;flex-wrap:wrap;margin-top:12px}
+.ramp span{font-size:34px;line-height:1;color:var(--text-primary)}
+@media(max-width:640px){.d-lg{font-size:36px}.h-md{font-size:28px}.l-md{font-size:22px}}
+</style>
+<section id="type-scale">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The type scale</span>
+      <h2 class="section-h">Thin-weight Work Sans, with Poppins for the eyebrow.</h2>
+    </div>
+
+    <div class="spec">
+      <div class="demo d-lg">Enduring counsel, built one decade at a time.</div>
+      <div class="metrics">display-lg · Work Sans · 64px · 300 · 1.23</div>
+    </div>
+    <div class="spec">
+      <div class="demo h-md">Advisory that measures work in generations.</div>
+      <div class="metrics">headline-md · Work Sans · 42px · 300 · 1.31</div>
+    </div>
+    <div class="spec">
+      <div class="demo l-md">A distinct mid-weight label and subhead size.</div>
+      <div class="metrics">label-md · Work Sans · 27px · 300 · 1.36</div>
+    </div>
+    <div class="spec">
+      <div class="demo b-md">Body copy drops to fourteen pixels, dense and legible in plum ink against white. It carries the detail of every engagement — the notes, the caveats, the quiet precision that institutional clients depend on across long horizons.</div>
+      <div class="metrics">body-md · Work Sans · 14px · 400 · 1.6</div>
+    </div>
+    <div class="spec">
+      <div class="ey-demo">Institutional advisory</div>
+      <div class="metrics">accent-eyebrow · Poppins · 13px · 600 · 1.4 · all-caps</div>
+    </div>
+    <div class="spec">
+      <div class="metrics" style="margin-top:0;margin-bottom:8px">Weight ramp — Work Sans</div>
+      <div class="ramp">
+        <span style="font-weight:300">Light 300</span>
+        <span style="font-weight:400">Regular 400</span>
+        <span style="font-weight:500">Medium 500</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:96px 0;background:var(--background)}
+.comp-block{margin-bottom:80px}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;margin-bottom:24px;border-bottom:1px solid var(--muted-panel);padding-bottom:14px}
+.comp-head h3{font-family:var(--font-display);font-weight:300;font-size:27px;line-height:1.36;color:var(--text-primary)}
+.comp-head .count{font-family:var(--font-eyebrow);font-size:12px;letter-spacing:.08em;color:var(--text-primary);opacity:.6;text-transform:uppercase}
+.spec-card{
+  font-family:var(--font-eyebrow);font-size:11px;line-height:1.7;letter-spacing:.03em;
+  color:var(--text-primary);opacity:.75;background:#F7F7F7;border-left:2px solid var(--accent);
+  padding:14px 16px;margin-top:20px;
+}
+.spec-card b{opacity:.95;font-weight:600}
+
+/* nav demo */
+.nav-demo{background:var(--surface);padding:0 24px;height:157px;display:flex;align-items:center}
+.nav-demo .nav-inner{width:100%}
+@media(max-width:768px){.nav-demo{height:auto;padding:20px 24px}}
+
+/* buttons matrix */
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:16px;text-align:left;border-bottom:1px solid var(--muted-panel);vertical-align:middle}
+.matrix th{font-family:var(--font-eyebrow);font-size:11px;letter-spacing:.1em;text-transform:uppercase;opacity:.6;font-weight:600}
+.matrix td:first-child{font-family:var(--font-eyebrow);font-size:11px;letter-spacing:.06em;text-transform:uppercase;opacity:.7}
+.b-amber{background:var(--accent);color:#fff;border:0;border-radius:var(--r-control);height:38px;padding:11px 15px;font-family:var(--font-display);font-size:15px;cursor:pointer;line-height:1}
+.b-dark{background:#000;color:#fff;border:1px solid #fff;border-radius:var(--r-control);height:38px;padding:11px 15px;font-family:var(--font-display);font-size:15px;cursor:pointer;line-height:1}
+.b-large{background:var(--accent);color:#fff;border:0;border-radius:var(--r-control);height:63px;padding:0 16px;font-family:var(--font-display);font-size:16px;cursor:pointer}
+.b-navc{background:var(--accent);color:#fff;border:0;border-radius:var(--r-control);height:33px;padding:6.4px 16px;font-family:var(--font-display);font-size:14px;cursor:pointer;line-height:1}
+.st-hover{opacity:.8}
+.st-disabled{opacity:.35;cursor:not-allowed}
+.matrix td:nth-child(4) .b-dark,.matrix td:nth-child(4) .b-amber{border-color:#fff}
+.dark-cell{background:var(--surface);border:1px dashed rgba(255,255,255,.25);color:#fff;padding:8px;display:inline-block}
+
+/* photo/panel band */
+.band{position:relative;padding:0 57.6px;margin-bottom:40px}
+.band-inner{position:relative;min-height:360px}
+.band-photo{width:58%;height:300px;overflow:hidden;background:linear-gradient(160deg,#9fb8c8,#c9d6dd);display:flex;align-items:flex-end}
+.band-photo svg{width:100%;height:100%;display:block}
+.band-cap{font-size:13px;opacity:.8;margin-top:12px;max-width:52%}
+.plum-panel{
+  position:absolute;right:0;bottom:0;width:46%;background:var(--surface);
+  color:#fff;padding:63px;border-radius:0;
+}
+.plum-panel .eyebrow{margin-bottom:16px;display:block}
+.plum-panel h4{font-family:var(--font-display);font-weight:300;font-size:27px;line-height:1.36;color:#fff;margin-bottom:14px}
+.plum-panel p{font-size:14px;line-height:1.6;color:#fff;opacity:.92}
+.band.inverted{}
+.band.inverted .band-photo{margin-left:42%}
+.band.inverted .band-cap{margin-left:42%}
+.band.inverted .plum-panel{right:auto;left:0}
+@media(max-width:768px){
+  .band{padding:0}
+  .band-photo{width:100%}
+  .plum-panel{position:static;width:100%;padding:32px;margin-top:-40px}
+  .band.inverted .band-photo,.band.inverted .band-cap{margin-left:0}
+}
+
+/* accordion */
+.acc{border-top:1px solid var(--surface)}
+.acc-row{border-bottom:1px solid var(--surface)}
+.acc-btn{width:100%;background:transparent;border:0;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--font-display);font-weight:300;font-size:27px;line-height:1.36;color:var(--text-primary);text-align:left}
+.acc-caret{color:var(--accent);border-radius:var(--r-control);font-size:24px;display:inline-flex;transition:transform .25s cubic-bezier(0.2,0.6,0.3,1)}
+.acc-row[open] .acc-caret{transform:rotate(180deg)}
+.acc-body{padding:0 0 24px;font-size:14px;line-height:1.6;max-width:64ch;opacity:.9}
+.acc-row:not([open]) .acc-body{display:none}
+
+/* email capture */
+.email-band{background:var(--muted-panel);position:relative;overflow:hidden;padding:96px 24px;text-align:center;margin-top:20px}
+.honey{position:absolute;inset:0;opacity:.35;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'><g fill='none' stroke='%23bcbcbc' stroke-width='1'><path d='M28 0 L56 16 L56 50 L28 66 L0 50 L0 16 Z'/><path d='M28 34 L56 50 L56 84 L28 100 L0 84 L0 50 Z'/></g></svg>");background-size:56px 100px}
+.email-inner{position:relative;max-width:640px;margin:0 auto}
+.email-inner h4{font-family:var(--font-display);font-weight:300;font-size:42px;line-height:1.31;color:var(--text-primary);margin-bottom:16px}
+.email-inner p{font-size:14px;line-height:1.6;color:var(--text-primary);margin-bottom:24px}
+.email-link{color:var(--text-primary);text-decoration:underline;font-size:16px;font-weight:400}
+@media(max-width:640px){.email-inner h4{font-size:28px}}
+</style>
+<section id="components">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">The inventory</span>
+      <h2 class="section-h">Every measured family, rendered as living UI.</h2>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <div class="comp-block" data-tier-a-component="navbar">
+    <div class="container">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · 157px · edge-to-edge</span></div>
+    </div>
+    <nav class="nav-demo" aria-label="Navbar specimen">
+      <div class="nav-inner">
+        <a class="logo" href="#components" aria-label="Decennial Group">
+          <span class="mark" aria-hidden="true">◭</span><span>Decennial</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#components">About</a></li>
+          <li><a href="#components">Practice</a></li>
+          <li><a href="#components">Work</a></li>
+          <li><a href="#components">Insight</a></li>
+          <li><a href="#components">Careers</a></li>
+        </ul>
+        <div class="nav-spacer">
+          <button class="nav-util" aria-label="Search"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></button>
+          <button class="nav-cta" type="button">Start a conversation</button>
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="spec-card"><b>navbar</b> · background surface #312439 · height 157 · width 100% · radius 0 · <b>button-nav-cta</b> fill accent · text text-secondary · radius r-control 300 · height 33 · pad 6.4/16</div>
+    </div>
+  </div>
+
+  <!-- Buttons matrix -->
+  <div class="comp-block" data-tier-a-component="button-hero-primary-amber">
+    <div class="container">
+      <div class="comp-head"><h3>Buttons — variant × state</h3><span class="count">amber pill outranks the dark button</span></div>
+      <div style="overflow-x:auto">
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr data-tier-a-component="button-hero-primary-amber">
+            <td>Hero primary (amber)</td>
+            <td><button class="b-amber" type="button">Begin the engagement</button></td>
+            <td><button class="b-amber st-hover" type="button">Begin the engagement</button></td>
+            <td><button class="b-amber st-disabled" type="button" disabled>Begin the engagement</button></td>
+          </tr>
+          <tr data-tier-a-component="button-hero-primary-dark">
+            <td>Hero primary (dark)</td>
+            <td><button class="b-dark" type="button">See our approach</button></td>
+            <td><button class="b-dark st-hover" type="button">See our approach</button></td>
+            <td><button class="b-dark st-disabled" type="button" disabled>See our approach</button></td>
+          </tr>
+          <tr data-tier-a-component="button-midpage-large">
+            <td>Mid-page large</td>
+            <td><button class="b-large" type="button">Request advisory</button></td>
+            <td><button class="b-large st-hover" type="button">Request advisory</button></td>
+            <td><button class="b-large st-disabled" type="button" disabled>Request advisory</button></td>
+          </tr>
+          <tr>
+            <td>Nav CTA</td>
+            <td><button class="b-navc" type="button">Start a conversation</button></td>
+            <td><button class="b-navc st-hover" type="button">Start a conversation</button></td>
+            <td><button class="b-navc st-disabled" type="button" disabled>Start a conversation</button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="spec-card"><b>button-secondary-hero</b> fill accent · text text-secondary · radius r-control 300 · height 38 · pad 11/15 · hover opacity .8 — highest-emphasis first-screen CTA<br><b>button-primary-hero</b> fill #000 · text #fff · border 1px solid #fff · radius 300 · height 38 · pad 11/15 · hover opacity .8<br><b>button-midpage-large</b> fill accent · radius 300 · height 63 · pad 0/16 · used once<br>disabled derived from opacity ladder</div>
+    </div>
+  </div>
+
+  <!-- Photo/panel band + plum panel -->
+  <div class="comp-block" data-tier-a-component="photo-panel-band">
+    <div class="container">
+      <div class="comp-head"><h3>Full-width photo / panel band</h3><span class="count">×3 · recurring content pattern</span></div>
+    </div>
+
+    <div class="band">
+      <div class="band-inner">
+        <div class="band-photo" role="img" aria-label="Building exterior against open sky">
+          <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="600" height="300" fill="#a9c2d1"/>
+            <polygon points="0,300 180,90 360,300" fill="#7f95a3"/>
+            <polygon points="300,300 460,140 600,300" fill="#6d8390"/>
+            <rect x="120" y="150" width="360" height="150" fill="#5c6f7b"/>
+          </svg>
+        </div>
+        <p class="band-cap">Our headquarters on the harbour — where a century of institutional relationships are held and renewed.</p>
+        <div class="plum-panel" data-tier-a-component="panel-plum-offset">
+          <span class="eyebrow">Our practice</span>
+          <h4>Depth without shadow.</h4>
+          <p>A deep-plum block, offset over the photograph by roughly a third. Flat overlap creates the only sense of layering in the system.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="band inverted">
+      <div class="band-inner">
+        <div class="band-photo" role="img" aria-label="Glass tower under a clear morning sky">
+          <svg viewBox="0 0 600 300" preserveAspectRatio="none" aria-hidden="true">
+            <rect width="600" height="300" fill="#bcd0d9"/>
+            <rect x="200" y="40" width="200" height="260" fill="#7a909c"/>
+            <rect x="220" y="60" width="60" height="220" fill="#95a9b4"/>
+            <polygon points="0,300 150,150 260,300" fill="#8ba0ab"/>
+          </svg>
+        </div>
+        <p class="band-cap">A second engagement, positions inverted — image and panel staggered along the opposing diagonal.</p>
+        <div class="plum-panel" data-tier-a-component="panel-plum-offset">
+          <span class="eyebrow">The approach</span>
+          <h4>Alternating rhythm.</h4>
+          <p>The offset panel flips left and right between sections, keeping the Z-pattern reading path deliberate and unhurried.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="spec-card"><b>card-full-panel</b> background transparent · radius 0 · pad 0/57.6 · image ~58% width · photography untouched<br><b>panel-plum</b> fill surface #312439 · radius 0 · pad panel-offset 63 · eyebrow accent-eyebrow · headline Work Sans 300 · overlap ~1/3 · alternates L/R</div>
+    </div>
+  </div>
+
+  <!-- Accordion -->
+  <div class="comp-block" data-tier-a-component="accordion-disclosure-list">
+    <div class="container">
+      <div class="comp-head"><h3>Accordion / disclosure list</h3><span class="count">×2 · stacks of 3 rows</span></div>
+      <div class="acc">
+        <details class="acc-row" open>
+          <summary class="acc-btn">Integrity<span class="acc-caret" aria-hidden="true"><iconify-icon icon="lucide:chevron-down"></iconify-icon></span></summary>
+          <div class="acc-body">We hold institutional confidences the way our clients hold their own — as a duty measured in decades, not quarters.</div>
+        </details>
+        <details class="acc-row">
+          <summary class="acc-btn">Equity<span class="acc-caret" aria-hidden="true"><iconify-icon icon="lucide:chevron-down"></iconify-icon></span></summary>
+          <div class="acc-body">Counsel that serves every stakeholder in the room, and the generations of stakeholders yet to enter it.</div>
+        </details>
+        <details class="acc-row">
+          <summary class="acc-btn">Ingenuity<span class="acc-caret" aria-hidden="true"><iconify-icon icon="lucide:chevron-down"></iconify-icon></span></summary>
+          <div class="acc-body">Restraint is not the absence of imagination — it is imagination disciplined by consequence.</div>
+        </details>
+      </div>
+      <div class="spec-card"><b>card-accordion</b> background transparent · radius 0 · pad 0 · bottom-border 1px #312439 · label Work Sans 300 · caret accent radius r-control 300 · motion 0.25s cubic-bezier(0.2,0.6,0.3,1)</div>
+    </div>
+  </div>
+
+  <!-- Email capture band -->
+  <div class="comp-block" data-tier-a-component="email-capture-band">
+    <div class="container">
+      <div class="comp-head"><h3>Email-capture band</h3><span class="count">×1 · only textured surface</span></div>
+    </div>
+    <div class="email-band">
+      <div class="honey" aria-hidden="true"></div>
+      <div class="email-inner">
+        <h4>Speak with an advisor.</h4>
+        <p>No form, no funnel — just a direct line to the partners who will steward your engagement.</p>
+        <a class="email-link" href="mailto:advisory@decennialgroup.com">advisory@decennialgroup.com</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="spec-card"><b>email-capture-band</b> full-bleed fill muted-panel #DEDEDE · honeycomb line-texture low contrast · headline Work Sans 300 42 · CTA underlined mailto link — no button · preceded by faceted section break</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:96px 0;background:var(--background)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.depth-card .box{border:1px solid var(--muted-panel);background:#fff;padding:28px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.depth-card .box h4{font-family:var(--font-display);font-weight:300;font-size:27px;color:var(--text-primary)}
+.depth-card .meta{font-family:var(--font-eyebrow);font-size:12px;letter-spacing:.06em;opacity:.7;margin-top:12px}
+.r0{border-radius:0}
+.rpill{border-radius:var(--r-control);align-items:center;justify-content:center;text-align:center}
+.plumbox{background:var(--surface);color:#fff;border:0}
+.plumbox h4{color:#fff}
+.depth-note{max-width:60ch;margin-top:32px;font-size:14px;line-height:1.6;opacity:.85}
+</style>
+<section id="surface-depth">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Surface &amp; depth</span>
+      <h2 class="section-h">Radius is binary. Depth is overlap, never shadow.</h2>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card">
+        <div class="box r0"><h4>Square panel</h4></div>
+        <div class="meta">radius 0px · every panel, image, card</div>
+      </div>
+      <div class="depth-card">
+        <div class="box r0 plumbox"><h4>Plum block</h4></div>
+        <div class="meta">surface #312439 · radius 0px · no shadow</div>
+      </div>
+      <div class="depth-card">
+        <div class="box rpill" style="min-height:76px"><h4 style="font-size:20px">Pill control</h4></div>
+        <div class="meta">radius r-control 300px · buttons &amp; caret only</div>
+      </div>
+    </div>
+    <p class="depth-note">There is no drop shadow, blur, or glass anywhere in this system. Layering is achieved solely through the flat plum panel overlapping the photograph beneath it — flat color-block contrast standing in for elevation.</p>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:96px 0;background:var(--background)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.motion-card{border:1px solid var(--muted-panel);padding:28px}
+.motion-card h4{font-family:var(--font-display);font-weight:300;font-size:20px;margin-bottom:20px}
+.mover{width:44px;height:44px;background:var(--surface);border-radius:0}
+.mover.amber{background:var(--accent)}
+.play{margin-top:20px;background:transparent;border:1px solid var(--surface);color:var(--text-primary);border-radius:var(--r-control);height:33px;padding:6.4px 16px;font-family:var(--font-display);font-size:13px;cursor:pointer}
+.play:hover{opacity:.8}
+.m-fade{transition:opacity .6s ease}
+.m-fade.run{opacity:.15}
+.m-slide{transition:transform .6s ease,opacity .6s ease}
+.m-slide.run{transform:translateX(120px);opacity:.3}
+.m-snap{transition:transform .25s cubic-bezier(0.2,0.6,0.3,1)}
+.m-snap.run{transform:translateX(120px)}
+.motion-card .meta{font-family:var(--font-eyebrow);font-size:12px;letter-spacing:.06em;opacity:.7;margin-top:16px}
+@media(prefers-reduced-motion:reduce){.m-fade,.m-slide,.m-snap{transition:none!important}}
+</style>
+<section id="motion">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Motion</span>
+      <h2 class="section-h">Slow entrances, snappy feedback — no overshoot.</h2>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Content fade</h4>
+        <div class="mover m-fade" aria-hidden="true"></div>
+        <button class="play" data-run="m-fade" type="button">Replay</button>
+        <div class="meta">opacity · 0.6s · ease</div>
+      </div>
+      <div class="motion-card">
+        <h4>Reveal entrance</h4>
+        <div class="mover m-slide" aria-hidden="true"></div>
+        <button class="play" data-run="m-slide" type="button">Replay</button>
+        <div class="meta">transform, opacity · 0.6s · ease</div>
+      </div>
+      <div class="motion-card">
+        <h4>Direct feedback</h4>
+        <div class="mover amber m-snap" aria-hidden="true"></div>
+        <button class="play" data-run="m-snap" type="button">Replay</button>
+        <div class="meta">transform · 0.25s · cubic-bezier(0.2,0.6,0.3,1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:96px 0;background:var(--background)}
+.mock{border:1px solid var(--muted-panel);overflow:hidden}
+.mock-nav{background:var(--surface);padding:18px 28px;display:flex;align-items:center;gap:24px}
+.mock-nav .logo{font-size:18px}
+.mock-nav .mock-links{margin-left:auto;display:flex;gap:20px}
+.mock-nav .mock-links a{color:#fff;text-decoration:none;font-size:13px;font-weight:300;opacity:.9}
+.mock-nav .b-navc{margin-left:8px}
+.mock-hero{position:relative;overflow:hidden;background:#fff;padding:64px 28px;text-align:center}
+.mock-hero svg{position:absolute;inset:0;width:100%;height:100%;z-index:0}
+.mock-hero .in{position:relative;z-index:1}
+.mock-hero .eyebrow{display:block;margin-bottom:14px}
+.mock-hero h3{font-family:var(--font-display);font-weight:300;font-size:38px;line-height:1.23;max-width:16ch;margin:0 auto 22px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.mock-card{padding:40px 28px;border-right:1px solid var(--muted-panel)}
+.mock-card:last-child{border-right:0}
+.mock-card .eyebrow{display:block;margin-bottom:12px}
+.mock-card h4{font-family:var(--font-display);font-weight:300;font-size:22px;margin-bottom:10px}
+.mock-card p{font-size:13px;line-height:1.6;opacity:.85}
+.mock-cta{background:var(--surface);color:#fff;padding:56px 28px;text-align:center}
+.mock-cta h3{font-family:var(--font-display);font-weight:300;font-size:32px;line-height:1.31;margin-bottom:24px;color:#fff}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-card{border-right:0;border-bottom:1px solid var(--muted-panel)}.mock-hero h3{font-size:28px}}
+</style>
+<section id="composition">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">In composition</span>
+      <h2 class="section-h">The system, assembled into one screen.</h2>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo"><span class="mark" aria-hidden="true">◭</span>&nbsp;Decennial</span>
+        <div class="mock-links">
+          <a href="#composition">Practice</a>
+          <a href="#composition">Work</a>
+          <a href="#composition">Insight</a>
+          <button class="b-navc" type="button">Start a conversation</button>
+        </div>
+      </div>
+      <div class="mock-hero">
+        <svg viewBox="0 0 1200 400" preserveAspectRatio="none" aria-hidden="true">
+          <polygon points="0,0 420,0 0,340" fill="#F0F0F0"/>
+          <polygon points="1200,0 1200,300 760,0" fill="#F0F0F0"/>
+          <polygon points="1200,400 720,400 1200,140" fill="#F0F0F0"/>
+        </svg>
+        <div class="in">
+          <span class="eyebrow">Institutional advisory</span>
+          <h3>Counsel measured in generations.</h3>
+          <button class="btn-hero-amber" type="button">Begin the engagement</button>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card">
+          <span class="eyebrow">Governance</span>
+          <h4>Board advisory</h4>
+          <p>Structuring durable governance for institutions that outlast their founders.</p>
+        </div>
+        <div class="mock-card">
+          <span class="eyebrow">Capital</span>
+          <h4>Long-horizon strategy</h4>
+          <p>Allocation frameworks built for decades of stewardship rather than cycles.</p>
+        </div>
+        <div class="mock-card">
+          <span class="eyebrow">Legacy</span>
+          <h4>Succession</h4>
+          <p>Quiet, disciplined transitions that preserve institutional memory intact.</p>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <h3>Ready to begin a longer conversation?</h3>
+        <button class="b-large" type="button">Request advisory</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface);color:#fff;padding:80px 0 32px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:56px}
+.foot-logo{font-family:var(--font-display);font-weight:300;font-size:26px;display:flex;align-items:center;gap:12px;margin-bottom:16px}
+.foot-logo .mark{color:var(--accent)}
+#footer .eyebrow{display:block;margin-bottom:14px}
+#footer p,#footer a{color:#fff;font-size:14px;line-height:1.7}
+#footer a{text-decoration:none;opacity:.9;display:block}
+#footer a:hover{opacity:1;text-decoration:underline}
+.foot-social{display:flex;gap:14px;margin-top:10px;font-size:20px}
+.foot-bottom{background:#fff;color:var(--text-primary);margin:0 -24px -32px;padding:20px 24px;font-size:13px}
+.foot-bottom .container{padding:0}
+@media(max-width:768px){.foot-grid{grid-template-columns:1fr}}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo"><span class="mark" aria-hidden="true">◭</span> Decennial Group</div>
+        <p>Enduring counsel, built one decade at a time.</p>
+      </div>
+      <div>
+        <span class="eyebrow">Locations</span>
+        <p>1 Harbour Court<br>New York, NY 10004<br>United States</p>
+      </div>
+      <div>
+        <span class="eyebrow">Connect</span>
+        <a href="mailto:advisory@decennialgroup.com">advisory@decennialgroup.com</a>
+        <a href="#footer">Insight</a>
+        <div class="foot-social">
+          <a href="#footer" aria-label="LinkedIn" style="display:inline"><iconify-icon icon="lucide:linkedin"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div class="container">© Decennial Group · <a href="https://decennialgroup.com/" style="display:inline;text-decoration:underline">decennialgroup.com</a> · Design system captured and rendered by r3xdec.design</div>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('.play').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.querySelector('.'+btn.dataset.run);
+    if(!el)return;
+    el.classList.remove('run');
+    void el.offsetWidth;
+    el.classList.add('run');
+    setTimeout(function(){el.classList.remove('run');},800);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep-space glass orbit — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Space+Grotesk:wght@400;500;700&family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#FFFFFF;
+  --surface-muted:#F5F5F5;
+  --text-primary:#16181C;
+  --text-on-dark:#FFFFFF;
+  --accent-deep-blue:#0E1A3A;
+  --brand-navy:#001F5D;
+  --accent-blue:#2C52A2;
+  --accent-bright:#1A52DC;
+  --danger:#FB2C36;
+  --status-orange:#FFB86A;
+
+  --r-control:8px;
+  --r-card-soft:20px;
+  --r-card-tight:12px;
+  --r-square:4px;
+  --r-pill:24px;
+  --r-triptych:19.2px;
+
+  --base:8px;
+  --gap:40px;
+  --small-gap:12px;
+  --section-padding:40px;
+
+  --font-display:"DM Sans",system-ui,sans-serif;
+  --font-body:"Geist",system-ui,sans-serif;
+  --font-mono:"Space Grotesk",monospace;
+
+  --shadow-float:rgba(0,0,0,0.18) 0px 24px 48px -20px;
+  --shadow-brand:rgba(0,19,75,0.32) 0px 8px 24px 0px;
+
+  --ease-spring:cubic-bezier(0.2,0.65,0.3,1);
+  --ease-settle:cubic-bezier(0.22,0.61,0.36,1);
+  --ease-util:cubic-bezier(0.4,0,0.2,1);
+
+  --star:radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,.7), transparent),radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,.5), transparent),radial-gradient(1px 1px at 80% 20%, rgba(255,255,255,.6), transparent),radial-gradient(1px 1px at 35% 80%, rgba(255,255,255,.4), transparent),radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,.5), transparent),radial-gradient(1px 1px at 10% 55%, rgba(255,255,255,.4), transparent);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--background);color:var(--text-primary);font-family:var(--font-body);font-size:16px;line-height:1.4;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:400;margin:0}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.wrap{max-width:1300px;margin:0 auto;padding:0 24px}
+iconify-icon{display:inline-block}
+
+/* NAVBAR */
+.navbar{position:sticky;top:0;z-index:50;height:98px;width:100%;background:transparent;border-radius:0;display:flex;align-items:center}
+.navbar.scrolled{backdrop-filter:blur(15px);background:rgba(0,31,93,.55)}
+.nav-inner{max-width:1300px;margin:0 auto;width:100%;padding:0 24px;display:flex;align-items:center;gap:24px}
+.nav-logo{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-.5px;color:var(--text-on-dark)}
+.nav-links{display:flex;gap:22px;margin-left:24px;list-style:none;padding:0}
+.nav-links a{color:rgba(255,255,255,.82);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:4px;transition:color .3s var(--ease-util)}
+.nav-links a:hover{color:#fff}
+.nav-spacer{flex:1}
+.nav-utility{background:transparent;color:#fff;border:0;border-radius:0;height:41px;padding:8px 13.6px;font-family:var(--font-body);font-size:15px;cursor:pointer;transition:color .3s var(--ease-util)}
+.nav-utility:hover{color:#fff}
+.nav-cta{height:54px;border:0;border-radius:8px;padding:0 22px;font-family:var(--font-display);font-weight:500;font-size:15px;color:var(--brand-navy);cursor:pointer;background:linear-gradient(90deg,#e9eefc 0%,#e9eefc 100%)}
+@media(max-width:768px){.nav-links{display:none}.navbar{height:72px}}
+
+/* HERO */
+#hero{position:relative;background:var(--accent-deep-blue);overflow:hidden;color:var(--text-on-dark);margin-top:-98px;padding-top:98px}
+#hero .stars{position:absolute;inset:0;background-image:var(--star);background-size:400px 400px;opacity:.9}
+#hero .orb{position:absolute;border-radius:50%;filter:blur(.2px)}
+.orb-a{width:420px;height:420px;right:-60px;top:120px;background:radial-gradient(120% 140% at 30% 25%,#4a6fd6 0%,#1c3fae 30%,#0a1442 60%,#04061c 100%);box-shadow:var(--shadow-brand)}
+.orb-b{width:220px;height:220px;right:220px;bottom:-70px;background:radial-gradient(120% 140% at 25% 20%,#6f8de0 0%,#2c52a2 40%,#0a1442 100%)}
+.orb-c{width:120px;height:120px;right:60px;bottom:120px;background:radial-gradient(120% 140% at 30% 25%,#8aa4e6 0%,#2c52a2 50%,#0e1a3a 100%)}
+.hero-content{position:relative;z-index:2;padding:120px 0 160px}
+.hero-eyebrow{font-family:var(--font-body);text-transform:uppercase;letter-spacing:.18em;font-size:13px;color:var(--status-orange);margin-bottom:20px}
+.hero-h1{font-family:var(--font-display);font-size:72px;line-height:1.15;letter-spacing:-1.8px;max-width:640px}
+.hero-sub{font-family:var(--font-body);font-size:18px;line-height:1.5;color:rgba(255,255,255,.78);max-width:440px;margin:24px 0 36px}
+.hero-primary{height:44px;border:0;border-radius:6px;background:var(--accent-deep-blue);color:#fff;font-family:var(--font-display);font-weight:500;font-size:16px;padding:0 26px;cursor:pointer;box-shadow:0 0 0 1px rgba(255,255,255,.25);transition:transform .42s var(--ease-spring)}
+.hero-primary:hover{transform:translateY(-2px)}
+.hero-secondary{height:44px;border:0;border-radius:0;background:transparent;color:#fff;font-family:var(--font-body);font-size:15px;padding:0 12px;cursor:pointer;transition:color .3s var(--ease-util)}
+.hero-secondary:hover{color:var(--status-orange)}
+.hero-actions{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+@media(max-width:768px){.hero-h1{font-size:44px;letter-spacing:-1px}.orb-a{width:260px;height:260px}}
+@media(max-width:640px){.hero-h1{font-size:34px}}
+</style>
+</head>
+<body>
+
+<header class="navbar" id="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">Nebusec</span>
+    <ul class="nav-links">
+      <li><a href="#components">Platform <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#composition">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a></li>
+      <li><a href="#palette">Research</a></li>
+      <li><a href="#type-scale">Docs</a></li>
+    </ul>
+    <span class="nav-spacer"></span>
+    <button class="nav-utility" data-tier-a-component="button-nav-utility">Sign in</button>
+    <button class="nav-utility">Contact</button>
+    <button class="nav-cta" data-tier-a-component="button-nav-cta">Request access</button>
+  </div>
+</header>
+
+<main>
+<section id="hero" aria-label="Hero">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="orb orb-a" aria-hidden="true"></div>
+  <div class="orb orb-b" aria-hidden="true"></div>
+  <div class="orb orb-c" aria-hidden="true"></div>
+  <div class="wrap hero-content">
+    <p class="hero-eyebrow">Orbital security intelligence</p>
+    <h1 class="hero-h1">Security that reaches every orbit of your stack.</h1>
+    <p class="hero-sub">Nebusec maps the whole surface — from ground systems to the outermost edge — and keeps watch across every band of your infrastructure.</p>
+    <div class="hero-actions">
+      <button class="hero-primary" data-tier-a-component="button-hero-primary">Launch a demo</button>
+      <button class="hero-secondary">Read the brief <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface-muted);padding:96px 0}
+.sec-head{margin-bottom:48px}
+.sec-eyebrow{font-family:var(--font-body);text-transform:uppercase;letter-spacing:.16em;font-size:12px;color:var(--accent-blue);margin-bottom:14px}
+.sec-title{font-family:var(--font-display);font-size:56px;line-height:1.1;letter-spacing:-1.1px}
+.sec-lead{font-family:var(--font-body);font-size:18px;color:#4a4d55;max-width:560px;margin-top:16px}
+@media(max-width:768px){.sec-title{font-size:38px;letter-spacing:-.6px}}
+@media(max-width:640px){.sec-title{font-size:30px}}
+.pal-group{margin-bottom:44px}
+.pal-group h3{font-family:var(--font-body);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:#6a6d75;margin-bottom:18px}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
+.sw{border-radius:var(--r-card-tight);overflow:hidden;background:#fff;box-shadow:var(--shadow-float)}
+.sw .chip{height:96px;position:relative}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.sw .meta{padding:14px 16px}
+.sw .name{font-family:var(--font-body);font-weight:600;font-size:14px;margin-bottom:4px}
+.sw .val{font-family:var(--font-mono);font-size:13px;color:#5a5d65}
+.sw .note{font-family:var(--font-body);font-size:13px;color:#6a6d75;margin-top:8px;line-height:1.35}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Colour</p>
+      <h2 class="sec-title">A near-black field, a bright white bed.</h2>
+      <p class="sec-lead">Roughly a quarter cosmic navy, more than half flat white. Blue is rationed to interior detail; red and orange are held strictly for status.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip" style="background:#FFFFFF;box-shadow:inset 0 0 0 1px #e3e3e3"></div><div class="meta"><div class="name">Surface</div><div class="val">#FFFFFF</div><div class="note">Dominant surface — the entire mid-page proof and card system.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#F5F5F5;box-shadow:inset 0 0 0 1px #e3e3e3"></div><div class="meta"><div class="name">Surface muted</div><div class="val">#F5F5F5</div><div class="note">Section beds beneath light utility panels.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#001F5D"></div><div class="meta"><div class="name">Brand navy</div><div class="val">#001F5D</div><div class="note">Hero, section breaks, footer — cosmic brand register.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#0E1A3A"></div><div class="meta"><div class="name">Deep blue</div><div class="val">#0E1A3A</div><div class="note">Darker cosmic relative; hero primary CTA fill.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip" style="background:#16181C"></div><div class="meta"><div class="name">Text primary</div><div class="val">#16181C</div><div class="note">Ink on light surfaces.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#001F5D"></div><div class="meta"><div class="name">Text on dark</div><div class="val">#FFFFFF</div><div class="note">All copy over cosmic bands.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents & status</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip" style="background:#2C52A2"></div><div class="meta"><div class="name">Accent blue</div><div class="val">#2C52A2</div><div class="note">Gradient stops, icon fills, small UI chrome.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#1A52DC"></div><div class="meta"><div class="name">Accent bright</div><div class="val">#1A52DC</div><div class="note">Rationed interactive highlight.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FB2C36"></div><div class="meta"><div class="name">Danger</div><div class="val">#FB2C36</div><div class="note">Status chips only — never a full surface.</div></div></div>
+        <div class="sw"><div class="chip" style="background:#FFB86A"></div><div class="meta"><div class="name">Status warm</div><div class="val">#FFB86A</div><div class="note">"Hot" advisory tags against the list.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:#fff;padding:96px 0}
+.spec{border-top:1px solid #e6e6e6;padding:32px 0;display:grid;grid-template-columns:1fr 260px;gap:32px;align-items:baseline}
+.spec .sample{font-family:var(--font-display);color:var(--text-primary);overflow:hidden}
+.spec .metrics{font-family:var(--font-mono);font-size:13px;color:#5a5d65;line-height:1.8}
+.spec .metrics b{color:var(--text-primary);font-weight:500}
+@media(max-width:768px){.spec{grid-template-columns:1fr;gap:12px}}
+.ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:12px}
+.ramp span{font-family:var(--font-display);font-size:40px;letter-spacing:-.6px}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Typography</p>
+      <h2 class="sec-title">DM Sans speaks, Geist informs.</h2>
+      <p class="sec-lead">A quiet sans/sans pairing separated by weight and tracking, not family contrast. Space Grotesk carries the oversized numerals.</p>
+    </div>
+
+    <div class="spec">
+      <div class="sample" style="font-size:72px;line-height:1.15;letter-spacing:-1.8px">Reaching every orbit</div>
+      <div class="metrics"><b>display-lg</b><br>DM Sans · 72px<br>weight 400 · lh 1.15<br>tracking -1.8px</div>
+    </div>
+    <div class="spec">
+      <div class="sample" style="font-size:56px;line-height:1.1;letter-spacing:-1.1px">Proof on flat ground</div>
+      <div class="metrics"><b>headline-md</b><br>DM Sans · 56px<br>weight 400 · lh 1.1<br>tracking -1.1px</div>
+    </div>
+    <div class="spec">
+      <div class="sample" style="font-size:32px;line-height:1.3;font-weight:500">Signal, sorted by band</div>
+      <div class="metrics"><b>label-md</b><br>DM Sans · 32px<br>weight 500 · lh 1.3</div>
+    </div>
+    <div class="spec">
+      <div class="sample" style="font-family:var(--font-mono);font-size:64px;line-height:1;font-weight:500">99.98%</div>
+      <div class="metrics"><b>accent-mono</b><br>Space Grotesk<br>oversized numeral figures</div>
+    </div>
+    <div class="spec">
+      <div class="sample" style="font-family:var(--font-body);font-size:16px;line-height:1.4;font-weight:400;max-width:520px">Nebusec keeps dense operational copy legible at scale. Geist carries every paragraph, table cell, and caption where information density matters more than voice.</div>
+      <div class="metrics"><b>body-md</b><br>Geist · 16px<br>weight 400 · lh 1.4<br>colour #16181C</div>
+    </div>
+    <div class="spec">
+      <div class="sample">
+        <div class="ramp">
+          <span style="font-weight:400">Regular</span>
+          <span style="font-weight:500">Medium</span>
+          <span style="font-weight:700">Bold</span>
+        </div>
+      </div>
+      <div class="metrics"><b>DM Sans ramp</b><br>400 / 500 / 700<br>display & label roles</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface-muted);padding:96px 0}
+.comp-block{margin-bottom:72px}
+.comp-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:22px;flex-wrap:wrap}
+.comp-name{font-family:var(--font-display);font-size:28px;letter-spacing:-.5px}
+.comp-desc{font-family:var(--font-body);font-size:15px;color:#5a5d65;max-width:520px;margin-top:6px}
+.comp-count{font-family:var(--font-mono);font-size:12px;color:#6a6d75;white-space:nowrap;background:#fff;padding:4px 10px;border-radius:var(--r-square)}
+.spec-card{font-family:var(--font-mono);font-size:12px;line-height:1.7;color:#5a5d65;background:#fff;border-left:3px solid var(--accent-blue);padding:14px 16px;margin-top:20px;border-radius:0}
+.spec-card b{color:var(--text-primary);font-weight:500}
+.stage{background:#fff;border-radius:var(--r-card-tight);padding:32px;box-shadow:var(--shadow-float)}
+.stage-dark{background:var(--accent-deep-blue);position:relative;overflow:hidden}
+.stage-dark .stars{position:absolute;inset:0;background-image:var(--star);background-size:300px 300px;opacity:.7}
+.stage-dark>*{position:relative;z-index:1}
+
+/* button matrix */
+.matrix{display:grid;gap:14px}
+.matrix .row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.matrix .rowlabel{font-family:var(--font-mono);font-size:12px;color:#6a6d75;width:150px;flex-shrink:0}
+.b-hero{height:44px;border:0;border-radius:6px;background:#0E1A3A;color:#fff;font-family:var(--font-display);font-weight:500;font-size:15px;padding:0 24px;cursor:pointer}
+.b-hero:hover{transform:translateY(-1px)}
+.b-hero:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.b-navcta{height:54px;border:0;border-radius:8px;background:#e9eefc;color:#001F5D;font-family:var(--font-display);font-weight:500;font-size:15px;padding:0 22px;cursor:pointer}
+.b-navcta:hover{background:#dbe3fb}
+.b-navcta:disabled{opacity:.4;cursor:not-allowed}
+.b-navutil{height:41px;border:0;border-radius:0;background:transparent;color:#16181C;font-family:var(--font-body);font-size:15px;padding:8px 13.6px;cursor:pointer;transition:color .3s var(--ease-util)}
+.b-navutil:hover{color:#000}
+.b-navutil:disabled{opacity:.4;cursor:not-allowed}
+.b-white{height:44px;border:0;border-radius:0;background:#FFFFFF;color:#000;font-family:var(--font-body);font-size:15px;padding:0 22px;cursor:pointer;box-shadow:inset 0 0 0 1px #e3e3e3}
+.b-white:hover{background:#f2f2f2}
+.b-white:disabled{opacity:.45;cursor:not-allowed}
+.b-gray{height:44px;border:0;border-radius:0;background:#F5F5F5;color:#000;font-family:var(--font-body);font-size:15px;padding:0 22px;cursor:pointer}
+.b-gray:hover{background:#ebebeb}
+.b-gray:disabled{opacity:.45;cursor:not-allowed}
+.matrix-note{font-family:var(--font-mono);font-size:11px;color:#6a6d75;margin-top:4px}
+
+/* stat grid */
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.card-brand{background:#fff;border-radius:20px;padding:24px;box-shadow:var(--shadow-float)}
+.brand-row{display:flex;align-items:center;gap:10px;margin-bottom:18px}
+.brand-mark{font-family:var(--font-display);font-weight:700;font-size:16px;color:#001F5D}
+.badge{font-family:var(--font-body);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#5a5d65;background:#F5F5F5;padding:4px 8px;border-radius:var(--r-square)}
+.card-brand h4{font-family:var(--font-display);font-size:28px;line-height:1.2;letter-spacing:-.5px;margin-bottom:12px}
+.card-brand p{font-family:var(--font-body);font-size:15px;color:#5a5d65;line-height:1.5}
+.card-grad{border-radius:20px;padding:24px;color:#fff;background:radial-gradient(120% 140% at 15% 100%,rgb(28,63,174) 0%,rgb(10,20,66) 45%,rgb(4,6,28) 100%);box-shadow:var(--shadow-brand);display:flex;flex-direction:column;min-height:220px}
+.card-grad .num{font-family:var(--font-mono);font-weight:500;font-size:72px;line-height:1;letter-spacing:-2px}
+.card-grad .cap{font-family:var(--font-body);font-size:13px;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.75);margin-top:8px}
+.card-grad .desc{font-family:var(--font-body);font-size:14px;color:rgba(255,255,255,.7);margin-top:auto;padding-top:24px}
+@media(max-width:768px){.stat-grid{grid-template-columns:1fr}}
+
+/* numeral tiles */
+.tile-tinted{background:#e6ecfb;border-radius:20px;padding:24px;position:relative;overflow:hidden;box-shadow:var(--shadow-brand);min-height:160px;margin-bottom:24px}
+.tile-tinted .circles{position:absolute;right:-30px;top:-30px}
+.tile-tinted .circles span{display:block;position:absolute;border-radius:50%;border:1px solid rgba(44,82,162,.35)}
+.tile-tinted .num{font-family:var(--font-mono);font-weight:500;font-size:56px;line-height:1;color:#001F5D;letter-spacing:-1.5px}
+.tile-tinted .lbl{font-family:var(--font-body);font-size:14px;color:#2C52A2;margin-top:8px}
+.tile-bar{background:#fff;border-radius:20px;padding:24px;display:flex;align-items:center;gap:24px;box-shadow:var(--shadow-float)}
+.tile-bar .num{font-family:var(--font-mono);font-weight:500;font-size:56px;line-height:1;color:#16181C;letter-spacing:-1.5px}
+.tile-bar .partner{font-family:var(--font-display);font-weight:700;font-size:18px;color:#001F5D;margin-left:auto}
+.tile-bar .thumb{width:48px;height:48px;border-radius:50%;background:radial-gradient(120% 140% at 30% 25%,#6f8de0 0%,#2c52a2 45%,#0e1a3a 100%)}
+
+/* advisory list */
+.adv-list{display:flex;flex-direction:column}
+.adv-row{display:flex;align-items:center;gap:16px;background:transparent;border-radius:0;padding:0;border-bottom:1px solid #e2e2e2}
+.adv-row>div{padding:16px 0}
+.adv-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.adv-eyebrow{font-family:var(--font-body);font-size:11px;text-transform:uppercase;letter-spacing:.12em;color:#6a6d75;width:140px;flex-shrink:0}
+.adv-entry{font-family:var(--font-body);font-size:15px;color:#16181C;flex:1}
+.adv-chip{font-family:var(--font-body);font-size:12px;font-weight:500;padding:4px 12px;border-radius:var(--r-pill);flex-shrink:0}
+@media(max-width:640px){.adv-eyebrow{display:none}}
+
+/* logo strip */
+.logo-strip{display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;align-items:center;padding:8px 0}
+.logo-strip .mark{font-family:var(--font-display);font-weight:700;font-size:18px;color:#9aa0ab;display:flex;align-items:center;gap:6px}
+
+/* feature rail */
+.rail-wrap{position:relative}
+.rail{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px}
+.rail::-webkit-scrollbar{height:6px}
+.rail::-webkit-scrollbar-thumb{background:#c8c8c8;border-radius:var(--r-pill)}
+.feat-card{background:#fff;border-radius:12px;padding:0;overflow:hidden;box-shadow:var(--shadow-float);scroll-snap-align:start;display:flex;flex-direction:column}
+.feat-media{height:150px;position:relative;overflow:hidden;background:#0E1A3A}
+.feat-media .scrim{position:absolute;inset:0;background:radial-gradient(900px 620px at 63.71% 50%,rgba(255,255,255,.85) 0%,rgba(207,221,242,.55) 45%,rgba(160,186,229,0) 75%)}
+.feat-media .sphere{position:absolute;width:90px;height:90px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(120% 140% at 30% 25%,#8aa4e6 0%,#2c52a2 50%,#0e1a3a 100%);z-index:2}
+.feat-media .mockup{position:absolute;inset:16px;background:#fff;border-radius:6px;box-shadow:var(--shadow-float);z-index:2;overflow:hidden}
+.feat-media .mockup .bar{height:8px;background:#e6ecfb;margin:12px;border-radius:var(--r-square)}
+.feat-media .mockup .bar.a{width:60%;background:#2c52a2}
+.feat-pill{position:absolute;top:12px;left:12px;z-index:3;font-family:var(--font-body);font-size:11px;font-weight:500;padding:3px 10px;border-radius:var(--r-pill);background:rgba(255,255,255,.92);color:#001F5D}
+.feat-body{padding:20px}
+.feat-icon{color:#2C52A2;font-size:22px;margin-bottom:10px}
+.feat-body h4{font-family:var(--font-display);font-size:19px;letter-spacing:-.4px;margin-bottom:8px}
+.feat-body p{font-family:var(--font-body);font-size:14px;color:#5a5d65;line-height:1.5}
+.rail-ctrl{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+.paddle{width:44px;height:44px;border-radius:var(--r-square);border:0;background:#fff;color:#001F5D;cursor:pointer;box-shadow:var(--shadow-float);display:inline-flex;align-items:center;justify-content:center;font-size:20px}
+.paddle:hover{background:#f2f2f2}
+@media(max-width:768px){.rail{grid-template-columns:repeat(3,80%)}}
+
+/* icon triptych */
+.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.trip-card{background:transparent;border-radius:19.2px;padding:19.2px;text-align:center}
+.trip-chip{width:56px;height:56px;border-radius:50%;border:1px solid rgba(255,255,255,.35);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:24px;margin-bottom:14px}
+.trip-card .lbl{font-family:var(--font-body);font-size:15px;color:rgba(255,255,255,.85)}
+@media(max-width:640px){.triptych{grid-template-columns:1fr}}
+
+/* diagram card */
+.diag-band{position:relative;overflow:hidden;border-radius:var(--r-card-tight);background-image:linear-gradient(115deg,rgba(255,120,60,.35),rgba(150,60,220,.3) 40%,rgba(26,82,220,.35)),linear-gradient(90deg,rgb(0,18,71) 0%,rgb(0,9,40) 35%,rgb(0,2,9) 50%,rgb(0,7,32) 80%,rgb(0,5,28) 100%);padding:48px}
+.diag-band .stars{position:absolute;inset:0;background-image:var(--star);background-size:300px 300px;opacity:.5}
+.diag-card{position:relative;z-index:1;max-width:560px;margin:0 auto;border:1px solid rgba(255,255,255,.28);border-radius:var(--r-card-tight);padding:28px;background:rgba(4,6,28,.35);backdrop-filter:blur(15px)}
+.diag-nodes{display:flex;justify-content:space-between;align-items:center;position:relative}
+.diag-node{width:52px;height:52px;border-radius:50%;background:rgba(44,82,162,.4);border:1px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;z-index:2}
+.diag-line{position:absolute;top:26px;left:52px;right:52px;border-top:2px dotted rgba(255,255,255,.4);z-index:1}
+.diag-footer{margin-top:24px;background:rgba(255,255,255,.1);border-radius:var(--r-pill);padding:10px 18px;text-align:center;font-family:var(--font-body);font-size:13px;color:#fff}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Components</p>
+      <h2 class="sec-title">Cosmic spectacle, utilitarian proof.</h2>
+      <p class="sec-lead">Two registers, kept apart on purpose: soft rounded panels on the cosmic bands, square-cornered flat controls on the light bed.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Navbar</div><div class="comp-desc">Edge-to-edge transparent sticky bar, 98px tall, all corners 0px. Never floats, never rounds.</div></div>
+        <span class="comp-count">×1 · 19 items</span>
+      </div>
+      <div class="stage stage-dark" style="border-radius:var(--r-card-tight);padding:0" data-tier-a-component="navbar">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="nav-inner" style="height:98px">
+          <span class="nav-logo">Nebusec</span>
+          <ul class="nav-links">
+            <li><a href="#">Platform <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a></li>
+            <li><a href="#">Solutions <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></a></li>
+            <li><a href="#">Research</a></li>
+          </ul>
+          <span class="nav-spacer"></span>
+          <button class="nav-utility">Sign in</button>
+          <button class="nav-utility">Contact</button>
+          <button class="nav-cta">Request access</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>navbar</b> · height 98 · radius 0 · fill transparent · sticky · <b>blur(15px)</b> scroll state<br>type label-md/body · motion color 0.3s ease-util</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Buttons</div><div class="comp-desc">Five distinct roles, never merged. Each keeps its own fill, radius, and height.</div></div>
+        <span class="comp-count">rest · hover · disabled</span>
+      </div>
+      <div class="stage">
+        <div class="matrix">
+          <div class="row" data-tier-a-component="button-hero-primary">
+            <span class="rowlabel">hero-primary<br>#0E1A3A · r6 · h44</span>
+            <button class="b-hero">Launch a demo</button>
+            <button class="b-hero" style="transform:translateY(-1px)">Launch a demo</button>
+            <button class="b-hero" disabled>Launch a demo</button>
+          </div>
+          <div class="row" data-tier-a-component="button-nav-cta">
+            <span class="rowlabel">nav-cta<br>gradient · r8 · h54</span>
+            <button class="b-navcta">Request access</button>
+            <button class="b-navcta" style="background:#dbe3fb">Request access</button>
+            <button class="b-navcta" disabled>Request access</button>
+          </div>
+          <div class="row" data-tier-a-component="button-nav-utility">
+            <span class="rowlabel">nav-utility<br>transparent · r0 · h41</span>
+            <button class="b-navutil">Sign in</button>
+            <button class="b-navutil" style="color:#000">Sign in</button>
+            <button class="b-navutil" disabled>Sign in</button>
+          </div>
+          <div class="row" data-tier-a-component="button-solid-white">
+            <span class="rowlabel">solid-white<br>#FFFFFF · r0 · h44</span>
+            <button class="b-white">Download report</button>
+            <button class="b-white" style="background:#f2f2f2">Download report</button>
+            <button class="b-white" disabled>Download report</button>
+          </div>
+          <div class="row" data-tier-a-component="button-solid-gray">
+            <span class="rowlabel">solid-gray<br>#F5F5F5 · r0 · h44</span>
+            <button class="b-gray">View archive</button>
+            <button class="b-gray" style="background:#ebebeb">View archive</button>
+            <button class="b-gray" disabled>View archive</button>
+          </div>
+        </div>
+        <p class="matrix-note">columns: rest · hover · disabled — no focus treatment documented, so none authored</p>
+      </div>
+      <div class="spec-card"><b>button-nav-cta</b> · fill gradient(#001F5D) · text #001F5D · radius r-control 8 · height 54<br><b>button-hero-primary</b> · fill accent-deep-blue · text on-dark · radius 6 · height 44<br><b>button-nav-utility</b> · fill transparent · text on-dark · radius 0 · height 41 · pad 8/13.6<br><b>button-solid-white</b> / <b>button-solid-gray</b> · radius 0 · height 44 · text #000</div>
+    </div>
+
+    <!-- STAT PANELS -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Stat panels</div><div class="comp-desc">The 2-column density center — brand text panel against a gradient numeral panel.</div></div>
+        <span class="comp-count">gap 40 · r20</span>
+      </div>
+      <div class="stat-grid">
+        <div class="card-brand" data-tier-a-component="card-stat-brand">
+          <div class="brand-row"><span class="brand-mark">Nebusec</span><span class="badge">Backed by orbit labs</span></div>
+          <h4>Continuous coverage from ground to edge, in one view.</h4>
+          <p>Every asset, every band, monitored on a single flat surface — no console-hopping, no blind spots.</p>
+        </div>
+        <div class="card-grad" data-tier-a-component="card-stat-gradient">
+          <div class="num">99.98%</div>
+          <div class="cap">Threat detection uptime</div>
+          <div class="desc">Measured across all cosmic and ground bands over the trailing quarter.</div>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-stat-brand</b> · fill surface · radius r-card-soft 20 · padding 24<br><b>card-stat-gradient</b> · fill radial-gradient · text on-dark · radius 20 · numeral accent-mono · shadow brand</div>
+    </div>
+
+    <!-- NUMERAL TILES -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Numeral tiles</div><div class="comp-desc">Two more instances — a tinted panel and a full-width white bar, each with distinct anatomy.</div></div>
+        <span class="comp-count">×2</span>
+      </div>
+      <div data-tier-a-component="numeral-tiles">
+        <div class="tile-tinted">
+          <div class="circles" aria-hidden="true">
+            <span style="width:120px;height:120px;right:0;top:0"></span>
+            <span style="width:80px;height:80px;right:30px;top:30px"></span>
+            <span style="width:44px;height:44px;right:48px;top:48px"></span>
+          </div>
+          <div class="num">1,240+</div>
+          <div class="lbl">Orbital nodes under active watch</div>
+        </div>
+        <div class="tile-bar">
+          <div>
+            <div class="num">7ms</div>
+            <div class="lbl" style="color:#5a5d65;font-family:var(--font-body);font-size:14px;margin-top:6px">Median signal-to-alert latency</div>
+          </div>
+          <span class="partner">Aperture</span>
+          <span class="thumb" aria-hidden="true"></span>
+        </div>
+      </div>
+      <div class="spec-card"><b>numeral-tiles</b> · tile fill #e6ecfb / surface · radius r-card-soft 20 · numeral accent-mono · shadow brand/float</div>
+    </div>
+
+    <!-- ADVISORY LIST -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Advisory list</div><div class="comp-desc">Five square-cornered, padding-free rows. Warm status chips are the only place red and orange appear.</div></div>
+        <span class="comp-count">×5 · r0 · p0</span>
+      </div>
+      <div class="stage">
+        <div class="adv-list" data-tier-a-component="advisory-list-row">
+          <div class="adv-row"><div class="adv-dot" style="background:#FB2C36"></div><div class="adv-eyebrow">Perimeter</div><div class="adv-entry">Unpatched relay on the outer ground segment</div><div><span class="adv-chip" style="background:#FB2C36;color:#fff">Hot</span></div></div>
+          <div class="adv-row"><div class="adv-dot" style="background:#FFB86A"></div><div class="adv-eyebrow">Identity</div><div class="adv-entry">Elevated login attempts from a new region</div><div><span class="adv-chip" style="background:#FFB86A;color:#16181C">Watch</span></div></div>
+          <div class="adv-row"><div class="adv-dot" style="background:#2C52A2"></div><div class="adv-eyebrow">Telemetry</div><div class="adv-entry">Drift detected in edge sensor calibration</div><div><span class="adv-chip" style="background:#e6ecfb;color:#001F5D">Review</span></div></div>
+          <div class="adv-row"><div class="adv-dot" style="background:#2C52A2"></div><div class="adv-eyebrow">Access</div><div class="adv-entry">Rotation window opens for orbital service keys</div><div><span class="adv-chip" style="background:#e6ecfb;color:#001F5D">Scheduled</span></div></div>
+          <div class="adv-row" style="border-bottom:0"><div class="adv-dot" style="background:#2C52A2"></div><div class="adv-eyebrow">Compliance</div><div class="adv-entry">Quarterly attestation package ready for sign-off</div><div><span class="adv-chip" style="background:#F5F5F5;color:#16181C">Clear</span></div></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>advisory-list-row</b> · fill transparent · radius 0 · padding 0 · divider #e2e2e2 · chip radius r-pill 24 · status danger/status-warm</div>
+    </div>
+
+    <!-- LOGO STRIP -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Logo strip</div><div class="comp-desc">Nine monochrome partner marks, evenly spaced on the bare white bed — no container, no border.</div></div>
+        <span class="comp-count">×9</span>
+      </div>
+      <div class="stage" style="box-shadow:none;background:#fff">
+        <div class="logo-strip" data-tier-a-component="logo-strip">
+          <span class="mark"><iconify-icon icon="lucide:orbit" aria-hidden="true"></iconify-icon> Orbis</span>
+          <span class="mark"><iconify-icon icon="lucide:satellite" aria-hidden="true"></iconify-icon> Vantage</span>
+          <span class="mark"><iconify-icon icon="lucide:radar" aria-hidden="true"></iconify-icon> Scanwave</span>
+          <span class="mark"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon> Meridian</span>
+          <span class="mark"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon> Aegis</span>
+          <span class="mark"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon> Pulsar</span>
+          <span class="mark"><iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon> Nodex</span>
+          <span class="mark"><iconify-icon icon="lucide:aperture" aria-hidden="true"></iconify-icon> Aperture</span>
+          <span class="mark"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon> Stratos</span>
+        </div>
+      </div>
+      <div class="spec-card"><b>logo-strip</b> · no container · no border · mark colour #9aa0ab on surface</div>
+    </div>
+
+    <!-- FEATURE RAIL -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Feature card rail</div><div class="comp-desc">Media-top cards in a 3-up horizontal rail with paddle controls. 12px radius, zero padding on the card shell.</div></div>
+        <span class="comp-count">×3 · r12</span>
+      </div>
+      <div class="rail-wrap">
+        <div class="rail" id="featRail" data-tier-a-component="feature-card-rail">
+          <article class="feat-card">
+            <div class="feat-media">
+              <span class="feat-pill">Preview</span>
+              <div class="mockup"><div class="bar a"></div><div class="bar"></div><div class="bar" style="width:75%"></div></div>
+            </div>
+            <div class="feat-body"><div class="feat-icon"><iconify-icon icon="lucide:layout-dashboard" aria-hidden="true"></iconify-icon></div><h4>Unified control</h4><p>One flat surface for every band of your infrastructure, from ground to orbit.</p></div>
+          </article>
+          <article class="feat-card">
+            <div class="feat-media">
+              <span class="feat-pill">Beta</span>
+              <div class="scrim" aria-hidden="true"></div>
+              <div class="sphere" aria-hidden="true"></div>
+            </div>
+            <div class="feat-body"><div class="feat-icon"><iconify-icon icon="lucide:radar" aria-hidden="true"></iconify-icon></div><h4>Signal tracing</h4><p>Follow a threat's full trajectory across the perimeter in real time.</p></div>
+          </article>
+          <article class="feat-card">
+            <div class="feat-media">
+              <span class="feat-pill">Coming soon</span>
+              <div class="scrim" aria-hidden="true"></div>
+              <div class="sphere" aria-hidden="true"></div>
+            </div>
+            <div class="feat-body"><div class="feat-icon"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div><h4>Predictive drift</h4><p>Model calibration decay before it opens a blind spot.</p></div>
+          </article>
+        </div>
+        <div class="rail-ctrl">
+          <button class="paddle" data-rail="prev" aria-label="Previous cards"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+          <button class="paddle" data-rail="next" aria-label="Next cards"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-feature-media</b> · fill surface · radius r-card-tight 12 · padding 0 · media scrim radial white · pill radius r-pill 24</div>
+    </div>
+
+    <!-- ICON TRIPTYCH -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Icon triptych</div><div class="comp-desc">Three equal transparent cards with bordered circular icon chips — the first-screen minimal pattern.</div></div>
+        <span class="comp-count">×3 · r19.2 · p19.2</span>
+      </div>
+      <div class="stage stage-dark" style="border-radius:var(--r-card-tight)">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="triptych" data-tier-a-component="icon-triptych">
+          <div class="trip-card"><div class="trip-chip"><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon></div><div class="lbl">Always watching</div></div>
+          <div class="trip-card"><div class="trip-chip"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon></div><div class="lbl">Verified by default</div></div>
+          <div class="trip-card"><div class="trip-chip"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></div><div class="lbl">Millisecond response</div></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-icon-triptych</b> · fill transparent · radius 19.2 · padding 19.2 · chip border rgba(on-dark) · label body</div>
+    </div>
+
+    <!-- SECTION-BREAK DIAGRAM -->
+    <div class="comp-block">
+      <div class="comp-head">
+        <div><div class="comp-name">Section-break diagram</div><div class="comp-desc">A dark-bordered schematic on the aurora band — three nodes, dotted guides, a labeled capsule footer.</div></div>
+        <span class="comp-count">×1</span>
+      </div>
+      <div class="diag-band" data-tier-a-component="section-break-diagram">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="diag-card">
+          <div class="diag-nodes">
+            <div class="diag-line" aria-hidden="true"></div>
+            <div class="diag-node"><iconify-icon icon="lucide:satellite" aria-hidden="true"></iconify-icon></div>
+            <div class="diag-node"><iconify-icon icon="lucide:server" aria-hidden="true"></iconify-icon></div>
+            <div class="diag-node"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon></div>
+          </div>
+          <div class="diag-footer">Capture → correlate → contain, across every orbit</div>
+        </div>
+      </div>
+      <div class="spec-card"><b>section-break-diagram</b> · dark border rgba(on-dark) · radius r-card-tight 12 · aurora band · footer capsule radius r-pill 24 · blur(15px)</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:#fff;padding:96px 0}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:28px}
+.depth-card{background:#fff;padding:24px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.depth-card .t{font-family:var(--font-body);font-weight:600;font-size:14px}
+.depth-card .v{font-family:var(--font-mono);font-size:12px;color:#5a5d65;margin-top:4px}
+.on-navy{background:var(--accent-deep-blue);color:#fff}
+.on-navy .v{color:rgba(255,255,255,.7)}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Surface & depth</p>
+      <h2 class="sec-title">Soft on the bands, sharp on the bed.</h2>
+      <p class="sec-lead">Radii split the two registers: rounded cosmic panels versus square utility controls. Shadows stay diffuse.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:4px;box-shadow:var(--shadow-float)"><div class="t">Square</div><div class="v">radius 4px · r-square</div></div>
+      <div class="depth-card" style="border-radius:8px;box-shadow:var(--shadow-float)"><div class="t">Control</div><div class="v">radius 8px · r-control</div></div>
+      <div class="depth-card" style="border-radius:12px;box-shadow:var(--shadow-float)"><div class="t">Card tight</div><div class="v">radius 12px · r-card-tight</div></div>
+      <div class="depth-card" style="border-radius:20px;box-shadow:var(--shadow-float)"><div class="t">Card soft</div><div class="v">radius 20px · r-card-soft</div></div>
+      <div class="depth-card" style="border-radius:24px;box-shadow:var(--shadow-float)"><div class="t">Pill</div><div class="v">radius 24px · r-pill</div></div>
+      <div class="depth-card on-navy" style="border-radius:20px;box-shadow:var(--shadow-brand)"><div class="t">Brand tile shadow</div><div class="v">rgba(0,19,75,.32) 0 8 24</div></div>
+      <div class="depth-card" style="border-radius:20px;box-shadow:var(--shadow-float)"><div class="t">Floating panel</div><div class="v">rgba(0,0,0,.18) 0 24 48 -20</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface-muted);padding:96px 0}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:24px}
+.motion-card{background:#fff;border-radius:var(--r-card-tight);padding:24px;box-shadow:var(--shadow-float)}
+.motion-card h4{font-family:var(--font-display);font-size:18px;letter-spacing:-.3px;margin-bottom:6px}
+.motion-card .v{font-family:var(--font-mono);font-size:12px;color:#5a5d65;margin-bottom:18px}
+.mover{width:44px;height:44px;border-radius:var(--r-card-tight);background:radial-gradient(120% 140% at 30% 25%,#6f8de0 0%,#2c52a2 45%,#0e1a3a 100%)}
+.play{margin-top:16px;height:41px;border:0;border-radius:0;background:transparent;color:#001F5D;font-family:var(--font-body);font-size:14px;cursor:pointer;padding:8px 13.6px;display:inline-flex;align-items:center;gap:6px}
+.play:hover{color:#000}
+.track{overflow:hidden;padding:6px 0}
+.m-spring.run{animation:mSpring .42s var(--ease-spring)}
+.m-settle.run{animation:mSettle .72s var(--ease-settle)}
+.m-util.run{animation:mUtil .3s var(--ease-util)}
+@keyframes mSpring{from{transform:translateX(0)}to{transform:translateX(180px)}}
+@keyframes mSettle{from{opacity:.2;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes mUtil{from{background:radial-gradient(120% 140% at 30% 25%,#6f8de0 0%,#2c52a2 45%,#0e1a3a 100%)}to{background:#001F5D}}
+@media(prefers-reduced-motion:reduce){.m-spring.run,.m-settle.run,.m-util.run{animation:none}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow">Motion</p>
+      <h2 class="sec-title">Elements settle, they never snap.</h2>
+      <p class="sec-lead">A soft spring for panels, a slower two-stage entrance for revealed content, fast utility curves for hover. Click to replay.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h4>Panel spring</h4>
+        <div class="v">transform 0.42s cubic-bezier(0.2,0.65,0.3,1)</div>
+        <div class="track"><div class="mover m-spring" id="mv1"></div></div>
+        <button class="play" data-play="mv1">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="motion-card">
+        <h4>Scroll settle</h4>
+        <div class="v">opacity, transform 0.72s cubic-bezier(0.22,0.61,0.36,1)</div>
+        <div class="track"><div class="mover m-settle" id="mv2"></div></div>
+        <button class="play" data-play="mv2">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="motion-card">
+        <h4>Utility shift</h4>
+        <div class="v">color 0.3s cubic-bezier(0.4,0,0.2,1)</div>
+        <div class="track"><div class="mover m-util" id="mv3"></div></div>
+        <button class="play" data-play="mv3">Replay <iconify-icon icon="lucide:rotate-cw" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--accent-deep-blue);padding:96px 0;position:relative;overflow:hidden}
+#composition .stars{position:absolute;inset:0;background-image:var(--star);background-size:400px 400px;opacity:.6}
+#composition .wrap{position:relative;z-index:1}
+.mock{background:#fff;border-radius:var(--r-card-tight);overflow:hidden;box-shadow:var(--shadow-float)}
+.mock-nav{height:64px;background:var(--brand-navy);display:flex;align-items:center;padding:0 24px;gap:20px}
+.mock-nav .lg{font-family:var(--font-display);font-weight:700;color:#fff;font-size:17px}
+.mock-nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:13px}
+.mock-nav .cta{margin-left:auto;height:41px;background:#e9eefc;color:#001F5D;border:0;border-radius:8px;padding:0 16px;font-family:var(--font-display);font-weight:500;font-size:13px;cursor:pointer}
+.mock-hero{position:relative;background:var(--accent-deep-blue);color:#fff;padding:56px 32px;overflow:hidden}
+.mock-hero .stars{position:absolute;inset:0;background-image:var(--star);background-size:250px 250px;opacity:.7}
+.mock-hero .orb{position:absolute;width:180px;height:180px;border-radius:50%;right:-30px;top:20px;background:radial-gradient(120% 140% at 30% 25%,#4a6fd6 0%,#1c3fae 40%,#04061c 100%)}
+.mock-hero h3{position:relative;font-size:38px;letter-spacing:-.9px;max-width:400px;z-index:1}
+.mock-hero p{position:relative;z-index:1;font-family:var(--font-body);color:rgba(255,255,255,.78);font-size:15px;margin-top:14px;max-width:340px}
+.mock-hero .b{position:relative;z-index:1;margin-top:22px;height:44px;background:#0E1A3A;color:#fff;border:0;border-radius:6px;padding:0 22px;font-family:var(--font-display);font-weight:500;box-shadow:0 0 0 1px rgba(255,255,255,.25);cursor:pointer}
+.mock-body{background:#fff;padding:32px}
+.mock-cards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.mc{border-radius:12px;overflow:hidden;box-shadow:var(--shadow-float);background:#fff}
+.mc .top{height:88px;background:#0E1A3A;position:relative}
+.mc .top .sc{position:absolute;inset:0;background:radial-gradient(400px 300px at 60% 50%,rgba(255,255,255,.7),rgba(160,186,229,0) 70%)}
+.mc .top .sp{position:absolute;width:56px;height:56px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(120% 140% at 30% 25%,#8aa4e6,#2c52a2 50%,#0e1a3a);z-index:1}
+.mc .bd{padding:16px}
+.mc .bd h5{font-family:var(--font-display);font-size:15px;margin-bottom:6px}
+.mc .bd p{font-family:var(--font-body);font-size:12px;color:#5a5d65;line-height:1.5}
+.mock-cta{background:var(--surface-muted);padding:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.mock-cta h4{font-family:var(--font-display);font-size:24px;letter-spacing:-.5px}
+.mock-cta .g{height:54px;background:#e9eefc;color:#001F5D;border:0;border-radius:8px;padding:0 22px;font-family:var(--font-display);font-weight:500;cursor:pointer}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:28px}}
+</style>
+<section id="composition">
+  <div class="stars" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="sec-eyebrow" style="color:#FFB86A">In composition</p>
+      <h2 class="sec-title" style="color:#fff">The whole system, holding together.</h2>
+      <p class="sec-lead" style="color:rgba(255,255,255,.78)">Transparent nav over a starfield, a left-aligned hero, a feature row, and a closing call — built entirely from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <nav class="mock-nav">
+        <span class="lg">Nebusec</span>
+        <a href="#">Platform</a><a href="#">Solutions</a><a href="#">Docs</a>
+        <button class="cta">Request access</button>
+      </nav>
+      <div class="mock-hero">
+        <div class="stars" aria-hidden="true"></div>
+        <div class="orb" aria-hidden="true"></div>
+        <h3>Watch every orbit at once.</h3>
+        <p>Ground to edge, one flat surface, no blind spots.</p>
+        <button class="b">Launch a demo</button>
+      </div>
+      <div class="mock-body">
+        <div class="mock-cards">
+          <div class="mc"><div class="top"><div class="sc"></div><div class="sp"></div></div><div class="bd"><h5>Unified control</h5><p>Every band on a single flat surface.</p></div></div>
+          <div class="mc"><div class="top"><div class="sc"></div><div class="sp"></div></div><div class="bd"><h5>Signal tracing</h5><p>Follow a threat's full trajectory live.</p></div></div>
+          <div class="mc"><div class="top"><div class="sc"></div><div class="sp"></div></div><div class="bd"><h5>Predictive drift</h5><p>Catch calibration decay before it opens a gap.</p></div></div>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <h4>Ready to bring your stack into orbit?</h4>
+        <button class="g">Request access</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--brand-navy);color:#fff;padding:72px 0 40px;border-radius:0}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+.foot-brand .lg{font-family:var(--font-display);font-weight:700;font-size:24px}
+.foot-brand p{font-family:var(--font-body);font-size:14px;color:rgba(255,255,255,.75);margin:16px 0 24px;max-width:260px}
+.socials{display:flex;gap:12px}
+.socials a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.1);display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:18px;transition:background .3s var(--ease-util)}
+.socials a:hover{background:rgba(255,255,255,.22)}
+.foot-col h5{font-family:var(--font-body);font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:rgba(255,255,255,.6);margin-bottom:16px}
+.foot-col a{display:block;font-family:var(--font-body);font-size:14px;color:rgba(255,255,255,.85);text-decoration:none;margin-bottom:10px}
+.foot-col a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.15);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--font-body);font-size:13px;color:rgba(255,255,255,.55)}
+.foot-bottom a{color:rgba(255,255,255,.55);text-decoration:none}
+.foot-bottom a:hover{color:rgba(255,255,255,.85)}
+@media(max-width:768px){.foot-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.foot-grid{grid-template-columns:1fr}}
+</style>
+<footer id="footer" data-tier-a-component="footer">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="lg">Nebusec</div>
+        <p>Security that reaches every orbit of your stack — from ground systems to the outermost edge.</p>
+        <div class="socials">
+          <a href="#" aria-label="Nebusec on X"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Nebusec on LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Nebusec on GitHub"><iconify-icon icon="lucide:github" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Nebusec on YouTube"><iconify-icon icon="lucide:youtube" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Platform</h5>
+        <a href="#">Unified control</a><a href="#">Signal tracing</a><a href="#">Predictive drift</a><a href="#">Integrations</a><a href="#">Status</a>
+      </div>
+      <div class="foot-col">
+        <h5>Company</h5>
+        <a href="#">About</a><a href="#">Research</a><a href="#">Careers</a><a href="#">Press</a><a href="#">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h5>Resources</h5>
+        <a href="#">Docs</a><a href="#">Advisories</a><a href="#">Changelog</a><a href="#">Support</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2024 Nebusec. Source: <a href="https://nebusec.ai/">nebusec.ai</a></span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+</main>
+
+<script>
+(function(){
+  var nav=document.getElementById('nav');
+  window.addEventListener('scroll',function(){
+    if(window.scrollY>40)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
+  },{passive:true});
+
+  document.querySelectorAll('.play').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var el=document.getElementById(btn.getAttribute('data-play'));
+      if(!el)return;
+      el.classList.remove('run');void el.offsetWidth;el.classList.add('run');
+    });
+  });
+
+  var rail=document.getElementById('featRail');
+  document.querySelectorAll('[data-rail]').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      if(!rail)return;
+      var step=rail.clientWidth*0.6;
+      rail.scrollBy({left:btn.getAttribute('data-rail')==='next'?step:-step,behavior:'smooth'});
+    });
+  });
+})();
+</script>
+</body>
+</html>

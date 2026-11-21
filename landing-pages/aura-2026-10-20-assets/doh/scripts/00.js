@@ -1,0 +1,1 @@
+window.DohTail=()=>{const t=document.getElementById('box-tail');return t?t.offsetHeight:0};

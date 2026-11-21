@@ -1,0 +1,77 @@
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/7062df7fee2e131cf42c6175f12078e14b6b880df7b301299abdc4a92e4674fb.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/e5be0a7ef2eb97414937cb70d079c8c9fb2e472cf74eab5b8fe9dfa2f6fb2704.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/ccce59465ae5c61930ada5453834f60500fbd95084d85db63e0e65fad0125455.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/a8eefb873ba9c9020665f8a98302697ce1f3b79ab2deef6ee508c0ca6a82e876.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Geist';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/7171f481b121803d007f5c6c76cd9988c0d41cce4202db9a18dff9945505d36d.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/assets/ec12a8fe0f32e6d717b09c0c930106b9b90a9146338eaab5bc274cb1323ae6ae.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/27350bc95b961b9b4e1a80d872f49e903fe727f290f6b2a079e67ceb1685fb1f.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/c2a4bdafb30500a3bd0843f95ad659ad38492f025837803e6a8ef8672c575e8e.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Inter Tight';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/assets/a40a1fdc93cadcbb0e3ba16d6010988118a1a3add06a097330b09cb41c2b8d45.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/assets/b8f5e0a8bdd6a12c722ca5635d9da87e77ccbb2d0172112e34e00c4e55f2cd5a.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Newsreader';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(/assets/68c4493c7c6c9aaff48defeeb6408e7ce705efc4c33363de4d9d6f5e07775064.ttf) format('truetype');
+}

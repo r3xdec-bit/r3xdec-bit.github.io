@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Void terminal glass — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:#111315;
+  --surface-alt:#E4F1EB;
+  --text-primary:#FFFFFF;
+  --text-secondary:#94979E;
+  --border:#303236;
+  --border-subtle:#18191B;
+  --accent:#34D59A;
+  --accent-hover:#47D18C;
+  --ink:#131415;
+  --ink-alt:#18191B;
+  --r-control:4px;
+  --r-card:4px;
+  --r-pill:9999px;
+  --space-base:8px;
+  --gap-sm:12px;
+  --gap-md:24px;
+  --gap-lg:80px;
+  --section-pad:240px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --ring:lab(100 0 0 / 0.05) 0px 0px 0px 1px;
+  --pop-shadow:rgba(0,0,0,0.4) 0px 8px 20px 0px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.container{max-width:1600px;margin:0 auto;padding:0 40px}
+.eyebrow{font-size:16px;font-weight:500;letter-spacing:-0.4px;color:var(--text-secondary);display:flex;align-items:center;gap:8px}
+.eyebrow iconify-icon{color:var(--accent)}
+.mono{font-family:"Geist Mono",ui-monospace,monospace;font-size:13px}
+.gray{color:var(--text-secondary)}
+.fused{font-size:48px;font-weight:400;line-height:1.13;letter-spacing:-1.9px;margin:0}
+.fused b{font-weight:600}
+.fused .cont{color:var(--text-secondary);font-weight:400}
+h2.fused{margin:0 0 24px}
+section{padding:var(--section-pad) 0}
+/* utility banner */
+.utility-banner{
+  background:#000;
+  color:var(--text-primary);
+  font-size:13px;
+  font-family:"Geist Mono",monospace;
+  text-align:center;
+  padding:10px 16px;
+  position:relative;
+  border-bottom:1px solid var(--border-subtle);
+  background-image:radial-gradient(rgba(230,180,90,0.18) 0.5px,transparent 0.5px);
+  background-size:4px 4px;
+}
+.utility-banner span{position:relative;color:#E4F1EB}
+.utility-banner a{color:var(--accent)}
+/* navbar */
+.navbar{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:64px;
+  background:#000000;
+  border-bottom:1px solid var(--border-subtle);
+  display:flex;align-items:center;
+  border-radius:0;
+}
+.navbar .inner{width:100%;max-width:1600px;margin:0 auto;padding:0 40px;display:flex;align-items:center;gap:24px}
+.logo{font-weight:600;font-size:18px;letter-spacing:-0.6px;display:flex;align-items:center;gap:8px}
+.logo iconify-icon{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:6px;flex:1}
+.nav-util{
+  background:transparent;color:#fff;border:0;
+  border-radius:4px;height:23px;padding:0 14px;
+  font-size:14px;font-family:inherit;cursor:pointer;
+  display:inline-flex;align-items:center;gap:4px;
+  transition:background 0.2s var(--ease);
+}
+.nav-util:hover{background:var(--surface)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.login-link{font-size:14px;color:#fff}
+.login-link:hover{color:var(--text-secondary)}
+.navbar-cta{
+  background:#FFFFFF;color:#000000;
+  border-radius:9999px;height:36px;padding:0 18px;
+  font-size:14px;font-weight:500;border:0;cursor:pointer;
+  display:inline-flex;align-items:center;
+  transition:background 0.2s var(--ease);
+}
+.navbar-cta:hover{background:var(--surface-alt)}
+/* hero */
+.hero{position:relative;overflow:hidden;padding:120px 0 100px}
+.hero-glow{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 60% 50% at 60% 0%,rgba(52,213,154,0.10),transparent 70%);}
+.hero-bars{position:absolute;top:0;right:8%;display:flex;gap:14px;align-items:flex-end;height:340px;opacity:0.55;pointer-events:none}
+.hero-bars span{width:6px;background:linear-gradient(to top,transparent,var(--accent));border-radius:1px}
+.hero .container{position:relative}
+.display{font-size:68px;font-weight:400;line-height:1.13;letter-spacing:-2.7px;margin:16px 0 0;max-width:14ch}
+.display b{font-weight:600}
+.display .cont{color:var(--text-secondary);font-weight:400}
+.hero-cta{display:flex;gap:12px;margin-top:40px}
+.btn-hero-primary{
+  background:#FFFFFF;color:#000000;border:0;
+  border-radius:9999px;height:44px;padding:0 24px;
+  font-size:16px;font-weight:500;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:background 0.3s var(--ease);
+}
+.btn-hero-primary:hover{background:var(--surface-alt)}
+.btn-hero-secondary{
+  background:transparent;color:#FFFFFF;
+  border:1px solid var(--border);
+  border-radius:9999px;height:44px;padding:0 24px;
+  font-size:16px;font-weight:500;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:border-color 0.3s var(--ease),background 0.3s var(--ease);
+}
+.btn-hero-secondary:hover{border-color:var(--text-secondary);background:var(--surface)}
+@media(max-width:1024px){.display{font-size:52px;letter-spacing:-2px}.fused{font-size:38px;letter-spacing:-1.4px}:root{--section-pad:140px}}
+@media(max-width:768px){.display{font-size:40px;letter-spacing:-1.4px}.fused{font-size:30px;letter-spacing:-1px}:root{--section-pad:96px}.container{padding:0 20px}.hero-bars{display:none}.nav-links{display:none}}
+@media(max-width:640px){.display{font-size:32px;letter-spacing:-1px}.hero-cta{flex-direction:column;align-items:stretch}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="utility-banner"><span>New — real-time branch previews now ship on every commit. <a href="#composition">Read the changelog →</a></span></div>
+
+<nav class="navbar" aria-label="Primary">
+  <div class="inner">
+    <a href="#hero" class="logo"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Void</a>
+    <div class="nav-links">
+      <button class="nav-util">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-util">Platform <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-util">Developers <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+      <button class="nav-util">Pricing</button>
+      <button class="nav-util">Docs</button>
+    </div>
+    <div class="nav-right">
+      <a href="#components" class="login-link">Log in</a>
+      <button class="navbar-cta">Sign up</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-bars" aria-hidden="true">
+    <span style="height:40%"></span><span style="height:70%"></span><span style="height:52%"></span>
+    <span style="height:88%"></span><span style="height:60%"></span><span style="height:100%"></span>
+    <span style="height:44%"></span><span style="height:76%"></span><span style="height:58%"></span>
+  </div>
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:grid-2x2" aria-hidden="true"></iconify-icon>The developer database</p>
+    <h1 class="display"><b>Ship faster on Postgres.</b> <span class="cont">Branch your data like code, autoscale on demand.</span></h1>
+    <div class="hero-cta">
+      <button class="btn-hero-primary">Start building <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      <button class="btn-hero-secondary">Read the docs</button>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .roles{display:grid;grid-template-columns:repeat(3,1fr);gap:80px}
+#palette .role h3{font-size:16px;font-weight:600;letter-spacing:-0.4px;margin:0 0 20px}
+#palette .swatch{display:flex;gap:16px;align-items:center;margin-bottom:18px}
+#palette .chip{width:56px;height:56px;border-radius:4px;flex:none;border:1px solid var(--border)}
+#palette .chip.check{background-image:linear-gradient(45deg,#222 25%,transparent 25%),linear-gradient(-45deg,#222 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#222 75%),linear-gradient(-45deg,transparent 75%,#222 75%);background-size:12px 12px;background-position:0 0,0 6px,6px -6px,-6px 0;position:relative}
+#palette .chip.check::after{content:"";position:absolute;inset:0;border-radius:3px;background:var(--sw)}
+#palette .val{font-family:"Geist Mono",monospace;font-size:13px;color:#fff}
+#palette .note{font-size:13px;color:var(--text-secondary);margin-top:2px}
+@media(max-width:768px){#palette .roles{grid-template-columns:1fr;gap:48px}}
+</style>
+<section id="palette">
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon>Palette</p>
+    <h2 class="fused"><b>Black dominates.</b> <span class="cont">Mint is rationed to signal.</span></h2>
+    <div class="roles">
+      <div class="role">
+        <h3>Surfaces</h3>
+        <div class="swatch"><span class="chip" style="background:#000"></span><div><div class="val">#000000</div><div class="note">Page canvas — the void, ~63% of pixels</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#111315"></span><div><div class="val">#111315</div><div class="note">Near-black card surface</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#18191B"></span><div><div class="val">#18191B</div><div class="note">Subtle border / deep panel</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#E4F1EB"></span><div><div class="val">#E4F1EB</div><div class="note">Pale-mint paper — one proof band only</div></div></div>
+      </div>
+      <div class="role">
+        <h3>Text</h3>
+        <div class="swatch"><span class="chip" style="background:#FFF"></span><div><div class="val">#FFFFFF</div><div class="note">Primary ink on black</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#94979E"></span><div><div class="val">#94979E</div><div class="note">Muted continuation clause</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#131415"></span><div><div class="val">#131415</div><div class="note">Near-black ink on mint band</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#303236"></span><div><div class="val">#303236</div><div class="note">Hairline structural border</div></div></div>
+      </div>
+      <div class="role">
+        <h3>Accents</h3>
+        <div class="swatch"><span class="chip" style="background:#34D59A"></span><div><div class="val">#34D59A</div><div class="note">Mint — CTAs, glyphs, code tokens</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#47D18C"></span><div><div class="val">#47D18C</div><div class="note">Mint hover state</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#CAE6D9"></span><div><div class="val">#CAE6D9</div><div class="note">Mint token sibling — tints</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .specimen{border-top:1px solid var(--border-subtle);padding:36px 0;display:grid;grid-template-columns:180px 1fr;gap:40px}
+#type-scale .specimen:last-child{border-bottom:1px solid var(--border-subtle)}
+#type-scale .meta{font-family:"Geist Mono",monospace;font-size:13px;color:var(--text-secondary);line-height:1.8}
+#type-scale .live{overflow:hidden}
+#type-scale .t-display{font-size:68px;font-weight:400;line-height:1.13;letter-spacing:-2.7px}
+#type-scale .t-headline{font-size:48px;font-weight:400;line-height:1.13;letter-spacing:-1.9px}
+#type-scale .t-body{font-size:16px;font-weight:400;line-height:1.5;max-width:60ch}
+#type-scale .t-label{font-size:16px;font-weight:500;letter-spacing:-0.4px}
+#type-scale .t-mono{font-family:"Geist Mono",monospace;font-size:13px;font-weight:400}
+#type-scale .t-serif{font-family:"Times New Roman",serif;font-size:16px}
+#type-scale b{font-weight:600}
+#type-scale .cont{color:var(--text-secondary);font-weight:400}
+@media(max-width:768px){#type-scale .specimen{grid-template-columns:1fr;gap:12px}#type-scale .t-display{font-size:40px;letter-spacing:-1.4px}#type-scale .t-headline{font-size:30px;letter-spacing:-1px}}
+</style>
+<section id="type-scale">
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon>Type scale</p>
+    <h2 class="fused"><b>Inter, negatively tracked.</b> <span class="cont">Two display sizes carry the whole system.</span></h2>
+    <div class="specimen">
+      <div class="meta">display-lg<br>68px / 400<br>lh 1.13 / ls -2.7px<br>Inter</div>
+      <div class="live"><div class="t-display"><b>Branch your data.</b> <span class="cont">Instantly.</span></div></div>
+    </div>
+    <div class="specimen">
+      <div class="meta">headline-md<br>48px / 400<br>lh 1.13 / ls -1.9px<br>Inter</div>
+      <div class="live"><div class="t-headline"><b>Postgres, evolved.</b> <span class="cont">Serverless by default.</span></div></div>
+    </div>
+    <div class="specimen">
+      <div class="meta">body-md<br>16px / 400<br>lh 1.5<br>Inter</div>
+      <div class="live"><p class="t-body" style="margin:0">Spin up a database in seconds and scale to zero when idle. Every connection is pooled, every branch is isolated, and every query lands on infrastructure built for the way developers actually ship.</p></div>
+    </div>
+    <div class="specimen">
+      <div class="meta">label-md<br>16px / 500<br>ls -0.4px<br>Inter</div>
+      <div class="live"><div class="t-label">Autoscaling compute</div></div>
+    </div>
+    <div class="specimen">
+      <div class="meta">label-mono<br>13px / 400<br>lh 1.5<br>Geist Mono</div>
+      <div class="live"><div class="t-mono" style="color:var(--accent)">$ void branch create --from main</div></div>
+    </div>
+    <div class="specimen">
+      <div class="meta">accent-serif<br>16px / 400<br>lh 1.5<br>Times New Roman</div>
+      <div class="live"><div class="t-serif">A quiet interruption — <em>the system's rare serif accent.</em></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .band-head{margin-bottom:56px}
+.comp-block{margin-bottom:96px}
+.comp-block>.comp-title{font-size:16px;font-weight:600;letter-spacing:-0.4px;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+.comp-block>.comp-title .count{font-family:"Geist Mono",monospace;font-size:12px;color:var(--accent);border:1px solid var(--border);border-radius:9999px;padding:2px 10px}
+.comp-block>.comp-desc{font-size:13px;color:var(--text-secondary);margin:0 0 28px;max-width:66ch}
+.spec{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-secondary);line-height:1.9;border-left:1px solid var(--border);padding-left:16px;margin-top:24px}
+.spec b{color:#fff;font-weight:400}
+.demo{border:1px solid var(--border-subtle);background:#000;padding:40px;position:relative;overflow:hidden}
+/* utility banner demo */
+.demo-util{background:#000;border-bottom:1px solid var(--border-subtle);padding:10px;text-align:center;font-family:"Geist Mono",monospace;font-size:13px;color:#E4F1EB;background-image:radial-gradient(rgba(230,180,90,0.18) 0.5px,transparent 0.5px);background-size:4px 4px}
+/* navbar demo */
+.demo-nav{height:64px;background:#000;display:flex;align-items:center;padding:0 24px;gap:20px;border:1px solid var(--border-subtle)}
+/* five-up */
+.fiveup{display:grid;grid-template-columns:repeat(5,1fr);gap:24px}
+.fu-card{background:transparent;border-radius:0;padding:0}
+.fu-media{height:100px;background:#0b0d0e;border-bottom:1px solid var(--border-subtle);display:flex;align-items:flex-end;gap:3px;padding:8px}
+.fu-media i{flex:1;background:linear-gradient(to top,transparent,var(--accent));opacity:0.6}
+.fu-card .fu-label{font-size:16px;font-weight:500;letter-spacing:-0.4px;margin:12px 0 4px}
+.fu-card .fu-body{font-size:13px;color:var(--text-secondary);margin:0}
+/* logo strip */
+.logo-strip{overflow:hidden;position:relative;padding:8px 0}
+.logo-rail{display:flex;gap:64px;align-items:center;width:max-content;animation:infinityScroll 24s linear infinite}
+.logo-rail iconify-icon{font-size:34px;color:#6b6e73}
+@keyframes infinityScroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* paired panel */
+.paired{display:grid;grid-template-columns:1fr 1fr;gap:128px;align-items:center}
+.paired+.paired{margin-top:96px}
+.paired .p-body{font-size:16px;color:var(--text-secondary);margin:16px 0 0;max-width:44ch}
+.viz{background:#0b0d0e;border:1px solid var(--border-subtle);height:260px;position:relative;display:flex;align-items:flex-end;gap:10px;padding:24px}
+.viz i{flex:1;background:linear-gradient(to top,rgba(52,213,154,0.15),var(--accent));position:relative}
+.tooltip{position:absolute;top:20px;right:20px;background:var(--surface);border:1px solid var(--border);box-shadow:var(--pop-shadow);border-radius:4px;padding:8px 12px;font-family:"Geist Mono",monospace;font-size:12px;color:#fff}
+.viz-branch{display:flex;flex-direction:column;justify-content:center;gap:0;padding:24px}
+.viz-branch .node{display:flex;align-items:center;gap:12px;font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-secondary);padding:6px 0}
+.viz-branch .dot{width:8px;height:8px;border-radius:9999px;background:var(--accent);flex:none}
+.viz-branch .line{border-left:1px solid var(--border);height:16px;margin-left:3.5px}
+/* mint band */
+.mint-band{background:var(--surface-alt);color:var(--ink);border-radius:0}
+.mint-band .eyebrow{color:#3a5a4c}.mint-band .eyebrow iconify-icon{color:#1f8f66}
+.mint-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;padding:56px 40px}
+.mint-band .m-head{font-size:48px;font-weight:400;line-height:1.13;letter-spacing:-1.9px;margin:8px 0 0}
+.mint-band .m-head b{font-weight:600}
+.mint-band .m-head .cont{color:#5a6b62}
+.mint-viz{background:#d3e7dd;border:1px solid #b9d4c8;height:220px;display:flex;align-items:flex-end;gap:10px;padding:20px}
+.mint-viz i{flex:1;background:#1f8f66}
+/* enterprise grid */
+.entgrid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--border);border-left:1px solid var(--border)}
+.ent-cell{border-right:1px solid var(--border);border-bottom:1px solid var(--border);padding:28px;background:transparent;border-radius:0}
+.ent-cell iconify-icon{font-size:22px;color:var(--accent)}
+.ent-cell h4{font-size:16px;font-weight:600;letter-spacing:-0.4px;margin:14px 0 6px}
+.ent-cell p{font-size:13px;color:var(--text-secondary);margin:0}
+/* media-right panel */
+.mrpanel{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.mr-list{list-style:none;padding:0;margin:20px 0 0}
+.mr-list li{display:flex;gap:10px;align-items:center;font-size:15px;padding:8px 0;border-bottom:1px solid var(--border-subtle)}
+.mr-list iconify-icon{color:var(--accent)}
+.mr-media{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mr-tile{background:#0b0d0e;border:1px solid var(--border-subtle);height:140px;display:flex;align-items:center;justify-content:center;color:var(--text-secondary)}
+.mr-tile iconify-icon{font-size:28px;color:var(--accent)}
+/* terminal CTA band */
+.term-band{background:#000;border:1px solid var(--border-subtle);padding:64px 40px;position:relative;overflow:hidden}
+.term-branch{position:absolute;inset:0;opacity:0.25;pointer-events:none}
+.term-branch svg{width:100%;height:100%}
+.term-inner{position:relative;text-align:center;max-width:720px;margin:0 auto}
+.term-head{font-size:48px;font-weight:400;line-height:1.13;letter-spacing:-1.9px;margin:12px 0 32px}
+.term-head b{font-weight:600}.term-head .cont{color:var(--text-secondary)}
+.term-cluster{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-mint-term{background:#34D59A;color:#000;border:0;border-radius:9999px;height:44px;padding:0 28px;font-family:"Geist Mono",monospace;font-size:13px;cursor:pointer;display:inline-flex;align-items:center;gap:8px;transition:background 0.3s var(--ease)}
+.btn-mint-term:hover{background:#47D18C}
+/* button matrix */
+.matrix{overflow-x:auto}
+.matrix table{border-collapse:collapse;width:100%;min-width:640px}
+.matrix th,.matrix td{text-align:left;padding:18px 20px;border-bottom:1px solid var(--border-subtle);vertical-align:middle}
+.matrix th{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-secondary);font-weight:400}
+.matrix td:first-child{font-family:"Geist Mono",monospace;font-size:12px;color:#fff}
+.b-primary{background:#fff;color:#000;border:0;border-radius:9999px;height:44px;padding:0 22px;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.3s var(--ease)}
+.b-primary:hover{background:var(--surface-alt)}
+.b-primary.hov{background:var(--surface-alt)}
+.b-primary.dis{opacity:0.4;pointer-events:none}
+.b-sec{background:transparent;color:#fff;border:1px solid var(--border);border-radius:9999px;height:44px;padding:0 22px;font-size:15px;font-weight:500;cursor:pointer;transition:border-color 0.3s var(--ease),background 0.3s var(--ease)}
+.b-sec:hover,.b-sec.hov{border-color:var(--text-secondary);background:var(--surface)}
+.b-sec.dis{opacity:0.4;pointer-events:none}
+.b-nav{background:transparent;color:#fff;border:0;border-radius:4px;height:23px;padding:0 14px;font-size:14px;cursor:pointer;transition:background 0.2s var(--ease)}
+.b-nav:hover,.b-nav.hov{background:var(--surface)}
+.b-nav.dis{opacity:0.4;pointer-events:none}
+.b-mintsq{background:#E4F1EB;color:#131415;border:0;border-radius:0;height:44px;padding:0 16px;font-size:15px;font-weight:500;cursor:pointer;transition:background 0.3s var(--ease)}
+.b-mintsq:hover,.b-mintsq.hov{background:#F6FDFA}
+.b-mintsq.dis{opacity:0.4;pointer-events:none}
+.b-outsq{background:#fff;color:#18191B;border:1px solid #18191B;border-radius:0;height:44px;padding:0 16px;font-size:15px;font-weight:500;cursor:pointer}
+.b-outsq.dis{opacity:0.4;pointer-events:none}
+.b-termmint{background:#34D59A;color:#000;border:0;border-radius:9999px;height:44px;padding:0 28px;font-family:"Geist Mono",monospace;font-size:13px;cursor:pointer;transition:background 0.3s var(--ease)}
+.b-termmint:hover,.b-termmint.hov{background:#47D18C}
+.b-termmint.dis{opacity:0.4;pointer-events:none}
+@media(max-width:900px){.paired,.mint-inner,.mrpanel{grid-template-columns:1fr;gap:40px}.fiveup{grid-template-columns:repeat(2,1fr)}.entgrid{grid-template-columns:1fr}.mint-band .m-head,.term-head{font-size:30px;letter-spacing:-1px}}
+</style>
+<section id="components">
+  <div class="container">
+    <div class="band-head">
+      <p class="eyebrow"><iconify-icon icon="lucide:box" aria-hidden="true"></iconify-icon>Components</p>
+      <h2 class="fused"><b>Sharp-cornered and utilitarian.</b> <span class="cont">Only pills and dots ever round.</span></h2>
+    </div>
+
+    <!-- utility banner -->
+    <div class="comp-block" data-tier-a-component="utility-banner">
+      <h3 class="comp-title">Top utility banner <span class="count">×1</span></h3>
+      <p class="comp-desc">Full-width dark strip at the very top of the stack, above the navbar, carrying the warm dot-matrix halftone grain.</p>
+      <div class="demo-util">Void 2.0 is live — autoscaling now defaults on. <span style="color:var(--accent)">See what's new →</span></div>
+      <div class="spec">--util-banner · fill <b>#000000</b> · text <b>#E4F1EB</b> · type <b>label-mono 13</b> · overlay <b>dot-matrix grain</b></div>
+    </div>
+
+    <!-- navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <h3 class="comp-title">Edge-to-edge navbar <span class="count">×1</span></h3>
+      <p class="comp-desc">100% viewport width, 0px inset, 64px tall, 0px radii on all four corners. Logo, grouped triggers, log-in link, signup pill.</p>
+      <div class="demo-nav">
+        <span class="logo" style="font-size:16px"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Void</span>
+        <button class="nav-util">Product <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+        <button class="nav-util">Docs</button>
+        <span style="flex:1"></span>
+        <a class="login-link" href="#components">Log in</a>
+        <button class="navbar-cta">Sign up</button>
+      </div>
+      <div class="spec">--navbar · fill <b>#000000</b> · height <b>64</b> · radius <b>0</b><br>--navbar-cta · fill <b>#FFFFFF</b> · text <b>#000000</b> · radius <b>pill</b> · height <b>36</b><br>--button-nav-utility · transparent · radius <b>r-control 4</b> · height <b>23</b> · pad <b>0/14</b></div>
+    </div>
+
+    <!-- hero cta pair -->
+    <div class="comp-block" data-tier-a-component="hero-cta-pair">
+      <h3 class="comp-title">Hero CTA pill pair <span class="count">×1</span></h3>
+      <p class="comp-desc">A near-white solid pill — the highest-contrast control on the first screen — beside a transparent outline pill. Outline is always secondary.</p>
+      <div class="demo"><div style="display:flex;gap:12px"><button class="btn-hero-primary">Start building <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button><button class="btn-hero-secondary">Read the docs</button></div></div>
+      <div class="spec">--button-hero-primary · fill <b>#FFFFFF</b> · text <b>#000000</b> · radius <b>pill</b> · height <b>44</b><br>--button-hero-secondary · transparent · border <b>1px #303236</b> · radius <b>pill</b> · height <b>44</b> · motion <b>ease 0.3s</b></div>
+    </div>
+
+    <!-- hero headline block -->
+    <div class="comp-block" data-tier-a-component="hero-headline-block">
+      <h3 class="comp-title">Hero eyebrow + fused display headline <span class="count">×1</span></h3>
+      <p class="comp-desc">Left-aligned eyebrow over a two-line 68px display headline. Bold clause fused inline with the gray continuation — never split to a subhead.</p>
+      <div class="demo">
+        <p class="eyebrow"><iconify-icon icon="lucide:grid-2x2" aria-hidden="true"></iconify-icon>The developer database</p>
+        <div class="t-display" style="font-size:56px;letter-spacing:-2.2px;margin-top:14px"><b>Ship faster on Postgres.</b> <span class="cont">Branch your data like code.</span></div>
+      </div>
+      <div class="spec">--display-lg · <b>68/400</b> · lh <b>1.13</b> · ls <b>-2.7px</b> · Inter<br>continuation ink <b>#94979E</b></div>
+    </div>
+
+    <!-- five-up -->
+    <div class="comp-block" data-tier-a-component="five-up-feature-strip">
+      <h3 class="comp-title">Five-up feature strip <span class="count">×1</span></h3>
+      <p class="comp-desc">Five equal columns, transparent cards, media bleeding to the top edge covering roughly half the card height, then label + gray body.</p>
+      <div class="demo">
+        <div class="fiveup">
+          <div class="fu-card"><div class="fu-media"><i style="height:40%"></i><i style="height:70%"></i><i style="height:55%"></i><i style="height:90%"></i></div><div class="fu-label">Autoscaling</div><p class="fu-body">Compute follows load, then scales to zero.</p></div>
+          <div class="fu-card"><div class="fu-media"><i style="height:60%"></i><i style="height:85%"></i><i style="height:45%"></i><i style="height:75%"></i></div><div class="fu-label">Auth</div><p class="fu-body">Drop-in identity in a few lines.</p></div>
+          <div class="fu-card"><div class="fu-media"><i style="height:80%"></i><i style="height:50%"></i><i style="height:95%"></i><i style="height:65%"></i></div><div class="fu-label">Logs</div><p class="fu-body">Live terminal stream per branch.</p></div>
+          <div class="fu-card"><div class="fu-media"><i style="height:35%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:88%"></i></div><div class="fu-label">Branching</div><p class="fu-body">Isolated copies in milliseconds.</p></div>
+          <div class="fu-card"><div class="fu-media"><i style="height:55%"></i><i style="height:40%"></i><i style="height:80%"></i><i style="height:70%"></i></div><div class="fu-label">API</div><p class="fu-body">Type-safe calls to every endpoint.</p></div>
+        </div>
+      </div>
+      <div class="spec">--card-media-top-bleed · transparent · radius <b>0</b> · pad <b>0</b> · type <b>label-md + gray body</b></div>
+    </div>
+
+    <!-- logo strip -->
+    <div class="comp-block" data-tier-a-component="logo-strip">
+      <h3 class="comp-title">Partner logo strip <span class="count">×1</span></h3>
+      <p class="comp-desc">A single continuously scrolling marquee of monochrome partner marks on black — no dividers, no card chrome.</p>
+      <div class="demo">
+        <div class="logo-strip">
+          <div class="logo-rail" aria-label="Partner logos">
+            <iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:octagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:pentagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:cloud" aria-hidden="true"></iconify-icon>
+            <iconify-icon icon="lucide:hexagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:triangle" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:circle" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:diamond" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:octagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:pentagon" aria-hidden="true"></iconify-icon><iconify-icon icon="lucide:cloud" aria-hidden="true"></iconify-icon>
+          </div>
+        </div>
+      </div>
+      <div class="spec">--logo-strip · fill <b>#000000</b> · mark <b>#6b6e73</b> · motion <b>infinityScroll 24s linear</b></div>
+    </div>
+
+    <!-- paired panels -->
+    <div class="comp-block" data-tier-a-component="paired-panel-content-band">
+      <h3 class="comp-title">Paired-panel content bands <span class="count">×3</span></h3>
+      <p class="comp-desc">2-column, 128px gap. Left: eyebrow glyph + fused headline + body. Right: one large data-viz with slide-and-fade tooltips.</p>
+      <div class="demo">
+        <div class="paired">
+          <div>
+            <p class="eyebrow"><iconify-icon icon="lucide:bar-chart-3" aria-hidden="true"></iconify-icon>Observability</p>
+            <h4 class="fused" style="margin-top:8px"><b>See every query.</b> <span class="cont">In real time, per branch.</span></h4>
+            <p class="p-body">Latency, throughput and error rates streamed live, so you catch a regression before your users do.</p>
+          </div>
+          <div class="viz"><div class="tooltip">p95 · 42ms</div><i style="height:40%"></i><i style="height:65%"></i><i style="height:52%"></i><i style="height:88%"></i><i style="height:70%"></i><i style="height:95%"></i><i style="height:60%"></i></div>
+        </div>
+        <div class="paired">
+          <div class="viz viz-branch">
+            <div class="node"><span class="dot"></span>main</div><div class="line"></div>
+            <div class="node"><span class="dot"></span>feature/auth</div><div class="line"></div>
+            <div class="node"><span class="dot"></span>fix/pooling</div>
+          </div>
+          <div>
+            <p class="eyebrow"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon>Branching</p>
+            <h4 class="fused" style="margin-top:8px"><b>Branch the database.</b> <span class="cont">Merge like a pull request.</span></h4>
+            <p class="p-body">Every branch is a full, isolated copy — instant, cheap, and thrown away when you're done.</p>
+          </div>
+        </div>
+        <div class="paired">
+          <div>
+            <p class="eyebrow"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Autoscaling</p>
+            <h4 class="fused" style="margin-top:8px"><b>Scale to the load.</b> <span class="cont">Then scale to zero.</span></h4>
+            <p class="p-body">Compute rises with traffic and suspends when idle — you pay for the work, not the waiting.</p>
+          </div>
+          <div class="viz"><div class="tooltip">CU · 0.25 → 4</div><i style="height:20%"></i><i style="height:35%"></i><i style="height:55%"></i><i style="height:80%"></i><i style="height:100%"></i><i style="height:45%"></i><i style="height:15%"></i></div>
+        </div>
+      </div>
+      <div class="spec">--paired-panel · transparent · radius <b>0</b> · gap <b>128px</b> · head <b>headline-md 48</b> · tooltip <b>slideRightAndFade</b></div>
+    </div>
+
+    <!-- pale mint band -->
+    <div class="comp-block" data-tier-a-component="pale-mint-proof-band">
+      <h3 class="comp-title">Pale-mint inverted proof band <span class="count">×1</span></h3>
+      <p class="comp-desc">The single light "paper" band that interrupts the void mid-page. Ink flips to near-black. Never more than one at a time.</p>
+      <div class="mint-band">
+        <div class="mint-inner">
+          <div>
+            <p class="eyebrow"><iconify-icon icon="lucide:file-check-2" aria-hidden="true"></iconify-icon>Proof</p>
+            <h4 class="m-head"><b>99.99% uptime.</b> <span class="cont">Measured, not promised.</span></h4>
+            <p style="color:#5a6b62;margin:16px 0 0;max-width:40ch">Independent monitoring across every region, published continuously.</p>
+          </div>
+          <div class="mint-viz"><i style="height:70%"></i><i style="height:85%"></i><i style="height:60%"></i><i style="height:95%"></i><i style="height:78%"></i><i style="height:88%"></i></div>
+        </div>
+      </div>
+      <div class="spec">--surface-alt · fill <b>#E4F1EB</b> · ink <b>#131415</b> · radius <b>0</b> · pad <b>section-padding</b></div>
+    </div>
+
+    <!-- enterprise grid -->
+    <div class="comp-block" data-tier-a-component="enterprise-feature-grid">
+      <h3 class="comp-title">Enterprise-feature 3×2 grid <span class="count">×6 cells</span></h3>
+      <p class="comp-desc">Strict uniform 2-row × 3-column grid. Hairline dividers, transparent cells, 0px radius. Mint used only for the small icon glyph.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="entgrid">
+          <div class="ent-cell"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon><h4>SOC 2 Type II</h4><p>Audited controls across the platform.</p></div>
+          <div class="ent-cell"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon><h4>Encryption</h4><p>At rest and in transit, always on.</p></div>
+          <div class="ent-cell"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon><h4>Low latency</h4><p>Read replicas at the edge.</p></div>
+          <div class="ent-cell"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon><h4>Branching</h4><p>Isolated environments per PR.</p></div>
+          <div class="ent-cell"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon><h4>Observability</h4><p>Query-level metrics built in.</p></div>
+          <div class="ent-cell"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon><h4>RBAC</h4><p>Fine-grained team access.</p></div>
+        </div>
+      </div>
+      <div class="spec">--card-feature-grid · transparent · radius <b>0</b> · divider <b>1px #303236</b> · glyph <b>accent #34D59A</b></div>
+    </div>
+
+    <!-- media right panel -->
+    <div class="comp-block" data-tier-a-component="media-right-panel">
+      <h3 class="comp-title">Media-right how-it-works panel <span class="count">×1</span></h3>
+      <p class="comp-desc">Full-width, transparent, 0px radius/padding. List and body on the left, right-aligned media area with two nested tiles.</p>
+      <div class="demo">
+        <div class="mrpanel">
+          <div>
+            <p class="eyebrow"><iconify-icon icon="lucide:list-checks" aria-hidden="true"></iconify-icon>How it works</p>
+            <h4 class="fused" style="margin-top:8px"><b>Three steps.</b> <span class="cont">No servers to manage.</span></h4>
+            <ul class="mr-list">
+              <li><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon>Create a project in seconds</li>
+              <li><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon>Connect with a standard URL</li>
+              <li><iconify-icon icon="lucide:check" aria-hidden="true"></iconify-icon>Branch, deploy, and scale</li>
+            </ul>
+          </div>
+          <div class="mr-media">
+            <div class="mr-tile"><iconify-icon icon="lucide:terminal" aria-hidden="true"></iconify-icon></div>
+            <div class="mr-tile"><iconify-icon icon="lucide:database" aria-hidden="true"></iconify-icon></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec">--card-panel-media-right · transparent · radius <b>0</b> · pad <b>0</b> · nested tiles <b>×2</b></div>
+    </div>
+
+    <!-- terminal accent cta band -->
+    <div class="comp-block" data-tier-a-component="terminal-accent-cta-band">
+      <h3 class="comp-title">Terminal-accent CTA band <span class="count">×1</span></h3>
+      <p class="comp-desc">Footer proof band with a fine branching-line network behind, a fused headline and a three-button cluster — white pill primary, outline secondary, mint shell-command pill.</p>
+      <div class="term-band">
+        <div class="term-branch" aria-hidden="true"><svg viewBox="0 0 800 240" preserveAspectRatio="none"><g stroke="#34D59A" stroke-width="1" fill="none"><path d="M0 120 H300 M300 120 V60 H520 M300 120 V180 H520 M520 60 H800 M520 180 H800"/></g><g fill="#34D59A"><circle cx="300" cy="120" r="3"/><circle cx="520" cy="60" r="3"/><circle cx="520" cy="180" r="3"/></g></svg></div>
+        <div class="term-inner">
+          <p class="eyebrow" style="justify-content:center"><iconify-icon icon="lucide:terminal" aria-hidden="true"></iconify-icon>Get started</p>
+          <h4 class="term-head"><b>Deploy in one command.</b> <span class="cont">Free to start, scale when ready.</span></h4>
+          <div class="term-cluster">
+            <button class="btn-hero-primary">Create account</button>
+            <button class="btn-hero-secondary">Talk to sales</button>
+            <button class="btn-mint-term"><iconify-icon icon="lucide:terminal" aria-hidden="true"></iconify-icon>npx void init</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec">--button-terminal-accent · fill <b>#34D59A</b> · text <b>#000000</b> · radius <b>pill</b> · height <b>44</b> · pad <b>0/28</b> · type <b>label-mono</b> · hover <b>#47D18C</b></div>
+    </div>
+
+    <!-- footer component -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <h3 class="comp-title">Footer <span class="count">×1</span></h3>
+      <p class="comp-desc">Full-width black, 0px radius, four-column link list under the logo, compliance chips, and a mint status dot. The rendered instance sits at the page foot.</p>
+      <div class="demo">
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:32px">
+          <div><div style="font-weight:600;margin-bottom:12px">Product</div><div class="gray" style="font-size:14px;line-height:2.2">Compute<br>Branching<br>Storage<br>Auth</div></div>
+          <div><div style="font-weight:600;margin-bottom:12px">Developers</div><div class="gray" style="font-size:14px;line-height:2.2">Docs<br>API<br>CLI<br>Status</div></div>
+          <div><div style="font-weight:600;margin-bottom:12px">Company</div><div class="gray" style="font-size:14px;line-height:2.2">About<br>Careers<br>Blog<br>Contact</div></div>
+          <div><div style="font-weight:600;margin-bottom:12px">Legal</div><div class="gray" style="font-size:14px;line-height:2.2">Privacy<br>Terms<br>Security<br>DPA</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:24px;font-size:13px" class="gray"><span style="width:8px;height:8px;border-radius:9999px;background:var(--accent);display:inline-block"></span>All systems operational</div>
+      </div>
+      <div class="spec">--footer · fill <b>#000000</b> · radius <b>0</b> · status dot <b>accent #34D59A</b> · chips <b>checkmark</b></div>
+    </div>
+
+    <!-- button matrix -->
+    <div class="comp-block">
+      <h3 class="comp-title">Button variant × state matrix</h3>
+      <p class="comp-desc">Every documented fill treatment across the source-supported states. The document records no focus treatment, so no focus column is authored.</p>
+      <div class="matrix">
+        <table>
+          <thead><tr><th>variant</th><th>rest</th><th>hover</th><th>disabled</th></tr></thead>
+          <tbody>
+            <tr><td>hero-primary</td><td><button class="b-primary">Start building</button></td><td><button class="b-primary hov">Start building</button></td><td><button class="b-primary dis">Start building</button></td></tr>
+            <tr><td>hero-secondary</td><td><button class="b-sec">Read the docs</button></td><td><button class="b-sec hov">Read the docs</button></td><td><button class="b-sec dis">Read the docs</button></td></tr>
+            <tr><td>nav-utility</td><td><button class="b-nav">Product</button></td><td><button class="b-nav hov">Product</button></td><td><button class="b-nav dis">Product</button></td></tr>
+            <tr><td>mint-fill (square)</td><td><button class="b-mintsq">Deploy</button></td><td><button class="b-mintsq hov">Deploy</button></td><td><button class="b-mintsq dis">Deploy</button></td></tr>
+            <tr><td>outline-square</td><td><button class="b-outsq">Cancel</button></td><td><button class="b-outsq">Cancel</button></td><td><button class="b-outsq dis">Cancel</button></td></tr>
+            <tr><td>terminal-accent</td><td><button class="b-termmint">npx void init</button></td><td><button class="b-termmint hov">npx void init</button></td><td><button class="b-termmint dis">npx void init</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec">rows = documented fills · columns = source-supported states · hover fills at <b>ease 0.3s</b> · disabled = lowest opacity step</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:40px}
+#surface-depth .dcard{background:var(--surface);border-radius:4px;padding:28px;min-height:160px}
+#surface-depth .dcard.ring{box-shadow:var(--ring)}
+#surface-depth .dcard.pop{box-shadow:var(--pop-shadow)}
+#surface-depth .dcard h4{margin:0 0 8px;font-size:16px;font-weight:600;letter-spacing:-0.4px}
+#surface-depth .dcard p{margin:0;font-size:13px;color:var(--text-secondary)}
+#surface-depth .dcard .m{font-family:"Geist Mono",monospace;font-size:12px;color:var(--accent);margin-top:16px}
+@media(max-width:768px){#surface-depth .cards{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth">
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon>Surface &amp; depth</p>
+    <h2 class="fused"><b>Nearly flat.</b> <span class="cont">Structure is felt, not lifted.</span></h2>
+    <div class="cards">
+      <div class="dcard ring"><h4>Hairline ring</h4><p>The card-level elevation — a 1px inset-style ring, never a heavy shadow.</p><div class="m">radius 4px · ring 0.05α</div></div>
+      <div class="dcard pop"><h4>Popover drop</h4><p>The only soft drop in the system, reserved for tooltips and popovers.</p><div class="m">radius 4px · 0 8 20 / 0.4</div></div>
+      <div class="dcard" style="box-shadow:none;border:1px solid var(--border)"><h4>Ruled edge</h4><p>Most structure comes from hairline borders, not elevation at all.</p><div class="m">radius 4px · 1px #303236</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .rows{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px;margin-top:40px}
+#motion .mrow{border:1px solid var(--border-subtle);padding:28px;border-radius:4px}
+#motion .mrow h4{margin:0 0 6px;font-size:16px;font-weight:600;letter-spacing:-0.4px}
+#motion .mrow .m{font-family:"Geist Mono",monospace;font-size:12px;color:var(--text-secondary);margin:0 0 20px}
+#motion .puck{width:40px;height:40px;background:var(--accent);border-radius:4px;transition:transform 0.3s var(--ease)}
+#motion .mrow.run .puck{transform:translateX(160px)}
+#motion .mrow.op .puck{transition:opacity 0.2s var(--ease)}
+#motion .mrow.op.run .puck{opacity:0.2;transform:none}
+#motion .track{height:40px;display:flex;align-items:center}
+#motion button.replay{margin-top:16px;background:transparent;color:var(--accent);border:1px solid var(--border);border-radius:9999px;height:23px;padding:0 14px;font-size:13px;font-family:"Geist Mono",monospace;cursor:pointer}
+@media(max-width:768px){#motion .rows{grid-template-columns:1fr}}
+</style>
+<section id="motion">
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon>Motion</p>
+    <h2 class="fused"><b>Fast and diagrammatic.</b> <span class="cont">Snappy settle, never bounce.</span></h2>
+    <div class="rows">
+      <div class="mrow" data-motion><h4>Color / background</h4><p class="m">0.2s cubic-bezier(0.4,0,0.2,1)</p><div class="track"><div class="puck"></div></div><button class="replay">replay</button></div>
+      <div class="mrow op" data-motion><h4>Opacity fade</h4><p class="m">0.15–0.2s ease-out</p><div class="track"><div class="puck"></div></div><button class="replay">replay</button></div>
+      <div class="mrow" data-motion><h4>Compound state</h4><p class="m">0.3s cubic-bezier(0.4,0,0.2,1)</p><div class="track"><div class="puck"></div></div><button class="replay">replay</button></div>
+    </div>
+    <div style="margin-top:40px;border:1px solid var(--border-subtle);border-radius:4px;padding:28px;overflow:hidden">
+      <h4 style="margin:0 0 6px;font-size:16px;font-weight:600;letter-spacing:-0.4px">infinityScroll</h4>
+      <p class="mono" style="color:var(--text-secondary);margin:0 0 20px">continuous marquee · 24s linear</p>
+      <div class="logo-strip"><div class="logo-rail"><iconify-icon icon="lucide:hexagon"></iconify-icon><iconify-icon icon="lucide:triangle"></iconify-icon><iconify-icon icon="lucide:circle"></iconify-icon><iconify-icon icon="lucide:square"></iconify-icon><iconify-icon icon="lucide:diamond"></iconify-icon><iconify-icon icon="lucide:octagon"></iconify-icon><iconify-icon icon="lucide:hexagon"></iconify-icon><iconify-icon icon="lucide:triangle"></iconify-icon><iconify-icon icon="lucide:circle"></iconify-icon><iconify-icon icon="lucide:square"></iconify-icon><iconify-icon icon="lucide:diamond"></iconify-icon><iconify-icon icon="lucide:octagon"></iconify-icon></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid var(--border-subtle);border-radius:4px;overflow:hidden;margin-top:40px}
+#composition .m-util{background:#000;text-align:center;padding:8px;font-family:"Geist Mono",monospace;font-size:12px;color:#E4F1EB;border-bottom:1px solid var(--border-subtle)}
+#composition .m-nav{height:64px;background:#000;display:flex;align-items:center;padding:0 24px;gap:16px;border-bottom:1px solid var(--border-subtle)}
+#composition .m-hero{padding:64px 40px;position:relative;overflow:hidden;background:#000}
+#composition .m-hero .glow{position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 70% 0,rgba(52,213,154,0.10),transparent 70%)}
+#composition .m-hero .disp{position:relative;font-size:44px;font-weight:400;letter-spacing:-1.8px;line-height:1.13;margin:12px 0 24px;max-width:16ch}
+#composition .m-hero .disp b{font-weight:600}#composition .m-hero .disp .cont{color:var(--text-secondary)}
+#composition .m-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:40px;background:#000}
+#composition .m-card{background:var(--surface);border-radius:4px;padding:24px;box-shadow:var(--ring)}
+#composition .m-card iconify-icon{font-size:20px;color:var(--accent)}
+#composition .m-card h4{margin:12px 0 6px;font-size:16px;font-weight:600;letter-spacing:-0.4px}
+#composition .m-card p{margin:0;font-size:13px;color:var(--text-secondary)}
+#composition .m-cta{background:var(--surface-alt);color:var(--ink);padding:48px 40px;text-align:center}
+#composition .m-cta h3{font-size:32px;font-weight:400;letter-spacing:-1.2px;margin:0 0 20px}
+#composition .m-cta h3 b{font-weight:600}#composition .m-cta .cont{color:#5a6b62}
+@media(max-width:768px){#composition .m-cards{grid-template-columns:1fr}#composition .m-hero .disp{font-size:30px;letter-spacing:-1px}}
+</style>
+<section id="composition">
+  <div class="container">
+    <p class="eyebrow"><iconify-icon icon="lucide:layout" aria-hidden="true"></iconify-icon>In composition</p>
+    <h2 class="fused"><b>The system, assembled.</b> <span class="cont">Every part from documented tokens.</span></h2>
+    <div class="mock">
+      <div class="m-util">Void 2.0 is live — autoscaling now defaults on.</div>
+      <div class="m-nav">
+        <span class="logo" style="font-size:16px"><iconify-icon icon="lucide:terminal-square"></iconify-icon>Void</span>
+        <button class="nav-util">Product</button><button class="nav-util">Docs</button>
+        <span style="flex:1"></span>
+        <a class="login-link" href="#composition">Log in</a>
+        <button class="navbar-cta">Sign up</button>
+      </div>
+      <div class="m-hero">
+        <div class="glow"></div>
+        <p class="eyebrow" style="position:relative"><iconify-icon icon="lucide:grid-2x2"></iconify-icon>The developer database</p>
+        <div class="disp"><b>Ship faster on Postgres.</b> <span class="cont">Branch your data like code.</span></div>
+        <div style="display:flex;gap:12px;position:relative"><button class="btn-hero-primary">Start building</button><button class="btn-hero-secondary">Read the docs</button></div>
+      </div>
+      <div class="m-cards">
+        <div class="m-card"><iconify-icon icon="lucide:git-branch"></iconify-icon><h4>Branching</h4><p>Isolated copies of your data in milliseconds.</p></div>
+        <div class="m-card"><iconify-icon icon="lucide:zap"></iconify-icon><h4>Autoscaling</h4><p>Compute that follows load and scales to zero.</p></div>
+        <div class="m-card"><iconify-icon icon="lucide:activity"></iconify-icon><h4>Observability</h4><p>Query-level metrics streamed in real time.</p></div>
+      </div>
+      <div class="m-cta">
+        <h3><b>Deploy in one command.</b> <span class="cont">Free to start.</span></h3>
+        <button class="b-mintsq">Get started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#000;border-top:1px solid var(--border-subtle);padding:80px 0 48px}
+#footer .grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1fr;gap:40px}
+#footer .brand .logo{font-size:20px}
+#footer .brand p{font-size:13px;color:var(--text-secondary);margin:16px 0 0;max-width:26ch}
+#footer h4{font-size:13px;font-weight:600;margin:0 0 14px;letter-spacing:-0.2px}
+#footer ul{list-style:none;margin:0;padding:0}
+#footer li{margin-bottom:10px}
+#footer li a{font-size:14px;color:var(--text-secondary);transition:color 0.2s var(--ease)}
+#footer li a:hover{color:#fff}
+#footer .chips{display:flex;flex-wrap:wrap;gap:12px;margin-top:48px;padding-top:28px;border-top:1px solid var(--border-subtle);align-items:center}
+#footer .chip-c{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--text-secondary);border:1px solid var(--border);border-radius:4px;padding:5px 10px}
+#footer .chip-c iconify-icon{color:var(--accent)}
+#footer .status{display:inline-flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);margin-left:auto}
+#footer .status .dot{width:8px;height:8px;border-radius:9999px;background:var(--accent)}
+#footer .base{margin-top:32px;font-size:12px;color:var(--text-secondary);font-family:"Geist Mono",monospace}
+#footer .base a{color:var(--accent)}
+@media(max-width:768px){#footer .grid{grid-template-columns:1fr 1fr}}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="grid">
+      <div class="brand">
+        <span class="logo"><iconify-icon icon="lucide:terminal-square"></iconify-icon>Void</span>
+        <p>The developer database. Branch your data like code, autoscale on demand.</p>
+      </div>
+      <div><h4>Product</h4><ul><li><a href="#hero">Compute</a></li><li><a href="#hero">Branching</a></li><li><a href="#hero">Storage</a></li><li><a href="#hero">Auth</a></li><li><a href="#hero">Pricing</a></li></ul></div>
+      <div><h4>Developers</h4><ul><li><a href="#components">Docs</a></li><li><a href="#components">API reference</a></li><li><a href="#components">CLI</a></li><li><a href="#components">Guides</a></li><li><a href="#components">Status</a></li></ul></div>
+      <div><h4>Company</h4><ul><li><a href="#composition">About</a></li><li><a href="#composition">Careers</a></li><li><a href="#composition">Blog</a></li><li><a href="#composition">Customers</a></li><li><a href="#composition">Contact</a></li></ul></div>
+      <div><h4>Legal</h4><ul><li><a href="#footer">Privacy</a></li><li><a href="#footer">Terms</a></li><li><a href="#footer">Security</a></li><li><a href="#footer">DPA</a></li></ul></div>
+    </div>
+    <div class="chips">
+      <span class="chip-c"><iconify-icon icon="lucide:check"></iconify-icon>SOC 2 Type II</span>
+      <span class="chip-c"><iconify-icon icon="lucide:check"></iconify-icon>ISO 27001</span>
+      <span class="chip-c"><iconify-icon icon="lucide:check"></iconify-icon>GDPR</span>
+      <span class="chip-c"><iconify-icon icon="lucide:check"></iconify-icon>HIPAA</span>
+      <span class="status"><span class="dot"></span>All systems operational</span>
+    </div>
+    <div class="base">Void terminal glass · <a href="https://neon.com/">neon.com</a> · Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('#motion [data-motion]').forEach(function(row){
+  var btn=row.querySelector('.replay');
+  function play(){row.classList.remove('run');void row.offsetWidth;row.classList.add('run');}
+  if(btn)btn.addEventListener('click',play);
+  row.addEventListener('click',function(e){if(e.target!==btn)play();});
+});
+document.querySelectorAll('.matrix .hov, #motion .puck').forEach(function(){});
+</script>
+</body>
+</html>

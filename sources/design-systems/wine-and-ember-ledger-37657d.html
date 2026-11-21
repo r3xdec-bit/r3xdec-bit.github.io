@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Wine &amp; Ember Ledger — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700&family=Times+New+Roman:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F3EFEA; color:#190A13; font-family:'Epilogue',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Epilogue',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Epilogue',sans-serif; font-size: 22px; border-bottom: 1px solid #190A13; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#190A13; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#190A13; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #190A13; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#190A13; }
+  .swatch-meta p { color:#190A13; font-size: 12px; }
+  .specimen { border: 1px solid #190A13; border-radius:12px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#190A13; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#190A13; }
+  .bar { height: 10px; background:#190A13; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #190A13; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #190A13; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:13px; font-size: 14px; border: 1px solid #190A13; }
+  .btn-primary { background:#190A13; color:#F3EFEA; }
+  .btn-secondary { background: transparent; color:#190A13; }
+  footer { border-top: 1px solid #190A13; padding-top: 20px; font-size: 13px; color:#190A13; }
+  footer a { color:#190A13; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from mozwebsites.com · light mode</div>
+    <h1>Wine &amp; Ember Ledger</h1>
+    <p class="tagline">Warm-paper editorial system anchored by a wine-gradient hero and framing bands, with a rationed ember-orange accent driving every primary action and a tight rounded-geometric display face.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F3EFEA"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F3EFEA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F3EFEA"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#F3EFEA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6D0633"></div>
+        <div class="swatch-meta"><strong>band-wine</strong><code>#6D0633</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#4E0524"></div>
+        <div class="swatch-meta"><strong>band-wine-dark</strong><code>#4E0524</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#45063B"></div>
+        <div class="swatch-meta"><strong>band-plum</strong><code>#45063B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#190A13"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#190A13</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFF4EA"></div>
+        <div class="swatch-meta"><strong>text-on-wine</strong><code>#FFF4EA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F7972C"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#F7972C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#B96409"></div>
+        <div class="swatch-meta"><strong>accent-dark</strong><code>#B96409</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Epilogue',sans-serif;font-size:56px;font-weight:780;line-height:1.03">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Epilogue · 56px / w780</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Epilogue',sans-serif;font-size:38px;font-weight:760;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Epilogue · 38px / w760</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Epilogue',sans-serif;font-size:17px;font-weight:400;line-height:1.74">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Epilogue · 17px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Epilogue',sans-serif;font-size:12px;font-weight:640;line-height:1.74">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Epilogue · 12px / w640</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Times New Roman',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Times New Roman ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 7px</span>
+        <div class="bar" style="width:min(7px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 68px</span>
+        <div class="bar" style="width:min(68px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 132px</span>
+        <div class="bar" style="width:min(132px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:13px">control<br><code>13px</code></div>
+<div class="radius-chip" style="border-radius:24px">card-lg<br><code>24px</code></div>
+<div class="radius-chip" style="border-radius:16px">card-sm<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:100px">pill<br><code>100px</code></div>
+<div class="radius-chip" style="border-radius:50px">chip<br><code>50px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#190A13;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

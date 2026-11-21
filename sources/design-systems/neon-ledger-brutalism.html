@@ -1,0 +1,773 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Ledger Brutalism — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#18F0A8;
+  --surface-light:#F4F0F3;
+  --surface-mint:#1FF19F;
+  --surface-indigo:#5655F7;
+  --text-primary:#000000;
+  --text-on-dark:#FFFFFF;
+  --text-body:#333333;
+  --accent-mint:#1FF19F;
+  --accent-indigo:#5655F7;
+  --accent-amber:#E0FF66;
+  --faq-body:#E8E4FC;
+  --r-flat:3px;
+  --r-control:8px;
+  --r-card-soft:20px;
+  --r-pill:93px;
+  --sp-base:10px;
+  --sp-gap:20px;
+  --sp-stack:35px;
+  --sp-section:150px;
+  --shadow-indigo:10px 10px 0px 0px rgb(86,85,247);
+  --shadow-black-8:8px 8px 0px 0px #000;
+  --shadow-black-10:10px 10px 0px 0px #000;
+  --ease:0.3s ease;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:"Space Grotesk",-apple-system,sans-serif;
+  font-size:18px;
+  line-height:1.6;
+  color:var(--text-body);
+  background:var(--surface-light);
+}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;font-weight:600;line-height:1;margin:0;text-transform:uppercase;letter-spacing:-0.02em}
+a{color:inherit}
+img{max-width:100%;display:block}
+.band{padding:var(--sp-section) 24px}
+.wrap{max-width:1140px;margin:0 auto}
+.eyebrow{font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:0.04em;line-height:1}
+.caption{font-size:14px;line-height:1.5;color:var(--text-body)}
+/* NAV */
+.navbar{
+  background:#000;display:flex;align-items:center;
+  height:72px;padding:0 24px;gap:28px;position:sticky;top:0;z-index:50;
+}
+.nav-logo{font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:-0.02em;font-size:20px;display:flex;align-items:center;gap:8px}
+.nav-logo iconify-icon{color:var(--accent-mint)}
+.nav-links{display:flex;gap:28px;margin-left:12px}
+.nav-link{
+  background:transparent;color:#F4F0F3;height:52px;border:0;border-radius:0;
+  padding:0;display:inline-flex;align-items:center;font-weight:700;font-size:15px;
+  text-transform:uppercase;letter-spacing:0.03em;text-decoration:none;cursor:pointer;
+  transition:color var(--ease);
+}
+.nav-link:hover{color:var(--accent-mint)}
+.nav-cta{
+  margin-left:auto;background:var(--accent-mint);color:#000;border:1px solid #000;
+  border-radius:0;height:52px;padding:15px 30px;font-weight:700;font-size:15px;
+  text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;
+  transition:background var(--ease),color var(--ease);text-decoration:none;
+}
+.nav-cta:hover{background:#006DFF;color:#fff}
+/* HERO */
+#hero{background:#000;color:#fff;position:relative;overflow:hidden;padding:110px 24px 140px}
+.hero-glow{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:min(760px,90vw);height:min(760px,90vw);
+  background:radial-gradient(circle,rgba(31,241,159,0.22) 0%,rgba(86,85,247,0.12) 40%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{position:relative;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;max-width:1140px;margin:0 auto}
+.hero-left{max-width:620px}
+.hero-h1{font-size:clamp(56px,13vw,180px);font-weight:600;line-height:0.92;color:#fff}
+.hero-h1 .mint{color:var(--accent-mint)}
+.hero-sub{font-size:18px;line-height:1.6;color:#F4F0F3;max-width:460px;margin:28px 0 36px;text-transform:none;letter-spacing:0}
+.pennants{display:flex;flex-direction:column;gap:14px;margin:34px 0}
+.pennant{
+  display:inline-flex;align-items:center;gap:12px;border-radius:var(--r-pill);
+  padding:10px 24px 10px 10px;font-weight:700;width:fit-content;font-size:16px;
+}
+.pennant .ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;flex:0 0 auto}
+.pennant.mint{background:var(--accent-mint);color:#000}
+.pennant.mint .ico{background:#000;color:var(--accent-mint)}
+.pennant.indigo{background:var(--accent-indigo);color:#fff}
+.pennant.indigo .ico{background:#fff;color:var(--accent-indigo)}
+.hero-cta-box{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+.btn-hero{
+  background:#000;color:#fff;border:3px solid #fff;border-radius:0;height:70px;
+  padding:20px 30px;font-weight:700;font-size:18px;text-transform:uppercase;
+  display:inline-flex;align-items:center;gap:12px;cursor:pointer;
+  box-shadow:var(--shadow-indigo);transition:background var(--ease),color var(--ease);
+}
+.btn-hero iconify-icon{color:var(--accent-amber)}
+.btn-hero:hover{background:var(--accent-mint);color:#000}
+.btn-hero:hover iconify-icon{color:#000}
+.btn-hero-sec{
+  background:transparent;color:#fff;border:1px solid #fff;border-radius:0;height:52px;
+  padding:0 24px;font-weight:700;font-size:15px;text-transform:uppercase;cursor:pointer;
+  transition:background var(--ease),color var(--ease);
+}
+.btn-hero-sec:hover{background:#fff;color:#000}
+.hero-portrait{
+  width:min(320px,40vw);aspect-ratio:3/4;border:3px solid var(--accent-mint);
+  background:radial-gradient(circle at 60% 30%,rgba(86,85,247,0.6),#000 70%);
+  position:relative;display:grid;place-items:center;
+  box-shadow:0 0 0 1px #000, -6px -6px 0 0 rgba(31,241,159,0.5);
+}
+.hero-portrait iconify-icon{font-size:120px;color:var(--accent-mint)}
+.hero-rim{position:absolute;inset:0;border:2px solid transparent;
+  background:linear-gradient(120deg,rgba(0,255,255,0.4),transparent 40%,rgba(255,0,200,0.35)) border-box;
+  -webkit-mask:linear-gradient(#000 0 0) padding-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-portrait{width:min(260px,70vw);margin-top:20px}
+  .nav-links{display:none}
+  .band{padding:90px 20px}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="navbar" aria-label="Primary">
+  <span class="nav-logo"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>WOMENS.AI</span>
+  <div class="nav-links">
+    <a class="nav-link" href="#hero">Acceuil</a>
+    <a class="nav-link" href="#components">Edition 2024</a>
+    <a class="nav-link" href="#composition">Communauté</a>
+  </div>
+  <a class="nav-cta" href="#hero">S'inscrire</a>
+</nav>
+</header>
+
+<main>
+
+<section id="hero" aria-labelledby="hero-title">
+  <div class="hero-glow" aria-hidden="true"></div>
+  <div class="hero-grid">
+    <div class="hero-left">
+      <h1 class="hero-h1" id="hero-title">Édition<br><span class="mint">2024.</span></h1>
+      <p class="hero-sub">Le hackathon IA au féminin. Blocs noirs, bord franc, une seule touche de menthe — pas de flou, pas de compromis. Construisez, pitchez, gagnez.</p>
+      <div class="pennants">
+        <span class="pennant mint"><span class="ico"><iconify-icon icon="lucide:gift" aria-hidden="true"></iconify-icon></span>12 000 € de prix à remporter</span>
+        <span class="pennant indigo"><span class="ico"><iconify-icon icon="lucide:trophy" aria-hidden="true"></iconify-icon></span>Jury international</span>
+      </div>
+      <div class="hero-cta-box">
+        <button class="btn-hero"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Je m'inscris</button>
+        <button class="btn-hero-sec">Voir le programme</button>
+      </div>
+    </div>
+    <div class="hero-portrait" role="img" aria-label="Portrait IA au rim-lighting néon">
+      <div class="hero-rim" aria-hidden="true"></div>
+      <iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface-light)}
+.sec-head{margin-bottom:56px}
+.sec-head h2{font-size:clamp(40px,8vw,84px);color:#000}
+.sec-head .caption{margin-top:16px;max-width:620px}
+.role-group{margin-bottom:48px}
+.role-group h3{font-size:18px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;margin-bottom:20px;color:#000}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px}
+.swatch{border:1px solid #000;background:#fff}
+.swatch .chip{height:120px}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.swatch .meta{padding:12px 14px}
+.swatch .name{font-weight:700;font-size:15px;color:#000;text-transform:none}
+.swatch .val{font-size:13px;font-family:monospace;color:#333;margin:4px 0 6px}
+.swatch .use{font-size:13px;line-height:1.4;color:#333}
+</style>
+<section id="palette" class="band" aria-labelledby="palette-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="palette-title">La palette</h2>
+      <p class="caption">Noir structurel, menthe rationnée, indigo minoritaire. Aucune grande surface n'est jamais dégradée.</p>
+    </div>
+
+    <div class="role-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#000"></div><div class="meta"><div class="name">text-primary / ground</div><div class="val">#000000</div><div class="use">Hero, nav et bande FAQ — le sol structurel profond.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1FF19F"></div><div class="meta"><div class="name">surface-mint</div><div class="val">#1FF19F</div><div class="use">Bandes de section, grilles de cartes, remplissages de boutons.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F4F0F3;border-bottom:1px solid #000"></div><div class="meta"><div class="name">surface-light</div><div class="val">#F4F0F3</div><div class="use">Sol de contenu secondaire pour listes et stats.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#5655F7"></div><div class="meta"><div class="name">surface-indigo</div><div class="val">#5655F7</div><div class="use">Pills de minuteur, callouts, un jeton d'ombre.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3>Texte</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#000"></div><div class="meta"><div class="name">text-primary</div><div class="val">#000000</div><div class="use">Titres et labels sur fond clair ou menthe.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#333333"></div><div class="meta"><div class="name">text-body</div><div class="val">#333333</div><div class="use">Corps de texte long-format.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #000"></div><div class="meta"><div class="name">text-on-dark</div><div class="val">#FFFFFF</div><div class="use">Texte et bordures sur noir.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E8E4FC;border-bottom:1px solid #000"></div><div class="meta"><div class="name">faq body</div><div class="val">#E8E4FC</div><div class="use">Paragraphes développés dans l'accordéon FAQ.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3>Accents</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#1FF19F"></div><div class="meta"><div class="name">accent-mint</div><div class="val">#1FF19F</div><div class="use">L'accent dominant — jamais pour le corps de texte.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#5655F7"></div><div class="meta"><div class="name">accent-indigo</div><div class="val">#5655F7</div><div class="use">Troisième couleur, petites formes fonctionnelles.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#E0FF66"></div><div class="meta"><div class="name">accent-amber</div><div class="val">#E0FF66</div><div class="use">Points d'accent minuscules, icône éclair.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:#000;color:#fff}
+#type-scale h2{color:#fff}
+#type-scale .caption{color:#F4F0F3}
+.specimen{border-top:1px solid #1FF19F;padding:32px 0}
+.specimen .disp{color:#fff;line-height:1;text-transform:uppercase;letter-spacing:-0.02em;overflow:hidden}
+.spec-meta{font-size:13px;font-family:monospace;color:#1FF19F;margin-top:16px;letter-spacing:0.03em}
+.ramp{display:flex;gap:28px;flex-wrap:wrap;margin-top:12px}
+.ramp span{font-size:40px;color:#fff;line-height:1}
+.serif-note{font-family:"Times New Roman",serif;font-style:italic;color:#E8E4FC}
+</style>
+<section id="type-scale" class="band" aria-labelledby="type-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="type-title">L'échelle typo</h2>
+      <p class="caption">Space Grotesk porte toute la hiérarchie — du display 180px aux labels 18px. Une interruption serif italique en <span class="serif-note">Times New Roman</span>.</p>
+    </div>
+    <div class="specimen">
+      <div class="disp" style="font-size:clamp(64px,16vw,180px);font-weight:600">Clôture</div>
+      <div class="spec-meta">headline-md · 180px · 600 · lh 1 · tracking -0.02em · Space Grotesk</div>
+    </div>
+    <div class="specimen">
+      <div class="disp" style="font-size:18px;font-weight:700;letter-spacing:0.03em">Inscriptions ouvertes — rejoignez l'édition</div>
+      <div class="spec-meta">label-md · 18px · 700 · lh 1 · Space Grotesk</div>
+    </div>
+    <div class="specimen">
+      <div style="font-size:18px;font-weight:400;line-height:1.6;color:#F4F0F3;text-transform:none;max-width:640px">Un hackathon IA au féminin, pensé comme une affiche suisse passée au filtre dark-mode : structure rationnelle, contraste maximal, aucun dégradé.</div>
+      <div class="spec-meta">body-md · 18px · 400 · lh 1.6 · Space Grotesk</div>
+    </div>
+    <div class="specimen">
+      <div style="font-size:16px;font-weight:400;line-height:1.5;color:#E8E4FC;text-transform:none;max-width:640px">Le texte long-format des réponses FAQ se pose en 16px/400, teinté lavande-blanc sur fond noir pour une lecture apaisée.</div>
+      <div class="spec-meta">body-fallback · 16px · 400 · lh 1.5 · #E8E4FC</div>
+    </div>
+    <div class="specimen">
+      <div class="spec-meta" style="margin-top:0;margin-bottom:8px">weight ramp — Space Grotesk variable</div>
+      <div class="ramp">
+        <span style="font-weight:400">Aa 400</span>
+        <span style="font-weight:500">Aa 500</span>
+        <span style="font-weight:600">Aa 600</span>
+        <span style="font-weight:700">Aa 700</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface-light)}
+.comp-block{margin-bottom:96px}
+.comp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px;margin-bottom:8px}
+.comp-head h3{font-size:clamp(26px,4vw,40px);color:#000}
+.comp-count{font-size:13px;font-family:monospace;color:#5655F7;font-weight:700}
+.comp-desc{font-size:15px;line-height:1.5;color:#333;max-width:620px;margin-bottom:28px;text-transform:none}
+.spec-card{
+  font-family:monospace;font-size:12px;line-height:1.7;color:#333;background:#fff;
+  border:1px solid #000;padding:14px 16px;margin-top:24px;max-width:720px;
+}
+.spec-card b{color:#000}
+.demo{background:#fff;border:1px solid #000;padding:40px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+.demo.dark{background:#000}
+/* nav demo */
+.navbar-demo{width:100%;background:#000;display:flex;align-items:center;height:72px;padding:0 20px;gap:24px}
+.navbar-demo .nav-logo{font-size:18px}
+.navbar-demo .nav-links{display:flex;gap:24px;margin-left:8px}
+/* button matrix */
+.matrix{width:100%;border-collapse:separate;border-spacing:0;font-family:monospace}
+.matrix th,.matrix td{padding:14px;text-align:left;border-bottom:1px solid #000;vertical-align:middle}
+.matrix th{font-size:12px;text-transform:uppercase;color:#5655F7;font-weight:700}
+.matrix td:first-child{font-size:12px;font-weight:700;color:#000;white-space:nowrap}
+.btn-nav-cta{background:#1FF19F;color:#000;border:1px solid #000;border-radius:0;height:52px;padding:15px 30px;font-weight:700;font-size:15px;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;transition:background var(--ease),color var(--ease);font-family:"Space Grotesk"}
+.btn-nav-cta:hover{background:#006DFF;color:#fff}
+.btn-sec-cta{background:#1FF19F;color:#000;border:3px solid #000;border-radius:0;height:70px;padding:20px 30px;font-weight:700;font-size:18px;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;transition:background var(--ease),color var(--ease);font-family:"Space Grotesk"}
+.btn-sec-cta:hover{background:#006DFF;color:#fff}
+.btn-disabled{background:#1FF19F;color:#333;border:3px solid #000;border-radius:0;height:70px;padding:20px 30px;font-weight:700;font-size:18px;text-transform:uppercase;opacity:0.5;cursor:not-allowed;display:inline-flex;align-items:center;font-family:"Space Grotesk"}
+.state-cell{font-size:11px;color:#333;display:block;margin-top:6px}
+/* countdown */
+.countdown{background:#1FF19F;width:100%;text-align:center;padding:60px 24px}
+.countdown .num{font-size:clamp(72px,18vw,180px);font-weight:600;color:#000;line-height:1;text-transform:uppercase;letter-spacing:-0.02em}
+.timers{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.timer{background:#5655F7;border-radius:var(--r-pill);padding:18px 34px;color:#fff;text-align:center;min-width:110px}
+.timer .t-num{font-size:40px;font-weight:700;line-height:1}
+.timer .t-lab{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-top:6px;color:#fff}
+/* feature tabs */
+.ftabs{display:grid;grid-template-columns:1fr 1fr;gap:40px;width:100%;align-items:start}
+.tab-rows{display:flex;flex-direction:column;gap:14px}
+.tab-row{width:100%;text-align:left;border:1px solid #000;border-radius:0;padding:20px 24px;font-weight:700;font-size:18px;text-transform:uppercase;cursor:pointer;background:#fff;color:#000;transition:background var(--ease),color var(--ease);font-family:"Space Grotesk"}
+.tab-row[aria-selected="true"]{background:#1FF19F;color:#000}
+.tab-panel h4{font-size:24px;color:#000;margin-bottom:14px}
+.tab-panel p{font-size:16px;line-height:1.6;color:#333;text-transform:none}
+/* speaker cards */
+.speaker-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;width:100%}
+.speaker-card{background:#1FF19F;border:1px solid #000;border-radius:20px;padding:0;overflow:hidden;display:grid;grid-template-columns:34% 1fr}
+.sc-photo{background:radial-gradient(circle at 50% 30%,#5655F7,#000 75%);display:grid;place-items:center;min-height:180px}
+.sc-photo iconify-icon{font-size:56px;color:#1FF19F}
+.sc-body{padding:20px}
+.sc-body h4{font-size:20px;color:#000;margin-bottom:10px}
+.sc-body ul{margin:0 0 14px;padding-left:18px;color:#000;font-size:14px;line-height:1.5;text-transform:none}
+.sc-body ul em{font-family:"Times New Roman",serif}
+.sc-byline{display:flex;align-items:center;gap:8px;border-top:1px solid #000;padding-top:12px;font-weight:700;font-size:15px;text-transform:uppercase;color:#000}
+/* how to participate */
+.htp{background:#1FF19F;width:100%;padding:40px}
+.htp-steps{display:flex;flex-direction:column;gap:0}
+.htp-step{display:flex;gap:20px;align-items:flex-start;padding:0 0 32px;position:relative}
+.htp-step:not(:last-child)::before{content:"";position:absolute;left:21px;top:48px;bottom:-4px;border-left:2px dashed #000}
+.htp-tag{flex:0 0 auto;width:44px;height:44px;border:2px solid #000;display:grid;place-items:center;font-weight:700;font-size:20px;color:#000;background:#1FF19F;z-index:1}
+.htp-step h4{font-size:20px;color:#000;margin-bottom:6px}
+.htp-step p{font-size:15px;line-height:1.5;color:#000;text-transform:none}
+.btn-htp{background:#000;color:#fff;border:3px solid #000;border-radius:0;height:70px;padding:20px 30px;font-weight:700;font-size:18px;text-transform:uppercase;display:inline-flex;align-items:center;gap:10px;cursor:pointer;box-shadow:var(--shadow-indigo);transition:background var(--ease),color var(--ease);font-family:"Space Grotesk";margin-top:8px}
+.btn-htp iconify-icon{color:#E0FF66}
+.btn-htp:hover{background:#1FF19F;color:#000}
+.btn-htp:hover iconify-icon{color:#000}
+/* faq */
+.faq{background:#000;width:100%;padding:48px 40px;position:relative;overflow:hidden}
+.faq::before{content:"";position:absolute;left:-10%;top:-10%;width:60%;height:120%;background:linear-gradient(135deg,rgba(86,85,247,0.35),rgba(31,241,159,0.18) 60%,transparent);pointer-events:none}
+.faq h4.faq-title{position:relative;color:#fff;font-size:28px;margin-bottom:28px}
+.faq-item{position:relative;border-bottom:1px solid #1FF19F;padding:16px 20px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;background:transparent;border:0;color:#fff;font-family:"Space Grotesk";font-weight:700;font-size:18px;text-transform:uppercase;text-align:left;cursor:pointer;padding:0 0 16px}
+.faq-q iconify-icon{color:#1FF19F;font-size:22px}
+.faq-a{color:#E8E4FC;font-size:16px;line-height:1.5;padding:0 0 16px;text-transform:none}
+.faq-a b{color:#fff}
+.faq-a[hidden]{display:none}
+/* stat pills */
+.stat-row{display:flex;gap:24px;flex-wrap:wrap;width:100%}
+.stat-pill{display:flex;align-items:center;gap:16px;border-radius:var(--r-pill);padding:10px 20px;color:#fff;flex:1;min-width:260px}
+.stat-pill.indigo{background:#5655F7;color:#fff}
+.stat-pill.mint{background:#1FF19F;color:#000}
+.stat-badge{width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:0 0 auto}
+.stat-pill.indigo .stat-badge iconify-icon{color:#5655F7;font-size:26px}
+.stat-pill.mint .stat-badge iconify-icon{color:#1FF19F;font-size:26px}
+.stat-num{font-size:34px;font-weight:700;line-height:1}
+.stat-lab{font-size:14px;font-weight:700;text-transform:uppercase}
+.footer-demo{width:100%;background:#F4F0F3;border-top:1px solid #000;display:flex;justify-content:space-between;align-items:center;padding:20px 24px;flex-wrap:wrap;gap:12px}
+.footer-demo .fl{font-weight:700;text-transform:uppercase;color:#000;display:flex;align-items:center;gap:8px}
+.footer-demo .fl iconify-icon{color:#5655F7}
+.footer-demo .fr{font-size:13px;color:#333}
+@media(max-width:768px){
+  .ftabs,.speaker-grid,.speaker-card{grid-template-columns:1fr}
+  .matrix,.matrix tbody,.matrix tr,.matrix td{display:block;width:100%}
+  .matrix th{display:none}
+  .matrix td{border-bottom:0}
+  .matrix tr{border-bottom:2px solid #000;padding-bottom:16px;margin-bottom:16px}
+}
+</style>
+<section id="components" class="band" aria-labelledby="comp-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="comp-title">Les composants</h2>
+      <p class="caption">L'inventaire complet du système : blocs à bord franc, ombres décalées sans flou, menthe rationnée.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Barre noire pleine largeur : lockup logo + 3 liens texte, CTA menthe rectangulaire à l'extrême droite.</p>
+      <div class="demo" style="padding:0;border:0;background:transparent">
+        <nav class="navbar-demo" aria-label="Exemple navbar">
+          <span class="nav-logo"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>WOMENS.AI</span>
+          <div class="nav-links">
+            <a class="nav-link" href="#components">Acceuil</a>
+            <a class="nav-link" href="#components">Edition 2024</a>
+            <a class="nav-link" href="#components">Communauté</a>
+          </div>
+          <a class="nav-cta" href="#components" style="margin-left:auto">S'inscrire</a>
+        </nav>
+      </div>
+      <div class="spec-card">
+        <b>--button-nav-link</b> · bg transparent · text #333333 · height 52 · radius 0 · padding 0<br>
+        <b>--button-nav-cta</b> · fill accent-mint · text text-primary · border 1px #000 · height 52 · padding 15/30 · radius 0 · motion ease 0.3s
+      </div>
+    </div>
+
+    <!-- HERO PRIMARY CTA + section CTA matrix -->
+    <div class="comp-block" data-tier-a-component="button-primary-hero">
+      <div class="comp-head"><h3>Hero primary CTA</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">L'élément le plus bruyant de l'écran : rectangle noir, bord blanc 3px, ombre indigo décalée sans flou, éclair ambre.</p>
+      <div class="demo dark">
+        <button class="btn-hero"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Je m'inscris</button>
+      </div>
+      <div class="spec-card">
+        <b>--button-primary-hero</b> · fill text-primary · text text-on-dark · border 3px #fff · height 70 · padding 20/30 · radius 0<br>
+        shadow <b>indigo 10px 10px 0px 0px</b> · hover fill accent-mint / text #000 · icon accent-amber · motion ease 0.3s
+      </div>
+    </div>
+
+    <div class="comp-block" data-tier-a-component="button-section-cta">
+      <div class="comp-head"><h3>Section CTA — matrice variantes × états</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Le bouton de milieu de page : menthe, bord noir 3px, 0px radius, bascule indigo-bleu au survol.</p>
+      <div class="demo">
+        <table class="matrix" aria-label="Matrice bouton">
+          <thead><tr><th>Variante</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Section CTA</td>
+              <td><button class="btn-sec-cta">Participer</button><span class="state-cell">#1FF19F / #000</span></td>
+              <td><button class="btn-sec-cta" style="background:#006DFF;color:#fff">Participer</button><span class="state-cell">#006DFF / #fff</span></td>
+              <td><button class="btn-disabled" disabled>Participer</button><span class="state-cell">opacity ladder</span></td>
+            </tr>
+            <tr>
+              <td>Nav CTA</td>
+              <td><button class="btn-nav-cta">S'inscrire</button><span class="state-cell">#1FF19F / #000</span></td>
+              <td><button class="btn-nav-cta" style="background:#006DFF;color:#fff">S'inscrire</button><span class="state-cell">#006DFF / #fff</span></td>
+              <td><button class="btn-nav-cta" style="opacity:.5;cursor:not-allowed" disabled>S'inscrire</button><span class="state-cell">opacity ladder</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card">
+        <b>--button-section-cta</b> · fill accent-mint · text text-primary · border 3px #000 · height 70 · padding 20/30 · radius 0<br>
+        hover fill #006DFF / text #fff · motion background+border 0.3s ease
+      </div>
+    </div>
+
+    <!-- PENNANTS -->
+    <div class="comp-block" data-tier-a-component="pennant-badge-callouts">
+      <div class="comp-head"><h3>Pennant / badge callouts</h3><span class="comp-count">×2</span></div>
+      <p class="comp-desc">Deux pills empilés sur le hero : menthe avec cadeau, indigo avec trophée. Radius plein réservé aux badges.</p>
+      <div class="demo dark">
+        <div class="pennants" style="margin:0">
+          <span class="pennant mint"><span class="ico"><iconify-icon icon="lucide:gift" aria-hidden="true"></iconify-icon></span>12 000 € de prix</span>
+          <span class="pennant indigo"><span class="ico"><iconify-icon icon="lucide:trophy" aria-hidden="true"></iconify-icon></span>Jury international</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        pennant · radius <b>r-pill 93px</b> · mint fill accent-mint / text #000 · indigo fill accent-indigo / text #fff · label label-md 18/700 · icon circle badge
+      </div>
+    </div>
+
+    <!-- COUNTDOWN -->
+    <div class="comp-block" data-tier-a-component="countdown-band">
+      <div class="comp-head"><h3>Countdown band</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Bande menthe pleine largeur, numéral noir 180px, quatre pills indigo plein-radius.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="countdown">
+          <div class="num">Clôture</div>
+          <div class="timers">
+            <div class="timer"><div class="t-num">14</div><div class="t-lab">Jours</div></div>
+            <div class="timer"><div class="t-num">06</div><div class="t-lab">Heures</div></div>
+            <div class="timer"><div class="t-num">32</div><div class="t-lab">Minutes</div></div>
+            <div class="timer"><div class="t-num">08</div><div class="t-lab">Secondes</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        band fill surface-mint (flat) · headline headline-md 180/600 text-primary · timer fill accent-indigo · radius r-pill · num 40/700 text-on-dark
+      </div>
+    </div>
+
+    <!-- FEATURE TABS -->
+    <div class="comp-block" data-tier-a-component="feature-tab-list">
+      <div class="comp-head"><h3>Feature tab list</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Bande claire, 3 rangées pleine largeur — une active menthe, deux blanches — avec panneau descriptif à droite.</p>
+      <div class="demo">
+        <div class="ftabs">
+          <div class="tab-rows" role="tablist" aria-label="Fonctionnalités">
+            <button class="tab-row" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">Mentorat</button>
+            <button class="tab-row" role="tab" aria-selected="false" aria-controls="tp1" id="tb2">Ateliers</button>
+            <button class="tab-row" role="tab" aria-selected="false" aria-controls="tp1" id="tb3">Pitch final</button>
+          </div>
+          <div class="tab-panel" id="tp1" role="tabpanel" aria-labelledby="tb1">
+            <h4 data-tab-title>Mentorat</h4>
+            <p data-tab-body>Chaque équipe est accompagnée par une mentore experte en IA tout au long du week-end — de l'idée au prototype.</p>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        tab-row · active fill accent-mint / text #000 · inactive fill #fff · border 1px #000 · radius 0 · label label-md · ground surface-light
+      </div>
+    </div>
+
+    <!-- SPEAKER CARDS -->
+    <div class="comp-block" data-tier-a-component="speaker-card-grid">
+      <div class="comp-head"><h3>Speaker card grid</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Grille 2 colonnes de cartes menthe, bord noir 1px, radius 20px. Photo à gauche, puces à droite, byline nom en caps.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="speaker-grid">
+          <article class="speaker-card">
+            <div class="sc-photo"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></div>
+            <div class="sc-body">
+              <h4>Ouverture</h4>
+              <ul><li>État de l'art en IA générative</li><li><em>cas d'usage concrets</em></li></ul>
+              <div class="sc-byline"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon>CAMILLE ROUX</div>
+            </div>
+          </article>
+          <article class="speaker-card">
+            <div class="sc-photo"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></div>
+            <div class="sc-body">
+              <h4>Keynote</h4>
+              <ul><li>Éthique et modèles de langage</li><li><em>biais et correctifs</em></li></ul>
+              <div class="sc-byline"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon>LÉA MARTIN</div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>--card-speaker</b> · fill accent-mint · border 1px #000 · radius card-soft 20 · padding 0 · byline label-md 700 caps · mic icon
+      </div>
+    </div>
+
+    <!-- HOW TO PARTICIPATE -->
+    <div class="comp-block" data-tier-a-component="how-to-participate-list">
+      <div class="comp-head"><h3>« Comment participer »</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Fond menthe, 3 étapes reliées par un trait pointillé, tags numéraux crochetés, CTA noir à éclair en bas.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="htp">
+          <div class="htp-steps">
+            <div class="htp-step"><div class="htp-tag">1</div><div><h4>Formez votre équipe</h4><p>De 2 à 4 personnes, toutes disciplines bienvenues.</p></div></div>
+            <div class="htp-step"><div class="htp-tag">2</div><div><h4>Construisez</h4><p>48 heures pour passer de l'idée au prototype fonctionnel.</p></div></div>
+            <div class="htp-step"><div class="htp-tag">3</div><div><h4>Pitchez</h4><p>5 minutes devant le jury pour convaincre.</p></div></div>
+          </div>
+          <button class="btn-htp"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Je participe</button>
+        </div>
+      </div>
+      <div class="spec-card">
+        ground surface-mint · numeral tag border 2px #000 · dashed connector 2px · CTA fill #000 / text #fff / border 3px / shadow indigo 10px · icon accent-amber
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="comp-block" data-tier-a-component="faq-accordion">
+      <div class="comp-head"><h3>FAQ accordion</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Bande noire avec wash diagonal indigo/menthe, rangées à règle menthe, toggle plus/moins, corps lavande-blanc.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="faq">
+          <h4 class="faq-title">Questions fréquentes</h4>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="true" aria-controls="fa1"><span>Faut-il savoir coder ?</span><iconify-icon icon="lucide:minus" aria-hidden="true"></iconify-icon></button>
+            <div class="faq-a" id="fa1"><b>Pas nécessairement.</b> Les équipes mixtes — design, produit, data, dev — sont les plus performantes. Chaque profil compte.</div>
+          </div>
+          <div class="faq-item">
+            <button class="faq-q" aria-expanded="false" aria-controls="fa2"><span>Combien coûte l'inscription ?</span><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></button>
+            <div class="faq-a" id="fa2" hidden><b>Gratuit.</b> L'événement est entièrement pris en charge par nos partenaires, repas inclus.</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>--card-faq</b> · bg transparent · radius 0 · padding 16/20/0 · border-bottom 1px accent-mint · heading text-on-dark · body body-fallback 16/400 #E8E4FC
+      </div>
+    </div>
+
+    <!-- STAT PILLS -->
+    <div class="comp-block" data-tier-a-component="stat-pill-row">
+      <div class="comp-head"><h3>Stat / pill row</h3><span class="comp-count">×2</span></div>
+      <p class="comp-desc">Fond clair, deux pills côte à côte : indigo « participants », menthe « gagnantes », badge circulaire blanc à gauche.</p>
+      <div class="demo">
+        <div class="stat-row">
+          <div class="stat-pill indigo"><div class="stat-badge"><iconify-icon icon="lucide:users" aria-hidden="true"></iconify-icon></div><div><div class="stat-num">1 200+</div><div class="stat-lab">Participantes</div></div></div>
+          <div class="stat-pill mint"><div class="stat-badge"><iconify-icon icon="lucide:trophy" aria-hidden="true"></iconify-icon></div><div><div class="stat-num">36</div><div class="stat-lab">Équipes gagnantes</div></div></div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>--card-pill-stat</b> · indigo fill accent-indigo · radius r-pill (9999) · padding 10/20 · mint fill accent-mint · badge circle #fff · label label-md
+      </div>
+    </div>
+
+    <!-- FOOTER COMPONENT -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <div class="comp-head"><h3>Footer</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Fond clair, rangée unique minimale, fine bordure supérieure séparant de la bande noire au-dessus.</p>
+      <div class="demo" style="padding:0;border:0">
+        <div class="footer-demo">
+          <span class="fl"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>WOMENS.AI</span>
+          <span class="fr">© 2024 — Édition annuelle</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        ground surface-light · border-top 1px #000 · logo label-md caps · credit caption 13 text-body
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:#000;color:#fff}
+#surface-depth h2{color:#fff}
+#surface-depth .caption{color:#F4F0F3}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:48px;margin-top:40px}
+.depth-card{background:#fff;border:1px solid #000;padding:24px;color:#000}
+.depth-card h4{font-size:16px;color:#000;margin-bottom:10px}
+.depth-card .d-meta{font-family:monospace;font-size:12px;color:#5655F7;text-transform:none}
+.rsample{background:#1FF19F;border:3px solid #000;height:90px;margin-bottom:14px}
+.r0{border-radius:0}.r3{border-radius:var(--r-flat)}.r8{border-radius:var(--r-control)}.r20{border-radius:var(--r-card-soft)}.rp{border-radius:var(--r-pill)}
+.shadow-card{background:#000;border:3px solid #fff;height:90px;margin-bottom:28px}
+.sh-indigo{box-shadow:var(--shadow-indigo)}
+.sh-b8{box-shadow:var(--shadow-black-8)}
+.sh-b10{box-shadow:var(--shadow-black-10)}
+</style>
+<section id="surface-depth" class="band" aria-labelledby="depth-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="depth-title">Surface & profondeur</h2>
+      <p class="caption">Deux extrêmes de radius seulement : 0px brutaliste ou pill. Les ombres sont décalées et sans flou — jamais diffuses.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card"><div class="rsample r0"></div><h4>Flat block</h4><div class="d-meta">radius 0px — structurel</div></div>
+      <div class="depth-card"><div class="rsample r3"></div><h4>Flat</h4><div class="d-meta">radius 3px — r-flat</div></div>
+      <div class="depth-card"><div class="rsample r8"></div><h4>Control</h4><div class="d-meta">radius 8px — r-control</div></div>
+      <div class="depth-card"><div class="rsample r20"></div><h4>Card soft</h4><div class="d-meta">radius 20px — r-card-soft</div></div>
+      <div class="depth-card"><div class="rsample rp"></div><h4>Pill</h4><div class="d-meta">radius 93px — r-pill</div></div>
+    </div>
+    <div class="depth-grid" style="margin-top:60px">
+      <div class="depth-card" style="background:#000;border-color:#fff;color:#fff"><div class="shadow-card sh-indigo"></div><h4 style="color:#fff">Ombre indigo</h4><div class="d-meta">10px 10px 0px 0px rgb(86,85,247)</div></div>
+      <div class="depth-card" style="background:#000;border-color:#fff;color:#fff"><div class="shadow-card sh-b8"></div><h4 style="color:#fff">Ombre noire</h4><div class="d-meta">8px 8px 0px 0px #000</div></div>
+      <div class="depth-card" style="background:#000;border-color:#fff;color:#fff"><div class="shadow-card sh-b10"></div><h4 style="color:#fff">Ombre noire</h4><div class="d-meta">10px 10px 0px 0px #000</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface-light)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:40px}
+.motion-card{background:#fff;border:1px solid #000;padding:28px}
+.motion-card h4{font-size:16px;color:#000;margin-bottom:16px}
+.motion-box{width:70px;height:70px;background:#1FF19F;border:3px solid #000;box-shadow:var(--shadow-black-8)}
+.motion-card .m-meta{font-family:monospace;font-size:12px;color:#5655F7;margin-top:18px;text-transform:none}
+.replay{margin-top:16px;background:#000;color:#fff;border:0;border-radius:0;height:40px;padding:0 18px;font-family:"Space Grotesk";font-weight:700;font-size:13px;text-transform:uppercase;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.replay:hover{background:#5655F7}
+.m-swap.play{animation:swap .3s ease}
+@keyframes swap{from{background:#1FF19F}to{background:#5655F7}}
+.m-trans.play{animation:trans .4s ease}
+@keyframes trans{from{transform:translate(0,0)}50%{transform:translate(18px,0)}to{transform:translate(0,0)}}
+.m-glow.play{animation:glow .3s ease}
+@keyframes glow{0%,100%{box-shadow:var(--shadow-black-8)}50%{box-shadow:0 0 0 6px rgba(31,241,159,0.5),var(--shadow-black-8)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="band" aria-labelledby="motion-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2 id="motion-title">Mouvement</h2>
+      <p class="caption">Court et mécanique : 0.3s ease sur les swaps de couleur, 0.4s sur le transform. Rien de ressort, tout de franc.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card"><h4>Color swap</h4><div class="motion-box m-swap"></div><div class="m-meta">background 0.3s ease — noir→menthe→indigo</div><button class="replay" data-replay=".m-swap"><iconify-icon icon="lucide:rotate-ccw" aria-hidden="true"></iconify-icon>Rejouer</button></div>
+      <div class="motion-card"><h4>Transform</h4><div class="motion-box m-trans"></div><div class="m-meta">transform 0.4s ease</div><button class="replay" data-replay=".m-trans"><iconify-icon icon="lucide:rotate-ccw" aria-hidden="true"></iconify-icon>Rejouer</button></div>
+      <div class="motion-card"><h4>Highlight glow</h4><div class="motion-box m-glow"></div><div class="m-meta">box-shadow pulse 0.3s ease</div><button class="replay" data-replay=".m-glow"><iconify-icon icon="lucide:rotate-ccw" aria-hidden="true"></iconify-icon>Rejouer</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:#000;padding:0}
+.mock{max-width:1140px;margin:0 auto;border-left:1px solid #222;border-right:1px solid #222}
+.mock-hero{background:#000;position:relative;overflow:hidden;padding:80px 32px 100px;text-align:center}
+.mock-hero .hero-glow{opacity:0.8}
+.mock-hero h2{font-size:clamp(48px,11vw,130px);color:#fff;position:relative}
+.mock-hero h2 .mint{color:#1FF19F}
+.mock-hero .btn-hero{margin-top:36px}
+.mock-mint{background:#1FF19F;padding:48px 32px;text-align:center}
+.mock-mint .num{font-size:clamp(56px,13vw,130px);font-weight:600;color:#000;text-transform:uppercase;letter-spacing:-0.02em;line-height:1}
+.mock-cards{background:#F4F0F3;padding:56px 32px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.mock-cta-band{background:#000;padding:56px 32px;text-align:center}
+.mock-cta-band h3{color:#fff;font-size:clamp(28px,6vw,56px);margin-bottom:28px}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition" aria-labelledby="comp2-title">
+  <div class="band" style="padding-bottom:40px">
+    <div class="wrap"><div class="sec-head" style="margin-bottom:0">
+      <h2 id="comp2-title" style="color:#fff">En composition</h2>
+      <p class="caption" style="color:#F4F0F3">Le rythme noir→menthe→clair→noir prouve que le système tient d'un seul bloc.</p>
+    </div></div>
+  </div>
+  <div class="mock">
+    <nav class="navbar-demo" aria-label="Maquette navbar">
+      <span class="nav-logo"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>WOMENS.AI</span>
+      <div class="nav-links"><a class="nav-link" href="#composition">Acceuil</a><a class="nav-link" href="#composition">Edition 2024</a></div>
+      <a class="nav-cta" href="#composition" style="margin-left:auto">S'inscrire</a>
+    </nav>
+    <div class="mock-hero">
+      <div class="hero-glow" aria-hidden="true"></div>
+      <h2>Hackathon<br><span class="mint">IA 2024</span></h2>
+      <button class="btn-hero"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Je m'inscris</button>
+    </div>
+    <div class="mock-mint">
+      <div class="num">Clôture — 14 jours</div>
+    </div>
+    <div class="mock-cards">
+      <article class="speaker-card"><div class="sc-photo"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></div><div class="sc-body"><h4>Mentorat</h4><ul><li>Accompagnement expert</li></ul><div class="sc-byline"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon>CAMILLE ROUX</div></div></article>
+      <article class="speaker-card"><div class="sc-photo"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></div><div class="sc-body"><h4>Ateliers</h4><ul><li>Prototypage rapide</li></ul><div class="sc-byline"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon>LÉA MARTIN</div></div></article>
+      <article class="speaker-card"><div class="sc-photo"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></div><div class="sc-body"><h4>Pitch</h4><ul><li>Jury international</li></ul><div class="sc-byline"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon>SARA BEN</div></div></article>
+    </div>
+    <div class="mock-cta-band">
+      <h3>Prête à construire ?</h3>
+      <button class="btn-sec-cta">Participer maintenant</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface-light);border-top:1px solid #000;padding:40px 24px}
+.footer-row{max-width:1140px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-row .brand{font-weight:700;text-transform:uppercase;color:#000;font-size:20px;display:flex;align-items:center;gap:8px}
+.footer-row .brand iconify-icon{color:#5655F7}
+.footer-row .meta{font-size:13px;color:#333;text-align:right;line-height:1.6}
+.footer-row .meta a{color:#5655F7}
+</style>
+<footer id="footer">
+  <div class="footer-row">
+    <span class="brand"><iconify-icon icon="lucide:zap" aria-hidden="true"></iconify-icon>Neon Ledger Brutalism</span>
+    <div class="meta">
+      <a href="https://womensai.school/">womensai.school</a><br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+// Feature tabs
+(function(){
+  var data={
+    'Mentorat':'Chaque équipe est accompagnée par une mentore experte en IA tout au long du week-end — de l\'idée au prototype.',
+    'Ateliers':'Des sessions pratiques sur les outils IA génératifs, animées par des ingénieures du secteur.',
+    'Pitch final':'Cinq minutes devant un jury international pour défendre votre projet et remporter la dotation.'
+  };
+  var tabs=document.querySelectorAll('.tab-row');
+  var title=document.querySelector('[data-tab-title]');
+  var body=document.querySelector('[data-tab-body]');
+  tabs.forEach(function(t){t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.setAttribute('aria-selected','false')});
+    t.setAttribute('aria-selected','true');
+    title.textContent=t.textContent;body.textContent=data[t.textContent];
+  })});
+})();
+// FAQ
+document.querySelectorAll('.faq-q').forEach(function(q){
+  q.addEventListener('click',function(){
+    var open=q.getAttribute('aria-expanded')==='true';
+    q.setAttribute('aria-expanded',String(!open));
+    var panel=document.getElementById(q.getAttribute('aria-controls'));
+    if(panel)panel.hidden=open;
+    var ico=q.querySelector('iconify-icon');
+    if(ico)ico.setAttribute('icon',open?'lucide:plus':'lucide:minus');
+  });
+});
+// Motion replay
+document.querySelectorAll('[data-replay]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var el=document.querySelector(b.getAttribute('data-replay'));
+    if(!el)return;el.classList.remove('play');void el.offsetWidth;el.classList.add('play');
+  });
+});
+</script>
+</body>
+</html>

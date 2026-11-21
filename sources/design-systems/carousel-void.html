@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Carousel Void — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=sans:wght@400;500;700&family=Times+New+Roman:wght@400;500;700&family=Arial:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#000000; color:#FFFFFF; font-family:'sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'sans',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'sans',sans-serif; font-size: 22px; border-bottom: 1px solid #767676; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#767676; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#767676; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#907878; border: 1px solid #767676; border-radius:26px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#767676; }
+  .swatch-meta p { color:#767676; font-size: 12px; }
+  .specimen { border: 1px solid #767676; border-radius:26px; padding: 20px; background:#907878; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#767676; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#767676; }
+  .bar { height: 10px; background:#FFFFFF; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #FFFFFF; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#907878; border: 1px solid #767676; border-radius:26px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:26px; font-size: 14px; border: 1px solid #FFFFFF; }
+  .btn-primary { background:#FFFFFF; color:#000000; }
+  .btn-secondary { background: transparent; color:#FFFFFF; }
+  footer { border-top: 1px solid #767676; padding-top: 20px; font-size: 13px; color:#767676; }
+  footer a { color:#FFFFFF; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from jesperlandberg.com · dark mode</div>
+    <h1>Carousel Void</h1>
+    <p class="tagline">A near-black 3D-staged gallery: a perspective-grid floor carries edge-curved panel cards that bow like projected screens, each a warm desert-toned render topped by an oversized italic serif wordmark, orbiting a pure-black void.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#907878"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#907878</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#483030"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#483030</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#767676"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#767676</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-ink-inverse</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#3C81F5"></div>
+        <div class="swatch-meta"><strong>accent-ring</strong><code>#3C81F5</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'sans',sans-serif;font-size:36px;font-weight:700;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · sans · 36px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'sans',sans-serif;font-size:27px;font-weight:700;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · sans · 27px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'sans',sans-serif;font-size:18px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · sans · 18px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'sans',sans-serif;font-size:17.92px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-char · sans · 17.92px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Times New Roman',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Times New Roman ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Arial',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · Arial ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 10px</span>
+        <div class="bar" style="width:min(10px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 19px</span>
+        <div class="bar" style="width:min(19px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 38px</span>
+        <div class="bar" style="width:min(38px, 100%)"></div></div>
+<div class="bar-row"><span>panel-gap · 51px</span>
+        <div class="bar" style="width:min(51px, 100%)"></div></div>
+<div class="bar-row"><span>micro · 26px</span>
+        <div class="bar" style="width:min(26px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:26px">control<br><code>26px</code></div>
+<div class="radius-chip" style="border-radius:26px">card<br><code>26px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#767676;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

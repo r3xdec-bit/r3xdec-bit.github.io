@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fieldwork Grotesk — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFF4EA;
+  --surface-dark:#111111;
+  --surface-white:#FFFFFF;
+  --text-primary:#111111;
+  --text-inverse:#FFFFFF;
+  --text-secondary:#666660;
+  --accent:#FF6A00;
+  --accent-hover:#E85F00;
+  --footer-bg:#161616;
+  --navbar-fill:#F4F1EC;
+  --peach:#FFE6D2;
+  --peach-2:#F4F1EC;
+  --hairline:#E8E8E4;
+  --r-control:8px;
+  --r-hero-image:14px;
+  --r-pill:14px;
+  --sp-base:8px;
+  --sp-gap:23px;
+  --sp-micro:6px;
+  --card-pad:30px;
+  --section-padding:110px;
+  --measure:660px;
+  --shadow-orange:rgba(255,106,0,0.16) 0px 10px 20px 0px;
+  --ease:cubic-bezier(0.23,1,0.32,1);
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:15px;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;font-weight:400;margin:0;}
+p{margin:0;}
+a{color:inherit;}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:'Inter',sans-serif;font-size:12px;font-weight:500;
+  letter-spacing:0.14em;text-transform:uppercase;color:var(--text-secondary);
+}
+.kicker::before{content:"";display:block;width:2px;height:20px;background:var(--accent);}
+.wrap{max-width:1280px;margin:0 auto;padding:0 32px;}
+.band{padding:var(--section-padding) 0;}
+
+/* Navbar */
+.nav{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:90px;
+  background:var(--navbar-fill);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-radius:0;
+  display:flex;align-items:center;
+}
+.nav-inner{max-width:1280px;margin:0 auto;padding:0 32px;width:100%;display:flex;align-items:center;gap:36px;}
+.logo{font-family:'Sora',sans-serif;font-size:22px;letter-spacing:-1.4px;font-weight:500;}
+.nav-links{display:flex;gap:28px;margin-left:auto;list-style:none;padding:0;margin-right:8px;}
+.nav-links a{font-size:14px;text-decoration:none;color:var(--text-primary);padding:4px 0;}
+.nav-links a.active{border-bottom:2px solid var(--accent);}
+.btn-nav{
+  background:var(--surface-dark);color:var(--text-inverse);
+  border:1px solid rgba(0,0,0,0);border-radius:0;
+  height:42px;padding:0 15px;font-size:14px;font-family:'Inter',sans-serif;
+  display:inline-flex;align-items:center;cursor:pointer;
+  transition:transform 0.16s var(--ease),background 0.16s var(--ease);
+}
+.btn-nav:hover{background:var(--accent);transform:translateY(-2px);}
+
+/* Hero */
+#hero{padding:80px 0 var(--section-padding);}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+.hero-display{
+  font-family:'Sora',sans-serif;font-weight:400;
+  font-size:102px;line-height:0.82;letter-spacing:-10.2px;
+  margin:24px 0 0;
+}
+.hero-sub{max-width:var(--measure);margin-top:28px;color:var(--text-secondary);font-size:16px;line-height:1.5;}
+.hero-ctas{display:flex;gap:16px;margin-top:36px;flex-wrap:wrap;}
+.btn-hero{
+  background:var(--accent);color:var(--text-inverse);
+  border:1px solid rgba(0,0,0,0);border-radius:14px;
+  height:46px;padding:0 19px;font-size:15px;font-family:'Inter',sans-serif;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  box-shadow:var(--shadow-orange);
+  transition:transform 0.16s var(--ease),background 0.16s var(--ease);
+}
+.btn-hero:hover{background:var(--accent-hover);transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;color:var(--text-primary);
+  border:1px solid var(--surface-dark);border-radius:0;
+  height:46px;padding:0 19px;font-size:15px;font-family:'Inter',sans-serif;
+  display:inline-flex;align-items:center;gap:8px;cursor:pointer;
+  transition:transform 0.16s var(--ease),background 0.16s var(--ease),color 0.16s var(--ease);
+}
+.btn-ghost:hover{background:var(--surface-dark);color:var(--text-inverse);transform:translateY(-2px);}
+.hero-media{
+  position:relative;min-height:440px;border-radius:14px;overflow:hidden;
+  background:linear-gradient(135deg,#8a7f72,#3a352f);
+  clip-path:polygon(0 0,88% 0,100% 12%,100% 100%,0 100%);
+}
+.hero-media .tab{position:absolute;top:0;right:0;width:14%;height:14%;background:var(--accent);}
+.hero-media .caption-chip{
+  position:absolute;left:16px;bottom:16px;background:var(--surface-dark);color:var(--text-inverse);
+  font-size:12px;letter-spacing:0.1em;text-transform:uppercase;padding:6px 12px;
+}
+.hero-media .proof-tag{
+  position:absolute;right:-8px;bottom:24px;background:var(--surface-dark);color:var(--text-inverse);
+  font-size:12px;padding:6px 14px;
+}
+.hero-photo{position:absolute;inset:0;font-size:0;}
+@media(max-width:1024px){
+  .hero-display{font-size:74px;letter-spacing:-6px;}
+}
+@media(max-width:768px){
+  .hero-grid{grid-template-columns:1fr;}
+  .hero-display{font-size:56px;letter-spacing:-4px;}
+  .nav-links{display:none;}
+  :root{--section-padding:64px;}
+}
+@media(max-width:640px){
+  .hero-display{font-size:42px;letter-spacing:-2.4px;}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <span class="logo">Runna&nbsp;Market</span>
+    <ul class="nav-links">
+      <li><a href="#hero">Overview</a></li>
+      <li><a href="#palette">Palette</a></li>
+      <li><a href="#type-scale">Type</a></li>
+      <li><a href="#components" class="active">Components</a></li>
+      <li><a href="#motion">Motion</a></li>
+    </ul>
+    <button class="btn-nav" data-tier-a-component="button-nav-cta">Become a merchant</button>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<section id="hero" class="band">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">index — field notes</span>
+        <h1 class="hero-display">Trade,<br>proven<br>in the<br>field.</h1>
+        <p class="hero-sub">A cream-and-black editorial system for the merchants who move real goods. Condensed display type, one rationed orange, and squared-off structure that reads like a working dossier.</p>
+        <div class="hero-ctas">
+          <button class="btn-hero" data-tier-a-component="button-hero-primary">Open a stall <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-ghost">See the market</button>
+        </div>
+      </div>
+      <div class="hero-media" data-tier-a-component="media-hero-image">
+        <div class="hero-photo" role="img" aria-label="Documentary photograph of a market trader at their stall"></div>
+        <span class="tab" aria-hidden="true"></span>
+        <span class="caption-chip">stall no. 04</span>
+        <span class="proof-tag">verified proof</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface-white);}
+.pal-head{margin-bottom:56px;}
+.pal-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;}
+@media(max-width:768px){.pal-title{font-size:48px;letter-spacing:-3px;}}
+.pal-role{margin-bottom:48px;}
+.pal-role h3{font-size:27px;letter-spacing:-2.2px;margin-bottom:20px;}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--sp-gap);}
+.swatch{border:1px solid var(--hairline);}
+.swatch .chip{height:120px;position:relative;}
+.swatch .meta{padding:16px;}
+.swatch .name{font-family:'Sora',sans-serif;font-size:16px;letter-spacing:-0.5px;}
+.swatch .val{font-size:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.08em;margin-top:4px;}
+.swatch .note{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.5;}
+.check{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <div class="pal-head">
+      <span class="kicker">index — colour</span>
+      <h2 class="pal-title">Three inks,<br>one accent.</h2>
+    </div>
+
+    <div class="pal-role">
+      <h3>Surfaces</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--background)"></div><div class="meta"><div class="name">background</div><div class="val">#FFF4EA</div><div class="note">Warm cream — the largest field, carries the hero.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-dark)"></div><div class="meta"><div class="name">surface-dark</div><div class="val">#111111</div><div class="note">Near-black process and CTA bands.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-white);border-bottom:1px solid var(--hairline)"></div><div class="meta"><div class="name">surface-white</div><div class="val">#FFFFFF</div><div class="note">Mid-page feature and FAQ content.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--peach)"></div><div class="meta"><div class="name">peach card tint</div><div class="val">#FFE6D2</div><div class="note">The only tint — reserved for one skewed wedge card.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--footer-bg)"></div><div class="meta"><div class="name">footer-bg</div><div class="val">#161616</div><div class="note">Deepest black, footer only.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-role">
+      <h3>Text</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--surface-white);border-bottom:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;color:var(--text-primary);font-family:'Sora';font-size:28px;letter-spacing:-1px">Aa</div><div class="meta"><div class="name">text-primary</div><div class="val">#111111</div><div class="note">Ink on light surfaces.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-dark);display:flex;align-items:center;justify-content:center;color:var(--text-inverse);font-family:'Sora';font-size:28px;letter-spacing:-1px">Aa</div><div class="meta"><div class="name">text-inverse</div><div class="val">#FFFFFF</div><div class="note">Ink on dark bands.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-white);border-bottom:1px solid var(--hairline);display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-family:'Sora';font-size:28px;letter-spacing:-1px">Aa</div><div class="meta"><div class="name">text-secondary</div><div class="val">#666660</div><div class="note">Captions and secondary copy.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-role">
+      <h3>Accent</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--accent)"></div><div class="meta"><div class="name">accent</div><div class="val">#FF6A00</div><div class="note">Rationed under 1% — CTAs, numerals, rules, one tab.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--accent-hover)"></div><div class="meta"><div class="name">accent-hover</div><div class="val">#E85F00</div><div class="note">Fill swap on hover, never a glow.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background);}
+.ts-head{margin-bottom:64px;}
+.ts-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;}
+@media(max-width:768px){.ts-title{font-size:48px;letter-spacing:-3px;}}
+.spec{border-top:1px solid var(--hairline);padding:32px 0;}
+.spec .specimen{color:var(--text-primary);}
+.spec .metrics{margin-top:16px;font-size:12px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.08em;display:flex;gap:20px;flex-wrap:wrap;}
+.d-lg{font-family:'Sora';font-size:102px;font-weight:400;line-height:0.82;letter-spacing:-10.2px;}
+.h-md{font-family:'Sora';font-size:80px;font-weight:400;line-height:0.89;letter-spacing:-7.2px;}
+.l-md{font-family:'Sora';font-size:27px;font-weight:400;line-height:1.5;letter-spacing:-2.2px;}
+.b-def{font-family:'Inter';font-size:16px;font-weight:400;line-height:1.5;}
+.b-md{font-family:'Inter';font-size:15px;font-weight:400;line-height:1.65;}
+.l-mono{font-family:'Inter';font-size:12px;font-weight:500;line-height:1.4;letter-spacing:0.14em;text-transform:uppercase;}
+.ramp{display:flex;gap:32px;flex-wrap:wrap;margin-top:8px;}
+.ramp span{font-family:'Sora';font-size:44px;letter-spacing:-2px;}
+@media(max-width:768px){.d-lg{font-size:56px;letter-spacing:-4px;}.h-md{font-size:44px;letter-spacing:-2.5px;}}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <div class="ts-head">
+      <span class="kicker">index — type</span>
+      <h2 class="ts-title">Sora, set tight.</h2>
+    </div>
+
+    <div class="spec"><div class="specimen d-lg">Market ready</div><div class="metrics"><span>display-lg</span><span>Sora · 102px</span><span>weight 400</span><span>lh 0.82</span><span>tracking -10.2px</span></div></div>
+    <div class="spec"><div class="specimen h-md">Proven in the field</div><div class="metrics"><span>headline-md</span><span>Sora · 80px</span><span>weight 400</span><span>lh 0.89</span><span>tracking -7.2px</span></div></div>
+    <div class="spec"><div class="specimen l-md">Why traders partner with us</div><div class="metrics"><span>label-md</span><span>Sora · 27px</span><span>weight 400</span><span>lh 1.5</span><span>tracking -2.2px</span></div></div>
+    <div class="spec"><div class="specimen b-def">Every stall is verified before it lists — documentary proof, not promises. The system stays plain so the goods stand out.</div><div class="metrics"><span>body-default</span><span>Inter · 16px</span><span>weight 400</span><span>lh 1.5</span></div></div>
+    <div class="spec"><div class="specimen b-md">Body copy sits at fifteen pixels with a generous 1.65 line-height, bounded to a 660-pixel measure so long passages stay comfortable across the cream and white bands.</div><div class="metrics"><span>body-md</span><span>Inter · 15px</span><span>weight 400</span><span>lh 1.65</span></div></div>
+    <div class="spec"><div class="specimen l-mono">index — field notes</div><div class="metrics"><span>label-mono</span><span>Inter · 12px</span><span>weight 500</span><span>lh 1.4</span><span>tracked caps</span></div></div>
+    <div class="spec"><div class="l-mono" style="color:var(--text-secondary)">weight ramp</div><div class="ramp"><span style="font-weight:300">300</span><span style="font-weight:400">400</span><span style="font-weight:500">500</span><span style="font-weight:600">600</span></div><div class="metrics"><span>Sora variable</span></div></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface-white);}
+.cmp-head{margin-bottom:64px;}
+.cmp-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;}
+@media(max-width:768px){.cmp-title{font-size:44px;letter-spacing:-2.5px;}}
+.cmp-block{margin-bottom:80px;}
+.cmp-block > h3{font-size:27px;letter-spacing:-2.2px;margin-bottom:6px;}
+.cmp-block > .lead{color:var(--text-secondary);font-size:15px;max-width:var(--measure);margin-bottom:28px;}
+.count-tag{display:inline-block;font-size:12px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-left:12px;vertical-align:middle;}
+.cmp-live{border:1px solid var(--hairline);padding:40px;margin-bottom:20px;}
+.cmp-live.dark{background:var(--surface-dark);border-color:#2a2a2a;}
+.spec-card{
+  font-family:'Inter',sans-serif;font-size:12.5px;line-height:1.7;
+  color:var(--text-secondary);background:var(--peach-2);padding:18px 20px;
+  border-left:2px solid var(--accent);
+}
+.spec-card b{color:var(--text-primary);font-weight:600;}
+
+/* buttons matrix */
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{text-align:left;padding:16px 18px;border-bottom:1px solid var(--hairline);vertical-align:middle;}
+.matrix th{font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-secondary);font-weight:500;}
+.matrix .rowlabel{font-family:'Sora';font-size:15px;letter-spacing:-0.5px;color:var(--text-primary);}
+.btn-hero-sq{background:var(--accent);color:#fff;border:1px solid rgba(0,0,0,0);border-radius:0;height:46px;padding:0 19px;font-family:'Inter';font-size:15px;display:inline-flex;align-items:center;gap:8px;box-shadow:var(--shadow-orange);cursor:pointer;transition:transform .16s var(--ease),background .16s var(--ease);}
+.btn-hero-sq:hover{background:var(--accent-hover);transform:translateY(-2px);}
+.is-hover-hero{background:var(--accent-hover)!important;transform:translateY(-2px);}
+.is-hover-nav{background:var(--accent)!important;transform:translateY(-2px);}
+.is-disabled{opacity:1;color:var(--text-secondary)!important;background:var(--peach-2)!important;box-shadow:none!important;border-color:var(--hairline)!important;cursor:not-allowed;}
+.btn-nav-d{color:#fff;}
+
+/* wedge cards */
+.wedge-row{display:flex;gap:0;align-items:flex-start;flex-wrap:wrap;}
+.wedge{flex:1 1 220px;min-width:220px;padding:30px 27px;position:relative;}
+.wedge .num{font-family:'Sora';font-size:46px;letter-spacing:-3px;color:var(--accent);line-height:1;}
+.wedge h4{font-family:'Sora';font-size:22px;letter-spacing:-1.2px;margin:14px 0 8px;}
+.wedge p{font-size:14px;color:var(--text-secondary);}
+.wedge .bracket{position:absolute;top:14px;right:14px;width:18px;height:18px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);}
+.w1{background:#fff;border-top:2px solid var(--text-primary);}
+.w2{background:var(--surface-dark);color:#fff;transform:skewY(-2deg);margin-top:24px;}
+.w2 h4{color:#fff;}.w2 p{color:#cfcfcf;}
+.w2 .plus{position:absolute;bottom:14px;right:16px;color:var(--accent);font-size:24px;font-family:'Sora';}
+.w3{background:transparent;}
+.w4{background:var(--peach);transform:skewY(-2deg);margin-top:40px;}
+@media(max-width:768px){.w2,.w4{transform:none;margin-top:0;}}
+
+/* step cards black band */
+.step-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:45px;}
+.step{border-top:1px solid #333;padding-top:18px;}
+.step .n{color:var(--accent);font-family:'Sora';font-size:16px;letter-spacing:-0.5px;}
+.step h4{color:#fff;font-family:'Sora';font-size:20px;letter-spacing:-1px;margin-top:12px;}
+@media(max-width:768px){.step-grid{grid-template-columns:1fr 1fr;gap:24px;}}
+
+/* feature boxed */
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sp-gap);}
+.feat{background:#fff;border:1px solid var(--hairline);border-radius:0;padding:30px 27px;}
+.feat h4{font-family:'Sora';font-size:20px;letter-spacing:-1px;margin-bottom:8px;}
+.feat p{font-size:14px;color:var(--text-secondary);}
+@media(max-width:768px){.feat-grid{grid-template-columns:1fr 1fr;}}
+
+/* faq */
+.faq-row{border-top:1px solid var(--hairline);}
+.faq-row:last-child{border-bottom:1px solid var(--hairline);}
+.faq-q{width:100%;background:transparent;border:0;border-radius:0;padding:24px 0;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-family:'Sora';font-size:22px;letter-spacing:-1px;color:var(--text-primary);text-align:left;}
+.faq-q iconify-icon{font-size:22px;color:var(--accent);transition:transform .25s var(--ease);}
+.faq-row.open .faq-q iconify-icon{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s var(--ease);}
+.faq-row.open .faq-a{max-height:200px;}
+.faq-a p{padding:0 0 24px;font-size:15px;color:var(--text-secondary);max-width:var(--measure);}
+
+/* marquee */
+.marquee{background:var(--accent);color:#fff;font-family:'Sora';font-size:22px;letter-spacing:-1px;padding:20px 0;overflow:hidden;white-space:nowrap;}
+.marquee span{display:inline-block;padding-right:60px;}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <div class="cmp-head">
+      <span class="kicker">index — components</span>
+      <h2 class="cmp-title">The kit,<br>on the table.</h2>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="cmp-block">
+      <h3>Navbar <span class="count-tag">×1 · 9 items</span></h3>
+      <p class="lead">Edge-to-edge frosted bar, 90px tall, zero radius on all four corners. Floats over scrolled content via a blur backdrop despite its square shape.</p>
+      <div class="cmp-live" style="padding:0;overflow:hidden" data-tier-a-component="navbar">
+        <div style="background:var(--navbar-fill);backdrop-filter:blur(16px);height:90px;display:flex;align-items:center;padding:0 28px;gap:28px;">
+          <span class="logo">Runna&nbsp;Market</span>
+          <ul class="nav-links" style="display:flex;list-style:none;margin:0 8px 0 auto;padding:0;gap:24px;">
+            <li><a href="#components" style="text-decoration:none;font-size:14px;color:var(--text-primary)">Merchants</a></li>
+            <li><a href="#components" class="active" style="text-decoration:none;font-size:14px;color:var(--text-primary);border-bottom:2px solid var(--accent);padding-bottom:4px">Sell</a></li>
+            <li><a href="#components" style="text-decoration:none;font-size:14px;color:var(--text-primary)">Pricing</a></li>
+            <li><a href="#components" style="text-decoration:none;font-size:14px;color:var(--text-primary)">Proof</a></li>
+            <li><a href="#components" style="text-decoration:none;font-size:14px;color:var(--text-primary)">Help</a></li>
+          </ul>
+          <button class="btn-nav">Become a merchant</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--navbar</b> · fill <b>navbar-fill #F4F1EC</b> · backdrop blur(16px) · height <b>90</b> · radius <b>0px</b> · links type <b>body-default</b> · active underline accent</div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="cmp-block">
+      <h3>Buttons <span class="count-tag">variant × state</span></h3>
+      <p class="lead">Three documented button families. The hero primary is the sole rounded control on the page — everything else is 0px structural. Hover is always a fill swap plus a -2px lift; shadows live only on the orange fills.</p>
+      <div class="cmp-live">
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr data-tier-a-component="button-hero-primary">
+              <td class="rowlabel">Hero primary<br><span style="font-size:11px;color:var(--text-secondary)">14px pill · 46px</span></td>
+              <td><button class="btn-hero">Open a stall <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-hero is-hover-hero">Open a stall <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-hero is-disabled" disabled>Open a stall</button></td>
+            </tr>
+            <tr data-tier-a-component="button-footer-cta">
+              <td class="rowlabel">Footer / closing CTA<br><span style="font-size:11px;color:var(--text-secondary)">0px square · 46px</span></td>
+              <td><button class="btn-hero-sq">Get started <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-hero-sq is-hover-hero">Get started <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+              <td><button class="btn-hero-sq is-disabled" disabled>Get started</button></td>
+            </tr>
+            <tr data-tier-a-component="button-nav-cta">
+              <td class="rowlabel">Nav CTA<br><span style="font-size:11px;color:var(--text-secondary)">0px square · 42px</span></td>
+              <td><button class="btn-nav">Become a merchant</button></td>
+              <td><button class="btn-nav is-hover-nav">Become a merchant</button></td>
+              <td><button class="btn-nav is-disabled" disabled>Become a merchant</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><b>--btn-hero-primary</b> · fill <b>accent #FF6A00</b> · text <b>text-inverse</b> · radius <b>r-pill 14</b> · height <b>46</b> · shadow <b>shadow-orange</b> · hover <b>accent-hover</b> + -2px<br><b>--btn-footer-cta</b> · radius <b>0px</b> · same fill/shadow<br><b>--btn-nav-cta</b> · fill <b>surface-dark #111</b> · height <b>42</b> · hover fill <b>accent</b> · motion <b>ease 0.16s</b></div>
+    </div>
+
+    <!-- NUMBERED WEDGE CARDS -->
+    <div class="cmp-block">
+      <h3>Numbered wedge cards <span class="count-tag">×4</span></h3>
+      <p class="lead">A staggered, non-uniform row — flat white, raised black wedge, bare numeral, peach wedge — with alternating elevation and skew. Never normalized to an even grid.</p>
+      <div class="cmp-live">
+        <div class="wedge-row" data-tier-a-component="card-numbered-wedge">
+          <div class="wedge w1"><span class="bracket" aria-hidden="true"></span><div class="num">01</div><h4>Verified stalls</h4><p>Every merchant proves the goods before listing.</p></div>
+          <div class="wedge w2"><span class="bracket" aria-hidden="true"></span><div class="num">02</div><h4>Fair terms</h4><p>Flat rates, no surprise fees at settlement.<span class="plus" aria-hidden="true">+</span></p></div>
+          <div class="wedge w3"><span class="bracket" aria-hidden="true"></span><div class="num">03</div><h4>Real reach</h4><p>Local buyers, documented demand.</p></div>
+          <div class="wedge w4"><span class="bracket" aria-hidden="true"></span><div class="num">04</div><h4>Fast payout</h4><p>Cleared to your account within the day.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-numbered-wedge</b> · fill <b>varies white / surface-dark / peach</b> · radius <b>0px</b> · padding <b>card-pad</b> · numeral <b>accent</b> · heading <b>label-md</b> · corner-bracket + plus-glyph ornaments</div>
+    </div>
+
+    <!-- STEP CARDS on black -->
+    <div class="cmp-block">
+      <h3>Process / step cards <span class="count-tag">×4</span></h3>
+      <p class="lead">A true four-column grid with 45px gaps, divided by hairline rules rather than gutters, set on the black process band.</p>
+      <div class="cmp-live dark">
+        <div class="step-grid" data-tier-a-component="card-step">
+          <div class="step"><div class="n">01</div><h4>Apply</h4></div>
+          <div class="step"><div class="n">02</div><h4>Verify goods</h4></div>
+          <div class="step"><div class="n">03</div><h4>List your stall</h4></div>
+          <div class="step"><div class="n">04</div><h4>Start trading</h4></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-step</b> · background <b>transparent</b> · radius <b>0px</b> · padding <b>0px</b> · grid gap <b>45</b> · rule <b>hairline top border</b> · numeral <b>accent</b> · heading <b>Sora</b></div>
+    </div>
+
+    <!-- FEATURE BOXED -->
+    <div class="cmp-block">
+      <h3>Feature / step boxed cards <span class="count-tag">×4</span></h3>
+      <p class="lead">White fill, square corners, tight consistent 30×27 padding. Heading plus one line of copy — no media, no icon.</p>
+      <div class="cmp-live">
+        <div class="feat-grid" data-tier-a-component="card-feature-boxed">
+          <div class="feat"><h4>No lock-in</h4><p>Leave whenever the market changes.</p></div>
+          <div class="feat"><h4>One dashboard</h4><p>Orders, proof, and payouts in one view.</p></div>
+          <div class="feat"><h4>Human support</h4><p>Talk to people who know the trade.</p></div>
+          <div class="feat"><h4>Transparent fees</h4><p>What you see is what you pay.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-feature-boxed</b> · fill <b>surface-white</b> · radius <b>0px</b> · padding <b>30px 27px</b> · heading <b>Sora</b> · body <b>body-md</b></div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="cmp-block">
+      <h3>FAQ accordion rows <span class="count-tag">×3</span></h3>
+      <p class="lead">Transparent, full-width rows separated by hairline rules. A chevron marks the affordance; rows expand on click.</p>
+      <div class="cmp-live">
+        <div data-tier-a-component="faq-accordion-row">
+          <div class="faq-row open">
+            <button class="faq-q" aria-expanded="true"><span>What counts as proof?</span><iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <div class="faq-a"><p>A short documentary record of the goods — a photograph, an invoice, or a certificate. It sits alongside your listing so buyers can trust it.</p></div>
+          </div>
+          <div class="faq-row">
+            <button class="faq-q" aria-expanded="false"><span>How long does verification take?</span><iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <div class="faq-a"><p>Most stalls are reviewed within a working day once your proof is uploaded.</p></div>
+          </div>
+          <div class="faq-row">
+            <button class="faq-q" aria-expanded="false"><span>When do I get paid?</span><iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+            <div class="faq-a"><p>Cleared funds land in your account the same day an order settles.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-faq-row</b> · background <b>transparent</b> · radius <b>0px</b> · divider <b>hairline #E8E8E4</b> · heading <b>Sora</b> · chevron <b>accent</b> · motion <b>ease 0.3s</b></div>
+    </div>
+
+    <!-- MARQUEE (composition device) -->
+    <div class="cmp-block">
+      <h3>Marquee band</h3>
+      <p class="lead">The full-width orange band dividing the feature section from the black process section — the one place orange runs wide, as a rule not a fill wash.</p>
+      <div class="marquee" aria-hidden="true"><span>proven in the field</span><span>·</span><span>verified stalls</span><span>·</span><span>fair terms</span><span>·</span><span>fast payout</span></div>
+    </div>
+
+    <!-- MEDIA / HERO IMAGE -->
+    <div class="cmp-block">
+      <h3>Media / hero image card <span class="count-tag">×1</span></h3>
+      <p class="lead">Documentary photograph filling a full panel, 14px radius only on visible corners, a die-cut angled top-right edge with an orange tab, a dark caption chip and an overlapping proof tag.</p>
+      <div class="cmp-live">
+        <div class="hero-media" style="max-width:520px" data-tier-a-component="media-hero-image">
+          <div class="hero-photo" role="img" aria-label="Documentary photograph of produce crates at a market stall"></div>
+          <span class="tab" aria-hidden="true"></span>
+          <span class="caption-chip">stall no. 04</span>
+          <span class="proof-tag">verified proof</span>
+        </div>
+      </div>
+      <div class="spec-card"><b>--media-hero-image</b> · radius <b>r-hero-image 14</b> visible corners only · die-cut top-right with <b>accent</b> tab · caption chip <b>surface-dark</b> · proof tag <b>surface-dark</b></div>
+    </div>
+
+    <!-- FOOTER (component preview) -->
+    <div class="cmp-block">
+      <h3>Footer <span class="count-tag">×1 · 11 links</span></h3>
+      <p class="lead">Deep-black footer, three labeled columns plus a logo lockup, with a thin orange circular arc as the sole decoration. Full instance renders below the page.</p>
+      <div class="spec-card"><b>--footer</b> · background <b>footer-bg #161616</b> · radius <b>0px</b> · columns Explore / Support / Legal · decoration <b>accent arc</b> · type <b>body-md</b></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background);}
+.sd-head{margin-bottom:56px;}
+.sd-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;}
+@media(max-width:768px){.sd-title{font-size:44px;letter-spacing:-2.5px;}}
+.sd-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--sp-gap);}
+.sd-card{background:#fff;border:1px solid var(--hairline);padding:28px;}
+.sd-card .demo{height:120px;background:var(--peach-2);margin-bottom:18px;display:flex;align-items:center;justify-content:center;color:var(--text-secondary);font-size:13px;}
+.sd-card .r0{border-radius:0;}
+.sd-card .r8{border-radius:8px;}
+.sd-card .r14{border-radius:14px;}
+.sd-card h4{font-family:'Sora';font-size:18px;letter-spacing:-0.8px;}
+.sd-card p{font-size:13px;color:var(--text-secondary);margin-top:6px;}
+.sd-shadow{background:var(--accent);height:120px;border-radius:14px;box-shadow:var(--shadow-orange);margin-bottom:18px;}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <div class="sd-head">
+      <span class="kicker">index — surface & depth</span>
+      <h2 class="sd-title">Square by default.</h2>
+    </div>
+    <div class="sd-grid">
+      <div class="sd-card"><div class="demo r0" style="width:100%">structural 0px</div><h4>Radius 0</h4><p>Navbar, nav CTA, footer CTA, step and feature cards — square is structural.</p></div>
+      <div class="sd-card"><div class="demo r8" style="width:100%">control 8px</div><h4>r-control · 8px</h4><p>The control radius token, reserved for form-scale surfaces.</p></div>
+      <div class="sd-card"><div class="demo r14" style="width:100%">exception 14px</div><h4>r-pill / hero-image · 14px</h4><p>The singular exception — the hero primary button and hero image only.</p></div>
+      <div class="sd-card"><div class="sd-shadow"></div><h4>shadow-orange</h4><p>rgba(255,106,0,0.16) 0 10 20 — the only shadow, on orange buttons alone.</p></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface-dark);color:#fff;}
+.mo-head{margin-bottom:56px;}
+.mo-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;color:#fff;}
+@media(max-width:768px){.mo-title{font-size:44px;letter-spacing:-2.5px;}}
+.mo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:var(--sp-gap);}
+.mo-card{border:1px solid #2a2a2a;padding:28px;}
+.mo-card h4{font-family:'Sora';font-size:18px;letter-spacing:-0.8px;color:#fff;}
+.mo-card p{font-size:12px;color:#bbb;margin-top:6px;letter-spacing:0.04em;}
+.mo-demo{height:100px;display:flex;align-items:center;justify-content:center;margin:20px 0;}
+.lift-target{background:var(--accent);color:#fff;border:0;border-radius:14px;height:46px;padding:0 19px;font-family:'Inter';font-size:15px;box-shadow:var(--shadow-orange);cursor:pointer;}
+.lift-target.play{transform:translateY(-2px);background:var(--accent-hover);transition:transform .25s var(--ease),background .25s var(--ease);}
+.float-mark{width:32px;height:32px;border-top:3px solid var(--accent);border-right:3px solid var(--accent);}
+.float-mark.play{animation:floatIdle 2.4s var(--ease) infinite;}
+@keyframes floatIdle{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pulse-num{font-family:'Sora';font-size:52px;letter-spacing:-3px;color:var(--accent);}
+.pulse-num.play{animation:pulseNum 1.4s var(--ease) infinite;}
+@keyframes pulseNum{0%,100%{opacity:1}50%{opacity:0.45}}
+.replay{margin-top:8px;background:transparent;border:1px solid #444;color:#fff;padding:8px 14px;font-family:'Inter';font-size:12px;cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <div class="mo-head">
+      <span class="kicker" style="color:#bbb">index — motion</span>
+      <h2 class="mo-title">Rise, don't glow.</h2>
+    </div>
+    <div class="mo-grid">
+      <div class="mo-card">
+        <h4>Hover lift</h4>
+        <div class="mo-demo"><button class="lift-target" id="liftBtn">Open a stall</button></div>
+        <button class="replay" data-target="liftBtn">Replay</button>
+        <p>-2px lift + fill swap · 0.25s · cubic-bezier(0.23,1,0.32,1)</p>
+      </div>
+      <div class="mo-card">
+        <h4>Micro-state</h4>
+        <div class="mo-demo"><button class="lift-target" id="microBtn" style="border-radius:0">Become a merchant</button></div>
+        <button class="replay" data-target="microBtn">Replay</button>
+        <p>nav / button state · 0.16s · cubic-bezier(0.23,1,0.32,1)</p>
+      </div>
+      <div class="mo-card">
+        <h4>Idle float — ornament</h4>
+        <div class="mo-demo"><div class="float-mark play" id="floatMark" aria-hidden="true"></div></div>
+        <button class="replay" data-target="floatMark" data-anim="float">Replay</button>
+        <p>corner-bracket float · 2.4s loop · same curve</p>
+      </div>
+      <div class="mo-card">
+        <h4>Numeral pulse</h4>
+        <div class="mo-demo"><div class="pulse-num play" id="pulseNum">01</div></div>
+        <button class="replay" data-target="pulseNum" data-anim="pulse">Replay</button>
+        <p>badge / numeral emphasis · 1.4s loop</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background);}
+.co-head{margin-bottom:48px;}
+.co-title{font-size:80px;line-height:0.89;letter-spacing:-7.2px;}
+@media(max-width:768px){.co-title{font-size:44px;letter-spacing:-2.5px;}}
+.mock{border:1px solid var(--hairline);background:#fff;overflow:hidden;}
+.mock-nav{background:var(--navbar-fill);height:64px;display:flex;align-items:center;padding:0 24px;gap:20px;}
+.mock-nav .logo{font-size:18px;}
+.mock-nav ul{display:flex;list-style:none;margin:0 8px 0 auto;padding:0;gap:20px;}
+.mock-nav a{font-size:13px;text-decoration:none;color:var(--text-primary);}
+.mock-hero{background:var(--background);padding:56px 24px;display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center;}
+.mock-hero h3{font-family:'Sora';font-size:56px;line-height:0.86;letter-spacing:-4px;}
+.mock-hero .mimg{min-height:220px;border-radius:14px;background:linear-gradient(135deg,#8a7f72,#3a352f);position:relative;clip-path:polygon(0 0,88% 0,100% 12%,100% 100%,0 100%);}
+.mock-hero .mimg .tab{position:absolute;top:0;right:0;width:12%;height:14%;background:var(--accent);}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp-gap);padding:0 24px 40px;}
+.mock-card{border:1px solid var(--hairline);padding:30px 27px;}
+.mock-card .num{font-family:'Sora';font-size:34px;letter-spacing:-2px;color:var(--accent);}
+.mock-card h4{font-family:'Sora';font-size:18px;letter-spacing:-1px;margin:10px 0 6px;}
+.mock-card p{font-size:13px;color:var(--text-secondary);}
+.mock-cta{background:var(--surface-dark);color:#fff;padding:48px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.mock-cta h3{font-family:'Sora';font-size:40px;letter-spacing:-2.5px;color:#fff;}
+@media(max-width:768px){.mock-hero{grid-template-columns:1fr;}.mock-hero h3{font-size:40px;letter-spacing:-2px;}.mock-cards{grid-template-columns:1fr;}}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <div class="co-head">
+      <span class="kicker">index — in composition</span>
+      <h2 class="co-title">All of it,<br>assembled.</h2>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="logo">Runna&nbsp;Market</span>
+        <ul>
+          <li><a href="#composition">Merchants</a></li>
+          <li><a href="#composition" style="border-bottom:2px solid var(--accent);padding-bottom:3px">Sell</a></li>
+          <li><a href="#composition">Proof</a></li>
+        </ul>
+        <button class="btn-nav" style="height:42px">Become a merchant</button>
+      </div>
+      <div class="mock-hero">
+        <div>
+          <span class="kicker">index — sell</span>
+          <h3>Bring your<br>stall online.</h3>
+          <p style="color:var(--text-secondary);margin:18px 0 24px;max-width:420px;font-size:15px">List verified goods, set fair terms, and reach documented local demand in a day.</p>
+          <button class="btn-hero">Open a stall <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div class="mimg" role="img" aria-label="Market stall photograph"><span class="tab" aria-hidden="true"></span><span class="caption-chip">stall no. 04</span></div>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="num">01</div><h4>Verified stalls</h4><p>Proof before listing, every time.</p></div>
+        <div class="mock-card"><div class="num">02</div><h4>Fair terms</h4><p>Flat rates, no surprises.</p></div>
+        <div class="mock-card"><div class="num">03</div><h4>Fast payout</h4><p>Cleared the same day.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3>Ready to trade?</h3>
+        <button class="btn-hero-sq">Get started <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--footer-bg);color:var(--text-inverse);padding:88px 0 48px;position:relative;overflow:hidden;}
+.ft-arc{position:absolute;top:-120px;right:-120px;width:320px;height:320px;border-radius:50%;border:2px solid var(--accent);opacity:0.7;}
+.ft-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;position:relative;z-index:1;}
+.ft-lock .logo{font-size:26px;letter-spacing:-1.6px;}
+.ft-lock p{color:#9a9a95;font-size:14px;margin-top:16px;max-width:320px;}
+.ft-col h4{font-family:'Inter';font-size:12px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;}
+.ft-col ul{list-style:none;padding:0;margin:0;}
+.ft-col li{margin-bottom:12px;}
+.ft-col a{color:#ddd;text-decoration:none;font-size:14px;}
+.ft-col a:hover{color:#fff;}
+.ft-base{margin-top:56px;padding-top:24px;border-top:1px solid #2a2a2a;font-size:13px;color:#9a9a95;position:relative;z-index:1;}
+.ft-base a{color:var(--accent);text-decoration:none;}
+@media(max-width:768px){.ft-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:640px){.ft-grid{grid-template-columns:1fr;}}
+</style>
+<footer id="footer">
+  <span class="ft-arc" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-lock">
+        <div class="logo">Runna&nbsp;Market</div>
+        <p>A verified marketplace for merchants who move real goods — proven in the field.</p>
+      </div>
+      <div class="ft-col"><h4>Explore</h4><ul><li><a href="#components">Merchants</a></li><li><a href="#components">Sell</a></li><li><a href="#components">Pricing</a></li><li><a href="#components">Proof</a></li></ul></div>
+      <div class="ft-col"><h4>Support</h4><ul><li><a href="#components">Help centre</a></li><li><a href="#components">Contact</a></li><li><a href="#components">Status</a></li><li><a href="#components">Guides</a></li></ul></div>
+      <div class="ft-col"><h4>Legal</h4><ul><li><a href="#components">Terms</a></li><li><a href="#components">Privacy</a></li><li><a href="#components">Cookies</a></li></ul></div>
+    </div>
+    <div class="ft-base">
+      Runna Market · <a href="https://runnamarket-tqthjbhw.manus.space/merchants">runnamarket-tqthjbhw.manus.space/merchants</a> · Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+(function(){
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click',function(){
+      var row=q.closest('.faq-row');
+      var open=row.classList.toggle('open');
+      q.setAttribute('aria-expanded',open?'true':'false');
+    });
+  });
+  // Motion replays
+  document.querySelectorAll('.replay').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=document.getElementById(btn.dataset.target);
+      if(!t)return;
+      var anim=btn.dataset.anim;
+      if(anim==='float'||anim==='pulse'){
+        t.classList.remove('play');void t.offsetWidth;t.classList.add('play');
+      }else{
+        t.classList.remove('play');void t.offsetWidth;t.classList.add('play');
+        setTimeout(function(){t.classList.remove('play');},900);
+      }
+    });
+  });
+})();
+</script>
+</body>
+</html>

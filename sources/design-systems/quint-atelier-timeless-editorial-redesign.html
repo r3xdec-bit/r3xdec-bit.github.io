@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Quint Atelier — Timeless Editorial Redesign — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700&family=ui-sans-serif:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F5F3F0; color:#2C2C2C; font-family:'Plus Jakarta Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Playfair Display',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Playfair Display',sans-serif; font-size: 22px; border-bottom: 1px solid #000000; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#000000; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#000000; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #000000; border-radius:0px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#000000; }
+  .swatch-meta p { color:#000000; font-size: 12px; }
+  .specimen { border: 1px solid #000000; border-radius:0px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#000000; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#000000; }
+  .bar { height: 10px; background:#2C2C2C; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #2C2C2C; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #000000; border-radius:0px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:0px; font-size: 14px; border: 1px solid #2C2C2C; }
+  .btn-primary { background:#2C2C2C; color:#F5F3F0; }
+  .btn-secondary { background: transparent; color:#2C2C2C; }
+  footer { border-top: 1px solid #000000; padding-top: 20px; font-size: 13px; color:#000000; }
+  footer a { color:#2C2C2C; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>Quint Atelier — Timeless Editorial Redesign</h1>
+    <p class="tagline">Warm-neutral editorial system built on an oversized Playfair Display serif, flat uncornered cards, and a single photographic hero — otherwise entirely typographic and unshadowed.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F5F3F0"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F5F3F0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2C2C2C"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#2C2C2C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#3C81F5"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#3C81F5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#181818"></div>
+        <div class="swatch-meta"><strong>inverse-panel</strong><code>#181818</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Playfair Display',sans-serif;font-size:96px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Playfair Display · 96px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Playfair Display',sans-serif;font-size:48px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Playfair Display · 48px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:20px;font-weight:300;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Plus Jakarta Sans · 20px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Playfair Display',sans-serif;font-size:24px;font-weight:400;line-height:1.33">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Playfair Display · 24px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-default · Plus Jakarta Sans · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:11px;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono-caps · ui-sans-serif · 11px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 192px</span>
+        <div class="bar" style="width:min(192px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:0px">control<br><code>0px</code></div>
+<div class="radius-chip" style="border-radius:0px">card<br><code>0px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#000000;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

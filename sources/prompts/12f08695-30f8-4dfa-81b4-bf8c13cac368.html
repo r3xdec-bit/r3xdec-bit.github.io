@@ -1,0 +1,1206 @@
+<!DOCTYPE html><html lang="en" class="scroll-smooth"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Developer Portfolio | Dual-Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Light Theme (Warm Ivory)
+                        'ivory': '#F9F8F6',
+                        'obsidian': '#111111',
+                        'gold-antique': '#9E7B4F',
+                        'grey-warm': '#E5E0D8',
+                        'charcoal-muted': '#66615A',
+                        // Dark Theme (Onyx)
+                        'onyx': '#0B0C0E',
+                        'slate-smoked': '#1A1D24',
+                        'gold-champagne': '#D4AF37',
+                        'white-soft': '#F3F1EC',
+                        'grey-muted': '#A6A6A6',
+                        'grey-dark': '#303139',
+                    },
+                    fontFamily: {
+                        serif: ['"Crimson Pro"', 'serif'],
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.25em',
+                    }
+                }
+            }
+        }
+    </script>
+    <style type="text/css">
+        :root {
+            --bg: #F9F8F6;
+            --text: #111111;
+            --accent: #9E7B4F;
+            --border: #E5E0D8;
+            --surface: #FFFFFF;
+            --text-secondary: #66615A;
+        }
+
+        .dark {
+            --bg: #0B0C0E;
+            --text: #F3F1EC;
+            --accent: #D4AF37;
+            --border: #303139;
+            --surface: #1A1D24;
+            --text-secondary: #A6A6A6;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        .nav-link-active {
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
+        }
+
+        .theme-transition {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .editorial-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .dark .editorial-shadow {
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .line-accent {
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(var(--border) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
+
+<meta name="preview-version" content="9e800339-2287-4d0c-a485-96c8b533900e" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.909Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "9e800339-2287-4d0c-a485-96c8b533900e");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "9e800339-2287-4d0c-a485-96c8b533900e",
+      timestamp: "2026-11-20T00:19:42.909Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "9e800339-2287-4d0c-a485-96c8b533900e";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+    <div class="min-h-screen flex flex-col font-sans theme-transition overflow-x-hidden" data-sd-id="1">
+        <!-- Navigation -->
+        <nav id="navbar" class="fixed top-0 w-full z-50 bg-ivory/80 dark:bg-onyx/80 backdrop-blur-md border-b border-grey-warm dark:border-grey-dark theme-transition" data-sd-id="2">
+            <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between" data-sd-id="3">
+                <div class="flex items-center gap-2" data-sd-id="4">
+                    <span class="font-serif text-2xl font-bold tracking-tighter" data-sd-id="5">AR.</span>
+                    <div class="h-4 w-[1px] bg-grey-warm dark:bg-grey-dark mx-2" data-sd-id="6"></div>
+                    <span class="text-[10px] tracking-widest uppercase text-charcoal-muted dark:text-grey-muted mt-1" data-sd-id="7">Developer</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-10" data-sd-id="8">
+                    <a href="#home" id="nav-home" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="9">Home</a>
+                    <a href="#about" id="nav-about" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="10">About</a>
+                    <a href="#skills" id="nav-skills" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="11">Skills</a>
+                    <a href="#projects" id="nav-projects" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="12">Projects</a>
+                    <a href="#education" id="nav-edu" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="13">Education</a>
+                    <a href="#contact" id="nav-contact" class="text-xs font-medium uppercase tracking-widest hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="14">Contact</a>
+                </div>
+
+                <div class="flex items-center gap-6" data-sd-id="15">
+                    <button id="theme-toggle" class="p-2 hover:bg-grey-warm dark:hover:bg-grey-dark rounded-full transition-colors flex items-center justify-center" data-sd-id="16">
+                        <iconify-icon icon="lucide:sun" class="text-xl block dark:hidden"></iconify-icon>
+                        <iconify-icon icon="lucide:moon" class="text-xl hidden dark:block"></iconify-icon>
+                    </button>
+                    <a href="#" id="resume-btn" class="hidden sm:flex px-6 py-2.5 bg-obsidian dark:bg-white-soft text-ivory dark:text-onyx text-[10px] font-bold uppercase tracking-widest hover:bg-gold-antique dark:hover:bg-gold-champagne hover:text-white-soft transition-all duration-300" data-sd-id="17">Resume</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="flex-1 pt-20" data-sd-id="18">
+            <!-- Hero Section -->
+            <section id="home" class="relative min-h-[90vh] flex items-center px-6 overflow-hidden" data-sd-id="19">
+                <div class="absolute inset-0 hero-pattern opacity-20 dark:opacity-5" data-sd-id="20"></div>
+                <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative" data-sd-id="21">
+                    <div class="lg:col-span-8 flex flex-col space-y-8 animate-fade-in" data-sd-id="22">
+                        <div class="inline-flex items-center space-x-3" data-sd-id="23">
+                            <span class="h-[1px] w-8 bg-gold-antique dark:bg-gold-champagne" data-sd-id="24"></span>
+                            <span class="text-[11px] font-mono tracking-widest-xl text-gold-antique dark:text-gold-champagne uppercase" data-sd-id="25">BCA Student • Developer</span>
+                        </div>
+                        <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.1] tracking-tight" data-sd-id="26">
+                            Architecting <span class="italic font-light" data-sd-id="27">Intelligent</span> Systems <br class="hidden lg:block"> 
+                            with <span class="text-gold-antique dark:text-gold-champagne" data-sd-id="28">Precision.</span>
+                        </h1>
+                        <p class="max-w-xl text-lg text-charcoal-muted dark:text-grey-muted font-light leading-relaxed" data-sd-id="29">
+                            Focusing on the intersection of Software Engineering, Machine Learning, and Cybersecurity. Crafting sophisticated solutions for tomorrow's complex computational challenges.
+                        </p>
+                        <div class="flex flex-wrap gap-4" data-sd-id="30">
+                            <a href="#projects" id="hero-projects-link" class="px-8 py-4 bg-obsidian dark:bg-white-soft text-ivory dark:text-onyx text-xs font-bold uppercase tracking-widest hover:bg-gold-antique dark:hover:bg-gold-champagne hover:text-white-soft transition-all" data-sd-id="31">Explore Projects</a>
+                            <a href="#contact" id="hero-contact-link" class="px-8 py-4 border border-grey-warm dark:border-grey-dark text-xs font-bold uppercase tracking-widest hover:border-gold-antique dark:hover:border-gold-champagne transition-all" data-sd-id="32">Contact Me</a>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-4 hidden lg:flex flex-col items-end" data-sd-id="33">
+                        <div class="relative" data-sd-id="34">
+                            <div class="w-64 h-96 border border-grey-warm dark:border-grey-dark flex items-center justify-center p-8 relative group" data-sd-id="35">
+                                <div class="absolute inset-0 bg-gold-antique/5 dark:bg-gold-champagne/5 transition-opacity opacity-0 group-hover:opacity-100" data-sd-id="36"></div>
+                                <div class="font-mono text-[10px] space-y-2 opacity-40 group-hover:opacity-100 transition-opacity" data-sd-id="37">
+                                    <div class="text-gold-antique dark:text-gold-champagne" data-sd-id="38">class Portfolio {</div>
+                                    <div class="pl-4" data-sd-id="39">constructor() {</div>
+                                    <div class="pl-8" data-sd-id="40">this.status = 'Building';</div>
+                                    <div class="pl-8" data-sd-id="41">this.focus = ['AI', 'Security'];</div>
+                                    <div class="pl-4" data-sd-id="42">}</div>
+                                    <div class="text-gold-antique dark:text-gold-champagne" data-sd-id="43">}</div>
+                                </div>
+                            </div>
+                            <div class="absolute -bottom-6 -left-6 w-32 h-32 border-l border-b border-gold-antique dark:border-gold-champagne" data-sd-id="44"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- About Section -->
+            <section id="about" class="py-32 px-6 border-y border-grey-warm dark:border-grey-dark" data-sd-id="45">
+                <div class="max-w-7xl mx-auto" data-sd-id="46">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16" data-sd-id="47">
+                        <div class="lg:col-span-5" data-sd-id="48">
+                            <h2 class="font-serif text-4xl md:text-5xl" data-sd-id="49">A Glimpse into <br><span class="italic" data-sd-id="50">the Process</span></h2>
+                            <div class="mt-8 h-1 w-12 bg-gold-antique dark:bg-gold-champagne" data-sd-id="51"></div>
+                        </div>
+                        <div class="lg:col-span-7 space-y-8" data-sd-id="52">
+                            <p class="text-xl font-light text-charcoal-muted dark:text-grey-muted leading-relaxed" data-sd-id="53">
+                                Currently pursuing my Bachelor of Computer Applications (BCA), I've dedicated my academic journey to mastering the fundamentals of computer science while pushing the boundaries of web development and data intelligence.
+                            </p>
+                            <p class="text-lg font-light text-charcoal-muted dark:text-grey-muted leading-relaxed" data-sd-id="54">
+                                My passion lies in creating secure, efficient, and user-centric software. Whether it's training a neural network or securing a web application, I approach every project with a blend of analytical rigor and aesthetic sensibility.
+                            </p>
+                            <div class="grid grid-cols-2 gap-8 pt-8" data-sd-id="55">
+                                <div data-sd-id="56">
+                                    <span class="block font-mono text-[10px] uppercase tracking-widest text-gold-antique dark:text-gold-champagne mb-2" data-sd-id="57">Interests</span>
+                                    <ul class="text-sm space-y-1 font-medium" data-sd-id="58">
+                                        <li data-sd-id="59">Machine Learning</li>
+                                        <li data-sd-id="60">Cybersecurity</li>
+                                        <li data-sd-id="61">Full-stack Development</li>
+                                    </ul>
+                                </div>
+                                <div data-sd-id="62">
+                                    <span class="block font-mono text-[10px] uppercase tracking-widest text-gold-antique dark:text-gold-champagne mb-2" data-sd-id="63">Location</span>
+                                    <p class="text-sm font-medium" data-sd-id="64">Available for Worldwide Remote</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Skills Section -->
+            <section id="skills" class="py-32 px-6" data-sd-id="65">
+                <div class="max-w-7xl mx-auto" data-sd-id="66">
+                    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4" data-sd-id="67">
+                        <div data-sd-id="68">
+                            <span class="font-mono text-[10px] uppercase tracking-widest-xl text-gold-antique dark:text-gold-champagne" data-sd-id="69">Capabilities</span>
+                            <h2 class="font-serif text-4xl md:text-5xl mt-2" data-sd-id="70">Expertise &amp; Tech</h2>
+                        </div>
+                        <p class="max-w-xs text-sm text-charcoal-muted dark:text-grey-muted" data-sd-id="71">A curated stack of technologies I use to build robust digital solutions.</p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-grey-warm dark:bg-grey-dark border border-grey-warm dark:border-grey-dark" data-sd-id="72">
+                        <!-- Category 1 -->
+                        <div class="bg-ivory dark:bg-onyx p-10 space-y-6" data-sd-id="73">
+                            <div class="flex items-center justify-between" data-sd-id="74">
+                                <h3 class="text-xs font-bold uppercase tracking-widest" data-sd-id="75">Languages</h3>
+                                <iconify-icon icon="lucide:code-2" class="text-gold-antique dark:text-gold-champagne text-xl"></iconify-icon>
+                            </div>
+                            <div class="space-y-4" data-sd-id="76">
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="77">
+                                    <span class="text-sm" data-sd-id="78">Python</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="79">Advanced</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="80">
+                                    <span class="text-sm" data-sd-id="81">Java</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="82">Intermediate</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="83">
+                                    <span class="text-sm" data-sd-id="84">JavaScript (ES6+)</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="85">Advanced</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="86">
+                                    <span class="text-sm" data-sd-id="87">SQL / C++</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="88">Core</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 2 -->
+                        <div class="bg-ivory dark:bg-onyx p-10 space-y-6" data-sd-id="89">
+                            <div class="flex items-center justify-between" data-sd-id="90">
+                                <h3 class="text-xs font-bold uppercase tracking-widest" data-sd-id="91">Web Dev</h3>
+                                <iconify-icon icon="lucide:layout-template" class="text-gold-antique dark:text-gold-champagne text-xl"></iconify-icon>
+                            </div>
+                            <div class="space-y-4" data-sd-id="92">
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="93">
+                                    <span class="text-sm" data-sd-id="94">React / Next.js</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="95">Frontend</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="96">
+                                    <span class="text-sm" data-sd-id="97">Tailwind CSS</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="98">Styling</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="99">
+                                    <span class="text-sm" data-sd-id="100">Node.js / Express</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="101">Backend</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="102">
+                                    <span class="text-sm" data-sd-id="103">RESTful APIs</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="104">Service</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Category 3 -->
+                        <div class="bg-ivory dark:bg-onyx p-10 space-y-6" data-sd-id="105">
+                            <div class="flex items-center justify-between" data-sd-id="106">
+                                <h3 class="text-xs font-bold uppercase tracking-widest" data-sd-id="107">Data &amp; Security</h3>
+                                <iconify-icon icon="lucide:shield-check" class="text-gold-antique dark:text-gold-champagne text-xl"></iconify-icon>
+                            </div>
+                            <div class="space-y-4" data-sd-id="108">
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="109">
+                                    <span class="text-sm" data-sd-id="110">TensorFlow / PyTorch</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="111">AI/ML</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="112">
+                                    <span class="text-sm" data-sd-id="113">Network Security</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="114">Fundamentals</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="115">
+                                    <span class="text-sm" data-sd-id="116">MongoDB / PostgreSQL</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="117">DB</span>
+                                </div>
+                                <div class="flex justify-between items-center border-b border-grey-warm dark:border-grey-dark pb-2" data-sd-id="118">
+                                    <span class="text-sm" data-sd-id="119">Git / Docker</span>
+                                    <span class="text-[10px] font-mono text-charcoal-muted dark:text-grey-muted" data-sd-id="120">Tools</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="py-32 px-6 bg-white dark:bg-slate-smoked/30 theme-transition" data-sd-id="121">
+                <div class="max-w-7xl mx-auto" data-sd-id="122">
+                    <div class="flex flex-col mb-16" data-sd-id="123">
+                        <span class="font-mono text-[10px] uppercase tracking-widest-xl text-gold-antique dark:text-gold-champagne" data-sd-id="124">Selected Work</span>
+                        <h2 class="font-serif text-4xl md:text-5xl mt-2" data-sd-id="125">Featured Projects</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16" data-sd-id="126">
+                        <!-- Project Card Template 1 -->
+                        <div class="group relative" data-sd-id="127">
+                            <div class="aspect-[16/10] bg-grey-warm dark:bg-grey-dark overflow-hidden" data-sd-id="128">
+                                <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80" style="background-image: url('https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&amp;fit=crop&amp;q=80&amp;w=1200');" data-sd-id="129"></div>
+                            </div>
+                            <div class="mt-8 flex flex-col space-y-4" data-sd-id="130">
+                                <div class="flex justify-between items-start" data-sd-id="131">
+                                    <div data-sd-id="132">
+                                        <span class="font-mono text-[10px] uppercase text-gold-antique dark:text-gold-champagne tracking-widest mb-1 block" data-sd-id="133">Machine Learning • Python</span>
+                                        <h3 class="text-2xl font-serif" data-sd-id="134">Project Title Alpha</h3>
+                                    </div>
+                                    <div class="flex gap-4" data-sd-id="135">
+                                        <a href="#" id="proj-1-gh" class="text-charcoal-muted dark:text-grey-muted hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="136">
+                                            <iconify-icon icon="lucide:github" class="text-xl"></iconify-icon>
+                                        </a>
+                                        <a href="#" id="proj-1-live" class="text-charcoal-muted dark:text-grey-muted hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="137">
+                                            <iconify-icon icon="lucide:external-link" class="text-xl"></iconify-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                                <p class="text-charcoal-muted dark:text-grey-muted font-light" data-sd-id="138">An intelligent algorithm designed to predict patterns in complex datasets, leveraging advanced neural network architectures.</p>
+                                <div class="flex gap-3" data-sd-id="139">
+                                    <span class="px-3 py-1 border border-grey-warm dark:border-grey-dark text-[9px] uppercase tracking-widest font-bold" data-sd-id="140">TensorFlow</span>
+                                    <span class="px-3 py-1 border border-grey-warm dark:border-grey-dark text-[9px] uppercase tracking-widest font-bold" data-sd-id="141">Scikit-learn</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project Card Template 2 -->
+                        <div class="group relative lg:mt-24" data-sd-id="142">
+                            <div class="aspect-[16/10] bg-grey-warm dark:bg-grey-dark overflow-hidden" data-sd-id="143">
+                                <div class="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-105 opacity-80" style="background-image: url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;q=80&amp;w=1200');" data-sd-id="144"></div>
+                            </div>
+                            <div class="mt-8 flex flex-col space-y-4" data-sd-id="145">
+                                <div class="flex justify-between items-start" data-sd-id="146">
+                                    <div data-sd-id="147">
+                                        <span class="font-mono text-[10px] uppercase text-gold-antique dark:text-gold-champagne tracking-widest mb-1 block" data-sd-id="148">Cybersecurity • React</span>
+                                        <h3 class="text-2xl font-serif" data-sd-id="149">Sentinel Dashboard</h3>
+                                    </div>
+                                    <div class="flex gap-4" data-sd-id="150">
+                                        <a href="#" id="proj-2-gh" class="text-charcoal-muted dark:text-grey-muted hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="151">
+                                            <iconify-icon icon="lucide:github" class="text-xl"></iconify-icon>
+                                        </a>
+                                        <a href="#" id="proj-2-live" class="text-charcoal-muted dark:text-grey-muted hover:text-gold-antique dark:hover:text-gold-champagne transition-colors" data-sd-id="152">
+                                            <iconify-icon icon="lucide:external-link" class="text-xl"></iconify-icon>
+                                        </a>
+                                    </div>
+                                </div>
+                                <p class="text-charcoal-muted dark:text-grey-muted font-light" data-sd-id="153">Real-time network monitoring interface with automated threat detection and incident reporting capabilities.</p>
+                                <div class="flex gap-3" data-sd-id="154">
+                                    <span class="px-3 py-1 border border-grey-warm dark:border-grey-dark text-[9px] uppercase tracking-widest font-bold" data-sd-id="155">React</span>
+                                    <span class="px-3 py-1 border border-grey-warm dark:border-grey-dark text-[9px] uppercase tracking-widest font-bold" data-sd-id="156">Socket.io</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-24 text-center" data-sd-id="157">
+                        <a href="#" id="more-projects-btn" class="inline-flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-gold-antique dark:text-gold-champagne group" data-sd-id="158">
+                            Explore Full Repository
+                            <iconify-icon icon="lucide:arrow-right" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section id="education" class="py-32 px-6 border-t border-grey-warm dark:border-grey-dark" data-sd-id="159">
+                <div class="max-w-7xl mx-auto" data-sd-id="160">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-16" data-sd-id="161">
+                        <div class="lg:col-span-4" data-sd-id="162">
+                            <h2 class="font-serif text-4xl" data-sd-id="163">Education &amp; <br><span class="italic" data-sd-id="164">Certifications</span></h2>
+                        </div>
+                        <div class="lg:col-span-8 space-y-12" data-sd-id="165">
+                            <div class="relative pl-8 border-l border-grey-warm dark:border-grey-dark" data-sd-id="166">
+                                <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-gold-antique dark:bg-gold-champagne" data-sd-id="167"></div>
+                                <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4" data-sd-id="168">
+                                    <h3 class="text-xl font-bold tracking-tight" data-sd-id="169">Bachelor of Computer Applications (BCA)</h3>
+                                    <span class="text-xs font-mono uppercase text-charcoal-muted dark:text-grey-muted" data-sd-id="170">2022 — Present</span>
+                                </div>
+                                <p class="text-charcoal-muted dark:text-grey-muted font-light mb-4" data-sd-id="171">Major in Software Systems and Artificial Intelligence. Maintaining a focus on algorithm design, data structures, and secure coding practices.</p>
+                            </div>
+                            
+                            <div class="relative pl-8 border-l border-grey-warm dark:border-grey-dark opacity-70" data-sd-id="172">
+                                <div class="absolute -left-[5px] top-0 w-[9px] h-[9px] bg-grey-warm dark:bg-grey-dark" data-sd-id="173"></div>
+                                <div class="flex flex-col md:flex-row md:items-baseline justify-between mb-4" data-sd-id="174">
+                                    <h3 class="text-xl font-bold tracking-tight" data-sd-id="175">Advanced Web Development Cert.</h3>
+                                    <span class="text-xs font-mono uppercase text-charcoal-muted dark:text-grey-muted" data-sd-id="176">2023</span>
+                                </div>
+                                <p class="text-charcoal-muted dark:text-grey-muted font-light mb-4" data-sd-id="177">Intensive program focused on modern JavaScript frameworks, responsive design, and backend integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contact Section -->
+            <section id="contact" class="py-32 px-6 bg-obsidian text-ivory dark:bg-onyx dark:border-t dark:border-grey-dark" data-sd-id="178">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24" data-sd-id="179">
+                    <div class="space-y-8" data-sd-id="180">
+                        <span class="font-mono text-[10px] uppercase tracking-widest-xl text-gold-antique dark:text-gold-champagne" data-sd-id="181">Get in Touch</span>
+                        <h2 class="font-serif text-5xl md:text-7xl leading-tight" data-sd-id="182">Let's build <br> something <span class="italic font-light" data-sd-id="183">extraordinary.</span></h2>
+                        <p class="text-grey-warm/60 dark:text-grey-muted font-light max-w-md" data-sd-id="184">
+                            Open for collaborations, freelance opportunities, or just a chat about technology. Drop me a line anytime.
+                        </p>
+                        <div class="space-y-4 pt-8" data-sd-id="185">
+                            <a href="mailto:hello@example.com" id="email-link" class="block text-2xl font-serif hover:text-gold-antique dark:hover:text-gold-champagne transition-colors underline underline-offset-8 decoration-grey-dark" data-sd-id="186">hello@example.com</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col justify-end space-y-12" data-sd-id="187">
+                        <div class="grid grid-cols-2 gap-8" data-sd-id="188">
+                            <div data-sd-id="189">
+                                <span class="block text-[10px] font-mono uppercase tracking-widest text-grey-muted mb-4" data-sd-id="190">Socials</span>
+                                <ul class="space-y-2" data-sd-id="191">
+                                    <li data-sd-id="192"><a href="#" id="li-footer-link" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="193">LinkedIn</a></li>
+                                    <li data-sd-id="194"><a href="#" id="gh-footer-link" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="195">GitHub</a></li>
+                                    <li data-sd-id="196"><a href="#" id="tw-footer-link" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="197">Twitter</a></li>
+                                </ul>
+                            </div>
+                            <div data-sd-id="198">
+                                <span class="block text-[10px] font-mono uppercase tracking-widest text-grey-muted mb-4" data-sd-id="199">Menu</span>
+                                <ul class="space-y-2" data-sd-id="200">
+                                    <li data-sd-id="201"><a href="#home" id="foot-home" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="202">Home</a></li>
+                                    <li data-sd-id="203"><a href="#projects" id="foot-proj" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="204">Projects</a></li>
+                                    <li data-sd-id="205"><a href="#about" id="foot-about" class="text-xs uppercase tracking-widest font-bold hover:text-gold-antique transition-colors" data-sd-id="206">About</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="border-t border-grey-dark pt-8 flex justify-between items-center" data-sd-id="207">
+                            <p class="text-[10px] font-mono uppercase tracking-widest text-grey-muted" data-sd-id="208">© 2024 Ar. All rights reserved.</p>
+                            <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="back-to-top" class="p-3 border border-grey-dark rounded-full hover:bg-gold-antique hover:text-white-soft transition-all" data-sd-id="209">
+                                <iconify-icon icon="lucide:arrow-up"></iconify-icon>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Theme Management
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            }
+        }
+
+        // Initial Theme Logic
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            setTheme(savedTheme);
+        } else if (systemPrefersDark) {
+            setTheme('dark');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            if (html.classList.contains('dark')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        });
+
+        // Active Navigation Logic
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('nav a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('nav-link-active');
+                if (link.getAttribute('href').includes(current)) {
+                    link.classList.add('nav-link-active');
+                }
+            });
+        });
+
+        // Scroll Reveal Animation (Simple version)
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-reveal');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            // observer.observe(section); // Optional: add reveal classes manually in CSS
+        });
+    </script>
+
+</body></html>

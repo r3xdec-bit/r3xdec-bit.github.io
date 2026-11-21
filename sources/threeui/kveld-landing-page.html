@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KVELD Showroom</title>
+<meta name="description" content="Seven guitars rebuilt from measured drawings. A concept showroom for KVELD.">
+<link rel="icon" href="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-nov-2026/e906a6ce08e91c99f22420d10e47a1ff9fac91998d6d8a7477571b3b077014db.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="preload" href="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-nov-2026/4c98b9d490d1698ec95f2ff17a6c7d0e72691864c0c5d7bc2a2c161b45afe5ad.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/landing-pages/site-assets/kveld/app/kveld.min.js" as="script">
+<style>html,body{background:#050708;color:#efeae0}.no-cdn{font-family:system-ui,sans-serif}.no-cdn body{padding:32px;max-width:40em}.no-cdn .loader,.no-cdn svg,.no-cdn canvas,.no-cdn button,.no-cdn .room__fallback{display:none}</style>
+<link rel="stylesheet" href="/landing-pages/site-assets/kveld/app/kveld.min.css">
+<script src="/landing-pages/site-assets/otherspace/tailwind-3.4.17.js"></script>
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+// Hash routers need a real hashchange in this frame. Letting the anchor
+// navigate normally would resolve against the parent URL of srcdoc.
+if (href.startsWith('#/') || href.startsWith('#!/')) {
+window.location.hash = href;
+return;
+}
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script></head>
+<body>
+<div class="loader" aria-hidden="true">
+<div class="loader__ring">
+<svg viewBox="0 0 400 400">
+<defs><linearGradient id="loader-fade" gradientUnits="userSpaceOnUse" x1="0" y1="200" x2="0" y2="280"><stop class="loader__stop" offset="0"/><stop class="loader__stop" offset="0.55" stop-opacity="0.55"/><stop class="loader__stop" offset="1" stop-opacity="0"/></linearGradient></defs>
+<path class="loader__track" d="M59.8 277.1A160 160 0 1 1 340.2 277.1"/>
+<path class="loader__arc" d="M59.8 277.1A160 160 0 1 1 340.2 277.1"/>
+<circle class="loader__tip" r="4"/>
+</svg>
+<div class="loader__in"><p class="loader__mark">KVELD</p><p class="loader__count"><span data-count>000</span></p></div>
+</div>
+</div>
+<main>
+<section class="room" id="room" aria-label="The showroom">
+<canvas class="room__gl" aria-hidden="true"></canvas>
+<p class="room__fallback">The showroom needs WebGL. The drawings below still work.</p>
+<div class="room__ui">
+<div class="room__copy">
+<p class="eyebrow" data-intro>Showroom · Seven guitars</p>
+<h1 class="room__h1" data-split>Drawn from<br>the <em>originals</em>.</h1>
+<p class="room__lede" data-intro>Seven guitars rebuilt from the measured drawings of instruments that shaped the sound. One quiet room to hear them in.</p>
+</div>
+<div class="room__stage">
+<div class="room__title" aria-live="polite">
+<p class="room__count"><span data-no>01</span><i>/</i>07</p>
+<h2 class="room__name"><span data-name>Floe</span></h2>
+</div>
+<button class="room__view" type="button" data-view>
+<span>View guitar</span>
+<svg viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" fill="none" stroke="currentColor"/></svg>
+</button>
+</div>
+<nav class="room__controls" aria-label="Choose a guitar">
+<button class="room__arrow room__arrow--halo" type="button" data-prev aria-label="Previous guitar">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6" fill="none" stroke="currentColor"/></svg>
+</button>
+<button class="room__arrow room__arrow--halo" type="button" data-next aria-label="Next guitar">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor"/></svg>
+</button>
+</nav>
+<a class="room__scroll" href="#drawings" data-scroll-cue><span>Scroll</span><i></i></a>
+</div>
+<div class="walk" data-walk aria-hidden="true">
+<div class="walk__shade"></div>
+</div>
+<aside class="closeup" aria-hidden="true" data-closeup>
+<div class="closeup__shade" data-cu-shade></div>
+<button class="closeup__back" type="button" data-back>
+<svg viewBox="0 0 24 10" aria-hidden="true"><path d="M24 5H2M6 1L2 5l4 4" fill="none" stroke="currentColor"/></svg>
+<span>Back to the room</span>
+</button>
+<div class="closeup__panel">
+<p class="closeup__no"><span data-cu-no>01</span><i>/</i>07<b data-cu-after>After a 1950s single-cut</b></p>
+<h3 class="closeup__name"><span data-cu-name>Floe</span></h3>
+<p class="closeup__claim" data-cu-claim></p>
+<div class="closeup__offer">
+<ul class="closeup__figures" data-cu-figures></ul>
+<button class="closeup__book" type="button" data-cu-book>
+<span>Book a visit</span>
+<svg viewBox="0 0 24 10" aria-hidden="true"><path d="M0 5h22M18 1l4 4-4 4" fill="none" stroke="currentColor"/></svg>
+</button>
+</div>
+<dl class="closeup__specs" data-specs></dl>
+<div class="closeup__ours">
+<p class="closeup__k">Ours, not the sheet's</p>
+<p class="closeup__v" data-cu-ours></p>
+</div>
+</div>
+<nav class="closeup__rail" aria-label="The seven guitars">
+<button class="room__arrow" type="button" data-cu-prev aria-label="Previous guitar">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 6l-6 6 6 6" fill="none" stroke="currentColor"/></svg>
+</button>
+<ol class="closeup__names" data-cu-names></ol>
+<button class="room__arrow" type="button" data-cu-next aria-label="Next guitar">
+<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6l6 6-6 6" fill="none" stroke="currentColor"/></svg>
+</button>
+<p class="closeup__hint">Drag to turn it. Scroll to come closer.</p>
+</nav>
+</aside>
+</section>
+<section class="drawing" id="drawings" data-theme="light">
+<div class="drawing__head">
+<p class="eyebrow" data-reveal>Floe · From the drawing</p>
+<h2 class="drawing__h2" data-split>The numbers<br>came <em>first</em>.</h2>
+<p class="drawing__text" data-reveal>Floe follows a 1950s single-cut drawn at full scale. We kept every number on that sheet, from the 25.5 inch scale to the 7.25 inch fretboard radius, and redrew only what carries our name: the headstock, the markers and the logo. The drawing below is plotted from the same figures that built the model above.</p>
+</div>
+<figure class="drawing__plate" data-plate>
+<svg class="blueprint" data-blueprint role="img" aria-label="Plan view of the Floe with its main dimensions"></svg>
+<figcaption>Plan view · 1:1 source, shown reduced · dimensions in inches</figcaption>
+</figure>
+<ol class="specs" data-spec-list></ol>
+</section>
+<section class="shop" id="workshop" aria-label="The workshop"></section>
+<section class="spot" id="guitars" aria-label="The seven guitars"></section>
+<section class="order" id="order" data-theme="light" aria-label="How to order"></section>
+<footer class="visit" id="visit">
+<p class="eyebrow" data-reveal>03 · Visit</p>
+<h2 class="visit__h2" data-split>Come and hear<br>them <em>played</em>.</h2>
+<a class="visit__ghost" href="#room" data-reveal>Book a visit</a>
+<div class="visit__meta" data-reveal>
+<p>KVELD Room 01<br>59.1244° N, 11.3875° E</p>
+<p>Open by appointment<br>Thursday to Saturday</p>
+</div>
+</footer>
+</main>
+<script src="/landing-pages/site-assets/kveld/app/kveld.min.js" onerror="document.documentElement.classList.add('no-cdn')"></script>
+</body>
+</html>

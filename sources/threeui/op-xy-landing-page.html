@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OP–XY · portable synthesizer, sampler and sequencer</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%230a0a0b%27/%3E%3Ccircle cx=%2732%27 cy=%2732%27 r=%2710%27 fill=%27%23ff3a2f%27/%3E%3C/svg%3E">
+<meta name="description" content="OP–XY. a synthesizer, a sampler and a sequencer in one black instrument. eight engines, 24 voices, a 16-track 64-step sequencer, 16 hours on a charge.">
+<style>
+@font-face{font-family:'Geist';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/9b6f5ff45b278c744b5f379a2c4ecbaf858a842b8eaf82ac8d21b699ca16c608.woff2) format('woff2')}
+@font-face{font-family:'Geist Mono';font-style:normal;font-weight:100 900;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b.woff2) format('woff2')}
+:root{
+--ground:#000; --page:#0a0a0b; --grey:#b2b2b2;
+--text:#ededed; --text-2:#b8b8bd; --dim:#6b6b70; --line:#2a2a2e; --ink:#0d0d0f;
+--rec:#ff3a2f;
+--sans:'Geist',ui-sans-serif,system-ui,-apple-system,sans-serif;
+--mono:'Geist Mono',ui-monospace,Menlo,monospace;
+/* the scale · 1.5, display-led: 11 / 16 / 24 / 36 / 54 / 81 / 122 / 168 */
+--s0:11px; --s1:clamp(15px,.5vw + 13px,17px); --s2:clamp(19px,1.2vw + 14px,24px); --s3:clamp(24px,2vw + 16px,36px);
+--s4:clamp(30px,3.2vw + 14px,54px); --s5:clamp(40px,5vw + 16px,81px); --s6:clamp(52px,8vw + 14px,122px); --s7:clamp(64px,11vw + 12px,168px);
+--gutter:clamp(20px,4.2vw,64px); --nav:64px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+html,body{margin:0;padding:0;background:var(--ground);color:var(--text);font:400 var(--s1)/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+::selection{background:var(--rec);color:#000}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+/* ── the stage · fixed full-bleed canvas, the page scrolls over it ── */
+#cv{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0;touch-action:pan-y}
+html.nogpu #cv{display:none}
+/* poster mode (software GL): the one rendered hero frame stays for the hero and leaves with it */
+/* no fade here: every frame of a canvas opacity transition is a full software recomposite (measured: a 570 ms stall) */
+html.poster.away #cv{visibility:hidden}
+html.poster .rev,html.poster #strip .stack b,html.poster #engines .strip b,html.poster #connect .port,html.poster #strip .idx i,html.poster #seq .cell,html.poster #seq .cell::before,html.poster #seq .vu i,html.poster #seq .steps i,html.poster #flip .plate,html.poster #seq .recdot,html.poster #seq .phbar{transition:none}
+/* and nothing that costs a software painter: no vignette, no shadows, no grain, no masks */
+html.poster #vig,html.poster .deck::after,html.poster .deck .sweep{display:none}
+html.poster .cell,html.poster .deck{box-shadow:none}
+html.poster .btn::before,html.poster .deck::before{display:none}
+html.poster .btn{border:1px solid rgba(255,255,255,.25)}
+html.poster #grain{display:none}
+html.nogpu body{background:#0a0a0b radial-gradient(70% 45% at 50% 62%,#2a2a2e 0%,#0a0a0b 70%) no-repeat fixed}
+#page{position:relative;z-index:2}
+/* film grain + vignette · a real texture, drawn once on a canvas at boot (see _site.js), never a live filter */
+#grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.055;background-repeat:repeat;background-size:220px 220px;mix-blend-mode:screen}
+#vig{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(120% 90% at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%)}
+/* ── loading · it must clear; ship-check asserts it from a file:// URL ── */
+#loading{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center;transition:opacity .7s ease .1s;pointer-events:none}
+#loading.off{opacity:0}
+#loading b{font:400 var(--s0)/1 var(--mono);letter-spacing:.14em;color:var(--dim)}
+#loading b::after{content:'';display:block;width:64px;height:1px;background:var(--line);margin:14px auto 0;position:relative;overflow:hidden}
+#loading b i{position:absolute;left:0;top:0;height:1px;width:0;background:var(--text);transition:width .4s ease}
+/* ── nav · a fixed bar that stays fixed. small wordmark, three quiet links, one worked button ── */
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);
+font:400 var(--s0)/1 var(--mono);letter-spacing:.06em;color:var(--text-2);mix-blend-mode:difference}
+#nav .wm{text-decoration:none;color:#fff;letter-spacing:.1em}
+#nav .links{display:flex;gap:clamp(18px,2.4vw,36px);align-items:center}
+#nav .links a{text-decoration:none;color:#fff;opacity:.72;transition:opacity .25s ease}
+#nav .links a:hover{opacity:1}
+#nav .snd{display:inline-flex;align-items:center;gap:8px;color:#fff;opacity:.72;transition:opacity .25s ease;letter-spacing:.06em}
+#nav .snd:hover{opacity:1}
+#nav .snd i{display:inline-block;width:14px;height:8px;position:relative}
+#nav .snd i::before,#nav .snd i::after,#nav .snd i b{content:'';position:absolute;bottom:0;width:2px;background:#fff;left:0;height:3px;transform-origin:bottom}
+#nav .snd i::after{left:6px;height:8px}
+#nav .snd i b{left:12px;height:5px}
+#nav .snd.on i::before{animation:eq .9s ease-in-out infinite alternate}
+#nav .snd.on i::after{animation:eq .7s ease-in-out infinite alternate-reverse}
+#nav .snd.on i b{animation:eq 1.1s ease-in-out infinite alternate}
+@keyframes eq{from{transform:scaleY(.35)}to{transform:scaleY(1)}}
+.btn{position:relative;display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:999px;font:400 var(--s0)/1 var(--mono);letter-spacing:.08em;color:#fff;text-decoration:none;
+background:rgba(255,255,255,.04);isolation:isolate;overflow:hidden;transition:background .3s ease}
+.btn::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.08) 45%,rgba(255,255,255,.28));
+-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+.btn::after{content:'';position:absolute;top:-60%;bottom:-60%;left:-40%;width:35%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.18),transparent);transform:skewX(-18deg) translateX(-120%);transition:transform .8s cubic-bezier(.2,.7,.2,1);pointer-events:none}
+.btn:hover{background:rgba(255,255,255,.08)}
+.btn:hover::after{transform:skewX(-18deg) translateX(520%)}
+.btn .price{color:var(--text-2)}
+#nav .btn{mix-blend-mode:normal}
+/* ── type ── */
+.k{font:400 var(--s0)/1.4 var(--mono);letter-spacing:.08em;color:var(--dim)}
+.k b{font-weight:400;color:var(--text-2)}
+h1,h2,h3{font-weight:200;margin:0;letter-spacing:-.03em;line-height:.92;text-wrap:balance}
+p{margin:0;color:var(--text-2)}
+.lines .l{display:block;overflow:hidden}
+.lines .l span{display:block;transform:translateY(110%);will-change:transform}
+.rev{opacity:0;transform:translateY(14px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rev.in{opacity:1;transform:none}
+/* every beat is a tall section with a sticky 100vh stage; the camera travels over its first third.
+The stages let the pointer THROUGH to the canvas (the keys are hoverable); only their children catch it. */
+.beat{position:relative;pointer-events:none}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;pointer-events:none}
+.stage > *{pointer-events:auto}
+#page{pointer-events:none}
+/* ── 1 · hero · the wordmark bottom-left, the claim top-right, the product between them ── */
+#hero{height:200vh}
+#hero .stage{display:block}
+#hero .claim,#hero .wm{transition:opacity .2s linear}
+#hero .claim{position:absolute;top:calc(var(--nav) + 4vh);right:var(--gutter);width:min(38vw,22ch);text-align:right;font-size:var(--s3);font-weight:300;line-height:1.14;letter-spacing:-.02em;color:var(--text)}
+#hero .wm{position:absolute;left:calc(var(--gutter) - .06em);bottom:clamp(20px,5vh,56px)}
+#hero .wm h1{font-size:var(--s7);letter-spacing:-.04em;line-height:.86;white-space:nowrap;display:flex}
+#hero .wm h1 span{display:inline-block;opacity:0;filter:blur(14px);transform:translateY(.08em)}
+#hero .wm .k{margin-top:14px;display:flex;gap:1.2em}
+#hero .wm .k span{opacity:0}
+/* ── 2 · strip · one word at a time, huge, in the band above the instrument seen from the top ── */
+#strip{height:260vh}
+#strip .stack{position:absolute;left:calc(var(--gutter) - .04em);right:36vw;top:calc(var(--nav) + 2vh);height:1.1em;font-size:var(--s7);line-height:1;overflow:hidden}
+#strip .stack b{position:absolute;left:0;top:0;font-weight:200;letter-spacing:-.04em;line-height:1;color:var(--text);white-space:nowrap;
+transform:translateY(105%);opacity:0;transition:transform .7s cubic-bezier(.2,.7,.2,1),opacity .5s ease}
+#strip .stack b.on{transform:translateY(0);opacity:1}
+#strip .stack b.was{transform:translateY(-105%);opacity:0}
+#strip .cap{position:absolute;right:var(--gutter);top:calc(var(--nav) + 3vh);width:min(34vw,32ch);text-align:right}
+#strip .cap p{margin-top:8px;color:var(--text-2);font-size:var(--s1)}
+#strip .idx{position:absolute;left:var(--gutter);top:calc(var(--nav) + 2vh + var(--s7) * 1.1 + 10px);display:flex;gap:10px;align-items:center}
+#strip .idx i{display:block;width:34px;height:2px;background:#2a2a2e;border-radius:1px;transition:background .3s}
+#strip .idx i.on{background:var(--text)}
+/* ── 2b · macro · the scroll dollies along a rail of close-ups; one small slate names what is in focus ── */
+#macro{height:340vh}
+#macro .slate{position:absolute;left:var(--gutter);bottom:clamp(20px,5vh,56px);display:flex;flex-direction:column;gap:6px;padding:14px 18px;border-radius:12px;
+background:rgba(10,10,11,.42);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+#macro .slate .k{color:var(--text-2)}
+#macro .slate b{display:block;font:300 var(--s3)/1.05 var(--sans);letter-spacing:-.02em;color:var(--text)}
+#macro .slate .row{display:none}
+#macro .slate .row.on{display:block}
+#macro .slate .row b,#macro .slate .row .k{transition:opacity .3s ease}
+/* ── 3 · engines · a filmstrip of engine names across the top band, the key field below ── */
+#engines{height:300vh}
+#engines .band{position:absolute;left:0;right:0;top:calc(var(--nav) + 3vh);overflow:hidden}
+#engines .strip{display:flex;gap:.6em;white-space:nowrap;padding-left:var(--gutter);will-change:transform}
+#engines .strip b{font-weight:300;font-size:var(--s5);letter-spacing:-.03em;line-height:1;color:rgba(237,237,237,.42);transition:color .35s ease;display:inline-flex;align-items:baseline;gap:.6em}
+#engines .strip b::after{content:'·';color:rgba(237,237,237,.22);font-weight:200}
+#engines .strip b:last-child::after{content:''}
+#engines .strip b.on{color:var(--text)}
+#engines .strip b.on::after{color:#2a2a2e}
+#engines .idx{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh + var(--s5) + 26px);display:flex;align-items:center;gap:14px}
+#engines .idx .n{font:200 var(--s3)/1 var(--sans);letter-spacing:-.02em;min-width:2ch}
+#engines .idx .bar{width:120px;height:1px;background:var(--line);position:relative}
+#engines .idx .bar i{position:absolute;left:0;top:0;height:1px;background:var(--text);width:0}
+#engines .copy{position:absolute;right:var(--gutter);top:calc(var(--nav) + 3vh + var(--s5) + 22px);width:min(44vw,40ch);text-align:right}
+#engines .copy p{font-size:var(--s1)}
+/* ── 4 · sequencer · the instrument high in frame; beneath it, its own display blown up: a black
+plate with sixteen columns of KEYS, a live scope, a grayscale meter, a sweeping playhead ── */
+#seq{height:260vh}
+.deck{position:relative;border-radius:16px;background:linear-gradient(180deg,#141416 0%,#0c0c0e 60%,#0a0a0b 100%);
+box-shadow:0 40px 90px rgba(0,0,0,.6),0 2px 0 rgba(255,255,255,.04) inset,0 -1px 0 rgba(0,0,0,.8) inset}
+.deck::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;
+background:linear-gradient(160deg,rgba(255,255,255,.34),rgba(255,255,255,.05) 30%,rgba(255,255,255,.02) 65%,rgba(255,255,255,.18));
+-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.deck::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.05;background:var(--grain-url) repeat;background-size:220px 220px;mix-blend-mode:screen}
+.deck .sweep{position:absolute;inset:0;border-radius:inherit;overflow:hidden;pointer-events:none}
+.deck .sweep::before{content:'';position:absolute;top:-40%;bottom:-40%;left:-30%;width:26%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.05),transparent);transform:skewX(-16deg) translateX(-140%)}
+.deck.run .sweep::before{animation:deck-sweep 4.8s cubic-bezier(.3,.6,.2,1) infinite}
+@keyframes deck-sweep{0%{transform:skewX(-16deg) translateX(-140%)}55%,100%{transform:skewX(-16deg) translateX(620%)}}
+#seq .panel{position:absolute;left:50%;bottom:clamp(16px,3vh,40px);transform:translateX(-50%);width:min(1160px,calc(100vw - 2*var(--gutter)));padding:16px 22px 16px}
+#seq .top{display:grid;grid-template-columns:auto 1fr auto auto;gap:24px;align-items:center;margin-bottom:12px}
+#seq .top h2{font-size:var(--s2);font-weight:300;letter-spacing:-.02em;line-height:1;margin-bottom:6px}
+#seq .top .k{display:flex;gap:1.2em;white-space:nowrap}
+#seq .scope{width:100%;max-width:420px;height:40px;display:block;justify-self:center;opacity:.95}
+#seq .vu{display:grid;grid-template-columns:repeat(16,6px);gap:3px;align-items:end;height:30px}
+#seq .vu i{display:block;height:100%;border-radius:1px;background:var(--seg,#2a2a2e);opacity:.28;transition:opacity .06s linear}
+#seq .vu i.on{opacity:1}
+#seq .tr{display:flex;align-items:center;gap:16px}
+#seq .recdot{width:10px;height:10px;border-radius:50%;background:#3a1a18;box-shadow:0 0 0 1px rgba(255,255,255,.05) inset;transition:background .1s,box-shadow .1s}
+#seq .recdot.on{background:var(--rec);box-shadow:0 0 12px rgba(255,58,47,.8)}
+#seq .bpm{display:inline-flex;align-items:baseline;gap:6px;font:400 var(--s0)/1 var(--mono);letter-spacing:.08em;color:var(--text-2);cursor:ns-resize;padding:8px 10px;border-radius:8px;background:rgba(255,255,255,.04);user-select:none}
+#seq .bpm b{font:300 22px/1 var(--sans);letter-spacing:-.02em;color:var(--text);font-variant-numeric:tabular-nums;min-width:2.2ch;text-align:right}
+#seq .bpm:hover{background:rgba(255,255,255,.08)}
+#seq #seqPlay{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:#ededed;color:#000;transition:transform .15s ease,background .2s}
+#seq #seqPlay:hover{transform:scale(1.06)}
+#seq #seqPlay svg{width:13px;height:13px;fill:#000}
+#seq .grid{display:grid;grid-template-columns:64px repeat(16,1fr);gap:5px 5px;align-items:stretch;touch-action:none;user-select:none}
+#seq .grid .lab{font:400 var(--s0)/1 var(--mono);letter-spacing:.08em;color:var(--dim);align-self:center;padding-right:8px}
+#seq .cell{position:relative;height:clamp(22px,2.6vh + 8px,34px);border-radius:6px;cursor:pointer;
+background:linear-gradient(180deg,#26262a,#161618 70%,#121214);
+box-shadow:0 1px 0 rgba(255,255,255,.07) inset,0 -1px 0 rgba(0,0,0,.7) inset,0 2px 5px rgba(0,0,0,.55);
+transition:transform .08s ease,filter .12s ease,box-shadow .12s ease}
+#seq .cell::before{content:'';position:absolute;top:6px;right:7px;width:4px;height:4px;border-radius:50%;background:#3a3a40;box-shadow:0 0 0 1px rgba(0,0,0,.5);transition:background .1s,box-shadow .1s}
+#seq .cell:hover{filter:brightness(1.25)}
+#seq .cell.on::before{background:#fff;box-shadow:0 0 7px rgba(255,255,255,.9)}
+#seq .cell.rec.on::before{background:var(--rec);box-shadow:0 0 7px rgba(255,58,47,.9)}
+#seq .cell.on{background:linear-gradient(180deg,#34343a,#202024 70%,#1a1a1e)}
+#seq .cell.ph{filter:brightness(1.45)}
+#seq .cell.hit{transform:translateY(1px) scale(.95);box-shadow:0 1px 0 rgba(255,255,255,.05) inset,0 -1px 0 rgba(0,0,0,.7) inset,0 0 0 rgba(0,0,0,0)}
+#seq .cell:nth-child(4n+2){margin-left:4px}
+#seq .steps{position:relative;display:grid;grid-template-columns:64px repeat(16,1fr);gap:0 5px;margin-top:6px;height:14px}
+#seq .steps i{font:400 10px/16px var(--mono);color:var(--dim);text-align:center;font-style:normal;letter-spacing:.04em;transition:color .1s}
+#seq .steps i:nth-child(4n+2){margin-left:4px}
+#seq .steps i.ph{color:var(--text)}
+#seq .phbar{position:absolute;left:0;bottom:-6px;height:2px;width:40px;background:#fff;border-radius:1px;box-shadow:0 0 8px rgba(255,255,255,.7);opacity:0;transition:opacity .2s}
+.deck.run .phbar{opacity:1}
+#seq .note{position:absolute;left:var(--gutter);top:calc(var(--nav) + 2vh);max-width:30ch}
+#seq .note p{font-size:var(--s1)}
+#seq .note p{margin-top:10px}
+/* ── 5 · connect · the light act. a caption band along the bottom ticks port by port ── */
+#connect{height:300vh}
+#connect .stage{color:var(--ink)}
+#connect .band{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(20px,5vh,56px);display:grid;grid-template-columns:repeat(6,1fr);gap:18px;border-top:1px solid rgba(0,0,0,.18);padding-top:16px}
+#connect .band .port{color:rgba(0,0,0,.34);transition:color .35s ease}
+#connect .band .port b{display:block;font:200 var(--s3)/1 var(--sans);letter-spacing:-.02em;margin-bottom:8px}
+#connect .band .port span{display:block;font:400 var(--s0)/1.45 var(--mono);letter-spacing:.06em;max-width:22ch}
+#connect .band .port.on{color:var(--ink)}
+#connect .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 4vh);max-width:22ch}
+#connect .head h2{font-size:var(--s4);font-weight:200;letter-spacing:-.03em;line-height:.98;color:var(--ink)}
+#connect .head p{color:rgba(0,0,0,.6);margin-top:14px;max-width:34ch}
+/* ── 6 · flip · the underside; the spec set as the plate printed there ── */
+#flip{height:240vh}
+#flip .stage{color:var(--ink)}
+#flip .plate{position:absolute;right:var(--gutter);bottom:clamp(20px,5vh,56px);width:min(46vw,440px);font:400 var(--s0)/1.7 var(--mono);letter-spacing:.06em;color:var(--ink);transition:color .5s ease}
+#flip .plate .row{display:grid;grid-template-columns:9ch 1fr;gap:10px;padding:7px 0;border-top:1px solid currentColor;border-color:rgba(128,128,128,.28)}
+#flip .plate .row span:first-child{color:rgba(128,128,128,.9)}
+#flip .plate .langs{margin-top:18px;color:rgba(128,128,128,.9);font-size:10px;letter-spacing:.1em;line-height:1.8}
+#flip .plate .langs b{font-weight:400;color:currentColor}
+#flip .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 4vh);max-width:20ch}
+#flip .head h2{font-size:var(--s4);font-weight:200;letter-spacing:-.03em;line-height:.98}
+#flip .head p{margin-top:14px;max-width:32ch;color:rgba(0,0,0,.62)}
+#flip.dark .head p{color:var(--text-2)}
+#flip.dark .stage{color:var(--text)}
+#flip.dark .plate{color:var(--text)}
+#flip.dark .plate .row span:first-child,#flip.dark .plate .langs{color:var(--dim)}
+/* ── 7 · close · centred stage, type centred beneath ── */
+#close{height:170vh}
+#close .stage{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:clamp(20px,5vh,56px)}
+#close .cta{text-align:center;margin-bottom:6vh}
+#close .cta h2{font-size:var(--s6);font-weight:200;letter-spacing:-.04em;line-height:.9}
+#close .cta .k{margin:14px 0 26px;font-size:var(--s0)}
+#close .cta .k b{color:var(--text)}
+#close .cta .acts{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+#close .cta .acts .btn{padding:14px 22px;font-size:var(--s0)}
+#close .cta .acts .ghost{background:transparent}
+#close footer{width:100%;display:flex;justify-content:space-between;align-items:flex-end;gap:20px;padding:0 var(--gutter);font:400 var(--s0)/1.6 var(--mono);letter-spacing:.06em;color:var(--dim);flex-wrap:wrap}
+#close footer a{text-decoration:none;color:var(--text-2);margin-right:18px;opacity:.8;transition:opacity .25s ease}
+#close footer a:hover{opacity:1}
+#close footer .cols{display:flex;gap:36px;flex-wrap:wrap}
+/* ── reduced motion · the film jumps to its end state; scroll travels remain (they are scroll-driven) ── */
+@media (prefers-reduced-motion:reduce){ .rev{transition:none} #grain{display:none} }
+/* ── short viewports (a laptop window under 760 px): the scale steps down and the bands tighten ── */
+@media (max-height:760px) and (min-width:761px){
+:root{--s7:clamp(56px,8.5vw + 8px,120px);--s6:clamp(44px,6vw + 10px,86px);--s5:clamp(34px,4vw + 12px,60px);--s4:clamp(28px,2.6vw + 12px,44px);--s3:clamp(22px,1.6vw + 14px,30px)}
+#hero .wm{bottom:clamp(16px,3vh,32px)}
+#seq .panel{padding:12px 18px 12px}
+#seq .top{margin-bottom:8px}
+#seq .cell{height:clamp(18px,2.4vh + 6px,26px)}
+#seq .steps{margin-top:4px;height:12px}
+#seq .note{max-width:22ch}
+#connect .band .port span{max-width:18ch}
+#flip .plate{width:min(40vw,380px);font-size:10px;line-height:1.5}
+#flip .plate .row{padding:5px 0}
+#close .cta{margin-bottom:3vh}
+}
+/* ── phone ── */
+@media (max-width:760px){
+:root{--nav:56px}
+#nav .links a.hide-s{display:none}
+#hero .claim{top:calc(var(--nav) + 2vh);left:auto;right:var(--gutter);width:min(64vw,20ch);text-align:right;font-size:var(--s2)}
+#hero .wm h1{font-size:clamp(64px,22vw,110px)}
+#strip .stack{font-size:clamp(48px,15vw,80px)}
+#strip .cap{left:var(--gutter);right:var(--gutter);width:auto;text-align:left;top:auto;bottom:clamp(16px,3vh,36px)}
+#strip .cap p{font-size:13px;line-height:1.5}
+#strip .cap .k{font-size:10px}
+#strip .idx{top:calc(var(--nav) + 2vh + clamp(48px,15vw,80px) * 1.1 + 8px)}
+#engines .strip b{font-size:clamp(30px,9vw,52px)}
+#engines .copy{position:absolute;left:var(--gutter);right:var(--gutter);top:calc(var(--nav) + 3vh + clamp(30px,9vw,52px) + 18px);bottom:auto;width:auto;text-align:left}
+#engines .copy p{font-size:14px}
+#seq .panel{padding:14px 12px 14px;bottom:clamp(12px,2vh,24px)}
+#seq .top{grid-template-columns:1fr auto;gap:10px 14px;margin-bottom:12px}
+#seq .top .k,#seq .scope,#seq .vu{display:none}
+#seq .top h2{font-size:var(--s2);margin-bottom:0}
+#seq .grid{grid-template-columns:40px repeat(16,1fr);gap:4px 3px}
+#seq .grid .lab{font-size:9px;padding-right:2px}
+#seq .cell{border-radius:3px;height:22px}
+#seq .cell::before{top:3px;right:3px;width:3px;height:3px}
+#seq .cell:nth-child(4n+2),#seq .steps i:nth-child(4n+2){margin-left:2px}
+#seq .steps{grid-template-columns:40px repeat(16,1fr);gap:0 3px}
+#seq .steps i{font-size:8px}
+#seq .note{display:none}
+#connect .band{grid-template-columns:repeat(3,1fr);gap:12px}
+#connect .band .port b{font-size:var(--s2)}
+#connect .band .port span{display:none}
+#connect .band .port.on span{display:block}
+#flip .plate{left:var(--gutter);right:var(--gutter);width:auto;bottom:clamp(16px,3vh,40px)}
+#flip .plate .langs{display:none}
+#close footer{flex-direction:column;align-items:flex-start}
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script></head>
+<body>
+<canvas id="cv"></canvas>
+<div id="grain"></div><div id="vig"></div>
+<div id="loading"><b>op–xy<i></i></b></div>
+
+<nav id="nav">
+  <a class="wm" href="#hero">OP–XY</a>
+  <div class="links">
+    <button class="snd" id="sndBtn" aria-pressed="false"><i><b></b></i><span>sound</span></button>
+    <a class="hide-s" href="#engines">engines</a>
+    <a class="hide-s" href="#seq">sequencer</a>
+    <a class="hide-s" href="#flip">specs</a>
+    <a class="btn" href="#close"><span>pre-order</span><span class="price">$2,299</span></a>
+  </div>
+</nav>
+
+<div id="cdn" data-r="VanhDc/aura-assets" data-t="opxy-v1" data-p="opxy" hidden=""></div>
+<main id="page">
+
+  <section class="beat" id="hero">
+    <div class="stage">
+      <p class="claim lines"><span class="l"><span>a synthesizer, a sampler</span></span><span class="l"><span>and a sequencer. one</span></span><span class="l"><span>instrument, all black.</span></span></p>
+      <div class="wm">
+        <h1 aria-label="OP–XY"><span>O</span><span>P</span><span>–</span><span>X</span><span>Y</span></h1>
+        <div class="k"><span>portable synthesizer</span><span>sampler</span><span>sequencer</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="strip">
+    <div class="stage">
+      <div class="stack" aria-label="sample, sequence, synthesize, perform">
+        <b>sample.</b><b>sequence.</b><b>synthesize.</b><b>perform.</b>
+      </div>
+      <div class="cap rev">
+        <div class="k">four rows · 68 keys · one grayscale</div>
+        <p>the whole instrument is a grid. one row of instruments, one row of steps, and a two-octave keyboard under your fingers. the display keeps everything in grayscale, so the red means one thing: record.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="macro">
+    <div class="stage">
+      <div class="slate glass rev" id="slate">
+        <div class="row on"><b>68 mechanical keys.</b><div class="k">ultra low profile · 0.45 mm travel · a led in every vital key</div></div>
+        <div class="row"><b>two octaves, printed once.</b><div class="k">the chromatic keys carry their legends in ink, not in a sticker</div></div>
+        <div class="row"><b>four grayscale encoders.</b><div class="k">knurled, push to select · one tone step each</div></div>
+        <div class="row"><b>480 × 222 ips.</b><div class="k">the whole interface in grayscale · red only for record</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="engines">
+    <div class="stage">
+      <div class="band"><div class="strip" id="engStrip">
+        <b>axis</b><b>dissolve</b><b>e-piano</b><b>hardsync</b><b>organ</b><b>prism</b><b>simple</b><b>wavetable</b>
+      </div></div>
+      <div class="copy rev">
+        <p>eight synth engines and twenty-four voices, plus a drum sampler, a multisampler and a synth sampler. any engine sits on any of the eight tracks, with four filter types and a send level each.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="seq">
+    <div class="stage">
+      <div class="panel deck rev" id="seqPanel">
+        <div class="sweep"></div>
+        <div class="top">
+          <div class="ttl"><h2>the sequencer.</h2><div class="k"><span>pattern <b>a1</b></span><span>16 tracks</span><span>64 steps · 4 pages</span><span>24 punch-in fx</span></div></div>
+          <canvas class="scope" id="scope" width="840" height="112" aria-hidden="true"></canvas>
+          <div class="vu" id="vu" aria-hidden="true"></div>
+          <div class="tr">
+            <span class="recdot" id="recDot" aria-hidden="true"></span>
+            <button class="bpm" id="bpmBtn" aria-label="tempo, drag up or down"><b id="bpm">120</b>bpm</button>
+            <button id="seqPlay" aria-label="play or stop the pattern"><svg viewBox="0 0 12 12" id="seqIco"><path d="M2 1.5v9l8-4.5z"></path></svg></button>
+          </div>
+        </div>
+        <div class="grid" id="seqGrid"></div>
+        <div class="steps" id="seqSteps"><i></i><span class="phbar" id="phbar"></span></div>
+      </div>
+      <div class="note rev">
+        <div class="k">step components</div>
+        <p>every step can carry its own velocity, timing, pitch and up to fourteen components. brain transposes the chord progression underneath, so a pattern keeps reinventing itself while you play.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="connect">
+    <div class="stage">
+      <div class="head rev">
+        <h2>connect everything.</h2>
+        <p>the right end is an i/o system. amps, headphones, a modular, a drum machine, your laptop, and the mic on the side records straight into a track.</p>
+      </div>
+      <div class="band" id="portBand">
+        <div class="port" data-z="31.5"><b>power</b><span>on · off. sixteen hours on a charge.</span></div>
+        <div class="port" data-z="13.7"><b>usb-c</b><span>audio and midi, host and device, charging.</span></div>
+        <div class="port" data-z="0"><b>line in</b><span>3.5 mm stereo. sample anything.</span></div>
+        <div class="port" data-z="-10.2"><b>midi in</b><span>3.5 mm. clock and notes from outside.</span></div>
+        <div class="port" data-z="-20.5"><b>multi out</b><span>midi, cv/gate, sync and aux audio on one jack.</span></div>
+        <div class="port" data-z="-30.8"><b>line out</b><span>3.5 mm stereo with headset mic support.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="flip">
+    <div class="stage">
+      <div class="head rev">
+        <h2>the other side.</h2>
+        <p>the exact footprint of the OP–1 field. an aluminium plate, four feet, two loop pads, and everything it is printed once.</p>
+      </div>
+      <div class="plate rev" id="plate">
+        <div class="row"><span>size</span><span>288 × 102 × 29 mm</span></div>
+        <div class="row"><span>display</span><span>480 × 222 px ips</span></div>
+        <div class="row"><span>keys</span><span>68 mechanical, ultra low profile</span></div>
+        <div class="row"><span>encoders</span><span>4 grayscale, push</span></div>
+        <div class="row"><span>sensors</span><span>6-axis imu, microphone</span></div>
+        <div class="row"><span>battery</span><span>16 hours</span></div>
+        <div class="row"><span>i/o</span><span>line in · midi in · multi out · line out · usb-c</span></div>
+        <div class="langs"><b>OP–XY</b> portable synthesizer · synthétiseur portable · tragbarer synthesizer · designed in stockholm</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="beat" id="close">
+    <div class="stage">
+      <div class="cta rev">
+        <h2>OP–XY</h2>
+        <div class="k"><b>$2,299</b> · shipping now · free shipping over $120</div>
+        <div class="acts">
+          <a class="btn" href="#"><span>pre-order</span><span class="price">$2,299</span></a>
+          <a class="btn ghost" href="#"><span>user guide</span></a>
+        </div>
+      </div>
+      <footer>
+        <div class="cols">
+          <div><a href="#">store</a><a href="#">guides</a><a href="#">downloads</a></div>
+          <div><a href="#">support</a><a href="#">press</a><a href="#">returns</a></div>
+        </div>
+        <div>©2026 teenage engineering ab · stockholm</div>
+      </footer>
+    </div>
+  </section>
+
+</main>
+<script type="importmap">{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "gsap":"https://cdn.jsdelivr.net/npm/gsap@3.15.0/index.js",
+  "gsap/ScrollTrigger":"https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js",
+  "lenis":"https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+}}</script>
+<script type="module">
+/* every ESM import of the page, in one place · build.sh puts these first in the single module */
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+gsap.registerPlugin(ScrollTrigger);
+window.gsap = gsap; window.ScrollTrigger = ScrollTrigger;
+const MODEL_URL = (function(){ var d = document.getElementById('cdn'); var h = ['ht','tps:','//','cdn','.js','delivr','.net','/gh/'].join(''); return h + d.dataset.r + '@' + d.dataset.t + '/' + d.dataset.p + '/opxy.glb'; })();
+/* ═══════════ OP–XY · the background ═══════════
+   A full-screen shader rendered BEFORE the product: drifting smoke in a dark studio, the key light's
+   beam cut through it (its origin and direction are the real key light, projected, so the beam sweeps
+   with the orbit during the entrance), a pool of light under the product, and the light act's grey
+   sweep. The 3D floor only catches the shadow, so the background can never occlude the product. */
+function buildBackground() {
+  const scene = new THREE.Scene();
+  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  const uniforms = {
+    uTime: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) },
+    uBeamO: { value: new THREE.Vector2(-0.2, 1.2) }, uBeamD: { value: new THREE.Vector2(0.5, -0.8) },
+    uPool: { value: new THREE.Vector2(0.5, 0.55) }, uPoolR: { value: 0.35 },
+    uOrbit: { value: 0 }, uAmbient: { value: 0 }, uGround: { value: 0 }, uPointer: { value: new THREE.Vector2(0, 0) },
+    uPulse: { value: 0 }, uSmoke: { value: 1 }, uPoolA: { value: 1 },
+  };
+  const mat = new THREE.ShaderMaterial({
+    uniforms, depthWrite: false, depthTest: false,
+    vertexShader: `void main(){ gl_Position = vec4(position.xy, 0.0, 1.0); }`,
+    fragmentShader: `
+      precision highp float;
+      uniform float uTime, uPoolR, uOrbit, uAmbient, uGround, uPulse, uSmoke, uPoolA; uniform vec2 uRes, uBeamO, uBeamD, uPool, uPointer;
+      float hash(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      float vnoise(vec2 p){ vec2 i = floor(p), f = fract(p); f = f*f*(3.0-2.0*f);
+        return mix(mix(hash(i), hash(i+vec2(1,0)), f.x), mix(hash(i+vec2(0,1)), hash(i+vec2(1,1)), f.x), f.y); }
+      float fbm(vec2 p){ float a = 0.5, s = 0.0; for (int i = 0; i < 4; i++){ s += a * vnoise(p); p = p * 2.03 + vec2(1.7, 9.2); a *= 0.5; } return s; }
+      void main(){
+        vec2 uv = gl_FragCoord.xy / uRes;              /* 0..1, y up */
+        float asp = uRes.x / uRes.y;
+        vec2 q = vec2((uv.x - 0.5) * asp, uv.y - 0.5);   /* aspect-true, centred */
+        /* smoke · two drifting fbm layers, warped once, slow */
+        vec2 drift = vec2(uTime * 0.018, uTime * 0.011) + uPointer * 0.03;
+        vec2 w = q * 1.6 + drift;
+        float n1 = fbm(w + fbm(w * 0.7 + uTime * 0.02) * 0.6);
+        float n2 = fbm(q * 3.1 - drift * 1.4 + 4.0);
+        float smoke = clamp((n1 * 0.75 + n2 * 0.35 - 0.3) * 1.5, 0.0, 1.0) * uSmoke;
+        /* the beam · a cone from the key light's screen position along its direction */
+        vec2 bo = vec2((uBeamO.x - 0.5) * asp, uBeamO.y - 0.5);
+        vec2 bd = normalize(vec2(uBeamD.x * asp, uBeamD.y));
+        vec2 v = q - bo; float along = dot(v, bd); float perp = dot(v, vec2(-bd.y, bd.x));
+        float width = 0.09 + max(along, 0.0) * 0.30;
+        float beam = exp(-(perp * perp) / (width * width)) * smoothstep(-0.1, 0.25, along) * exp(-max(along, 0.0) * 0.28);
+        beam *= (0.3 + 1.1 * smoke) * (0.3 + 0.7 * uOrbit) * (0.2 + 0.8 * uAmbient);
+        /* the pool under the product */
+        vec2 pv = q - vec2((uPool.x - 0.5) * asp, uPool.y - 0.5); pv.y *= 2.2;
+        float pool = exp(-dot(pv, pv) / (uPoolR * uPoolR)) * uPoolA;
+        /* dark act */
+        float vig = smoothstep(1.25, 0.25, length(q * vec2(0.8, 1.1)));
+        vec3 dark = vec3(0.007, 0.007, 0.009) + vec3(0.032, 0.032, 0.036) * smoke * (0.3 + 0.7 * uAmbient) * vig
+                  + vec3(1.0, 0.94, 0.86) * beam * 0.7
+                  + vec3(0.07, 0.068, 0.066) * pool * (0.2 + 0.8 * uAmbient) * (1.0 + 0.6 * uPulse);
+        /* light act · a studio sweep: bright under the product, falling to the press grey at the edges */
+        vec3 grey = mix(vec3(0.42), vec3(0.72), pool * 0.9 + 0.1 * smoke) * (0.86 + 0.14 * vig) + vec3(0.06) * smoke * 0.5;
+        vec3 col = mix(dark, grey, uGround);
+        /* film grain, tiny, static per pixel plus a slow flicker */
+        col += (hash(gl_FragCoord.xy + fract(uTime) * 7.0) - 0.5) * 0.012;
+        gl_FragColor = vec4(col, 1.0);
+      }`,
+  });
+  const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat); quad.frustumCulled = false; scene.add(quad);
+  return { scene, camera, uniforms };
+}
+/* ═══════════ OP–XY · the scene ═══════════
+   One fixed full-bleed canvas behind the page. The page never moves the product; it moves the
+   CAMERA between authored stations (scroll-driven travels) and asks the model for gestures
+   (press a key, turn an encoder, roll over). The hero film runs on a wall clock.
+
+   Units: the GLB root is the Blender empty at scale 0.001, so every part under it is in
+   MILLIMETRES and the world is in METRES (product 289 × 29 × 102 mm → 0.289 × 0.029 × 0.102 m).
+   glTF is Y-up: the key field faces +Y, the player's edge is +Z, the I/O end is +X. */
+
+const OPXY = (window.OPXY = { ready: false });
+
+/* ── the studio · an environment built from emissive panels, prefiltered once ──
+   The press set is lit by ONE big soft key upper-left, a long rim strip behind, a low cool fill.
+   Black anodised aluminium and black plastic have nothing to show without a bright shape to
+   reflect, so the env carries the panels and the direct lights only add the shadow and the pool. */
+function buildStudio(renderer) {
+  const sc = new THREE.Scene();
+  const panel = (w, h, col, i, pos, look) => {
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ color: col, side: THREE.DoubleSide }));
+    m.material.color.multiplyScalar(i);
+    m.position.set(...pos); m.lookAt(...look); sc.add(m); return m;
+  };
+  /* the room: near-black walls so the reflections fall to black between panels */
+  const room = new THREE.Mesh(new THREE.BoxGeometry(6, 4, 6), new THREE.MeshBasicMaterial({ color: 0x050506, side: THREE.BackSide }));
+  room.position.y = 1.6; sc.add(room);
+  panel(2.6, 1.7, 0xfff4e8, 2.2, [-1.5, 2.2, 1.3], [0, 0, 0]);       /* key softbox · upper left, warm */
+  panel(3.4, 0.22, 0xffffff, 3.6, [0.2, 1.6, -1.7], [0, 0.1, 0]);       /* rim strip · long, behind and above */
+  panel(1.6, 0.9, 0xdfe8ff, 0.45, [2.4, 0.5, 0.8], [0, 0, 0]);         /* fill · right, low, cool */
+  panel(1.2, 0.5, 0xffffff, 0.9, [0.6, 2.6, 0.2], [0, 0, 0]);         /* a small top light for the encoder caps */
+  panel(5, 5, 0x0b0b0c, 0.3, [0, -0.02, 0], [0, 1, 0]);               /* the floor, barely */
+  const pm = new THREE.PMREMGenerator(renderer); pm.compileEquirectangularShader();
+  const rt = pm.fromScene(sc, 0.035); pm.dispose();
+  return rt.texture;
+}
+
+/* ── materials · the file's dark dielectrics sit below the physical floor (keys are authored at
+   sRGB 7, the pbr-gate floor is ~50) and would render as holes; they are lifted to real matte
+   black here, and roughness is brought down from 1.0 so the studio's panels can be seen in them. */
+function tuneMaterial(m) {
+  const n = m.name || '';
+  m.envMapIntensity = 1;
+  if (/mechanical key/.test(n)) { m.color.setRGB(0.028, 0.028, 0.03); m.roughness = 0.62; m.metalness = 0; }
+  else if (/anodized aluminium/.test(n)) { m.color.setRGB(0.09, 0.095, 0.10); m.roughness = 0.55; m.metalness = 0.85; }
+  else if (/anodized edge/.test(n)) { m.color.setRGB(0.12, 0.125, 0.13); m.roughness = 0.5; m.metalness = 0.9; }
+  else if (/Unlit recessed|elastomer/.test(n)) { m.color.setRGB(0.02, 0.02, 0.022); m.roughness = 0.7; }
+  else if (/Grayscale step|cap material/.test(n)) { m.roughness = 0.5; m.metalness = 0; }
+  else if (/Warm white screenprint/.test(n)) { m.roughness = 0.55; }
+  else if (/IPS display/.test(n)) { m.emissiveIntensity = 0; m.roughness = 0.08; m.color.setRGB(0.004, 0.004, 0.004); OPXY.display = m; }
+  else if (/Soft white LED/.test(n)) { m.emissiveIntensity = 0; OPXY.led = m; }
+  else if (/status lens/.test(n)) { m.emissiveIntensity = 0; OPXY.lens = m; }
+  else if (/loop pile/.test(n)) { m.color.setRGB(0.02, 0.02, 0.02); m.roughness = 0.95; }
+  else if (/maker symbol/.test(n)) { m.color.setRGB(0.03, 0.03, 0.032); }
+  else if (/Printed legend/.test(n)) { m.roughness = 0.5; m.depthWrite = false; m.polygonOffset = true; m.polygonOffsetFactor = -1; }
+  if (m.normalMap) m.normalScale.set(1, 1);
+  for (const k of ['map','normalMap','roughnessMap','metalnessMap','emissiveMap']) if (m[k]) m[k].anisotropy = 8;
+}
+
+/* ── an ease-in-out 'back' · zero speed at both ends, 3.5 % overshoot at ~0.8 (assembly-film v3.1) ── */
+const c1 = 0.7 * 1.525, c2 = c1 * 1.525;
+function backInOut(x) {
+  return x < 0.5 ? (Math.pow(2 * x, 2) * ((c2 + 1) * 2 * x - c2)) / 2
+                 : (Math.pow(2 * x - 2, 2) * ((c2 + 1) * (x * 2 - 2) + c2) + 2) / 2;
+}
+const clamp01 = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const smooth = x => { x = clamp01(x); return x * x * (3 - 2 * x); };
+const lerp = (a, b, t) => a + (b - a) * t;
+
+async function bootScene({ MODEL_URL }) {
+  const canvas = document.getElementById('cv');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+  const DSF = Math.min(window.devicePixelRatio || 1, 2);
+  renderer.setPixelRatio(DSF);
+  renderer.setSize(innerWidth, innerHeight, false);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 0.95;
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFShadowMap;
+  /* quality tiers · 2 full (shadows, bloom, dsf ≤ 2) · 1 no bloom, dsf 1 · 0 software GL: no shadows, half
+     resolution, and the frame is rendered ON DEMAND only (the film, a scroll, a pointer, a press), so a
+     GPU-less machine gets a still page that answers, not a 3 fps one */
+  const glx = renderer.getContext(); const dbg = glx.getExtension('WEBGL_debug_renderer_info');
+  const gpuName = dbg ? glx.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : ''; const softGL = /swiftshader|llvmpipe|software|basic render/i.test(gpuName);
+  let quality = softGL ? 0 : 2; let dirty = 3;
+  OPXY.gpu = gpuName; OPXY.dirty = () => { dirty = 3; };
+  const applyQuality = q => {
+    quality = q; OPXY.quality = q;
+    /* tier 0 is POSTER mode: software GL renders this scene at 1-4 frames per second whatever the
+       resolution (measured: 433 draws, 650k tris through SwiftShader), so the hero is rendered once
+       and the canvas leaves with the hero; the rest of the page is the page. */
+    document.documentElement.classList.toggle('poster', q === 0);
+    renderer.setPixelRatio(q === 2 ? DSF : q === 1 ? 1 : 0.5);
+    renderer.shadowMap.enabled = q > 0; renderer.shadowMap.needsUpdate = true;
+    renderer.setSize(innerWidth, innerHeight, false);
+  };
+
+  const scene = new THREE.Scene();
+  scene.background = null;   /* the background pass paints it */
+  scene.fog = null;
+  scene.environment = buildStudio(renderer);
+  scene.environmentIntensity = 1;
+
+  const camera = new THREE.PerspectiveCamera(24, innerWidth / innerHeight, 0.01, 8);
+
+  /* ── lights · the key casts the one shadow; the rim draws the far edge; the env does the rest ── */
+  const key = new THREE.SpotLight(0xfff1e0, 6, 4, Math.PI / 5, 0.7, 1.6);
+  key.position.set(-0.5, 0.75, 0.45); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -0.00012; key.shadow.normalBias = 0.0008;
+  key.shadow.camera.near = 0.2; key.shadow.camera.far = 2.5; key.shadow.radius = 9;
+  const keyTarget = new THREE.Object3D(); keyTarget.position.set(0, 0.012, 0); scene.add(keyTarget); key.target = keyTarget;
+  scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffffff, 1.4); rim.position.set(0.1, 0.5, -0.9); scene.add(rim);
+  const fill = new THREE.DirectionalLight(0xdde6ff, 0.12); fill.position.set(0.9, 0.3, 0.3); scene.add(fill);
+
+  /* ── the ground · a SHADOW CATCHER and nothing else. The background shader paints the studio
+     (smoke, beam, pool, the grey act), so no plane can ever occlude the product: it hovers over its
+     own shadow and the pointer tilt has nothing to sink into. */
+  const groundMat = new THREE.ShadowMaterial({ color: 0x000000, opacity: 0.62, depthWrite: false });
+  const ground = new THREE.Mesh(new THREE.PlaneGeometry(24, 24), groundMat);
+  ground.rotation.x = -Math.PI / 2; ground.position.y = -0.0002; ground.receiveShadow = true; ground.renderOrder = -5; scene.add(ground);
+  const bg = buildBackground(); OPXY.bg = bg;
+  /* ── dust · motes drifting through the studio, lit where the key's beam passes. 1800 points, additive,
+     brightness from the distance to the key→product line, so the beam becomes a visible volume. ── */
+  const DUST_N = 1800; const dpos = new Float32Array(DUST_N * 3), dseed = new Float32Array(DUST_N);
+  for (let i = 0; i < DUST_N; i++) { dpos[i * 3] = (Math.random() - 0.5) * 1.1; dpos[i * 3 + 1] = Math.random() * 0.55 - 0.02; dpos[i * 3 + 2] = (Math.random() - 0.5) * 1.1; dseed[i] = Math.random() * 6.28; }
+  const dgeo = new THREE.BufferGeometry(); dgeo.setAttribute('position', new THREE.BufferAttribute(dpos, 3)); dgeo.setAttribute('seed', new THREE.BufferAttribute(dseed, 1));
+  const dustU = { uTime: { value: 0 }, uKey: { value: new THREE.Vector3() }, uTgt: { value: new THREE.Vector3(0, 0.012, 0) }, uLit: { value: 0 }, uGround: { value: 0 }, uDsf: { value: DSF } };
+  const dust = new THREE.Points(dgeo, new THREE.ShaderMaterial({ uniforms: dustU, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending,
+    vertexShader: `attribute float seed; uniform float uTime, uLit, uGround, uDsf; uniform vec3 uKey, uTgt; varying float vA;
+      void main(){ vec3 p = position; float t = uTime * 0.12 + seed;
+        p += vec3(sin(t * 0.9 + seed) * 0.03, sin(t * 0.6 + seed * 2.0) * 0.02 + fract(seed * 0.159 + uTime * 0.004) * 0.0, cos(t * 0.7 + seed) * 0.03);
+        vec3 a = normalize(uTgt - uKey); vec3 v = p - uKey; float along = dot(v, a); float d = length(v - a * along);
+        float r = 0.05 + max(along, 0.0) * 0.16; float beam = exp(-(d * d) / (r * r)) * step(0.0, along);
+        vA = (0.05 + 0.95 * beam) * uLit * (1.0 - uGround) * (0.6 + 0.4 * sin(t * 1.7 + seed * 3.0));
+        vec4 mv = modelViewMatrix * vec4(p, 1.0); gl_Position = projectionMatrix * mv;
+        gl_PointSize = (1.2 + 1.6 * beam) * uDsf * (0.35 / max(0.15, -mv.z)); }`,
+    fragmentShader: `varying float vA; void main(){ vec2 c = gl_PointCoord - 0.5; float m = smoothstep(0.5, 0.1, length(c)); gl_FragColor = vec4(vec3(1.0, 0.96, 0.9) * m * vA * 0.9, 1.0); }`,
+  }));
+  dust.frustumCulled = false; dust.renderOrder = 10; scene.add(dust);
+  /* ── the backdrop · the product's own grayscale, sixteen tone bars standing behind it like the press
+     set's gradient panel. Lit by the scene, so the key's beam and the product's SHADOW fall on it; the
+     bars rise one by one with the rain of keys. Yawed to face the hero camera. ── */
+  const backdrop = new THREE.Group(); const BARS = 16, BW = 0.40, BH = 0.20; const S_HERO = [0.235, 0.215, 0.30]; const bars = [];
+  for (let i = 0; i < BARS; i++) {
+    const t = 1 - i / (BARS - 1); const tone = 0.010 + Math.pow(t, 1.5) * 0.30;   /* light on the left, so the claim sits on the dark end */
+    const m = new THREE.MeshStandardMaterial({ color: 0x000000, roughness: 0.92, metalness: 0, envMapIntensity: 0.35, transparent: true, opacity: 1 });
+    const b = new THREE.Mesh(new THREE.PlaneGeometry(BW / BARS + 0.0006, BH), m); b.position.x = -BW / 2 + (i + 0.5) * BW / BARS; b.receiveShadow = true; b.castShadow = false;
+    b.userData.tone = tone; backdrop.add(b); bars.push(b);
+  }
+  /* a sweep, not a wall: squared to the hero camera's azimuth, leaning back 52°, its foot just behind the
+     product (hidden by it) and its top under the nav. Sized by projection (corners at ~4-96 % × 9-58 %). */
+  { const ry = Math.atan2(S_HERO[0], S_HERO[2]); const dir = new THREE.Vector3(S_HERO[0], 0, S_HERO[2]).normalize();
+    /* 210 mm behind the product's centre along the view: the product reaches 152 mm at any yaw the hero
+       allows (±0.45 rad of drag), so no rotation can put an end through the panel. The foot runs under
+       the (invisible) floor so the product never shows the panel's bottom edge. */
+    backdrop.position.set(-dir.x * 0.21, 0.01, -dir.z * 0.21); backdrop.rotation.set(0, ry, 0); backdrop.rotateX(-0.75); }
+  backdrop.renderOrder = -2; scene.add(backdrop);
+  OPXY.backdrop = backdrop; OPXY.bars = bars;
+
+  /* ── the model ── */
+  /* the decoder lives next to whatever three the import map resolved · no URL literal in the page */
+  const draco = new DRACOLoader().setDecoderPath(import.meta.resolve('three').replace(/build\/three\.module\.js$/, 'examples/jsm/libs/draco/gltf/'));
+  const loader = new GLTFLoader().setDRACOLoader(draco);
+  const bar = document.querySelector('#loading i'); if (bar) bar.style.width = '35%';
+  const gltf = await loader.loadAsync(MODEL_URL, e => { if (bar && e.total) bar.style.width = (35 + 45 * e.loaded / e.total) + '%'; });
+  if (bar) bar.style.width = '88%';
+  const root = gltf.scene;
+  /* rig → pivot (the product's centre, so rolls and tilts happen about it) → root (mm) */
+  const rig = new THREE.Group(); const pivot = new THREE.Group();
+  rig.add(pivot); pivot.add(root); scene.add(rig);
+  root.position.set(0, -0.0145, 0); pivot.position.set(0, 0.0145, 0);   /* pivot at the case's centre height */
+
+  const mats = new Set(); const controls = {}; const parts = [];
+  root.traverse(o => {
+    if (o.isMesh) {
+      o.castShadow = true; o.receiveShadow = true; o.frustumCulled = false;
+      const ms = Array.isArray(o.material) ? o.material : [o.material];
+      ms.forEach(m => mats.add(m));
+      if (/legend|screenprint|display face/i.test(o.name) || /Printed legend/.test(o.material?.name || '')) o.castShadow = false;
+    }
+    /* GLTFLoader sanitises node names for PropertyBinding: "CONTROL | key-01" → "CONTROL__key-01" */
+    const cm = /^CONTROL[_ |]+(.+)$/.exec(o.name);
+    if (cm) {
+      const id = cm[1]; o.userData.id = id;
+      controls[id] = o;
+      o.userData.seat = o.position.clone(); o.userData.seatQ = o.quaternion.clone();
+      o.userData.press = 0; o.userData.turn = 0;
+    }
+  });
+  mats.forEach(tuneMaterial);
+  /* cameras from the file are references only: never rendered */
+  gltf.cameras?.forEach(c => c.removeFromParent?.());
+
+  /* key tables · rows in Blender y, which is glTF -z (row 0 is the far/top row) */
+  const keys = Object.keys(controls).filter(k => k.startsWith('key-')).sort();
+  const enc = ['encoder-1', 'encoder-2', 'encoder-3', 'encoder-4', 'volume'].map(k => controls[k]);
+  const rowOf = k => { const z = controls[k].userData.seat.z; return z < -30 ? 0 : z < -15 ? 1 : z < 0 ? 2 : z < 15 ? 3 : z < 30 ? 4 : 5; };
+  /* the musical keyboard: bottom row 52-68 are the white keys, 42-51 the black keys */
+  const whites = keys.filter(k => +k.slice(4) >= 52), blacks = keys.filter(k => { const n = +k.slice(4); return n >= 42 && n <= 51; });
+  const steps = keys.filter(k => { const n = +k.slice(4); return n >= 22 && n <= 37; });
+  const record = 'key-39';
+  OPXY.keys = keys; OPXY.whites = whites; OPXY.blacks = blacks; OPXY.steps = steps; OPXY.controls = controls;
+
+  /* ── the rain-in film · per-part start/duration/offset, computed once ── */
+  const R = (seed => () => (seed = (seed * 16807) % 2147483647) / 2147483647)(11);
+  const order = keys.slice().sort((a, b) => { const ra = rowOf(a), rb = rowOf(b); if (ra !== rb) return ra - rb; return controls[a].userData.seat.x - controls[b].userData.seat.x; });
+  const film = { keys: {}, enc: {}, t: -1, done: false };
+  order.forEach((k, i) => {
+    const late = k === record;
+    film.keys[k] = {
+      start: late ? 3.25 : 0.42 + i * 0.0165 + R() * 0.05, dur: late ? 0.7 : 0.58,
+      up: 45 + R() * 45, side: (R() - 0.5) * 24, tilt: (R() - 0.5) * 0.9, tilt2: (R() - 0.5) * 0.9,
+      ph: R() * 6.28, ph2: R() * 6.28, ph3: R() * 6.28,
+    };
+  });
+  enc.forEach((e, i) => { film.enc[e.userData.id] = { start: 1.5 + i * 0.16, dur: 0.85, up: 120 + R() * 30, spin: 1.25 * 6.2832, ph: R() * 6.28 }; });
+
+  /* ── camera stations · positions in metres, look targets, a lens shift so the copy gets its band ──
+     shift.y > 0 pushes the SUBJECT down in frame (the hero's upper band is copy). */
+  const S = OPXY.stations = {
+    macro:   { pos: [-0.02, 0.075, 0.13], look: [-0.06, 0.014, -0.02], fov: 28, shift: [0, 0], roll: 0, m: { shift: [0, 0], k: 1.3 } },
+    hero:    { pos: [0.235, 0.215, 0.30], look: [0.0, 0.012, 0.0], fov: 22, shift: [0, 0.10], roll: 0, m: { shift: [0.04, -0.02], k: 1.75 } },
+    /* top: the instrument stands VERTICAL in the right half (camera rolled 90°), the word stack owns the left */
+    /* straight down would leave lookAt's up vector degenerate (the frame rolled at random); a little z fixes the orientation */
+    top:     { pos: [0.0, 0.70, 0.045], look: [0.0, 0.014, 0.0], fov: 22, shift: [0, 0.34], roll: 0, m: { shift: [0, 0.16], k: 1.9 } },
+    /* the macro rail · three close-ups the scroll dollies through: a white key on the chromatic row, an
+       encoder's knurl, the display's grayscale. Metres; the keys sit 15.7 mm up, the whites at z +0.039. */
+    mk1:     { pos: [0.005, 0.062, 0.115], look: [0.052, 0.017, 0.040], fov: 20, shift: [0.1, 0.05], roll: 0, m: { shift: [0, 0.0], k: 1.25 } },
+    mk2:     { pos: [0.075, 0.058, 0.108], look: [0.112, 0.017, 0.040], fov: 20, shift: [0.1, 0.05], roll: 0, m: { shift: [0, 0.0], k: 1.25 } },
+    mk3:     { pos: [-0.006, 0.072, 0.028], look: [0.033, 0.026, -0.031], fov: 20, shift: [-0.1, 0.05], roll: 0, m: { shift: [0, 0.0], k: 1.25 } },
+    mk4:     { pos: [-0.105, 0.088, 0.030], look: [-0.045, 0.017, -0.031], fov: 20, shift: [0.12, 0.05], roll: 0, m: { shift: [0, 0.0], k: 1.25 } },
+    engines: { pos: [-0.26, 0.24, 0.24], look: [0.04, 0.014, -0.005], fov: 22, shift: [0, 0.26], roll: 0, m: { shift: [0, 0.12], k: 1.5 } },
+    seq:     { pos: [-0.29, 0.16, 0.40], look: [0.02, 0.012, -0.01], fov: 22, shift: [0.34, -0.42], roll: 0, m: { shift: [0.1, -0.22], k: 1.7 } },
+    io:      { pos: [0.50, 0.06, 0.16], look: [0.145, 0.014, 0.0], fov: 18, shift: [0.26, 0.1], roll: 0, m: { shift: [0.3, 0.0], k: 1.6 } },
+    io2:     { pos: [0.50, 0.06, -0.16], look: [0.145, 0.014, 0.0], fov: 18, shift: [0.26, 0.1], roll: 0, m: { shift: [0.3, 0.0], k: 1.6 } },
+    flip:    { pos: [-0.40, 0.40, 0.35], look: [0.0, 0.012, 0.0], fov: 22, shift: [0.1, 0.06], roll: 0, m: { shift: [0.0, 0.06], k: 2.05 } },
+    close:   { pos: [0.0, 0.24, 0.56], look: [0.0, 0.010, 0.0], fov: 22, shift: [0, -0.14], roll: 0, m: { shift: [0, -0.12], k: 2.1 } },
+  };
+  const cam = { pos: new THREE.Vector3(), look: new THREE.Vector3(), fov: 24, shift: new THREE.Vector2(), roll: 0 };
+  const _v0 = new THREE.Vector3(), _v1 = new THREE.Vector3(), _v2 = new THREE.Vector3();
+  /* the smoothed camera the renderer actually uses · a critically damped follow hides any step */
+  const camS = { pos: new THREE.Vector3(), look: new THREE.Vector3(), fov: 24, shift: new THREE.Vector2(), roll: 0, init: false };
+  /* a station resolved for the current viewport: portrait screens pull the camera back along its own
+     axis (k) and use their own lens shift, because a vertical fov shows a third of the width */
+  const portrait = () => innerWidth / innerHeight < 0.8;
+  const resolve = st => {
+    /* a wider-than-16:10 window (a short laptop window) sees the product larger against its height: pull back with the aspect */
+    const asp = innerWidth / innerHeight; const wide = asp > 1.65 ? Math.sqrt(asp / 1.6) : 1;
+    const m = portrait() && st.m ? st.m : null; const k = (m ? m.k : 1) * wide;
+    return { pos: [st.look[0] + (st.pos[0] - st.look[0]) * k, st.look[1] + (st.pos[1] - st.look[1]) * k, st.look[2] + (st.pos[2] - st.look[2]) * k], look: st.look, fov: st.fov, shift: m ? m.shift : st.shift, roll: st.roll || 0 };
+  };
+  const setCam = (st0, a0, t, crane = false) => {
+    const st = resolve(st0);
+    if (!a0) { cam.pos.set(...st.pos); cam.look.set(...st.look); cam.fov = st.fov; cam.shift.set(...st.shift); cam.roll = st.roll; return; }
+    const a = resolve(a0);
+    /* travels crane UP through the middle: a straight lerp between two low stations passes close over the
+       product and fills the frame mid-way (it crossed the nav on connect→flip) */
+    const dd = Math.hypot(st.pos[0] - a.pos[0], st.pos[1] - a.pos[1], st.pos[2] - a.pos[2]);
+    cam.look.set(lerp(st.look[0], a.look[0], t), lerp(st.look[1], a.look[1], t), lerp(st.look[2], a.look[2], t));
+    /* interpolate AROUND the subject: slerp the direction, lerp the distance. A straight line between two
+       camera positions passes right over the product (connect→flip came within 0.23 m and filled the frame). */
+    const d0 = _v0.set(st.pos[0] - st.look[0], st.pos[1] - st.look[1], st.pos[2] - st.look[2]), d1 = _v1.set(a.pos[0] - a.look[0], a.pos[1] - a.look[1], a.pos[2] - a.look[2]);
+    const l0 = d0.length(), l1 = d1.length(); d0.normalize(); d1.normalize();
+    const dir = _v2.copy(d0).multiplyScalar(1 - t).addScaledVector(d1, t); if (dir.lengthSq() < 1e-6) dir.copy(d1); dir.normalize();
+    let dist = lerp(l0, l1, t);
+    if (crane) dist *= 1 + Math.sin(Math.PI * t) * 0.45;   /* and pull out through the middle of a travel */
+    cam.pos.copy(cam.look).addScaledVector(dir, dist); if (crane) cam.pos.y += Math.sin(Math.PI * t) * 0.04;
+    cam.fov = lerp(st.fov, a.fov, t); cam.shift.set(lerp(st.shift[0], a.shift[0], t), lerp(st.shift[1], a.shift[1], t)); cam.roll = lerp(st.roll, a.roll, t);
+  };
+  setCam(S.macro);
+
+  /* ── post · bloom for the display and the LEDs only (high threshold), then the output pass ── */
+  const composer = new EffectComposer(renderer); OPXY.composer = composer;
+  const bgPass = new RenderPass(bg.scene, bg.camera); composer.addPass(bgPass);
+  const mainPass = new RenderPass(scene, camera); mainPass.clear = false; composer.addPass(mainPass);
+  renderer.autoClear = false;
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.22, 0.5, 1.12);
+  composer.addPass(bloom);
+  /* depth of field for the macro beat only: focus on the subject the station looks at, everything else falls off */
+  const bokeh = new BokehPass(scene, camera, { focus: 0.12, aperture: 0.0, maxblur: 0.012 }); bokeh.enabled = false; composer.addPass(bokeh);
+  composer.addPass(new OutputPass());
+  applyQuality(quality);
+
+  /* ── state the page drives ── */
+  const st = OPXY.state = {
+    filmT: 0, filmOn: true,
+    ambient: 0, keyOrbit: 0, display: 0,      /* film lighting */
+    roll: 0, yaw: 0, floatAmt: 1,             /* flip act, close act */
+    hoverT: 0.028, hover: 0.028, hoverV: 0,   /* the product floats over its shadow; the page sets the target per beat */
+    dragYaw: 0, dragV: 0, dragging: false,    /* drag-orbit with inertia */
+    pulse: 0,                                  /* the sequencer's beat, for the background */
+    backdropT: 1, backdrop: 1, barsUp: 0,     /* the tone-bar backdrop: presence per beat, bars risen 0..1 */
+    smokeT: 1, smoke: 1, poolT: 1, pool: 1,   /* how much haze and floor pool each beat wants */
+    dofT: 0, dof: 0,                           /* depth of field amount (the macro beat) */
+    ground: 0,                                 /* 0 black act · 1 grey act */
+    pointer: { x: 0, y: 0, vx: 0, vy: 0, on: false },
+    spring: { yaw: 0, yawV: 0, pitch: 0, pitchV: 0 },
+    encVel: 0, encAng: 0,
+    autoYaw: 0,
+  };
+  const tmpV = new THREE.Vector3(), tmpQ = new THREE.Quaternion(), eul = new THREE.Euler();
+
+  /* ── pointer · a damped spring on the rig (yaw + pitch), an impulse on a fast move ── */
+  let lastPX = 0, lastPY = 0, lastPT = performance.now();
+  addEventListener('pointermove', e => {
+    const now = performance.now(), dt = Math.max(1, now - lastPT) / 1000;
+    const x = (e.clientX / innerWidth) * 2 - 1, y = (e.clientY / innerHeight) * 2 - 1;
+    st.pointer.vx = (x - lastPX) / dt; st.pointer.vy = (y - lastPY) / dt;
+    lastPX = x; lastPY = y; lastPT = now; st.pointer.x = x; st.pointer.y = y; st.pointer.on = true;
+    /* a flick adds an impulse proportional to its speed; a slow sweep adds nothing */
+    const sp = Math.hypot(st.pointer.vx, st.pointer.vy);
+    if (sp > 3.5) { st.spring.yawV += st.pointer.vx * 0.05; st.spring.pitchV += st.pointer.vy * 0.03; }
+  }, { passive: true });
+
+  /* ── hit-testing the keys · hover presses, click plays (the page owns the sound) ── */
+  const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2();
+  const keyMeshes = []; keys.forEach(k => controls[k].traverse(o => { if (o.isMesh) { o.userData.key = k; keyMeshes.push(o); } }));
+  const encMeshes = []; enc.forEach(e => e.traverse(o => { if (o.isMesh) { o.userData.enc = e.userData.id; encMeshes.push(o); } }));
+  let hoverKey = null; let hitEnabled = true;
+  function pick(clientX, clientY) {
+    ndc.set((clientX / innerWidth) * 2 - 1, -(clientY / innerHeight) * 2 + 1);
+    ray.setFromCamera(ndc, camera);
+    const h = ray.intersectObjects(keyMeshes, false)[0];
+    return h ? h.object.userData.key : null;
+  }
+  /* the stages are pointer-transparent, so the pointer reaches the canvas wherever there is no copy */
+  const overUI = e => e.target !== canvas && e.target !== document.documentElement && e.target !== document.body;
+  addEventListener('pointermove', e => {
+    if (!hitEnabled || !film.done) return;
+    const k = overUI(e) ? null : pick(e.clientX, e.clientY);
+    if (k !== hoverKey) { hoverKey = k; canvas.style.cursor = k ? 'pointer' : ''; if (k) OPXY.onKeyHover?.(k); }
+  }, { passive: true });
+  let dragX = 0, dragT = 0, dragEnc = null, dragY = 0, dragAcc = 0;
+  const pickEnc = (x, y) => { ndc.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(encMeshes, false)[0]; return h ? h.object.userData.enc : null; };
+  addEventListener('pointerdown', e => {
+    if (!film.done || overUI(e)) return;
+    const k = hitEnabled ? pick(e.clientX, e.clientY) : null;
+    if (k) { pressKey(k, 1); OPXY.onKeyDown?.(k); return; }
+    const en = hitEnabled ? pickEnc(e.clientX, e.clientY) : null;
+    if (en) { dragEnc = en; dragY = e.clientY; dragAcc = 0; canvas.style.cursor = 'ns-resize'; OPXY.onEncoderGrab?.(en); return; }
+    /* empty canvas: drag to orbit */
+    st.dragging = true; dragX = e.clientX; dragT = performance.now(); st.dragV = 0; canvas.style.cursor = 'grabbing';
+  });
+  addEventListener('pointermove', e => {
+    if (dragEnc) { const dy = dragY - e.clientY; dragY = e.clientY; const i = ['encoder-1', 'encoder-2', 'encoder-3', 'encoder-4', 'volume'].indexOf(dragEnc); if (i >= 0) { enc[i].userData.turn += dy * 0.012; dragAcc += dy * 0.012; if (Math.abs(dragAcc) > 0.26) { dragAcc = 0; OPXY.onEncoderTick?.(dragEnc, dy > 0 ? 1 : -1); } } dirty = 3; return; }
+    if (!st.dragging) return;
+    const now = performance.now(), dx = e.clientX - dragX, dtm = Math.max(1, now - dragT);
+    st.dragYaw += dx * 0.006; st.dragV = (dx * 0.006) / (dtm / 1000) * 0.6; dragX = e.clientX; dragT = now; dirty = 3;
+  }, { passive: true });
+  const endDrag = () => { if (hoverKey) pressKey(hoverKey, 0); if (dragEnc) { dragEnc = null; canvas.style.cursor = ''; } if (st.dragging) { st.dragging = false; canvas.style.cursor = ''; } };
+  addEventListener('pointerup', endDrag); addEventListener('pointercancel', endDrag);
+  OPXY.encoderAngle = id => { const i = ['encoder-1', 'encoder-2', 'encoder-3', 'encoder-4', 'volume'].indexOf(id); return i >= 0 ? (enc[i].userData.turnA || 0) : 0; };
+  OPXY.setHit = v => { hitEnabled = v; if (!v) { hoverKey = null; canvas.style.cursor = ''; } };
+  /* for the text gate: does a screen point land on the product or the backdrop? */
+  const allMeshes = []; root.traverse(o => { if (o.isMesh) allMeshes.push(o); }); bars.forEach(b => allMeshes.push(b));
+  OPXY.hitsProduct = (clientX, clientY) => { ndc.set((clientX / innerWidth) * 2 - 1, -(clientY / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.intersectObjects(allMeshes.filter(o => o.userData.tone === undefined), false).length > 0; };
+  OPXY.hitsModel = (clientX, clientY) => { ndc.set((clientX / innerWidth) * 2 - 1, -(clientY / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.intersectObjects(allMeshes.filter(o => o.visible !== false), false).some(h => h.object.userData.tone === undefined ? true : (st.backdrop > 0.3 && h.object.userData.tone > 0.12)); };
+
+  /* ── gestures the page asks for ── */
+  const presses = {};   /* key → { target 0..1, value } */
+  function pressKey(k, target) { (presses[k] ||= { v: 0, t: 0 }).t = target; }
+  function tapKey(k, hold = 90) { pressKey(k, 1); setTimeout(() => pressKey(k, 0), hold); }
+  OPXY.pressKey = pressKey; OPXY.tapKey = tapKey;
+  OPXY.turnEncoder = (i, d) => { const e = enc[i]; if (e) e.userData.turn += d; };
+
+  /* ── per-frame ── */
+  const clock = new THREE.Timer(); let filmClock = 0; let lastFrame = 0; const fpsBuf = [];
+  const seatTmp = new THREE.Vector3(); const upQ = new THREE.Quaternion(); const axX = new THREE.Vector3(1, 0, 0), axY = new THREE.Vector3(0, 1, 0), axZ = new THREE.Vector3(0, 0, 1);
+
+  function placeKeyFilm(k, T) {
+    const c = controls[k], f = film.keys[k], seat = c.userData.seat;
+    const u = (T - f.start) / f.dur;
+    if (u >= 1) {
+      /* landed: the click · overshoots 0.3 mm down and springs back over 0.35 s */
+      const s = T - (f.start + f.dur);
+      const click = s < 0.5 ? -0.32 * Math.exp(-7 * s) * Math.sin(s * 22) : 0;
+      c.position.set(seat.x, seat.y + click, seat.z); c.quaternion.copy(c.userData.seatQ); return;
+    }
+    if (u <= 0) {
+      /* waiting: a visible float, three periods so no two keys move together */
+      const w = T * 1.0;
+      c.position.set(seat.x + f.side + Math.sin(w * 1.3 + f.ph) * 4, seat.y + f.up + Math.sin(w * 1.7 + f.ph2) * 5, seat.z + Math.cos(w * 1.1 + f.ph3) * 3);
+      eul.set(f.tilt + Math.sin(w * 0.9 + f.ph) * 0.25, Math.sin(w * 0.7 + f.ph2) * 0.35, f.tilt2 + Math.cos(w * 1.2 + f.ph3) * 0.25);
+      c.quaternion.setFromEuler(eul); return;
+    }
+    const e = backInOut(u), arc = Math.sin(Math.PI * u);
+    /* from wherever the float left it, on an arc, to the seat */
+    const w0 = f.start;
+    const sx = seat.x + f.side + Math.sin(w0 * 1.3 + f.ph) * 4, sy = seat.y + f.up + Math.sin(w0 * 1.7 + f.ph2) * 5, sz = seat.z + Math.cos(w0 * 1.1 + f.ph3) * 3;
+    c.position.set(lerp(sx, seat.x, e) + arc * f.side * 0.4, lerp(sy, seat.y, e) + arc * 6, lerp(sz, seat.z, e));
+    eul.set((f.tilt + Math.sin(w0 * 0.9 + f.ph) * 0.25) * (1 - e), Math.sin(w0 * 0.7 + f.ph2) * 0.35 * (1 - e), (f.tilt2 + Math.cos(w0 * 1.2 + f.ph3) * 0.25) * (1 - e));
+    c.quaternion.setFromEuler(eul);
+  }
+  function placeEncFilm(e, T) {
+    const f = film.enc[e.userData.id], seat = e.userData.seat;
+    const u = (T - f.start) / f.dur;
+    if (u >= 1) { const s = T - (f.start + f.dur); const b = s < 0.6 ? 2.2 * Math.exp(-6 * s) * Math.abs(Math.sin(s * 14)) : 0; e.position.set(seat.x, seat.y + b, seat.z); e.quaternion.copy(e.userData.seatQ); e.userData.filmSpin = 0; return; }
+    if (u <= 0) { const w = T; e.position.set(seat.x + Math.sin(w * 1.1 + f.ph) * 6, seat.y + f.up + Math.sin(w * 1.5 + f.ph) * 6, seat.z); e.quaternion.copy(e.userData.seatQ).multiply(tmpQ.setFromAxisAngle(axY, w * 0.8 + f.ph)); return; }
+    const ee = backInOut(u);
+    e.position.set(seat.x + Math.sin(f.start * 1.1 + f.ph) * 6 * (1 - ee), lerp(seat.y + f.up, seat.y, ee), seat.z);
+    e.quaternion.copy(e.userData.seatQ).multiply(tmpQ.setFromAxisAngle(axY, (f.start * 0.8 + f.ph) * (1 - ee) + f.spin * (1 - ee)));
+  }
+
+  function frame() {
+    const dtReal = (clock.update(), clock.getDelta()); const dt = Math.min(0.05, dtReal); const now = performance.now();
+    /* fps ledger for the gates */
+    if (lastFrame) { fpsBuf.push(1000 / (now - lastFrame)); if (fpsBuf.length > 120) fpsBuf.shift(); } lastFrame = now;
+    /* step down when a real GPU is not keeping up (rolling 2 s under 26 fps), never back up */
+    if (quality > 0 && fpsBuf.length >= 110 && film.done) { const avg = fpsBuf.reduce((a, b) => a + b, 0) / fpsBuf.length; if (avg < 26) { applyQuality(quality - 1); fpsBuf.length = 0; } }
+
+    /* the film clock runs on the wall while the film is on */
+    if (st.filmOn && !film.done) { dirty = 3;
+      filmClock += quality === 0 ? 99 : Math.min(0.1, dt); st.filmT = filmClock;
+      const T = filmClock;
+      keys.forEach(k => placeKeyFilm(k, T));
+      enc.forEach(e => placeEncFilm(e, T));
+      /* lighting through the film: rim first, the key orbits in from behind while ambient rises */
+      st.ambient = smooth((T - 2.0) / 1.6);
+      st.keyOrbit = smooth((T - 2.0) / 1.7);
+      st.display = T < 2.5 ? 0 : T < 2.62 ? 0.7 : T < 2.72 ? 0.05 : T < 2.86 ? 0.9 : T < 2.94 ? 0.3 : smooth((T - 2.94) / 0.3);
+      st.barsUp = clamp01((T - 0.55) / 1.9);   /* the sixteen bars rise over the rain, one every 0.12 s */
+      if (T >= 3.42 && !film.recordFired) { film.recordFired = true; OPXY.onRecordLand?.(); }
+      if (T > 4.4) { film.done = true; keys.forEach(k => { const c = controls[k]; c.position.copy(c.userData.seat); c.quaternion.copy(c.userData.seatQ); }); enc.forEach(e => { e.position.copy(e.userData.seat); e.quaternion.copy(e.userData.seatQ); }); OPXY.onFilmDone?.(); }
+      /* the camera pulls out and rises on an arc from the macro to the hero station */
+      const cu = smooth((T - 0.2) / 3.6);
+      setCam(S.macro, S.hero, cu); cam.pos.y += Math.sin(Math.PI * cu) * 0.05;
+    }
+
+    /* the lights follow the film state (and later the scroll) */
+    scene.environmentIntensity = 0.03 + 0.97 * st.ambient;
+    const orb = st.keyOrbit;  /* 0 = behind the product (silhouette) → 1 = upper left */
+    const ang = lerp(Math.PI * 1.05, Math.PI * 1.68, orb);   /* behind → over the left → the upper left, where the env's softbox is */
+    key.position.set(Math.sin(ang) * 0.75, lerp(0.35, 0.8, orb), Math.cos(ang) * 0.75);
+    key.intensity = lerp(1.2, 6, orb);
+    rim.intensity = lerp(3.0, 1.4, orb);
+    if (OPXY.display) OPXY.display.emissiveIntensity = st.display * 0.85;
+    if (OPXY.led) OPXY.led.emissiveIntensity = st.display * 2.4;
+    if (OPXY.lens) OPXY.lens.emissiveIntensity = st.display * 1.2;
+
+    /* presses and encoder turns · 0.45 mm authored travel, damped toward the target */
+    for (const k in presses) { const p = presses[k]; if (Math.abs(p.t - p.v) > 0.002) dirty = 3; p.v += (p.t - p.v) * Math.min(1, dt * 28); if (film.done) { const c = controls[k]; c.position.y = c.userData.seat.y - 0.45 * p.v; } }
+    enc.forEach((e, i) => { const u = e.userData; u.turnV = (u.turnV || 0) + ((u.turn || 0) - (u.turnA || 0)) * dt * 30; u.turnV *= Math.exp(-dt * 6); u.turnA = (u.turnA || 0) + u.turnV * dt; if (film.done) e.quaternion.copy(u.seatQ).multiply(tmpQ.setFromAxisAngle(axY, u.turnA)); });
+
+    /* the rig: pointer spring (k 14, ζ 0.42), idle float, the flip act's roll, the close's yaw */
+    const sp = st.spring, kk = 14, zeta = 0.42, cc = 2 * zeta * Math.sqrt(kk);
+    const ty = st.pointer.on && film.done ? st.pointer.x * 0.16 : 0, tp = st.pointer.on && film.done ? st.pointer.y * 0.10 : 0;
+    sp.yawV += (-kk * (sp.yaw - ty) - cc * sp.yawV) * dt; sp.yaw += sp.yawV * dt;
+    sp.pitchV += (-kk * (sp.pitch - tp) - cc * sp.pitchV) * dt; sp.pitch += sp.pitchV * dt;
+    const tt = now / 1000;
+    const idle = quality > 0 ? st.floatAmt : 0;   /* no idle float on the on-demand tier: a still page stays still */
+    const bob = film.done ? idle * (Math.sin(tt * 0.9) * 0.0022 + Math.sin(tt * 1.7) * 0.0008) : 0;
+    const sway = film.done ? idle * (Math.sin(tt * 0.6) * 0.011 + Math.sin(tt * 1.3) * 0.003) : 0;
+    if (Math.abs(sp.yawV) + Math.abs(sp.pitchV) > 1e-3 || Math.abs(st.autoYaw) > 0 && quality > 0) dirty = Math.max(dirty, 1);
+    /* hover · a spring toward the beat's target height, so a landing has a little weight */
+    { const hk = 24, hc = 2 * 0.62 * Math.sqrt(hk); st.hoverV += (-hk * (st.hover - st.hoverT) - hc * st.hoverV) * dt; st.hover += st.hoverV * dt; }
+    /* drag-orbit · the pointer's horizontal travel while pressed, then inertia */
+    if (!st.dragging) { st.dragV *= Math.exp(-dt * 2.2); st.dragYaw += st.dragV * dt; }
+    if (st.backdrop > 0.2) { const lim = 0.45; if (st.dragYaw > lim) { st.dragYaw = lim; st.dragV = Math.min(0, st.dragV); } if (st.dragYaw < -lim) { st.dragYaw = -lim; st.dragV = Math.max(0, st.dragV); } }
+    rig.position.y = st.hover + bob;
+    eul.set(sp.pitch + sway, sp.yaw + st.yaw + st.autoYaw + st.dragYaw, 0); rig.quaternion.setFromEuler(eul);
+    pivot.quaternion.setFromAxisAngle(axX, st.roll * Math.PI);
+
+    /* ground act · black ↔ the press grey, painted by the background pass */
+    const g = st.ground;
+    groundMat.opacity = lerp(0.62, 0.34, g) / (1 + st.hover * 14);   /* a shadow fades with the height of what casts it */
+    renderer.toneMappingExposure = lerp(0.95, 0.88, g); bloom.strength = 0.17 * (1 - 0.6 * g);   /* the light act needs no glow on a white cap */
+    st.pulse *= Math.exp(-dt * 6);
+    const U = bg.uniforms; U.uTime.value = now / 1000; U.uOrbit.value = st.keyOrbit; U.uAmbient.value = st.ambient; U.uGround.value = g; U.uPulse.value = st.pulse;
+    st.smoke += (st.smokeT - st.smoke) * Math.min(1, dt * 3); st.pool += (st.poolT - st.pool) * Math.min(1, dt * 3);
+    U.uPointer.value.set(st.pointer.x, -st.pointer.y); U.uSmoke.value = (quality === 0 ? 0.4 : 1) * st.smoke; U.uPoolA.value = st.pool;
+    st.backdrop += (st.backdropT - st.backdrop) * Math.min(1, dt * 5);
+    { const pt = portrait(); backdrop.scale.set(pt ? 0.9 : 1, pt ? 0.5 : 1, 1);
+      /* portrait shows only the middle of the sweep: slide it toward the camera's left so the frame holds its darker half under the claim */
+      const ry = Math.atan2(S_HERO[0], S_HERO[2]); const dir = new THREE.Vector3(S_HERO[0], 0, S_HERO[2]).normalize(); const right = new THREE.Vector3(Math.cos(ry), 0, -Math.sin(ry));
+      backdrop.position.set(-dir.x * 0.21, 0.01, -dir.z * 0.21).addScaledVector(right, pt ? -0.1 : 0); }   /* portrait: the sweep's top stays under the claim */
+    bars.forEach((b, i) => { const u = smooth((st.barsUp * BARS - i) / 1.6); const tone = b.userData.tone * u * (0.25 + 0.75 * st.ambient);
+      b.material.color.setRGB(tone, tone, tone * 1.03); b.material.opacity = st.backdrop; b.visible = st.backdrop > 0.01; b.position.y = (1 - u) * -0.03; });
+    dustU.uTime.value = now / 1000; dustU.uKey.value.copy(key.position); dustU.uLit.value = 0.25 + 0.75 * st.keyOrbit; dustU.uGround.value = g; dust.visible = quality > 0;
+
+    /* the camera · position, look, lens shift, damped toward the target (instant while the film runs) */
+    /* damping in REAL time (a 0.5 s software frame must not turn a 0.3 s glide into a 20 s crawl), snapped on the on-demand tier */
+    const a = (!film.done || !camS.init || quality === 0) ? 1 : 1 - Math.exp(-Math.min(0.5, dtReal) * 9); camS.init = true;
+    camS.pos.lerp(cam.pos, a); camS.look.lerp(cam.look, a); camS.fov = lerp(camS.fov, cam.fov, a); camS.shift.lerp(cam.shift, a); camS.roll = lerp(camS.roll, cam.roll, a);
+    camera.position.copy(camS.pos); camera.lookAt(camS.look); if (camS.roll) camera.rotateZ(camS.roll);
+    if (camera.fov !== camS.fov) { camera.fov = camS.fov; camera.updateProjectionMatrix(); }
+    /* the focus follows the look point's distance; the aperture opens with the beat */
+    st.dof += (st.dofT - st.dof) * Math.min(1, dt * 4);
+    bokeh.enabled = quality === 2 && st.dof > 0.02;
+    if (bokeh.enabled) { bokeh.uniforms.focus.value = camS.pos.distanceTo(camS.look); bokeh.uniforms.aperture.value = 0.028 * st.dof; bokeh.uniforms.maxblur.value = 0.011 * st.dof; }
+    const W = renderer.domElement.width / DSF, H = renderer.domElement.height / DSF;
+    camera.setViewOffset(W, H, -camS.shift.x * W * 0.5, -camS.shift.y * H * 0.5, W, H);
+    /* the background follows the real key light and the product: project both to the screen */
+    { const o = tmpV.copy(key.position).project(camera); const t = keyTarget.position.clone().project(camera);
+      U.uBeamO.value.set((o.x + 1) / 2, (o.y + 1) / 2); U.uBeamD.value.set(t.x - o.x, t.y - o.y).normalize();
+      const pp = tmpV.set(0, 0, 0).applyMatrix4(rig.matrixWorld).setY(0).project(camera); U.uPool.value.set((pp.x + 1) / 2, (pp.y + 1) / 2);
+      const cd = camS.pos.distanceTo(camS.look); U.uPoolR.value = Math.min(0.3, 0.11 / Math.max(0.25, cd)); U.uRes.value.set(renderer.domElement.width, renderer.domElement.height); }
+    if (camS.pos.distanceToSquared(cam.pos) > 1e-9 || Math.abs(camS.fov - cam.fov) > 1e-4 || Math.abs(st.hover - st.hoverT) > 1e-4) dirty = Math.max(dirty, 1);
+    if (quality > 0 || (dirty > 0 && !OPXY.posterDone)) { if (quality === 2) composer.render(); else { renderer.clear(); renderer.render(bg.scene, bg.camera); renderer.render(scene, camera); } dirty--; OPXY.renders = (OPXY.renders || 0) + 1; if (quality === 0 && film.done) OPXY.posterDone = true; }
+    requestAnimationFrame(frame);
+  }
+
+  addEventListener('resize', () => {
+    renderer.setSize(innerWidth, innerHeight, false); composer.setSize(innerWidth, innerHeight); dirty = 3;
+    camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix();
+  });
+
+  Object.assign(OPXY, { THREE, beat: () => { st.pulse = 1; },
+    scene, camera, renderer, rig, pivot, root, cam, setCam, film, key, rim,
+    fps: () => fpsBuf.length ? fpsBuf.reduce((a, b) => a + b, 0) / fpsBuf.length : 0,
+    skipFilm: () => { filmClock = 99; st.barsUp = 1; },
+    ready: true,
+  });
+  requestAnimationFrame(frame);
+  if (bar) bar.style.width = '100%';
+  return OPXY;
+}
+/* ═══════════ OP–XY · sound ═══════════
+   A small WebAudio instrument so the model is playable: eight voices named after the real engines
+   (each a different recipe, not an emulation), a kick, a snare and a hat for the sequencer. Off until
+   the reader turns it on (the nav toggle, or the first key they click). Master sits at -14 dB behind
+   a soft limiter, so nothing is ever loud. */
+const AUDIO = (window.OPXY_AUDIO = { on: false, ctx: null, engine: 5 });
+
+function audioInit() {
+  if (AUDIO.ctx) return AUDIO.ctx;
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const master = ctx.createGain(); master.gain.value = 0.2;
+  const comp = ctx.createDynamicsCompressor(); comp.threshold.value = -18; comp.knee.value = 12; comp.ratio.value = 6; comp.attack.value = 0.004; comp.release.value = 0.16;
+  const verbIn = ctx.createGain(); verbIn.gain.value = 0.22;
+  /* a short synthetic room: a decaying noise impulse */
+  const len = ctx.sampleRate * 1.6, ir = ctx.createBuffer(2, len, ctx.sampleRate);
+  for (let c = 0; c < 2; c++) { const d = ir.getChannelData(c); for (let i = 0; i < len; i++) d[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / len, 2.6) * 0.5; }
+  const verb = ctx.createConvolver(); verb.buffer = ir;
+  const analyser = ctx.createAnalyser(); analyser.fftSize = 1024; analyser.smoothingTimeConstant = 0.6;
+  master.connect(comp); verbIn.connect(verb); verb.connect(comp); comp.connect(analyser); analyser.connect(ctx.destination);
+  Object.assign(AUDIO, { ctx, master, verbIn, analyser, noise: makeNoise(ctx), wave: new Uint8Array(1024) });
+  return ctx;
+}
+function makeNoise(ctx) { const b = ctx.createBuffer(1, ctx.sampleRate * 2, ctx.sampleRate); const d = b.getChannelData(0); for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1; return b; }
+AUDIO.enable = async () => { const ctx = audioInit(); if (ctx.state !== 'running') await ctx.resume(); AUDIO.on = true; document.getElementById('sndBtn')?.classList.add('on'); document.getElementById('sndBtn')?.setAttribute('aria-pressed', 'true'); };
+AUDIO.disable = () => { AUDIO.on = false; document.getElementById('sndBtn')?.classList.remove('on'); document.getElementById('sndBtn')?.setAttribute('aria-pressed', 'false'); };
+
+const midiHz = n => 440 * Math.pow(2, (n - 69) / 12);
+
+/* the eight engines · each returns {out, stop(t)} */
+const ENGINES = [
+  /* axis · two detuned saws through a lowpass that opens on attack */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(), f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.Q.value = 4; f.frequency.setValueAtTime(400, t); f.frequency.exponentialRampToValueAtTime(3200, t + 0.06); f.frequency.exponentialRampToValueAtTime(500, t + dur);
+    const o1 = ctx.createOscillator(), o2 = ctx.createOscillator(); o1.type = o2.type = 'sawtooth'; o1.frequency.value = hz; o2.frequency.value = hz * 1.006; o1.connect(f); o2.connect(f); f.connect(g); o1.start(t); o2.start(t); return { out: g, stop: e => { o1.stop(e); o2.stop(e); } }; },
+  /* dissolve · a sine with slow noise in the pitch */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = hz; const n = ctx.createBufferSource(); n.buffer = AUDIO.noise; n.loop = true; const nf = ctx.createBiquadFilter(); nf.type = 'lowpass'; nf.frequency.value = 6; const ng = ctx.createGain(); ng.gain.value = hz * 0.02; n.connect(nf); nf.connect(ng); ng.connect(o.frequency); n.start(t); o.connect(g); o.start(t); return { out: g, stop: e => { o.stop(e); n.stop(e); } }; },
+  /* e-piano · 2-op fm, the modulator decays fast */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const c = ctx.createOscillator(), m = ctx.createOscillator(), mg = ctx.createGain(); c.frequency.value = hz; m.frequency.value = hz * 14; mg.gain.setValueAtTime(hz * 2.2, t); mg.gain.exponentialRampToValueAtTime(hz * 0.05, t + 0.35); m.connect(mg); mg.connect(c.frequency); c.connect(g); c.start(t); m.start(t); return { out: g, stop: e => { c.stop(e); m.stop(e); } }; },
+  /* hardsync · a square hard-synced by a saw-shaped pitch ramp */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const o = ctx.createOscillator(); o.type = 'square'; o.frequency.setValueAtTime(hz * 2.5, t); o.frequency.exponentialRampToValueAtTime(hz, t + 0.12); const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.value = 2400; o.connect(f); f.connect(g); o.start(t); return { out: g, stop: e => o.stop(e) }; },
+  /* organ · four drawbars */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const os = [1, 2, 3, 4].map((r, i) => { const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = hz * r; const og = ctx.createGain(); og.gain.value = [0.5, 0.35, 0.18, 0.12][i]; o.connect(og); og.connect(g); o.start(t); return o; }); return { out: g, stop: e => os.forEach(o => o.stop(e)) }; },
+  /* prism · a triangle plus a fifth, bright */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const a = ctx.createOscillator(), b = ctx.createOscillator(); a.type = 'triangle'; b.type = 'triangle'; a.frequency.value = hz; b.frequency.value = hz * 1.5; const bg = ctx.createGain(); bg.gain.value = 0.35; a.connect(g); b.connect(bg); bg.connect(g); a.start(t); b.start(t); return { out: g, stop: e => { a.stop(e); b.stop(e); } }; },
+  /* simple · one sine, a touch of second harmonic */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const o = ctx.createOscillator(); o.type = 'sine'; o.frequency.value = hz; const h = ctx.createOscillator(); h.type = 'sine'; h.frequency.value = hz * 2; const hg = ctx.createGain(); hg.gain.value = 0.15; o.connect(g); h.connect(hg); hg.connect(g); o.start(t); h.start(t); return { out: g, stop: e => { o.stop(e); h.stop(e); } }; },
+  /* wavetable · a periodic wave that morphs by pitch-shifting between two tables */
+  (ctx, hz, t, dur) => { const g = ctx.createGain(); const real = new Float32Array(12), imag = new Float32Array(12); for (let i = 1; i < 12; i++) imag[i] = (i % 2 ? 1 : 0.35) / i; const w = ctx.createPeriodicWave(real, imag); const o = ctx.createOscillator(); o.setPeriodicWave(w); o.frequency.value = hz; const f = ctx.createBiquadFilter(); f.type = 'lowpass'; f.frequency.setValueAtTime(900, t); f.frequency.exponentialRampToValueAtTime(4000, t + 0.25); f.frequency.exponentialRampToValueAtTime(700, t + dur); o.connect(f); f.connect(g); o.start(t); return { out: g, stop: e => o.stop(e) }; },
+];
+
+AUDIO.note = (midi, { engine = AUDIO.engine, dur = 0.55, vel = 0.5, when = 0 } = {}) => {
+  if (!AUDIO.on) return; const ctx = AUDIO.ctx; const t = ctx.currentTime + when;
+  const v = ENGINES[engine % ENGINES.length](ctx, midiHz(midi), t, dur);
+  const g = v.out; g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(vel * 0.35, t + 0.008); g.gain.exponentialRampToValueAtTime(vel * 0.12, t + 0.12); g.gain.setValueAtTime(vel * 0.12, t + dur * 0.55); g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+  g.connect(AUDIO.master); g.connect(AUDIO.verbIn); v.stop(t + dur + 0.05);
+};
+AUDIO.kick = (when = 0, vel = 0.9) => { if (!AUDIO.on) return; const ctx = AUDIO.ctx, t = ctx.currentTime + when; const o = ctx.createOscillator(), g = ctx.createGain(); o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(42, t + 0.09); g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.34); o.connect(g); g.connect(AUDIO.master); o.start(t); o.stop(t + 0.36); };
+AUDIO.snare = (when = 0, vel = 0.6) => { if (!AUDIO.on) return; const ctx = AUDIO.ctx, t = ctx.currentTime + when; const n = ctx.createBufferSource(); n.buffer = AUDIO.noise; const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 1800; f.Q.value = 0.7; const g = ctx.createGain(); g.gain.setValueAtTime(vel * 0.55, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.16); n.connect(f); f.connect(g); g.connect(AUDIO.master); g.connect(AUDIO.verbIn); n.start(t); n.stop(t + 0.2);
+  const o = ctx.createOscillator(), og = ctx.createGain(); o.frequency.setValueAtTime(190, t); o.frequency.exponentialRampToValueAtTime(120, t + 0.06); og.gain.setValueAtTime(vel * 0.35, t); og.gain.exponentialRampToValueAtTime(0.001, t + 0.1); o.connect(og); og.connect(AUDIO.master); o.start(t); o.stop(t + 0.12); };
+AUDIO.hat = (when = 0, vel = 0.35) => { if (!AUDIO.on) return; const ctx = AUDIO.ctx, t = ctx.currentTime + when; const n = ctx.createBufferSource(); n.buffer = AUDIO.noise; const f = ctx.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = 7000; const g = ctx.createGain(); g.gain.setValueAtTime(vel, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.05); n.connect(f); f.connect(g); g.connect(AUDIO.master); n.start(t); n.stop(t + 0.06); };
+AUDIO.click = (when = 0) => { if (!AUDIO.on) return; const ctx = AUDIO.ctx, t = ctx.currentTime + when; const n = ctx.createBufferSource(); n.buffer = AUDIO.noise; const f = ctx.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = 3200; f.Q.value = 2; const g = ctx.createGain(); g.gain.setValueAtTime(0.12, t); g.gain.exponentialRampToValueAtTime(0.001, t + 0.03); n.connect(f); f.connect(g); g.connect(AUDIO.master); n.start(t); n.stop(t + 0.04); };
+/* ═══════════ OP–XY · the page ═══════════
+   DOM, scroll, copy motion, the sequencer panel, and the per-frame hand-off to the scene: the page
+   decides where the camera should be and what the model should do; the scene renders it. */
+
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const S_ = x => { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); };
+const L_ = (a, b, t) => a + (b - a) * t;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ── grain · one 220 px random tile drawn at boot and handed to CSS as a PNG ── */
+function makeGrain() {
+  const c = document.createElement('canvas'); c.width = c.height = 220; const x = c.getContext('2d');
+  const img = x.createImageData(220, 220); const d = img.data;
+  for (let i = 0; i < d.length; i += 4) { const v = 96 + Math.random() * 120; d[i] = d[i + 1] = d[i + 2] = v; d[i + 3] = 255; }
+  x.putImageData(img, 0, 0); const url = `url(${c.toDataURL('image/png')})`;
+  document.documentElement.style.setProperty('--grain-url', url); $('#grain').style.backgroundImage = url;
+}
+
+const PAGE = (window.OPXY_PAGE = { beat: 'hero', p: 0, seq: null });
+
+async function bootSite() {
+  makeGrain();
+  /* placeholder links never jump the page to the hero (memory: placeholder-links-prevent-default) */
+  document.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; const h = a.getAttribute('href') || ''; if (h === '#') e.preventDefault(); else if (h.startsWith('#')) { e.preventDefault(); const el = $(h); if (el) { const off = el.id === 'hero' ? 0 : Math.round(0.34 * (el.offsetHeight - innerHeight)); (window.lenis ? window.lenis.scrollTo(el, { offset: off, duration: 1.8 }) : el.scrollIntoView()); } } });
+
+  /* smooth scroll · Lenis drives ScrollTrigger; one gesture moves within a frame */
+  const lenis = new Lenis({ lerp: 0.085, wheelMultiplier: 0.95, smoothWheel: true });
+  window.lenis = lenis;
+  lenis.on('scroll', () => { ScrollTrigger.update(); window.OPXY?.dirty?.(); });
+  gsap.ticker.add(t => lenis.raf(t * 1000));
+  gsap.ticker.lagSmoothing(0);
+
+  /* reveals fire as the element ENTERS the viewport, not after */
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { rootMargin: '-8% 0px -8% 0px', threshold: 0.01 });
+  $$('.rev').forEach(el => io.observe(el));
+
+  /* sound toggle */
+  const snd = $('#sndBtn');
+  snd.addEventListener('click', () => { if (OPXY_AUDIO.on) OPXY_AUDIO.disable(); else OPXY_AUDIO.enable(); });
+
+  /* ── the beats · a ScrollTrigger per section writes its progress; the frame loop reads them ── */
+  const beats = ['hero', 'strip', 'macro', 'engines', 'seq', 'connect', 'flip', 'close'];
+  const prog = PAGE.prog = {}; const els = beats.map(id => $('#' + id));
+  PAGE.measure = () => {
+    let cur = 'hero';
+    els.forEach((el, i) => { const r = el.getBoundingClientRect(); const len = Math.max(1, r.height - innerHeight); prog[beats[i]] = Math.max(0, Math.min(1, -r.top / len)); if (r.top <= 0.5) cur = beats[i]; });
+    PAGE.beat = cur;
+  };
+  PAGE.measure();
+
+  buildSequencer();
+  buildEngines();
+  window.__beats = beats;
+}
+
+/* ── hero copy · types in when the film lands the record key ── */
+function heroCopyIn(delay = 0) {
+  const letters = $$('#hero .wm h1 span');
+  gsap.to(letters, { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.1, stagger: 0.055, delay, ease: 'power3.out' });
+  gsap.to($$('#hero .wm .k span'), { opacity: 1, duration: 0.8, stagger: 0.12, delay: delay + 0.5, ease: 'power2.out' });
+  gsap.to($$('#hero .claim .l span'), { y: 0, duration: 1.0, stagger: 0.09, delay: delay + 0.35, ease: 'power3.out' });
+}
+
+/* ── engines · the filmstrip scrubs with the scroll; the active engine plays a key ── */
+const ENGINE_NAMES = ['axis', 'dissolve', 'e-piano', 'hardsync', 'organ', 'prism', 'simple', 'wavetable'];
+const ENG = (window.ENG = { active: -1, els: [], w: 0, hover: -1 });
+function buildEngines() {
+  ENG.els = $$('#engStrip b'); const measure = () => { const l = ENG.els[ENG.els.length - 1]; ENG.w = l.offsetLeft + l.offsetWidth; }; measure(); addEventListener('resize', measure);
+  /* hover an engine name: it becomes the voice and plays; click: a chord in that voice */
+  $('#engStrip').addEventListener('pointerleave', () => { ENG.hover = -1; });
+  ENG.els.forEach((el, i) => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('pointerenter', () => { if (PAGE.beat !== 'engines') return; ENG.hover = i; setEngine(i, true); });
+    el.addEventListener('click', () => { OPXY_AUDIO.enable().then(() => { [0, 4, 7, 12].forEach((iv, j) => { OPXY_AUDIO.note(48 + iv, { engine: i, dur: 1.1, vel: 0.45, when: j * 0.06 }); const k = OPXY.whites[[0, 2, 4, 7][j]]; setTimeout(() => OPXY.tapKey(k, 220), j * 60); }); }); });
+  });
+}
+function setEngine(i, play) {
+  if (i === ENG.active) return; ENG.active = i;
+  ENG.els.forEach((el, j) => el.classList.toggle('on', j === i));
+  OPXY_AUDIO.engine = i;
+  if (play && window.OPXY?.ready) { const k = OPXY.whites[(i * 2 + 2) % OPXY.whites.length]; OPXY.tapKey(k, 140); OPXY_AUDIO.note(48 + [0, 2, 4, 5, 7, 9, 11, 12][i], { engine: i, dur: 0.7, vel: 0.5 }); }
+}
+
+/* ── the sequencer · a real 16-step pattern on four rows of keys; the model plays it. Paint cells by
+   dragging, drag the tempo, space plays. A scope draws the actual audio (or the pattern's own pulse
+   while sound is off), the meter is the product's sixteen greys. ── */
+const SEQ = (window.SEQ = { rows: ['kick', 'snare', 'hat', 'synth'], cells: [], on: false, step: 0, bpm: 120, next: 0, timer: 0, last: -1, stepAt: 0, level: 0, paint: null });
+const PATTERN = window.PATTERN = [
+  [1,0,0,0, 1,0,0,0, 1,0,1,0, 1,0,0,0],
+  [0,0,0,0, 1,0,0,0, 0,0,0,0, 1,0,0,1],
+  [1,0,1,0, 1,0,1,1, 1,0,1,0, 1,0,1,0],
+  [1,0,0,1, 0,0,1,0, 0,0,1,0, 0,1,0,0],
+];
+const SYNTH_NOTES = [48, 0, 0, 55, 0, 0, 51, 0, 0, 0, 53, 0, 0, 58, 0, 0];   /* midi per step for the synth row */
+function setCell(r, s, v, sound) {
+  if (PATTERN[r][s] === v) return; PATTERN[r][s] = v; const b = SEQ.cells[r][s];
+  b.classList.toggle('on', !!v); b.setAttribute('aria-pressed', v ? 'true' : 'false');
+  if (v && sound) { OPXY_AUDIO.enable().then(() => hit(r, s, 0)); flashCell(r, s); }
+}
+function flashCell(r, s) { const b = SEQ.cells[r][s]; b.classList.add('hit'); setTimeout(() => b.classList.remove('hit'), 90); }
+function buildSequencer() {
+  const grid = $('#seqGrid'), steps = $('#seqSteps');
+  SEQ.rows.forEach((name, r) => {
+    const lab = document.createElement('div'); lab.className = 'lab'; lab.textContent = name; grid.appendChild(lab);
+    SEQ.cells[r] = [];
+    for (let s = 0; s < 16; s++) {
+      const b = document.createElement('button'); b.className = 'cell' + (PATTERN[r][s] ? ' on' : '') + (r === 3 ? ' rec' : ''); b.setAttribute('aria-label', `${name} step ${s + 1}`); b.setAttribute('aria-pressed', PATTERN[r][s] ? 'true' : 'false');
+      b.dataset.r = r; b.dataset.s = s;
+      grid.appendChild(b); SEQ.cells[r][s] = b;
+    }
+  });
+  /* paint: press toggles, dragging across cells paints the same value */
+  grid.addEventListener('pointerdown', e => { const c = e.target.closest('.cell'); if (!c) return; e.preventDefault(); const r = +c.dataset.r, s = +c.dataset.s; SEQ.paint = PATTERN[r][s] ? 0 : 1; setCell(r, s, SEQ.paint, true); });
+  grid.addEventListener('pointerover', e => { if (SEQ.paint === null) return; const c = e.target.closest('.cell'); if (!c) return; setCell(+c.dataset.r, +c.dataset.s, SEQ.paint, true); });
+  addEventListener('pointerup', () => { SEQ.paint = null; });
+  SEQ.stepEls = []; for (let s = 0; s < 16; s++) { const i = document.createElement('i'); i.textContent = s + 1; steps.appendChild(i); SEQ.stepEls.push(i); }
+  $('#seqPlay').addEventListener('click', () => { if (SEQ.on) seqStop(); else OPXY_AUDIO.enable().then(seqStart); });
+  /* tempo · drag the number */
+  const bpmBtn = $('#bpmBtn'); let ty = 0, tb = 0, tdrag = false;
+  bpmBtn.addEventListener('pointerdown', e => { tdrag = true; ty = e.clientY; tb = SEQ.bpm; bpmBtn.setPointerCapture(e.pointerId); });
+  bpmBtn.addEventListener('pointermove', e => { if (!tdrag) return; setBpm(Math.round(tb + (ty - e.clientY) * 0.5)); });
+  bpmBtn.addEventListener('pointerup', () => { tdrag = false; }); bpmBtn.addEventListener('pointercancel', () => { tdrag = false; });
+  bpmBtn.addEventListener('wheel', e => { e.preventDefault(); setBpm(SEQ.bpm - Math.sign(e.deltaY)); }, { passive: false });
+  /* the meter: sixteen greys, darkest to lightest */
+  const vu = $('#vu'); SEQ.vuEls = []; for (let i = 0; i < 16; i++) { const el = document.createElement('i'); const t = i / 15; const g = Math.round(40 + t * 195); el.style.setProperty('--seg', `rgb(${g},${g},${g})`); vu.appendChild(el); SEQ.vuEls.push(el); }
+  /* space plays, when the reader is not typing */
+  addEventListener('keydown', e => { if (e.code === 'Space' && !e.repeat && !/input|textarea|button/i.test(e.target.tagName)) { e.preventDefault(); if (SEQ.on) seqStop(); else OPXY_AUDIO.enable().then(seqStart); } });
+  SEQ.scope = $('#scope'); SEQ.ctx2d = SEQ.scope.getContext('2d');
+  gsap.ticker.add(drawScope);
+}
+function setBpm(v) { SEQ.bpm = Math.max(60, Math.min(200, v)); $('#bpm').textContent = SEQ.bpm; }
+function hit(r, s, when) {
+  if (r === 0) { OPXY_AUDIO.kick(when); } else if (r === 1) { OPXY_AUDIO.snare(when); } else if (r === 2) { OPXY_AUDIO.hat(when); }
+  else { const n = SYNTH_NOTES[s] || 48 + (s % 7) * 2; OPXY_AUDIO.note(n, { dur: 0.42, vel: 0.5 }); }
+}
+function seqStart() {
+  if (SEQ.on) return; SEQ.on = true; SEQ.step = 0; $('#seqIco').innerHTML = '<path d="M2 2h8v8H2z"/>'; $('#seqPanel').classList.add('run');
+  const ctx = OPXY_AUDIO.ctx; SEQ.next = ctx ? ctx.currentTime + 0.05 : performance.now() / 1000;
+  SEQ.timer = setInterval(() => {
+    const now = OPXY_AUDIO.ctx ? OPXY_AUDIO.ctx.currentTime : performance.now() / 1000; const period = 60 / SEQ.bpm / 4;
+    while (SEQ.next < now + 0.12) {
+      const s = SEQ.step, when = Math.max(0, SEQ.next - now);
+      for (let r = 0; r < 4; r++) if (PATTERN[r][s]) hit(r, s, when);
+      setTimeout(() => showStep(s), when * 1000);
+      SEQ.next += period; SEQ.step = (s + 1) % 16;
+    }
+  }, 25);
+}
+function seqStop() { SEQ.on = false; clearInterval(SEQ.timer); $('#seqIco').innerHTML = '<path d="M2 1.5v9l8-4.5z"/>'; $('#seqPanel').classList.remove('run'); SEQ.cells.forEach(row => row.forEach(c => c.classList.remove('ph'))); SEQ.stepEls?.forEach(e => e.classList.remove('ph')); $('#recDot').classList.remove('on'); }
+function showStep(s) {
+  const prev = (s + 15) % 16; SEQ.stepAt = performance.now(); SEQ.last = s;
+  for (let r = 0; r < 4; r++) { SEQ.cells[r][prev].classList.remove('ph'); SEQ.cells[r][s].classList.add('ph'); if (PATTERN[r][s]) flashCell(r, s); }
+  SEQ.stepEls[prev].classList.remove('ph'); SEQ.stepEls[s].classList.add('ph');
+  $('#recDot').classList.toggle('on', s % 4 === 0); setTimeout(() => $('#recDot').classList.remove('on'), 90);
+  let energy = 0; for (let r = 0; r < 4; r++) if (PATTERN[r][s]) energy += [1, 0.8, 0.35, 0.6][r];
+  SEQ.level = Math.min(1, SEQ.level * 0.5 + energy * 0.55);
+  if (window.OPXY?.ready) {
+    OPXY.tapKey(OPXY.steps[s], 70); if (s % 4 === 0) OPXY.beat();
+    for (let r = 0; r < 4; r++) if (PATTERN[r][s]) { if (r < 3) OPXY.tapKey(['key-05', 'key-06', 'key-07'][r], 90); else { const n = SYNTH_NOTES[s] || 48; OPXY.tapKey(OPXY.whites[Math.max(0, Math.min(16, Math.round((n - 48) * 0.58)))], 110); } }
+  }
+}
+/* the scope + meter + playhead bar, every frame while the panel is on screen */
+function drawScope() {
+  const c = SEQ.scope; if (!c || PAGE.beat !== 'seq') return;
+  const g = SEQ.ctx2d, W = c.width, H = c.height; g.clearRect(0, 0, W, H);
+  const A = OPXY_AUDIO.analyser; let rms = 0;
+  g.lineWidth = 2; g.strokeStyle = 'rgba(237,237,237,.9)'; g.beginPath();
+  if (A && OPXY_AUDIO.on) {
+    A.getByteTimeDomainData(OPXY_AUDIO.wave); const d = OPXY_AUDIO.wave, n = d.length;
+    for (let i = 0; i < n; i++) { const v = (d[i] - 128) / 128; rms += v * v; const x = i / (n - 1) * W, y = H / 2 - v * H * 0.46; i ? g.lineTo(x, y) : g.moveTo(x, y); }
+    rms = Math.sqrt(rms / n) * 3.2;
+  } else {
+    /* silent: the pattern's own pulse, a decaying tone per hit */
+    const t = performance.now() / 1000, age = (performance.now() - SEQ.stepAt) / 1000; const amp = SEQ.on ? Math.exp(-age * 6) * 0.9 : 0.06;
+    for (let i = 0; i <= 160; i++) { const x = i / 160; const v = Math.sin(x * 28 + t * 5) * amp * (0.6 + 0.4 * Math.sin(x * 4 + t)) * Math.exp(-Math.abs(x - 0.5) * 1.6); const px = x * W, py = H / 2 - v * H * 0.46; i ? g.lineTo(px, py) : g.moveTo(px, py); }
+    rms = amp;
+  }
+  g.stroke();
+  /* a faint grid line */
+  g.fillStyle = 'rgba(255,255,255,.08)'; g.fillRect(0, H / 2, W, 1);
+  SEQ.level = Math.max(SEQ.level * 0.9, Math.min(1, rms));
+  const lit = Math.round(SEQ.level * 16); SEQ.vuEls?.forEach((el, i) => el.classList.toggle('on', i < lit));
+  /* the playhead bar glides between step columns */
+  const bar = $('#phbar'); if (bar && SEQ.on && SEQ.last >= 0) { const el = SEQ.stepEls[SEQ.last]; const nx = SEQ.stepEls[(SEQ.last + 1) % 16]; const per = 60 / SEQ.bpm / 4 * 1000; const f = Math.min(1, (performance.now() - SEQ.stepAt) / per); const x0 = el.offsetLeft, x1 = SEQ.last === 15 ? el.offsetLeft : nx.offsetLeft; const x = x0 + (x1 - x0) * f; bar.style.transform = `translateX(${x}px)`; bar.style.width = el.offsetWidth + 'px'; }
+}
+
+/* ── the word stack · each word lights in turn and presses one row of keys in a wave ── */
+const STACK = (window.STACK = { active: -1, els: [] });
+function setWord(i) {
+  if (i === STACK.active) return; const prev = STACK.active; STACK.active = i;
+  STACK.els.forEach((el, j) => { el.classList.toggle('on', j === i); el.classList.toggle('was', i >= 0 ? j < i : i === -2); });
+  if (i >= 0 && i > prev && window.OPXY?.ready) {
+    const rows = [OPXY.keys.filter(k => { const n = +k.slice(4); return n >= 5 && n <= 21; }), OPXY.steps, OPXY.blacks, OPXY.whites];
+    rows[i].forEach((k, j) => setTimeout(() => OPXY.tapKey(k, 120), j * 28));
+    if (OPXY_AUDIO.on) OPXY_AUDIO.click();
+  }
+}
+
+function wireStack() {
+  STACK.els.forEach((el, i) => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('pointerenter', () => { if (PAGE.beat !== 'strip' || !window.OPXY?.ready) return; const rows = [OPXY.keys.filter(k => { const n = +k.slice(4); return n >= 5 && n <= 21; }), OPXY.steps, OPXY.blacks, OPXY.whites]; rows[i].forEach((k, j) => setTimeout(() => OPXY.tapKey(k, 120), j * 24)); if (OPXY_AUDIO.on) OPXY_AUDIO.note(60 + i * 5, { dur: 0.5, vel: 0.35 }); });
+    el.addEventListener('click', () => { const sec = $('#strip'); const y = sec.offsetTop + (0.36 + (i + 0.5) / 4 * 0.62) * (sec.offsetHeight - innerHeight); window.lenis?.scrollTo(y, { duration: 1.2 }); });
+  });
+}
+/* ── connect · the caption band follows the camera along the I/O end; a caption is a link to its port ── */
+const PORTS = (window.PORTS = { els: [], active: -1 });
+function setPort(i) { if (i === PORTS.active) return; PORTS.active = i; PORTS.els.forEach((el, j) => el.classList.toggle('on', j === i)); if (i >= 0 && OPXY_AUDIO.on) OPXY_AUDIO.click(); }
+function wirePorts() {
+  PORTS.els.forEach((el, i) => {
+    el.style.cursor = 'pointer';
+    el.addEventListener('click', () => { const sec = $('#connect'); const z = +el.dataset.z; /* camera z runs 160 → -160 over p 0.3 → 1 */ const q = (160 - z) / 320; const y = sec.offsetTop + (0.3 + q * 0.7) * (sec.offsetHeight - innerHeight); window.lenis?.scrollTo(y, { duration: 1.4 }); });
+  });
+}
+
+/* ── the frame · scroll → camera + model state ── */
+function afterScene() {
+  if (!window.OPXY?.ready) { heroCopyIn(0.2); return; }
+  STACK.els = $$('#strip .stack b'); PORTS.els = $$('#connect .port'); wireStack(); wirePorts();
+  /* the computer keyboard plays the instrument: home row = white keys, the row above = black keys */
+  const WK = 'asdfghjkl;\'', BK = 'wetyuop';
+  const held = new Set();
+  addEventListener('keydown', e => {
+    if (e.repeat || e.metaKey || e.ctrlKey || /input|textarea/i.test(e.target.tagName)) return;
+    const w = WK.indexOf(e.key), bl = BK.indexOf(e.key); let k = null;
+    if (w >= 0) k = OPXY.whites[w + 3]; else if (bl >= 0) k = OPXY.blacks[bl + 2];
+    if (!k) return; held.add(k); OPXY.pressKey(k, 1); OPXY_AUDIO.enable().then(() => playKey(k));
+  });
+  addEventListener('keyup', e => { const w = WK.indexOf(e.key), bl = BK.indexOf(e.key); let k = null; if (w >= 0) k = OPXY.whites[w + 3]; else if (bl >= 0) k = OPXY.blacks[bl + 2]; if (k) { held.delete(k); OPXY.pressKey(k, 0); } });
+  /* an encoder tick clicks and nudges the voice's brightness */
+  OPXY.onEncoderTick = (id, dir) => { if (OPXY_AUDIO.on) OPXY_AUDIO.click(); };
+  OPXY.onEncoderGrab = () => { OPXY_AUDIO.enable(); };
+  OPXY.onRecordLand = () => { heroCopyIn(0.1); };   /* the wordmark types in as the record key lands */
+  if (REDUCED) { OPXY.skipFilm(); }
+  /* hover-press with a note; click on a key turns sound on */
+  addEventListener('pointermove', () => OPXY.dirty(), { passive: true });
+  OPXY.onKeyHover = k => { if (!window.OPXY_AUDIO.on) return; OPXY.tapKey(k, 120); playKey(k); };
+  OPXY.onKeyDown = k => { OPXY_AUDIO.enable().then(() => playKey(k)); };
+  const st = OPXY.state, S = OPXY.stations, prog = PAGE.prog, beats = ['hero', 'strip', 'macro', 'engines', 'seq', 'connect', 'flip', 'close'];
+  let roll = 0, rollV = 0, seqWasOn = false, yawT = 0, lastP = 0;
+  /* ── the frame ──
+     Two clocks, never both: while the NEXT section's top is crossing the viewport (the sticky stages
+     sliding), the camera TRAVELS from the current station to the next one and the copy hands over
+     (outgoing gone by mid-slide, incoming from mid-slide); while a section is pinned, its own progress
+     p drives that beat's gestures and the camera holds at (or moves within) its station. No dead
+     scroll, no two beats' words in one frame. */
+  const STATION = { hero: 'hero', strip: 'top', macro: 'mk1', engines: 'engines', seq: 'seq', connect: 'io', flip: 'flip', close: 'close' };
+  const MK = ['mk1', 'mk2', 'mk3', 'mk4'];
+  gsap.ticker.add(() => {
+    PAGE.measure();
+    if (!OPXY.film.done) return;          /* the film owns the camera until it lands */
+    const b = PAGE.beat, p = prog[b] || 0;
+    if (OPXY.quality === 0) { document.documentElement.classList.toggle('away', b !== 'hero'); }
+    /* the slide: which section is arriving, and how far */
+    const els = beats.map(id => $('#' + id)); let arriving = -1, tSlide = 0;
+    for (let i = 1; i < beats.length; i++) { const top = els[i].getBoundingClientRect().top; if (top > 0 && top < innerHeight) { arriving = i; tSlide = (innerHeight - top) / innerHeight; break; } }
+    const cur = beats.indexOf(b); PAGE.arriving = arriving > 0 ? beats[arriving] : null;
+    let rollTarget = 0, groundT = 0, autoYaw = false, floatAmt = 1, hoverT = 0, backdropT = 0, smokeT = 0.35, poolT = 0.25;
+    const wantSeq = b === 'seq' && arriving < 0 && p > 0.05 && p < 0.97;
+    OPXY.setHit(b === 'hero' || b === 'engines' || b === 'close' || b === 'macro');
+    /* per-beat targets (what the beat wants while it holds) */
+    const want = id => ({ hero: { hover: 0.028, backdrop: 1, smoke: 1, pool: 1, ground: 0 }, strip: { ground: 0 }, macro: { ground: 0, smoke: 0.15, pool: 0.1, dof: 1 }, engines: { ground: 0 }, seq: { ground: 0 }, connect: { ground: 1 }, flip: { ground: 1, hover: 0.05 }, close: { ground: 0, hover: 0.02, smoke: 0.8, pool: 1 } }[id] || {});
+    const W = want(b); hoverT = W.hover ?? 0; backdropT = W.backdrop ?? 0; smokeT = W.smoke ?? 0.35; poolT = W.pool ?? 0.25; groundT = W.ground ?? 0; let dofT = W.dof ?? 0;
+    if (arriving > 0) {
+      /* travelling · from the current beat's station to the arriving one */
+      const a = beats[arriving], t = S_(tSlide);
+      OPXY.setCam(S[STATION[b]], S[STATION[a]], t, true);
+      const WA = want(a); hoverT = L_(W.hover ?? 0, WA.hover ?? 0, t); groundT = L_(W.ground ?? 0, WA.ground ?? 0, t); dofT = L_(W.dof ?? 0, WA.dof ?? 0, t);
+      if (b === 'macro') { OPXY.setCam(S.mk4, S[STATION[a]], t, true); }
+      backdropT = 0; smokeT = L_(W.smoke ?? 0.35, WA.smoke ?? 0.35, t); poolT = L_(W.pool ?? 0.25, WA.pool ?? 0.25, t);
+      if (a === 'connect') { /* the tracking shot starts where the travel ends */ }
+      if (b === 'connect') { OPXY.setCam(S.io2, S[STATION[a]], t, true); }
+      if (b === 'hero') { $('#hero .claim').style.opacity = 0; $('#hero .wm').style.opacity = 0; }
+    } else if (b === 'hero') {
+      OPXY.setCam(S.hero);
+      /* the hero HOLDS for a viewport: its copy leaves first, then the sweep */
+      const out = 1 - S_((p - 0.05) / 0.3); $('#hero .claim').style.opacity = out; $('#hero .wm').style.opacity = out;
+      backdropT = 1 - S_((p - 0.35) / 0.45);
+    } else if (b === 'strip') {
+      OPXY.setCam(S.top); setWord(Math.min(3, Math.floor(p * 4)));
+    } else if (b === 'macro') {
+      /* the rail: three legs between four close-ups, eased per leg so the camera rests on each subject */
+      const leg = Math.min(2, Math.floor(p * 3)), u = S_((p * 3 - leg) * 1.25 - 0.125);
+      OPXY.setCam(S[MK[leg]], S[MK[leg + 1]], u);
+      const row = p < 0.2 ? 0 : p < 0.45 ? 1 : p < 0.75 ? 2 : 3; $$('#slate .row').forEach((el, i) => el.classList.toggle('on', i === row));
+    } else if (b === 'engines') {
+      OPXY.setCam(S.engines); setWord(-2);
+      const q = Math.max(0, Math.min(1, p));
+      const over = Math.max(0, ENG.w - innerWidth + parseFloat(getComputedStyle($('#engStrip')).paddingLeft));
+      $('#engStrip').style.transform = `translateX(${-over * q}px)`;
+      if (ENG.hover === undefined || ENG.hover < 0) setEngine(Math.min(7, Math.floor(q * 8)), true);
+      OPXY.turnEncoder(Math.floor(q * 8) % 4, (p - lastP) * 14);
+    } else if (b === 'seq') {
+      OPXY.setCam(S.seq);
+    } else if (b === 'connect') {
+      /* the tracking shot along the I/O end, then the caption band follows the camera */
+      OPXY.setCam(S.io, S.io2, p);
+      const camZ = OPXY.cam.pos.z * 1000; let best = 0, bd = 1e9;
+      PORTS.els.forEach((el, i) => { const d = Math.abs(+el.dataset.z - camZ); if (d < bd) { bd = d; best = i; } });
+      setPort(best);
+    } else if (b === 'flip') {
+      OPXY.setCam(S.flip); rollTarget = p > 0.12 ? 1 : 0; groundT = 1 - S_((p - 0.5) / 0.3);
+      $('#flip').classList.toggle('dark', groundT < 0.5);
+    } else if (b === 'close') {
+      OPXY.setCam(S.close); rollTarget = 0; autoYaw = true; $('#flip').classList.add('dark');
+    }
+    if (b !== 'connect') setPort(-1);
+    /* the roll · a spring (k 30, ζ 0.5) so the landing has weight */
+    const dt = 1 / 60, k = 30, c = 2 * 0.5 * Math.sqrt(k);
+    if (OPXY.quality === 0) { roll = rollTarget; rollV = 0; st.ground = groundT; } else { rollV += (-k * (roll - rollTarget) - c * rollV) * dt; roll += rollV * dt; }
+    st.roll = roll; st.ground += (groundT - st.ground) * 0.08;
+    yawT = autoYaw ? yawT + dt * 0.12 : yawT * 0.97; st.autoYaw = yawT;
+    st.floatAmt = floatAmt; st.hoverT = hoverT; st.backdropT = backdropT; st.smokeT = smokeT; st.poolT = poolT; st.dofT = dofT;
+    /* copy hands over inside the slide: the outgoing stage is gone by mid-slide, the incoming arrives after */
+    /* (poster tier: no fades · every opacity change is a full software repaint that stalls the page for half a second) */
+    if (OPXY.quality > 0) beats.forEach((id, i) => { const el = $('#' + id + ' .stage'); if (!el) return; let o = 1;
+      if (arriving > 0) { if (i === cur) o = 1 - S_(tSlide / 0.45); else if (i === arriving) o = S_((tSlide - 0.55) / 0.45); else o = 0; }
+      else o = i === cur ? 1 : 0;
+      if (id === 'hero' && !(arriving > 0)) o = 1;
+      el.style.opacity = o; });
+    /* the sequencer runs while its panel is on screen, silently until sound is on */
+    if (wantSeq && !seqWasOn) { seqStart(); } if (!wantSeq && seqWasOn) { seqStop(); } seqWasOn = wantSeq;
+    lastP = p;
+  });
+  /* the film's camera hands over to the scroll camera: when the film lands, the scroll camera is
+     the hero station (or wherever the reader has scrolled), and the scene damps toward it. */
+}
+function playKey(k) {
+  const wi = OPXY.whites.indexOf(k), bi = OPXY.blacks.indexOf(k);
+  const W = [0, 2, 4, 5, 7, 9, 11, 12, 14, 16, 17, 19, 21, 23, 24, 26, 28], B = [1, 3, 6, 8, 10, 13, 15, 18, 20, 22];
+  let n = null; if (wi >= 0) n = 48 + W[wi]; else if (bi >= 0) n = 48 + B[bi];
+  if (n !== null) OPXY_AUDIO.note(n, { dur: 0.6, vel: 0.5 }); else OPXY_AUDIO.click();
+}
+/* Boot order: the page first (it must be a page with no GPU), then the scene, then the overlay
+   clears · unconditionally, so a loading screen can never outlive its cause. */
+(async () => {
+  let ok = false;
+  try { const c = document.createElement('canvas'); ok = !!(c.getContext('webgl2') || c.getContext('webgl')); } catch (e) { ok = false; }
+  if (!ok) document.documentElement.classList.add('nogpu');
+  const bar = document.querySelector('#loading i'); if (bar) bar.style.width = '18%';
+  if (typeof bootSite === 'function') await bootSite();
+  if (ok) {
+    try { await bootScene({ MODEL_URL }); }
+    catch (e) { console.warn('3D unavailable, the page continues without it:', e); document.documentElement.classList.add('nogpu'); }
+  }
+  if (typeof afterScene === 'function') afterScene();
+  document.getElementById('loading').classList.add('off');
+})();
+</script>
+
+</body></html>

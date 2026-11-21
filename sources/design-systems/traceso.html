@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>trace.so — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;700&family=Geist+Mono:wght@400;500;700&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F1F1E6; color:#000000; font-family:'Geist',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Geist',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Geist',sans-serif; font-size: 22px; border-bottom: 1px solid #DCDCCD; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#525252; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#525252; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#EFEDE6; border: 1px solid #DCDCCD; border-radius:4px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#525252; }
+  .swatch-meta p { color:#525252; font-size: 12px; }
+  .specimen { border: 1px solid #DCDCCD; border-radius:4px; padding: 20px; background:#EFEDE6; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#525252; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#525252; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#EFEDE6; border: 1px solid #DCDCCD; border-radius:4px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:2px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#F1F1E6; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #DCDCCD; padding-top: 20px; font-size: 13px; color:#525252; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>trace.so</h1>
+    <p class="tagline">A light, paper-toned operational aesthetic pairing a bureaucratic ivory field with sharp-cornered mono labels, one dark near-black UI panel as a signature inversion, and a coral/orange accent rationed to tags and dividers.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F1F1E6"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F1F1E6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EFEDE6"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#EFEDE6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DCDCCD"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#DCDCCD</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#181818"></div>
+        <div class="swatch-meta"><strong>surface-inverse</strong><code>#181818</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#525252"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#525252</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2B2B2B"></div>
+        <div class="swatch-meta"><strong>text-tertiary</strong><code>#2B2B2B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DCDCCD"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#DCDCCD</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2A2A2A"></div>
+        <div class="swatch-meta"><strong>border-dark</strong><code>#2A2A2A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E05E0A"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#E05E0A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F7C7A8"></div>
+        <div class="swatch-meta"><strong>accent-tint</strong><code>#F7C7A8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0000EE"></div>
+        <div class="swatch-meta"><strong>link</strong><code>#0000EE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#22C55E"></div>
+        <div class="swatch-meta"><strong>success</strong><code>#22C55E</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist',sans-serif;font-size:60px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Geist · 60px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist',sans-serif;font-size:54px;font-weight:400;line-height:1.1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Geist · 54px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist',sans-serif;font-size:16px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Geist · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist Mono',sans-serif;font-size:14px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Geist Mono · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist',sans-serif;font-size:15px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-fine · Geist · 15px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'JetBrains Mono',sans-serif;font-size:13px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono · JetBrains Mono · 13px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap-sm · 6px</span>
+        <div class="bar" style="width:min(6px, 100%)"></div></div>
+<div class="bar-row"><span>gap-md · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap-xl · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>content-max-width · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:2px">sharp<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:2px">control<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:3px">control-alt<br><code>3px</code></div>
+<div class="radius-chip" style="border-radius:4px">card<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:6px">panel<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:50px">pill<br><code>50px</code></div>
+<div class="radius-chip" style="border-radius:12px">panel-lg<br><code>12px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#525252;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

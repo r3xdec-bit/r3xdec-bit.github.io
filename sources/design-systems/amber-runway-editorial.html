@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Amber Runway Editorial — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#333F48;
+  --surface:#F5F7FA;
+  --text-primary:#F5F7FA;
+  --text-secondary:#333F48;
+  --accent:#D4AF35;
+  --accent-deep:#CC9F2D;
+  --highlight-cream:#F2E49F;
+  --stroke:#1E3B8A;
+  --nav-white:#FFFFFF;
+  --util-fill:#EFEFEF;
+  --r-control:50px;
+  --r-pill:300px;
+  --base:11px;
+  --gap:16px;
+  --unit-sm:10px;
+  --unit-md:32px;
+  --unit-lg:63px;
+  --section-pad:115px;
+  --ease-cine:cubic-bezier(0.19,1,0.22,1);
+  --ease-spring:cubic-bezier(0.2,0.6,0.3,1);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Roboto Condensed",sans-serif;
+  font-size:18px;
+  line-height:1.4;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{
+  font-family:"Roboto",sans-serif;
+  font-weight:400;
+  text-transform:uppercase;
+  margin:0;
+}
+.display{
+  font-size:62px;
+  line-height:1.1;
+  letter-spacing:-1.9px;
+}
+.headline{
+  font-size:57px;
+  line-height:1.11;
+  letter-spacing:-1.7px;
+}
+a{color:var(--accent);}
+img{max-width:100%;display:block;}
+.band{padding:var(--section-pad) var(--unit-md);}
+.wrap{max-width:1200px;margin:0 auto;}
+.eyebrow{
+  font-family:"Arial",sans-serif;
+  font-size:13px;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+
+/* NAVBAR */
+.nav{
+  height:128px;
+  width:100%;
+  background:linear-gradient(115deg,var(--accent-deep),var(--highlight-cream));
+  background-color:var(--accent-deep);
+  border-radius:0;
+  display:flex;
+  align-items:center;
+  gap:var(--unit-md);
+  padding:0 var(--unit-md);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.nav .logo{
+  font-family:"Roboto",sans-serif;
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:-1px;
+  font-size:26px;
+  color:var(--text-secondary);
+  white-space:nowrap;
+}
+.nav .links{
+  display:flex;
+  gap:var(--unit-md);
+  margin-left:auto;
+  flex-wrap:wrap;
+}
+.nav .links a{
+  font-family:"Roboto",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+  font-size:15px;
+  color:var(--text-secondary);
+  text-decoration:none;
+}
+.nav .social{display:flex;gap:var(--unit-sm);color:var(--text-secondary);font-size:20px;}
+.nav .lang{
+  font-family:"Roboto",sans-serif;
+  font-size:15px;
+  text-transform:uppercase;
+  color:var(--text-secondary);
+}
+.nav-cta{
+  background:var(--nav-white);
+  color:var(--text-secondary);
+  border:none;
+  border-radius:var(--r-pill);
+  height:88px;
+  padding:32px 48px;
+  font-family:"Roboto",sans-serif;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+  font-size:15px;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+}
+
+/* HERO */
+#hero{position:relative;min-height:82vh;display:flex;align-items:flex-end;overflow:hidden;}
+.hero-photo{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 90% at 70% 15%,#F2E49F 0%,#D8A830 22%,#CC9F2D 42%,#7a5f38 62%,#304848 100%);
+}
+.hero-scrim{
+  position:absolute;left:0;right:0;bottom:0;height:60%;
+  background:linear-gradient(rgba(0,0,0,0),rgba(48,72,72,0.85));
+}
+.hero-inner{position:relative;z-index:2;padding:var(--section-pad) var(--unit-md);width:100%;}
+.hero-inner h1{color:var(--surface);max-width:14ch;}
+.hero-sub{
+  font-family:"Roboto Condensed",sans-serif;
+  font-size:21px;
+  max-width:52ch;
+  margin:var(--unit-md) 0;
+  color:var(--surface);
+}
+.hero-ctas{display:flex;gap:var(--gap);align-items:center;flex-wrap:wrap;}
+.pill-primary-cream{
+  background:var(--surface);
+  color:var(--text-secondary);
+  border:none;border-radius:var(--r-pill);
+  height:88px;padding:32px 48px;
+  font-family:"Roboto",sans-serif;text-transform:uppercase;
+  letter-spacing:-0.5px;font-size:16px;cursor:pointer;
+  display:inline-flex;align-items:center;
+}
+.pill-hero-gold{
+  background:var(--accent);color:var(--text-secondary);
+  border:none;border-radius:var(--r-pill);
+  height:36px;padding:11px 15px;
+  font-family:"Roboto Condensed",sans-serif;font-size:15px;
+  cursor:pointer;display:inline-flex;align-items:center;
+  text-transform:uppercase;letter-spacing:0.5px;
+}
+.pill-hero-gold:hover{text-decoration:underline;font-weight:700;}
+
+@media(max-width:768px){
+  .display{font-size:40px;letter-spacing:-1px;}
+  .headline{font-size:34px;letter-spacing:-1px;}
+  .nav{height:auto;flex-wrap:wrap;padding:16px;gap:12px;}
+  .nav-cta{height:56px;padding:16px 28px;}
+  .nav .links{gap:14px;}
+  .band{padding:63px 20px;}
+  .pill-primary-cream{height:64px;padding:20px 32px;}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;}
+}
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <span class="logo">Gold Wingz</span>
+  <div class="links">
+    <a href="#hero">Story</a>
+    <a href="#components">Fleet</a>
+    <a href="#composition">Archive</a>
+    <a href="#palette">Press</a>
+    <a href="#footer">Contact</a>
+  </div>
+  <div class="social" aria-label="Social links">
+    <iconify-icon icon="lucide:instagram" aria-label="Instagram"></iconify-icon>
+    <iconify-icon icon="lucide:youtube" aria-label="YouTube"></iconify-icon>
+    <iconify-icon icon="lucide:facebook" aria-label="Facebook"></iconify-icon>
+  </div>
+  <span class="lang">EN</span>
+  <button class="nav-cta">Book a Flight</button>
+</nav>
+</header>
+
+<main>
+
+<section id="hero">
+  <div class="hero-photo" role="img" aria-label="Sunset wing cutting through golden clouds"></div>
+  <div class="hero-scrim"></div>
+  <div class="hero-inner">
+    <h1 class="display">Chasing Gold<br>Through Cloud</h1>
+    <p class="hero-sub">A documentary of altitude and light — full-bleed photography, archival grain, and one warm metallic hue rationed to the edges of the frame.</p>
+    <div class="hero-ctas">
+      <button class="pill-primary-cream">Watch the Film</button>
+      <button class="pill-hero-gold">Read the field notes</button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .role-title{margin-bottom:var(--unit-md);color:var(--surface);}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);}
+.swatch{border:0;overflow:hidden;}
+.swatch .chip{height:120px;position:relative;}
+.checker{
+  background-image:
+    linear-gradient(45deg,#5a6870 25%,transparent 25%),
+    linear-gradient(-45deg,#5a6870 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#5a6870 75%),
+    linear-gradient(-45deg,transparent 75%,#5a6870 75%);
+  background-size:20px 20px;
+  background-position:0 0,0 10px,10px -10px,-10px 0;
+  background-color:#43505a;
+}
+.swatch .meta{padding:12px 0;}
+.swatch .name{font-family:"Roboto",sans-serif;text-transform:uppercase;font-size:14px;letter-spacing:-0.3px;color:var(--surface);}
+.swatch .val{font-family:"Arial",sans-serif;font-size:13px;font-weight:700;color:var(--highlight-cream);}
+.swatch .note{font-size:15px;color:var(--surface);opacity:.85;}
+.role-group{margin-bottom:var(--unit-lg);}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title">The Palette</h2>
+    <p class="hero-sub" style="color:var(--surface)">Slate holds the body. Gold is rationed to the bands. Cream lights the edges.</p>
+
+    <div class="role-group">
+      <h3 class="eyebrow" style="color:var(--highlight-cream);margin-bottom:16px">Surfaces</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#333F48"></div><div class="meta"><div class="name">Slate Charcoal</div><div class="val">#333F48</div><div class="note">Dominant body ground, ~57% of the page.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F5F7FA"></div><div class="meta"><div class="name">Cream Surface</div><div class="val">#F5F7FA</div><div class="note">Summary block & on-slate copy surface.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3 class="eyebrow" style="color:var(--highlight-cream);margin-bottom:16px">Text</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#F5F7FA"></div><div class="meta"><div class="name">On-Dark Text</div><div class="val">#F5F7FA</div><div class="note">Headlines set over the slate ground.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#333F48"></div><div class="meta"><div class="name">On-Light Text</div><div class="val">#333F48</div><div class="note">Copy on gold bands & pill buttons.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3 class="eyebrow" style="color:var(--highlight-cream);margin-bottom:16px">Accents</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#D4AF35"></div><div class="meta"><div class="name">Gold Accent</div><div class="val">#D4AF35</div><div class="note">Pills, press band — the brand hue.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#CC9F2D"></div><div class="meta"><div class="name">Amber Deep</div><div class="val">#CC9F2D</div><div class="note">Navbar and footer bar fill.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#F2E49F"></div><div class="meta"><div class="name">Highlight Cream</div><div class="val">#F2E49F</div><div class="note">Tint companion in gradient transitions.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#1E3B8A"></div><div class="meta"><div class="name">Navy Stroke</div><div class="val">#1E3B8A</div><div class="note">Reserved for thin rule-lines only.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .spec{border-top:1px solid rgba(245,247,250,0.2);padding:var(--unit-md) 0;}
+#type-scale .metrics{font-family:"Arial",sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;color:var(--highlight-cream);letter-spacing:.5px;margin-bottom:16px;}
+.specimen-display{font-family:"Roboto";font-weight:400;text-transform:uppercase;font-size:62px;line-height:1.1;letter-spacing:-1.9px;color:var(--surface);}
+.specimen-head{font-family:"Roboto";font-weight:400;text-transform:uppercase;font-size:57px;line-height:1.11;letter-spacing:-1.7px;color:var(--surface);}
+.specimen-body{font-family:"Roboto Condensed";font-size:21px;line-height:1.4;color:var(--surface);max-width:60ch;}
+.specimen-serif{font-family:"Roboto Condensed";font-style:italic;font-size:21px;color:var(--highlight-cream);}
+.specimen-mono{font-family:"Arial";font-weight:700;text-transform:uppercase;font-size:13px;letter-spacing:1px;color:var(--surface);}
+@media(max-width:768px){.specimen-display{font-size:40px;letter-spacing:-1px;}.specimen-head{font-size:34px;letter-spacing:-1px;}}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title" style="color:var(--surface)">Type Scale</h2>
+    <p class="hero-sub" style="color:var(--surface)">Wide uppercase Roboto for structure. Narrow condensed grotesque for the story. Never merged.</p>
+
+    <div class="spec">
+      <div class="metrics">Display LG · Roboto · 62px · 400 · 1.1 · -1.9px</div>
+      <div class="specimen-display">Wing Through Clouds</div>
+    </div>
+    <div class="spec">
+      <div class="metrics">Headline MD · Roboto · 57px · 400 · 1.11 · -1.7px</div>
+      <div class="specimen-head">Altitude & Light</div>
+    </div>
+    <div class="spec">
+      <div class="metrics">Body MD · Roboto Condensed · 21px · 400 · 1.4</div>
+      <p class="specimen-body">The overall feel is nostalgic-aviation-editorial: warm archival photography, a gold accent standing in for gold-wings iconography, and a spacious, uncluttered stacking rhythm that lets each image breathe across the full bleed of the page.</p>
+    </div>
+    <div class="spec">
+      <div class="metrics">Accent Emphasis · Italic · used within body copy</div>
+      <p class="specimen-body">A single warm hue, <span class="specimen-serif">rationed to the edges,</span> carries the whole system.</p>
+    </div>
+    <div class="spec">
+      <div class="metrics">Label Mono · Arial · 13px · 700 · uppercase</div>
+      <div class="specimen-mono">Dateline — Field Report No. 07</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{border-top:1px solid rgba(245,247,250,0.18);padding:var(--unit-lg) 0;}
+#components .comp-head{display:flex;justify-content:space-between;gap:var(--unit-md);flex-wrap:wrap;align-items:baseline;margin-bottom:var(--unit-md);}
+#components h3.comp-title{font-family:"Roboto";text-transform:uppercase;font-size:32px;letter-spacing:-0.8px;color:var(--surface);}
+.spec-card{
+  font-family:"Arial",sans-serif;font-size:12px;line-height:1.6;
+  color:var(--text-secondary);background:var(--highlight-cream);
+  padding:14px 18px;max-width:420px;border-left:3px solid var(--stroke);
+}
+.spec-card b{font-weight:700;}
+.comp-desc{color:var(--surface);opacity:.85;max-width:60ch;margin-bottom:var(--unit-md);font-size:17px;}
+.count-tag{font-family:"Arial";font-weight:700;font-size:13px;text-transform:uppercase;color:var(--highlight-cream);letter-spacing:.5px;}
+.demo{padding:var(--unit-md) 0;}
+
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{padding:14px;text-align:left;vertical-align:middle;border-bottom:1px solid rgba(245,247,250,0.15);}
+.matrix th{font-family:"Arial";font-size:12px;font-weight:700;text-transform:uppercase;color:var(--highlight-cream);letter-spacing:.5px;}
+.matrix td.rowlabel{font-family:"Arial";font-size:12px;font-weight:700;text-transform:uppercase;color:var(--surface);}
+.util-btn{
+  background:var(--util-fill);color:#000;border:2px outset #000;border-radius:0;
+  height:30px;padding:1px 6px;font-family:"Roboto Condensed";font-size:14px;cursor:pointer;
+}
+.band-cta{
+  background:var(--accent);color:var(--text-secondary);border:none;border-radius:var(--r-pill);
+  height:83px;padding:32px 48px;font-family:"Roboto";text-transform:uppercase;
+  letter-spacing:-0.5px;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;
+}
+.press-band{background:var(--accent);padding:var(--unit-lg) var(--unit-md);}
+.press-band .dateline{font-family:"Arial";font-weight:700;font-size:13px;text-transform:uppercase;color:var(--text-secondary);letter-spacing:1px;}
+.press-band .copy{font-family:"Roboto Condensed";font-size:21px;color:var(--text-secondary);max-width:56ch;margin:16px 0;}
+.press-controls{display:flex;align-items:center;gap:var(--gap);}
+.carousel-ctrl{
+  background:var(--text-secondary);color:var(--accent);border:none;
+  width:44px;height:44px;border-radius:var(--r-pill);cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;font-size:20px;
+  transition:transform .25s var(--ease-spring),width .25s var(--ease-spring);
+}
+.carousel-ctrl:hover{transform:scale(1.12);}
+
+.photo-panel{padding:0 0 115.2px;}
+.photo-panel .media{width:100%;height:340px;border-radius:0;}
+.photo-panel .cap{font-family:"Roboto Condensed";font-size:18px;color:var(--surface);padding-top:16px;max-width:60ch;}
+.p1{background:linear-gradient(120deg,#D8A830,#304848);}
+.p2{background:linear-gradient(200deg,#7a5f38,#304848,#111);}
+.p3{background:radial-gradient(circle at 50% 40%,#F2E49F,#D4AF35 35%,#7a5f38 65%,#333F48 100%);}
+.p4{background:linear-gradient(60deg,#304848,#43505a,#D8A830);}
+.p5{background:linear-gradient(30deg,#2a2a2a,#5a4a30,#CC9F2D);}
+
+.video-overlay{position:relative;height:420px;background:linear-gradient(140deg,#304848,#7a5f38,#D8A830);overflow:hidden;}
+.video-card{
+  position:absolute;left:40px;bottom:40px;width:min(380px,70%);
+  background:rgba(48,72,72,0.55);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);
+  padding:0;border-radius:0;
+}
+.video-thumb{height:150px;background:repeating-linear-gradient(45deg,#e46b9c,#e46b9c 12px,#d15487 12px,#d15487 24px);display:flex;align-items:center;justify-content:center;}
+.video-thumb .play{color:#fff;font-size:46px;}
+.video-card .vc-cap{padding:14px;font-family:"Roboto Condensed";color:var(--surface);font-size:16px;}
+.video-card .vc-title{font-family:"Arial";font-weight:700;font-size:13px;text-transform:uppercase;color:var(--highlight-cream);}
+
+.bento{display:grid;grid-template-columns:repeat(26,1fr);gap:11px;grid-auto-rows:90px;}
+.bento div{border-radius:0;}
+.b1{grid-column:span 8;grid-row:span 2;background:linear-gradient(#D8A830,#7a5f38);}
+.b2{grid-column:span 10;background:linear-gradient(120deg,#304848,#43505a);}
+.b3{grid-column:span 8;background:linear-gradient(200deg,#F2E49F,#D4AF35);}
+.b4{grid-column:span 10;background:linear-gradient(#43505a,#304848);}
+.b5{grid-column:span 8;grid-row:span 2;background:linear-gradient(30deg,#7a5f38,#D8A830);}
+.b6{grid-column:span 18;background:linear-gradient(60deg,#304848,#D8A830);}
+.bento-cap{font-family:"Arial";font-weight:700;font-size:12px;text-transform:uppercase;color:var(--highlight-cream);margin-top:12px;}
+
+.archival{position:relative;height:420px;background:linear-gradient(160deg,#5a4a30,#2a2620);overflow:hidden;filter:sepia(.3);}
+.archival::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(0,0,0,0.04) 0 2px,transparent 2px 4px);}
+.archival .vtext{
+  position:absolute;right:24px;top:-20px;writing-mode:vertical-rl;
+  font-family:"Roboto";text-transform:uppercase;font-size:80px;letter-spacing:-2px;
+  color:rgba(245,247,250,0.85);line-height:1;
+}
+@media(max-width:768px){
+  .photo-panel .media{height:220px;}
+  .bento{grid-auto-rows:44px;}
+  .band-cta{height:64px;padding:20px 32px;}
+  .archival .vtext{font-size:44px;}
+}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title" style="color:var(--surface)">The Inventory</h2>
+    <p class="hero-sub" style="color:var(--surface)">Sharp editorial panels, soft pill controls. A hard, deliberate split.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head"><h3 class="comp-title">Amber Navbar</h3><span class="count-tag">×1 · 128px · edge-to-edge</span></div>
+      <p class="comp-desc">A square, edge-to-edge amber bar with a local amber-to-cream diagonal fill. Logo, five links, social cluster, language selector, and the white pill CTA. Never inset, centered, or capsule.</p>
+      <div class="demo">
+        <nav class="nav" style="position:static" aria-label="Navbar specimen">
+          <span class="logo">Gold Wingz</span>
+          <div class="links"><a href="#">Story</a><a href="#">Fleet</a><a href="#">Archive</a><a href="#">Press</a><a href="#">Contact</a></div>
+          <div class="social" aria-label="Social"><iconify-icon icon="lucide:instagram" aria-label="Instagram"></iconify-icon><iconify-icon icon="lucide:youtube" aria-label="YouTube"></iconify-icon></div>
+          <span class="lang">EN</span>
+          <button class="nav-cta">Book a Flight</button>
+        </nav>
+      </div>
+      <div class="spec-card">navbar · fill <b>accent-deep #CC9F2D</b> · radius <b>0px</b> · height <b>128</b> · logo type Roboto · links label uppercase</div>
+    </div>
+
+    <!-- NAV CTA -->
+    <div class="comp" data-tier-a-component="button-nav-cta">
+      <div class="comp-head"><h3 class="comp-title">Nav White Pill CTA</h3><span class="count-tag">×1 · 88px · largest control</span></div>
+      <p class="comp-desc">The largest, most substantial button in the system. Solid white pill, slate text, 32/48 padding.</p>
+      <div class="demo"><button class="nav-cta">Book a Flight</button></div>
+      <div class="spec-card">button-nav-cta · fill <b>#FFFFFF</b> · text <b>#333F48</b> · radius <b>r-pill 300</b> · height <b>88</b> · pad <b>32/48</b></div>
+    </div>
+
+    <!-- HERO SECONDARY GOLD PILL -->
+    <div class="comp" data-tier-a-component="button-primary-hero">
+      <div class="comp-head"><h3 class="comp-title">Hero Secondary Gold Pill</h3><span class="count-tag">×1 · 36px · inline</span></div>
+      <p class="comp-desc">A small, link-style gold pill. Hovers to the same gold with no colour shift — state reads as underline and weight only.</p>
+      <div class="demo" style="display:flex;gap:var(--gap);align-items:center">
+        <button class="pill-hero-gold">Read the field notes</button>
+        <span class="count-tag">hover →</span>
+        <button class="pill-hero-gold" style="text-decoration:underline;font-weight:700">Read the field notes</button>
+      </div>
+      <div class="spec-card">button-primary-hero · fill <b>#D4AF35</b> · text <b>#333F48</b> · radius <b>300</b> · height <b>36</b> · pad <b>11/15</b> · hover same gold</div>
+    </div>
+
+    <!-- BAND CTA -->
+    <div class="comp" data-tier-a-component="button-band-cta">
+      <div class="comp-head"><h3 class="comp-title">Mid-page Band Gold Pill CTA</h3><span class="count-tag">×1 · 83px · second-largest</span></div>
+      <p class="comp-desc">The second-largest control, anchoring a full-width amber content band. Gold pill matching the nav CTA's proportions.</p>
+      <div class="demo"><button class="band-cta">Reserve Your Seat</button></div>
+      <div class="spec-card">button-band-cta · fill <b>#D4AF35</b> · text <b>#333F48</b> · radius <b>300</b> · height <b>83</b> · pad <b>32/48</b></div>
+    </div>
+
+    <!-- UTILITY OUTSET -->
+    <div class="comp" data-tier-a-component="button-utility-outset">
+      <div class="comp-head"><h3 class="comp-title">Press-band Outset Utility Button</h3><span class="count-tag">×1 · 30px · retro</span></div>
+      <p class="comp-desc">A deliberately retro, skeuomorphic outset-bordered rectangle. Sharp corners, 2px outset black border — distinct from every pill.</p>
+      <div class="demo"><button class="util-btn">Read Release</button></div>
+      <div class="spec-card">button-utility-outset · fill <b>#EFEFEF</b> · text <b>#000</b> · radius <b>0</b> · height <b>30</b> · border <b>2px outset</b> · pad <b>1/6</b></div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp">
+      <div class="comp-head"><h3 class="comp-title">Button Matrix</h3><span class="count-tag">variants × states</span></div>
+      <p class="comp-desc">Fast linear 0.1s state swaps on hover and active. No documented focus treatment — native focus preserved.</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th></tr></thead>
+        <tbody>
+          <tr><td class="rowlabel">Nav White Pill</td>
+            <td><button class="nav-cta">Book</button></td>
+            <td><button class="nav-cta" style="background:#F2E49F">Book</button></td>
+            <td><button class="nav-cta" style="background:#F2E49F">Book</button></td></tr>
+          <tr><td class="rowlabel">Band Gold Pill</td>
+            <td><button class="band-cta">Reserve</button></td>
+            <td><button class="band-cta" style="background:#CC9F2D">Reserve</button></td>
+            <td><button class="band-cta" style="background:#CC9F2D">Reserve</button></td></tr>
+          <tr><td class="rowlabel">Hero Gold Pill</td>
+            <td><button class="pill-hero-gold">Notes</button></td>
+            <td><button class="pill-hero-gold" style="text-decoration:underline;font-weight:700">Notes</button></td>
+            <td><button class="pill-hero-gold" style="text-decoration:underline;font-weight:700">Notes</button></td></tr>
+          <tr><td class="rowlabel">Outset Utility</td>
+            <td><button class="util-btn">Read</button></td>
+            <td><button class="util-btn" style="background:#F2E49F">Read</button></td>
+            <td><button class="util-btn" style="border-style:inset">Read</button></td></tr>
+        </tbody>
+      </table>
+      <div class="spec-card" style="margin-top:20px">motion · state swap <b>0.1s linear</b> · hover tint <b>highlight-cream / accent-deep</b> · no invented focus ring</div>
+    </div>
+
+    <!-- PRESS BAND -->
+    <div class="comp" data-tier-a-component="press-announcement-band">
+      <div class="comp-head"><h3 class="comp-title">Amber Press-Announcement Band</h3><span class="count-tag">×1 · only gold body region</span></div>
+      <p class="comp-desc">The single full-width amber strip permitted in the body. Dateline, announcement copy, outset button, and a springier carousel control.</p>
+      <div class="demo" style="margin:0 calc(-1 * var(--unit-md))">
+        <div class="press-band">
+          <div class="dateline">Press Release — 12 June · Runway Bulletin</div>
+          <p class="copy">The Gold Wingz documentary lands this autumn. Restored archival footage, remastered engine audio, and a new metallic title sequence rendered frame by frame.</p>
+          <div class="press-controls">
+            <button class="util-btn">Read Release</button>
+            <button class="carousel-ctrl" aria-label="Pause carousel"><iconify-icon icon="lucide:pause" aria-hidden="true"></iconify-icon></button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">press-band · fill <b>accent #D4AF35</b> · dateline Arial 13 700 · carousel motion <b>0.25s spring</b> · accent confined here</div>
+    </div>
+
+    <!-- FULL-BLEED PHOTO PANELS -->
+    <div class="comp" data-tier-a-component="full-bleed-photo-panel">
+      <div class="comp-head"><h3 class="comp-title">Full-bleed Photographic Panels</h3><span class="count-tag">×5 · transparent · 0px radius</span></div>
+      <p class="comp-desc">The body's primary content type. Top-bleeding media, then caption. No borders, no shadows — depth comes from image layering.</p>
+      <div class="demo">
+        <div class="photo-panel"><div class="media p1" role="img" aria-label="Wing over golden haze"></div><p class="cap">Golden hour over the Atlantic corridor — the wing catches the last of the light.</p></div>
+        <div class="photo-panel"><div class="media p2" role="img" aria-label="Dusk approach silhouette"></div><p class="cap">Dusk approach, engines throttled back, the horizon folding into slate.</p></div>
+        <div class="photo-panel"><div class="media p3" role="img" aria-label="Metallic gold aircraft object isolated"></div><p class="cap">The signature golden motif — a rendered aircraft, isolated on flat slate.</p></div>
+        <div class="photo-panel"><div class="media p4" role="img" aria-label="Runway lights at altitude"></div><p class="cap">Taxi lights bleeding warm against the cold field of the apron.</p></div>
+        <div class="photo-panel" style="padding-bottom:0"><div class="media p5" role="img" aria-label="Archival cockpit interior"></div><p class="cap">Cockpit interior, restored from the original press-kit negatives.</p></div>
+      </div>
+      <div class="spec-card">card-fullbleed-panel · fill <b>transparent</b> · radius <b>0</b> · pad <b>0 0 115.2</b> · no border/shadow</div>
+    </div>
+
+    <!-- VIDEO OVERLAY -->
+    <div class="comp" data-tier-a-component="video-thumbnail-overlay">
+      <div class="comp-head"><h3 class="comp-title">Video-thumbnail Overlay Card</h3><span class="count-tag">×1 · blur(15px) isolated</span></div>
+      <p class="comp-desc">A smaller card composited over a full-bleed photograph. The only place backdrop blur is used — a pink retro title-card thumbnail stands in for live video.</p>
+      <div class="demo" style="margin:0 calc(-1 * var(--unit-md))">
+        <div class="video-overlay">
+          <div class="video-card">
+            <div class="video-thumb" role="img" aria-label="Pink retro title card thumbnail"><span class="play"><iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon></span></div>
+            <div class="vc-cap"><div class="vc-title">Archival Clip · 1974</div>First flight, restored and remastered.</div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">video-overlay · backdrop-filter <b>blur(15px)</b> · surface slate 0.55 alpha · radius <b>0</b> · isolated overlay only</div>
+    </div>
+
+    <!-- BENTO CLUSTER -->
+    <div class="comp" data-tier-a-component="compact-asymmetric-image-cluster">
+      <div class="comp-head"><h3 class="comp-title">Compact Asymmetric Image Cluster</h3><span class="count-tag">×1 · 26-col · 11px gaps</span></div>
+      <p class="comp-desc">The system's only bento-like moment. Unevenly sized photographic tiles on a 26-column grid for a supplementary collage.</p>
+      <div class="demo">
+        <div class="bento" aria-label="Asymmetric image cluster">
+          <div class="b1" role="img" aria-label="Collage tile one"></div>
+          <div class="b2" role="img" aria-label="Collage tile two"></div>
+          <div class="b3" role="img" aria-label="Collage tile three"></div>
+          <div class="b4" role="img" aria-label="Collage tile four"></div>
+          <div class="b5" role="img" aria-label="Collage tile five"></div>
+          <div class="b6" role="img" aria-label="Collage tile six"></div>
+        </div>
+        <div class="bento-cap">Runway Scrapbook — supplementary collage, 11px gaps</div>
+      </div>
+      <div class="spec-card">image-cluster · grid <b>26-col</b> · gap <b>11px (base)</b> · radius <b>0</b> · mixed asymmetric spans</div>
+    </div>
+
+    <!-- CLOSING ARCHIVAL -->
+    <div class="comp" data-tier-a-component="closing-archival-band">
+      <div class="comp-head"><h3 class="comp-title">Closing Archival-Photo Band</h3><span class="count-tag">×1 · vertical letterforms bleed</span></div>
+      <p class="comp-desc">A full-bleed archival photograph with scrapbook grain and vertically-set letterforms bleeding off the edge before the footer.</p>
+      <div class="demo" style="margin:0 calc(-1 * var(--unit-md))">
+        <div class="archival" role="img" aria-label="Archival photograph with vertical bleeding letterforms">
+          <div class="vtext">Runway</div>
+        </div>
+      </div>
+      <div class="spec-card">closing-archival-band · fill photographic · radius <b>0</b> · vertical letterforms bleed · no border/shadow</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--unit-md);}
+.depth-card{background:var(--surface);color:var(--text-secondary);border-radius:0;padding:var(--unit-md);}
+.depth-card h4{font-family:"Roboto";text-transform:uppercase;font-size:20px;letter-spacing:-0.5px;margin:0 0 8px;}
+.depth-card p{font-family:"Roboto Condensed";font-size:16px;margin:0;}
+.ring{box-shadow:inset 0 0 0 2px #333F48;}
+.contact{box-shadow:0 12px 12px -28px #333F48;}
+.pill-card{border-radius:300px;background:var(--accent);color:var(--text-secondary);}
+.meta-label{font-family:"Arial";font-weight:700;font-size:12px;text-transform:uppercase;color:var(--stroke);margin-top:12px;}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title" style="color:var(--surface)">Surface & Depth</h2>
+    <p class="hero-sub" style="color:var(--surface)">Radius is binary: 0px everywhere content-shaped, 300px on pills. Shadows are minimal — a thin slate ring and a near-invisible contact shadow.</p>
+    <div class="cards">
+      <div class="depth-card"><h4>Panel</h4><p>Content-shaped surface. Sharp 0px corners, no elevation.</p><div class="meta-label">radius 0px</div></div>
+      <div class="depth-card ring"><h4>Focus Ring</h4><p>Inset slate ring, the selected/focus outline.</p><div class="meta-label">inset 0 0 0 2px #333F48</div></div>
+      <div class="depth-card contact"><h4>Contact Shadow</h4><p>Very tight, low-spread. Elevation stays understated.</p><div class="meta-label">0 12px 12px -28px #333F48</div></div>
+      <div class="depth-card pill-card"><h4>Pill</h4><p>Roundness lives only on buttons.</p><div class="meta-label" style="color:var(--text-secondary)">radius 300px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .curves{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--unit-md);}
+.curve{background:var(--surface);color:var(--text-secondary);padding:var(--unit-md);border-radius:0;}
+.curve h4{font-family:"Roboto";text-transform:uppercase;font-size:18px;letter-spacing:-0.4px;margin:0 0 6px;}
+.curve .track{height:8px;background:#d4d9de;margin:16px 0;position:relative;overflow:hidden;}
+.curve .dot{width:24px;height:8px;background:var(--accent-deep);position:absolute;left:0;top:0;}
+.curve .lbl{font-family:"Arial";font-weight:700;font-size:12px;text-transform:uppercase;color:var(--stroke);}
+.curve button{margin-top:12px;background:var(--text-secondary);color:var(--surface);border:none;border-radius:300px;padding:8px 20px;font-family:"Roboto Condensed";text-transform:uppercase;cursor:pointer;}
+.run-cine .dot{transition:left 0.65s var(--ease-cine);}
+.run-fast .dot{transition:left 0.1s linear;}
+.run-icon .dot{transition:left 0.17s ease-in-out;}
+.run-spring .dot{transition:left 0.25s var(--ease-spring);}
+.go .dot{left:calc(100% - 24px);}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title" style="color:var(--surface)">Motion</h2>
+    <p class="hero-sub" style="color:var(--surface)">Deliberate and slow-reveal — cinematic curves for panels, instant swaps for state. Click to replay.</p>
+    <div class="curves">
+      <div class="curve run-cine"><h4>Cinematic Reveal</h4><div class="lbl">0.65s · cubic-bezier(0.19,1,0.22,1)</div><div class="track"><span class="dot"></span></div><button>Replay</button></div>
+      <div class="curve run-fast"><h4>State Swap</h4><div class="lbl">0.1s · linear</div><div class="track"><span class="dot"></span></div><button>Replay</button></div>
+      <div class="curve run-icon"><h4>Icon Fill</h4><div class="lbl">0.17s · ease-in-out</div><div class="track"><span class="dot"></span></div><button>Replay</button></div>
+      <div class="curve run-spring"><h4>Carousel Control</h4><div class="lbl">0.25s · cubic-bezier(0.2,0.6,0.3,1)</div><div class="track"><span class="dot"></span></div><button>Replay</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{border:1px solid rgba(245,247,250,0.15);}
+.mock .mhero{position:relative;height:360px;background:radial-gradient(120% 90% at 70% 15%,#F2E49F,#D8A830 30%,#7a5f38 60%,#304848 100%);display:flex;align-items:flex-end;}
+.mock .mhero .inner{padding:var(--unit-lg) var(--unit-md);}
+.mock .mhero h3{color:var(--surface);}
+.mock .mcards{display:grid;grid-template-columns:repeat(3,1fr);gap:0;background:var(--background);}
+.mock .mcard{padding:var(--unit-md);}
+.mock .mcard .mmedia{height:160px;background:linear-gradient(140deg,#304848,#D8A830);margin-bottom:16px;}
+.mock .mcard h4{font-family:"Roboto";text-transform:uppercase;font-size:22px;letter-spacing:-0.5px;color:var(--surface);margin:0 0 8px;}
+.mock .mcard p{font-family:"Roboto Condensed";font-size:16px;color:var(--surface);opacity:.85;margin:0;}
+.mock .mband{background:var(--accent);padding:var(--unit-lg) var(--unit-md);text-align:center;}
+.mock .mband h3{color:var(--text-secondary);margin-bottom:var(--unit-md);}
+@media(max-width:768px){.mock .mcards{grid-template-columns:1fr;}}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <h2 class="headline role-title" style="color:var(--surface)">In Composition</h2>
+    <p class="hero-sub" style="color:var(--surface)">Every part, assembled. Single-column full-bleed rhythm — not a boxed card grid.</p>
+    <div class="mock">
+      <nav class="nav" style="position:static" aria-label="Mock navbar">
+        <span class="logo">Gold Wingz</span>
+        <div class="links"><a href="#">Story</a><a href="#">Fleet</a><a href="#">Archive</a></div>
+        <span class="lang" style="margin-left:auto">EN</span>
+        <button class="nav-cta" style="height:56px;padding:16px 28px">Book</button>
+      </nav>
+      <div class="mhero">
+        <div class="inner">
+          <h3 class="display">The Golden Corridor</h3>
+          <div style="margin-top:var(--unit-md);display:flex;gap:var(--gap);align-items:center">
+            <button class="pill-primary-cream" style="height:64px;padding:20px 32px">Watch</button>
+            <button class="pill-hero-gold">Field notes</button>
+          </div>
+        </div>
+      </div>
+      <div class="mcards">
+        <div class="mcard"><div class="mmedia" role="img" aria-label="Fleet render"></div><h4>The Fleet</h4><p>Rendered gold aircraft, isolated on flat slate.</p></div>
+        <div class="mcard"><div class="mmedia" role="img" aria-label="Archive photo"></div><h4>The Archive</h4><p>Restored negatives and scrapbook grain.</p></div>
+        <div class="mcard"><div class="mmedia" role="img" aria-label="Runway film"></div><h4>The Film</h4><p>An unhurried documentary of altitude and light.</p></div>
+      </div>
+      <div class="mband">
+        <h3 class="headline">Reserve Your Seat</h3>
+        <button class="band-cta">Reserve Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--accent-deep);border-radius:0;padding:var(--unit-lg) var(--unit-md);color:var(--text-secondary);}
+#footer .frow{display:flex;justify-content:space-between;gap:var(--unit-md);flex-wrap:wrap;align-items:center;}
+#footer .fwm{font-family:"Roboto";text-transform:uppercase;font-weight:700;font-size:28px;letter-spacing:-1px;color:var(--text-secondary);}
+#footer .flinks{display:flex;gap:var(--unit-md);flex-wrap:wrap;}
+#footer .flinks a{font-family:"Roboto";text-transform:uppercase;font-size:14px;letter-spacing:-0.3px;color:var(--text-secondary);text-decoration:none;}
+#footer .email{font-family:"Roboto Condensed";font-size:18px;color:var(--text-secondary);}
+#footer .credit{margin-top:var(--unit-md);font-family:"Arial";font-weight:700;font-size:12px;text-transform:uppercase;color:var(--text-secondary);opacity:.8;}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="frow">
+      <span class="fwm">Gold Wingz</span>
+      <div class="flinks">
+        <a href="#">Instagram</a><a href="#">YouTube</a><a href="#">Facebook</a>
+        <a href="#">Press</a><a href="#">Archive</a><a href="#">Store</a>
+      </div>
+    </div>
+    <div class="frow" style="margin-top:var(--unit-md)">
+      <span class="email">hello@gwingz.com</span>
+    </div>
+    <div class="credit">Gold Wingz · gwingz.squarespace.com · Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('#motion .curve').forEach(function(c){
+  var btn=c.querySelector('button');
+  btn.addEventListener('click',function(){
+    c.classList.remove('go');
+    void c.offsetWidth;
+    c.classList.add('go');
+  });
+});
+document.querySelectorAll('.carousel-ctrl').forEach(function(b){
+  var paused=false;
+  b.addEventListener('click',function(){
+    paused=!paused;
+    b.innerHTML=paused?'<iconify-icon icon="lucide:play" aria-hidden="true"></iconify-icon>':'<iconify-icon icon="lucide:pause" aria-hidden="true"></iconify-icon>';
+    b.setAttribute('aria-label',paused?'Play carousel':'Pause carousel');
+  });
+});
+</script>
+</body>
+</html>

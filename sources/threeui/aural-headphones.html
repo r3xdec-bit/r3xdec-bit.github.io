@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AURAL Studio Headphones — r3xdec 3D</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 42%, #181c26, #07090d 72%); font-family: ui-sans-serif, system-ui, sans-serif; color: #f5f3ee; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .hud {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px;
+      background: rgba(12, 14, 20, 0.72); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12);
+    }
+    .swatch { width: 22px; height: 22px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.25); cursor: pointer; transition: transform 0.2s, border-color 0.2s; }
+    .swatch.active, .swatch:hover { transform: scale(1.16); border-color: #fff; }
+    .lbl { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: #a1a8b8; margin-right: 6px; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <span class="lbl">AURAL · DRAG TO ORBIT</span>
+    <button class="swatch active" style="background:#262933" data-c="obsidian" title="Obsidian"></button>
+    <button class="swatch" style="background:#c9b492" data-c="champagne" title="Champagne"></button>
+    <button class="swatch" style="background:#3859a8" data-c="cobalt" title="Cobalt"></button>
+  </div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    const pmrem = new THREE.PMREMGenerator(renderer);
+    scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 50);
+    camera.position.set(2.1, 0.65, 6.6);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.minDistance = 2.8;
+    controls.maxDistance = 8.5;
+
+    const key = new THREE.DirectionalLight(0xfff4e0, 2.2); key.position.set(4, 6, 5); scene.add(key);
+    const rim = new THREE.DirectionalLight(0x7ca7ff, 1.8); rim.position.set(-5, 2, -4); scene.add(rim);
+
+    const metalMat = new THREE.MeshStandardMaterial({ color: 0x262933, metalness: 0.9, roughness: 0.22 });
+    const leatherMat = new THREE.MeshStandardMaterial({ color: 0x16181f, metalness: 0.08, roughness: 0.68 });
+    const trimMat = new THREE.MeshStandardMaterial({ color: 0xd4c09b, metalness: 0.95, roughness: 0.16 });
+    const glowMat = new THREE.MeshBasicMaterial({ color: 0x67e8f9 });
+
+    const rig = new THREE.Group();
+    scene.add(rig);
+
+    // Sculpted headband arch
+    const archCurve = new THREE.CatmullRomCurve3([
+      new THREE.Vector3(-1.32, -0.08, 0),
+      new THREE.Vector3(-1.25, 0.88, 0),
+      new THREE.Vector3(-0.68, 1.56, 0),
+      new THREE.Vector3(0, 1.76, 0),
+      new THREE.Vector3(0.68, 1.56, 0),
+      new THREE.Vector3(1.25, 0.88, 0),
+      new THREE.Vector3(1.32, -0.08, 0),
+    ]);
+    const bandOuter = new THREE.Mesh(new THREE.TubeGeometry(archCurve, 64, 0.145, 24, false), leatherMat);
+    bandOuter.scale.set(1, 1, 1.65);
+    rig.add(bandOuter);
+
+    const bandSpine = new THREE.Mesh(new THREE.TubeGeometry(archCurve, 64, 0.055, 16, false), trimMat);
+    bandSpine.position.y = 0.105;
+    bandSpine.scale.set(1, 1, 1.15);
+    rig.add(bandSpine);
+
+    function buildEarcup(side) {
+      const g = new THREE.Group();
+      // Telescoping aluminum yoke
+      const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.055, 0.055, 0.72, 20), trimMat);
+      stem.position.set(side * 1.32, -0.25, 0);
+      stem.rotation.z = side * -0.08;
+      g.add(stem);
+
+      const cupGroup = new THREE.Group();
+      cupGroup.position.set(side * 1.18, -0.78, 0);
+      cupGroup.rotation.z = side * 0.18;
+
+      // Outer anodized shell
+      const shell = new THREE.Mesh(new THREE.CylinderGeometry(0.66, 0.72, 0.36, 48), metalMat);
+      shell.rotation.z = Math.PI / 2;
+      shell.scale.set(1.16, 1, 0.94);
+      cupGroup.add(shell);
+
+      // Chamfered brushed end-cap
+      const cap = new THREE.Mesh(new THREE.CylinderGeometry(0.54, 0.64, 0.12, 48), trimMat);
+      cap.rotation.z = Math.PI / 2;
+      cap.position.x = side * 0.21;
+      cap.scale.set(1.14, 1, 0.92);
+      cupGroup.add(cap);
+
+      // Acoustic LED ring
+      const led = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.015, 12, 48), glowMat);
+      led.rotation.y = Math.PI / 2;
+      led.position.x = side * 0.275;
+      led.scale.set(0.92, 1.14, 1);
+      cupGroup.add(led);
+
+      // Plush memory-foam ear cushion
+      const pad = new THREE.Mesh(new THREE.TorusGeometry(0.56, 0.21, 24, 48), leatherMat);
+      pad.rotation.y = Math.PI / 2;
+      pad.position.x = -side * 0.22;
+      pad.scale.set(0.92, 1.16, 1);
+      cupGroup.add(pad);
+
+      // Inner acoustic driver mesh
+      const mesh = new THREE.Mesh(new THREE.CircleGeometry(0.52, 36), new THREE.MeshStandardMaterial({ color: 0x0d0f14, roughness: 0.95 }));
+      mesh.rotation.y = side > 0 ? -Math.PI / 2 : Math.PI / 2;
+      mesh.position.x = -side * 0.16;
+      mesh.scale.set(0.92, 1.14, 1);
+      cupGroup.add(mesh);
+
+      g.add(cupGroup);
+      return g;
+    }
+    rig.add(buildEarcup(-1));
+    rig.add(buildEarcup(1));
+
+    // Studio reflective pedestal ring
+    const floorRing = new THREE.Mesh(
+      new THREE.RingGeometry(1.4, 1.44, 64),
+      new THREE.MeshBasicMaterial({ color: 0x67e8f9, transparent: true, opacity: 0.25, side: THREE.DoubleSide })
+    );
+    floorRing.rotation.x = -Math.PI / 2;
+    floorRing.position.y = -1.95;
+    scene.add(floorRing);
+
+    const COLORS = {
+      obsidian:  { metal: 0x262933, leather: 0x16181f, trim: 0xd4c09b, glow: 0x67e8f9 },
+      champagne: { metal: 0xc9b492, leather: 0x3b332b, trim: 0xf4e7cf, glow: 0xfbbf24 },
+      cobalt:    { metal: 0x2b4b9c, leather: 0x141d33, trim: 0xc7d7ff, glow: 0x60a5fa },
+    };
+    document.querySelectorAll('.swatch').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.swatch').forEach(x => x.classList.remove('active'));
+        btn.classList.add('active');
+        const c = COLORS[btn.dataset.c];
+        metalMat.color.setHex(c.metal);
+        leatherMat.color.setHex(c.leather);
+        trimMat.color.setHex(c.trim);
+        glowMat.color.setHex(c.glow);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate(ms) {
+      const t = ms * 0.001;
+      rig.rotation.y = Math.sin(t * 0.55) * 0.45 + t * 0.28;
+      rig.position.y = Math.sin(t * 1.4) * 0.1;
+      floorRing.scale.setScalar(1 + Math.sin(t * 1.8) * 0.04);
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

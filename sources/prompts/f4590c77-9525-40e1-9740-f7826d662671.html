@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1440, initial-scale=1.0">
+  <meta name="view-transition" content="same-origin">
+  <title>FixtureAtlas — Professional fixture intelligence</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.fontshare.com/css?family=instrument-sans@400,500,600,700&family=ibm-plex-mono@400,500&display=swap');
+
+    :root {
+      --canvas: #050505;
+      --raised: #0A0A0A;
+      --soft: #111111;
+      --strong: #181818;
+      --quiet-sep: #282828;
+      --strong-sep: #3A3A3A;
+      --primary-text: #F5F5F2;
+      --secondary-text: #B8B8B3;
+      --muted-text: #74746F;
+      --font-instrument: 'Instrument Sans', sans-serif;
+      --font-plex: 'IBM Plex Mono', monospace;
+    }
+
+    @view-transition {
+      navigation: auto;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--primary-text);
+      font-family: var(--font-instrument);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .grain-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.06;
+      mix-blend-mode: soft-light;
+    }
+
+    .shell {
+      width: min(1440px, calc(100% - 64px));
+      margin-inline: auto;
+    }
+
+    .ui-label {
+      display: block;
+      color: var(--muted-text);
+      font: 500 11px var(--font-plex);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .display-headline {
+      font-size: clamp(52px, 6.2vw, 84px);
+      font-weight: 700;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      margin: 0;
+      max-width: 1200px;
+      white-space: normal;
+      overflow-wrap: normal;
+    }
+
+    .underline-best {
+      position: relative;
+      display: inline-block;
+    }
+
+    .underline-best::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      bottom: 8px;
+      width: calc(100% + 4px);
+      height: 4px;
+      background: var(--secondary-text);
+      opacity: 0.4;
+      border-radius: 4px;
+      transform: rotate(-0.5deg);
+    }
+
+    .glass-surface {
+      background: rgba(10, 10, 10, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--quiet-sep);
+      position: relative;
+    }
+
+    .glass-surface::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.1;
+      pointer-events: none;
+    }
+
+    .fixture-row {
+      display: grid;
+      grid-template-columns: 80px 280px 180px 120px 120px 100px 1fr 40px;
+      align-items: center;
+      gap: 32px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--quiet-sep);
+      transition: color 0.15s ease;
+    }
+
+    .fixture-row:hover {
+      color: var(--primary-text);
+    }
+
+    .image-stage {
+      aspect-ratio: 4/5;
+      background: var(--strong);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-radius: 12px;
+    }
+
+    .category-link {
+      display: block;
+      padding: 12px 0;
+      color: var(--secondary-text);
+      font-size: 16px;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+
+    .category-link:hover { color: var(--primary-text); }
+    .category-link.active {
+      color: var(--primary-text);
+      font-weight: 600;
+    }
+
+    .btn-action {
+      background: transparent;
+      color: var(--secondary-text);
+      padding: 8px 16px;
+      font: 500 11px var(--font-plex);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      border: 1px solid var(--strong-sep);
+      border-radius: 10px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-action:hover {
+      background: var(--strong);
+      border-color: var(--muted-text);
+      color: var(--primary-text);
+    }
+
+    .btn-primary {
+      background: var(--primary-text);
+      color: var(--canvas);
+      padding: 10px 24px;
+      font: 600 13px var(--font-instrument);
+      border-radius: 10px;
+      transition: opacity 0.15s ease;
+    }
+
+    .btn-primary:hover { opacity: 0.9; }
+
+    .tech-value {
+      font-family: var(--font-plex);
+      font-size: 16px;
+      color: var(--secondary-text);
+      letter-spacing: -0.02em;
+    }
+
+    input, select {
+      background: transparent;
+      border: 1px solid var(--quiet-sep);
+      color: var(--primary-text);
+      font: 400 15px var(--font-instrument);
+      padding: 10px 16px;
+      outline: none;
+      border-radius: 12px;
+    }
+
+    .detail-panel {
+      background: var(--raised);
+      border-radius: 20px;
+      margin: 12px 0 32px 0;
+    }
+
+    @media (max-width: 1024px) {
+      .fixture-row {
+        grid-template-columns: 60px 1fr 120px 80px 40px;
+      }
+      .desktop-only { display: none; }
+      .display-headline { font-size: 56px; }
+    }
+  </style>
+
+<meta name="preview-version" content="f3cfacae-36b7-401a-9026-28a6fe2979f8" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:43.664Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "f3cfacae-36b7-401a-9026-28a6fe2979f8");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "f3cfacae-36b7-401a-9026-28a6fe2979f8",
+      timestamp: "2026-11-20T00:19:43.664Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "f3cfacae-36b7-401a-9026-28a6fe2979f8";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+  <div class="grain-overlay"></div>
+  <div class="min-h-screen bg-[#050505] flex flex-col relative">
+    
+    <!-- Header -->
+    <div class="sticky top-0 z-50 glass-surface h-[72px] flex items-center">
+      <sd-component componentId="38ae948a-6fb1-43e5-adc2-f54a077403fa" name="ResearchHeader" props='{"activeItem":"fixtures"}'></sd-component>
+    </div>
+
+    <!-- Editorial Intro -->
+    <div class="py-16 md:py-24 border-b border-[#282828]">
+      <div class="shell">
+        <h1 class="display-headline">Find the <span class="underline-best">best</span> match.</h1>
+      </div>
+    </div>
+
+    <!-- Search Toolbar -->
+    <div class="sticky top-[72px] z-40 glass-surface py-5">
+      <div class="shell flex items-center gap-6">
+        <div class="relative flex-1">
+          <iconify-icon icon="lucide:search" class="absolute left-4 top-1/2 -translate-y-1/2 text-[#74746F]"></iconify-icon>
+          <input type="text" placeholder="Find a fixture, manufacturer, or category..." class="w-full pl-12 h-12">
+        </div>
+        <div class="flex gap-3">
+          <button id="open-filters" class="btn-action h-12 px-6 flex items-center gap-2">
+            <iconify-icon icon="lucide:sliders-horizontal"></iconify-icon>
+            Filters
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-1 pt-24">
+      <div class="shell">
+
+        <section class="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-20 pb-40">
+          <!-- Category Navigation -->
+          <aside class="hidden lg:block">
+            <h3 class="ui-label mb-8">Catalog Groups</h3>
+            <nav class="flex flex-col">
+              <a href="#" id="nav-cat-all" class="category-link active">All Fixtures</a>
+              <a href="#" id="nav-cat-profile" class="category-link">Profile / Framing</a>
+              <a href="#" id="nav-cat-spot" class="category-link">Spot</a>
+              <a href="#" id="nav-cat-wash" class="category-link">Wash</a>
+              <a href="#" id="nav-cat-beam" class="category-link">Beam</a>
+              <a href="#" id="nav-cat-hybrid" class="category-link">Hybrid</a>
+              <a href="#" id="nav-cat-pixel" class="category-link">Pixel / B-Eye</a>
+            </nav>
+          </aside>
+
+          <!-- Main Directory -->
+          <div class="catalog-container">
+            <div class="fixture-row border-t border-[#282828] py-4">
+              <span class="ui-label">Image</span>
+              <span class="ui-label">Manufacturer / Model</span>
+              <span class="ui-label">Classification</span>
+              <span class="ui-label">Output</span>
+              <span class="ui-label">Zoom</span>
+              <span class="ui-label">Rating</span>
+              <span class="ui-label">Actions</span>
+              <span></span>
+            </div>
+
+            <!-- iFORTE Record -->
+            <div class="group">
+              <article class="fixture-row cursor-pointer" onclick="document.getElementById('detail-iforte').classList.toggle('hidden')">
+                <div class="image-stage">
+                  <svg viewBox="0 0 100 125" class="w-10 h-10 opacity-20 fill-white">
+                    <path d="M20 90h60v-10l-15-40v-20h-30v20l-15 40z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="text-[11px] font-mono text-[#74746F] uppercase tracking-wider mb-1">Robe</div>
+                  <h4 class="font-semibold text-[18px] tracking-tight text-[#F5F5F2]">iFORTE <span class="text-[#74746F] font-normal font-mono text-[13px] ml-2">HP Engine</span></h4>
+                </div>
+                <div>
+                  <span class="text-[14px] text-[#B8B8B3] block">Moving-head profile</span>
+                  <span class="text-[11px] text-[#74746F] font-mono uppercase">LED Transferable</span>
+                </div>
+                <span class="tech-value">50,000 lm</span>
+                <span class="tech-value">5°–55°</span>
+                <span class="tech-value">IP65</span>
+                <div class="flex gap-3">
+                  <a href="#" id="btn-alt-iforte" class="btn-action">Alternatives</a>
+                  <button id="btn-comp-iforte" class="btn-action">Compare</button>
+                </div>
+                <button id="btn-exp-iforte" class="text-[#74746F] hover:text-[#F5F5F2] transition-colors">
+                  <iconify-icon icon="lucide:chevron-down" class="text-2xl"></iconify-icon>
+                </button>
+              </article>
+
+              <!-- Expanded Details -->
+              <div id="detail-iforte" class="hidden detail-panel p-12">
+                <div class="grid lg:grid-cols-2 gap-20">
+                  <div>
+                    <h5 class="ui-label mb-10">Published specifications</h5>
+                    <div class="space-y-6">
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">Source Power</span>
+                        <span class="font-mono text-[#F5F5F2]">1,000 W</span>
+                      </div>
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">Input Power</span>
+                        <span class="font-mono text-[#F5F5F2]">1,250 W</span>
+                      </div>
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">Color System</span>
+                        <span class="font-mono text-[#F5F5F2]">CMY + CTO + colour wheels</span>
+                      </div>
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">CRI</span>
+                        <span class="font-mono text-[#F5F5F2]">70</span>
+                      </div>
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">Weight</span>
+                        <span class="font-mono text-[#F5F5F2]">42.5 kg</span>
+                      </div>
+                      <div class="flex justify-between border-b border-[#282828] pb-4">
+                        <span class="text-[#74746F] text-sm">Framing</span>
+                        <span class="font-mono text-[#F5F5F2]">Yes</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="flex flex-col">
+                    <div class="bg-[#111111] p-10 rounded-2xl border border-[#282828] mb-10">
+                      <h5 class="ui-label mb-4">Documentation</h5>
+                      <p class="text-[#B8B8B3] leading-relaxed mb-8">
+                        Technical data reflects official manufacturer documentation as of August 2026. Photometric values based on factory HP LED engine configuration.
+                      </p>
+                      <a href="#" id="cta-full-iforte" class="btn-primary w-full text-center inline-block">
+                        Open Full Product Record
+                      </a>
+                    </div>
+                    <div class="flex gap-4">
+                      <a href="#" id="cta-alt-iforte-exp" class="flex-1 btn-action h-14 flex items-center justify-center">Find Alternatives</a>
+                      <button id="cta-comp-iforte-exp" class="flex-1 btn-action h-14">Add to Compare</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- MAC Viper XIP Record -->
+            <article class="fixture-row">
+              <div class="image-stage">
+                <svg viewBox="0 0 100 125" class="w-9 h-9 opacity-20 fill-white">
+                  <path d="M25 85h50v-10l-10-35v-15h-30v15l-10 35z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-mono text-[#74746F] uppercase tracking-wider mb-1">Martin</div>
+                <h4 class="font-semibold text-[18px] tracking-tight text-[#F5F5F2]">MAC Viper XIP</h4>
+              </div>
+              <div>
+                <span class="text-[14px] text-[#B8B8B3] block">Moving-head profile</span>
+                <span class="text-[11px] text-[#74746F] font-mono uppercase">High-Output LED</span>
+              </div>
+              <span class="tech-value">28,000 lm</span>
+              <span class="tech-value">5.7°–54°</span>
+              <span class="tech-value text-[14px]">XIP Rating</span>
+              <div class="flex gap-3">
+                <a href="#" id="btn-alt-viper" class="btn-action">Alternatives</a>
+                <button id="btn-comp-viper" class="btn-action">Compare</button>
+              </div>
+              <button id="btn-exp-viper" class="text-[#74746F] hover:text-[#F5F5F2]">
+                <iconify-icon icon="lucide:chevron-down" class="text-2xl"></iconify-icon>
+              </button>
+            </article>
+
+            <!-- Arolla Aqua Record -->
+            <article class="fixture-row">
+              <div class="image-stage">
+                <svg viewBox="0 0 100 125" class="w-9 h-9 opacity-20 fill-white">
+                  <path d="M22 88h56v-12l-12-38v-18h-32v18l-12 38z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-mono text-[#74746F] uppercase tracking-wider mb-1">Claypaky</div>
+                <h4 class="font-semibold text-[18px] tracking-tight text-[#F5F5F2]">Arolla Aqua</h4>
+              </div>
+              <div>
+                <span class="text-[14px] text-[#B8B8B3] block">Moving-head profile</span>
+                <span class="text-[11px] text-[#74746F] font-mono uppercase">Weatherproof LED</span>
+              </div>
+              <span class="tech-value">40,360 lm</span>
+              <span class="tech-value">5.5°–50°</span>
+              <span class="tech-value">IP66</span>
+              <div class="flex gap-3">
+                <a href="#" id="btn-alt-arolla" class="btn-action">Alternatives</a>
+                <button id="btn-comp-arolla" class="btn-action">Compare</button>
+              </div>
+              <button id="btn-exp-arolla" class="text-[#74746F] hover:text-[#F5F5F2]">
+                <iconify-icon icon="lucide:chevron-down" class="text-2xl"></iconify-icon>
+              </button>
+            </article>
+
+            <!-- impression X5 Record -->
+            <article class="fixture-row">
+              <div class="image-stage">
+                <svg viewBox="0 0 100 125" class="w-10 h-10 opacity-20 fill-white">
+                  <circle cx="50" cy="45" r="25" />
+                  <rect x="35" y="70" width="30" height="20" />
+                </svg>
+              </div>
+              <div>
+                <div class="text-[11px] font-mono text-[#74746F] uppercase tracking-wider mb-1">GLP</div>
+                <h4 class="font-semibold text-[18px] tracking-tight text-[#F5F5F2]">impression X5 IP Maxx</h4>
+              </div>
+              <div>
+                <span class="text-[14px] text-[#B8B8B3] block">Moving pixel wash</span>
+                <span class="text-[11px] text-[#74746F] font-mono uppercase">Multi-Cell</span>
+              </div>
+              <span class="tech-value">21,000 lm</span>
+              <span class="tech-value">3.3°–66°</span>
+              <span class="tech-value">IP65</span>
+              <div class="flex gap-3">
+                <a href="#" id="btn-alt-glp" class="btn-action">Alternatives</a>
+                <button id="btn-comp-glp" class="btn-action">Compare</button>
+              </div>
+              <button id="btn-exp-glp" class="text-[#74746F] hover:text-[#F5F5F2]">
+                <iconify-icon icon="lucide:chevron-down" class="text-2xl"></iconify-icon>
+              </button>
+            </article>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Compare Dock -->
+    <div class="fixed bottom-10 left-1/2 -translate-x-1/2 z-50 glass-surface px-8 py-5 rounded-[20px] flex items-center gap-12 shadow-[0_24px_80px_rgba(0,0,0,0.8)] border border-white/10">
+      <div class="flex items-center gap-6">
+        <span class="ui-label !text-[#F5F5F2]">Comparison Stack</span>
+        <div class="flex gap-3">
+          <div class="w-10 h-12 bg-[#181818] rounded-lg border border-white/10 flex items-center justify-center">
+             <iconify-icon icon="lucide:lightbulb" class="text-[#74746F]"></iconify-icon>
+          </div>
+          <div class="w-10 h-12 bg-[#181818] rounded-lg border border-white/10 flex items-center justify-center">
+             <iconify-icon icon="lucide:lightbulb" class="text-[#74746F]"></iconify-icon>
+          </div>
+          <div class="w-10 h-12 bg-[#0A0A0A] rounded-lg border border-white/5 border-dashed"></div>
+          <div class="w-10 h-12 bg-[#0A0A0A] rounded-lg border border-white/5 border-dashed"></div>
+        </div>
+      </div>
+      <button id="btn-dock-start" class="btn-primary px-8 h-12 flex items-center justify-center">
+        Compare Selected
+      </button>
+    </div>
+
+    <sd-component componentId="d1d62fb4-361a-4fba-b409-726feb32f7e4" name="ResearchFooter"></sd-component>
+  </div>
+</body>
+</html>

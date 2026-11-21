@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Həzm Sistemi Presentation Cover — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;700&family=ui-sans-serif:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#E9ECEE; color:#16191C; font-family:'Public Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Public Sans',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Public Sans',sans-serif; font-size: 22px; border-bottom: 1px solid #1C39C4; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#1C39C4; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#1C39C4; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #1C39C4; border-radius:16px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#1C39C4; }
+  .swatch-meta p { color:#1C39C4; font-size: 12px; }
+  .specimen { border: 1px solid #1C39C4; border-radius:16px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#1C39C4; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#1C39C4; }
+  .bar { height: 10px; background:#16191C; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #16191C; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #1C39C4; border-radius:16px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #16191C; }
+  .btn-primary { background:#16191C; color:#E9ECEE; }
+  .btn-secondary { background: transparent; color:#16191C; }
+  footer { border-top: 1px solid #1C39C4; padding-top: 20px; font-size: 13px; color:#1C39C4; }
+  footer a { color:#16191C; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>Həzm Sistemi Presentation Cover</h1>
+    <p class="tagline">Light editorial slide system pairing a heavyweight black display type with a bounded diagram panel on a near-white canvas; one cobalt accent rations itself to labels, index numerals, and legend dots.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#E9ECEE"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#E9ECEE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#16191C"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#16191C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1C39C4"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#1C39C4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1C39C4"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#1C39C4</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1E37C3"></div>
+        <div class="swatch-meta"><strong>accent-border</strong><code>#1E37C3</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F4A261"></div>
+        <div class="swatch-meta"><strong>tag-orange</strong><code>#F4A261</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E9C46A"></div>
+        <div class="swatch-meta"><strong>tag-yellow</strong><code>#E9C46A</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Public Sans',sans-serif;font-size:110px;font-weight:800;line-height:0.9">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Public Sans · 110px / w800</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Public Sans',sans-serif;font-size:30px;font-weight:300;line-height:1.63">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Public Sans · 30px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:;font-weight:600;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · ui-sans-serif ·  / w600</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>inset-sm · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>inset-md · 40px</span>
+        <div class="bar" style="width:min(40px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 80px</span>
+        <div class="bar" style="width:min(80px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:16px">card<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#1C39C4;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

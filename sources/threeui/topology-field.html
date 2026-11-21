@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Topographic Contour Field — r3xdec 3D</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #050608; font-family: ui-sans-serif, system-ui, sans-serif; color: #f2f1ec; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: crosshair; }
+    .bar {
+      position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 14px; padding: 10px 18px; border-radius: 999px;
+      background: rgba(12, 13, 18, 0.72); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12);
+      font-size: 12px; color: #b8b6ae;
+    }
+    .bar strong { color: #8ea8f4; font-family: ui-monospace, monospace; letter-spacing: 0.08em; }
+    .bar button {
+      background: rgba(142,168,244,0.14); color: #dce4ff; border: 1px solid rgba(142,168,244,0.35);
+      border-radius: 999px; padding: 5px 12px; font-size: 11px; font-weight: 600; cursor: pointer;
+    }
+    .bar button:hover { background: rgba(142,168,244,0.28); }
+    .bar input[type="range"] { accent-color: #8ea8f4; width: 92px; }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="bar">
+    <strong>TOPO·GL2</strong>
+    <span>Bands</span>
+    <input id="bands" type="range" min="12" max="42" step="1" value="24" />
+    <button id="themeBtn">Palette: Chalk Blue</button>
+  </div>
+  <script>
+    const canvas = document.getElementById('c');
+    const gl = canvas.getContext('webgl2', { antialias: true, preserveDrawingBuffer: true });
+
+    const vs = `#version 300 es
+      in vec2 a_pos;
+      void main() { gl_Position = vec4(a_pos, 0.0, 1.0); }
+    `;
+
+    const fs = `#version 300 es
+      precision highp float;
+      uniform float u_time;
+      uniform vec2 u_res;
+      uniform vec2 u_mouse;
+      uniform float u_bands;
+      uniform vec3 u_accent;
+      out vec4 outColor;
+
+      float hash(vec2 p) {
+        p = fract(p * vec2(123.34, 456.21));
+        p += dot(p, p + 45.32);
+        return fract(p.x * p.y);
+      }
+      float noise(vec2 p) {
+        vec2 i = floor(p);
+        vec2 f = fract(p);
+        vec2 u = f * f * (3.0 - 2.0 * f);
+        return mix(
+          mix(hash(i), hash(i + vec2(1.0, 0.0)), u.x),
+          mix(hash(i + vec2(0.0, 1.0)), hash(i + vec2(1.0, 1.0)), u.x),
+          u.y
+        );
+      }
+      float fbm(vec2 p) {
+        mat2 rot = mat2(1.6, 1.2, -1.2, 1.6);
+        float v = 0.0, a = 0.5;
+        for (int i = 0; i < 5; i++) {
+          v += a * noise(p);
+          p = rot * p * 0.55;
+          a *= 0.5;
+        }
+        return v;
+      }
+
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+        vec2 m = (u_mouse - 0.5 * u_res) / min(u_res.x, u_res.y);
+
+        vec2 warp = vec2(
+          fbm(uv * 2.1 + vec2(u_time * 0.08, -u_time * 0.05)),
+          fbm(uv * 2.1 + vec2(-u_time * 0.06, u_time * 0.09) + 5.2)
+        );
+        float e = fbm(uv * 2.6 + warp * 1.15 + u_time * 0.04);
+
+        // Interactive Gaussian elevation peak under cursor
+        float d = length(uv - m);
+        e += exp(-d * d * 12.0) * 0.32;
+
+        float k = e * u_bands;
+        float fw = max(fwidth(k), 0.001);
+        float distLine = abs(fract(k - 0.5) - 0.5) / fw;
+        float line = 1.0 - smoothstep(0.0, 1.4, distLine);
+
+        float idxBand = mod(floor(k + 0.5), 5.0);
+        float isIndex = step(idxBand, 0.5);
+
+        vec3 bg = mix(vec3(0.02, 0.024, 0.036), vec3(0.05, 0.065, 0.11), clamp(e, 0.0, 1.0));
+        vec3 minorCol = mix(vec3(0.32, 0.36, 0.44), u_accent, 0.35);
+        vec3 majorCol = mix(u_accent, vec3(1.0), 0.35);
+
+        vec3 col = bg;
+        col = mix(col, minorCol, line * (0.38 + 0.32 * isIndex));
+        col += majorCol * line * isIndex * 0.55;
+
+        // Luminous glow around cursor peak
+        col += u_accent * exp(-d * d * 18.0) * 0.25;
+
+        float vig = 1.0 - smoothstep(0.55, 1.25, length(uv));
+        outColor = vec4(col * (0.45 + 0.55 * vig), 1.0);
+      }
+    `;
+
+    function sh(t, s) {
+      const o = gl.createShader(t);
+      gl.shaderSource(o, s); gl.compileShader(o);
+      if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o));
+      return o;
+    }
+    const p = gl.createProgram();
+    gl.attachShader(p, sh(gl.VERTEX_SHADER, vs));
+    gl.attachShader(p, sh(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(p); gl.useProgram(p);
+
+    const b = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    const a = gl.getAttribLocation(p, 'a_pos');
+    gl.enableVertexAttribArray(a); gl.vertexAttribPointer(a, 2, gl.FLOAT, false, 0, 0);
+
+    const uTime = gl.getUniformLocation(p, 'u_time');
+    const uRes = gl.getUniformLocation(p, 'u_res');
+    const uMouse = gl.getUniformLocation(p, 'u_mouse');
+    const uBands = gl.getUniformLocation(p, 'u_bands');
+    const uAccent = gl.getUniformLocation(p, 'u_accent');
+
+    const palettes = [
+      { name: 'Chalk Blue', rgb: [0.557, 0.659, 0.957] },
+      { name: 'Emerald', rgb: [0.16, 0.92, 0.58] },
+      { name: 'Amber', rgb: [0.98, 0.72, 0.28] },
+    ];
+    let pIdx = 0, bands = 24;
+    let mx = window.innerWidth * 0.5, my = window.innerHeight * 0.5, tx = mx, ty = my;
+
+    document.getElementById('bands').addEventListener('input', (e) => { bands = parseFloat(e.target.value); });
+    document.getElementById('themeBtn').addEventListener('click', (e) => {
+      pIdx = (pIdx + 1) % palettes.length;
+      e.target.textContent = 'Palette: ' + palettes[pIdx].name;
+    });
+    window.addEventListener('pointermove', (e) => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      tx = e.clientX * dpr;
+      ty = (window.innerHeight - e.clientY) * dpr;
+    });
+
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      tx = mx = canvas.width * 0.55;
+      ty = my = canvas.height * 0.52;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resize); resize();
+
+    function loop(ms) {
+      mx += (tx - mx) * 0.08; my += (ty - my) * 0.08;
+      gl.uniform1f(uTime, ms * 0.001);
+      gl.uniform2f(uRes, canvas.width, canvas.height);
+      gl.uniform2f(uMouse, mx, my);
+      gl.uniform1f(uBands, bands);
+      gl.uniform3fv(uAccent, palettes[pIdx].rgb);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

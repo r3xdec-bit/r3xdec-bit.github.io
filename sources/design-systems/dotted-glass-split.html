@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Dotted Glass Split — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=ui-sans-serif:wght@400;500;700&family=Comic+Sans+MS:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#000000; font-family:'ui-sans-serif',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'ui-sans-serif',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'ui-sans-serif',sans-serif; font-size: 22px; border-bottom: 1px solid #E3E8EE; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#606266; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#606266; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#F7F9FC; border: 1px solid #E3E8EE; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#606266; }
+  .swatch-meta p { color:#606266; font-size: 12px; }
+  .specimen { border: 1px solid #E3E8EE; border-radius:12px; padding: 20px; background:#F7F9FC; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#606266; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#606266; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#F7F9FC; border: 1px solid #E3E8EE; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #E3E8EE; padding-top: 20px; font-size: 13px; color:#606266; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from app.artd.pro · light mode</div>
+    <h1>Dotted Glass Split</h1>
+    <p class="tagline">A white split-screen auth system: a dot-grid marketing panel with a rationed cyan-blue glow bleeding from the bottom corner, opposite a clean form panel anchored by a single primary-blue pill button.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F7F9FC"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#F7F9FC</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#606266"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#606266</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#A1A1AF"></div>
+        <div class="swatch-meta"><strong>text-muted</strong><code>#A1A1AF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#377DFF"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#377DFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#73A4FF"></div>
+        <div class="swatch-meta"><strong>accent-hover</strong><code>#73A4FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#C3D8FF"></div>
+        <div class="swatch-meta"><strong>accent-tint-7</strong><code>#C3D8FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D7E5FF"></div>
+        <div class="swatch-meta"><strong>accent-tint-8</strong><code>#D7E5FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EBF2FF"></div>
+        <div class="swatch-meta"><strong>accent-tint-9</strong><code>#EBF2FF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E3E8EE"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#E3E8EE</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:20px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · ui-sans-serif · 20px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:18px;font-weight:300;line-height:1.8">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · ui-sans-serif · 18px / w300</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:36px;font-weight:600;line-height:1.11">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · ui-sans-serif · 36px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'ui-sans-serif',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-fine · ui-sans-serif · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Comic Sans MS',sans-serif;font-size:18px;font-weight:700;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-captcha · Comic Sans MS · 18px / w700</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 18px</span>
+        <div class="bar" style="width:min(18px, 100%)"></div></div>
+<div class="bar-row"><span>tight · 5px</span>
+        <div class="bar" style="width:min(5px, 100%)"></div></div>
+<div class="bar-row"><span>loose · 26px</span>
+        <div class="bar" style="width:min(26px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 120px</span>
+        <div class="bar" style="width:min(120px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:5px">button-primary<br><code>5px</code></div>
+<div class="radius-chip" style="border-radius:8px">pill<br><code>8px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#606266;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

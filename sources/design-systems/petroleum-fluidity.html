@@ -1,0 +1,817 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Petrol Ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=Cormorant+Garamond:ital@1&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#0A1F3D;
+  --surface:#102F56;
+  --surface-elevated:rgba(16,47,86,0.45);
+  --surface-glass:rgba(16,47,86,0.8);
+  --text-primary:#EAF1F8;
+  --text-secondary:#DCE3F0;
+  --text-muted:#9CA3AF;
+  --accent-teal:#0E4C5A;
+  --accent-emerald:#00BC7D;
+  --border-hairline:rgba(235,245,245,0.1);
+  --border-teal:#0D4C59;
+  --footer-bg:#061120;
+  --r-control:6px;
+  --r-card:16px;
+  --r-card-lg:24px;
+  --r-pill:9999px;
+  --base:8px;
+  --gap:24px;
+  --section-padding:32px;
+  --tight:4px;
+  --control-gap:6px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+  --font-display:'Sora',system-ui,sans-serif;
+  --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-serif:'Cormorant Garamond',Georgia,serif;
+  --font-mono:'JetBrains Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:16px;
+  line-height:1.63;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--font-display);letter-spacing:-0.9px;line-height:1.11}
+a{color:inherit}
+.wrap{max-width:1440px;margin:0 auto;padding:0 var(--section-padding)}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:-0.3px;
+  color:var(--text-primary);
+  background:var(--surface-elevated);
+  border:1px solid var(--border-hairline);
+  border-radius:var(--r-pill);
+  padding:6px 14px;
+}
+.dot{width:8px;height:8px;border-radius:var(--r-pill);background:var(--accent-emerald);display:inline-block;animation:pulse 2.4s var(--ease) infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+/* navbar */
+.nav{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:59px;border-radius:0;
+  background:rgba(11,31,61,0.85);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border-hairline);
+  display:flex;align-items:center;
+}
+.nav-inner{max-width:1440px;margin:0 auto;width:100%;padding:0 var(--section-padding);display:flex;align-items:center;gap:16px}
+.wordmark{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.3px;color:var(--text-primary);white-space:nowrap}
+.nav-badge{font-family:var(--font-mono);font-size:12px;color:var(--text-primary);background:var(--surface-glass);border:1px solid var(--border-hairline);border-radius:var(--r-pill);padding:2px 10px}
+.nav-glass{display:flex;gap:var(--control-gap)}
+.g-btn{
+  background:var(--surface-glass);color:var(--text-primary);
+  border:1px solid var(--border-hairline);border-radius:var(--r-control);
+  height:27px;padding:4px 10px;font-size:13px;font-family:var(--font-body);
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;
+  transition:background .15s var(--ease);
+}
+.g-btn:hover{background:var(--surface)}
+.nav-links{display:flex;gap:18px;margin-left:auto;font-family:var(--font-display);font-size:14px;font-weight:600;letter-spacing:-0.3px}
+.nav-links a{color:var(--text-secondary);text-decoration:none;transition:color .15s var(--ease)}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{
+  background:var(--accent-teal);color:var(--text-primary);
+  border:none;border-radius:var(--r-pill);height:24px;padding:4px 12px;
+  font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:-0.3px;
+  cursor:pointer;display:inline-flex;align-items:center;
+  box-shadow:rgba(0,0,0,0.1) 0 1px 3px 0,rgba(0,0,0,0.1) 0 1px 2px -1px;
+}
+/* hero */
+#hero{padding:96px 0 72px;position:relative;overflow:hidden}
+.hero-wash{position:absolute;inset:0;pointer-events:none;
+  background:
+   radial-gradient(circle at 12% 8%,rgba(14,76,90,0.32),rgba(0,0,0,0) 42%),
+   radial-gradient(circle at 90% 12%,rgba(154,207,223,0.14),rgba(0,0,0,0) 45%);
+}
+.hero-stack{position:relative;text-align:center;max-width:820px;margin:0 auto}
+.hero-h1{font-family:var(--font-display);font-weight:700;font-size:60px;line-height:1;letter-spacing:-1.5px;margin:24px 0}
+.hero-sub{font-size:18px;line-height:1.63;color:var(--text-secondary);max-width:600px;margin:0 auto 32px}
+.hero-ctas{display:flex;flex-direction:column;align-items:center;gap:12px}
+.btn-primary{
+  background:var(--text-primary);color:var(--background);
+  border:none;border-radius:var(--r-pill);height:48px;padding:0 28px;
+  font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-0.3px;
+  cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  transition:transform .15s var(--ease);
+}
+.btn-primary:hover{transform:translateY(-1px)}
+.btn-outline{
+  background:transparent;color:var(--text-primary);
+  border:1px solid var(--border-teal);border-radius:var(--r-pill);height:48px;padding:0 28px;
+  font-family:var(--font-mono);font-size:13px;cursor:pointer;
+  display:inline-flex;align-items:center;gap:8px;transition:background .15s var(--ease);
+}
+.btn-outline:hover{background:var(--surface-elevated)}
+.chip-row{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap);margin-top:56px}
+.chip{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:16px;text-align:left}
+.chip iconify-icon{font-size:20px;color:var(--text-secondary)}
+.chip .lab{font-size:12px;color:var(--text-muted);font-family:var(--font-mono);margin:10px 0 4px}
+.chip .val{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-0.6px}
+@media(max-width:768px){.hero-h1{font-size:40px;letter-spacing:-1px}.chip-row{grid-template-columns:repeat(2,1fr)}.nav-links{display:none}}
+@media(max-width:640px){.hero-h1{font-size:32px}.nav-glass{display:none}}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav-inner">
+    <span class="wordmark">Petrol&nbsp;Ledger</span>
+    <span class="nav-badge">v.alpha</span>
+    <div class="nav-glass">
+      <button class="g-btn" aria-label="Toggle grid"><iconify-icon icon="lucide:grid-3x3" aria-hidden="true"></iconify-icon></button>
+      <button class="g-btn" aria-label="Toggle contrast"><iconify-icon icon="lucide:contrast" aria-hidden="true"></iconify-icon></button>
+      <button class="g-btn" aria-label="Toggle tokens"><iconify-icon icon="lucide:braces" aria-hidden="true"></iconify-icon></button>
+    </div>
+    <div class="nav-links">
+      <a href="#palette">Palette</a>
+      <a href="#type-scale">Type</a>
+      <a href="#components">Components</a>
+      <a href="#motion">Motion</a>
+      <a href="#composition">In use</a>
+    </div>
+    <button class="nav-cta">Download kit</button>
+  </div>
+</nav>
+
+<header id="hero">
+  <div class="hero-wash" aria-hidden="true"></div>
+  <div class="wrap hero-stack">
+    <span class="eyebrow"><span class="dot" aria-hidden="true"></span>Brand governance · live specification</span>
+    <h1 class="hero-h1">A ledger for the brand, kept in petrol and ice.</h1>
+    <p class="hero-sub">A dark-mode-default governance system. Auditable tokens, hairline glass controls, and one emerald signal held in reserve — documentation that reads like a spec sheet.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary">Open the manual <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+      <button class="btn-outline"><span style="font-family:var(--font-mono)">[esc]</span> View source tokens</button>
+    </div>
+    <div class="chip-row">
+      <div class="chip"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon><div class="lab">SWATCHES</div><div class="val">5 ledger</div></div>
+      <div class="chip"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon><div class="lab">TYPE ROLES</div><div class="val">7 sizes</div></div>
+      <div class="chip"><iconify-icon icon="lucide:square-stack" aria-hidden="true"></iconify-icon><div class="lab">RADII</div><div class="val">4 steps</div></div>
+      <div class="chip"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon><div class="lab">MOTION</div><div class="val">150ms</div></div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{padding:72px 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;margin-bottom:40px;border-bottom:1px solid var(--border-hairline);padding-bottom:24px}
+.sec-num{font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+.sec-title{font-family:var(--font-display);font-weight:700;font-size:36px;letter-spacing:-0.9px;line-height:1.11}
+.sec-desc{font-size:14px;color:var(--text-secondary);max-width:420px}
+.pal-group{margin-bottom:36px}
+.pal-group h3{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:-0.3px;color:var(--text-muted);text-transform:uppercase;margin-bottom:16px}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--gap)}
+.pal-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);overflow:hidden}
+.pal-swatch{height:88px}
+.checker{background-image:linear-gradient(45deg,#1a2f4a 25%,transparent 25%),linear-gradient(-45deg,#1a2f4a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#1a2f4a 75%),linear-gradient(-45deg,transparent 75%,#1a2f4a 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;background-color:#0e2440}
+.pal-body{padding:16px}
+.pal-name{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-0.3px}
+.pal-val{font-family:var(--font-mono);font-size:12px;color:var(--text-secondary);margin:6px 0}
+.pal-note{font-size:13px;color:var(--text-muted);line-height:1.5}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-num">01 / COLOR LEDGER</div>
+        <h2 class="sec-title">The palette, entered by hand.</h2>
+      </div>
+      <p class="sec-desc">A near-monochrome navy field. Warm interactive teal is rationed; emerald is reserved for validation only.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#0A1F3D"></div><div class="pal-body"><div class="pal-name">Canvas</div><div class="pal-val">#0A1F3D</div><div class="pal-note">Page background — the dominant navy field.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#102F56"></div><div class="pal-body"><div class="pal-name">Surface</div><div class="pal-val">#102F56</div><div class="pal-note">Flat elevated card and swatch fill.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch checker"><div style="height:100%;background:rgba(16,47,86,0.45)"></div></div><div class="pal-body"><div class="pal-name">Surface glass</div><div class="pal-val">rgba(16,47,86,0.45)</div><div class="pal-note">Translucent panel fill for feature cards.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#061120"></div><div class="pal-body"><div class="pal-name">Footer</div><div class="pal-val">#061120</div><div class="pal-note">Deepest register — closing footer bar.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text ink</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#EAF1F8"></div><div class="pal-body"><div class="pal-name">Ice</div><div class="pal-val">#EAF1F8</div><div class="pal-note">Primary text and highest-contrast controls.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#DCE3F0"></div><div class="pal-body"><div class="pal-name">Ice soft</div><div class="pal-val">#DCE3F0</div><div class="pal-note">Softened secondary body copy.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#9CA3AF"></div><div class="pal-body"><div class="pal-name">Muted</div><div class="pal-val">#9CA3AF</div><div class="pal-note">Tertiary labels and disabled states.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#0E4C5A"></div><div class="pal-body"><div class="pal-name">Petrol teal</div><div class="pal-val">#0E4C5A</div><div class="pal-note">The sole interactive accent — navbar CTA and borders.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#00BC7D"></div><div class="pal-body"><div class="pal-name">Emerald</div><div class="pal-val">#00BC7D</div><div class="pal-note">Status and validation dots only — never a CTA.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch checker"><div style="height:100%;background:rgba(235,245,245,0.1)"></div></div><div class="pal-body"><div class="pal-name">Hairline</div><div class="pal-val">rgba(235,245,245,0.1)</div><div class="pal-note">Near-invisible border on every glass surface.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:72px 0}
+.spec{border-bottom:1px solid var(--border-hairline);padding:28px 0;display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:baseline}
+.spec:last-child{border-bottom:none}
+.spec-meta{font-family:var(--font-mono);font-size:12px;color:var(--text-muted);line-height:1.8}
+.ramp{display:flex;gap:24px;flex-wrap:wrap;margin-top:8px}
+.ramp span{font-family:var(--font-display)}
+@media(max-width:768px){.spec{grid-template-columns:1fr}}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-num">02 / TYPOGRAPHY LAB</div><h2 class="sec-title">Sora engineered, serif footnoted.</h2></div>
+      <p class="sec-desc">Geometric grotesk with tight negative tracking for structure; system sans for body; one italic serif as accent.</p>
+    </div>
+
+    <div class="spec">
+      <div style="font-family:var(--font-display);font-weight:700;font-size:60px;line-height:1;letter-spacing:-1.5px">Display large</div>
+      <div class="spec-meta">Sora · 700<br>60px / lh 1 / -1.5px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-display);font-weight:700;font-size:36px;letter-spacing:-0.9px;line-height:1.11">Headline medium</div>
+      <div class="spec-meta">Sora · 700<br>36px / lh 1.11 / -0.9px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-body);font-size:18px;line-height:1.63">Body copy sits at reduced-opacity ice rather than gray-on-black, keeping the whole system inside a single navy hue family.</div>
+      <div class="spec-meta">System sans · 400<br>18px / lh 1.63</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:-0.3px">LABEL / EYEBROW CAPS</div>
+      <div class="spec-meta">Sora · 700<br>14px / lh 1.43 / -0.3px</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-body);font-size:14px;line-height:1.5;color:var(--text-secondary)">In-card description text, softened for secondary emphasis.</div>
+      <div class="spec-meta">System sans · 400<br>14px / lh 1.5</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-serif);font-style:italic;font-size:24px;color:var(--text-secondary)">An editorial voice, held to a single specimen.</div>
+      <div class="spec-meta">Cormorant Garamond · italic<br>accent-serif · footnote use only</div>
+    </div>
+    <div class="spec">
+      <div style="font-family:var(--font-mono);font-size:12px;color:var(--text-secondary)">token://coord · #EAF1F8 · rgb(234,241,248)</div>
+      <div class="spec-meta">JetBrains Mono · 400<br>12px · coordinate readouts</div>
+    </div>
+
+    <div class="spec">
+      <div>
+        <div class="spec-meta" style="margin-bottom:8px">SORA WEIGHT RAMP</div>
+        <div class="ramp">
+          <span style="font-weight:400;font-size:28px">400</span>
+          <span style="font-weight:600;font-size:28px">600</span>
+          <span style="font-weight:700;font-size:28px">700</span>
+        </div>
+      </div>
+      <div class="spec-meta">Regular · Semibold · Bold</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:72px 0}
+.comp-fam{margin-bottom:64px}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:8px;flex-wrap:wrap}
+.comp-head h3{font-family:var(--font-display);font-weight:700;font-size:22px;letter-spacing:-0.6px}
+.comp-count{font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+.comp-lead{font-size:14px;color:var(--text-secondary);max-width:640px;margin-bottom:20px}
+.comp-body{display:grid;grid-template-columns:1fr 300px;gap:var(--gap);align-items:start}
+.comp-demo{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card-lg);padding:32px}
+.spec-card{background:var(--surface);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:16px;font-family:var(--font-mono);font-size:11.5px;line-height:1.9;color:var(--text-secondary)}
+.spec-card b{color:var(--text-primary);font-weight:400}
+.row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.matrix{width:100%;border-collapse:collapse;font-size:13px}
+.matrix th{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);font-weight:400;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border-hairline)}
+.matrix td{padding:12px;border-bottom:1px solid var(--border-hairline);vertical-align:middle}
+.matrix tr:last-child td{border-bottom:none}
+.disabled{opacity:.45;cursor:not-allowed}
+/* button variants */
+.b-glass{background:var(--surface-glass);color:var(--text-primary);border:1px solid var(--border-hairline);border-radius:var(--r-control);height:27px;padding:4px 10px;font-size:13px;font-family:var(--font-body);cursor:pointer;transition:background .15s var(--ease)}
+.b-glass:hover{background:var(--surface)}
+.b-ghost{background:rgba(17,47,87,0.6);color:var(--text-muted);border:none;border-radius:var(--r-pill);height:24px;padding:4px 12px;font-size:13px;cursor:pointer;transition:color .15s var(--ease)}
+.b-ghost:hover{color:var(--text-primary)}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--gap)}
+.grid5{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--gap)}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.m-chip{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:16px}
+.m-chip iconify-icon{font-size:20px;color:var(--text-secondary)}
+.m-chip .lab{font-size:12px;color:var(--text-muted);font-family:var(--font-mono);margin:10px 0 4px}
+.m-chip .val{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-0.5px}
+.led-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);overflow:hidden}
+.led-sw{height:64px}
+.led-b{padding:14px}
+.led-name{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:-0.3px}
+.led-role{font-size:12px;color:var(--text-muted);margin:2px 0 10px}
+.led-v{font-family:var(--font-mono);font-size:11px;color:var(--text-secondary);line-height:1.8}
+.logo-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card-lg);overflow:hidden}
+.logo-top{padding:16px;display:flex;justify-content:space-between;align-items:center}
+.logo-top .h{font-family:var(--font-display);font-weight:700;font-size:14px;letter-spacing:-0.3px}
+.status-chip{display:inline-flex;align-items:center;gap:6px;font-family:var(--font-mono);font-size:11px;background:var(--surface);border:1px solid var(--border-hairline);border-radius:var(--r-pill);padding:3px 10px}
+.logo-media{position:relative;height:180px;display:flex;align-items:center;justify-content:center;
+  background-image:linear-gradient(var(--border-hairline) 1px,transparent 1px),linear-gradient(90deg,var(--border-hairline) 1px,transparent 1px);background-size:24px 24px}
+.logo-scrim{position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(14,76,90,0.4),rgba(0,0,0,0) 70%);pointer-events:none}
+.logo-mark{position:relative;font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:-1px}
+.rule-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:24px;box-shadow:rgba(0,0,0,0.1) 0 1px 3px 0,rgba(0,0,0,0.1) 0 1px 2px -1px}
+.rule-eb{font-family:var(--font-mono);font-size:12px;color:var(--text-muted)}
+.rule-card iconify-icon{font-size:22px;color:var(--text-secondary);display:block;margin:12px 0}
+.rule-card h4{font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.3px;margin-bottom:8px}
+.rule-card p{font-size:13px;color:var(--text-secondary);line-height:1.5;margin-bottom:12px}
+.rule-fn{font-family:var(--font-mono);font-size:11px;color:var(--accent-emerald);text-decoration:none}
+.atmo-card{position:relative;border-radius:var(--r-card-lg);overflow:hidden;height:220px}
+.atmo-scrim{position:absolute;inset:0}
+.atmo-lab{position:absolute;left:12px;bottom:12px;font-family:var(--font-mono);font-size:11px;background:rgba(16,47,86,0.8);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border:1px solid var(--border-hairline);border-radius:var(--r-pill);padding:3px 10px}
+.sub-card{background:var(--surface);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:24px}
+.sub-lab{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);text-transform:uppercase;margin-bottom:12px}
+@media(max-width:1024px){.comp-body{grid-template-columns:1fr}}
+@media(max-width:768px){.grid4,.grid5,.grid3,.grid2{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.grid4,.grid5,.grid3,.grid2{grid-template-columns:1fr}}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-num">03 / COMPONENT INVENTORY</div><h2 class="sec-title">Every control, on the record.</h2></div>
+      <p class="sec-desc">The measured families, rendered live with the tokens they consume.</p>
+    </div>
+
+    <!-- NAVBAR -->
+    <div class="comp-fam" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="comp-count">×1 · 11 interactive items</span></div>
+      <p class="comp-lead">Edge-to-edge, zero-radius flat bar, 59px tall, sticky, with a blur(24px) backdrop. Never an inset capsule.</p>
+      <div class="comp-body">
+        <div class="comp-demo" style="padding:0;overflow:hidden">
+          <div style="background:rgba(11,31,61,0.85);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);height:59px;display:flex;align-items:center;padding:0 20px;gap:14px">
+            <span class="wordmark">Petrol&nbsp;Ledger</span>
+            <span class="nav-badge">v.alpha</span>
+            <div class="nav-glass" style="margin-left:8px">
+              <button class="g-btn" aria-label="Grid"><iconify-icon icon="lucide:grid-3x3" aria-hidden="true"></iconify-icon></button>
+              <button class="g-btn" aria-label="Contrast"><iconify-icon icon="lucide:contrast" aria-hidden="true"></iconify-icon></button>
+              <button class="g-btn" aria-label="Tokens"><iconify-icon icon="lucide:braces" aria-hidden="true"></iconify-icon></button>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:14px;font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:-0.3px;color:var(--text-secondary)"><a href="#" style="text-decoration:none">Symbols</a><a href="#" style="text-decoration:none">Color</a></div>
+            <button class="nav-cta">Download kit</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--navbar</b><br>
+          fill <b>rgba(11,31,61,0.85)</b><br>
+          backdrop <b>blur(24px)</b><br>
+          height <b>59</b> · radius <b>0</b><br>
+          border-b <b>border-hairline</b><br>
+          cta fill <b>accent-teal</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- BUTTON MATRIX -->
+    <div class="comp-fam" data-tier-a-component="button-hero-primary">
+      <div class="comp-head"><h3>Buttons — variant × state</h3><span class="comp-count">hero primary ×1</span></div>
+      <p class="comp-lead">The hero primary is a near-white cream pill — the highest-contrast control on the first screen, held apart from the teal navbar CTA.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <table class="matrix">
+            <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Hero primary</td>
+                <td><button class="btn-primary" style="height:48px">Open manual</button></td>
+                <td><button class="btn-primary" style="height:48px;transform:translateY(-1px);box-shadow:0 4px 14px rgba(0,0,0,.25)">Open manual</button></td>
+                <td><button class="btn-primary disabled" style="height:48px;background:var(--surface);color:var(--text-muted)" disabled>Open manual</button></td>
+              </tr>
+              <tr>
+                <td>Navbar CTA</td>
+                <td><button class="nav-cta" style="height:24px">Download kit</button></td>
+                <td><button class="nav-cta" style="height:24px;filter:brightness(1.15)">Download kit</button></td>
+                <td><button class="nav-cta disabled" style="height:24px;background:var(--surface);color:var(--text-muted)" disabled>Download kit</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec-card">
+          <b>--btn-hero-primary</b><br>
+          fill <b>text-primary #EAF1F8</b><br>
+          text <b>background #0A1F3D</b><br>
+          radius <b>pill</b> · height <b>48</b><br>
+          type <b>label-md</b><br>
+          motion <b>ease 0.15s</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- HERO SECONDARY -->
+    <div class="comp-fam" data-tier-a-component="button-hero-secondary">
+      <div class="comp-head"><h3>Hero secondary CTA</h3><span class="comp-count">×1</span></div>
+      <p class="comp-lead">A bordered outline pill with a mono-tagged label, sitting at lower visual weight beside the primary.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="row">
+            <button class="btn-outline">[esc] View tokens</button>
+            <button class="btn-outline" style="background:var(--surface-elevated)">[esc] View tokens</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-hero-secondary</b><br>
+          fill <b>transparent</b><br>
+          border <b>border-teal #0D4C59</b><br>
+          radius <b>pill</b> · height <b>48</b><br>
+          type <b>label-mono</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- GLASS UTILITY -->
+    <div class="comp-fam" data-tier-a-component="button-glass-utility">
+      <div class="comp-head"><h3>Glass utility button</h3><span class="comp-count">×6</span></div>
+      <p class="comp-lead">Grouped hairline-bordered controls with a 6px radius — slightly rounded, never a pill. Hover deepens the fill to solid surface.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="row">
+            <button class="b-glass"><iconify-icon icon="lucide:grid-3x3" aria-hidden="true"></iconify-icon> Grid</button>
+            <button class="b-glass"><iconify-icon icon="lucide:ruler" aria-hidden="true"></iconify-icon> Baseline</button>
+            <button class="b-glass"><iconify-icon icon="lucide:contrast" aria-hidden="true"></iconify-icon> Contrast</button>
+            <button class="b-glass"><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon> Preview</button>
+            <button class="b-glass"><iconify-icon icon="lucide:braces" aria-hidden="true"></iconify-icon> Tokens</button>
+            <button class="b-glass" style="background:var(--surface)"><iconify-icon icon="lucide:copy" aria-hidden="true"></iconify-icon> Copy</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-glass-utility</b><br>
+          fill <b>rgba(16,47,86,0.8)</b><br>
+          text <b>text-primary</b><br>
+          radius <b>r-control 6</b> · height <b>27</b><br>
+          border <b>hairline 0.1</b><br>
+          hover <b>surface #102F56</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- GHOST -->
+    <div class="comp-fam" data-tier-a-component="button-ghost">
+      <div class="comp-head"><h3>Ghost text-button</h3><span class="comp-count">×3</span></div>
+      <p class="comp-lead">Tertiary in-panel toggles. Muted label brightens to ice on hover, full pill radius, 24px height.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="row">
+            <button class="b-ghost">Reset view</button>
+            <button class="b-ghost">Show guides</button>
+            <button class="b-ghost" style="color:var(--text-primary)">Hide labels</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--btn-ghost</b><br>
+          fill <b>rgba(17,47,87,0.6)</b><br>
+          text <b>text-muted #9CA3AF</b><br>
+          hover text <b>text-primary</b><br>
+          radius <b>pill</b> · height <b>24</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- METADATA CHIP CARD -->
+    <div class="comp-fam" data-tier-a-component="metadata-chip-card">
+      <div class="comp-head"><h3>Metadata chip card</h3><span class="comp-count">×4 · one row</span></div>
+      <p class="comp-lead">Translucent compact cards, 16px radius and 16px padding, icon over small label over large bold value.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid4">
+            <div class="m-chip"><iconify-icon icon="lucide:hash" aria-hidden="true"></iconify-icon><div class="lab">VERSION</div><div class="val">alpha</div></div>
+            <div class="m-chip"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon><div class="lab">SURFACES</div><div class="val">4</div></div>
+            <div class="m-chip"><iconify-icon icon="lucide:check-check" aria-hidden="true"></iconify-icon><div class="lab">CONTRAST</div><div class="val">AA+</div></div>
+            <div class="m-chip"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon><div class="lab">UPDATED</div><div class="val">live</div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--metadata-chip</b><br>
+          fill <b>surface-elevated 0.45</b><br>
+          radius <b>r-card 16</b> · pad <b>16</b><br>
+          label <b>label-mono</b><br>
+          value <b>display-lg family</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLOR LEDGER CARD -->
+    <div class="comp-fam" data-tier-a-component="color-ledger-card">
+      <div class="comp-head"><h3>Color-ledger card</h3><span class="comp-count">×5 · one row</span></div>
+      <p class="comp-lead">Documentation-grade transparency: a flat solid swatch over name, role, and literal hex / RGB / Pantone rows.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid5">
+            <div class="led-card"><div class="led-sw" style="background:#0A1F3D"></div><div class="led-b"><div class="led-name">Canvas</div><div class="led-role">Background</div><div class="led-v">#0A1F3D<br>rgb 10 31 61<br>P 296 C</div></div></div>
+            <div class="led-card"><div class="led-sw" style="background:#102F56"></div><div class="led-b"><div class="led-name">Surface</div><div class="led-role">Elevated</div><div class="led-v">#102F56<br>rgb 16 47 86<br>P 294 C</div></div></div>
+            <div class="led-card"><div class="led-sw" style="background:#0E4C5A"></div><div class="led-b"><div class="led-name">Petrol</div><div class="led-role">Interactive</div><div class="led-v">#0E4C5A<br>rgb 14 76 90<br>P 316 C</div></div></div>
+            <div class="led-card"><div class="led-sw" style="background:#EAF1F8"></div><div class="led-b"><div class="led-name">Ice</div><div class="led-role">Text ink</div><div class="led-v">#EAF1F8<br>rgb 234 241 248<br>P 656 C</div></div></div>
+            <div class="led-card"><div class="led-sw" style="background:#00BC7D"></div><div class="led-b"><div class="led-name">Emerald</div><div class="led-role">Status</div><div class="led-v">#00BC7D<br>rgb 0 188 125<br>P 3395 C</div></div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--color-ledger-card</b><br>
+          swatch <b>flat solid</b><br>
+          radius <b>r-card 16</b><br>
+          value type <b>label-mono</b><br>
+          role <b>body-sm muted</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGO COMPARISON -->
+    <div class="comp-fam" data-tier-a-component="logo-version-comparison-card">
+      <div class="comp-head"><h3>Logo-version comparison card</h3><span class="comp-count">×2 · 49/49 split</span></div>
+      <p class="comp-lead">Full-bleed media on a guide grid with a bottom-anchored radial under-glow. Status chip and header above.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid2">
+            <div class="logo-card">
+              <div class="logo-top"><span class="h">Principal mark</span><span class="status-chip"><span class="dot" aria-hidden="true"></span>approved</span></div>
+              <div class="logo-media"><div class="logo-scrim" aria-hidden="true"></div><div class="logo-mark" style="color:var(--text-primary)">PL</div></div>
+            </div>
+            <div class="logo-card">
+              <div class="logo-top"><span class="h">Inverse mark</span><span class="status-chip"><span class="dot" aria-hidden="true"></span>approved</span></div>
+              <div class="logo-media" style="background-color:#EAF1F8;background-image:linear-gradient(rgba(10,31,61,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(10,31,61,0.1) 1px,transparent 1px)"><div class="logo-mark" style="color:var(--background)">PL</div></div>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--logo-compare-card</b><br>
+          fill <b>surface-elevated 0.45</b><br>
+          radius <b>r-card-lg 24</b><br>
+          scrim <b>radial teal 0.4</b><br>
+          grid <b>hairline 24px</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRINCIPLE / RULE -->
+    <div class="comp-fam" data-tier-a-component="principle-rule-card">
+      <div class="comp-head"><h3>Principle / rule card</h3><span class="comp-count">×4 · one row</span></div>
+      <p class="comp-lead">Numbered eyebrow, icon, bold rule name, body, and a small footnote link. Carries a soft dual-layer drop shadow.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid4">
+            <div class="rule-card"><div class="rule-eb">01</div><iconify-icon icon="lucide:ratio" aria-hidden="true"></iconify-icon><h4>Ration the accent</h4><p>Petrol teal signals interaction. Reserve it; never let it flood a surface.</p><a class="rule-fn" href="#">see §palette →</a></div>
+            <div class="rule-card"><div class="rule-eb">02</div><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon><h4>Emerald means valid</h4><p>Emerald appears only on status and validation dots — never as a CTA.</p><a class="rule-fn" href="#">see §status →</a></div>
+            <div class="rule-card"><div class="rule-eb">03</div><iconify-icon icon="lucide:square-stack" aria-hidden="true"></iconify-icon><h4>Radius by elevation</h4><p>24px feature, 16px compact, 6px glass, pill for chips. Never flatten.</p><a class="rule-fn" href="#">see §depth →</a></div>
+            <div class="rule-card"><div class="rule-eb">04</div><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon><h4>One serif, once</h4><p>Cormorant Garamond is a footnote accent, not a running face.</p><a class="rule-fn" href="#">see §type →</a></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--card-rule</b><br>
+          fill <b>surface-elevated 0.45</b><br>
+          radius <b>r-card 16</b> · pad <b>24</b><br>
+          shadow <b>dual-layer 0.1</b><br>
+          heading <b>label-md</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- ATMOSPHERE GALLERY -->
+    <div class="comp-fam" data-tier-a-component="atmosphere-gallery-card">
+      <div class="comp-head"><h3>Atmosphere gallery card</h3><span class="comp-count">×3 · 32/32/32</span></div>
+      <p class="comp-lead">Media-forward panels with fine linework fills and a bottom-anchored radial under-glow, each tagged with a corner chip.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid3">
+            <div class="atmo-card"><div class="atmo-scrim" style="background:linear-gradient(160deg,#102F56,#0A1F3D),radial-gradient(circle at 50% 100%,rgba(14,76,90,0.4),transparent 70%);background-blend-mode:screen"></div><span class="atmo-lab">01 · petrol drift</span></div>
+            <div class="atmo-card"><div class="atmo-scrim" style="background:repeating-linear-gradient(45deg,rgba(154,207,223,0.06) 0 1px,transparent 1px 12px),#0A1F3D"></div><div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(154,207,223,0.35),transparent 70%)"></div><span class="atmo-lab">02 · ice grid</span></div>
+            <div class="atmo-card"><div class="atmo-scrim" style="background:conic-gradient(from 200deg at 50% 120%,#102F56,#0A1F3D,#061120,#102F56)"></div><div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 100%,rgba(234,241,248,0.3),transparent 70%)"></div><span class="atmo-lab">03 · deep field</span></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--atmosphere-card</b><br>
+          radius <b>r-card-lg 24</b><br>
+          scrim <b>radial ice / teal / white</b><br>
+          label <b>label-mono blur(12px)</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- TYPOGRAPHY SPECIMEN -->
+    <div class="comp-fam" data-tier-a-component="typography-specimen-panel">
+      <div class="comp-head"><h3>Typography specimen panel</h3><span class="comp-count">×1 · 49/49</span></div>
+      <p class="comp-lead">Two bordered sub-cards contrast the structural Sora face with the single italic serif accent.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="grid2">
+            <div class="sub-card"><div class="sub-lab">Sora · structural</div><div style="font-family:var(--font-display);font-weight:700;font-size:34px;letter-spacing:-0.9px;line-height:1.11">Engineered geometry.</div></div>
+            <div class="sub-card"><div class="sub-lab">Cormorant · accent</div><div style="font-family:var(--font-serif);font-style:italic;font-size:30px;color:var(--text-secondary)">An editorial aside.</div></div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--type-specimen</b><br>
+          sub-card <b>surface + hairline</b><br>
+          radius <b>r-card 16</b><br>
+          a <b>display family</b> · b <b>accent-serif</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- KIT DOWNLOAD -->
+    <div class="comp-fam" data-tier-a-component="kit-download-closing-band">
+      <div class="comp-head"><h3>Kit-download closing band</h3><span class="comp-count">×1 · full width</span></div>
+      <p class="comp-lead">A spacious single panel: left copy against right-stacked CTAs, closing the page.</p>
+      <div class="comp-body">
+        <div class="comp-demo" style="display:flex;justify-content:space-between;gap:32px;flex-wrap:wrap;align-items:center">
+          <div style="max-width:440px">
+            <div class="rule-eb" style="font-family:var(--font-mono);font-size:12px;color:var(--text-muted)">GET THE KIT</div>
+            <h4 style="font-family:var(--font-display);font-weight:700;font-size:28px;letter-spacing:-0.9px;margin:8px 0">Take the ledger with you.</h4>
+            <p style="font-size:14px;color:var(--text-secondary)">Tokens, type, and every measured control — packaged as an auditable spec.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <button class="btn-primary" style="height:48px">Download kit <iconify-icon icon="lucide:download" aria-hidden="true"></iconify-icon></button>
+            <button class="btn-outline" style="height:48px">[esc] Browse online</button>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--kit-closing-band</b><br>
+          fill <b>surface-elevated 0.45</b><br>
+          radius <b>r-card-lg 24</b><br>
+          primary <b>btn-hero-primary</b><br>
+          secondary <b>btn-outline</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER B: status set -->
+    <div class="comp-fam">
+      <div class="comp-head"><h3>Status set</h3><span class="comp-count">derived</span></div>
+      <p class="comp-lead">Emerald reserved for live and validated states, on the documented surfaces.</p>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div class="row">
+            <span class="status-chip"><span class="dot" aria-hidden="true"></span>live</span>
+            <span class="status-chip"><span style="width:8px;height:8px;border-radius:9999px;background:var(--accent-emerald)"></span>validated</span>
+            <span class="status-chip"><span style="width:8px;height:8px;border-radius:9999px;background:var(--accent-teal)"></span>interactive</span>
+            <span class="status-chip"><span style="width:8px;height:8px;border-radius:9999px;background:var(--text-muted)"></span>archived</span>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--status-set</b><br>
+          dot <b>accent-emerald</b><br>
+          surface <b>surface #102F56</b><br>
+          type <b>label-mono</b> · radius <b>pill</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIER B: tabs -->
+    <div class="comp-fam">
+      <div class="comp-head"><h3>Tabs</h3><span class="comp-count">derived</span></div>
+      <div class="comp-body">
+        <div class="comp-demo">
+          <div style="display:flex;gap:24px;border-bottom:1px solid var(--border-hairline);font-family:var(--font-display);font-weight:600;font-size:14px;letter-spacing:-0.3px">
+            <span style="padding-bottom:12px;border-bottom:2px solid var(--accent-teal);color:var(--text-primary)">Overview</span>
+            <span style="padding-bottom:12px;color:var(--text-muted)">Tokens</span>
+            <span style="padding-bottom:12px;color:var(--text-muted)">Changelog</span>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--tabs</b><br>
+          active <b>accent-teal</b><br>
+          divider <b>border-hairline</b><br>
+          label <b>label-md</b>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:72px 0}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap)}
+.depth-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);padding:24px;min-height:150px;display:flex;flex-direction:column;justify-content:flex-end}
+.depth-card .n{font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-0.3px}
+.depth-card .m{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:4px}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-num">04 / SURFACE & DEPTH</div><h2 class="sec-title">Radius by elevation.</h2></div>
+      <p class="sec-desc">Corners step with role; shadows stay minimal and functional.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:24px"><div class="n">Feature / media</div><div class="m">radius 24 · card-lg</div></div>
+      <div class="depth-card" style="border-radius:16px"><div class="n">Compact / icon</div><div class="m">radius 16 · card</div></div>
+      <div class="depth-card" style="border-radius:6px"><div class="n">Glass control</div><div class="m">radius 6 · control</div></div>
+      <div class="depth-card" style="border-radius:9999px;min-height:80px;align-items:center;justify-content:center"><div class="n">Pill</div></div>
+      <div class="depth-card" style="border-radius:16px;box-shadow:rgba(0,0,0,0.1) 0 1px 3px 0,rgba(0,0,0,0.1) 0 1px 2px -1px"><div class="n">Dual-layer drop</div><div class="m">rule card shadow</div></div>
+      <div class="depth-card" style="border-radius:16px;box-shadow:rgba(0,0,0,0.05) 0 2px 4px 0 inset"><div class="n">Recessed inset</div><div class="m">inset 0.05</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:72px 0}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap)}
+.motion-card{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card);padding:24px;text-align:center}
+.motion-card .m{font-family:var(--font-mono);font-size:11px;color:var(--text-muted);margin-top:16px}
+.mover{width:56px;height:56px;border-radius:12px;background:var(--accent-teal);margin:0 auto}
+.mover.go{animation:slide 1.6s var(--ease) infinite alternate}
+@keyframes slide{from{transform:translateX(-40px)}to{transform:translateX(40px)}}
+.pulse-demo{width:14px;height:14px;border-radius:9999px;background:var(--accent-emerald);margin:14px auto;animation:pulse 2.4s var(--ease) infinite}
+.replay{margin-top:16px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-num">05 / MOTION</div><h2 class="sec-title">Instant and mechanical.</h2></div>
+      <p class="sec-desc">One curve, two durations, one breathing status pulse.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="mover" id="m1"></div>
+        <div class="m">hover · 150ms<br>cubic-bezier(0.4,0,0.2,1)</div>
+        <button class="b-glass replay" onclick="document.getElementById('m1').classList.toggle('go')">Replay</button>
+      </div>
+      <div class="motion-card">
+        <div class="mover" id="m2" style="background:var(--surface)"></div>
+        <div class="m">panel reveal · 300ms<br>cubic-bezier(0.4,0,0.2,1)</div>
+        <button class="b-glass replay" onclick="document.getElementById('m2').classList.toggle('go')">Replay</button>
+      </div>
+      <div class="motion-card">
+        <div class="pulse-demo" aria-hidden="true"></div>
+        <div class="m">pulse keyframe<br>live status dot</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:72px 0}
+.mock{background:var(--surface-elevated);border:1px solid var(--border-hairline);border-radius:var(--r-card-lg);overflow:hidden}
+.mock-nav{height:59px;display:flex;align-items:center;gap:14px;padding:0 20px;background:rgba(11,31,61,0.85);-webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);border-bottom:1px solid var(--border-hairline)}
+.mock-hero{text-align:center;padding:56px 24px;position:relative}
+.mock-hero h3{font-family:var(--font-display);font-weight:700;font-size:36px;letter-spacing:-0.9px;line-height:1.11}
+.mock-hero p{font-size:16px;color:var(--text-secondary);max-width:440px;margin:12px auto 24px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding:0 24px 40px}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:26px}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><div class="sec-num">06 / IN COMPOSITION</div><h2 class="sec-title">The system, holding together.</h2></div>
+      <p class="sec-desc">A screen built entirely from the tokens above.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="wordmark">Petrol&nbsp;Ledger</span>
+        <span class="nav-badge">v.alpha</span>
+        <button class="nav-cta" style="margin-left:auto">Download kit</button>
+      </div>
+      <div class="mock-hero">
+        <span class="eyebrow"><span class="dot" aria-hidden="true"></span>governance · live</span>
+        <h3 style="margin:20px 0">One ledger, kept auditable.</h3>
+        <p>Every colour, corner, and control traced to a named token — nothing invented.</p>
+        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+          <button class="btn-primary" style="height:48px">Open manual</button>
+          <button class="btn-outline" style="height:48px">[esc] Tokens</button>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="rule-card"><iconify-icon icon="lucide:palette" style="font-size:22px;color:var(--text-secondary);display:block;margin-bottom:12px" aria-hidden="true"></iconify-icon><h4 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.3px;margin-bottom:8px">Color ledger</h4><p style="font-size:13px;color:var(--text-secondary)">Five swatches, hex through Pantone, on the record.</p></div>
+        <div class="rule-card"><iconify-icon icon="lucide:type" style="font-size:22px;color:var(--text-secondary);display:block;margin-bottom:12px" aria-hidden="true"></iconify-icon><h4 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.3px;margin-bottom:8px">Type lab</h4><p style="font-size:13px;color:var(--text-secondary)">Sora structural, one serif footnote accent.</p></div>
+        <div class="rule-card"><iconify-icon icon="lucide:shield-check" style="font-size:22px;color:var(--text-secondary);display:block;margin-bottom:12px" aria-hidden="true"></iconify-icon><h4 style="font-family:var(--font-display);font-weight:700;font-size:16px;letter-spacing:-0.3px;margin-bottom:8px">Guardrails</h4><p style="font-size:13px;color:var(--text-secondary)">Emerald for status, teal for interaction. Held apart.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--footer-bg);padding:40px 0;margin-top:24px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.foot .cap{font-family:var(--font-mono);font-size:12px;color:var(--text-muted);line-height:1.8}
+.foot a{color:var(--text-secondary);text-decoration:none}
+</style>
+<footer id="footer">
+  <div class="wrap foot">
+    <span class="wordmark">Petrol&nbsp;Ledger</span>
+    <div class="cap">
+      <a href="https://brand-kit-rivm.ai.studio/">brand-kit-rivm.ai.studio</a> · v.r3xdec-alpha<br>
+      Design system captured and rendered by r3xdec.design
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

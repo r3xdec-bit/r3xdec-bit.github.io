@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Warm Coral Ledger — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=lucida+grande:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#000000; font-family:'Montserrat',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Montserrat',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Montserrat',sans-serif; font-size: 22px; border-bottom: 1px solid #DADCE5; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#474955; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#474955; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#F2F4F7; border: 1px solid #DADCE5; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#474955; }
+  .swatch-meta p { color:#474955; font-size: 12px; }
+  .specimen { border: 1px solid #DADCE5; border-radius:12px; padding: 20px; background:#F2F4F7; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#474955; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#474955; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#F2F4F7; border: 1px solid #DADCE5; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #DADCE5; padding-top: 20px; font-size: 13px; color:#474955; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from qasir.id · light mode</div>
+    <h1>Warm Coral Ledger</h1>
+    <p class="tagline">Light-mode-default SaaS system in Montserrat, built on white/pale-gray surfaces with a rationed coral action color, floating collaged UI-mockup illustrations, and softly rounded utility controls.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F2F4F7"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#F2F4F7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#474955"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#474955</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#C8C8C8"></div>
+        <div class="swatch-meta"><strong>text-muted</strong><code>#C8C8C8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F04B32"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#F04B32</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D9402C"></div>
+        <div class="swatch-meta"><strong>accent-dark</strong><code>#D9402C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E34225"></div>
+        <div class="swatch-meta"><strong>accent-alt</strong><code>#E34225</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DADCE5"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#DADCE5</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#474955"></div>
+        <div class="swatch-meta"><strong>footer-surface</strong><code>#474955</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Montserrat',sans-serif;font-size:44px;font-weight:700;line-height:1.41">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Montserrat · 44px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Montserrat',sans-serif;font-size:28px;font-weight:700;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Montserrat · 28px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Montserrat',sans-serif;font-size:16px;font-weight:600;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Montserrat · 16px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Montserrat',sans-serif;font-size:32px;font-weight:700;line-height:1.44">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Montserrat · 32px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Montserrat',sans-serif;font-size:20px;font-weight:600;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-run · Montserrat · 20px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'lucida grande',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-fallback · lucida grande ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 70px</span>
+        <div class="bar" style="width:min(70px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap-lg · 205px</span>
+        <div class="bar" style="width:min(205px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap-md · 70px</span>
+        <div class="bar" style="width:min(70px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap-sm · 50px</span>
+        <div class="bar" style="width:min(50px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:4px">control-sm<br><code>4px</code></div>
+<div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:10px">control-round<br><code>10px</code></div>
+<div class="radius-chip" style="border-radius:5px">chip<br><code>5px</code></div>
+<div class="radius-chip" style="border-radius:50px">pill<br><code>50px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#474955;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

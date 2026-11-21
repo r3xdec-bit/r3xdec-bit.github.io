@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pirate Ship River — r3xdec 3D</title>
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "/vendor/three/three.module.js",
+      "three/addons/": "/vendor/three/addons/"
+    }
+  }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 45%, #181a20, #08090c 75%); font-family: ui-sans-serif, system-ui, sans-serif; color: #f5f3ee; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: grab; }
+    canvas:active { cursor: grabbing; }
+    .hud {
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 12px; padding: 8px 16px; border-radius: 999px;
+      background: rgba(12, 14, 20, 0.78); backdrop-filter: blur(16px); border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+    .lbl { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #a1a8b8; font-family: ui-monospace, monospace; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="hud">
+    <span class="lbl">GALLEON PIRATE SHIP · THREE.JS WORLD</span>
+  </div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.25;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+
+    const camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(2.4, 2, 4.2);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxDistance = 25;
+    controls.minDistance = 1.5;
+
+    const ambient = new THREE.AmbientLight(0xffffff, 0.65);
+    scene.add(ambient);
+
+    const keyLight = new THREE.DirectionalLight(0xfff5ea, 2.5);
+    keyLight.position.set(5, 8, 6);
+    keyLight.castShadow = true;
+    scene.add(keyLight);
+
+    const fillLight = new THREE.DirectionalLight(0x7090ff, 1.2);
+    fillLight.position.set(-6, 3, -4);
+    scene.add(fillLight);
+
+    const rimLight = new THREE.DirectionalLight(0xffffff, 1.6);
+    rimLight.position.set(0, 7, -6);
+    scene.add(rimLight);
+
+    const root = new THREE.Group();
+    scene.add(root);
+
+    
+    const hullMat = new THREE.MeshStandardMaterial({ color: 0x5c3d2e, roughness: 0.7 });
+    const sailMat = new THREE.MeshStandardMaterial({ color: 0xfef08a, roughness: 0.5, side: THREE.DoubleSide });
+    const waterMat = new THREE.MeshPhysicalMaterial({ color: 0x0369a1, roughness: 0.15, transmission: 0.7 });
+
+    // Water Surface
+    const water = new THREE.Mesh(new THREE.PlaneGeometry(5.0, 5.0, 16, 16), waterMat);
+    water.rotation.x = -Math.PI / 2;
+    water.position.y = -0.6;
+    root.add(water);
+
+    // Ship Hull
+    const hull = new THREE.Mesh(new THREE.BoxGeometry(1.2, 0.7, 2.8), hullMat);
+    hull.position.y = -0.2;
+    root.add(hull);
+
+    // Tall Masts
+    const mast1 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 2.4, 12), hullMat);
+    mast1.position.set(0, 0.9, 0.3);
+    root.add(mast1);
+
+    const mast2 = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.05, 2.0, 12), hullMat);
+    mast2.position.set(0, 0.7, -0.6);
+    root.add(mast2);
+
+    // Billowing Sails
+    const sail1 = new THREE.Mesh(new THREE.PlaneGeometry(1.4, 0.8), sailMat);
+    sail1.position.set(0, 1.1, 0.3);
+    root.add(sail1);
+
+    const sail2 = new THREE.Mesh(new THREE.PlaneGeometry(1.2, 0.7), sailMat);
+    sail2.position.set(0, 0.8, -0.6);
+    root.add(sail2);
+  
+
+    let clock = new THREE.Clock();
+    function animate() {
+      requestAnimationFrame(animate);
+      const delta = clock.getDelta();
+      const time = clock.getElapsedTime();
+
+      root.rotation.y += 0.005;
+      root.position.y = Math.sin(time * 1.2) * 0.04;
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+  </script>
+</body>
+</html>

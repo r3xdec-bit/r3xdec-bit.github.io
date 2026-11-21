@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sunset 3D Coverage · ThreeUI</title><link rel="stylesheet" href="./sunset-3d-coverage.css"><script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/"}}</script></head><body data-template="sunset-3d-coverage" data-kind="Sections"><canvas id="gl" aria-hidden="true"></canvas><canvas id="petals-near" aria-hidden="true"></canvas><main><section id="coverage" class="dark" data-bg="#15111C" data-blend="420">
+  <div class="grid-lines"><div class="frame"><i></i><i></i><i></i><i></i></div></div>
+  <div class="frame map-head" data-keep>
+    <span class="eyebrow rv"><i class="i" data-i="map-point-bold-duotone"></i>Coverage <span class="jp">地図</span></span>
+    <h2 class="rv">A network of homes, sharing the <em>evening</em></h2>
+    <p class="lede rv">Sunset homes in 31 cities store daylight and lend it to the grid when the country needs it most. Each new roof makes the whole network steadier.</p>
+    <form class="field rv" id="zipForm"><label><i class="i" data-i="map-point-bold-duotone"></i><input id="zipIn" inputmode="numeric" placeholder="Your postal code" aria-label="Postal code"></label><button class="btn btn-sun" type="submit">Do you cover me? <i class="i" data-i="arrow-right-bold-duotone"></i></button></form>
+    <div class="map-result" id="zipOut" aria-live="polite"></div>
+  </div>
+  <div class="map-stage">
+    <div class="gl-host" data-scene="map">
+      <div class="gl-anchor" data-anchor="sapporo"><div class="city-tag">Sapporo <small>札幌</small><span>184</span></div></div>
+      <div class="gl-anchor" data-anchor="tokyo"><div class="city-tag">Tokyo <small>東京</small><span>640</span></div></div>
+      <div class="gl-anchor" data-anchor="osaka"><div class="city-tag">Osaka <small>大阪</small><span>571</span></div></div>
+      <div class="gl-anchor" data-anchor="fukuoka"><div class="city-tag">Fukuoka <small>福岡</small><span>298</span></div></div>
+      <div class="gl-anchor" data-anchor="ryukyu"><div class="city-tag">Okinawa <small>沖縄</small></div></div>
+      <div class="gl-anchor" data-anchor="naha"><div class="city-tag">Naha <small>那覇</small><span>52</span></div></div>
+    </div>
+    <div class="map-stats" data-keep><div class="frame">
+      <div><b>4,200</b><span>Homes connected</span></div>
+      <div><b>31</b><span>Cities from Sapporo to Naha</span></div>
+      <div><b>58 MWh</b><span>Shared with the grid last month</span></div>
+    </div></div>
+  </div>
+</section></main><output id="demo" class="demo-message" aria-live="polite"></output><script type="module" src="./sunset-3d-coverage.js"></script></body></html>

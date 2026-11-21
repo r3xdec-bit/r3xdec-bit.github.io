@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tactile Mechanical Keycaps — r3xdec 3D</title>
+  <script type="importmap">
+  { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: radial-gradient(circle at 50% 42%, #171822, #07080c 72%); font-family: ui-monospace, monospace; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; cursor: pointer; }
+    .tip { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); padding: 8px 16px; border-radius: 999px; background: rgba(12,13,18,0.75); border: 1px solid rgba(255,255,255,0.14); color: #cbd5e1; font-size: 11px; letter-spacing: 0.14em; pointer-events: none; }
+  </style>
+</head>
+<body>
+  <div class="tip">CLICK KEYS TO ACTUATE · DRAG TO ORBIT</div>
+  <script type="module">
+    import * as THREE from 'three';
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+    import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+
+    const camera = new THREE.PerspectiveCamera(36, window.innerWidth / window.innerHeight, 0.1, 50);
+    camera.position.set(3.8, 4.4, 4.6);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+
+    scene.add(new THREE.DirectionalLight(0xffffff, 2.0));
+    const chassis = new THREE.Mesh(
+      new RoundedBoxGeometry(3.75, 0.55, 3.75, 5, 0.14),
+      new THREE.MeshStandardMaterial({ color: 0x161820, metalness: 0.85, roughness: 0.26 })
+    );
+    chassis.position.y = -0.32;
+    scene.add(chassis);
+
+    const labels = ['ESC', '3D', 'FX', 'R3X', 'GL2', '60', 'CMD', 'OPT', 'RUN'];
+    const keys = [];
+    const capGeo = new RoundedBoxGeometry(0.92, 0.52, 0.92, 4, 0.12);
+    const ledGeo = new THREE.PlaneGeometry(0.96, 0.96);
+
+    function makeLabelTex(txt, accent) {
+      const c = document.createElement('canvas'); c.width = 256; c.height = 256;
+      const g = c.getContext('2d');
+      g.fillStyle = accent ? '#1e2438' : '#242733'; g.fillRect(0, 0, 256, 256);
+      g.fillStyle = accent ? '#67e8f9' : '#f1f5f9';
+      g.font = '700 68px monospace'; g.textAlign = 'center'; g.textBaseline = 'middle';
+      g.fillText(txt, 128, 128);
+      return new THREE.CanvasTexture(c);
+    }
+
+    for (let r = 0; r < 3; r++) {
+      for (let c = 0; c < 3; c++) {
+        const idx = r * 3 + c;
+        const x = (c - 1) * 1.1;
+        const z = (r - 1) * 1.1;
+        const isCenter = idx === 4;
+        const capMat = new THREE.MeshStandardMaterial({
+          map: makeLabelTex(labels[idx], isCenter),
+          roughness: 0.34,
+          metalness: 0.2,
+        });
+        const cap = new THREE.Mesh(capGeo, capMat);
+        cap.position.set(x, 0.24, z);
+        cap.userData = { baseY: 0.24, y: 0.24, targetY: 0.24, row: r, col: c, idx };
+        scene.add(cap);
+
+        const ledMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.65 });
+        const led = new THREE.Mesh(ledGeo, ledMat);
+        led.rotation.x = -Math.PI / 2;
+        led.position.set(x, -0.02, z);
+        scene.add(led);
+        cap.userData.led = ledMat;
+        keys.push(cap);
+      }
+    }
+
+    const ray = new THREE.Raycaster();
+    const ptr = new THREE.Vector2();
+    window.addEventListener('pointerdown', (e) => {
+      ptr.x = (e.clientX / window.innerWidth) * 2 - 1;
+      ptr.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      ray.setFromCamera(ptr, camera);
+      const hits = ray.intersectObjects(keys);
+      if (hits.length) {
+        const k = hits[0].object;
+        k.userData.targetY = 0.04;
+        setTimeout(() => { k.userData.targetY = k.userData.baseY; }, 160);
+      }
+    });
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    function animate(ms) {
+      const t = ms * 0.001;
+      const autoIdx = Math.floor(t * 2.2) % keys.length;
+      keys.forEach((k, i) => {
+        const wavePress = i === autoIdx ? Math.max(0, Math.sin(t * 2.2 * Math.PI) * 0.14) : 0;
+        const goal = Math.min(k.userData.targetY, k.userData.baseY - wavePress);
+        k.userData.y += (goal - k.userData.y) * 0.24;
+        k.position.y = k.userData.y;
+        const hue = ((t * 0.18) + (k.userData.col * 0.12) + (k.userData.row * 0.12)) % 1;
+        k.userData.led.color.setHSL(hue, 0.85, 0.62);
+      });
+      controls.update();
+      renderer.render(scene, camera);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>

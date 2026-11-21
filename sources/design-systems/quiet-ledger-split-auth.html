@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Quiet ledger split-auth — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Century+Gothic:wght@400;500;700&family=Geist+Variable:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#0B0B0C; font-family:'DM Sans',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Inter',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Inter',sans-serif; font-size: 22px; border-bottom: 1px solid #E5E5E5; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#575343; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#575343; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #E5E5E5; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#575343; }
+  .swatch-meta p { color:#575343; font-size: 12px; }
+  .specimen { border: 1px solid #E5E5E5; border-radius:12px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#575343; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#575343; }
+  .bar { height: 10px; background:#0B0B0C; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #0B0B0C; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #E5E5E5; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:3px; font-size: 14px; border: 1px solid #0B0B0C; }
+  .btn-primary { background:#0B0B0C; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#0B0B0C; }
+  footer { border-top: 1px solid #E5E5E5; padding-top: 20px; font-size: 13px; color:#575343; }
+  footer a { color:#0B0B0C; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from dashboard.tsenta.com · light mode</div>
+    <h1>Quiet ledger split-auth</h1>
+    <p class="tagline">A two-pane split-screen auth system pairing a warm off-white editorial left panel with a pure-white right-panel card stack, finished with a single violet-tinted radial wash, a sharp near-black primary pill, and a pine-green hover accent.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FDFCFC"></div>
+        <div class="swatch-meta"><strong>surface-warm</strong><code>#FDFCFC</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0B0B0C"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#0B0B0C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#575343"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#575343</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#777169"></div>
+        <div class="swatch-meta"><strong>text-tertiary</strong><code>#777169</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#364153"></div>
+        <div class="swatch-meta"><strong>text-muted-ui</strong><code>#364153</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF5100"></div>
+        <div class="swatch-meta"><strong>accent-brand</strong><code>#FF5100</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#15362B"></div>
+        <div class="swatch-meta"><strong>accent-hover</strong><code>#15362B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E5E5E5"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#E5E5E5</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:46px;font-weight:500;line-height:1.05">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Inter · 46px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Sans',sans-serif;font-size:17px;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · DM Sans · 17px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'DM Sans',sans-serif;font-size:13.5px;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-fine · DM Sans · 13.5px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Century Gothic',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-grotesk · Century Gothic ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geist Variable',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-variable · Geist Variable ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 6px</span>
+        <div class="bar" style="width:min(6px, 100%)"></div></div>
+<div class="bar-row"><span>gap-sm · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>gap-md · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 28px</span>
+        <div class="bar" style="width:min(28px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 48px</span>
+        <div class="bar" style="width:min(48px, 100%)"></div></div>
+<div class="bar-row"><span>hairline · 3px</span>
+        <div class="bar" style="width:min(3px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:3px">control<br><code>3px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#575343;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

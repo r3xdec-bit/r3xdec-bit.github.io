@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Vermillion Editorial Grid — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Variable:wght@400;500;700&family=Instrument+Serif:wght@400;500;700&family=Times+New+Roman:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FFFFFF; color:#000000; font-family:'Inter Variable',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Inter Variable',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Inter Variable',sans-serif; font-size: 22px; border-bottom: 1px solid #F5F7FA; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#F5F7FA; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#F5F7FA; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #F5F7FA; border-radius:24px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#F5F7FA; }
+  .swatch-meta p { color:#F5F7FA; font-size: 12px; }
+  .specimen { border: 1px solid #F5F7FA; border-radius:24px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#F5F7FA; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#F5F7FA; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #F5F7FA; border-radius:24px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FFFFFF; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #F5F7FA; padding-top: 20px; font-size: 13px; color:#F5F7FA; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from brandvm.com · light mode</div>
+    <h1>Vermillion Editorial Grid</h1>
+    <p class="tagline">A white-and-black editorial system that opens with a three-panel photographic hero, drops into a near-black trust band, and threads an italic serif accent with one rationed vermillion fill through an otherwise monochrome grid.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>background-dark</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0A172C"></div>
+        <div class="swatch-meta"><strong>background-navy</strong><code>#0A172C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5F7FA"></div>
+        <div class="swatch-meta"><strong>surface-light</strong><code>#F5F7FA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-inverse</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5F7FA"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#F5F7FA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DD1D00"></div>
+        <div class="swatch-meta"><strong>accent-vermillion</strong><code>#DD1D00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5FFFF"></div>
+        <div class="swatch-meta"><strong>border-hairline</strong><code>#F5FFFF</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter Variable',sans-serif;font-size:72px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Inter Variable · 72px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter Variable',sans-serif;font-size:80px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Inter Variable · 80px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter Variable',sans-serif;font-size:15px;font-weight:400;line-height:1.56">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter Variable · 15px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter Variable',sans-serif;font-size:18px;font-weight:400;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Inter Variable · 18px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter Variable',sans-serif;font-size:16px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-default · Inter Variable · 16px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Instrument Serif',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Instrument Serif ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Times New Roman',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono-legacy · Times New Roman ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 24px</span>
+        <div class="bar" style="width:min(24px, 100%)"></div></div>
+<div class="bar-row"><span>gap-tight · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div>
+<div class="bar-row"><span>gap-hairline · 3px</span>
+        <div class="bar" style="width:min(3px, 100%)"></div></div>
+<div class="bar-row"><span>gap-loose · 32px</span>
+        <div class="bar" style="width:min(32px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 120px</span>
+        <div class="bar" style="width:min(120px, 100%)"></div></div>
+<div class="bar-row"><span>content-max-width · 120px</span>
+        <div class="bar" style="width:min(120px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:20px">control-lg<br><code>20px</code></div>
+<div class="radius-chip" style="border-radius:24px">card<br><code>24px</code></div>
+<div class="radius-chip" style="border-radius:384px">pill<br><code>384px</code></div>
+<div class="radius-chip" style="border-radius:405px">pill-lg<br><code>405px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#F5F7FA;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEST° — Architecture / Experience 001</title>
+<meta name="description" content="NEST — a miniature house floating on its own island. A living architectural experience designed around space, light, nature and the moments between them.">
+<meta name="theme-color" content="#0b0c0d">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="/landing-pages/aura-2026-10-assets/73a2ae2839226acb9b67.css" rel="stylesheet">
+<script type="module" crossorigin="" src="/landing-pages/aura-2026-10-assets/909808d2421ba93a4bc2.js"></script>
+<link rel="stylesheet" crossorigin="" href="/landing-pages/aura-2026-10-assets/c0eafeb544f8156fc5b5.css">
+
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script><script data-threeui-capture>if(new URLSearchParams(location.search).has('threeuiCapture')){const style=document.createElement('style');style.textContent='html,body,body *{user-select:none!important;-webkit-user-select:none!important}';document.head.append(style);}</script></head>
+<body class="is-loading">
+  <canvas id="gl" aria-label="Interactive 3D model of the NEST house" role="img"></canvas>
+  <div id="grain-grid" aria-hidden="true"></div>
+
+  <!-- architectural loader -->
+  <div id="loader" role="status" aria-live="polite">
+    <div class="ld-inner">
+      <div class="ld-logo">NEST<sup>°</sup></div>
+      <svg id="blueprint" viewBox="0 0 640 400" aria-hidden="true">
+        <g class="bp-grid"></g>
+        <g class="bp-lines" fill="none">
+          <!-- island silhouette -->
+          <path d="M70 262 C120 250 200 246 320 248 C440 246 520 252 572 262 C540 300 470 312 430 330 C400 350 360 372 330 392 C300 372 260 350 220 336 C170 318 110 300 70 262 Z"></path>
+          <!-- terrace + pool -->
+          <path d="M110 248 L540 248"></path><path d="M120 248 L120 238 L300 238 L300 248"></path><path d="M128 242 L292 242"></path>
+          <!-- ground floor -->
+          <path d="M210 238 L210 170 L450 170 L450 238"></path>
+          <path d="M226 238 L226 176 M290 238 L290 176 M360 238 L360 176 M430 238 L430 176"></path>
+          <!-- stone wall + chimney -->
+          <path d="M198 238 L198 92 L210 92 L210 238"></path>
+          <!-- upper floor + cantilever -->
+          <path d="M210 170 L210 112 L480 112 L480 170 L450 170"></path>
+          <path d="M270 112 L270 170 M330 112 L330 170 M390 112 L390 170"></path>
+          <!-- roof + garden -->
+          <path d="M204 112 L204 100 L488 100 L488 112"></path>
+          <path d="M214 100 C230 92 240 96 252 90 C268 96 282 90 300 94 C320 88 340 96 360 90 C380 96 400 92 420 94 C440 90 460 96 476 100"></path>
+          <!-- stair diagonal -->
+          <path d="M300 236 L340 176"></path>
+          <!-- dimension lines -->
+          <path class="dim" d="M210 290 L450 290 M210 284 L210 296 M450 284 L450 296"></path>
+          <path class="dim" d="M500 100 L500 238 M494 100 L506 100 M494 238 L506 238"></path>
+        </g>
+        <g class="bp-text" font-family="Geist Mono, monospace" font-size="9" fill="currentColor">
+          <text x="300" y="306" text-anchor="middle">12 000</text>
+          <text x="512" y="172">7 050</text>
+          <text x="70" y="40">NEST — SECTION A/A</text>
+          <text x="570" y="40" text-anchor="end">1 : 100</text>
+        </g>
+      </svg>
+      <div class="ld-meta">
+        <span>Building the experience</span>
+        <span id="ld-pct" class="mono">00</span>
+      </div>
+      <div id="ld-stage" class="ld-stage mono">Surveying site</div>
+    </div>
+  </div>
+
+  <!-- header -->
+  <header id="hdr">
+    <a class="brand" href="#" data-goto="0" aria-label="NEST home">NEST<sup>°</sup></a>
+    <nav aria-label="Primary">
+      <button data-goto="0" class="is-active">Home</button>
+      <button data-goto="1.45">Architecture</button>
+      <button data-goto="8.8">Spaces</button>
+      <button data-goto="15.9">Materials</button>
+      <button data-goto="20.6">Experience</button>
+    </nav>
+    <div class="hdr-right">
+      <button id="sound" class="sound" aria-pressed="false" aria-label="Toggle sound">
+        <span class="bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+        <span class="sound-label">Sound</span>
+      </button>
+      <button class="pill-cta ghost" id="hdr-free">Free view</button>
+      <button class="pill-cta" data-footer="">Request access</button>
+    </div>
+  </header>
+
+  <!-- chapter index -->
+  <aside id="chapters" aria-label="Chapters"></aside>
+
+  <!-- story text (fixed, driven by scroll) -->
+  <main id="story">
+    <section class="txt t-hero" data-a="-1" data-b="0.75" data-fade="0.3">
+      <p class="eyebrow">Architecture / 001</p>
+      <h1 class="display hero-title">More Than a House.<br>A World <em class="accent">Within.</em></h1>
+      <p class="lede">A living architectural experience designed around space, light, nature and the moments between them.</p>
+      <div class="ctas">
+        <button class="glass-cta" data-goto="1.45" data-magnetic="">
+          <span class="glass-cta__label">Explore the house</span>
+          <span class="glass-cta__arrow" aria-hidden="true"><i></i></span>
+        </button>
+        <button class="ghost-cta" id="watch" data-magnetic="">
+          <span class="play" aria-hidden="true"></span><span>Watch the journey</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="txt t-form panel" data-a="1.25" data-b="2.7">
+      <p class="eyebrow"><span class="mono">01</span> / Architecture</p>
+      <h2 class="display">Designed from<br>the <em class="accent">outside in.</em></h2>
+      <div class="ed-split">
+        <p class="small">A cantilevered volume of cedar and concrete, anchored by a hand-laid stone hearth and crowned with a garden and a warm stone spa. Every room faces the valley; none faces another.</p>
+        <p class="spec mono">12.0 × 9.0 m<br>Two storeys + roof<br>Cantilever 1.5 m</p>
+      </div>
+    </section>
+
+    <section class="txt t-principles panel" data-a="2.75" data-b="3.55">
+      <p class="eyebrow">Three gestures</p>
+      <ol class="principles">
+        <li><span class="mono n">i</span><div><h3>Anchor</h3><p>A dry-laid stone hearth roots the house to the rock it stands on.</p></div></li>
+        <li><span class="mono n">ii</span><div><h3>Lift</h3><p>The upper floor reaches past its base, out toward the view.</p></div></li>
+        <li><span class="mono n">iii</span><div><h3>Crown</h3><p>A garden on the roof returns the ground the house occupies.</p></div></li>
+      </ol>
+    </section>
+
+    <section class="txt t-explode panel" data-a="5.35" data-b="7.15">
+      <h2 class="display">See everything.<br><em class="accent">Hide nothing.</em></h2>
+      <p class="small">Hover the layers. Every part is drawn, named and placed.</p>
+      <div class="zone-list" role="group" aria-label="Building layers"></div>
+    </section>
+
+    <section class="txt t-spaces panel" data-a="7.2" data-b="8.45" data-fade="0.22">
+      <p class="eyebrow"><span class="mono">02</span> / Spaces</p>
+      <h2 class="display sm">Three levels.<br>One <em class="accent">continuous</em> view.</h2>
+      <dl class="rooms">
+        <div><dt class="mono">Roof</dt><dd>Lounge<i></i>Garden<i></i>Pavilion</dd></div>
+        <div><dt class="mono">Upper</dt><dd>Bedroom<i></i>Study<i></i>Bath</dd></div>
+        <div><dt class="mono">Ground</dt><dd>Living &amp; hearth<i></i>Kitchen<i></i>Dining</dd></div>
+        <div><dt class="mono">Site</dt><dd>Pool<i></i>Terrace<i></i>Fire pit</dd></div>
+      </dl>
+    </section>
+
+    <section class="txt t-living panel" data-a="8.75" data-b="10.0">
+      <p class="eyebrow">Living · Ground floor</p>
+      <h2 class="display">Spaces that<br><em class="accent">respond</em> to you.</h2>
+      <div class="actions" role="group" aria-label="Room interactions">
+        <button data-act="fireplace">Hearth</button><button data-act="lamp">Lamp</button><button data-act="curtain">Curtain</button><button data-act="door">Slide door</button>
+      </div>
+    </section>
+
+    <section class="txt t-tod panel" data-a="10.25" data-b="11.0">
+      <p class="eyebrow">Light</p>
+      <h2 class="display sm">The same room,<br>three <em class="accent">different</em> days.</h2>
+    </section>
+
+    <section class="txt t-kitchen panel" data-a="11.85" data-b="12.65">
+      <p class="eyebrow"><span class="mono">02</span> / Function</p>
+      <h2 class="display">Every detail<br>has a <em class="accent">purpose.</em></h2>
+    </section>
+
+    <section class="txt t-stairs" data-a="12.95" data-b="13.95" data-fade="0.2">
+      <p class="vertical mono">Ascent — 18 risers · 191 mm</p>
+    </section>
+
+    <section class="txt t-bedroom panel" data-a="14.65" data-b="15.12" data-fade="0.18">
+      <p class="eyebrow">Bedroom · Upper floor</p>
+      <h2 class="display">Designed for<br><em class="accent">stillness.</em></h2>
+      <p class="small">Oak, linen and wool, lit low. A bed made like a hotel, facing a window made for mornings.</p>
+    </section>
+
+    <section class="txt t-window panel" data-a="15.15" data-b="15.6" data-fade="0.14">
+      <p class="eyebrow">The window</p>
+      <h2 class="display sm">Draw the valley<br><em class="accent">in or out.</em></h2>
+      <div class="curtain-ctl">
+        <button class="chip" data-curtain="0.02">Close</button>
+        <label class="range glass-range">
+          <span class="sr">Curtain position</span>
+          <input id="bed-curtain" type="range" min="0" max="1" step="0.01" value="0.15" aria-label="Open bedroom curtains">
+        </label>
+        <button class="chip" data-curtain="0.95">Open</button>
+      </div>
+      <p class="hint mono">or drag across the window</p>
+    </section>
+
+    <section class="txt t-material" data-a="15.7" data-b="18.05" data-fade="0.2">
+      <p class="eyebrow"><span class="mono">03</span> / Material</p>
+      <h2 class="display xl">Built to be<br><em class="accent">touched.</em></h2>
+      <p class="small">Five materials, chosen to age rather than wear. Nothing is painted; everything is what it appears to be.</p>
+    </section>
+
+    <section class="txt t-schedule panel" data-a="15.7" data-b="18.05" data-fade="0.2">
+      <p class="eyebrow mono">Material schedule</p>
+      <ol class="schedule">
+        <li><span class="mono n">i</span><span class="l">European oak</span><span class="mono m">Oiled · quarter sawn</span></li>
+        <li><span class="mono n">ii</span><span class="l">Local stone</span><span class="mono m">Hand-split · dry laid</span></li>
+        <li><span class="mono n">iii</span><span class="l">Concrete</span><span class="mono m">Board-formed · in situ</span></li>
+        <li><span class="mono n">iv</span><span class="l">Glass</span><span class="mono m">Low-iron · triple glazed</span></li>
+        <li><span class="mono n">v</span><span class="l">Linen</span><span class="mono m">Belgian flax · stonewashed</span></li>
+      </ol>
+    </section>
+
+    <section class="txt t-reassemble panel" data-a="18.95" data-b="20.15">
+      <p class="eyebrow">Philosophy</p>
+      <h2 class="display sm">Light on the land.<br>Built to <em class="accent">outlast</em> us.</h2>
+      <ul class="tenets">
+        <li><span class="mono">Sun</span><p>Cedar louvres shade the summer sun and let the low winter sun reach the floor.</p></li>
+        <li><span class="mono">Air</span><p>Warm air rises through the stair to the skylight; the house cools itself.</p></li>
+        <li><span class="mono">Matter</span><p>Stone from the site, timber from managed forests, no finish that needs repainting.</p></li>
+        <li><span class="mono">Ground</span><p>The roof garden replaces the meadow the house was built on.</p></li>
+      </ul>
+    </section>
+
+    <section class="txt t-night panel" data-a="20.5" data-b="21.55">
+      <p class="eyebrow"><span class="mono">04</span> / Experience</p>
+      <h2 class="display">When architecture<br>becomes <em class="accent">atmosphere.</em></h2>
+      <ol class="day">
+        <li>First light through the cedar</li>
+        <li>Water, stone and shade</li>
+        <li>The hearth, the fire pit, the long table</li>
+        <li>The house becomes a lantern</li>
+      </ol>
+    </section>
+
+    <section class="txt t-final" data-a="24.15" data-b="26" data-fade="0.35">
+      <h2 class="mega">NEST</h2>
+      <p class="lede">A smaller footprint.<br>A bigger way to live.</p>
+      <div class="ctas">
+        <button class="glass-cta" id="again" data-magnetic="">
+          <span class="glass-cta__label">Explore again</span>
+          <span class="glass-cta__arrow up" aria-hidden="true"><i></i></span>
+        </button>
+        <button class="ghost-cta" id="free" data-magnetic=""><span>Enter free view</span></button>
+      </div>
+      <p class="continue mono" aria-hidden="true">Continue <i></i></p>
+    </section>
+  </main>
+
+  <!-- projected 3D labels -->
+  <svg id="leaders" aria-hidden="true"></svg>
+  <div id="labels" aria-hidden="true"></div>
+  <div id="hotspots"></div>
+  <div id="zone-tip" aria-hidden="true"><span class="mono n"></span><span class="l"></span><span class="mono m"></span></div>
+
+  <!-- time of day: a sun on its arc -->
+  <div id="tod" role="radiogroup" aria-label="Time of day">
+    <svg class="arc" viewBox="0 0 240 70" aria-hidden="true">
+      <path d="M10 60 Q120 -20 230 60"></path>
+      <line x1="0" y1="60" x2="240" y2="60"></line>
+      <circle class="sun" r="4.5" cx="120" cy="20"></circle>
+    </svg>
+    <div class="opts">
+      <button role="radio" data-tod="0">Day</button>
+      <span class="sep"></span>
+      <button role="radio" data-tod="1">Golden</button>
+      <span class="sep"></span>
+      <button role="radio" data-tod="2">Night</button>
+    </div>
+  </div>
+
+  <div id="hint" aria-live="polite"></div>
+  <div id="scrollcue"><span>Scroll<br>to explore</span><i aria-hidden="true"></i></div>
+  <div id="dims" aria-hidden="true"></div>
+
+  <!-- free explore controls -->
+  <div id="explore" aria-label="Free explore controls" hidden="">
+    <div class="ex-row"><span class="ex-k">View</span>
+      <button data-view="exterior">Exterior</button><button data-view="living">Living</button><button data-view="kitchen">Kitchen</button><button data-view="bedroom">Bedroom</button><button data-view="pool">Pool</button><button data-view="roof">Roof</button><button data-view="spa">Spa</button><button data-view="lounge">Lounge</button><button data-view="garden">Garden</button>
+    </div>
+    <div class="ex-row"><span class="ex-k">House</span>
+      <button data-x="explode" aria-pressed="false">Explode</button><button data-x="roof" aria-pressed="false">Lift roof</button><button data-x="walls" aria-pressed="false">Open walls</button>
+    </div>
+    <div class="ex-row"><span class="ex-k">Light</span>
+      <button data-tod="0">Day</button><button data-tod="1">Golden</button><button data-tod="2">Night</button><button data-x="lights" aria-pressed="true">Interior</button><button data-x="pool" aria-pressed="false">Pool</button>
+    </div>
+    <div class="ex-row"><span class="ex-k">Life</span>
+      <button data-x="fire" aria-pressed="false">Hearth</button><button data-x="firepit" aria-pressed="false">Fire pit</button><button data-x="curtains" aria-pressed="false">Curtains</button><button data-x="rain" aria-pressed="false">Rain</button>
+    </div>
+    <p class="ex-help mono">Drag to orbit · Scroll to zoom · Right-drag to pan</p>
+    <button class="ex-exit" id="exit-explore">Exit free view ✕</button>
+  </div>
+
+  <div id="cursor" aria-hidden="true"><span class="ring"></span><span class="lbl"></span></div>
+  <div id="scroll-space"></div>
+
+  <!-- the collection: a scroll-driven light table. Six prints are stacked like a deck; each lifts away to
+       reveal the next while the room takes on its light, then all six land as a contact sheet. -->
+  <section id="collection" aria-labelledby="cx-title">
+    <div class="cx-fade" aria-hidden="true"></div>
+    <div class="cx-stage">
+      <div class="cx-ambient" aria-hidden="true"></div>
+      <header class="cx-head">
+        <p class="eyebrow">Collection · 001</p>
+        <h2 id="cx-title" class="cx-title">Six moments, <em class="accent">one house.</em></h2>
+      </header>
+      <div class="cx-numeral" aria-hidden="true"></div>
+      <div class="cx-copy" aria-live="polite"></div>
+      <div class="cx-deck"></div>
+      <nav class="cx-index" aria-label="Collection"></nav>
+      <p class="cx-hint mono" aria-hidden="true">Scroll to turn the prints</p>
+    </div>
+  </section>
+
+  <!-- site footer: revealed after the film ends -->
+  <footer id="site-footer">
+    <div class="ft-inner">
+      <div class="ft-head">
+        <p class="eyebrow">Architecture / Experience 001</p>
+        <h2 class="ft-statement">Come and see it<br><em class="accent">in person.</em></h2>
+        <form class="ft-access" id="access-form" novalidate="">
+          <label for="access-email" class="mono">Request a private viewing</label>
+          <div class="ft-field">
+            <input id="access-email" type="email" placeholder="Email address" autocomplete="email" required="">
+            <button class="glass-cta" type="submit">
+              <span class="glass-cta__label">Request access</span>
+              <span class="glass-cta__arrow" aria-hidden="true"><i></i></span>
+            </button>
+          </div>
+          <p class="ft-note" aria-live="polite"></p>
+        </form>
+      </div>
+      <div class="ft-grid">
+        <nav aria-label="Footer">
+          <h4 class="mono"><b>01</b>Explore</h4>
+          <button data-goto="1.45">Architecture</button>
+          <button data-goto="8.8">Spaces</button>
+          <button data-goto="15.9">Materials</button>
+          <button data-goto="20.6">Experience</button>
+        </nav>
+        <div>
+          <h4 class="mono"><b>02</b>Visit</h4>
+          <button id="ft-free">Free view</button>
+          <button data-goto="0">Watch again</button>
+        </div>
+        <div>
+          <h4 class="mono"><b>03</b>Studio</h4>
+          <a href="#" data-soon="">Journal</a>
+          <a href="#" data-soon="">Press kit</a>
+          <a href="#" data-soon="">Careers</a>
+        </div>
+        <div>
+          <h4 class="mono"><b>04</b>Follow</h4>
+          <a href="#" data-soon="">Instagram</a>
+          <a href="#" data-soon="">Vimeo</a>
+          <a href="#" data-soon="">Pinterest</a>
+        </div>
+      </div>
+      <div class="ft-mark" aria-hidden="true">
+        <span class="ftm ftm-base">NEST<sup>°</sup></span>
+        <span class="ftm ftm-sheen">NEST<sup>°</sup></span>
+        <span class="ftm ftm-glow">NEST<sup>°</sup></span>
+      </div>
+      <div class="ft-base">
+        <span>© 2026 NEST</span>
+        <span class="mono">A house for one view</span>
+        <button data-goto="0" class="ft-top">Back to top <i aria-hidden="true"></i></button>
+      </div>
+    </div>
+  </footer>
+  <noscript><p class="noscript">NEST is an interactive WebGL experience. Please enable JavaScript.</p></noscript>
+
+</body></html>

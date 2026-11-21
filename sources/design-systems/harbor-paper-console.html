@@ -1,0 +1,793 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harbor Paper Console — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F7F6F2;
+  --surface:#FFFFFF;
+  --text-primary:#17170F;
+  --text-secondary:#52525C;
+  --accent-warm:#FFD230;
+  --accent-cool:#615FFF;
+  --footer-bg:#11120D;
+  --r-control:4px;
+  --r-card:14px;
+  --r-pill:9999px;
+  --base:4px;
+  --gap:16px;
+  --section-padding:80px;
+  --content-max:1240px;
+  --shadow-navcta:rgba(0,0,0,0.06) 0px 1px 0px 0px, rgba(26,25,24,0.14) 0px 2px 4px 0px, rgba(26,25,24,0.28) 0px 8px 22px -4px;
+  --shadow-navcta-hover:rgba(0,0,0,0.06) 0px 1px 0px 0px, rgba(26,25,24,0.18) 0px 4px 10px 0px, rgba(26,25,24,0.36) 0px 16px 32px -6px;
+  --shadow-secondary:rgba(26,25,24,0.05) 0px 1px 0px 0px, rgba(26,25,24,0.04) 0px 1px 2px 0px, rgba(26,25,24,0.08) 0px 4px 12px -2px;
+  --shadow-card:rgba(26,25,24,0.06) 0px 2px 3px 0px, rgba(26,25,24,0.12) 0px 12px 22px -8px, rgba(26,25,24,0.2) 0px 32px 60px -24px;
+  --ease-color:cubic-bezier(0.4,0,0.2,1);
+  --ease-hover:cubic-bezier(0.22,0.61,0.36,1);
+  --ease-move:cubic-bezier(0.65,0,0.18,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Inter",system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  font-weight:500;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+.wrap{max-width:var(--content-max);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:13px;font-weight:600;line-height:1.3;letter-spacing:0.08em;
+  text-transform:uppercase;color:var(--text-secondary);
+}
+.section-h{
+  font-size:40px;font-weight:500;line-height:1.2;letter-spacing:-0.9px;
+}
+section{padding:var(--section-padding) 0}
+/* Navbar */
+.navbar{
+  height:68px;width:100%;background:var(--background);
+  display:flex;align-items:center;gap:20px;padding:0 24px;
+}
+.nav-word{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:700;letter-spacing:-0.4px}
+.nav-links{display:flex;align-items:center;gap:22px;margin-left:28px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--text-primary);text-decoration:none;transition:opacity .14s ease-out,transform .42s var(--ease-move)}
+.nav-links a:hover{opacity:.7}
+.nav-drop{display:inline-flex;align-items:center;gap:4px;cursor:pointer}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:16px}
+.nav-social{display:flex;gap:12px;color:var(--text-primary)}
+.nav-social a{display:inline-flex;transition:opacity .14s ease-out}
+.nav-social a:hover{opacity:.6}
+.btn-ghost{
+  background:transparent;color:var(--text-primary);border:none;
+  border-radius:var(--r-control);height:21px;padding:0 4px;
+  font-family:inherit;font-size:15px;font-weight:500;cursor:pointer;
+  display:inline-flex;align-items:center;
+  transition:transform .42s var(--ease-move),opacity .14s ease-out;
+}
+.btn-ghost:hover{transform:translateY(-2px);opacity:.94}
+.btn-nav-cta{
+  background:var(--text-primary);color:#FFFFFF;border:none;
+  border-radius:var(--r-control);height:36px;padding:0 16px;
+  font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;
+  box-shadow:var(--shadow-navcta);
+  transition:transform .42s var(--ease-move),box-shadow .18s var(--ease-hover),opacity .14s ease-out;
+}
+.btn-nav-cta:hover{transform:translateY(-2px);box-shadow:var(--shadow-navcta-hover)}
+@media(max-width:768px){
+  .nav-links,.nav-social{display:none}
+  .section-h{font-size:30px}
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar" aria-label="Primary">
+  <span class="nav-word"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Token&nbsp;Harbor</span>
+  <div class="nav-links">
+    <a href="#hero">Product</a>
+    <a href="#components">Console</a>
+    <a href="#palette">Pricing</a>
+    <span class="nav-drop" role="button" tabindex="0">Docs <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></span>
+    <a href="#type-scale">Changelog</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-social">
+      <a href="#footer" aria-label="Harbor on GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+      <a href="#footer" aria-label="Harbor on X"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+    </span>
+    <button class="btn-ghost" type="button">Sign in</button>
+    <button class="btn-nav-cta" type="button">Try free</button>
+  </div>
+</nav>
+
+<style data-section-styles="hero">
+#hero{
+  padding-top:96px;padding-bottom:112px;text-align:center;
+  background:var(--background);overflow:hidden;position:relative;
+}
+.hero-stack{max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px}
+.pill-region{position:relative;display:flex;justify-content:center;padding:24px 0}
+.pill-wash{position:absolute;inset:-60px -40px;pointer-events:none;
+  background:
+    radial-gradient(40% 60% at 20% 30%, rgba(255,184,86,0.55), rgba(0,0,0,0) 60%),
+    radial-gradient(50% 70% at 80% 40%, rgba(124,167,255,0.5), rgba(0,0,0,0) 60%),
+    radial-gradient(45% 65% at 50% 80%, rgba(255,138,196,0.45), rgba(0,0,0,0) 60%);
+}
+.announce-pill{
+  position:relative;display:inline-flex;align-items:center;gap:12px;
+  border-radius:var(--r-pill);border:1px solid rgba(0,0,0,0.06);
+  padding:8px 16px;
+  background:linear-gradient(105deg, rgba(255,210,48,0.35), rgba(97,95,255,0.28) 55%, rgba(255,138,196,0.32));
+  color:var(--text-primary);text-decoration:none;overflow:hidden;
+}
+.announce-pill::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg, rgba(0,0,0,0) 30%, rgba(255,255,255,0.65) 50%, rgba(0,0,0,0) 70%);
+  transform:translateX(-120%);
+  animation:shimmer 3.2s var(--ease-color) infinite;
+}
+.announce-pill .p-icon{display:inline-flex;font-size:18px}
+.announce-pill .p-text{display:flex;flex-direction:column;line-height:1.2;text-align:left}
+.announce-pill .p-lead{font-weight:700;font-size:14px}
+.announce-pill .p-sub{font-weight:500;font-size:13px;color:var(--text-secondary)}
+.hero-title{font-size:64px;font-weight:700;line-height:1.12;letter-spacing:-1.3px}
+.hero-sub{font-size:18px;font-weight:500;color:var(--text-secondary);max-width:520px}
+.hero-input-row{
+  display:flex;align-items:center;gap:8px;width:100%;max-width:520px;
+  background:var(--surface);border:1px solid rgba(0,0,0,0.10);
+  border-radius:var(--r-control);padding:6px;box-shadow:var(--shadow-secondary);
+}
+.hero-input-row input{
+  flex:1;border:none;background:transparent;outline:none;
+  font-family:inherit;font-size:16px;font-weight:500;color:var(--text-primary);
+  padding:0 10px;height:48px;
+}
+.hero-input-row input::placeholder{color:var(--text-secondary)}
+.btn-hero-primary{
+  background:var(--text-primary);color:#FFFFFF;border:none;
+  border-radius:var(--r-control);height:48px;width:48px;padding:0;
+  display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:20px;
+  transition:transform .42s var(--ease-move),opacity .14s ease-out;
+}
+.btn-hero-primary:hover{transform:translateY(-2px);opacity:.94}
+.glyph-row{display:flex;gap:12px;align-items:center;justify-content:center}
+.glyph{width:32px;height:32px;border-radius:var(--r-pill);display:inline-flex;align-items:center;justify-content:center;color:#FFFFFF;font-size:15px}
+.hero-aux{font-size:14px;color:var(--text-secondary);text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.hero-aux:hover{color:var(--text-primary)}
+@keyframes shimmer{0%{transform:translateX(-120%)}60%,100%{transform:translateX(160%)}}
+@media(max-width:768px){#hero .hero-title{font-size:40px}}
+@media(max-width:640px){#hero .hero-title{font-size:32px}}
+@media(prefers-reduced-motion:reduce){.announce-pill::after{animation:none;opacity:0}}
+</style>
+<section id="hero" aria-labelledby="hero-title">
+  <div class="wrap">
+    <div class="hero-stack">
+      <div class="pill-region">
+        <span class="pill-wash" aria-hidden="true"></span>
+        <a class="announce-pill" href="#components">
+          <span class="p-icon"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></span>
+          <span class="p-text">
+            <span class="p-lead">Multi-provider routing is live</span>
+            <span class="p-sub">One key, every model — now in general availability</span>
+          </span>
+          <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
+        </a>
+      </div>
+      <h1 class="hero-title" id="hero-title">One harbor for every token.</h1>
+      <p class="hero-sub">Route, meter, and ship against every model provider from a single warm, quiet console.</p>
+      <form class="hero-input-row" onsubmit="return false">
+        <input type="email" placeholder="you@company.com" aria-label="Work email">
+        <button class="btn-hero-primary" type="submit" aria-label="Get started">
+          <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>
+        </button>
+      </form>
+      <div class="glyph-row" aria-label="Supported providers">
+        <span class="glyph" style="background:#B5563A" aria-hidden="true"><iconify-icon icon="lucide:flame"></iconify-icon></span>
+        <span class="glyph" style="background:#2F8F4E" aria-hidden="true"><iconify-icon icon="lucide:leaf"></iconify-icon></span>
+        <span class="glyph" style="background:#3B7DE0" aria-hidden="true"><iconify-icon icon="lucide:droplet"></iconify-icon></span>
+        <span class="glyph" style="background:#615FFF" aria-hidden="true"><iconify-icon icon="lucide:hexagon"></iconify-icon></span>
+        <span class="glyph" style="background:#17170F" aria-hidden="true"><iconify-icon icon="lucide:circle"></iconify-icon></span>
+      </div>
+      <a class="hero-aux" href="#type-scale">Read the console tour <iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon></a>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette .role-group{margin-top:40px}
+#palette .role-title{font-size:17px;font-weight:700;letter-spacing:-0.2px;margin-bottom:16px}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.swatch{border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);overflow:hidden;background:var(--surface)}
+.swatch .chip{height:96px}
+.swatch .meta{padding:16px}
+.swatch .name{font-weight:700;font-size:15px}
+.swatch .val{font-size:13px;color:var(--text-secondary);font-variant-numeric:tabular-nums;margin-top:2px}
+.swatch .use{font-size:13px;color:var(--text-secondary);margin-top:8px;line-height:1.4}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette" aria-labelledby="palette-h">
+  <div class="wrap">
+    <p class="eyebrow">Palette</p>
+    <h2 class="section-h" id="palette-h">Paper, ink, and rationed color.</h2>
+    <div class="role-group">
+      <h3 class="role-title">Surfaces</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#F7F6F2;border-bottom:1px solid rgba(0,0,0,0.08)"></div><div class="meta"><div class="name">background</div><div class="val">#F7F6F2</div><div class="use">Warm paper canvas — ~73% of the page, hero and grid surround.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid rgba(0,0,0,0.08)"></div><div class="meta"><div class="name">surface</div><div class="val">#FFFFFF</div><div class="use">Elevated layer — navbar, promise cards, secondary buttons.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#11120D"></div><div class="meta"><div class="name">footer-bg</div><div class="val">#11120D</div><div class="use">Cooler near-black — the page's single palette inversion.</div></div></div>
+      </div>
+    </div>
+    <div class="role-group">
+      <h3 class="role-title">Text</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#17170F"></div><div class="meta"><div class="name">text-primary</div><div class="val">#17170F</div><div class="use">Ink — wordmark, headings, and every dark button fill.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#52525C"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#52525C</div><div class="use">Mid-gray body copy and supporting captions.</div></div></div>
+      </div>
+    </div>
+    <div class="role-group">
+      <h3 class="role-title">Accents — rationed to pill, glyphs, hover states</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#FFD230"></div><div class="meta"><div class="name">accent-warm</div><div class="val">#FFD230</div><div class="use">Amber note in the announcement pill wash.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#615FFF"></div><div class="meta"><div class="name">accent-cool</div><div class="val">#615FFF</div><div class="use">Cool blue in the pill and the indigo provider glyph.</div></div></div>
+        <div class="swatch"><div class="chip checker"></div><div class="meta"><div class="name">pill wash</div><div class="val">amber · blue · pink, ~1.7% each</div><div class="use">Three localized radial washes behind the announcement pill only.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale .specimen{border-top:1px solid rgba(0,0,0,0.08);padding:32px 0;display:grid;grid-template-columns:1fr 200px;gap:24px;align-items:baseline}
+#type-scale .specimen:last-child{border-bottom:1px solid rgba(0,0,0,0.08)}
+#type-scale .metrics{font-size:13px;color:var(--text-secondary);line-height:1.6;font-variant-numeric:tabular-nums}
+.sp-display{font-size:64px;font-weight:700;line-height:1.12;letter-spacing:-1.3px}
+.sp-headline{font-size:40px;font-weight:500;line-height:1.5;letter-spacing:-0.9px}
+.sp-label{font-size:17px;font-weight:700;line-height:1.25;letter-spacing:-0.2px}
+.sp-body{font-size:16px;font-weight:400;line-height:1.5}
+.sp-eyebrow{font-size:13px;font-weight:600;line-height:1.3;letter-spacing:0.08em;text-transform:uppercase}
+.weight-ramp{display:flex;gap:24px;flex-wrap:wrap;margin-top:40px}
+.weight-ramp span{font-size:34px;letter-spacing:-0.6px}
+@media(max-width:768px){#type-scale .specimen{grid-template-columns:1fr}.sp-display{font-size:40px}.sp-headline{font-size:30px}}
+</style>
+<section id="type-scale" aria-labelledby="type-h">
+  <div class="wrap">
+    <p class="eyebrow">Type scale</p>
+    <h2 class="section-h" id="type-h">One family, hierarchy by weight.</h2>
+    <div class="specimen">
+      <div class="sp-display">Every token, one harbor</div>
+      <div class="metrics">display-lg<br>64px · 700 · lh 1.12 · -1.3px<br>Inter</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-headline">Routing you can read</div>
+      <div class="metrics">headline-md<br>40px · 500 · lh 1.5 · -0.9px<br>Inter</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-label">Fastest provider</div>
+      <div class="metrics">label-md<br>17px · 700 · lh 1.25 · -0.2px<br>Inter</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-body">Body copy stays quiet and legible against the paper — the register of a technical product built with unusual warmth.</div>
+      <div class="metrics">body-md<br>16px · 400 · lh 1.5<br>Inter</div>
+    </div>
+    <div class="specimen">
+      <div class="sp-eyebrow">Promises</div>
+      <div class="metrics">label-eyebrow<br>13px · 600 · lh 1.3 · 0.08em<br>Inter</div>
+    </div>
+    <div class="weight-ramp">
+      <span style="font-weight:400">Regular</span>
+      <span style="font-weight:500">Medium</span>
+      <span style="font-weight:600">Semibold</span>
+      <span style="font-weight:700">Bold</span>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp-block{border-top:1px solid rgba(0,0,0,0.08);padding:48px 0}
+#components .comp-head{display:flex;justify-content:space-between;gap:24px;align-items:baseline;flex-wrap:wrap;margin-bottom:28px}
+#components .comp-title{font-size:22px;font-weight:700;letter-spacing:-0.4px}
+#components .comp-desc{font-size:14px;color:var(--text-secondary);max-width:420px;margin-top:6px}
+.spec-card{
+  font-size:12px;line-height:1.7;color:var(--text-secondary);
+  background:var(--surface);border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);
+  padding:16px;font-variant-numeric:tabular-nums;max-width:320px;
+}
+.spec-card b{color:var(--text-primary);font-weight:600}
+.demo{background:var(--surface);border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);padding:32px;display:flex;flex-wrap:wrap;gap:20px;align-items:center}
+.demo.paper{background:var(--background)}
+.comp-grid{display:grid;grid-template-columns:1fr;gap:20px}
+@media(min-width:900px){.comp-grid{grid-template-columns:1fr 320px}}
+.meta-count{font-size:12px;color:var(--text-secondary);font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+/* button matrix */
+.matrix{border-collapse:separate;border-spacing:16px;width:100%}
+.matrix th{font-size:12px;color:var(--text-secondary);font-weight:600;text-align:left;text-transform:uppercase;letter-spacing:0.04em}
+.matrix td .rowlbl{font-size:13px;font-weight:600}
+.b{border:none;border-radius:var(--r-control);font-family:inherit;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:6px;transition:transform .42s var(--ease-move),box-shadow .18s var(--ease-hover),opacity .14s ease-out,background-color .15s var(--ease-color)}
+.b-primary{background:var(--text-primary);color:#FFFFFF;height:48px;padding:0 20px;font-size:15px;font-weight:600}
+.b-navcta{background:var(--text-primary);color:#FFFFFF;height:36px;padding:0 16px;font-size:14px;font-weight:600;box-shadow:var(--shadow-navcta)}
+.b-ghost{background:transparent;color:var(--text-primary);height:21px;padding:0 4px;font-size:14px;font-weight:500}
+.b-secondary{background:#FFFFFF;color:var(--text-primary);height:36px;padding:0 16px;font-size:14px;font-weight:600;box-shadow:var(--shadow-secondary)}
+.st-hover.b-primary,.st-hover.b-ghost{transform:translateY(-2px);opacity:.94}
+.st-hover.b-navcta{transform:translateY(-2px);box-shadow:var(--shadow-navcta-hover)}
+.st-hover.b-secondary{transform:translateY(-2px)}
+.st-active{transform:translateY(0);opacity:.9}
+.st-disabled{opacity:.4;pointer-events:none}
+.b:hover:not(.st-disabled).b-primary,.b:hover:not(.st-disabled).b-ghost{transform:translateY(-2px);opacity:.94}
+.b:hover:not(.st-disabled).b-navcta{transform:translateY(-2px);box-shadow:var(--shadow-navcta-hover)}
+.b:hover:not(.st-disabled).b-secondary{transform:translateY(-2px)}
+/* promise cards */
+.promise-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:640px){.promise-grid{grid-template-columns:1fr}}
+.promise-card{background:#FFFFFF;border-radius:14px;padding:28px;box-shadow:var(--shadow-card)}
+.p-icontile{width:40px;height:40px;border-radius:8px;background:#EFEEEA;display:inline-flex;align-items:center;justify-content:center;color:var(--text-primary);font-size:20px}
+.p-tag{display:inline-block;margin-top:16px;font-size:12px;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;color:var(--text-secondary);background:#F2F1ED;border-radius:9999px;padding:4px 12px}
+.p-heading{font-size:17px;font-weight:700;letter-spacing:-0.2px;margin-top:14px}
+.p-body{font-size:14px;color:var(--text-secondary);margin-top:8px;line-height:1.5}
+.eyebrow-demo{text-align:center;padding:24px 0}
+</style>
+<section id="components" aria-labelledby="comp-h">
+  <div class="wrap">
+    <p class="eyebrow">Components</p>
+    <h2 class="section-h" id="comp-h">The full inventory.</h2>
+
+    <!-- Navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head">
+        <div><div class="comp-title">Navbar</div><div class="comp-desc">Edge-to-edge square bar, 68px tall, filled with paper so it reads as a seamless top strip. Wordmark left, links center, utility CTA far right.</div></div>
+        <span class="meta-count">1 instance · 13 items</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo paper" style="padding:0;overflow:hidden">
+          <nav class="navbar" style="width:100%" aria-label="Navbar specimen">
+            <span class="nav-word"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Token&nbsp;Harbor</span>
+            <div class="nav-links">
+              <a href="#components">Product</a>
+              <a href="#components">Console</a>
+              <span class="nav-drop" role="button" tabindex="0">Docs <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></span>
+            </div>
+            <div class="nav-right">
+              <span class="nav-social">
+                <a href="#footer" aria-label="GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+                <a href="#footer" aria-label="X"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+              </span>
+              <button class="btn-ghost" type="button">Sign in</button>
+              <button class="btn-nav-cta" type="button">Try free</button>
+            </div>
+          </nav>
+        </div>
+        <div class="spec-card">
+          <b>--navbar</b><br>
+          height <b>68</b> · inset <b>0</b> · radius <b>0</b><br>
+          fill <b>background #F7F6F2</b><br>
+          wordmark type <b>label-md</b> · icon lucide:shield<br>
+          nav-cta <b>#17170F</b> / <b>#FFFFFF</b> · h36 · r-control
+        </div>
+      </div>
+    </div>
+
+    <!-- Button matrix (hero-primary, nav-cta, ghost, secondary) -->
+    <div class="comp-block" data-tier-a-component="hero-primary-button">
+      <div class="comp-head">
+        <div><div class="comp-title">Button matrix</div><div class="comp-desc">Every documented fill across rest · hover · active · disabled. Rows are variants; hover any cell to replay its motion.</div></div>
+        <span class="meta-count">4 variants</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo" style="overflow-x:auto">
+          <table class="matrix">
+            <thead><tr><th></th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+            <tbody>
+              <tr data-tier-a-component="hero-primary-button">
+                <td><span class="rowlbl">Hero primary · 48</span></td>
+                <td><button class="b b-primary" aria-label="Submit"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+                <td><button class="b b-primary st-hover" aria-label="Submit hover"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+                <td><button class="b b-primary st-active" aria-label="Submit active"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+                <td><button class="b b-primary st-disabled" aria-label="Submit disabled" disabled><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button></td>
+              </tr>
+              <tr data-tier-a-component="nav-cta-button">
+                <td><span class="rowlbl">Nav CTA · 36</span></td>
+                <td><button class="b b-navcta">Try free</button></td>
+                <td><button class="b b-navcta st-hover">Try free</button></td>
+                <td><button class="b b-navcta st-active">Try free</button></td>
+                <td><button class="b b-navcta st-disabled" disabled>Try free</button></td>
+              </tr>
+              <tr data-tier-a-component="ghost-text-button">
+                <td><span class="rowlbl">Ghost · 21</span></td>
+                <td><button class="b b-ghost">Sign in</button></td>
+                <td><button class="b b-ghost st-hover">Sign in</button></td>
+                <td><button class="b b-ghost st-active">Sign in</button></td>
+                <td><button class="b b-ghost st-disabled" disabled>Sign in</button></td>
+              </tr>
+              <tr data-tier-a-component="secondary-white-button">
+                <td><span class="rowlbl">Secondary white · 36</span></td>
+                <td><button class="b b-secondary">View docs</button></td>
+                <td><button class="b b-secondary st-hover">View docs</button></td>
+                <td><button class="b b-secondary st-active">View docs</button></td>
+                <td><button class="b b-secondary st-disabled" disabled>View docs</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec-card">
+          <b>--btn-primary</b> fill #17170F · text #FFFFFF · h48 · r-control · pad 0<br>
+          <b>--btn-nav-cta</b> h36 · pad 0 16 · 3-layer shadow<br>
+          <b>--btn-ghost</b> transparent · h21<br>
+          <b>--btn-secondary-white</b> #FFFFFF · h36 · 1-tier shadow<br>
+          motion transform .42s ease-move · hover .18s ease-hover
+        </div>
+      </div>
+    </div>
+
+    <!-- Announcement pill -->
+    <div class="comp-block" data-tier-a-component="announcement-pill">
+      <div class="comp-head">
+        <div><div class="comp-title">Announcement pill</div><div class="comp-desc">Full-pill banner above the hero headline — the only saturated color in the fold, backed by three localized washes and a shimmer sweep.</div></div>
+        <span class="meta-count">1 instance</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo" style="justify-content:center;position:relative;overflow:hidden">
+          <span class="pill-wash" aria-hidden="true" style="inset:-40px"></span>
+          <a class="announce-pill" href="#hero">
+            <span class="p-icon"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></span>
+            <span class="p-text">
+              <span class="p-lead">Multi-provider routing is live</span>
+              <span class="p-sub">Now in general availability</span>
+            </span>
+            <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
+          </a>
+        </div>
+        <div class="spec-card">
+          <b>--pill-announcement</b><br>
+          radius <b>pill 9999</b> · border 1px rgba(0,0,0,0.06)<br>
+          fill pastel multi-stop (warm/cool/pink)<br>
+          text <b>#17170F</b> · lead label-md · sub body-md<br>
+          shimmer linear-gradient 105deg
+        </div>
+      </div>
+    </div>
+
+    <!-- Provider glyph row -->
+    <div class="comp-block" data-tier-a-component="provider-glyph-row">
+      <div class="comp-head">
+        <div><div class="comp-title">Provider glyph row</div><div class="comp-desc">Five ~32px circular badges under the hero input — a compact logo-strip signaling provider variety, one of the few saturated elements permitted.</div></div>
+        <span class="meta-count">5 badges</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo" style="justify-content:center">
+          <div class="glyph-row" aria-label="Supported providers">
+            <span class="glyph" style="background:#B5563A" aria-hidden="true"><iconify-icon icon="lucide:flame"></iconify-icon></span>
+            <span class="glyph" style="background:#2F8F4E" aria-hidden="true"><iconify-icon icon="lucide:leaf"></iconify-icon></span>
+            <span class="glyph" style="background:#3B7DE0" aria-hidden="true"><iconify-icon icon="lucide:droplet"></iconify-icon></span>
+            <span class="glyph" style="background:#615FFF" aria-hidden="true"><iconify-icon icon="lucide:hexagon"></iconify-icon></span>
+            <span class="glyph" style="background:#17170F" aria-hidden="true"><iconify-icon icon="lucide:circle"></iconify-icon></span>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--provider-glyph</b><br>
+          size <b>32</b> · radius <b>pill 9999</b><br>
+          fills terracotta · green · blue · indigo(#615FFF) · #17170F<br>
+          mark #FFFFFF
+        </div>
+      </div>
+    </div>
+
+    <!-- Section eyebrow -->
+    <div class="comp-block" data-tier-a-component="section-eyebrow">
+      <div class="comp-head">
+        <div><div class="comp-title">Section eyebrow label</div><div class="comp-desc">Small centered all-caps category marker above the proof-grid headline.</div></div>
+        <span class="meta-count">1 instance</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo" style="flex-direction:column">
+          <div class="eyebrow-demo" style="width:100%">
+            <p class="sp-eyebrow" style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-secondary)">Promises</p>
+            <p class="section-h" style="margin-top:12px">Built for the long haul</p>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--label-eyebrow</b><br>
+          13px · 600 · lh 1.3 · 0.08em · uppercase<br>
+          color text-secondary · Inter
+        </div>
+      </div>
+    </div>
+
+    <!-- Promise card grid -->
+    <div class="comp-block" data-tier-a-component="promise-card">
+      <div class="comp-head">
+        <div><div class="comp-title">Promise card grid</div><div class="comp-desc">2×2 uniform grid, 16px gap, each card ~49% wide. Icon tile, pill tag, heading, body — purely informational, no CTA inside.</div></div>
+        <span class="meta-count">×4</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo paper" style="display:block">
+          <div class="promise-grid">
+            <div class="promise-card">
+              <span class="p-icontile"><iconify-icon icon="lucide:route" aria-hidden="true"></iconify-icon></span>
+              <span class="p-tag">Routing</span>
+              <div class="p-heading">Every model, one key</div>
+              <p class="p-body">Point your traffic once and let Harbor route across providers by cost, latency, and availability.</p>
+            </div>
+            <div class="promise-card">
+              <span class="p-icontile"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></span>
+              <span class="p-tag">Metering</span>
+              <div class="p-heading">Tokens you can trust</div>
+              <p class="p-body">Per-request accounting with no drift — the same numbers in your dashboard and on your invoice.</p>
+            </div>
+            <div class="promise-card">
+              <span class="p-icontile"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon></span>
+              <span class="p-tag">Safety</span>
+              <div class="p-heading">Guardrails by default</div>
+              <p class="p-body">Rate limits, key scoping, and audit trails ship on day one, quietly working underneath.</p>
+            </div>
+            <div class="promise-card">
+              <span class="p-icontile"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon></span>
+              <span class="p-tag">Observability</span>
+              <div class="p-heading">See every hop</div>
+              <p class="p-body">Trace a call from your app through the router to the provider and back, in one warm console.</p>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--card-promise</b><br>
+          surface <b>#FFFFFF</b> · radius <b>14</b> · pad <b>28</b><br>
+          shadow 3-layer (2/3 · 12/22 · 32/60)<br>
+          icon tile 40 · r8 · tag pill · heading label-md · body body-md
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer component preview -->
+    <div class="comp-block" data-tier-a-component="footer">
+      <div class="comp-head">
+        <div><div class="comp-title">Footer</div><div class="comp-desc">Full-width near-black band inverting the palette — wide brand column plus four link stacks. Rendered live at the page terminus.</div></div>
+        <span class="meta-count">1 instance · 19 links</span>
+      </div>
+      <div class="comp-grid">
+        <div class="demo" style="background:#11120D;color:#FFFFFF;justify-content:space-between">
+          <div>
+            <div style="font-weight:700;font-size:17px;color:#FFFFFF;display:flex;align-items:center;gap:8px"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Token Harbor</div>
+            <p style="font-size:13px;color:#A6A6A0;margin-top:8px">One harbor for every token.</p>
+          </div>
+          <div style="display:flex;gap:32px;flex-wrap:wrap">
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#A6A6A0">
+              <span style="color:#FFFFFF;font-weight:600;margin-bottom:2px">Product</span><span>Routing</span><span>Metering</span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#A6A6A0">
+              <span style="color:#FFFFFF;font-weight:600;margin-bottom:2px">Docs</span><span>Quickstart</span><span>API</span>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          <b>--footer</b><br>
+          bg <b>#11120D</b> · text #FFFFFF / #A6A6A0<br>
+          brand col ~29% · 4 link cols ~13%<br>
+          the one full palette inversion
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:32px}
+.depth-card{background:var(--surface);padding:28px}
+.depth-card .dlab{font-size:14px;font-weight:700;letter-spacing:-0.2px}
+.depth-card .dval{font-size:12px;color:var(--text-secondary);margin-top:6px}
+.d-control{border-radius:4px}
+.d-card{border-radius:14px}
+.d-pill{border-radius:9999px}
+.d-s-none{box-shadow:none;border:1px solid rgba(0,0,0,0.08)}
+.d-s-secondary{box-shadow:var(--shadow-secondary)}
+.d-s-navcta{box-shadow:var(--shadow-navcta)}
+.d-s-card{box-shadow:var(--shadow-card)}
+</style>
+<section id="surface-depth" aria-labelledby="depth-h">
+  <div class="wrap">
+    <p class="eyebrow">Surface &amp; depth</p>
+    <h2 class="section-h" id="depth-h">Crisp radii, three-layer shadow.</h2>
+    <div class="depth-grid">
+      <div class="depth-card d-control d-s-none"><div class="dlab">Control radius</div><div class="dval">4px · flat / bordered</div></div>
+      <div class="depth-card d-card d-s-secondary"><div class="dlab">Card radius</div><div class="dval">14px · one-tier shadow</div></div>
+      <div class="depth-card d-control d-s-navcta"><div class="dlab">Nav CTA elevation</div><div class="dval">4px · three-layer shadow</div></div>
+      <div class="depth-card d-card d-s-card"><div class="dlab">Promise card elevation</div><div class="dval">14px · 2/3 + 12/22 + 32/60</div></div>
+      <div class="depth-card d-pill d-s-secondary" style="text-align:center"><div class="dlab">Pill radius</div><div class="dval">9999px · pill &amp; glyphs only</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:24px;margin-top:32px}
+.motion-card{background:var(--surface);border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);padding:28px}
+.motion-card .mlab{font-size:14px;font-weight:700}
+.motion-card .mval{font-size:12px;color:var(--text-secondary);margin-top:6px;font-variant-numeric:tabular-nums}
+.mbox{width:56px;height:56px;border-radius:var(--r-control);background:var(--text-primary);margin-top:20px}
+.m-color.play{background:var(--accent-cool);transition:background-color .15s var(--ease-color)}
+.m-lift.play{transform:translateY(-2px);opacity:.94;transition:transform .42s var(--ease-move),opacity .14s ease-out}
+.m-shimmerbox{margin-top:20px;height:56px;border-radius:var(--r-control);overflow:hidden;position:relative;background:linear-gradient(105deg,rgba(255,210,48,0.35),rgba(97,95,255,0.28),rgba(255,138,196,0.32))}
+.m-shimmerbox::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,rgba(0,0,0,0) 30%,rgba(255,255,255,0.65) 50%,rgba(0,0,0,0) 70%);transform:translateX(-120%);animation:shimmer 3.2s var(--ease-color) infinite}
+.replay{margin-top:16px}
+@media(prefers-reduced-motion:reduce){.m-shimmerbox::after{animation:none;opacity:0}.m-color,.m-lift{transition:none}}
+</style>
+<section id="motion" aria-labelledby="motion-h">
+  <div class="wrap">
+    <p class="eyebrow">Motion</p>
+    <h2 class="section-h" id="motion-h">Fast controls, playful moments.</h2>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="mlab">Color / opacity</div>
+        <div class="mval">0.14s ease-out</div>
+        <div class="mbox m-color" id="mbox-color"></div>
+        <button class="b b-secondary replay" type="button" data-replay="mbox-color" data-cls="play">Replay</button>
+      </div>
+      <div class="motion-card">
+        <div class="mlab">Button lift</div>
+        <div class="mval">0.42s cubic-bezier(.65,0,.18,1)</div>
+        <div class="mbox m-lift" id="mbox-lift"></div>
+        <button class="b b-secondary replay" type="button" data-replay="mbox-lift" data-cls="play">Replay</button>
+      </div>
+      <div class="motion-card">
+        <div class="mlab">Pill shimmer</div>
+        <div class="mval">105deg light sweep · looping</div>
+        <div class="m-shimmerbox" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition .mock{background:var(--background);border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);overflow:hidden;margin-top:32px}
+#composition .mock-nav{height:68px;background:var(--background);display:flex;align-items:center;padding:0 24px;border-bottom:1px solid rgba(0,0,0,0.05)}
+#composition .mock-hero{text-align:center;padding:64px 24px}
+#composition .mock-hero h3{font-size:44px;font-weight:700;letter-spacing:-1px;line-height:1.12}
+#composition .mock-hero p{color:var(--text-secondary);margin-top:14px}
+#composition .mock-cards{padding:0 24px 24px}
+#composition .mock-cta{background:#11120D;color:#FFFFFF;text-align:center;padding:56px 24px}
+#composition .mock-cta h3{font-size:30px;font-weight:700;letter-spacing:-0.6px}
+#composition .mock-cta p{color:#A6A6A0;margin-top:10px;margin-bottom:24px}
+@media(max-width:640px){#composition .mock-hero h3{font-size:30px}}
+</style>
+<section id="composition" aria-labelledby="comp2-h">
+  <div class="wrap">
+    <p class="eyebrow">In composition</p>
+    <h2 class="section-h" id="comp2-h">The system, holding together.</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="nav-word"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Token&nbsp;Harbor</span>
+        <div class="nav-right" style="margin-left:auto">
+          <button class="btn-ghost" type="button">Sign in</button>
+          <button class="btn-nav-cta" type="button">Try free</button>
+        </div>
+      </div>
+      <div class="mock-hero">
+        <div style="display:flex;justify-content:center;margin-bottom:24px">
+          <a class="announce-pill" href="#hero">
+            <span class="p-icon"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></span>
+            <span class="p-text"><span class="p-lead">v2 routing engine</span><span class="p-sub">Faster failover across providers</span></span>
+            <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon>
+          </a>
+        </div>
+        <h3>Ship on every model.</h3>
+        <p>One key, one console, every provider — quietly metered.</p>
+        <form class="hero-input-row" style="margin:28px auto 0" onsubmit="return false">
+          <input type="email" placeholder="you@company.com" aria-label="Work email">
+          <button class="btn-hero-primary" type="submit" aria-label="Get started"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </form>
+      </div>
+      <div class="mock-cards">
+        <div class="promise-grid">
+          <div class="promise-card">
+            <span class="p-icontile"><iconify-icon icon="lucide:route" aria-hidden="true"></iconify-icon></span>
+            <span class="p-tag">Routing</span>
+            <div class="p-heading">Every model, one key</div>
+            <p class="p-body">Route across providers by cost and latency without touching your code.</p>
+          </div>
+          <div class="promise-card">
+            <span class="p-icontile"><iconify-icon icon="lucide:gauge" aria-hidden="true"></iconify-icon></span>
+            <span class="p-tag">Metering</span>
+            <div class="p-heading">Tokens you can trust</div>
+            <p class="p-body">Accounting that matches your invoice, request for request.</p>
+          </div>
+        </div>
+      </div>
+      <div class="mock-cta">
+        <h3>Set sail in minutes.</h3>
+        <p>Bring your keys and start routing today.</p>
+        <button class="b b-secondary" type="button">Read the docs</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#11120D;color:#FFFFFF;padding:64px 0 32px}
+#footer .foot-grid{display:grid;grid-template-columns:29% repeat(4,1fr);gap:32px}
+#footer .foot-brand .fword{display:flex;align-items:center;gap:8px;font-size:19px;font-weight:700}
+#footer .foot-brand p{color:#A6A6A0;font-size:14px;margin-top:12px;max-width:240px}
+#footer .foot-social{display:flex;gap:14px;margin-top:20px;color:#A6A6A0;font-size:18px}
+#footer .foot-social a{transition:color .15s var(--ease-color)}
+#footer .foot-social a:hover{color:#FFFFFF}
+#footer .foot-col h4{font-size:13px;font-weight:600;color:#FFFFFF;margin-bottom:14px}
+#footer .foot-col a{display:block;font-size:13px;color:#A6A6A0;text-decoration:none;margin-bottom:10px;transition:color .15s var(--ease-color)}
+#footer .foot-col a:hover{color:#FFFFFF}
+#footer .legal{border-top:1px solid rgba(255,255,255,0.08);margin-top:48px;padding-top:24px;font-size:12px;color:#8A8A84;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+#footer .legal a{color:#8A8A84;text-decoration:none}
+@media(max-width:768px){#footer .foot-grid{grid-template-columns:1fr 1fr}}
+</style>
+<footer id="footer" aria-labelledby="foot-h">
+  <div class="wrap">
+    <h2 id="foot-h" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Footer</h2>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="fword"><iconify-icon icon="lucide:shield" aria-hidden="true"></iconify-icon>Token Harbor</div>
+        <p>One harbor for every token — warm, quiet, and built for the long haul.</p>
+        <div class="foot-social">
+          <a href="https://tokenharbor.ai/" aria-label="GitHub"><iconify-icon icon="lucide:github"></iconify-icon></a>
+          <a href="https://tokenharbor.ai/" aria-label="X"><iconify-icon icon="lucide:twitter"></iconify-icon></a>
+          <a href="https://tokenharbor.ai/" aria-label="Discord"><iconify-icon icon="lucide:message-circle"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="https://tokenharbor.ai/">Routing</a>
+        <a href="https://tokenharbor.ai/">Metering</a>
+        <a href="https://tokenharbor.ai/">Observability</a>
+        <a href="https://tokenharbor.ai/">Pricing</a>
+      </div>
+      <div class="foot-col">
+        <h4>Developers</h4>
+        <a href="https://tokenharbor.ai/">Quickstart</a>
+        <a href="https://tokenharbor.ai/">API reference</a>
+        <a href="https://tokenharbor.ai/">SDKs</a>
+        <a href="https://tokenharbor.ai/">Status</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="https://tokenharbor.ai/">About</a>
+        <a href="https://tokenharbor.ai/">Blog</a>
+        <a href="https://tokenharbor.ai/">Careers</a>
+        <a href="https://tokenharbor.ai/">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Legal</h4>
+        <a href="https://tokenharbor.ai/">Privacy</a>
+        <a href="https://tokenharbor.ai/">Terms</a>
+        <a href="https://tokenharbor.ai/">Security</a>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© Harbor Paper Console — <a href="https://tokenharbor.ai/">tokenharbor.ai</a></span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('[data-replay]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.replay);
+    var cls=btn.dataset.cls;
+    if(!el)return;
+    el.classList.remove(cls);
+    void el.offsetWidth;
+    el.classList.add(cls);
+    setTimeout(function(){el.classList.remove(cls);},700);
+  });
+});
+</script>
+</body>
+</html>

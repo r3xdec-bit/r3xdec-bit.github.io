@@ -1,0 +1,590 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Corporate Ledger Blue — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#EBF4FF;
+  --surface:#FFFFFF;
+  --surface-inverse:#031120;
+  --text-primary:#1F2937;
+  --text-secondary:#777777;
+  --text-muted:#B0B0B0;
+  --accent-blue:#00559B;
+  --accent-link:#1473E6;
+  --border-hairline:#DCDCDC;
+  --border-blue:#004F92;
+  --border-blue-a:rgba(0,80,147,0.3);
+  --grad-cta:linear-gradient(265deg, rgb(2,57,198) 2.8%, rgb(4,106,190) 77.42%);
+  --r-control:8px;
+  --r-card:8px;
+  --r-pill:9999px;
+  --gap:16px;
+  --micro:8px;
+  --base:4px;
+  --control-pad:10px;
+  --pad-lg:40px;
+  --pad-md:36px;
+  --card-shadow:rgba(0,0,0,0.1) 0px 4px 6px -1px, rgba(0,0,0,0.1) 0px 2px 4px -2px;
+  --ease-slow:cubic-bezier(0.4,0,0.2,1);
+  --ease-out:cubic-bezier(0,0,0.2,1);
+  --font-sans:"Public Sans","bcaSans",system-ui,sans-serif;
+  --font-serif:"Playfair Display","cordon-bleu",serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.7;
+}
+h1,h2,h3,p{margin:0;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 24px;}
+.serif{font-family:var(--font-serif);font-style:italic;}
+.eyebrow{
+  font-size:16px;font-weight:700;letter-spacing:.04em;
+  color:var(--accent-blue);text-transform:uppercase;
+}
+section{padding:var(--pad-lg) 0;}
+.section-title{font-size:24px;font-weight:700;line-height:1.33;color:var(--accent-blue);}
+.section-note{font-size:16px;color:var(--text-secondary);margin-top:8px;max-width:60ch;}
+
+/* Hero */
+#hero{padding:0 0 var(--pad-lg);}
+.topbar{height:38px;width:100%;background:transparent;display:flex;align-items:center;}
+.topbar nav{display:flex;gap:24px;max-width:1280px;margin:0 auto;padding:0 24px;width:100%;}
+.topbar a{font-size:13px;color:var(--accent-blue);text-decoration:none;font-weight:500;}
+.topbar a:hover{text-decoration:underline;}
+.searchbar{background:var(--surface);border-bottom:1px solid var(--border-hairline);}
+.searchbar .wrap{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px;}
+.logo-mark{display:flex;align-items:center;gap:8px;font-weight:700;font-size:20px;color:var(--accent-blue);}
+.search-field{flex:1;min-width:180px;display:flex;align-items:center;border:1px solid var(--border-blue-a);height:48px;padding:0 12px;background:var(--surface);}
+.search-field input{border:0;outline:none;flex:1;font-family:inherit;font-size:16px;color:var(--text-primary);background:transparent;}
+.search-field input::placeholder{color:var(--text-muted);}
+.cari-btn{height:48px;padding:0 40px;background:var(--accent-blue);color:#fff;border:0;font-family:inherit;font-size:16px;font-weight:700;cursor:pointer;}
+.cari-btn:hover{opacity:.9;}
+.lang-toggle{display:flex;align-items:center;gap:4px;font-size:14px;color:var(--text-primary);}
+.lang-toggle b{color:var(--accent-blue);}
+.hero-body{padding-top:var(--pad-md);}
+.breadcrumb{font-size:14px;color:var(--text-secondary);margin-bottom:16px;display:flex;gap:6px;align-items:center;}
+.breadcrumb a{color:var(--accent-link);text-decoration:none;}
+.hero-h1{font-size:24px;font-weight:700;line-height:1.33;color:var(--accent-blue);max-width:40ch;}
+.hero-sub{font-size:16px;color:var(--text-secondary);margin-top:8px;}
+.channel-cta{display:inline-flex;margin-top:24px;}
+.channel-cta a{display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 42px;background:var(--grad-cta);color:#fff;text-decoration:none;font-weight:700;font-size:16px;transition:opacity .2s var(--ease-out);}
+.channel-cta a.left{border-radius:9999px 0 0 9999px;border:1px solid var(--border-blue-a);}
+.channel-cta a.right{border-radius:0 9999px 9999px 0;padding:0 42px;}
+.channel-cta a:hover{opacity:.8;}
+.hero-banner{margin-top:28px;height:min(46vw,460px);border-radius:var(--r-card);overflow:hidden;background:linear-gradient(135deg,#c9d9ef,#eef4fc);position:relative;display:flex;align-items:flex-end;}
+.hero-banner .food{position:absolute;inset:0;background:
+  radial-gradient(circle at 30% 40%,#e6b98a55,transparent 40%),
+  radial-gradient(circle at 70% 60%,#8fae7d55,transparent 45%),
+  linear-gradient(120deg,#dfe9f7,#f2f6fc);}
+.hero-banner span{position:relative;color:var(--text-primary);font-size:14px;font-weight:500;background:rgba(255,255,255,.85);padding:6px 12px;margin:16px;}
+@media(max-width:768px){.hero-h1,.section-title{font-size:22px;}}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="topbar" role="navigation" aria-label="Top navigation">
+    <nav>
+      <a href="#">Individu</a>
+      <a href="#">Bisnis</a>
+      <a href="#">Prioritas</a>
+      <a href="#">Tentang BCA</a>
+    </nav>
+  </div>
+  <div class="searchbar">
+    <div class="wrap">
+      <div class="logo-mark"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Ledger</div>
+      <div class="search-field">
+        <iconify-icon icon="lucide:search" aria-hidden="true" style="color:var(--text-secondary)"></iconify-icon>
+        <input type="search" placeholder="Cari promo, kategori, atau merchant" aria-label="Cari">
+      </div>
+      <button class="cari-btn" type="button">Cari</button>
+      <div class="lang-toggle" aria-label="Language toggle"><b>ID</b><span>/</span><span>EN</span></div>
+    </div>
+  </div>
+  <div class="wrap hero-body">
+    <div class="breadcrumb"><a href="#">Promo</a> <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon> <a href="#">Kuliner</a> <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon> <span>Palem Cinde</span></div>
+    <h1 class="hero-h1">Nikmati Sajian <span class="serif">istimewa</span> di Palem Cinde dengan Penawaran Terbatas</h1>
+    <p class="hero-sub">Berlaku 29 September 2026 – 31 Desember 2026</p>
+    <div class="channel-cta" role="group" aria-label="Pilih kanal pembayaran">
+      <a href="#" class="left"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> myBCA</a>
+      <a href="#" class="right"><iconify-icon icon="lucide:qr-code" aria-hidden="true"></iconify-icon> QRIS</a>
+    </div>
+    <div class="hero-banner"><div class="food" aria-hidden="true"></div><span role="img" aria-label="Tableau kuliner musiman">Tableau kuliner musiman</span></div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette .wrap{padding-top:0;}
+.role-group{margin-top:28px;}
+.role-group h3{font-size:16px;font-weight:700;color:var(--text-primary);margin-bottom:12px;letter-spacing:.02em;}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap);}
+.swatch{background:var(--surface);border:1px solid var(--border-hairline);}
+.swatch .chip{height:96px;}
+.swatch .meta{padding:12px;}
+.swatch .name{font-weight:700;font-size:15px;}
+.swatch .val{font-size:13px;color:var(--text-secondary);font-family:ui-monospace,monospace;margin-top:2px;}
+.swatch .use{font-size:13px;color:var(--text-secondary);margin-top:6px;line-height:1.5;}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+</style>
+<section id="palette" aria-labelledby="palette-t">
+  <div class="wrap">
+    <p class="eyebrow">Sistem Warna</p>
+    <h2 id="palette-t" class="section-title">Bidang pucat, tinta pekat, satu biru bergradasi</h2>
+    <p class="section-note">Warna dijaga seminimal mungkin. Bidang dominan tetap lavender-biru pucat; saturasi hanya muncul pada satu pasangan CTA.</p>
+
+    <div class="role-group">
+      <h3>Permukaan</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--background)"></div><div class="meta"><div class="name">background</div><div class="val">#EBF4FF</div><div class="use">Bidang halaman dominan, lavender-biru pucat.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface);border-bottom:1px solid var(--border-hairline)"></div><div class="meta"><div class="name">surface</div><div class="val">#FFFFFF</div><div class="use">Bar header, tombol utilitas, grid kartu penutup.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--surface-inverse)"></div><div class="meta"><div class="name">surface-inverse</div><div class="val">#031120</div><div class="use">Footer — satu-satunya permukaan gelap.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3>Teks</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--text-primary)"></div><div class="meta"><div class="name">text-primary</div><div class="val">#1F2937</div><div class="use">Tinta badan paragraf dan daftar.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--text-secondary)"></div><div class="meta"><div class="name">text-secondary</div><div class="val">#777777</div><div class="use">Label sekunder dan subline tanggal.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--text-muted)"></div><div class="meta"><div class="name">text-muted</div><div class="val">#B0B0B0</div><div class="use">Caption paling redup pada kartu.</div></div></div>
+      </div>
+    </div>
+
+    <div class="role-group">
+      <h3>Aksen</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:var(--accent-blue)"></div><div class="meta"><div class="name">accent-blue</div><div class="val">#00559B</div><div class="use">Judul, tombol Cari, glyph ikon.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--accent-link)"></div><div class="meta"><div class="name">accent-link</div><div class="val">#1473E6</div><div class="use">Tautan dalam teks dan breadcrumb.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--grad-cta)"></div><div class="meta"><div class="name">gradient CTA</div><div class="val">265deg · #0239C6 → #046ABE</div><div class="use">Dijatah &lt;1% area — hanya pasangan CTA split.</div></div></div>
+        <div class="swatch"><div class="chip checker"></div><div class="meta"><div class="name">border-blue (α)</div><div class="val">rgba(0,80,147,0.3)</div><div class="use">Hairline pada tombol utilitas & CTA kiri.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+.spec-row{border-top:1px solid var(--border-hairline);padding:24px 0;display:grid;grid-template-columns:1fr 260px;gap:24px;align-items:baseline;}
+.spec-row .metrics{font-size:13px;color:var(--text-secondary);font-family:ui-monospace,monospace;line-height:1.8;}
+.t-display{font-size:24px;font-weight:700;line-height:1.33;color:var(--accent-blue);}
+.t-headline{font-size:24px;font-weight:400;line-height:1.33;color:var(--text-primary);}
+.t-body{font-size:16px;font-weight:400;line-height:1.7;color:var(--text-primary);}
+.t-label{font-size:24px;font-weight:400;line-height:1.33;color:var(--text-primary);}
+.weight-ramp{display:flex;gap:32px;flex-wrap:wrap;margin-top:24px;}
+.weight-ramp div{font-size:24px;}
+@media(max-width:768px){.spec-row{grid-template-columns:1fr;}.t-display,.t-headline,.t-label{font-size:22px;}}
+</style>
+<section id="type-scale" aria-labelledby="type-t">
+  <div class="wrap">
+    <p class="eyebrow">Skala Tipografi</p>
+    <h2 id="type-t" class="section-title">Satu keluarga, hierarki oleh bobot dan warna</h2>
+    <p class="section-note">bcaSans menjalankan seluruh hierarki. cordon-bleu miring muncul hanya sebagai penekanan satu–dua kata.</p>
+
+    <div class="spec-row">
+      <div class="t-display">Penawaran <span class="serif">terbatas</span> untuk kuliner pilihan</div>
+      <div class="metrics">display-lg<br>bcaSans · 24px · 700 · lh 1.67</div>
+    </div>
+    <div class="spec-row">
+      <div class="t-headline">Syarat dan ketentuan <span class="serif">promo</span></div>
+      <div class="metrics">headline-md<br>bcaSans · 24px · 400 · lh 1.33</div>
+    </div>
+    <div class="spec-row">
+      <div class="t-label">Kategori pembayaran</div>
+      <div class="metrics">label-md<br>bcaSans · 24px · 400 · lh 1.33</div>
+    </div>
+    <div class="spec-row">
+      <div class="t-body">Promo berlaku untuk transaksi menggunakan myBCA dan QRIS pada periode yang ditentukan. Ketentuan lengkap tercantum pada daftar di bawah dan tidak dapat digabungkan dengan penawaran lain.</div>
+      <div class="metrics">body-md<br>bcaSans · 16px · 400 · lh 1.7</div>
+    </div>
+    <div class="spec-row">
+      <div>
+        <div class="weight-ramp">
+          <div style="font-weight:400">Regular 400</div>
+          <div style="font-weight:500">Medium 500</div>
+          <div style="font-weight:700">Bold 700</div>
+          <div class="serif" style="font-weight:400">cordon-bleu italic</div>
+        </div>
+      </div>
+      <div class="metrics">weight ramp<br>bcaSans + accent-serif</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components .comp{margin-top:40px;padding-top:32px;border-top:1px solid var(--border-hairline);}
+.comp-head{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:baseline;}
+.comp-head h3{font-size:24px;font-weight:400;color:var(--text-primary);}
+.comp-head .count{font-size:13px;color:var(--text-secondary);font-family:ui-monospace,monospace;}
+.comp-desc{font-size:15px;color:var(--text-secondary);margin-top:6px;max-width:62ch;}
+.comp-body{margin-top:20px;}
+.spec-card{margin-top:16px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.7;color:var(--text-secondary);background:var(--surface);border-left:3px solid var(--accent-blue);padding:12px 14px;}
+.spec-card b{color:var(--text-primary);font-weight:700;}
+/* navbar demo */
+.demo-navbar{background:#3a5a8a;}
+.demo-navbar .topbar a{color:#fff;}
+.demo-search{background:var(--surface);border:1px solid var(--border-hairline);margin-top:0;}
+/* utility white button */
+.btn-util{height:48px;padding:8px 40px 8px 12px;background:var(--surface);color:#000;border:1px solid var(--border-blue-a);border-radius:0;font-family:inherit;font-size:16px;cursor:pointer;transition:opacity .2s var(--ease-out);}
+.btn-util:hover{opacity:.8;}
+.btn-util:disabled{color:var(--text-muted);cursor:not-allowed;}
+.btn-inline{background:transparent;border:0;border-radius:0;height:29px;color:var(--text-primary);font-family:inherit;font-size:16px;padding:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.btn-inline:hover{color:var(--accent-link);}
+.matrix{border-collapse:collapse;width:100%;margin-top:8px;}
+.matrix th,.matrix td{border:1px solid var(--border-hairline);padding:14px;text-align:left;vertical-align:middle;}
+.matrix th{font-size:12px;color:var(--text-secondary);font-weight:700;text-transform:uppercase;letter-spacing:.03em;}
+/* channel chip */
+.chip-row{display:flex;gap:12px;}
+.chan-chip{display:inline-flex;align-items:center;gap:6px;font-size:14px;color:var(--text-primary);}
+.chan-chip iconify-icon{color:var(--accent-blue);}
+/* terms stack */
+.terms-stack{list-style:none;padding:0;margin:0;}
+.terms-stack li{width:98%;padding:0;background:transparent;border-radius:0;display:flex;gap:8px;margin-bottom:8px;font-size:16px;line-height:1.7;color:var(--text-primary);}
+.terms-stack li iconify-icon{color:var(--accent-blue);margin-top:6px;flex:none;}
+.terms-close{margin-top:16px;font-size:16px;color:var(--text-secondary);}
+.share-row{display:flex;gap:16px;margin-top:16px;}
+.share-row button{width:32px;height:32px;border-radius:9999px;border:1px solid var(--border-hairline);background:var(--surface);color:var(--text-primary);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;}
+.share-row button:hover{color:var(--accent-link);}
+/* rec cards */
+.rec-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:8px;}
+.rec-card{background:var(--surface);border-radius:8px;padding:0;box-shadow:var(--card-shadow);overflow:hidden;}
+.rec-photo{height:140px;position:relative;background:linear-gradient(120deg,#dfe9f7,#f2f6fc);}
+.rec-photo .food{position:absolute;inset:0;background:radial-gradient(circle at 40% 45%,#e6b98a55,transparent 45%),radial-gradient(circle at 70% 60%,#8fae7d55,transparent 50%);}
+.rec-badge{position:absolute;left:12px;bottom:-16px;width:36px;height:36px;border-radius:9999px;background:var(--surface);box-shadow:var(--card-shadow);display:flex;align-items:center;justify-content:center;color:var(--accent-blue);}
+.rec-text{padding:24px 12px 16px;}
+.rec-text h4{font-size:16px;font-weight:700;color:var(--text-primary);line-height:1.4;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+.rec-text .cap{font-size:13px;color:var(--text-muted);margin-top:8px;}
+/* footer comp preview */
+.demo-footer{background:var(--surface-inverse);color:#fff;padding:32px;}
+.demo-footer .fcols{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px;}
+.demo-footer h5{font-size:13px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:10px;}
+.demo-footer a{display:block;color:#d5dde6;text-decoration:none;font-size:14px;line-height:2;}
+.demo-footer a:hover{color:#fff;}
+@media(max-width:1024px){.rec-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:768px){.rec-grid{grid-template-columns:1fr;}.demo-footer .fcols{grid-template-columns:1fr;}}
+</style>
+<section id="components" aria-labelledby="comp-t">
+  <div class="wrap">
+    <p class="eyebrow">Inventaris Komponen</p>
+    <h2 id="comp-t" class="section-title">Permukaan tajam untuk fungsi, lengkung untuk penutup</h2>
+    <p class="section-note">Setiap keluarga di bawah menjaga dimensi terukurnya. Radius dan bayangan hanya dipinjamkan pada satu keluarga kartu.</p>
+
+    <!-- navbar -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar (strip transparan)</h3><span class="count">×1 · 38px · 0px radius</span></div>
+      <p class="comp-desc">Strip edge-to-edge 38px, radius 0px, latar transparan, statis. Empat item tingkat atas.</p>
+      <div class="comp-body demo-navbar">
+        <div class="topbar"><nav>
+          <a href="#">Individu</a><a href="#">Bisnis</a><a href="#">Prioritas</a><a href="#">Tentang BCA</a>
+        </nav></div>
+      </div>
+      <div class="spec-card"><b>navbar</b> · background transparent · height 38 · radius 0 · width 100% · type accent-link</div>
+    </div>
+
+    <!-- search bar -->
+    <div class="comp" data-tier-a-component="search-utility-bar">
+      <div class="comp-head"><h3>Bar pencarian &amp; utilitas</h3><span class="count">×1 · surface #FFFFFF</span></div>
+      <p class="comp-desc">Bar putih penuh di bawah navbar transparan — logo, input pencarian, dropdown Kategori, tombol biru solid Cari, dan toggle bahasa. Selalu terpisah dari strip 38px.</p>
+      <div class="comp-body demo-search">
+        <div class="searchbar" style="border-bottom:0;"><div class="wrap">
+          <div class="logo-mark"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Ledger</div>
+          <div class="search-field"><iconify-icon icon="lucide:search" aria-hidden="true" style="color:var(--text-secondary)"></iconify-icon><input type="search" placeholder="Cari promo" aria-label="Cari promo"></div>
+          <button class="btn-util" type="button" style="height:48px;">Kategori <iconify-icon icon="lucide:chevron-down" aria-hidden="true"></iconify-icon></button>
+          <button class="cari-btn" type="button">Cari</button>
+          <div class="lang-toggle" aria-label="Toggle bahasa"><b>ID</b>/<span>EN</span></div>
+        </div></div>
+      </div>
+      <div class="spec-card"><b>search-utility-bar</b> · surface #FFFFFF · Cari fill accent-blue text #FFFFFF · height 48 · border border-blue α</div>
+    </div>
+
+    <!-- hero split cta -->
+    <div class="comp" data-tier-a-component="hero-split-cta">
+      <div class="comp-head"><h3>CTA hero (pasangan pill split)</h3><span class="count">×1 · gradient rasio &lt;1%</span></div>
+      <p class="comp-desc">Kontrol paling ditekankan pada layar pertama. Dua segmen berbagi gradient diagonal. Hover menurunkan opacity ke 0.8.</p>
+      <div class="comp-body">
+        <div class="channel-cta">
+          <a href="#" class="left"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> myBCA</a>
+          <a href="#" class="right"><iconify-icon icon="lucide:qr-code" aria-hidden="true"></iconify-icon> QRIS</a>
+        </div>
+      </div>
+      <div class="spec-card"><b>button-hero-primary-left/right</b> · fill grad-cta 265deg · text #FFFFFF · height 48 · radius pill/0 split · border border-blue α (left) · motion opacity .2s ease-out</div>
+    </div>
+
+    <!-- buttons matrix -->
+    <div class="comp" data-tier-a-component="button-utility-white">
+      <div class="comp-head"><h3>Tombol, utilitas putih</h3><span class="count">×1 · 48px · 0px radius</span></div>
+      <p class="comp-desc">Isi putih, teks hitam, sudut tajam — sinyal kontrol fungsional, bukan promosi. Matriks varian × state di bawah menggunakan nilai terdokumentasi.</p>
+      <div class="comp-body">
+        <table class="matrix">
+          <thead><tr><th>Varian</th><th>Rest</th><th>Hover (opacity .8)</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Utility white</td>
+              <td><button class="btn-util" type="button">Cari</button></td>
+              <td><button class="btn-util" type="button" style="opacity:.8">Cari</button></td>
+              <td><button class="btn-util" type="button" disabled>Cari</button></td>
+            </tr>
+            <tr>
+              <td>Hero split (left)</td>
+              <td><a href="#" class="left" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 42px;background:var(--grad-cta);color:#fff;text-decoration:none;font-weight:700;border-radius:9999px 0 0 9999px;border:1px solid var(--border-blue-a)">myBCA</a></td>
+              <td><a href="#" style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 42px;background:var(--grad-cta);color:#fff;text-decoration:none;font-weight:700;border-radius:9999px 0 0 9999px;opacity:.8">myBCA</a></td>
+              <td><span style="display:inline-flex;align-items:center;gap:8px;height:48px;padding:0 42px;background:var(--grad-cta);color:#fff;font-weight:700;border-radius:9999px 0 0 9999px;opacity:.5;cursor:not-allowed">myBCA</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card"><b>button-utility-white</b> · fill #FFFFFF · text #000000 · radius 0 · height 48 · padding 8/40/8/12 · border border-blue α · motion opacity .2s ease-out</div>
+    </div>
+
+    <!-- footer link button -->
+    <div class="comp" data-tier-a-component="button-footer-link">
+      <div class="comp-head"><h3>Tombol, tautan footer/inline</h3><span class="count">×1 · 29px · transparan</span></div>
+      <p class="comp-desc">Aksi teks dalam alur — ikon share, "Lihat semua". Transparan, tanpa padding, teks dark-gray.</p>
+      <div class="comp-body" style="display:flex;gap:24px;flex-wrap:wrap;align-items:center;">
+        <button class="btn-inline" type="button">Lihat semua <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        <button class="btn-inline" type="button" aria-label="Bagikan"><iconify-icon icon="lucide:share-2" aria-hidden="true"></iconify-icon> Bagikan</button>
+      </div>
+      <div class="spec-card"><b>button-footer-link</b> · background transparent · text #1F2937 · radius 0 · height 29 · padding 0</div>
+    </div>
+
+    <!-- hero banner -->
+    <div class="comp" data-tier-a-component="hero-banner">
+      <div class="comp-head"><h3>Banner fotografis hero</h3><span class="count">×1 · 8px radius · cover</span></div>
+      <p class="comp-desc">Foto lebar-konten penuh di bawah judul. Sudut membulat, object-fit cover, tanpa scrim — foto lurus, bukan gradasi.</p>
+      <div class="comp-body">
+        <div class="hero-banner" style="height:220px;"><div class="food" aria-hidden="true"></div><span role="img" aria-label="Foto tableau kuliner">Foto tableau kuliner</span></div>
+      </div>
+      <div class="spec-card"><b>hero-banner</b> · radius r-card 8 · object-fit cover · no scrim · surface photographic</div>
+    </div>
+
+    <!-- channel chip row -->
+    <div class="comp" data-tier-a-component="channel-chip-row">
+      <div class="comp-head"><h3>Baris chip kanal</h3><span class="count">×2 chip · ikon + label</span></div>
+      <p class="comp-desc">Baris kecil di atas panel permukaan pucat, dua chip ikon+label, mendahului heading bobot-campur.</p>
+      <div class="comp-body chip-row">
+        <span class="chan-chip"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> myBCA</span>
+        <span class="chan-chip"><iconify-icon icon="lucide:qr-code" aria-hidden="true"></iconify-icon> QRIS</span>
+      </div>
+      <div class="spec-card"><b>channel-chip-row</b> · type body-md · icon accent-blue · background transparent</div>
+    </div>
+
+    <!-- terms stack -->
+    <div class="comp" data-tier-a-component="terms-content-stack">
+      <div class="comp-head"><h3>Tumpukan konten syarat/badan</h3><span class="count">8 baris · 98% width · tanpa kartu</span></div>
+      <p class="comp-desc">Kolom tunggal murni, transparan, radius 0px, tanpa padding. Penekanan italic-serif pada istilah terdefinisi, satu–dua kata.</p>
+      <div class="comp-body">
+        <h3 class="t-headline" style="margin-bottom:12px;">Syarat &amp; <span class="serif">ketentuan</span></h3>
+        <ul class="terms-stack">
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Promo berlaku untuk transaksi minimum yang ditentukan di merchant peserta.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Pembayaran wajib menggunakan kanal <span class="serif">myBCA</span> atau QRIS.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Diskon tidak dapat digabungkan dengan penawaran lain.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Kuota promo terbatas dan berlaku selama persediaan masih ada.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Bank tidak bertanggung jawab atas kualitas produk atau layanan merchant.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Keputusan Bank atas hal-hal yang bersifat <span class="serif">final</span> tidak dapat diganggu gugat.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Syarat &amp; ketentuan dapat berubah sewaktu-waktu tanpa pemberitahuan.</li>
+          <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Informasi lebih lanjut hubungi Halo BCA 1500888.</li>
+        </ul>
+        <p class="terms-close">Lokasi: Palem Cinde, Palembang. Periode: 29 Sep 2026 – 31 Des 2026.</p>
+        <div class="share-row">
+          <button type="button" aria-label="Bagikan ke Facebook"><iconify-icon icon="lucide:facebook" aria-hidden="true"></iconify-icon></button>
+          <button type="button" aria-label="Bagikan ke Twitter"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></button>
+          <button type="button" aria-label="Salin tautan"><iconify-icon icon="lucide:link" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card"><b>terms-content-stack</b> · background transparent · radius 0 · padding 0 · type body-md · emphasis accent-serif · width 98%</div>
+    </div>
+
+    <!-- rec cards -->
+    <div class="comp" data-tier-a-component="recommendation-card">
+      <div class="comp-head"><h3>Kartu rekomendasi (media)</h3><span class="count">×4 · 8px radius · shadow</span></div>
+      <p class="comp-desc">Band "Promo Serupa" — empat kartu setara dalam satu baris, grid 16px. 8px radius dan drop shadow dipesan eksklusif untuk keluarga ini.</p>
+      <div class="comp-body">
+        <div class="rec-grid">
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Diskon Kuliner Akhir Pekan di Merchant Pilihan</h4><p class="cap">1 Okt – 30 Nov 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Cashback QRIS untuk Transaksi Restoran</h4><p class="cap">5 Okt – 15 Des 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Promo Spesial myBCA Musim Liburan</h4><p class="cap">10 Okt – 31 Des 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Penawaran Kuliner Nusantara Terbatas</h4><p class="cap">15 Okt – 20 Des 2026</p></div></article>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-media-white</b> · fill #FFFFFF · radius r-card 8 · shadow card-shadow · padding 0 · badge pill · caption text-muted</div>
+    </div>
+
+    <!-- footer comp -->
+    <div class="comp" data-tier-a-component="footer">
+      <div class="comp-head"><h3>Footer</h3><span class="count">×1 · #031120 · 21 tautan</span></div>
+      <p class="comp-desc">Band gelap full-bleed — satu-satunya permukaan gelap. Logo monokrom dan tautan teks dalam kolom berlabel.</p>
+      <div class="comp-body demo-footer">
+        <div class="logo-mark" style="color:#fff;"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Ledger</div>
+        <div class="fcols">
+          <div><h5>Kontak</h5><a href="#">Halo BCA 1500888</a><a href="#">halobca@bca.co.id</a><a href="#">WhatsApp Bank BCA</a><a href="#">Webchat</a><a href="#">Video Call</a><a href="#">Pengaduan</a><a href="#">Lokasi Cabang</a></div>
+          <div><h5>Sosial</h5><a href="#">Instagram</a><a href="#">Facebook</a><a href="#">X / Twitter</a><a href="#">YouTube</a><a href="#">TikTok</a><a href="#">LinkedIn</a><a href="#">Blog</a></div>
+          <div><h5>Kantor</h5><a href="#">Menara BCA</a><a href="#">Grand Indonesia</a><a href="#">Jl. M.H. Thamrin No.1</a><a href="#">Jakarta Pusat 10310</a><a href="#">Indonesia</a><a href="#">Karier</a><a href="#">Hubungan Investor</a></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>footer</b> · background #031120 · text #FFFFFF / #B0B0B0 · radius 0 · no cards · 21 links</div>
+    </div>
+
+    <!-- Tier B: breadcrumb -->
+    <div class="comp">
+      <div class="comp-head"><h3>Breadcrumb <span style="font-size:12px;color:var(--text-muted)">— turunan</span></h3></div>
+      <p class="comp-desc">Dibangun dari text-secondary dan accent-link.</p>
+      <div class="comp-body">
+        <div class="breadcrumb"><a href="#">Promo</a> <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon> <a href="#">Kuliner</a> <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon> <span>Palem Cinde</span></div>
+      </div>
+      <div class="spec-card"><b>breadcrumb</b> · muted text-secondary · link accent-link · divider text-secondary</div>
+    </div>
+
+    <!-- Tier B: inline link -->
+    <div class="comp">
+      <div class="comp-head"><h3>Tautan inline <span style="font-size:12px;color:var(--text-muted)">— turunan</span></h3></div>
+      <div class="comp-body">
+        <p class="t-body">Baca <a href="#" style="color:var(--accent-link);text-decoration:underline;">ketentuan lengkap promo</a> sebelum bertransaksi.</p>
+      </div>
+      <div class="spec-card"><b>inline-link</b> · color accent-link #1473E6 · type body-md</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);margin-top:24px;}
+.depth-card{background:var(--surface);padding:24px;}
+.depth-card .lbl{font-size:13px;color:var(--text-secondary);font-family:ui-monospace,monospace;margin-top:14px;}
+.depth-card h4{font-size:16px;font-weight:700;}
+.dc-sharp{border:1px solid var(--border-hairline);border-radius:0;}
+.dc-round{border-radius:8px;box-shadow:var(--card-shadow);}
+.dc-pill{border-radius:9999px;background:var(--grad-cta);color:#fff;text-align:center;}
+</style>
+<section id="surface-depth" aria-labelledby="depth-t">
+  <div class="wrap">
+    <p class="eyebrow">Permukaan &amp; Kedalaman</p>
+    <h2 id="depth-t" class="section-title">Ketinggian yang dijaga, radius yang dipinjamkan</h2>
+    <p class="section-note">Bayangan halus adalah satu-satunya isyarat elevasi — dipesan untuk kartu rekomendasi. Semua permukaan lain tetap tajam.</p>
+    <div class="depth-grid">
+      <div class="depth-card dc-sharp"><h4>Utilitas tajam</h4><p class="lbl">radius 0px · border hairline<br>tombol, bar, panel</p></div>
+      <div class="depth-card dc-round"><h4>Kartu media</h4><p class="lbl">radius 8px · shadow<br>0 4 6 -1 / 0 2 4 -2 α0.1</p></div>
+      <div class="depth-card dc-pill" style="color:#fff"><h4 style="color:#fff">Pill CTA</h4><p class="lbl" style="color:#e6eef8">radius 9999px<br>hanya pasangan hero</p></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);margin-top:24px;}
+.motion-card{background:var(--surface);border:1px solid var(--border-hairline);padding:20px;}
+.motion-card .box{height:60px;background:var(--grad-cta);border-radius:8px;margin:12px 0;transition:transform .5s var(--ease-slow);}
+.motion-card.op .box{transition:opacity .2s var(--ease-out);}
+.motion-card.entrance .box{transition:transform .8s ease;}
+.motion-card:hover .box{transform:translateX(24px);}
+.motion-card.op:hover .box{opacity:.8;transform:none;}
+.motion-card.entrance:hover .box{transform:translateY(-12px);}
+.motion-card .lbl{font-size:12.5px;color:var(--text-secondary);font-family:ui-monospace,monospace;}
+@media(prefers-reduced-motion:reduce){.motion-card .box{transition:none!important;}}
+</style>
+<section id="motion" aria-labelledby="motion-t">
+  <div class="wrap">
+    <p class="eyebrow">Gerak</p>
+    <h2 id="motion-t" class="section-title">Umpan balik fungsional, bukan tontonan</h2>
+    <p class="section-note">Arahkan kursor ke setiap kartu untuk memutar kurvanya.</p>
+    <div class="motion-grid">
+      <div class="motion-card"><div class="box"></div><p class="lbl">state besar<br>all 0.5s cubic-bezier(0.4,0,0.2,1)</p></div>
+      <div class="motion-card op"><div class="box"></div><p class="lbl">hover CTA · opacity 0.8<br>0.2s cubic-bezier(0,0,0.2,1)</p></div>
+      <div class="motion-card entrance"><div class="box"></div><p class="lbl">entrance insidental<br>transform 0.8s ease</p></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+.mock{background:var(--background);border:1px solid var(--border-hairline);overflow:hidden;margin-top:24px;}
+.mock .topbar{background:#3a5a8a;}
+.mock .topbar a{color:#fff;}
+.mock-content{padding:24px;}
+.mock-h{font-size:24px;font-weight:700;color:var(--accent-blue);}
+.mock-panel{background:#F6FBFF;padding:24px;margin-top:20px;}
+.mock .rec-grid{margin-top:24px;}
+@media(max-width:768px){.mock .rec-grid{grid-template-columns:1fr;}}
+</style>
+<section id="composition" aria-labelledby="comp2-t">
+  <div class="wrap">
+    <p class="eyebrow">Dalam Komposisi</p>
+    <h2 id="comp2-t" class="section-title">Seluruh sistem dalam satu layar</h2>
+    <p class="section-note">Nav transparan, bar putih, judul biru, banner, panel syarat, lalu band rekomendasi.</p>
+    <div class="mock">
+      <div class="topbar"><nav><a href="#">Individu</a><a href="#">Bisnis</a><a href="#">Prioritas</a><a href="#">Tentang</a></nav></div>
+      <div class="searchbar" style="border-bottom:1px solid var(--border-hairline)"><div class="wrap" style="padding:12px 24px;">
+        <div class="logo-mark"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Ledger</div>
+        <div class="search-field"><iconify-icon icon="lucide:search" aria-hidden="true" style="color:var(--text-secondary)"></iconify-icon><input type="search" placeholder="Cari promo" aria-label="Cari"></div>
+        <button class="cari-btn" type="button">Cari</button>
+      </div></div>
+      <div class="mock-content">
+        <div class="breadcrumb"><a href="#">Promo</a> <iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon> <span>Palem Cinde</span></div>
+        <h3 class="mock-h">Sajian <span class="serif">istimewa</span> di Palem Cinde</h3>
+        <p class="hero-sub">29 September 2026 – 31 Desember 2026</p>
+        <div class="channel-cta" style="margin-top:16px;">
+          <a href="#" class="left"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> myBCA</a>
+          <a href="#" class="right"><iconify-icon icon="lucide:qr-code" aria-hidden="true"></iconify-icon> QRIS</a>
+        </div>
+        <div class="hero-banner" style="height:180px;margin-top:20px;"><div class="food" aria-hidden="true"></div></div>
+        <div class="mock-panel">
+          <div class="chip-row"><span class="chan-chip"><iconify-icon icon="lucide:smartphone" aria-hidden="true"></iconify-icon> myBCA</span><span class="chan-chip"><iconify-icon icon="lucide:qr-code" aria-hidden="true"></iconify-icon> QRIS</span></div>
+          <h4 class="t-headline" style="margin-top:12px;">Syarat &amp; <span class="serif">ketentuan</span></h4>
+          <ul class="terms-stack" style="margin-top:8px;">
+            <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Berlaku untuk transaksi minimum di merchant peserta.</li>
+            <li><iconify-icon icon="lucide:dot" aria-hidden="true"></iconify-icon> Bayar dengan <span class="serif">myBCA</span> atau QRIS.</li>
+          </ul>
+        </div>
+        <p class="eyebrow" style="margin-top:28px;">Promo Serupa</p>
+        <div class="rec-grid">
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Cashback QRIS Restoran</h4><p class="cap">5 Okt – 15 Des 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Promo myBCA Liburan</h4><p class="cap">10 Okt – 31 Des 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Kuliner Nusantara Terbatas</h4><p class="cap">15 Okt – 20 Des 2026</p></div></article>
+          <article class="rec-card"><div class="rec-photo"><div class="food" aria-hidden="true"></div><div class="rec-badge"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon></div></div><div class="rec-text"><h4>Diskon Akhir Pekan</h4><p class="cap">1 Okt – 30 Nov 2026</p></div></article>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface-inverse);color:#fff;padding:48px 0;}
+#footer .logo-mark{color:#fff;}
+#footer .meta{margin-top:20px;font-size:14px;color:#d5dde6;line-height:1.9;}
+#footer a{color:#7fb4ec;text-decoration:none;}
+#footer a:hover{text-decoration:underline;}
+#footer .credit{margin-top:16px;font-size:13px;color:var(--text-muted);}
+</style>
+<footer id="footer" aria-labelledby="footer-t">
+  <div class="wrap">
+    <div class="logo-mark" id="footer-t"><iconify-icon icon="lucide:landmark" aria-hidden="true"></iconify-icon> Corporate Ledger Blue</div>
+    <div class="meta">
+      Sumber: <a href="https://promo.bca.co.id/id/all/2026/09/29/15/Palem-Cinde">promo.bca.co.id/id/all/2026/09/29/15/Palem-Cinde</a>
+    </div>
+    <p class="credit">Design system captured and rendered by r3xdec.design</p>
+  </div>
+</footer>
+
+<script>
+document.querySelectorAll('.motion-card').forEach(function(c){
+  c.addEventListener('click',function(){
+    var b=c.querySelector('.box');
+    b.style.transition='none';b.offsetHeight;b.style.transition='';
+    c.classList.add('replay');
+  });
+});
+</script>
+</body>
+</html>

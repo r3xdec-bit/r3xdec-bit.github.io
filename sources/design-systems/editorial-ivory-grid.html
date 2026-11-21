@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Editorial Ivory Grid — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#F2F2F2;
+  --text-primary:#000000;
+  --text-secondary:#222222;
+  --accent-lavender:#FEF3FF;
+  --accent-mint:#F2F2F2;
+  --border:#000000;
+  --lavender-wash:linear-gradient(rgb(247,243,255),rgb(229,215,255));
+  --mint-wash:linear-gradient(170deg,rgb(236,247,241),rgb(179,226,207));
+  --scrim:linear-gradient(rgb(0,0,0),rgba(0,0,0,0));
+  --r-control:8px;
+  --r-chip:50px;
+  --r-card:24px;
+  --r-pill:80px;
+  --r-capsule:160px;
+  --base:8px;
+  --gap:20px;
+  --gap-lg:48px;
+  --section-padding:72px;
+  --maxw:1328px;
+  --shadow-rest:rgba(13,32,47,0.04) 0px 0px 14px 0px;
+  --shadow-float:rgba(0,0,0,0.09) 4px 12px 12px 0px, rgba(0,0,0,0.1) 1px 3px 7px 0px;
+  --shadow-lift:rgba(0,0,0,0.1) 2px 7px 15px 0px, rgba(0,0,0,0.09) 8px 27px 28px 0px;
+  --ease:all 0.15s ease;
+  --ease-fast:all 0.1s ease;
+  --fade:opacity 0.3s ease;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Instrument Sans",system-ui,sans-serif;
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit}
+.serif-i{font-family:"Instrument Serif",Georgia,serif;font-style:italic;font-weight:400;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+.band{padding:var(--section-padding) 0;}
+.eyebrow{font-size:13px;font-weight:500;letter-spacing:0.02em;color:var(--text-secondary);text-transform:uppercase;}
+.badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:var(--r-chip);padding:6px 14px;font-size:14px;font-weight:500;}
+/* navbar */
+.nav{position:sticky;top:0;z-index:100;width:100%;height:72px;background:rgba(255,255,255,0.85);backdrop-filter:blur(56px);-webkit-backdrop-filter:blur(56px);border-radius:0;border-bottom:1px solid rgba(0,0,0,0.08);}
+.nav-inner{max-width:var(--maxw);margin:0 auto;height:72px;padding:0 32px;display:flex;align-items:center;gap:28px;}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px;letter-spacing:-0.3px;}
+.logo-mark{width:30px;height:30px;border-radius:50%;background:#000;color:#fff;display:grid;place-items:center;font-family:"Instrument Serif",serif;font-style:italic;font-size:16px;}
+.nav-links{display:flex;gap:22px;margin-left:8px;}
+.nav-links a{font-size:15px;font-weight:500;text-decoration:none;color:var(--text-primary);transition:var(--ease);}
+.nav-links a:hover{opacity:0.55;}
+.nav-cta{margin-left:auto;background:#000;color:#fff;border:none;border-radius:var(--r-pill);height:48px;padding:0 20px;font:inherit;font-weight:500;cursor:pointer;transition:var(--ease);}
+.nav-cta:hover{opacity:0.85;}
+/* hero */
+#hero .wrap{display:grid;grid-template-columns:58% 41%;gap:var(--gap);align-items:center;padding-top:var(--section-padding);padding-bottom:var(--section-padding);}
+.hero-h1{font-size:60px;font-weight:400;line-height:1.12;letter-spacing:-1.2px;margin:24px 0 20px;}
+.hero-sub{font-size:18px;color:var(--text-secondary);max-width:44ch;margin-bottom:28px;}
+.capture{display:flex;gap:8px;max-width:440px;margin-bottom:28px;flex-wrap:wrap;}
+.capture input{flex:1;min-width:200px;height:48px;border:1px solid rgba(0,0,0,0.15);border-radius:var(--r-pill);background:var(--surface);padding:0 20px;font:inherit;}
+.btn-primary{background:#000;color:#fff;border:none;border-radius:var(--r-pill);height:48px;padding:16px 20px;display:inline-flex;align-items:center;font:inherit;font-weight:500;cursor:pointer;line-height:1;transition:var(--ease);}
+.btn-primary:hover{opacity:0.85;}
+.proof{display:flex;align-items:center;gap:12px;}
+.avatars{display:flex;}
+.avatars span{width:34px;height:34px;border-radius:50%;background:var(--surface);border:2px solid #fff;margin-left:-10px;display:grid;place-items:center;font-size:12px;color:var(--text-secondary);}
+.avatars span:first-child{margin-left:0;}
+.proof small{font-size:14px;color:var(--text-secondary);}
+/* hero media card */
+.media-card{position:relative;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-lift);aspect-ratio:3/4;background:linear-gradient(140deg,#e9e9e9,#cfcfcf);}
+.media-card .scrim{position:absolute;inset:0 0 auto 0;height:33%;background:var(--scrim);}
+.media-card .ph{position:absolute;inset:0;display:grid;place-items:center;color:#9a9a9a;}
+.chips{position:absolute;left:16px;bottom:44px;display:flex;flex-direction:column;gap:10px;}
+.chip{background:#fff;border-radius:16px;box-shadow:var(--shadow-float);padding:10px 14px;display:flex;gap:10px;align-items:center;}
+.chip:last-child{margin-left:26px;}
+.chip .ci{width:32px;height:32px;border-radius:var(--r-chip);background:var(--surface);display:grid;place-items:center;}
+.chip small{display:block;color:var(--text-secondary);font-size:12px;}
+.chip strong{font-size:14px;font-weight:600;}
+.dots{position:absolute;left:0;right:0;bottom:14px;display:flex;justify-content:center;gap:8px;}
+.dots i{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.55);}
+.dots i.on{background:#fff;}
+@media(max-width:1024px){#hero .wrap{grid-template-columns:1fr;}.hero-h1{font-size:48px;}.media-card{max-width:460px;}}
+@media(max-width:640px){.hero-h1{font-size:36px;letter-spacing:-0.8px;}.nav-links{display:none;}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="logo"><span class="logo-mark">e</span> Editorial</div>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#palette">Palette</a>
+      <a href="#type-scale">Type</a>
+      <a href="#components">Components</a>
+      <a href="#composition">In use</a>
+    </nav>
+    <button class="nav-cta">Get started</button>
+  </div>
+</header>
+
+<main>
+
+<section class="band" id="hero" aria-label="Introduction">
+  <div class="wrap">
+    <div>
+      <span class="badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Design system</span>
+      <h1 class="hero-h1">Bright editorial minimalism, <span class="serif-i">stitched</span> into a working grid.</h1>
+      <p class="hero-sub">A near-white paper canvas, black ink type, hairline rules, and a single rationed pastel accent per section — no washes, no noise, just structure.</p>
+      <form class="capture" onsubmit="return false">
+        <input type="email" placeholder="you@studio.com" aria-label="Email address">
+        <button class="btn-primary" type="submit">Request access</button>
+      </form>
+      <div class="proof">
+        <div class="avatars" aria-hidden="true"><span>A</span><span>M</span><span>K</span><span>+</span></div>
+        <small>Trusted by editorial teams building on the grid.</small>
+      </div>
+    </div>
+    <div class="media-card" role="img" aria-label="Photographic hero panel placeholder">
+      <div class="scrim"></div>
+      <div class="ph"><iconify-icon icon="lucide:image" width="48" aria-hidden="true"></iconify-icon></div>
+      <div class="chips">
+        <div class="chip"><span class="ci"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon></span><span><small>Based in</small><strong>Copenhagen</strong></span></div>
+        <div class="chip"><span class="ci"><iconify-icon icon="lucide:briefcase" aria-hidden="true"></iconify-icon></span><span><small>Open to</small><strong>Editorial work</strong></span></div>
+      </div>
+      <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface);}
+.sec-head{max-width:var(--maxw);margin:0 auto;padding:0 32px 40px;}
+.sec-head h2{font-size:48px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;}
+.sec-head p{color:var(--text-secondary);margin-top:12px;max-width:56ch;}
+.pal-group{margin-top:40px;}
+.pal-group h3{font-size:20px;font-weight:500;letter-spacing:-0.3px;margin-bottom:16px;}
+.sw-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--gap);}
+.sw{background:#fff;border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-rest);}
+.sw .chip-fill{height:96px;border-bottom:1px solid rgba(0,0,0,0.06);}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0;}
+.sw .meta{padding:16px;}
+.sw .meta strong{display:block;font-size:15px;font-weight:600;}
+.sw .meta code{font-size:13px;color:var(--text-secondary);}
+.sw .meta small{display:block;margin-top:6px;font-size:13px;color:var(--text-secondary);}
+</style>
+<section class="band" id="palette" aria-label="Colour palette">
+  <div class="sec-head">
+    <h2>Colour, kept <span class="serif-i">rationed</span>.</h2>
+    <p>Depth comes from opacity steps of a single hue, not new colours. Two pastel gradients earn their place inside a card each — never as a background.</p>
+  </div>
+  <div class="wrap">
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip-fill" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.08)"></div><div class="meta"><strong>Background</strong><code>#FFFFFF</code><small>Page-white paper canvas.</small></div></div>
+        <div class="sw"><div class="chip-fill" style="background:#F2F2F2"></div><div class="meta"><strong>Surface</strong><code>#F2F2F2</code><small>Input fields, chips, gray tiles.</small></div></div>
+        <div class="sw"><div class="chip-fill" style="background:var(--lavender-wash)"></div><div class="meta"><strong>Lavender wash</strong><code>#F7F3FF → #E5D7FF</code><small>Single showcase tile accent.</small></div></div>
+        <div class="sw"><div class="chip-fill" style="background:var(--mint-wash)"></div><div class="meta"><strong>Mint wash</strong><code>#ECF7F1 → #B3E2CF</code><small>Single showcase tile accent.</small></div></div>
+      </div>
+    </div>
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip-fill" style="background:#000000"></div><div class="meta"><strong>Text primary</strong><code>#000000</code><small>Headings and primary copy.</small></div></div>
+        <div class="sw"><div class="chip-fill" style="background:#222222"></div><div class="meta"><strong>Text secondary</strong><code>#222222</code><small>Support lines, captions.</small></div></div>
+      </div>
+    </div>
+    <div class="pal-group">
+      <h3>Interactive &amp; borders</h3>
+      <div class="sw-grid">
+        <div class="sw"><div class="chip-fill" style="background:#000000"></div><div class="meta"><strong>Ink / border</strong><code>#000000</code><small>The only interactive fill and stroke.</small></div></div>
+        <div class="sw"><div class="chip-fill checker" style="position:relative"><div style="position:absolute;inset:0;background:rgba(0,0,0,0.05)"></div></div><div class="meta"><strong>Ink 5%</strong><code>rgba(0,0,0,0.05)</code><small>Nav toggle hover surface.</small></div></div>
+        <div class="sw"><div class="chip-fill checker" style="position:relative"><div style="position:absolute;inset:0;background:rgba(255,255,255,0.85)"></div></div><div class="meta"><strong>Glass bar</strong><code>rgba(255,255,255,0.85)</code><small>Navbar fill, blur(56px).</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background);}
+.spec{border-top:1px solid rgba(0,0,0,0.1);padding:32px 0;display:grid;grid-template-columns:1fr 240px;gap:var(--gap);align-items:baseline;}
+.spec .metrics{font-size:13px;color:var(--text-secondary);line-height:1.7;}
+.spec .metrics code{color:var(--text-primary);}
+.d-lg{font-size:60px;font-weight:400;line-height:1.12;letter-spacing:-1.2px;}
+.h-md{font-size:48px;font-weight:400;line-height:1.2;letter-spacing:-0.5px;}
+.l-md{font-size:20px;font-weight:500;line-height:1.5;letter-spacing:-0.3px;}
+.b-md{font-size:16px;font-weight:400;line-height:1.5;}
+.ramp{display:flex;gap:28px;flex-wrap:wrap;align-items:baseline;margin-top:8px;}
+.ramp span{font-size:34px;letter-spacing:-0.5px;}
+@media(max-width:768px){.spec{grid-template-columns:1fr;}.d-lg{font-size:40px;}.h-md{font-size:34px;}}
+</style>
+<section class="band" id="type-scale" aria-label="Type scale">
+  <div class="sec-head">
+    <h2>One <span class="serif-i">geometric</span> sans, one serif punctuation mark.</h2>
+    <p>Instrument Sans carries every structural role. Instrument Serif appears only as an italic interruption, sized identically to its neighbours.</p>
+  </div>
+  <div class="wrap">
+    <div class="spec">
+      <div class="d-lg">Editorial type, <span class="serif-i">set</span> on the grid</div>
+      <div class="metrics">display-lg<br><code>60px · 400 · lh 1.12 · -1.2px</code><br>Instrument Sans</div>
+    </div>
+    <div class="spec">
+      <div class="h-md">Section headlines <span class="serif-i">hold</span> the page</div>
+      <div class="metrics">headline-md<br><code>48px · 400 · lh 1.2 · -0.5px</code><br>Instrument Sans</div>
+    </div>
+    <div class="spec">
+      <div class="l-md">Card titles and form field labels</div>
+      <div class="metrics">label-md<br><code>20px · 500 · lh 1.5 · -0.3px</code><br>Instrument Sans</div>
+    </div>
+    <div class="spec">
+      <div class="b-md">Body copy stays at a comfortable reading size with generous line height for editorial density across long-form support text.</div>
+      <div class="metrics">body-md<br><code>16px · 400 · lh 1.5</code><br>Instrument Sans</div>
+    </div>
+    <div class="spec">
+      <div>
+        <div class="ramp">
+          <span style="font-weight:400">Regular 400</span>
+          <span style="font-weight:500">Medium 500</span>
+          <span style="font-weight:600">Semibold 600</span>
+          <span class="serif-i" style="font-size:34px">Serif italic</span>
+        </div>
+      </div>
+      <div class="metrics">weight ramp<br><code>400 / 500 / 600</code><br>+ Instrument Serif italic</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface);}
+.comp{background:#fff;border-radius:var(--r-card);box-shadow:var(--shadow-rest);padding:36px;margin-top:var(--gap);}
+.comp-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:24px;}
+.comp-head h3{font-size:20px;font-weight:500;letter-spacing:-0.3px;}
+.comp-head .count{font-size:12px;color:var(--text-secondary);border:1px solid rgba(0,0,0,0.15);border-radius:var(--r-chip);padding:3px 10px;}
+.spec-card{margin-top:22px;padding:14px 16px;background:var(--surface);border-radius:var(--r-control);font-size:12.5px;line-height:1.7;color:var(--text-secondary);font-family:ui-monospace,Menlo,monospace;}
+.spec-card b{color:var(--text-primary);font-weight:600;}
+/* button matrix */
+.matrix{width:100%;border-collapse:collapse;}
+.matrix th,.matrix td{padding:14px;text-align:left;border-bottom:1px solid rgba(0,0,0,0.08);vertical-align:middle;}
+.matrix th{font-size:12px;font-weight:500;color:var(--text-secondary);text-transform:uppercase;letter-spacing:0.03em;}
+.matrix td:first-child{font-size:13px;color:var(--text-secondary);}
+.bp{background:#000;color:#fff;border:none;border-radius:var(--r-pill);height:48px;padding:16px 20px;font:inherit;font-weight:500;line-height:1;cursor:pointer;transition:var(--ease);}
+.bp.hov{opacity:0.85;}
+.bp.act{opacity:0.7;transform:translateY(1px);}
+.bp.dis{opacity:0.3;cursor:not-allowed;}
+.bnav{background:transparent;color:#000;border:none;border-radius:var(--r-capsule);height:39px;padding:10px 16px;font:inherit;font-weight:500;line-height:1;cursor:pointer;transition:var(--ease-fast);}
+.bnav.hov{background:rgba(0,0,0,0.05);}
+.bnav.act{background:rgba(0,0,0,0.05);opacity:0.7;}
+.bnav.dis{opacity:0.3;cursor:not-allowed;}
+.bsec{background:#F2F2F2;color:#000;border:none;border-radius:var(--r-pill);height:48px;padding:8px 16px 8px 20px;font:inherit;font-weight:500;line-height:1;cursor:pointer;transition:var(--ease);}
+.bsec.hov{background:#e6e6e6;}
+.bsec.act{background:#dcdcdc;}
+.bsec.dis{opacity:0.3;cursor:not-allowed;}
+.blink{background:transparent;color:#000;border:none;border-radius:0;height:24px;padding:0;font:inherit;font-weight:500;cursor:pointer;text-decoration:underline;text-underline-offset:3px;}
+.blink.hov{opacity:0.6;}
+.blink.act{opacity:0.4;}
+.blink.dis{opacity:0.3;cursor:not-allowed;}
+/* feature triptych */
+.triptych{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);}
+.feat{background:transparent;border:1px solid rgba(0,0,0,0.08);border-radius:var(--r-card);padding:32px;}
+.feat .ic{width:48px;height:48px;border-radius:50%;background:var(--surface);display:grid;place-items:center;margin-bottom:18px;font-size:22px;}
+.feat h4{font-size:20px;font-weight:500;letter-spacing:-0.3px;margin-bottom:8px;}
+.feat p{font-size:15px;color:var(--text-secondary);}
+/* role rail */
+.rail{overflow:hidden;position:relative;}
+.rail-row{display:flex;gap:28px;width:max-content;animation:scroll 30s linear infinite;}
+.rail-row.two{margin-top:20px;margin-left:60px;animation-duration:38s;}
+.role{display:flex;align-items:center;gap:12px;}
+.role .av{width:52px;height:52px;border-radius:50%;background:var(--surface);display:grid;place-items:center;color:var(--text-secondary);flex:none;}
+.role span{font-size:15px;font-weight:500;white-space:nowrap;}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* showcase tiles */
+.showcase-row{display:grid;grid-template-columns:43% 49%;gap:8%;margin-bottom:var(--gap);}
+.showcase-row.full{grid-template-columns:1fr;}
+.tile{border-radius:var(--r-card);padding:32px;overflow:hidden;}
+.tile.gray{background:var(--surface);}
+.tile.lav{background:var(--lavender-wash);}
+.tile.mint{background:var(--mint-wash);}
+.tile h4{font-size:20px;font-weight:500;letter-spacing:-0.3px;margin-bottom:6px;}
+.tile p{font-size:15px;color:var(--text-secondary);margin-bottom:20px;}
+.mock{background:#fff;border-radius:16px;box-shadow:var(--shadow-lift);height:180px;display:grid;place-items:center;color:#bbb;}
+.bleed-card{border-radius:var(--r-card);overflow:hidden;background:linear-gradient(140deg,#e9e9e9,#d0d0d0);position:relative;min-height:260px;}
+.bleed-card .cap{position:absolute;top:0;left:0;right:0;padding:24px 28px;background:var(--scrim);color:#fff;}
+.bleed-card .cap h4{color:#fff;}
+.bleed-card .cap p{color:rgba(255,255,255,0.85);margin:0;}
+.bleed-card .ph{position:absolute;inset:0;display:grid;place-items:center;color:#9a9a9a;}
+/* faq + signup */
+.faq-band{display:grid;grid-template-columns:57% 43%;gap:var(--gap-lg);}
+.faq{width:85%;}
+.faq details{border-bottom:1px solid rgba(0,0,0,0.12);padding:24px 0;}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-size:18px;font-weight:500;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary iconify-icon{transition:transform 0.3s ease;}
+.faq details[open] summary iconify-icon{transform:rotate(45deg);}
+.faq details p{font-size:15px;color:var(--text-secondary);margin-top:12px;animation:var(--fade);opacity:1;max-width:52ch;}
+.signup{position:relative;border-radius:var(--r-card);padding:1px;background:conic-gradient(from 180deg,#f7c6d9,#e4c9a8,#bfe0c4,#f7c6d9);}
+.signup-in{background:#fff;border-radius:calc(var(--r-card) - 1px);padding:32px;}
+.signup h4{font-size:20px;font-weight:500;letter-spacing:-0.3px;line-height:1.25;margin-bottom:20px;}
+.field{margin-bottom:16px;}
+.field label{display:block;font-size:14px;font-weight:500;margin-bottom:6px;}
+.field input{width:100%;height:48px;border:1px solid rgba(0,0,0,0.15);border-radius:var(--r-control);background:var(--surface);padding:0 16px;font:inherit;}
+.field small{display:block;margin-top:6px;font-size:12px;color:var(--text-secondary);}
+.two-up{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.radio-row{display:flex;align-items:center;gap:10px;padding:12px 0;border-top:1px solid rgba(0,0,0,0.08);font-size:15px;}
+.radio-row i{width:18px;height:18px;border:1px solid #000;border-radius:50%;flex:none;}
+.radio-row.sel i{box-shadow:inset 0 0 0 4px #fff, inset 0 0 0 5px #000;background:#000;}
+.signup .bp{width:100%;justify-content:center;display:flex;align-items:center;margin-top:8px;}
+@media(max-width:1024px){.triptych{grid-template-columns:1fr;}.showcase-row{grid-template-columns:1fr;gap:var(--gap);}.faq-band{grid-template-columns:1fr;}.faq{width:100%;}}
+</style>
+<section class="band" id="components" aria-label="Component inventory">
+  <div class="sec-head">
+    <h2>The <span class="serif-i">working</span> parts.</h2>
+    <p>Every control keys off black. Every surface keys off white and paper-gray. Radii step 8 · 50 · 24 · 80 · 160.</p>
+  </div>
+  <div class="wrap">
+
+    <!-- Navbar -->
+    <div class="comp" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="count">×1 · 7 items</span></div>
+      <div style="border-radius:var(--r-control);overflow:hidden;border:1px solid rgba(0,0,0,0.08)">
+        <div style="height:72px;background:rgba(255,255,255,0.85);backdrop-filter:blur(56px);display:flex;align-items:center;gap:24px;padding:0 24px;">
+          <div class="logo"><span class="logo-mark">e</span> Editorial</div>
+          <nav class="nav-links" style="margin:0" aria-label="Sample nav"><a href="#components">Hire</a><a href="#components">Work</a><a href="#components">Pricing</a><a href="#components">About</a></nav>
+          <button class="nav-cta" style="margin-left:auto">Get started</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>--navbar</b> · fill rgba(255,255,255,0.85) · <b>backdrop</b> blur(56px) · height <b>72</b> · radius <b>0</b> · full-width sticky glass</div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp" data-tier-a-component="button-primary">
+      <div class="comp-head"><h3>Buttons — variant × state</h3><span class="count">4 variants</span></div>
+      <div style="overflow-x:auto">
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Active</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr><td>Primary (hero)</td><td><button class="bp">Request access</button></td><td><button class="bp hov">Request access</button></td><td><button class="bp act">Request access</button></td><td><button class="bp dis" disabled>Request access</button></td></tr>
+          <tr><td>Nav utility toggle</td><td><button class="bnav">Talent</button></td><td><button class="bnav hov">Talent</button></td><td><button class="bnav act">Talent</button></td><td><button class="bnav dis" disabled>Talent</button></td></tr>
+          <tr><td>Footer / secondary</td><td><button class="bsec">Continue</button></td><td><button class="bsec hov">Continue</button></td><td><button class="bsec act">Continue</button></td><td><button class="bsec dis" disabled>Continue</button></td></tr>
+          <tr><td>Text link</td><td><button class="blink">Read more</button></td><td><button class="blink hov">Read more</button></td><td><button class="blink act">Read more</button></td><td><button class="blink dis" disabled>Read more</button></td></tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="spec-card"><b>--button-primary</b> fill #000 · text #FFF · radius <b>80</b> · height <b>48</b> · pad 16 20 · motion all 0.15s ease</div>
+    </div>
+
+    <!-- individual nav utility pair -->
+    <div class="comp" data-tier-a-component="button-nav-utility">
+      <div class="comp-head"><h3>Nav utility pair — toggle</h3><span class="count">×2</span></div>
+      <div style="display:inline-flex;gap:4px;background:var(--surface);border-radius:var(--r-capsule);padding:4px;">
+        <button class="bnav act">Hirer</button>
+        <button class="bnav">Talent</button>
+      </div>
+      <div class="spec-card"><b>--button-nav-utility</b> fill transparent · text #000 · radius <b>160</b> · height <b>39</b> · pad 10 16 · hover rgba(0,0,0,0.05)</div>
+    </div>
+
+    <!-- footer secondary -->
+    <div class="comp" data-tier-a-component="button-footer-secondary">
+      <div class="comp-head"><h3>Footer / secondary button</h3><span class="count">×1</span></div>
+      <button class="bsec"><iconify-icon icon="lucide:arrow-right" aria-hidden="true" style="margin-right:6px"></iconify-icon>Checkout</button>
+      <div class="spec-card"><b>--button-footer-secondary</b> fill #F2F2F2 · text #000 · radius <b>80</b> · height <b>48</b> · pad 8 16 8 20</div>
+    </div>
+
+    <!-- text link -->
+    <div class="comp" data-tier-a-component="button-text-link">
+      <div class="comp-head"><h3>Text link</h3><span class="count">×1</span></div>
+      <button class="blink">Show all questions</button>
+      <div class="spec-card"><b>--button-text-link</b> fill transparent · text #000 · radius <b>0</b> · height <b>24</b> · pad 0 · no chrome</div>
+    </div>
+
+    <!-- hero media card -->
+    <div class="comp" data-tier-a-component="hero-media-card">
+      <div class="comp-head"><h3>Hero media card</h3><span class="count">×1 · 5 dots</span></div>
+      <div class="media-card" style="max-width:320px;aspect-ratio:3/4" role="img" aria-label="Hero media card placeholder">
+        <div class="scrim"></div>
+        <div class="ph"><iconify-icon icon="lucide:image" width="40" aria-hidden="true"></iconify-icon></div>
+        <div class="chips">
+          <div class="chip"><span class="ci"><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon></span><span><small>Rated</small><strong>Top talent</strong></span></div>
+          <div class="chip"><span class="ci"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon></span><span><small>Reply in</small><strong>Under 1h</strong></span></div>
+        </div>
+        <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="spec-card"><b>--hero-media-card</b> radius <b>24</b> · chips #FFF radius 16 · shadow float · scrim linear top⅓ · shadow lift on card</div>
+    </div>
+
+    <!-- feature triptych -->
+    <div class="comp" data-tier-a-component="feature-triptych">
+      <div class="comp-head"><h3>Feature triptych</h3><span class="count">×3</span></div>
+      <div class="triptych">
+        <div class="feat"><div class="ic"><iconify-icon icon="lucide:layout-grid" aria-hidden="true"></iconify-icon></div><h4>On the grid</h4><p>A strict content column keeps every screen editorial and legible.</p></div>
+        <div class="feat"><div class="ic"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon></div><h4>One <span class="serif-i">serif</span> note</h4><p>The italic interruption is punctuation, never a competing face.</p></div>
+        <div class="feat"><div class="ic"><iconify-icon icon="lucide:droplet" aria-hidden="true"></iconify-icon></div><h4>Rationed colour</h4><p>Two pastel gradients, one card each — no washes anywhere else.</p></div>
+      </div>
+      <div class="spec-card"><b>--card-feature</b> fill transparent · border 1px rgba(0,0,0,0.08) · radius <b>24</b> · pad <b>32</b> · title label-md</div>
+    </div>
+
+    <!-- role rail -->
+    <div class="comp" data-tier-a-component="role-tag-rail">
+      <div class="comp-head"><h3>Role-tag rail</h3><span class="count">2 staggered rows</span></div>
+      <div class="rail">
+        <div class="rail-row">
+          <div class="role"><span class="av"><iconify-icon icon="lucide:pen-tool" aria-hidden="true"></iconify-icon></span><span>Art directors</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:camera" aria-hidden="true"></iconify-icon></span><span>Photographers</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:feather" aria-hidden="true"></iconify-icon></span><span>Editors</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon></span><span>Illustrators</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:pen-tool" aria-hidden="true"></iconify-icon></span><span>Art directors</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:camera" aria-hidden="true"></iconify-icon></span><span>Photographers</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:feather" aria-hidden="true"></iconify-icon></span><span>Editors</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon></span><span>Illustrators</span></div>
+        </div>
+        <div class="rail-row two">
+          <div class="role"><span class="av"><iconify-icon icon="lucide:layout" aria-hidden="true"></iconify-icon></span><span>Designers</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon></span><span>Motion artists</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon></span><span>Copywriters</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></span><span>Stylists</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:layout" aria-hidden="true"></iconify-icon></span><span>Designers</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:video" aria-hidden="true"></iconify-icon></span><span>Motion artists</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:mic" aria-hidden="true"></iconify-icon></span><span>Copywriters</span></div>
+          <div class="role"><span class="av"><iconify-icon icon="lucide:layers" aria-hidden="true"></iconify-icon></span><span>Stylists</span></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--role-tag-rail</b> circular avatar 52 radius 50 · no chrome · motion scroll keyframe · caption body-md</div>
+    </div>
+
+    <!-- showcase tiles -->
+    <div class="comp" data-tier-a-component="showcase-toggle-tiles">
+      <div class="comp-head"><h3>Showcase toggle tiles</h3><span class="count">×4 · Hirer / Talent</span></div>
+      <div class="showcase-row">
+        <div class="tile gray">
+          <h4>For hirers</h4>
+          <p>Post a brief and see a curated shortlist by morning.</p>
+          <div class="mock"><iconify-icon icon="lucide:smartphone" width="36" aria-hidden="true"></iconify-icon></div>
+        </div>
+        <div class="tile lav">
+          <h4>For <span class="serif-i">talent</span></h4>
+          <p>One portfolio, presented on the grid.</p>
+          <div class="mock"><iconify-icon icon="lucide:layout-dashboard" width="36" aria-hidden="true"></iconify-icon></div>
+        </div>
+      </div>
+      <div class="showcase-row">
+        <div class="tile mint">
+          <h4>Matched fast</h4>
+          <p>Signal fit before the first call.</p>
+          <div class="mock"><iconify-icon icon="lucide:sparkles" width="36" aria-hidden="true"></iconify-icon></div>
+        </div>
+        <div class="bleed-card" role="img" aria-label="Full-bleed media card placeholder">
+          <div class="cap"><h4>In the field</h4><p>Real work, shown full-bleed.</p></div>
+          <div class="ph"><iconify-icon icon="lucide:image" width="44" aria-hidden="true"></iconify-icon></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--card-flow-tile</b> lavender #F7F3FF→#E5D7FF · <b>--card-flow-tile-mint</b> #ECF7F1→#B3E2CF · radius <b>24</b> · pad 32 · <b>--card-media-bleed</b> radius 0</div>
+    </div>
+
+    <!-- faq + signup band -->
+    <div class="comp">
+      <div class="comp-head"><h3>FAQ &amp; signup band</h3><span class="count">6 rows + form</span></div>
+      <div class="faq-band">
+        <div class="faq" data-tier-a-component="faq-accordion">
+          <details open><summary>How does the grid stay editorial? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>A strict 1328px column, hairline dividers, and generous whitespace do the structural work — not shadow or colour.</p></details>
+          <details><summary>Where does colour appear? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>Only inside two showcase tiles, one gradient each. Everything else stays paper-white.</p></details>
+          <details><summary>What is the italic serif for? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>One word or letter-cluster per headline, sized identically to the sans around it.</p></details>
+          <details><summary>Is the navbar ever inset? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>Never. It is a full-width, sharp-cornered, sticky glass bar with blur(56px).</p></details>
+          <details><summary>How many button variants exist? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>Four: primary pill, nav toggle capsule, gray secondary, and bare text link.</p></details>
+          <details><summary>What drives motion? <iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon></summary><p>Sub-200ms ease transitions and a single continuous scroll keyframe. No overshoot.</p></details>
+          <div style="padding-top:20px"><button class="blink">Show all questions</button></div>
+        </div>
+        <div class="signup" data-tier-a-component="gradient-framed-signup-card">
+          <div class="signup-in">
+            <h4>Join the roster.<br>Get matched <span class="serif-i">first</span>.</h4>
+            <form onsubmit="return false">
+              <div class="two-up">
+                <div class="field"><label for="fn">First name</label><input id="fn" placeholder="Ada"></div>
+                <div class="field"><label for="ln">Last name</label><input id="ln" placeholder="Lovelace"></div>
+              </div>
+              <div class="field"><label for="em">Email</label><input id="em" type="email" placeholder="you@studio.com"><small>We'll only email about your matches.</small></div>
+              <div class="field"><label for="bio">Short bio</label><input id="bio" placeholder="Editorial photographer, 6 yrs"><small>Max 120 characters.</small></div>
+              <div class="radio-row sel"><i aria-hidden="true"></i><span>Available for new work</span></div>
+              <div class="radio-row"><i aria-hidden="true"></i><span>Open to conversations only</span></div>
+              <button class="bp" type="submit">Create profile</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--gradient-framed-signup-card</b> border 1px conic pink→tan→green · interior #FFF · radius <b>24</b> · input radius 8 height 48 · CTA pill 80</div>
+    </div>
+
+    <!-- closing cta band component -->
+    <div class="comp" data-tier-a-component="closing-cta-band">
+      <div class="comp-head"><h3>Closing CTA band</h3><span class="count">×1 · scatter collage</span></div>
+      <div style="position:relative;text-align:center;padding:48px 24px;overflow:hidden;">
+        <div style="position:absolute;top:20px;left:6%;width:90px;height:110px;border-radius:18px;background:linear-gradient(140deg,#e9e9e9,#cfcfcf);transform:rotate(-6deg);box-shadow:var(--shadow-rest)" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:10px;left:14%;width:80px;height:80px;border-radius:24px;background:linear-gradient(140deg,#ececec,#d4d4d4);transform:rotate(5deg);box-shadow:var(--shadow-rest)" aria-hidden="true"></div>
+        <div style="position:absolute;top:36px;right:8%;width:100px;height:80px;border-radius:16px;background:linear-gradient(140deg,#e6e6e6,#cccccc);transform:rotate(7deg);box-shadow:var(--shadow-rest)" aria-hidden="true"></div>
+        <div style="position:absolute;bottom:24px;right:16%;width:70px;height:96px;border-radius:20px;background:linear-gradient(140deg,#ededed,#d0d0d0);transform:rotate(-4deg);box-shadow:var(--shadow-rest)" aria-hidden="true"></div>
+        <div style="position:relative;max-width:520px;margin:0 auto;">
+          <span class="logo-mark" style="margin:0 auto 18px">e</span>
+          <h4 style="font-size:34px;font-weight:400;letter-spacing:-0.6px;line-height:1.15;margin-bottom:12px">Build on the <span class="serif-i">grid</span>.</h4>
+          <p style="color:var(--text-secondary);margin-bottom:22px">Bright, editorial, and deliberately restrained.</p>
+          <form class="capture" style="justify-content:center;margin:0 auto 20px" onsubmit="return false"><input type="email" placeholder="you@studio.com" aria-label="Email"><button class="bp" type="submit">Get started</button></form>
+          <div class="proof" style="justify-content:center"><div class="avatars" aria-hidden="true"><span>A</span><span>M</span><span>K</span><span>+</span></div><small>Join 2,000+ on the roster.</small></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>--closing-cta-band</b> centered column · scatter tiles independent radii · italic serif interruption · CTA pill 80 · shadow rest</div>
+    </div>
+
+    <!-- Tier B: text input -->
+    <div class="comp">
+      <div class="comp-head"><h3>Text input &amp; textarea</h3><span class="count">derived</span></div>
+      <div style="display:grid;gap:16px;max-width:420px">
+        <div class="field"><label for="ti">Label</label><input id="ti" placeholder="Placeholder text"></div>
+        <div class="field"><label for="ta">Notes</label><textarea id="ta" rows="3" placeholder="Placeholder text" style="width:100%;border:1px solid rgba(0,0,0,0.15);border-radius:var(--r-control);background:var(--surface);padding:12px 16px;font:inherit;resize:vertical"></textarea></div>
+      </div>
+      <div class="spec-card"><b>input</b> border rgba(0,0,0,0.15) · radius <b>8</b> · height <b>48</b> · body-md · placeholder text-secondary</div>
+    </div>
+
+    <!-- Tier B: avatar -->
+    <div class="comp">
+      <div class="comp-head"><h3>Avatar</h3><span class="count">derived</span></div>
+      <div class="avatars" style="align-items:center"><span>A</span><span>M</span><span>K</span><span style="margin-left:0;width:52px;height:52px"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></span></div>
+      <div class="spec-card"><b>avatar</b> radius <b>50</b> (chip) · surface #F2F2F2 · text-secondary #222</div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background);}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);}
+.depth-card{background:#fff;padding:28px;}
+.depth-card .lbl{font-size:13px;color:var(--text-secondary);margin-top:16px;}
+.depth-card .lbl code{color:var(--text-primary);}
+.rc0{border-radius:0;border:1px solid rgba(0,0,0,0.1);}
+.rc8{border-radius:8px;border:1px solid rgba(0,0,0,0.1);}
+.rc24{border-radius:24px;border:1px solid rgba(0,0,0,0.1);}
+.rc80{border-radius:80px;border:1px solid rgba(0,0,0,0.1);}
+.sh-rest{box-shadow:var(--shadow-rest);border:none;}
+.sh-float{box-shadow:var(--shadow-float);border:none;}
+.sh-lift{box-shadow:var(--shadow-lift);border:none;}
+.depth-box{height:120px;border-radius:24px;}
+</style>
+<section class="band" id="surface-depth" aria-label="Surface and depth">
+  <div class="sec-head">
+    <h2>Surface &amp; <span class="serif-i">depth</span>.</h2>
+    <p>Radii step in a fixed set. Shadows stay soft and low-opacity — this system has no hard drop shadows.</p>
+  </div>
+  <div class="wrap">
+    <div class="depth-grid">
+      <div class="depth-card"><div class="depth-box rc0"></div><div class="lbl">Control / footer edges<br><code>radius 0</code></div></div>
+      <div class="depth-card"><div class="depth-box rc8"></div><div class="lbl">Inputs, small controls<br><code>radius 8</code></div></div>
+      <div class="depth-card"><div class="depth-box rc24"></div><div class="lbl">Cards &amp; tiles<br><code>radius 24</code></div></div>
+      <div class="depth-card"><div class="depth-box rc80"></div><div class="lbl">Pills &amp; buttons<br><code>radius 80</code></div></div>
+      <div class="depth-card"><div class="depth-box rc24 sh-rest"></div><div class="lbl">Resting card<br><code>rgba(13,32,47,0.04) 0 0 14</code></div></div>
+      <div class="depth-card"><div class="depth-box rc24 sh-float"></div><div class="lbl">Floating chip<br><code>0.09 4 12 12 · 0.1 1 3 7</code></div></div>
+      <div class="depth-card"><div class="depth-box rc24 sh-lift"></div><div class="lbl">Elevated mockup<br><code>0.1 2 7 15 · 0.09 8 27 28</code></div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface);}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--gap);}
+.motion-card{background:#fff;border-radius:var(--r-card);box-shadow:var(--shadow-rest);padding:28px;text-align:center;}
+.motion-card .dot{width:56px;height:56px;border-radius:var(--r-pill);background:#000;margin:8px auto 20px;}
+.mc1:hover .dot{transform:translateX(40px);transition:all 0.15s ease;}
+.mc2:hover .dot{transform:translateX(40px);transition:all 0.1s ease;}
+.mc3 .dot{opacity:1;transition:opacity 0.3s ease;}
+.mc3:hover .dot{opacity:0.3;}
+.motion-card p{font-size:14px;color:var(--text-secondary);}
+.motion-card code{display:block;margin-top:6px;color:var(--text-primary);font-size:13px;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+</style>
+<section class="band" id="motion" aria-label="Motion">
+  <div class="sec-head">
+    <h2>Motion, kept <span class="serif-i">quick</span>.</h2>
+    <p>Sub-200ms micro-transitions, no springy overshoot, no long entrance choreography. Hover a card to replay.</p>
+  </div>
+  <div class="wrap">
+    <div class="motion-grid">
+      <div class="motion-card mc1"><div class="dot"></div><p>Button hover / press<code>all 0.15s ease</code></p></div>
+      <div class="motion-card mc2"><div class="dot"></div><p>Toggle press<code>all 0.1s ease</code></p></div>
+      <div class="motion-card mc3"><div class="dot"></div><p>Accordion &amp; image fade<code>opacity 0.3s ease</code></p></div>
+      <div class="motion-card"><div class="rail" style="margin-top:8px"><div class="rail-row" style="animation-duration:12s"><span style="white-space:nowrap;font-weight:500">continuous · scroll keyframe · </span><span style="white-space:nowrap;font-weight:500">continuous · scroll keyframe · </span></div></div><p style="margin-top:16px">Role-rail scroll<code>@keyframes scroll</code></p></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background);}
+.mock-screen{border:1px solid rgba(0,0,0,0.1);border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-rest);}
+.mock-nav{height:72px;background:rgba(255,255,255,0.85);backdrop-filter:blur(56px);display:flex;align-items:center;gap:20px;padding:0 28px;border-bottom:1px solid rgba(0,0,0,0.08);}
+.mock-hero{display:grid;grid-template-columns:58% 41%;gap:var(--gap);padding:48px 28px;align-items:center;}
+.mock-hero h3{font-size:40px;font-weight:400;letter-spacing:-1px;line-height:1.12;margin-bottom:16px;}
+.mock-hero p{color:var(--text-secondary);margin-bottom:20px;}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gap);padding:0 28px 40px;}
+.mock-cta{background:var(--surface);text-align:center;padding:48px 28px;}
+.mock-cta h3{font-size:34px;font-weight:400;letter-spacing:-0.6px;margin-bottom:16px;}
+@media(max-width:768px){.mock-hero{grid-template-columns:1fr;}.mock-cards{grid-template-columns:1fr;}.mock-hero h3{font-size:30px;}}
+</style>
+<section class="band" id="composition" aria-label="In composition">
+  <div class="sec-head">
+    <h2>It holds <span class="serif-i">together</span>.</h2>
+    <p>One screen, assembled only from the tokens and components above.</p>
+  </div>
+  <div class="wrap">
+    <div class="mock-screen">
+      <div class="mock-nav">
+        <div class="logo"><span class="logo-mark">e</span> Editorial</div>
+        <nav class="nav-links" style="margin:0" aria-label="Mock nav"><a href="#composition">Hire</a><a href="#composition">Work</a><a href="#composition">Pricing</a></nav>
+        <button class="nav-cta" style="margin-left:auto">Get started</button>
+      </div>
+      <div class="mock-hero">
+        <div>
+          <span class="badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon> Now open</span>
+          <h3 style="margin-top:16px">Find the <span class="serif-i">right</span> maker for the brief.</h3>
+          <p>A curated roster of editorial talent, presented on a strict, legible grid.</p>
+          <div class="capture"><input type="email" placeholder="you@studio.com" aria-label="Email"><button class="bp" type="submit">Request access</button></div>
+        </div>
+        <div class="media-card" style="aspect-ratio:3/4" role="img" aria-label="Composition media placeholder">
+          <div class="scrim"></div><div class="ph"><iconify-icon icon="lucide:image" width="40" aria-hidden="true"></iconify-icon></div>
+          <div class="chips"><div class="chip"><span class="ci"><iconify-icon icon="lucide:star" aria-hidden="true"></iconify-icon></span><span><small>Rated</small><strong>Top talent</strong></span></div></div>
+          <div class="dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="feat"><div class="ic"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></div><h4>Brief it</h4><p>Describe the work in a sentence.</p></div>
+        <div class="tile lav"><h4>Match it</h4><p style="margin:0">A shortlist by morning.</p></div>
+        <div class="tile mint"><h4>Ship it</h4><p style="margin:0">On the grid, on time.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h3>Build on the <span class="serif-i">grid</span>.</h3>
+        <button class="bp">Get started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#FFFFFF;border-top:1px solid rgba(0,0,0,0.1);border-radius:0;}
+.foot-top{display:grid;grid-template-columns:2fr 1fr 1fr;gap:var(--gap-lg);padding-bottom:40px;}
+.foot-top .desc{color:var(--text-secondary);max-width:34ch;margin-top:14px;font-size:15px;}
+.foot-col h4{font-size:14px;font-weight:600;margin-bottom:14px;}
+.foot-col a{display:block;color:var(--text-secondary);text-decoration:none;font-size:15px;margin-bottom:10px;transition:var(--ease);}
+.foot-col a:hover{color:var(--text-primary);}
+.foot-bar{display:flex;justify-content:space-between;align-items:center;padding-top:24px;border-top:1px solid rgba(0,0,0,0.08);font-size:14px;color:var(--text-secondary);flex-wrap:wrap;gap:12px;}
+.foot-social{width:40px;height:40px;border-radius:50%;background:var(--surface);display:grid;place-items:center;color:var(--text-primary);text-decoration:none;}
+@media(max-width:768px){.foot-top{grid-template-columns:1fr;gap:32px;}}
+</style>
+<footer class="band" id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="logo"><span class="logo-mark">e</span> Editorial Ivory Grid</div>
+        <p class="desc">Bright editorial minimalism on a near-white field — hairline rules, one serif interruption, one rationed pastel accent.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Sitemap</h4>
+        <a href="#hero">Home</a>
+        <a href="#components">Components</a>
+        <a href="#type-scale">Type</a>
+        <a href="#composition">In use</a>
+      </div>
+      <div class="foot-col">
+        <h4>Email</h4>
+        <a href="#footer">Hello</a>
+        <a href="#footer">Press</a>
+        <a href="#footer">Support</a>
+      </div>
+    </div>
+    <div class="foot-bar">
+      <span>© Editorial Ivory Grid — <a href="https://www.isomeet.com/" style="color:inherit">isomeet.com</a></span>
+      <a class="foot-social" href="https://www.isomeet.com/" aria-label="Social profile"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+    </div>
+    <p style="margin-top:24px;font-size:13px;color:var(--text-secondary)">Design system captured and rendered by r3xdec.design</p>
+  </div>
+</footer>
+
+</main>
+</body>
+</html>

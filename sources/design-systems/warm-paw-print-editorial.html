@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warm paw-print editorial — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#E6E6E6;
+  --surface:#FFFFFF;
+  --surface-inverted:#234721;
+  --text-primary:#282828;
+  --text-on-inverted:#FFFFFF;
+  --accent:#F76D31;
+  --accent-deep-green:#234721;
+  --accent-pink-tint:#FFB5B5;
+  --accent-warm-tint:#FFF0D8;
+  --peach-gradient:linear-gradient(150deg, rgb(255,246,238), rgb(255,233,216) 92%);
+
+  --r-control:21px;
+  --r-pill:39.375px;
+  --r-card:39.375px;
+  --r-card-tight:12px;
+  --r-badge:13px;
+
+  --sp-base:13px;
+  --sp-gap:26px;
+  --sp-section:68px;
+  --sp-micro:2px;
+  --sp-small:11px;
+  --sp-large:53px;
+
+  --shadow-soft:rgba(0,0,0,0.18) 0px 2px 8px 0px;
+
+  --fs-headline:63px;
+  --fs-label:47px;
+  --fs-numeral:47px;
+  --fs-body-md:26px;
+  --fs-body-core:21px;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Onest",system-ui,sans-serif;
+  font-size:var(--fs-body-core);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3,h4{font-weight:500;line-height:1.1;margin:0}
+.band{padding:var(--sp-section) var(--sp-large)}
+.wrap{max-width:1240px;margin:0 auto}
+.accent-word{color:var(--accent)}
+.eyebrow{font-size:var(--fs-body-core);font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;margin-bottom:var(--sp-base)}
+
+/* nav */
+.nav-outer{position:sticky;top:0;z-index:50;padding:16px 2.5vw;background:var(--background)}
+.navbar{
+  background:var(--background);
+  border-radius:var(--r-pill);
+  min-height:105px;
+  display:flex;align-items:center;gap:var(--sp-gap);
+  padding:0 var(--sp-large);
+  box-shadow:var(--shadow-soft);
+  flex-wrap:wrap;
+}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:26px;color:var(--text-primary)}
+.logo iconify-icon{color:var(--accent);font-size:32px}
+.nav-links{display:flex;gap:22px;flex-wrap:wrap;list-style:none;margin:0;padding:0;font-size:18px;font-weight:500}
+.nav-links a{text-decoration:none}
+.nav-links a:hover{color:var(--accent)}
+.nav-right{margin-left:auto;display:flex;align-items:center;gap:20px}
+.nav-phone{font-weight:600;white-space:nowrap}
+.nav-icons{display:flex;gap:14px;font-size:24px;color:var(--text-primary)}
+.nav-icons button{background:none;border:none;cursor:pointer;color:inherit;display:flex;padding:4px}
+.btn-nav-cta{
+  background:var(--accent);color:#fff;border:none;cursor:pointer;
+  border-radius:var(--r-pill);height:53px;padding:0 32.823px;
+  font-family:inherit;font-size:18px;font-weight:600;
+  transition:background .3s ease;
+}
+.btn-nav-cta:hover{background:var(--accent-deep-green)}
+
+/* hero */
+.hero-band{background:var(--background);padding:var(--sp-large) 2.5vw var(--sp-section)}
+.pin-strip{
+  background:var(--accent-warm-tint);border-radius:var(--r-card);
+  display:flex;flex-wrap:wrap;gap:var(--sp-gap);justify-content:center;
+  padding:18px var(--sp-large);margin-bottom:var(--sp-gap);
+}
+.pin{display:flex;align-items:center;gap:8px;font-weight:500;font-size:18px}
+.pin iconify-icon{color:var(--accent);font-size:26px}
+.hero-orange{
+  position:relative;overflow:hidden;background:var(--accent);
+  border-radius:var(--r-card);padding:96px var(--sp-large);
+  text-align:center;color:#fff;
+}
+.hero-orange h1{
+  font-size:var(--fs-headline);font-weight:700;color:#fff;
+  max-width:14ch;margin:0 auto var(--sp-gap);line-height:1.02;
+}
+.hero-orange p{font-size:var(--fs-body-md);max-width:46ch;margin:0 auto var(--sp-large);color:#fff}
+.hero-cta-row{display:flex;gap:var(--sp-base);justify-content:center;flex-wrap:wrap}
+.btn-hero{
+  background:#fff;color:var(--accent);border:none;cursor:pointer;
+  border-radius:var(--r-pill);padding:16px 28px;font-family:inherit;
+  font-size:18px;font-weight:600;transition:all .3s ease;
+}
+.btn-hero:hover{background:var(--accent-deep-green);color:#fff}
+.btn-hero-ghost{
+  background:transparent;color:#fff;border:2px solid #fff;cursor:pointer;
+  border-radius:var(--r-pill);padding:14px 26px;font-family:inherit;
+  font-size:18px;font-weight:600;transition:all .3s ease;
+}
+.btn-hero-ghost:hover{background:#fff;color:var(--accent)}
+.hero-arrows{position:absolute;left:var(--sp-large);bottom:28px;display:flex;gap:10px}
+.hero-arrows button{
+  width:48px;height:48px;border-radius:var(--r-pill);border:2px solid #fff;
+  background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:24px;
+}
+.hero-arrows button:hover{background:#fff;color:var(--accent)}
+@media(max-width:900px){
+  :root{--fs-headline:42px;--fs-label:34px;--fs-numeral:34px;--fs-body-md:20px}
+  .nav-links{display:none}
+}
+@media(max-width:640px){
+  :root{--fs-headline:34px;--fs-body-md:18px}
+  .band{padding:var(--sp-large) var(--sp-gap)}
+  .hero-orange{padding:56px var(--sp-gap)}
+}
+</style>
+</head>
+<body>
+
+<header class="nav-outer">
+  <nav class="navbar" aria-label="Primary">
+    <div class="logo"><iconify-icon icon="lucide:paw-print" aria-hidden="true"></iconify-icon>Nika</div>
+    <ul class="nav-links">
+      <li><a href="#hero">О фонде</a></li>
+      <li><a href="#composition">Программы</a></li>
+      <li><a href="#components">Помочь</a></li>
+      <li><a href="#palette">Истории</a></li>
+      <li><a href="#footer">Контакты</a></li>
+    </ul>
+    <div class="nav-right">
+      <span class="nav-phone">+7 495 000-00-00</span>
+      <div class="nav-icons">
+        <button aria-label="Search"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></button>
+        <button aria-label="Account"><iconify-icon icon="lucide:user" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <button class="btn-nav-cta">Помочь сейчас</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section id="hero" class="hero-band" aria-label="Hero">
+  <div class="pin-strip">
+    <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Москва</span>
+    <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Санкт-Петербург</span>
+    <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Казань</span>
+    <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Новосибирск</span>
+  </div>
+  <div class="hero-orange">
+    <h1>Каждая <span style="text-decoration:underline;text-decoration-thickness:4px">лапа</span> заслуживает тёплый дом</h1>
+    <p>Мы находим семьи для бездомных животных и помогаем им выздороветь. Присоединяйтесь — одно доброе дело меняет целую жизнь.</p>
+    <div class="hero-cta-row">
+      <button class="btn-hero">Стать волонтёром</button>
+      <button class="btn-hero-ghost">Узнать больше</button>
+    </div>
+    <div class="hero-arrows">
+      <button aria-label="Previous banner"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+      <button aria-label="Next banner"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface)}
+.pal-group{margin-bottom:var(--sp-large)}
+.pal-group h3{font-size:var(--fs-label);margin-bottom:var(--sp-gap)}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:var(--sp-gap)}
+.swatch{border-radius:var(--r-card);overflow:hidden;background:var(--surface);box-shadow:var(--shadow-soft)}
+.swatch .chip{height:120px}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+.swatch .meta{padding:16px 20px}
+.swatch .name{font-weight:600;font-size:18px}
+.swatch .val{font-size:16px;color:#5a5a5a;font-variant-numeric:tabular-nums}
+.swatch .note{font-size:16px;margin-top:8px;color:var(--text-primary)}
+#palette h2{font-size:var(--fs-headline);margin-bottom:var(--sp-large)}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Палитра</div>
+    <h2>Тёплый грунт, зелёные чернила, одна <span class="accent-word">оранжевая</span> искра</h2>
+
+    <div class="pal-group">
+      <h3>Поверхности</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#E6E6E6"></div><div class="meta"><div class="name">background</div><div class="val">#E6E6E6</div><div class="note">Доминирующий грунт — фон страницы, навбар, футер.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #e0e0e0"></div><div class="meta"><div class="name">surface</div><div class="val">#FFFFFF</div><div class="note">Карточки формы и всплывающие панели.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#234721"></div><div class="meta"><div class="name">surface-inverted</div><div class="val">#234721</div><div class="note">Лесной зелёный как сплошная «чернильная» панель.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFB5B5"></div><div class="meta"><div class="name">accent-pink-tint</div><div class="val">#FFB5B5</div><div class="note">Тёплая розовая подложка миссии и сердечек.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:var(--peach-gradient)"></div><div class="meta"><div class="name">peach gradient</div><div class="val">150deg · #FFF6EE→#FFE9D8</div><div class="note">Только полоса статистики в середине страницы.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFF0D8"></div><div class="meta"><div class="name">accent-warm-tint</div><div class="val">#FFF0D8</div><div class="note">Кремовая полоса под пин-метками.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Текст</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#282828"></div><div class="meta"><div class="name">text-primary</div><div class="val">#282828</div><div class="note">Плоские чернила — иерархия через размер, не цвет.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #e0e0e0"></div><div class="meta"><div class="name">text-on-inverted</div><div class="val">#FFFFFF</div><div class="note">Белый текст на зелёных панелях.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Акцент</h3>
+      <div class="swatch-grid">
+        <div class="swatch"><div class="chip" style="background:#F76D31"></div><div class="meta"><div class="name">accent</div><div class="val">#F76D31</div><div class="note">Нормированный оранжевый — только CTA, пины, бейджи.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#234721"></div><div class="meta"><div class="name">accent-deep-green</div><div class="val">#234721</div><div class="note">Вторичная структура и ховер-заливка.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background)}
+#type-scale h2{font-size:var(--fs-headline);margin-bottom:var(--sp-large)}
+.spec{border-top:1px solid #cfcfcf;padding:var(--sp-gap) 0}
+.spec .live{margin-bottom:var(--sp-base)}
+.spec .metrics{font-size:16px;color:#5a5a5a;font-variant-numeric:tabular-nums}
+.ramp{display:flex;gap:var(--sp-gap);flex-wrap:wrap;margin-top:var(--sp-gap)}
+.ramp span{font-size:40px;background:var(--surface);padding:14px 24px;border-radius:var(--r-card-tight)}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Шрифт</div>
+    <h2>Один Onest несёт всю систему</h2>
+
+    <div class="spec">
+      <div class="live" style="font-size:var(--fs-headline);font-weight:500">Каждая лапа заслуживает дом</div>
+      <div class="metrics">headline-md · Onest · 63px · 500 · 1.1</div>
+    </div>
+    <div class="spec">
+      <div class="live" style="font-size:var(--fs-label);font-weight:500">Программы помощи</div>
+      <div class="metrics">label-md · Onest · 47px · 500 · 1.1</div>
+    </div>
+    <div class="spec">
+      <div class="live" style="font-size:var(--fs-numeral);font-weight:500;line-height:1.1">1 248</div>
+      <div class="metrics">accent-numeral · Onest · 47px · 500 · 1.1 — фирменная цифра статистики</div>
+    </div>
+    <div class="spec">
+      <div class="live" style="font-size:var(--fs-body-md);font-weight:400">Мы находим семьи для бездомных животных и сопровождаем их на каждом шаге.</div>
+      <div class="metrics">body-md · Onest · 26px · 400 — лид-абзацы</div>
+    </div>
+    <div class="spec">
+      <div class="live" style="font-size:var(--fs-body-core);font-weight:400">Плотный текст абзаца: ветеринарная помощь, реабилитация и поиск ответственных хозяев — всё это держится на регулярных пожертвованиях неравнодушных людей.</div>
+      <div class="metrics">body-core · Onest · 21px · 400 · 1.6 — основной текст</div>
+    </div>
+
+    <div class="ramp" aria-label="Weight ramp">
+      <span style="font-weight:400">400</span>
+      <span style="font-weight:500">500</span>
+      <span style="font-weight:600">600</span>
+      <span style="font-weight:700">700</span>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface)}
+#components h2.sec{font-size:var(--fs-headline);margin-bottom:var(--sp-base)}
+.fam{margin:var(--sp-section) 0;padding-top:var(--sp-large);border-top:1px solid #e0e0e0}
+.fam:first-of-type{border-top:none;padding-top:0;margin-top:var(--sp-large)}
+.fam-head{display:flex;align-items:baseline;justify-content:space-between;gap:var(--sp-gap);flex-wrap:wrap;margin-bottom:var(--sp-gap)}
+.fam-head h3{font-size:var(--fs-label)}
+.count{font-size:16px;font-weight:600;color:var(--accent);background:var(--accent-warm-tint);padding:6px 16px;border-radius:var(--r-badge)}
+.spec-card{font-size:15px;color:#4a4a4a;background:var(--background);border-radius:var(--r-card-tight);padding:16px 20px;margin-top:var(--sp-gap);line-height:1.7;font-variant-numeric:tabular-nums}
+.spec-card b{color:var(--text-primary);font-weight:600}
+
+/* button matrix */
+.matrix{border-collapse:separate;border-spacing:var(--sp-base);width:100%}
+.matrix th{font-size:15px;color:#5a5a5a;text-align:left;font-weight:600;padding:4px 8px}
+.matrix td{vertical-align:middle}
+.btn{border:none;cursor:pointer;font-family:inherit;font-weight:600;color:#fff;transition:background .3s ease, color .3s ease, transform .15s cubic-bezier(.4,0,.2,1)}
+.btn:active{transform:translateY(1px)}
+.b-pill{border-radius:var(--r-pill)}
+.b-hero{background:var(--accent);border-radius:var(--r-pill);padding:16px 28px;font-size:17px}
+.b-hero.hov{background:var(--accent-deep-green)}
+.b-navcta{background:var(--accent);height:53px;padding:0 32.823px;font-size:17px}
+.b-navcta.hov{background:var(--accent-deep-green)}
+.b-section{background:var(--accent-deep-green);height:66px;padding:0 32.823px;font-size:18px}
+.b-section.hov{background:var(--accent)}
+.b-dark{background:#282828;height:66px;padding:0 32.823px;font-size:18px}
+.b-dark.hov{background:var(--accent-deep-green)}
+.b-donation{background:var(--accent-deep-green);height:63px;padding:12px 28px;border-radius:18px;font-size:17px;display:inline-flex;gap:14px;align-items:center}
+.b-donation .amt{background:rgba(255,255,255,.2);padding:4px 12px;border-radius:var(--r-badge);font-size:15px}
+.btn[disabled]{background:#cfcfcf;color:#8a8a8a;cursor:not-allowed}
+
+.band-demo{border-radius:var(--r-card);padding:var(--sp-large);margin-top:var(--sp-gap)}
+.heart-mask{
+  width:220px;height:220px;flex:none;background:#F76D31;
+  -webkit-mask:radial-gradient(circle at 30% 38%,#000 30%,transparent 31%),radial-gradient(circle at 70% 38%,#000 30%,transparent 31%),linear-gradient(#000,#000);
+  mask:radial-gradient(circle at 30% 38%,#000 30%,transparent 31%),radial-gradient(circle at 70% 38%,#000 30%,transparent 31%);
+}
+/* heart via clip-path */
+.heart-photo{
+  width:200px;height:200px;flex:none;
+  background:linear-gradient(135deg,#F76D31,#FFB5B5);
+  clip-path:path('M100,180 C40,130 10,95 10,60 C10,30 35,15 60,15 C78,15 92,26 100,42 C108,26 122,15 140,15 C165,15 190,30 190,60 C190,95 160,130 100,180 Z');
+}
+.sunburst{
+  width:54px;height:54px;border-radius:50%;background:var(--accent);
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:28px;
+}
+.mission-split{display:flex;gap:var(--sp-large);align-items:center;flex-wrap:wrap}
+.mission-split .txt{flex:1;min-width:280px;text-align:right}
+.mission-split h4{font-size:var(--fs-headline);margin-bottom:var(--sp-gap)}
+.mission-split p{font-size:var(--fs-body-core);margin:0 0 var(--sp-base)}
+.b-mission{background:#282828;color:#fff;border:none;cursor:pointer;border-radius:var(--r-pill);height:66px;padding:0 32.823px;font-family:inherit;font-weight:600;font-size:18px;margin-top:var(--sp-base);transition:background .3s ease}
+.b-mission:hover{background:var(--accent-deep-green)}
+
+.svc-row{
+  background:#E6E6E6;border-radius:var(--r-card);
+  padding:42px 78.75px 78.75px;margin-bottom:var(--sp-gap);
+  display:flex;gap:var(--sp-large);align-items:center;flex-wrap:wrap;position:relative;
+}
+.svc-photo{width:150px;height:150px;border-radius:50%;flex:none;background:linear-gradient(135deg,#FFB5B5,#F76D31);position:relative}
+.svc-photo .badge{position:absolute;top:-10px;right:-10px}
+.svc-row h4{font-size:var(--fs-label);margin-bottom:12px}
+.svc-row .body{flex:1;min-width:260px}
+.svc-row p{margin:0;font-size:var(--fs-body-core)}
+
+.tile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:var(--sp-gap)}
+.tile{background:var(--surface-inverted);border-radius:var(--r-card);padding:26.25px 26.25px 47.25px;color:#fff;position:relative}
+.tile .pic{width:100%;height:160px;border-radius:var(--r-card);background:linear-gradient(135deg,#2f5a2c,#4a8043);margin-bottom:var(--sp-base);position:relative}
+.tile .pic .badge{position:absolute;top:-12px;left:-12px}
+.tile h4{color:#fff;font-size:28px;margin-bottom:10px}
+.tile p{color:#fff;font-size:18px;margin:0}
+
+.feature{display:flex;gap:var(--sp-large);align-items:center;padding:var(--sp-gap) 0;flex-wrap:wrap}
+.feature.rev{flex-direction:row-reverse}
+.feature .media{flex:1;min-width:280px;height:240px;border-radius:var(--r-card);background:linear-gradient(135deg,#FFB5B5,#FFF0D8)}
+.feature .copy{flex:1;min-width:280px}
+.feature h4{font-size:var(--fs-label);margin-bottom:var(--sp-base)}
+.feature p{font-size:var(--fs-body-core);margin:0}
+
+.stat-strip{background:var(--peach-gradient);border-radius:var(--r-card);padding:var(--sp-large)}
+.stat-row{display:flex;gap:var(--sp-large);flex-wrap:wrap;align-items:flex-end}
+.stat{flex:1;min-width:140px}
+.stat .num{font-size:var(--fs-numeral);font-weight:500;line-height:1.1}
+.stat .lab{font-size:18px;color:var(--text-primary)}
+.stat.div{border-left:1px solid #d8b79a;padding-left:var(--sp-large)}
+.stat-cta{display:flex;gap:var(--sp-base);margin-top:var(--sp-large);flex-wrap:wrap}
+.b-ghost-pill{background:transparent;border:2px solid var(--accent-deep-green);color:var(--accent-deep-green);border-radius:var(--r-pill);height:48px;padding:0 26px;font-family:inherit;font-weight:600;cursor:pointer;transition:all .3s ease}
+.b-ghost-pill:hover{background:var(--accent-deep-green);color:#fff}
+
+.donation-card{background:var(--surface);border-radius:var(--r-card);padding:var(--sp-large);max-width:480px;box-shadow:var(--shadow-soft)}
+.donation-card h4{font-size:32px;margin-bottom:var(--sp-gap)}
+.field{display:block;width:100%;height:48px;border:1px solid #cfcfcf;border-radius:var(--r-control);padding:0 18px;font-family:inherit;font-size:18px;margin-bottom:var(--sp-base);background:#fff;color:var(--text-primary)}
+.field::placeholder{color:#8a8a8a}
+.chk{display:flex;align-items:center;gap:12px;font-size:17px;margin:var(--sp-base) 0}
+.chk input{width:22px;height:22px;accent-color:var(--accent);border-radius:var(--r-badge)}
+.disclosure{margin-top:var(--sp-base);border-top:1px solid #e0e0e0;padding-top:var(--sp-base)}
+.disclosure summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;gap:8px;align-items:center}
+.disclosure summary iconify-icon{color:var(--accent)}
+.disclosure p{font-size:17px;color:#4a4a4a}
+
+.feed-rail{display:flex;gap:var(--sp-gap);overflow-x:auto;padding-bottom:var(--sp-base);scroll-snap-type:x mandatory}
+.feed-card{flex:none;width:300px;scroll-snap-align:start}
+.feed-card .pic{height:180px;border-radius:var(--r-card);background:linear-gradient(135deg,#FFF0D8,#FFB5B5);position:relative}
+.date-badge{position:absolute;top:14px;left:14px;background:#fff;padding:8px 14px;border-radius:var(--r-card-tight);font-weight:600;font-size:15px;box-shadow:var(--shadow-soft)}
+.feed-card p{font-size:17px;margin:var(--sp-base) 0 0}
+.rail-ctrl{display:flex;gap:10px;margin-top:var(--sp-base)}
+.rail-ctrl button{width:48px;height:48px;border-radius:var(--r-pill);border:2px solid var(--accent-deep-green);background:transparent;color:var(--accent-deep-green);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px}
+.rail-ctrl button:hover{background:var(--accent-deep-green);color:#fff}
+
+.newsletter{background:#E6E6E6;border-radius:var(--r-card);padding:var(--sp-large)}
+.nl-split{display:flex;gap:var(--sp-large);align-items:center;flex-wrap:wrap}
+.nl-photo{width:220px;height:200px;border-radius:var(--r-card);flex:none;background:linear-gradient(135deg,#FFB5B5,#F76D31);position:relative}
+.nl-photo .badge{position:absolute;top:-12px;right:-12px}
+.nl-split .copy{flex:1;min-width:260px}
+.nl-split h4{font-size:var(--fs-label);margin-bottom:var(--sp-base)}
+.nl-form{display:flex;gap:var(--sp-base);margin-top:var(--sp-gap);flex-wrap:wrap}
+.nl-form .field{margin-bottom:0;flex:1;min-width:200px}
+.b-section-inline{background:var(--accent-deep-green);color:#fff;border:none;cursor:pointer;border-radius:var(--r-pill);height:48px;padding:0 28px;font-family:inherit;font-weight:600;font-size:17px;transition:background .3s ease}
+.b-section-inline:hover{background:var(--accent)}
+.doodle{width:100%;margin-top:var(--sp-large)}
+.doodle path{stroke:var(--accent);stroke-width:3;fill:none;stroke-linecap:round}
+@media(max-width:640px){.svc-row{padding:var(--sp-gap)}.mission-split .txt{text-align:left}}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Компоненты</div>
+    <h2 class="sec">Инвентарь системы</h2>
+
+    <!-- NAVBAR -->
+    <div class="fam" data-tier-a-component="navbar">
+      <div class="fam-head"><h3>Навбар</h3><span class="count">25 элементов · 105px</span></div>
+      <div style="background:var(--background);border-radius:var(--r-pill);box-shadow:var(--shadow-soft);min-height:105px;display:flex;align-items:center;gap:var(--sp-gap);padding:0 var(--sp-large);flex-wrap:wrap">
+        <div class="logo"><iconify-icon icon="lucide:paw-print" aria-hidden="true"></iconify-icon>Nika</div>
+        <ul class="nav-links" style="display:flex"><li><a href="#components">О фонде</a></li><li><a href="#components">Программы</a></li><li><a href="#components">Истории</a></li></ul>
+        <div class="nav-right">
+          <span class="nav-phone">+7 495 000-00-00</span>
+          <div class="nav-icons"><button aria-label="Search"><iconify-icon icon="lucide:search" aria-hidden="true"></iconify-icon></button></div>
+          <button class="btn-nav-cta">Помочь</button>
+        </div>
+      </div>
+      <div class="spec-card">
+        <b>navbar</b> · fill <b>background #E6E6E6</b> · radius <b>r-pill 39.375px</b> ×4 · height <b>105px</b> · width <b>95%</b> · shadow <b>soft 0 2px 8px</b>
+      </div>
+    </div>
+
+    <!-- HERO PROMO BANNER -->
+    <div class="fam" data-tier-a-component="hero-promotional-banner">
+      <div class="fam-head"><h3>Рекламный баннер-герой</h3><span class="count">×1 · full-bleed</span></div>
+      <div class="pin-strip" style="margin-bottom:var(--sp-base)">
+        <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Москва</span>
+        <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Казань</span>
+        <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Сочи</span>
+        <span class="pin"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon>Пермь</span>
+      </div>
+      <div class="hero-orange" style="padding:64px var(--sp-large)">
+        <h1 style="font-size:var(--fs-label)">Помогаем. Лечим. Пристраиваем.</h1>
+        <p style="margin-bottom:0">Один баннер — единственный насыщенный полноэкранный момент на странице.</p>
+        <div class="hero-arrows" style="bottom:20px">
+          <button aria-label="Previous"><iconify-icon icon="lucide:arrow-left" aria-hidden="true"></iconify-icon></button>
+          <button aria-label="Next"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+      </div>
+      <div class="spec-card"><b>hero-promotional-banner</b> · fill <b>accent #F76D31</b> flat · pins <b>accent-warm-tint strip</b> · arrows <b>r-pill</b> · <b>never gradient</b></div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="fam" data-tier-a-component="button-hero-primary">
+      <div class="fam-head"><h3>Кнопки — полная матрица</h3><span class="count">варианты × состояния</span></div>
+      <div style="overflow-x:auto">
+      <table class="matrix">
+        <thead><tr><th>Вариант</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <th>hero / primary</th>
+            <td><button class="btn b-hero">Поддержать</button></td>
+            <td><button class="btn b-hero hov">Поддержать</button></td>
+            <td><button class="btn b-hero" disabled>Поддержать</button></td>
+          </tr>
+          <tr>
+            <th>nav CTA</th>
+            <td><button class="btn b-pill b-navcta">Помочь</button></td>
+            <td><button class="btn b-pill b-navcta hov">Помочь</button></td>
+            <td><button class="btn b-pill b-navcta" disabled>Помочь</button></td>
+          </tr>
+          <tr>
+            <th>section primary</th>
+            <td><button class="btn b-pill b-section">Все программы</button></td>
+            <td><button class="btn b-pill b-section hov">Все программы</button></td>
+            <td><button class="btn b-pill b-section" disabled>Все программы</button></td>
+          </tr>
+          <tr>
+            <th>dark utility</th>
+            <td><button class="btn b-pill b-dark">Подробнее</button></td>
+            <td><button class="btn b-pill b-dark hov">Подробнее</button></td>
+            <td><button class="btn b-pill b-dark" disabled>Подробнее</button></td>
+          </tr>
+          <tr>
+            <th>donation CTA</th>
+            <td><button class="btn b-donation">Пожертвовать <span class="amt">500 ₽</span></button></td>
+            <td><button class="btn b-donation" style="background:var(--accent)">Пожертвовать <span class="amt">500 ₽</span></button></td>
+            <td><button class="btn b-donation" disabled>Пожертвовать <span class="amt">500 ₽</span></button></td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div class="spec-card">
+        <b>button-hero-primary</b> · fill <b>accent</b> · text <b>#fff</b> · radius <b>pill</b> · pad <b>16/28</b> · hover <b>deep-green</b><br>
+        <b>button-nav-cta</b> · height <b>53</b> · pad <b>0 32.823</b> · radius <b>39.375</b> · hover <b>#234721</b><br>
+        <b>button-section-primary</b> · fill <b>deep-green</b> · height <b>66</b> · hover <b>accent</b><br>
+        <b>button-dark-utility</b> · fill <b>#282828</b> · height <b>66</b> · hover <b>deep-green</b><br>
+        <b>button-donation-cta</b> · fill <b>deep-green</b> · radius <b>18</b> · height <b>63</b> · pad <b>12/0</b>
+      </div>
+    </div>
+
+    <!-- MISSION CARD -->
+    <div class="fam" data-tier-a-component="mission-card">
+      <div class="fam-head"><h3>Карточка миссии</h3><span class="count">×1 · розовая полоса</span></div>
+      <div class="band-demo" style="background:var(--accent-pink-tint)">
+        <div class="mission-split">
+          <div class="heart-photo" role="img" aria-label="Фото животного в маске-сердечке"></div>
+          <div class="txt">
+            <h4>Мы верим, что дом найдётся для каждого</h4>
+            <p>Каждый год мы спасаем тысячи животных — от первой помощи до счастливого переезда в новую семью.</p>
+            <p>Ваша поддержка — это корм, лечение и тепло для тех, кто ждёт.</p>
+            <button class="b-mission">Стать опекуном</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><b>mission-card</b> · band <b>accent-pink-tint</b> · photo <b>heart cutout mask</b> · text <b>right-aligned</b> · button <b>dark-utility pill</b></div>
+    </div>
+
+    <!-- SERVICE ROWS ×6 -->
+    <div class="fam" data-tier-a-component="card-service-row">
+      <div class="fam-head"><h3>Строки услуг</h3><span class="count">×6 · грунтовая полоса</span></div>
+      <div style="background:var(--background);border-radius:var(--r-card);padding:var(--sp-base)">
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Ветеринарная помощь</h4><p>Осмотр, вакцинация и лечение для каждого поступившего питомца.</p></div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Реабилитация</h4><p>Восстановление после травм и подготовка к жизни в семье.</p></div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Поиск дома</h4><p>Мы подбираем ответственных хозяев и сопровождаем переезд.</p></div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Корм и уход</h4><p>Ежедневное питание и забота силами наших волонтёров.</p></div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Передержка</h4><p>Временный дом для тех, кто ждёт постоянную семью.</p></div>
+        </div>
+        <div class="svc-row">
+          <div class="svc-photo"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div>
+          <div class="body"><h4>Сопровождение</h4><p>Поддержка новых хозяев после того, как питомец обрёл дом.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-service-row</b> · fill <b>#E6E6E6</b> · radius <b>39.375</b> · pad <b>42/78.75/78.75</b> · ornament <b>orange sunburst badge</b> · ×6</div>
+    </div>
+
+    <!-- INVERTED TILES ×4 -->
+    <div class="fam" data-tier-a-component="card-inverted-tile">
+      <div class="fam-head"><h3>Инвертированные плитки программ</h3><span class="count">×4 · зелёная полоса</span></div>
+      <div class="band-demo" style="background:var(--surface-inverted)">
+        <div class="tile-grid">
+          <div class="tile"><div class="pic"><div class="sunburst badge"><iconify-icon icon="lucide:heart" aria-hidden="true"></iconify-icon></div></div><h4>Спаси друга</h4><p>Программа срочной помощи животным в беде.</p></div>
+          <div class="tile"><div class="pic"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div><h4>Дом на лапах</h4><p>Поиск постоянной семьи для подопечных.</p></div>
+          <div class="tile"><div class="pic"><div class="sunburst badge"><iconify-icon icon="lucide:heart" aria-hidden="true"></iconify-icon></div></div><h4>Здоровая лапа</h4><p>Ветеринарное сопровождение круглый год.</p></div>
+          <div class="tile"><div class="pic"><div class="sunburst badge"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon></div></div><h4>Волонтёры</h4><p>Сообщество неравнодушных помощников.</p></div>
+        </div>
+      </div>
+      <div class="spec-card"><b>card-inverted-tile</b> · fill <b>#234721</b> · radius <b>39.375</b> · pad <b>26.25/26.25/47.25</b> · text <b>#fff</b> · ×4</div>
+    </div>
+
+    <!-- FEATURE PANELS ×4 -->
+    <div class="fam" data-tier-a-component="card-feature-panel">
+      <div class="fam-head"><h3>Полноширинные панели-фичи</h3><span class="count">×4 · без хрома</span></div>
+      <div class="feature"><div class="media" role="img" aria-label="Фото подопечного"></div><div class="copy"><h4>Истории спасения</h4><p>Реальные судьбы животных, которым вы помогли обрести дом.</p></div></div>
+      <div class="feature rev"><div class="media" role="img" aria-label="Фото волонтёров"></div><div class="copy"><h4>Наши волонтёры</h4><p>Люди, которые каждый день делают спасение возможным.</p></div></div>
+      <div class="feature"><div class="media" role="img" aria-label="Фото приюта"></div><div class="copy"><h4>Как мы работаем</h4><p>Прозрачно и ответственно — от первого звонка до переезда.</p></div></div>
+      <div class="feature rev"><div class="media" role="img" aria-label="Фото счастливой семьи"></div><div class="copy"><h4>Счастливый финал</h4><p>Семьи, которые нашли своего лучшего друга.</p></div></div>
+      <div class="spec-card"><b>card-feature-panel</b> · fill <b>transparent</b> · radius <b>0</b> · pad <b>0</b> · layout <b>alternating</b> · ×4</div>
+    </div>
+
+    <!-- STAT STRIP -->
+    <div class="fam" data-tier-a-component="stat-numeral-strip">
+      <div class="fam-head"><h3>Полоса статистики</h3><span class="count">×1 · персиковый градиент</span></div>
+      <div class="stat-strip">
+        <div class="stat-row">
+          <div class="stat"><div class="num">12 480</div><div class="lab">спасённых животных</div></div>
+          <div class="stat div"><div class="num">8 920</div><div class="lab">нашли семью</div></div>
+          <div class="stat div"><div class="num">3 150</div><div class="lab">волонтёров</div></div>
+        </div>
+        <div class="stat-cta">
+          <button class="btn b-pill b-section" style="height:48px">Поддержать фонд</button>
+          <button class="b-ghost-pill">Отчёты</button>
+          <button class="b-ghost-pill">Стать волонтёром</button>
+        </div>
+      </div>
+      <div class="spec-card"><b>stat-numeral-strip</b> · band <b>peach gradient 150deg</b> · numeral <b>accent-numeral 47px/500</b> · divider <b>1px</b> · CTAs <b>section + ghost pills</b></div>
+    </div>
+
+    <!-- DONATION FORM -->
+    <div class="fam" data-tier-a-component="donation-form-card">
+      <div class="fam-head"><h3>Карточка формы пожертвования</h3><span class="count">×1 · белая карта</span></div>
+      <div style="background:linear-gradient(135deg,#d8d8d8,#bcbcbc);border-radius:var(--r-card);padding:var(--sp-large)">
+        <div class="donation-card">
+          <h4>Сделать пожертвование</h4>
+          <input class="field" type="text" placeholder="Имя" aria-label="Имя">
+          <input class="field" type="email" placeholder="Email" aria-label="Email">
+          <input class="field" type="tel" placeholder="Телефон" aria-label="Телефон">
+          <label class="chk"><input type="checkbox" checked>Ежемесячное пожертвование</label>
+          <label class="chk"><input type="checkbox">Согласие на обработку данных</label>
+          <button class="btn b-donation" style="width:100%;justify-content:center;margin-top:var(--sp-base)">Пожертвовать <span class="amt">500 ₽</span></button>
+          <details class="disclosure">
+            <summary><iconify-icon icon="lucide:plus" aria-hidden="true"></iconify-icon>Другие способы помочь</summary>
+            <p>Станьте волонтёром, оформите подписку или расскажите о фонде друзьям.</p>
+          </details>
+        </div>
+      </div>
+      <div class="spec-card"><b>donation-form-card</b> · fill <b>surface #FFF</b> · radius <b>card 39.375</b> · fields <b>r-control 21 · h48</b> · CTA <b>donation green r18</b></div>
+    </div>
+
+    <!-- FEED CARDS -->
+    <div class="fam" data-tier-a-component="card-horizontal-feed">
+      <div class="fam-head"><h3>Карточки ленты событий</h3><span class="count">×3 · прокрутка</span></div>
+      <div class="feed-rail" id="feedRail">
+        <div class="feed-card"><div class="pic"><span class="date-badge">12 мая</span></div><p>Открылся новый пункт передержки — ещё 40 мест для подопечных.</p></div>
+        <div class="feed-card"><div class="pic"><span class="date-badge">28 апр</span></div><p>Весенний день усыновления: 17 животных нашли семью за один день.</p></div>
+        <div class="feed-card"><div class="pic"><span class="date-badge">03 апр</span></div><p>Запущена программа льготной стерилизации для бездомных кошек.</p></div>
+      </div>
+      <div class="rail-ctrl">
+        <button aria-label="Назад" data-rail="-1"><iconify-icon icon="lucide:chevron-left" aria-hidden="true"></iconify-icon></button>
+        <button aria-label="Вперёд" data-rail="1"><iconify-icon icon="lucide:chevron-right" aria-hidden="true"></iconify-icon></button>
+      </div>
+      <div class="spec-card"><b>card-horizontal-feed</b> · panel <b>transparent</b> · badge <b>folded paper-sticker r-card-tight 12</b> · nav <b>chevron rail, no autoplay</b></div>
+    </div>
+
+    <!-- NEWSLETTER / CLOSING -->
+    <div class="fam" data-tier-a-component="newsletter-closing-band">
+      <div class="fam-head"><h3>Закрывающая полоса / рассылка</h3><span class="count">×1 · грунт</span></div>
+      <div class="newsletter">
+        <div class="nl-split">
+          <div class="nl-photo" role="img" aria-label="Фото с сердечком"><div class="sunburst badge"><iconify-icon icon="lucide:heart" aria-hidden="true"></iconify-icon></div></div>
+          <div class="copy">
+            <h4>Будьте с нами на связи</h4>
+            <p>Получайте истории спасения и новости фонда — без спама.</p>
+            <div class="nl-form">
+              <input class="field" type="email" placeholder="Ваш email" aria-label="Email для рассылки">
+              <button class="b-section-inline">Подписаться</button>
+            </div>
+          </div>
+        </div>
+        <svg class="doodle" viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" height="40">
+          <path d="M5,20 C100,2 200,38 300,20 C400,2 500,38 600,20 C700,2 800,38 900,20 C1000,2 1100,38 1195,20"/>
+        </svg>
+      </div>
+      <div class="spec-card"><b>newsletter-closing-band</b> · field <b>#E6E6E6</b> · input+button <b>r-control + section pill</b> · doodle <b>single-stroke accent line</b></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background)}
+#surface-depth h2{font-size:var(--fs-headline);margin-bottom:var(--sp-large)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-gap)}
+.depth-card{background:var(--surface);padding:var(--sp-large)}
+.depth-card h4{font-size:26px;margin-bottom:10px}
+.depth-card .m{font-size:16px;color:#5a5a5a;font-variant-numeric:tabular-nums}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Поверхности и глубина</div>
+    <h2>Мягкие углы вместо теней</h2>
+    <div class="depth-grid">
+      <div class="depth-card" style="border-radius:var(--r-pill)"><h4>r-pill</h4><div class="m">39.375px — кнопки, навбар, баннер</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card)"><h4>r-card</h4><div class="m">39.375px — карточки и панели</div></div>
+      <div class="depth-card" style="border-radius:var(--r-control)"><h4>r-control</h4><div class="m">21px — поля ввода</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card-tight)"><h4>r-card-tight</h4><div class="m">12px — донат CTA, бейджи даты</div></div>
+      <div class="depth-card" style="border-radius:var(--r-badge)"><h4>r-badge</h4><div class="m">13px — чекбоксы, метки</div></div>
+      <div class="depth-card" style="border-radius:var(--r-card);box-shadow:var(--shadow-soft)"><h4>soft lift</h4><div class="m">rgba(0,0,0,.18) 0 2px 8px</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface)}
+#motion h2{font-size:var(--fs-headline);margin-bottom:var(--sp-large)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--sp-gap)}
+.motion-card{background:var(--background);border-radius:var(--r-card);padding:var(--sp-large);text-align:center}
+.motion-card .m{font-size:16px;color:#5a5a5a;margin-top:var(--sp-base);font-variant-numeric:tabular-nums}
+.swap-demo{background:var(--accent);color:#fff;border:none;border-radius:var(--r-pill);height:66px;padding:0 32px;font-family:inherit;font-weight:600;font-size:18px;cursor:pointer;transition:background .3s ease,color .3s ease}
+.swap-demo.on{background:var(--accent-deep-green)}
+.pulse-dot{width:54px;height:54px;border-radius:50%;background:var(--accent);margin:0 auto}
+.pulse-dot.go{animation:opb-pulse 1.4s ease-in-out infinite}
+@keyframes opb-pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.18);opacity:.75}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <div class="eyebrow">Движение</div>
+    <h2>Короткое и утилитарное</h2>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <button class="swap-demo" id="swapBtn">Наведи / нажми</button>
+        <div class="m">fill swap · 0.3s ease · orange↔green</div>
+      </div>
+      <div class="motion-card">
+        <div class="pulse-dot" id="pulseDot"></div>
+        <div class="m">opb-pulse · 1.4s ease-in-out · бейдж-орнамент</div>
+      </div>
+      <div class="motion-card">
+        <button class="btn b-pill b-section" id="composBtn" style="height:66px">transform tap</button>
+        <div class="m">transform · 0.15s cubic-bezier(.4,0,.2,1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background)}
+#composition h2{font-size:var(--fs-headline);margin-bottom:var(--sp-large)}
+.mock{border-radius:var(--r-card);overflow:hidden;box-shadow:var(--shadow-soft);background:var(--surface)}
+.mock-nav{background:var(--background);display:flex;align-items:center;gap:var(--sp-gap);padding:18px var(--sp-large);flex-wrap:wrap}
+.mock-nav .logo{font-size:22px}
+.mock-nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;font-size:16px;font-weight:500}
+.mock-nav .btn-nav-cta{margin-left:auto;height:48px}
+.mock-hero{background:var(--accent);color:#fff;padding:56px var(--sp-large);text-align:center}
+.mock-hero h3{font-size:var(--fs-label);color:#fff;margin-bottom:var(--sp-base)}
+.mock-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:var(--sp-gap);padding:var(--sp-large);background:var(--accent-pink-tint)}
+.mock-card{background:var(--surface);border-radius:var(--r-card);padding:var(--sp-gap)}
+.mock-card .pic{height:120px;border-radius:var(--r-card-tight);background:linear-gradient(135deg,#FFB5B5,#F76D31);margin-bottom:var(--sp-base)}
+.mock-card h5{font-size:22px;margin-bottom:6px}
+.mock-card p{font-size:17px;margin:0}
+.mock-cta{background:var(--surface-inverted);padding:var(--sp-large);text-align:center}
+.mock-cta h4{color:#fff;font-size:32px;margin-bottom:var(--sp-base)}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <div class="eyebrow">В композиции</div>
+    <h2>Система держится вместе</h2>
+    <div class="mock">
+      <div class="mock-nav">
+        <div class="logo"><iconify-icon icon="lucide:paw-print" aria-hidden="true"></iconify-icon>Nika</div>
+        <ul><li>О фонде</li><li>Программы</li><li>Истории</li></ul>
+        <button class="btn-nav-cta">Помочь</button>
+      </div>
+      <div class="mock-hero">
+        <h3>Подарите дом тому, кто ждёт</h3>
+        <p style="color:#fff;margin-bottom:var(--sp-gap)">Каждое пожертвование — это шанс на новую жизнь.</p>
+        <button class="btn b-hero">Поддержать сейчас</button>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><div class="pic"></div><h5>Барсик</h5><p>Ищет дом после лечения.</p></div>
+        <div class="mock-card"><div class="pic"></div><h5>Рыжик</h5><p>Ласковый и готов переехать.</p></div>
+        <div class="mock-card"><div class="pic"></div><h5>Муся</h5><p>Ждёт заботливую семью.</p></div>
+      </div>
+      <div class="mock-cta">
+        <h4>Станьте частью доброго дела</h4>
+        <button class="btn b-pill b-section" style="height:66px;background:var(--accent)">Стать волонтёром</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--background);padding:var(--sp-section) var(--sp-large)}
+.foot-top{display:flex;gap:var(--sp-large);flex-wrap:wrap;justify-content:space-between}
+.foot-cols{display:flex;gap:var(--sp-large);flex-wrap:wrap}
+.foot-col h5{font-size:18px;margin-bottom:var(--sp-base);font-weight:600}
+.foot-col ul{list-style:none;margin:0;padding:0;font-size:16px;line-height:2}
+.foot-col a{text-decoration:none}
+.foot-col a:hover{color:var(--accent)}
+.socials{display:flex;gap:12px;margin-top:var(--sp-gap)}
+.socials a{width:44px;height:44px;border-radius:50%;background:var(--surface-inverted);color:#fff;display:flex;align-items:center;justify-content:center;font-size:22px}
+.socials a:hover{background:var(--accent)}
+.foot-legal{border-top:1px solid #cfcfcf;margin-top:var(--sp-large);padding-top:var(--sp-gap);font-size:15px;color:#5a5a5a;display:flex;gap:var(--sp-gap);flex-wrap:wrap;justify-content:space-between}
+.foot-legal a{text-decoration:none}
+.foot-src{font-size:15px;color:#5a5a5a;margin-top:var(--sp-base)}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <div class="logo"><iconify-icon icon="lucide:paw-print" aria-hidden="true"></iconify-icon>Nika</div>
+        <div class="socials">
+          <a href="#" aria-label="VK"><iconify-icon icon="lucide:message-circle" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Telegram"><iconify-icon icon="lucide:send" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="YouTube"><iconify-icon icon="lucide:youtube" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Instagram"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+          <a href="#" aria-label="Email"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col"><h5>Фонд</h5><ul><li><a href="#">О нас</a></li><li><a href="#">Команда</a></li><li><a href="#">Отчёты</a></li><li><a href="#">Контакты</a></li></ul></div>
+        <div class="foot-col"><h5>Программы</h5><ul><li><a href="#">Спасение</a></li><li><a href="#">Лечение</a></li><li><a href="#">Пристройство</a></li><li><a href="#">Передержка</a></li></ul></div>
+        <div class="foot-col"><h5>Помочь</h5><ul><li><a href="#">Пожертвовать</a></li><li><a href="#">Волонтёрство</a></li><li><a href="#">Подписка</a></li><li><a href="#">Партнёрам</a></li></ul></div>
+        <div class="foot-col"><h5>Истории</h5><ul><li><a href="#">Новости</a></li><li><a href="#">Блог</a></li><li><a href="#">События</a></li><li><a href="#">Счастливые финалы</a></li></ul></div>
+      </div>
+    </div>
+    <div class="foot-legal">
+      <span>© 2024 Благотворительный фонд «Nika». Все права защищены.</span>
+      <span><a href="https://fond-nika.ru/">fond-nika.ru</a> · Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('[data-rail]').forEach(function(b){
+  b.addEventListener('click',function(){
+    var rail=document.getElementById('feedRail');
+    rail.scrollBy({left:324*parseInt(b.dataset.rail,10),behavior:'smooth'});
+  });
+});
+var swapBtn=document.getElementById('swapBtn');
+if(swapBtn)swapBtn.addEventListener('click',function(){this.classList.toggle('on')});
+var pulseDot=document.getElementById('pulseDot');
+if(pulseDot){document.getElementById('motion').addEventListener('click',function(e){if(e.target===pulseDot)pulseDot.classList.toggle('go')});pulseDot.addEventListener('click',function(){this.classList.toggle('go')});}
+var composBtn=document.getElementById('composBtn');
+if(composBtn)composBtn.addEventListener('click',function(){this.style.transform='translateY(2px)';var el=this;setTimeout(function(){el.style.transform=''},160)});
+</script>
+
+</body>
+</html>

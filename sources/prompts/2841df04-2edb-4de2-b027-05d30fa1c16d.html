@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fullstack engineer and technical lead with 6+ years shipping production systems across DeFi, Web3 infrastructure, backend architecture and frontend platforms.">
+  <meta name="view-transition" content="same-origin">
+  <title>Design I Ship — Fullstack Architect</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
+    :root{--bg:#101014;--ink:#f2f1ee;--muted:#85858d;--blue:#6b9eff;--line:rgba(242,241,238,.16)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth;background:var(--bg)}body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,sans-serif}.mono{font-family:'Geist Mono',monospace}.display{font-family:Archivo,sans-serif}.grid-field{background-color:var(--bg);background-image:linear-gradient(rgba(242,241,238,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(242,241,238,.045) 1px,transparent 1px);background-size:72px 72px}.section{scroll-margin-top:74px}.topnav{height:74px}.nav-item{color:#929298;transition:color .2s ease}.nav-item:hover,.nav-item.active{color:var(--ink)}.blue{color:var(--blue)}.section-title{font-size:clamp(2.75rem,7vw,7rem);line-height:.94;letter-spacing:-.065em}.card{border:1px solid var(--line);transition:border-color .3s ease,transform .3s ease,background .3s ease}.card:hover{border-color:var(--blue);background:rgba(107,158,255,.04);transform:translateY(-3px)}.ruler{width:60px}.tick{position:absolute;right:0;width:14px;border-top:1px solid rgba(242,241,238,.38)}.tick.major{width:28px;border-color:rgba(242,241,238,.72)}.ruler-number{position:absolute;right:34px;transform:translateY(-50%);font:10px 'Geist Mono',monospace;color:var(--muted)}.ruler-fill{position:absolute;left:0;top:0;width:2px;background:var(--blue);box-shadow:0 0 10px var(--blue)}.ruler-label{position:absolute;right:70px;white-space:nowrap;transform:translateY(-50%);font:10px 'Geist Mono',monospace;letter-spacing:.12em;text-transform:uppercase;transition:opacity .35s ease,transform .35s ease}.changing{opacity:0;transform:translateY(-50%) translateY(6px)}
+    body{font-weight:500}
+    .display,.section-title,h1,h2,h3{font-weight:800}
+    h1,.section-title{font-weight:900}
+    p{font-weight:500}
+    .mono{font-weight:600}
+    .nav-item,.mono.uppercase{font-weight:700}
+    .ruler-label,.ruler-number{font-weight:700}
+    .card h3{font-weight:800}
+    .card p{font-weight:500}
+    @media(max-width:900px){.ruler{width:34px}.ruler-label{display:none}.ruler-number{right:15px;font-size:8px}.content{margin-right:34px}.topnav .wide-nav{display:none}}
+  </style>
+
+<meta name="preview-version" content="84d1d1bf-c0e9-4d1f-b463-f87302ac2632" />
+<meta name="preview-timestamp" content="2026-11-20T00:19:42.887Z" />
+
+<style>
+  html::-webkit-scrollbar, body::-webkit-scrollbar, *::-webkit-scrollbar {
+    display: none !important; width: 0 !important; height: 0 !important;
+  }
+  html, body, * {
+    -ms-overflow-style: none !important;
+    scrollbar-width: none !important;
+  }
+</style>
+<style>
+          body:not(.sd-ready) { opacity: 0 !important; }
+          body.sd-ready { opacity: 1 !important; transition: opacity 0.1s ease-in; }
+          sd-component { display: block; }
+        </style>
+
+<script type="module">
+  (function() {
+    document.addEventListener('wheel', function(e) {
+      if (e.ctrlKey) e.preventDefault();
+    }, { passive: false });
+  })();
+</script>
+<script type="module">
+    // r3xdec design Runtime
+    console.log('[r3xdec design] Preview loaded for versionId:', "84d1d1bf-c0e9-4d1f-b463-f87302ac2632");
+
+    window.__R3XDEC_PREVIEW__ = {
+      versionId: "84d1d1bf-c0e9-4d1f-b463-f87302ac2632",
+      timestamp: "2026-11-20T00:19:42.887Z",
+      _modernScreenshotModule: null,
+
+      sendMessage: function(type, data) {
+        if (window.parent) {
+          window.parent.postMessage({
+            source: 'r3xdec-preview',
+            type: type,
+            data: data,
+            versionId: this.versionId
+          }, '*');
+        }
+      },
+
+      ready: function() {
+        this.sendMessage('ready', { timestamp: Date.now() });
+      },
+
+      
+      _captureScreenshotInternal: async function() {
+        if (!this._modernScreenshotModule) {
+          console.log('[r3xdec design] Loading modern-screenshot library...');
+          this._modernScreenshotModule = await import('https://esm.sh/modern-screenshot@4.6.6');
+        }
+        var modernScreenshot = this._modernScreenshotModule;
+        if (!modernScreenshot || !modernScreenshot.domToCanvas) {
+          throw new Error('modern-screenshot library not loaded');
+        }
+
+        var scrollX = window.scrollX || window.pageXOffset;
+        var scrollY = window.scrollY || window.pageYOffset;
+        var viewportWidth = window.innerWidth;
+        var viewportHeight = window.innerHeight;
+        var documentWidth = Math.max(
+          document.documentElement.scrollWidth,
+          document.documentElement.offsetWidth,
+          document.documentElement.clientWidth,
+          document.body.scrollWidth,
+          document.body.offsetWidth
+        );
+        var documentHeight = Math.max(
+          document.documentElement.scrollHeight,
+          document.documentElement.offsetHeight,
+          document.documentElement.clientHeight,
+          document.body.scrollHeight,
+          document.body.offsetHeight
+        );
+
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        var pixelRatio = isMobile ? 1 : (window.devicePixelRatio || 1);
+
+        var dataUrl;
+
+        if (isMobile) {
+          var wrapper = document.createElement('div');
+          wrapper.style.cssText = 'position:fixed;top:0;left:0;width:' + viewportWidth + 'px;height:' + viewportHeight + 'px;overflow:hidden;z-index:999999;pointer-events:none;';
+          var clone = document.body.cloneNode(true);
+          clone.style.cssText = 'position:absolute;top:' + (-scrollY) + 'px;left:' + (-scrollX) + 'px;margin:0;width:' + documentWidth + 'px;';
+          wrapper.appendChild(clone);
+          document.body.appendChild(wrapper);
+          try {
+            var viewportCanvas = await modernScreenshot.domToCanvas(wrapper, {
+              scale: 1, backgroundColor: '#ffffff',
+              width: viewportWidth, height: viewportHeight,
+            });
+            dataUrl = viewportCanvas.toDataURL('image/png', 0.5);
+          } finally {
+            document.body.removeChild(wrapper);
+          }
+        } else {
+          var fullCanvas = await modernScreenshot.domToCanvas(document.documentElement, {
+            scale: pixelRatio, backgroundColor: '#ffffff',
+            width: documentWidth, height: documentHeight,
+          });
+          var viewportCanvas = document.createElement('canvas');
+          viewportCanvas.width = viewportWidth * pixelRatio;
+          viewportCanvas.height = viewportHeight * pixelRatio;
+          var ctx = viewportCanvas.getContext('2d');
+          if (!ctx) throw new Error('Failed to get canvas context');
+          ctx.drawImage(
+            fullCanvas,
+            scrollX * pixelRatio, scrollY * pixelRatio,
+            viewportWidth * pixelRatio, viewportHeight * pixelRatio,
+            0, 0, viewportWidth * pixelRatio, viewportHeight * pixelRatio
+          );
+          dataUrl = viewportCanvas.toDataURL('image/png', 1.0);
+        }
+
+        if (!dataUrl || !dataUrl.startsWith('data:image/png;base64,') || dataUrl.length < 100) {
+          throw new Error('Invalid screenshot data');
+        }
+
+        return {
+          dataUrl: dataUrl,
+          viewportWidth: viewportWidth,
+          viewportHeight: viewportHeight,
+          pixelRatio: pixelRatio
+        };
+      },
+
+      autoCapture: async function() {
+        if (window === window.parent) return;
+        try {
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('auto-screenshot', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+          });
+        } catch (error) {
+          console.error('[r3xdec design] Auto-capture failed:', error);
+        }
+      },
+
+      captureScreenshot: async function(requestId, autoCaptureId) {
+        try {
+          this._currentRequestId = requestId;
+          this._currentAutoCaptureId = autoCaptureId;
+          var result = await this._captureScreenshotInternal();
+          this.sendMessage('screenshot-captured', {
+            dataUrl: result.dataUrl,
+            timestamp: Date.now(),
+            viewportWidth: result.viewportWidth,
+            viewportHeight: result.viewportHeight,
+            pixelRatio: result.pixelRatio,
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          return result.dataUrl;
+        } catch (error) {
+          console.error('[r3xdec design] Screenshot capture failed:', error);
+          this.sendMessage('screenshot-error', {
+            error: error.message || String(error),
+            timestamp: Date.now(),
+            requestId: this._currentRequestId,
+            autoCaptureId: this._currentAutoCaptureId
+          });
+          throw error;
+        }
+      }
+  
+    };
+
+    
+    // Font loading helpers
+    window.__R3XDEC_PREVIEW__.loadedFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadGoogleFont = function(fontFamily) {
+      if (!fontFamily || this.loadedFonts.has(fontFamily)) return;
+      if (fontFamily.startsWith('Custom-')) return;
+
+      var systemFonts = ['system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+        'Roboto', 'Helvetica', 'Arial', 'sans-serif', 'Georgia', 'Times New Roman',
+        'Times', 'serif', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'];
+      if (systemFonts.some(function(sf) { return fontFamily.toLowerCase().includes(sf.toLowerCase()); })) return;
+
+      if (!document.querySelector('link[href*="fonts.googleapis.com"]')) {
+        var preconnect1 = document.createElement('link');
+        preconnect1.rel = 'preconnect';
+        preconnect1.href = 'https://fonts.googleapis.com';
+        document.head.appendChild(preconnect1);
+        var preconnect2 = document.createElement('link');
+        preconnect2.rel = 'preconnect';
+        preconnect2.href = 'https://fonts.gstatic.com';
+        preconnect2.crossOrigin = 'anonymous';
+        document.head.appendChild(preconnect2);
+      }
+
+      var linkId = 'google-font-' + fontFamily.replace(/\\s+/g, '-').toLowerCase();
+      if (!document.getElementById(linkId)) {
+        var link = document.createElement('link');
+        link.id = linkId;
+        link.rel = 'stylesheet';
+        link.href = 'https://fonts.googleapis.com/css2?family=' + encodeURIComponent(fontFamily) + ':wght@400;500;600;700&display=swap';
+        link.onerror = function() { console.error('[r3xdec design] Failed to load Google Font:', fontFamily); };
+        document.head.appendChild(link);
+      }
+      this.loadedFonts.add(fontFamily);
+    };
+
+    window.__R3XDEC_PREVIEW__.loadedCustomFonts = new Set();
+    window.__R3XDEC_PREVIEW__.loadCustomFont = function(fontInfo) {
+      if (!fontInfo || !fontInfo.family || !fontInfo.url) return;
+      if (this.loadedCustomFonts.has(fontInfo.family)) return;
+      var styleId = 'custom-font-' + fontInfo.family.replace(/[^a-zA-Z0-9]/g, '-');
+      if (document.getElementById(styleId)) return;
+      var style = document.createElement('style');
+      style.id = styleId;
+      style.textContent = '@font-face { ' +
+        'font-family: "' + fontInfo.family + '"; ' +
+        'src: url("' + fontInfo.url + '") format("' + (fontInfo.format || 'woff2') + '"); ' +
+        'font-weight: 100 900; font-style: normal; font-display: swap; }';
+      document.head.appendChild(style);
+      this.loadedCustomFonts.add(fontInfo.family);
+    };
+  
+    
+    // Theme sync
+    window.__R3XDEC_PREVIEW__.applyTheme = function(payload, isDark) {
+      var root = document.documentElement;
+      var colorVars = isDark ? payload.dark : payload.light;
+      for (var name in colorVars) {
+        if (colorVars.hasOwnProperty(name)) {
+          root.style.setProperty(name, colorVars[name]);
+        }
+      }
+
+      if (payload.customFonts && Array.isArray(payload.customFonts)) {
+        payload.customFonts.forEach(function(fontInfo) {
+          window.__R3XDEC_PREVIEW__.loadCustomFont(fontInfo);
+        });
+      }
+
+      if (payload.typography) {
+        var t = payload.typography;
+        if (t.fontSans && !t.fontSans.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSans);
+        if (t.fontSerif && !t.fontSerif.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontSerif);
+        if (t.fontMono && !t.fontMono.startsWith('Custom-')) window.__R3XDEC_PREVIEW__.loadGoogleFont(t.fontMono);
+
+        var formatFontValue = function(ff) {
+          if (!ff) return ff;
+          var first = ff.split(',')[0].trim().replace(/^["']|["']$/g, '');
+          return first.startsWith('var(') ? first : '"' + first + '"';
+        };
+        root.style.setProperty('--font-sans', formatFontValue(t.fontSans));
+        root.style.setProperty('--font-serif', formatFontValue(t.fontSerif));
+        root.style.setProperty('--font-mono', formatFontValue(t.fontMono));
+        root.style.setProperty('--font-size', t.fontSize);
+        root.style.setProperty('--line-height', t.lineHeight);
+        root.style.setProperty('--letter-spacing-body', t.letterSpacing);
+        root.style.setProperty('--letter-spacing-heading', t.headingLetterSpacing);
+        root.style.setProperty('--font-weight-regular', t.fontWeightRegular);
+        root.style.setProperty('--font-weight-bold', t.fontWeightBold);
+      }
+
+      if (payload.effects) {
+        root.style.setProperty('--radius', payload.effects.radius);
+        root.style.setProperty('--shadow', payload.effects.shadow);
+      }
+
+      if (isDark) { root.classList.add('dark'); } else { root.classList.remove('dark'); }
+    };
+  
+    
+    // Message listener
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'request-screenshot') {
+        if (window.__R3XDEC_PREVIEW__) {
+          window.__R3XDEC_PREVIEW__.captureScreenshot(event.data.requestId, event.data.autoCaptureId);
+        }
+      }
+
+      if (event.data && event.data.type === 'r3xdec-theme-update') {
+        if (window.__R3XDEC_PREVIEW__ && event.data.payload) {
+          var isDark = event.data.isDark || false;
+          window.__R3XDEC_PREVIEW__.applyTheme(event.data.payload, isDark);
+          window.__R3XDEC_PREVIEW__.sendMessage('theme-applied', { timestamp: Date.now(), isDark: isDark });
+        }
+      }
+
+      if (event.data && event.data.type === 'navigate-to-route') {
+        var route = event.data.route;
+        if (route) {
+          if (route === '/') {
+            if (window.location.hash) {
+              history.pushState(null, '', window.location.pathname + window.location.search);
+              window.dispatchEvent(new HashChangeEvent('hashchange'));
+            }
+          } else {
+            var newHash = '#' + route;
+            if (window.location.hash !== newHash) {
+              window.location.hash = route;
+            }
+          }
+        }
+      }
+    });
+  
+    
+    // Page lifecycle
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', function() { window.__R3XDEC_PREVIEW__.ready(); });
+    } else {
+      window.__R3XDEC_PREVIEW__.ready();
+    }
+
+    function onPageFullyLoaded() {
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          setTimeout(function() {
+            window.__R3XDEC_PREVIEW__.sendMessage('loaded', { timestamp: Date.now() });
+          }, 1500);
+          // Auto-capture disabled for this preview type
+        });
+      });
+    }
+
+    if (document.readyState === 'complete') {
+      onPageFullyLoaded();
+    } else {
+      window.addEventListener('load', onPageFullyLoaded);
+    }
+  
+  </script>
+<script type="module">
+  window.addEventListener('error', function(event) {
+    var msg = event.message || '';
+    var name = (event.error && event.error.name) || msg.split(':')[0] || '';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      var err = event.error;
+      window.__R3XDEC_PREVIEW__.sendMessage('error', {
+        message: event.message, filename: event.filename,
+        lineno: event.lineno, colno: event.colno,
+        name: (err && err.name) || name || 'Error',
+        stack: (err && err.stack) || null
+      });
+    }
+  });
+  window.addEventListener('unhandledrejection', function(event) {
+    var reason = event.reason;
+    var msg = (reason && reason.message) || (typeof reason === 'string' ? reason : '');
+    var name = (reason && reason.name) || 'UnhandledRejection';
+    if (name === 'HierarchyRequestError' || msg.includes("Failed to execute 'appendChild' on 'Node'")) return;
+    if (window.__R3XDEC_PREVIEW__) {
+      window.__R3XDEC_PREVIEW__.sendMessage('unhandled-rejection', {
+        reason: (reason && reason.message) || String(reason),
+        name: name,
+        stack: (reason && reason.stack) || null
+      });
+    }
+  });
+</script>
+<script type="module">import '/__visual-edit-bridge/iframe-runtime.mjs?v=81349612';</script>
+<script  src="https://cdn.jsdelivr.net/npm/petite-vue@0.4.1/dist/petite-vue.iife.js"></script>
+<script type="module">
+  (function() {
+    'use strict';
+
+    var MAX_RENDER_DEPTH = 5;
+
+    function showPage() {
+      document.body.classList.add('sd-ready');
+    }
+
+    var componentRegistry = new Map();
+    var instanceRegistry = new Map();
+    var API_BASE = "https://api.r3xdec.design";
+    var DRAFT_ID = "84d1d1bf-c0e9-4d1f-b463-f87302ac2632";
+
+    function buildDefaultProps(definition) {
+      var defaultProps = {};
+      var props = definition.props;
+      if (!props || !Array.isArray(props)) return defaultProps;
+      for (var i = 0; i < props.length; i++) {
+        var prop = props[i];
+        if (prop.defaultValue === undefined) continue;
+        var path = prop.name.split('.');
+        var current = defaultProps;
+        for (var j = 0; j < path.length - 1; j++) {
+          var key = path[j];
+          if (!(key in current) || typeof current[key] !== 'object' || current[key] === null) {
+            current[key] = {};
+          }
+          current = current[key];
+        }
+        current[path[path.length - 1]] = prop.defaultValue;
+      }
+      return defaultProps;
+    }
+
+    function deepMerge(target, source) {
+      var result = Object.assign({}, target);
+      for (var key in source) {
+        if (!source.hasOwnProperty(key)) continue;
+        if (
+          source[key] && typeof source[key] === 'object' && !Array.isArray(source[key]) &&
+          result[key] && typeof result[key] === 'object' && !Array.isArray(result[key])
+        ) {
+          result[key] = deepMerge(result[key], source[key]);
+        } else {
+          result[key] = source[key];
+        }
+      }
+      return result;
+    }
+
+    function registerComponent(id, definition) {
+      componentRegistry.set(id, definition);
+      console.log('[SDComponent] Registered component:', id);
+    }
+
+    function renderComponent(element, depth) {
+      depth = depth || 0;
+      var componentId = element.getAttribute('componentid') || element.getAttribute('ref');
+      var instanceId = element.getAttribute('instance');
+      var propsAttr = element.getAttribute('props');
+
+      if (!componentId) {
+        console.warn('[SDComponent] Missing componentId attribute on sd-component');
+        return;
+      }
+
+      if (depth >= MAX_RENDER_DEPTH) {
+        console.warn('[SDComponent] Max render depth reached for:', componentId);
+        element.setAttribute('data-error', 'max-depth');
+        return;
+      }
+
+      var definition = componentRegistry.get(componentId);
+      if (!definition) {
+        console.warn('[SDComponent] Component not found:', componentId);
+        element.setAttribute('data-pending', 'true');
+        return;
+      }
+
+      var instanceProps = {};
+      if (propsAttr) {
+        try { instanceProps = JSON.parse(propsAttr); }
+        catch (e) { console.warn('[SDComponent] Invalid props JSON:', propsAttr); }
+      }
+
+      var defaultProps = buildDefaultProps(definition);
+      var finalProps = deepMerge(defaultProps, instanceProps);
+
+      element.innerHTML = definition.htmlContent;
+
+      if (window.PetiteVue) {
+        finalProps.$emit = function(eventName, payload) {
+          if (payload && typeof payload === 'object' && payload.href) {
+            window.location.href = payload.href;
+            return;
+          }
+          var customEvent = new CustomEvent('sd-' + eventName, {
+            detail: payload, bubbles: true, composed: true,
+          });
+          element.dispatchEvent(customEvent);
+        };
+        window.PetiteVue.createApp(finalProps).mount(element);
+      } else {
+        console.warn('[SDComponent] Petite-Vue not loaded, template syntax will not be resolved');
+      }
+
+      instanceRegistry.set(instanceId, {
+        componentId: componentId,
+        element: element,
+        props: finalProps,
+        version: definition.version,
+      });
+
+      element.removeAttribute('data-pending');
+      element.setAttribute('data-rendered', 'true');
+      element.setAttribute('data-version', String(definition.version));
+      console.log('[SDComponent] Rendered:', componentId, instanceId);
+
+      // Render any nested sd-component children that were just injected
+      var nestedElements = element.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      if (nestedElements.length > 0) {
+        var missingIds = [];
+        nestedElements.forEach(function(nested) {
+          var nestedId = nested.getAttribute('componentid') || nested.getAttribute('ref');
+          if (nestedId && !componentRegistry.has(nestedId)) {
+            missingIds.push(nestedId);
+          }
+        });
+
+        if (missingIds.length > 0) {
+          // Fetch missing nested components, then render
+          loadComponentsByIds(missingIds).then(function() {
+            nestedElements.forEach(function(nested) {
+              if (!nested.getAttribute('data-rendered')) {
+                renderComponent(nested, depth + 1);
+              }
+            });
+          });
+        } else {
+          // All nested definitions already loaded — render immediately
+          nestedElements.forEach(function(nested) {
+            if (!nested.getAttribute('data-rendered')) {
+              renderComponent(nested, depth + 1);
+            }
+          });
+        }
+      }
+    }
+
+    function updateComponentInstances(componentId) {
+      var elements = document.querySelectorAll('sd-component[componentid="' + componentId + '"], sd-component[ref="' + componentId + '"]');
+      elements.forEach(function(el) { renderComponent(el); });
+    }
+
+    function initializeComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      elements.forEach(function(el) {
+        if (!el.getAttribute('data-rendered')) { renderComponent(el); }
+      });
+    }
+
+    async function loadComponentsByIds(ids) {
+      if (!ids || ids.length === 0) return;
+      // Deduplicate and filter already-loaded
+      var uniqueIds = ids.filter(function(id, i, arr) {
+        return arr.indexOf(id) === i && !componentRegistry.has(id);
+      });
+      if (uniqueIds.length === 0) return;
+
+      try {
+        console.log('[SDComponent] Batch loading components:', uniqueIds);
+        var response = await fetch(API_BASE + '/v1/design-drafts/components/batch', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ componentIds: uniqueIds }),
+        });
+        if (!response.ok) throw new Error('Batch load failed: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Batch loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+      } catch (error) {
+        console.error('[SDComponent] Failed to batch load components:', error);
+      }
+    }
+
+    async function loadComponentsForDraft() {
+      if (!DRAFT_ID) {
+        console.warn('[SDComponent] No draft ID configured');
+        showPage();
+        return;
+      }
+      try {
+        console.log('[SDComponent] Loading components for draft:', DRAFT_ID);
+        var response = await fetch(API_BASE + '/v1/design-drafts/' + DRAFT_ID + '/components', {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        });
+        if (!response.ok) throw new Error('Failed to load components: ' + response.status);
+        var components = await response.json();
+        console.log('[SDComponent] Loaded', components.length, 'components');
+        components.forEach(function(comp) { registerComponent(comp.id, comp); });
+        initializeComponents();
+        showPage();
+      } catch (error) {
+        console.error('[SDComponent] Failed to load components:', error);
+        showPage();
+      }
+    }
+
+    function findReferencedComponents() {
+      var elements = document.querySelectorAll('sd-component[componentid], sd-component[ref]');
+      var ids = new Set();
+      elements.forEach(function(el) {
+        var ref = el.getAttribute('componentid') || el.getAttribute('ref');
+        if (ref) ids.add(ref);
+      });
+      return Array.from(ids);
+    }
+
+    window.__SD_COMPONENTS__ = {
+      register: registerComponent,
+      render: renderComponent,
+      update: updateComponentInstances,
+      loadForDraft: loadComponentsForDraft,
+      loadByIds: loadComponentsByIds,
+      init: initializeComponents,
+      findRefs: findReferencedComponents,
+      getRegistry: function() { return componentRegistry; },
+      getInstances: function() { return instanceRegistry; },
+      getDraftId: function() { return DRAFT_ID; },
+    };
+
+    window.addEventListener('message', function(event) {
+      if (event.data && event.data.type === 'SD_COMPONENT_UPDATE') {
+        var cId = event.data.componentId;
+        var def = event.data.definition;
+        if (cId && def) { registerComponent(cId, def); updateComponentInstances(cId); }
+      }
+      if (event.data && event.data.type === 'SD_COMPONENTS_REGISTER') {
+        var comps = event.data.components;
+        if (Array.isArray(comps)) {
+          comps.forEach(function(c) { registerComponent(c.id, c); });
+          initializeComponents();
+        }
+      }
+    });
+
+    function bootComponents() {
+      // Pre-register components from __SD_COMPONENT_PRELOAD__ (injected by backend for standalone previews)
+      if (window.__SD_COMPONENT_PRELOAD__ && Array.isArray(window.__SD_COMPONENT_PRELOAD__)) {
+        console.log('[SDComponent] Pre-registering', window.__SD_COMPONENT_PRELOAD__.length, 'preloaded components');
+        window.__SD_COMPONENT_PRELOAD__.forEach(function(comp) {
+          registerComponent(comp.id, comp);
+        });
+      }
+
+      var refs = findReferencedComponents();
+      var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+
+      if (unloaded.length > 0) {
+        if (DRAFT_ID) {
+          loadComponentsForDraft();
+        } else {
+          // No draft ID — try batch loading the missing IDs directly
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+            showPage();
+          });
+        }
+      } else if (refs.length > 0) {
+        // All components already registered (e.g. from preload) — render immediately
+        initializeComponents();
+        showPage();
+      } else {
+        showPage();
+      }
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', bootComponents);
+    } else {
+      bootComponents();
+    }
+
+    var observer = new MutationObserver(function(mutations) {
+      var hasNew = false;
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            if (node.tagName === 'SD-COMPONENT') { hasNew = true; }
+            else if (node.querySelector) {
+              if (node.querySelectorAll('sd-component[componentid], sd-component[ref]').length > 0) hasNew = true;
+            }
+          }
+        });
+      });
+      if (hasNew) {
+        var refs = findReferencedComponents();
+        var unloaded = refs.filter(function(id) { return !componentRegistry.has(id); });
+        if (unloaded.length > 0) {
+          loadComponentsByIds(unloaded).then(function() {
+            initializeComponents();
+          });
+        } else {
+          initializeComponents();
+        }
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    console.log('[SDComponent] Runtime initialized');
+  })();
+  </script>
+</head>
+<body>
+<div class="min-h-screen bg-[#101014]">
+  <header class="topnav fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#101014] px-5 md:px-8">
+    <nav class="flex h-full items-center gap-7" aria-label="Primary navigation">
+      <a id="brand-link" href="#design-i-ship" class="display mr-2 text-4xl font-black leading-none">D<span class="blue">/</span>S</a>
+      <div class="wide-nav flex h-full items-center gap-7 border-l border-white/10 pl-6">
+        <a id="home-link" href="#design-i-ship" class="nav-item mono bg-[#f2f1ee] px-3 py-2 text-[11px] uppercase tracking-[.16em] text-[#101014]">Home</a>
+        <a id="competencies-link" href="#competencies" class="nav-item mono text-[11px] uppercase tracking-[.16em]">Competencies</a>
+        <a id="methodology-link" href="#methodology" class="nav-item mono text-[11px] uppercase tracking-[.16em]">Methodology</a>
+        <a id="impact-link" href="#impact" class="nav-item mono text-[11px] uppercase tracking-[.16em]">Impact</a>
+        <a id="contact-nav-link" href="#lets-ship" class="nav-item mono text-[11px] uppercase tracking-[.16em]">Let's ship</a>
+      </div>
+      <div class="ml-auto flex items-center gap-5">
+        <a id="github-nav-link" href="https://github.com" class="nav-item mono hidden text-[11px] uppercase tracking-[.16em] md:block">GitHub</a>
+        <a id="contact-nav-cta" href="mailto:contact@fullstackship.dev" class="mono bg-[#f2f1ee] px-5 py-3 text-[11px] font-bold uppercase tracking-[.16em] text-[#101014]">Let's talk</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="content mr-[60px] pt-[74px]">
+    <section id="design-i-ship" class="section grid-field relative flex min-h-screen flex-col items-center justify-center border-b border-white/10 px-6 py-24 text-center">
+      <div class="absolute left-8 top-7 mono text-[11px] uppercase tracking-[.18em] text-white/55">01 / Design I Ship</div>
+      <div class="absolute right-8 top-7 mono text-[11px] uppercase tracking-[.16em] text-white/30">Fullstack architecture · production systems</div>
+      <div class="mb-8 flex h-28 w-28 items-center justify-center border border-[#6b9eff] text-[#6b9eff]"><iconify-icon icon="lucide:layers-3" class="text-6xl"></iconify-icon></div>
+      <div class="mono mb-7 flex items-center gap-3 text-lg font-semibold"><span class="bg-[#6b9eff] px-3 py-2 text-sm text-[#101014]">06+</span><span>Fullstack <span class="blue">Architect</span></span></div>
+      <h1 class="display max-w-5xl text-6xl font-semibold leading-[.9] tracking-[-.075em] md:text-9xl">Design I <span class="blue">Ship</span></h1>
+      <p class="mt-8 text-xl font-medium text-white/85 md:text-2xl">From vision to production. Full-stack architect owning every layer.</p>
+      <p class="mono mt-4 text-[11px] uppercase tracking-[.16em] text-white/45">6+ years shipping production systems · 5 years DeFi & Web3 infrastructure</p>
+      <p class="mt-8 max-w-3xl text-lg leading-relaxed text-white/60">I architect microservices that scale, lead cross-functional teams end-to-end, and ship with AI-assisted precision—from NestJS backends and Next.js frontends to upgradeable Solidity contracts and everything in between.</p>
+      <div class="mt-9 flex flex-wrap justify-center gap-3"><a id="portfolio-cta" href="#impact" class="mono inline-flex items-center gap-2 bg-[#6b9eff] px-7 py-4 text-[11px] font-bold uppercase tracking-[.14em] text-[#101014]"><iconify-icon icon="lucide:arrow-down-right"></iconify-icon>View portfolio</a><a id="github-cta" href="https://github.com" class="mono border border-white/35 px-7 py-4 text-[11px] font-bold uppercase tracking-[.14em]">GitHub profile</a><a id="talk-cta" href="mailto:contact@fullstackship.dev" class="mono border border-white/35 px-7 py-4 text-[11px] font-bold uppercase tracking-[.14em]">Let's talk</a></div>
+      <p class="mono mt-7 text-[10px] uppercase tracking-[.2em] text-white/35">NestJS · Next.js · Solidity · Microservices · Web3 · TypeScript</p>
+    </section>
+
+    <section id="competencies" class="section grid-field border-b border-white/10 px-8 py-20"><div class="mb-16 flex items-center justify-between"><span class="mono text-[11px] uppercase tracking-[.18em] text-white/55">02 / Competencies</span><span class="mono text-[11px] uppercase tracking-[.18em] text-white/30">The systems behind the shipment</span></div><h2 class="display section-title mb-20">What I <span class="blue">bring.</span></h2><div class="grid grid-cols-1 border-l border-t border-white/15 md:grid-cols-3">
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">01</span><h3 class="display mt-12 text-2xl font-semibold">Microservices Architecture</h3><p class="mt-5 leading-relaxed text-white/55">NestJS microservices, API gateway patterns, gRPC for service-to-service communication, event-driven choreography with message queues. Building for horizontal scale and resilience.</p></article>
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">02</span><h3 class="display mt-12 text-2xl font-semibold">Monorepo Mastery</h3><p class="mt-5 leading-relaxed text-white/55">TypeScript monorepos with Nx/Turborepo, shared libraries, domain boundaries, build caching. One source of truth for 20+ apps without dependency hell.</p></article>
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">03</span><h3 class="display mt-12 text-2xl font-semibold">Frontend Excellence</h3><p class="mt-5 leading-relaxed text-white/55">Next.js App Router, SSR/ISR, RSC, React Query, Zustand and Tailwind. Core Web Vitals, code splitting and virtualization for fast accessible UIs.</p></article>
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">04</span><h3 class="display mt-12 text-2xl font-semibold">Blockchain Engineering</h3><p class="mt-5 leading-relaxed text-white/55">Solidity ERC-20/721, AMM, staking, upgradeable proxies, Foundry fuzzing, Hardhat, zkSync account abstraction, The Graph and Wagmi.</p></article>
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">05</span><h3 class="display mt-12 text-2xl font-semibold">Platform & Quality</h3><p class="mt-5 leading-relaxed text-white/55">Docker multi-stage builds, healthchecks, CI/CD, caching, Jest/Vitest/Playwright, structured logging, tracing and performance budgets. One command to start.</p></article>
+      <article class="card min-h-[285px] border-b border-r p-8"><span class="mono bg-[#6b9eff] px-3 py-2 text-xs text-[#101014]">06</span><h3 class="display mt-12 text-2xl font-semibold">AI & Leadership</h3><p class="mt-5 leading-relaxed text-white/55">LLM-assisted debugging, documentation, test generation and review copilots with PII guardrails. Technical direction, planning, mentoring and scalable review standards.</p></article>
+    </div></section>
+
+    <section id="methodology" class="section grid-field border-b border-white/10 px-8 py-20"><div class="mb-12 flex items-center justify-between"><span class="mono text-[11px] uppercase tracking-[.18em] text-white/55">03 / The Methodology</span><span class="mono text-[11px] uppercase tracking-[.18em] text-white/30">Task intake to monitoring</span></div><h2 class="display section-title">The Shipping <span class="blue">Methodology.</span></h2><p class="mt-6 max-w-2xl text-lg text-white/55">From task intake to monitoring—precision at every stage.</p><div class="mt-16 space-y-3">
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">01</span><div><h3 class="display text-2xl font-semibold">Task Intake</h3><p class="mt-2 text-white/55">Gather requirements, define success metrics, align stakeholders. Clarify the what and why.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">Linear · Figma · Confluence</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">02</span><div><h3 class="display text-2xl font-semibold">Architecture Design</h3><p class="mt-2 text-white/55">Design service boundaries, data flows, API contracts and deployment topology. Document trade-offs.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">Excalidraw · Miro · ADRs</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">03</span><div><h3 class="display text-2xl font-semibold">Implementation</h3><p class="mt-2 text-white/55">NestJS, Next.js and Solidity implementation with monorepo structure and type safety throughout.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">TypeScript · Foundry · Git</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">04</span><div><h3 class="display text-2xl font-semibold">Testing & Documentation</h3><p class="mt-2 text-white/55">Unit, integration and E2E coverage. Auto-generate docs from code and protect critical flows with Playwright.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">Jest · Vitest · Playwright · Typedoc</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">05</span><div><h3 class="display text-2xl font-semibold">Code Review</h3><p class="mt-2 text-white/55">Peer review with architectural awareness, LLM-assisted pattern checks, security and performance review.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">GitHub · Review Copilot · Lint Rules</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">06</span><div><h3 class="display text-2xl font-semibold">Deployment</h3><p class="mt-2 text-white/55">CI/CD orchestrates builds and deploys with gradual rollouts, canaries, feature flags and local parity.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">GitHub Actions · Docker · Kubernetes · Terraform</span></article>
+      <article class="card grid gap-5 p-6 md:grid-cols-[70px_1fr_1fr] md:items-center"><span class="mono text-2xl text-[#6b9eff]">07</span><div><h3 class="display text-2xl font-semibold">Monitoring & Iteration</h3><p class="mt-2 text-white/55">Structured logging, distributed tracing, performance budgets and alerting turn production data into next steps.</p></div><span class="mono text-[10px] uppercase tracking-[.12em] text-white/35">Datadog · Sentry · Dashboards · New Relic</span></article>
+    </div></section>
+
+    <section id="impact" class="section grid-field border-b border-white/10 px-8 py-20"><div class="mb-12 flex items-center justify-between"><span class="mono text-[11px] uppercase tracking-[.18em] text-white/55">04 / Impact</span><span class="mono text-[11px] uppercase tracking-[.18em] text-white/30">Shipping at scale in DeFi and Web3</span></div><h2 class="display section-title mb-6">Notable Projects <span class="blue">& Impact.</span></h2><p class="max-w-2xl text-lg text-white/55">Production systems where architecture, leadership and delivery discipline meet measurable outcomes.</p><div class="mt-14 grid grid-cols-1 border-l border-t border-white/15 lg:grid-cols-3">
+      <article class="card border-b border-r p-8"><span class="mono text-sm text-[#6b9eff]">$50M+ TVL · 10K+ DAU</span><h3 class="display mt-10 text-3xl font-semibold">DeFi Infrastructure Platform</h3><p class="mt-5 leading-relaxed text-white/55">Built a complete DeFi platform with NestJS token-economics services, Next.js frontend under a 2s LCP budget, and Solidity staking/AMM contracts verified with Foundry fuzzing.</p><p class="mono mt-7 text-[10px] uppercase leading-loose tracking-[.1em] text-white/40">NestJS · Next.js · Solidity · PostgreSQL · Redis · The Graph</p><p class="mt-7 border-t border-white/10 pt-5 text-white/75">Shipped staking for millions in daily volume and reduced frontend load time 40% through RSC.</p></article>
+      <article class="card border-b border-r p-8"><span class="mono text-sm text-[#6b9eff]">3K+ DEPLOYMENTS · $8M TRANSACTIONS</span><h3 class="display mt-10 text-3xl font-semibold">Web3 Account Abstraction Wallet</h3><p class="mt-5 leading-relaxed text-white/55">Led a cross-functional team building a zkSync account abstraction wallet with Nx shared SDKs, Prisma transaction history and React Query state sync.</p><p class="mono mt-7 text-[10px] uppercase leading-loose tracking-[.1em] text-white/40">Nx · Next.js · Solidity AA · Wagmi · Prisma</p><p class="mt-7 border-t border-white/10 pt-5 text-white/75">Reduced confirmation feedback from 8s to under 2s and mentored three engineers into subsystem ownership.</p></article>
+      <article class="card border-b border-r p-8"><span class="mono text-sm text-[#6b9eff]">40+ SERVICES · 99.95% UPTIME</span><h3 class="display mt-10 text-3xl font-semibold">Microservices Orchestration Engine</h3><p class="mt-5 leading-relaxed text-white/55">Designed event-driven multi-chain settlement with a NestJS gateway, gRPC service calls and consumers processing 100K+ events per hour.</p><p class="mono mt-7 text-[10px] uppercase leading-loose tracking-[.1em] text-white/40">NestJS · gRPC · PostgreSQL · Redis Streams · Docker · Kubernetes</p><p class="mt-7 border-t border-white/10 pt-5 text-white/75">Cut deployment time 60% through monorepo caching and established observable systems with structured logging.</p></article>
+    </div></section>
+
+    <section id="lets-ship" class="section grid-field flex min-h-[78vh] items-center justify-center border-b border-white/10 px-8 py-24 text-center"><div><span class="mono text-[11px] uppercase tracking-[.2em] text-white/40">05 / Let's Ship</span><h2 class="display section-title mt-8">Let's <span class="blue">Ship</span><br>Together.</h2><p class="mx-auto mt-8 max-w-2xl text-xl leading-relaxed text-white/60">Ideas are cheap. Shipping is everything.</p><p class="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-white/55">Whether you're scaling a protocol, building a Web3 product, or need architectural leadership for your next phase—let's build it right. I bring full-stack depth, shipping discipline, and the ability to unblock teams.</p><a id="get-in-touch-link" href="mailto:contact@fullstackship.dev" class="mono mt-10 inline-flex bg-white px-8 py-5 text-[11px] font-bold uppercase tracking-[.16em] text-[#101014]">Get in touch</a><p class="mono mt-7 text-[10px] uppercase tracking-[.16em] text-white/35">Available for technical leadership, advisory and full-stack partnerships.</p></div></section>
+
+    <footer class="grid-field border-b border-white/10"><div class="grid grid-cols-1 md:grid-cols-4"><div class="border-r border-white/15 p-8"><div class="display text-5xl font-black">D<span class="blue">/</span>S</div><h3 class="mono mt-8 text-[11px] uppercase tracking-[.16em] text-white/45">About</h3><p class="mt-5 leading-relaxed text-white/55">Fullstack engineer and technical lead shipping production systems with Web3 depth, architectural discipline and AI-assisted precision.</p></div><div class="border-r border-white/15 p-8"><h3 class="mono text-[11px] uppercase tracking-[.16em] text-white/45">Tech</h3><p class="mt-8 leading-loose text-white/70">NestJS · Next.js<br>Solidity · Nx<br>Docker · Kubernetes</p></div><div class="border-r border-white/15 p-8"><h3 class="mono text-[11px] uppercase tracking-[.16em] text-white/45">Resources</h3><a id="footer-github-link" href="https://github.com" class="mt-8 block text-white/70">GitHub</a><a id="footer-twitter-link" href="https://twitter.com" class="mt-5 block text-white/70">Twitter</a><a id="footer-linkedin-link" href="https://linkedin.com" class="mt-5 block text-white/70">LinkedIn</a><a id="footer-email-link" href="mailto:contact@fullstackship.dev" class="mt-5 block text-white/70">Email</a></div><div class="p-8"><h3 class="mono text-[11px] uppercase tracking-[.16em] text-white/45">Latest</h3><p class="mt-8 leading-relaxed text-white/55">Architecture notes, Web3 infrastructure lessons and practical shipping playbooks.</p><a id="footer-latest-link" href="#methodology" class="mono mt-6 inline-block text-[11px] uppercase tracking-[.14em] text-[#6b9eff]">Read the methodology ↗</a></div></div><div class="flex flex-col gap-3 border-t border-white/15 px-8 py-6 mono text-[10px] uppercase tracking-[.16em] text-white/35 md:flex-row md:justify-between"><span>© 2024 Design I Ship</span><span>Shipping production systems, one commit at a time.</span><span>contact@fullstackship.dev</span></div></footer>
+  </main>
+
+  <aside class="ruler fixed inset-y-0 right-0 z-40 border-l border-white/10 bg-[#101014]" aria-label="Scroll progress ruler"><div id="ruler-fill" class="ruler-fill"></div><div id="current-label" class="ruler-label top-[42%] text-[#f2f1ee]">01 - Design I Ship</div><div id="next-label" class="ruler-label top-[58%] text-[#85858d]">02 - Competencies</div><div id="ticks" class="absolute inset-0"></div></aside>
+</div>
+<script>
+const sections=[...document.querySelectorAll('.section')],names=['01 - Design I Ship','02 - Competencies','03 - Methodology','04 - Impact','05 - Let\'s Ship'],fill=document.getElementById('ruler-fill'),current=document.getElementById('current-label'),next=document.getElementById('next-label'),ticks=document.getElementById('ticks');
+for(let i=0;i<=20;i++){const tick=document.createElement('span');tick.className='tick '+(i%2===0?'major':'');tick.style.top=i*5+'%';ticks.appendChild(tick);const number=document.createElement('span');number.className='ruler-number';number.style.top=i*5+'%';number.textContent=i*5;ticks.appendChild(number)}
+let active=-1;function update(){const max=document.documentElement.scrollHeight-innerHeight;fill.style.height=(max?scrollY/max*100:0)+'%';const marker=scrollY+innerHeight*.45;let index=0;sections.forEach((section,i)=>{if(section.offsetTop<=marker)index=i});if(index===active)return;active=index;current.classList.add('changing');next.classList.add('changing');setTimeout(()=>{current.textContent=names[index];next.textContent=names[index+1]||'End';current.classList.remove('changing');next.classList.remove('changing')},180)}addEventListener('scroll',update,{passive:true});addEventListener('resize',update);update();
+</script>
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bloomguard access panel — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#FFFFFF;
+  --text-primary:#000000;
+  --text-secondary:#1F4970;
+  --accent:#651F70;
+  --accent-mauve:#D8C0D8;
+  --border:#F3F3F3;
+  --near-white:#F0F0F0;
+  --pink-wash:#F0D8F0;
+  --navy:#1F4970;
+  --font:'Poppins',system-ui,-apple-system,sans-serif;
+  --r-control:10px;
+  --r-card:0px;
+  --r-pill:50px;
+  --sp-6:6px;
+  --sp-9:9px;
+  --sp-10:10px;
+  --sp-12:12px;
+  --sp-17:17px;
+  --card-shadow:rgb(204,204,204) 0px 0px 7px 0px;
+  --btn-shadow:rgba(0,0,0,0.08) 0px 4px 24px 0px;
+  --ease:cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:var(--font);
+  font-size:16px;
+  font-weight:400;
+  line-height:1.5;
+  color:var(--text-primary);
+  background:var(--background);
+}
+h1,h2,h3,p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+.band{padding:64px 24px}
+.wrap{max-width:1120px;margin:0 auto}
+.eyebrow{
+  font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--navy);margin-bottom:12px;
+}
+.sec-h{font-size:30px;font-weight:600;line-height:1.2;color:var(--navy)}
+.sec-sub{font-size:16px;font-weight:400;color:var(--text-primary);max-width:60ch;margin-top:12px}
+.acc{color:var(--accent);font-weight:600}
+/* hero */
+#hero{position:relative;overflow:hidden;background:var(--background);min-height:88vh;display:flex;align-items:center}
+#hero .silhouette{position:absolute;top:-10%;right:-8%;width:66%;height:120%;pointer-events:none;z-index:0}
+#hero .hero-inner{position:relative;z-index:1;max-width:1120px;margin:0 auto;width:100%;padding:0 24px}
+#hero .card-float{
+  background:var(--surface);border-radius:var(--r-card);box-shadow:var(--card-shadow);
+  width:396px;max-width:100%;padding:var(--sp-17);
+}
+.wordmark{font-size:24px;font-weight:600;line-height:1.17;color:var(--navy)}
+.tagline{font-size:13px;font-weight:400;color:var(--navy);margin-top:2px}
+.section-heading{font-size:30px;font-weight:600;line-height:1.2;color:var(--navy);text-transform:uppercase;margin:var(--sp-17) 0 var(--sp-12)}
+.field{margin-bottom:var(--sp-12)}
+.field-label{display:block;font-size:13px;font-weight:600;color:var(--navy);margin-bottom:var(--sp-6)}
+.input-shell{position:relative;display:flex;align-items:center}
+.input-shell input{
+  width:100%;font-family:var(--font);font-size:16px;font-weight:400;color:#000;
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-control);
+  padding:var(--sp-12) var(--sp-12);outline:none;
+}
+.icon-toggle{
+  position:absolute;right:var(--sp-6);background:transparent;border:none;
+  width:42px;height:42px;padding:9px;border-radius:50%;color:var(--navy);
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:background .2s var(--ease);
+}
+.icon-toggle:hover{background:rgba(31,73,112,0.02)}
+.icon-toggle iconify-icon{font-size:20px}
+.util-row{display:flex;align-items:center;justify-content:space-between;gap:var(--sp-12);margin:var(--sp-10) 0 var(--sp-17)}
+.cb-wrap{display:flex;align-items:center;gap:var(--sp-9);font-size:14px;color:#000}
+.cb-wrap input[type=checkbox]{width:16px;height:16px;border:1px solid var(--navy);border-radius:0;accent-color:var(--navy);margin:0}
+.inline-link{color:var(--accent);font-weight:600;text-decoration:none;font-size:14px}
+.btn-primary{
+  width:100%;background:var(--navy);color:#FFF;border:none;border-radius:var(--r-control);
+  height:50px;padding:6px 16px;font-family:var(--font);font-size:16px;font-weight:600;
+  letter-spacing:.05em;cursor:pointer;box-shadow:var(--btn-shadow);
+  transition:box-shadow .3s var(--ease),background .2s var(--ease);
+}
+.btn-primary:hover{box-shadow:rgba(0,0,0,0.16) 0px 6px 28px 0px}
+.footer-line{text-align:center;font-size:14px;color:#000;margin-top:var(--sp-17)}
+.footer-line a{color:var(--accent);font-weight:600;text-decoration:none}
+@media(max-width:768px){
+  .section-heading{font-size:24px}
+  #hero .silhouette{opacity:.5}
+  .sec-h{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" aria-label="Bloomguard access panel hero">
+  <svg class="silhouette" viewBox="0 0 400 480" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <g fill="#D8C0D8">
+      <circle cx="230" cy="150" r="130"/>
+      <circle cx="320" cy="240" r="150"/>
+      <circle cx="180" cy="300" r="120"/>
+      <circle cx="300" cy="400" r="140"/>
+      <circle cx="130" cy="180" r="70"/>
+    </g>
+    <path fill="#FFFFFF" d="M250 210c-14-24-52-22-52 8 0 26 52 52 52 52s52-26 52-52c0-30-38-32-52-8z"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="card-float">
+      <div class="wordmark">Bloom<span class="acc">g</span>uard</div>
+      <div class="tagline">Care access, kept simple.</div>
+      <h1 class="section-heading">Welcome ba<span class="acc">ck</span></h1>
+      <div class="field">
+        <label class="field-label" for="hu">Username</label>
+        <div class="input-shell"><input id="hu" type="text" placeholder="you@bloomguard.co.uk"></div>
+      </div>
+      <div class="field">
+        <label class="field-label" for="hp">Password</label>
+        <div class="input-shell">
+          <input id="hp" type="password" placeholder="••••••••">
+          <button class="icon-toggle" type="button" aria-label="Show password" data-toggle>
+            <iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon>
+          </button>
+        </div>
+      </div>
+      <div class="util-row">
+        <label class="cb-wrap"><input type="checkbox"> Remember me</label>
+        <a class="inline-link" href="#">Forgot password?</a>
+      </div>
+      <button class="btn-primary" type="button">LOGIN</button>
+      <p class="footer-line">Need an account? <a href="#">Sign Up</a></p>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+#palette{background:var(--near-white)}
+.pal-group{margin-top:40px}
+.pal-group h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:16px}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.pal-card{background:#fff;border-radius:var(--r-control);overflow:hidden;box-shadow:var(--card-shadow)}
+.pal-swatch{height:88px;position:relative}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+.pal-meta{padding:12px 14px}
+.pal-meta .name{font-size:14px;font-weight:600;color:#000}
+.pal-meta .val{font-size:13px;color:var(--navy);font-family:ui-monospace,monospace}
+.pal-meta .note{font-size:13px;color:#000;margin-top:6px}
+</style>
+<section id="palette" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Colour</p>
+    <h2 class="sec-h">Ink withheld from everything but <span class="acc">one</span></h2>
+    <p class="sec-sub">A white-field system. Structure carries in navy, warmth arrives once as a decorative mauve, and magenta is rationed to a single glyph and a single link.</p>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div><div class="pal-meta"><div class="name">Background / Surface</div><div class="val">#FFFFFF</div><div class="note">The flat field — ~80% of rendered pixels.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#F0F0F0"></div><div class="pal-meta"><div class="name">Near-white tint</div><div class="val">#F0F0F0</div><div class="note">Faint structural wash behind the field.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch checker"><div style="position:absolute;inset:0;background:#F0D8F0"></div></div><div class="pal-meta"><div class="name">Pink-white wash</div><div class="val">#F0D8F0</div><div class="note">Trace halo around the silhouette.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#000000"></div><div class="pal-meta"><div class="name">Body ink</div><div class="val">#000000</div><div class="note">Input text and body copy.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#1F4970"></div><div class="pal-meta"><div class="name">Navy — secondary</div><div class="val">#1F4970</div><div class="note">Field labels, links, structural ink.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accents</h3>
+      <div class="pal-grid">
+        <div class="pal-card"><div class="pal-swatch" style="background:#651F70"></div><div class="pal-meta"><div class="name">Magenta — rationed</div><div class="val">#651F70</div><div class="note">One wordmark glyph and inline links only.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#D8C0D8"></div><div class="pal-meta"><div class="name">Mauve — decorative</div><div class="val">#D8C0D8</div><div class="note">The single background silhouette. Never on controls.</div></div></div>
+        <div class="pal-card"><div class="pal-swatch" style="background:#F3F3F3"></div><div class="pal-meta"><div class="name">Hairline border</div><div class="val">#F3F3F3</div><div class="note">Near-invisible frame on inputs.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:#fff}
+.spec{padding:24px 0;border-bottom:1px solid var(--border)}
+.spec .demo{color:#000}
+.spec .metrics{font-size:13px;color:var(--navy);font-family:ui-monospace,monospace;margin-top:10px}
+.wr-1{font-size:24px;font-weight:600;line-height:1.17;color:var(--navy)}
+.hd-1{font-size:30px;font-weight:600;line-height:1.2;color:var(--navy);text-transform:uppercase}
+.lb-1{font-size:13px;font-weight:600;color:var(--navy)}
+.bd-1{font-size:16px;font-weight:400;color:#000}
+.ramp{display:flex;gap:32px;flex-wrap:wrap;margin-top:12px}
+.ramp span{font-size:30px;color:var(--navy)}
+</style>
+<section id="type-scale" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Type</p>
+    <h2 class="sec-h">One family, three weights</h2>
+    <p class="sec-sub">Poppins does every job — wordmark, heading, label and body — differentiated by weight and size alone.</p>
+
+    <div class="spec">
+      <div class="demo hd-1">Welcome ba<span class="acc">ck</span></div>
+      <div class="metrics">headline-md · Poppins · 30px · 600 · 1.2 · uppercase</div>
+    </div>
+    <div class="spec">
+      <div class="demo wr-1">Bloom<span class="acc">g</span>uard</div>
+      <div class="metrics">accent-wordmark / label-md · Poppins · 24px · 600 · 1.17 · mixed-case</div>
+    </div>
+    <div class="spec">
+      <div class="demo bd-1">Sign in to review appointments, patient notes and secure messages.</div>
+      <div class="metrics">body-md · Poppins · 16px · 400</div>
+    </div>
+    <div class="spec">
+      <div class="demo lb-1">USERNAME</div>
+      <div class="metrics">field label · Poppins · 13px · 600 · navy #1F4970</div>
+    </div>
+    <div class="spec">
+      <p class="eyebrow" style="margin:0 0 4px">Weight ramp</p>
+      <div class="ramp">
+        <span style="font-weight:400">Regular 400</span>
+        <span style="font-weight:500">Medium 500</span>
+        <span style="font-weight:600">Semibold 600</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--near-white)}
+.cmp{background:#fff;border-radius:var(--r-control);box-shadow:var(--card-shadow);padding:28px;margin-top:24px;display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start}
+.cmp h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:6px}
+.cmp .desc{font-size:14px;color:#000;margin-bottom:18px}
+.spec-card{background:var(--near-white);border-radius:var(--r-control);padding:16px;font-family:ui-monospace,monospace;font-size:12.5px;line-height:1.7;color:var(--navy)}
+.spec-card b{color:#000;font-weight:600}
+.demo-stage{padding:24px;background:#fff;border:1px solid var(--border);border-radius:var(--r-control)}
+@media(max-width:768px){.cmp{grid-template-columns:1fr}}
+/* mini card shell */
+.mini-shell{background:#fff;border-radius:0;box-shadow:var(--card-shadow);padding:var(--sp-17);width:100%;max-width:360px}
+.btn-matrix{display:grid;grid-template-columns:auto 1fr 1fr;gap:14px;align-items:center}
+.btn-matrix .lab{font-size:12px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.08em}
+.btn-primary.dis{opacity:.35;cursor:not-allowed;box-shadow:none}
+.state-tag{font-size:11px;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.08em}
+</style>
+<section id="components" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Components</p>
+    <h2 class="sec-h">Every piece of the <span class="acc">panel</span></h2>
+    <p class="sec-sub">The full inventory of the access panel — measured, rationed, and built entirely from Poppins and two structural inks.</p>
+
+    <!-- auth card shell -->
+    <div class="cmp" data-tier-a-component="auth-card-shell">
+      <div>
+        <h3>Auth card (shell)</h3>
+        <p class="desc">A single floating bounded rectangle over a white void. Sharp corners, soft ambient shadow — never rounded.</p>
+        <div class="demo-stage">
+          <div class="mini-shell">
+            <div class="wordmark">Bloom<span class="acc">g</span>uard</div>
+            <div class="tagline">Care access, kept simple.</div>
+            <h3 class="section-heading" style="margin:var(--sp-12) 0">SIGN <span class="acc">IN</span></h3>
+            <div class="field"><label class="field-label">Username</label><div class="input-shell"><input type="text" placeholder="you@bloomguard.co.uk"></div></div>
+            <button class="btn-primary" type="button">LOGIN</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--card-panel</b></div>
+        surface #FFFFFF<br>
+        radius <b>r-card 0px</b><br>
+        shadow rgb(204,204,204) 0 0 7px 0<br>
+        padding sp-17<br>
+        no border beyond shadow
+      </div>
+    </div>
+
+    <!-- text input -->
+    <div class="cmp" data-tier-a-component="text-input">
+      <div>
+        <h3>Text input ×2 <span class="state-tag">username · password</span></h3>
+        <p class="desc">Stacked full-width rows at ~95% of card inner width. Slightly-rounded 10px corners over a hairline border.</p>
+        <div class="demo-stage" style="display:grid;gap:var(--sp-12);max-width:340px">
+          <div class="field" style="margin:0"><label class="field-label" for="ci1">Username</label><div class="input-shell"><input id="ci1" type="text" placeholder="you@bloomguard.co.uk"></div></div>
+          <div class="field" style="margin:0"><label class="field-label" for="ci2">Password</label>
+            <div class="input-shell"><input id="ci2" type="password" placeholder="••••••••">
+              <button class="icon-toggle" type="button" aria-label="Show password" data-toggle><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--text-input</b></div>
+        surface #FFFFFF<br>
+        border hairline #F3F3F3<br>
+        radius <b>r-control 10px</b><br>
+        text 16px/400 #000000<br>
+        label 13px/600 navy #1F4970<br>
+        padding sp-12
+      </div>
+    </div>
+
+    <!-- icon toggle -->
+    <div class="cmp" data-tier-a-component="icon-toggle-button">
+      <div>
+        <h3>Icon toggle button</h3>
+        <p class="desc">Lives inside the password field, right-aligned. Transparent fill, navy icon, fully circular — never a solid button.</p>
+        <div class="demo-stage" style="display:flex;gap:20px;align-items:center">
+          <button class="icon-toggle" type="button" aria-label="Show password" data-toggle><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon></button>
+          <button class="icon-toggle" type="button" aria-label="Hide password"><iconify-icon icon="lucide:eye-off" aria-hidden="true"></iconify-icon></button>
+          <span class="state-tag">rest · hover wash</span>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--button-icon-toggle</b></div>
+        background transparent<br>
+        icon #1F4970<br>
+        radius <b>r-pill 50%</b><br>
+        height 42px · padding sp-9<br>
+        hover rgba(31,73,112,0.02)<br>
+        motion .2s ease
+      </div>
+    </div>
+
+    <!-- checkbox link row -->
+    <div class="cmp" data-tier-a-component="checkbox-link-row">
+      <div>
+        <h3>Checkbox + inline link row</h3>
+        <p class="desc">One utility row beneath the password field — square navy checkbox left, rationed magenta link right, no button styling.</p>
+        <div class="demo-stage">
+          <div class="util-row" style="margin:0;max-width:340px">
+            <label class="cb-wrap"><input type="checkbox"> Remember me</label>
+            <a class="inline-link" href="#">Forgot password?</a>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--checkbox-link-row</b></div>
+        checkbox outline navy #1F4970<br>
+        radius 0px (square)<br>
+        label 14px body-weight #000<br>
+        link #651F70 · underline-free<br>
+        magenta rationed to link
+      </div>
+    </div>
+
+    <!-- primary button -->
+    <div class="cmp" data-tier-a-component="primary-button">
+      <div>
+        <h3>Primary button (LOGIN)</h3>
+        <p class="desc">The single highest-contrast control on the screen. Solid navy, 10px radius matching the inputs — never a pill.</p>
+        <div class="demo-stage">
+          <div class="btn-matrix" style="max-width:420px">
+            <span class="lab">Solid</span>
+            <div><div class="state-tag" style="margin-bottom:6px">Rest</div><button class="btn-primary" type="button">LOGIN</button></div>
+            <div><div class="state-tag" style="margin-bottom:6px">Hover</div><button class="btn-primary" type="button" style="box-shadow:rgba(0,0,0,0.16) 0 6px 28px 0">LOGIN</button></div>
+            <span class="lab">&nbsp;</span>
+            <div><div class="state-tag" style="margin-bottom:6px">Active</div><button class="btn-primary" type="button" style="box-shadow:rgba(0,0,0,0.08) 0 2px 10px 0">LOGIN</button></div>
+            <div><div class="state-tag" style="margin-bottom:6px">Disabled</div><button class="btn-primary dis" type="button" disabled>LOGIN</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--button-primary</b></div>
+        fill #1F4970 · text #FFFFFF<br>
+        radius <b>r-control 10px</b><br>
+        height 50px · padding 6px 16px<br>
+        shadow rgba(0,0,0,0.08) 0 4px 24px 0<br>
+        motion box-shadow .3s ease
+      </div>
+    </div>
+
+    <!-- footer link line -->
+    <div class="cmp" data-tier-a-component="footer-link-line">
+      <div>
+        <h3>Footer link line</h3>
+        <p class="desc">A single centered plain-text row closing the card, pairing black body text with a bold magenta inline link.</p>
+        <div class="demo-stage">
+          <p class="footer-line" style="margin:0">Need an account? <a href="#">Sign Up</a></p>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--footer-link-line</b></div>
+        body 14px #000000<br>
+        link #651F70 · 600<br>
+        no container, no border<br>
+        centered plain row
+      </div>
+    </div>
+
+    <!-- wordmark lockup -->
+    <div class="cmp" data-tier-a-component="wordmark-lockup">
+      <div>
+        <h3>Wordmark lockup + tagline</h3>
+        <p class="desc">Two-line lockup at the top of the card. A single magenta glyph breaks the navy field — the system's one typographic flourish.</p>
+        <div class="demo-stage">
+          <div class="wordmark">Bloom<span class="acc">g</span>uard</div>
+          <div class="tagline">Care access, kept simple.</div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><b>--accent-wordmark</b></div>
+        Poppins 24px/600/1.17<br>
+        body navy #1F4970<br>
+        one glyph magenta #651F70<br>
+        tagline 13px/400 navy
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:#fff}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;margin-top:32px}
+.depth-card{background:#fff;padding:24px}
+.depth-card .cap{font-size:13px;color:var(--navy);font-family:ui-monospace,monospace;margin-top:16px}
+.dc-sharp{border-radius:0;box-shadow:rgb(204,204,204) 0 0 7px 0}
+.dc-control{border-radius:10px;box-shadow:rgba(0,0,0,0.08) 0 4px 24px 0}
+.dc-flat{border-radius:10px;border:1px solid var(--border)}
+.depth-card h3{font-size:16px;font-weight:600;color:var(--navy)}
+</style>
+<section id="surface-depth" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Surface &amp; depth</p>
+    <h2 class="sec-h">Sharp shell, rounded <span class="acc">controls</span></h2>
+    <p class="sec-sub">Two shadows, two corner languages: the card stays square and lifts on a soft grey ambient shadow, while every control inside it rounds to 10px.</p>
+    <div class="depth-grid">
+      <div class="depth-card dc-sharp"><h3>Card shell</h3><p style="font-size:14px;color:#000;margin-top:8px">0px radius. Ambient elevation, no visible border.</p><div class="cap">r-card 0px · rgb(204,204,204) 0 0 7px 0</div></div>
+      <div class="depth-card dc-control"><h3>Primary control</h3><p style="font-size:14px;color:#000;margin-top:8px">10px radius. Tighter drop shadow lifts it off the card.</p><div class="cap">r-control 10px · rgba(0,0,0,0.08) 0 4px 24px 0</div></div>
+      <div class="depth-card dc-flat"><h3>Input field</h3><p style="font-size:14px;color:#000;margin-top:8px">10px radius over a near-invisible hairline.</p><div class="cap">r-control 10px · border #F3F3F3</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--near-white)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:32px}
+.motion-card{background:#fff;border-radius:var(--r-control);box-shadow:var(--card-shadow);padding:24px}
+.motion-card h3{font-size:16px;font-weight:600;color:var(--navy);margin-bottom:14px}
+.motion-card .cap{font-size:12.5px;color:var(--navy);font-family:ui-monospace,monospace;margin-top:16px}
+.replay{background:transparent;border:1px solid var(--navy);color:var(--navy);border-radius:var(--r-control);padding:8px 14px;font-family:var(--font);font-size:13px;font-weight:600;cursor:pointer;margin-top:14px}
+.mo-shadow{width:100%;height:56px;background:var(--navy);border-radius:var(--r-control);transition:box-shadow .3s var(--ease)}
+.mo-shadow.go{box-shadow:rgba(0,0,0,0.08) 0 4px 24px 0}
+.mo-wash{width:56px;height:56px;border-radius:50%;background:transparent;transition:background .2s var(--ease);display:flex;align-items:center;justify-content:center;color:var(--navy)}
+.mo-wash.go{background:rgba(31,73,112,0.06)}
+</style>
+<section id="motion" class="band">
+  <div class="wrap">
+    <p class="eyebrow">Motion</p>
+    <h2 class="sec-h">Feedback, not <span class="acc">choreography</span></h2>
+    <p class="sec-sub">Fast, utilitarian micro-interactions on the shared cubic-bezier family. No entrance animation, no parallax.</p>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <h3>Shadow lift</h3>
+        <div class="mo-shadow" id="moShadow"></div>
+        <button class="replay" data-replay="moShadow" data-cls="go">Replay</button>
+        <div class="cap">box-shadow · 0.3s · cubic-bezier(0.4,0,0.2,1)</div>
+      </div>
+      <div class="motion-card">
+        <h3>Hover wash</h3>
+        <div class="mo-wash" id="moWash"><iconify-icon icon="lucide:eye" aria-hidden="true" style="font-size:20px"></iconify-icon></div>
+        <button class="replay" data-replay="moWash" data-cls="go">Replay</button>
+        <div class="cap">background · 0.2s · cubic-bezier(0.4,0,0.2,1)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:#fff}
+.comp-stage{position:relative;overflow:hidden;background:#fff;border-radius:var(--r-control);box-shadow:var(--card-shadow);margin-top:32px;min-height:520px;display:flex;align-items:center}
+.comp-stage .sil{position:absolute;top:-15%;right:-6%;width:62%;height:130%;z-index:0}
+.comp-nav{position:absolute;top:0;left:0;right:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:20px 28px}
+.comp-nav .wm{font-size:20px;font-weight:600;color:var(--navy)}
+.comp-nav a{font-size:14px;color:var(--navy);text-decoration:none;font-weight:500}
+.comp-inner{position:relative;z-index:1;padding:60px 28px 28px}
+</style>
+<section id="composition" class="band">
+  <div class="wrap">
+    <p class="eyebrow">In composition</p>
+    <h2 class="sec-h">The whole screen, <span class="acc">assembled</span></h2>
+    <p class="sec-sub">One card floating in a white void, one mauve silhouette rationed to the right, one navy CTA. Everything the user needs in a single bounded rectangle.</p>
+    <div class="comp-stage">
+      <svg class="sil" viewBox="0 0 400 480" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+        <g fill="#D8C0D8">
+          <circle cx="240" cy="150" r="130"/><circle cx="330" cy="250" r="150"/>
+          <circle cx="190" cy="310" r="120"/><circle cx="310" cy="410" r="140"/>
+        </g>
+        <path fill="#FFFFFF" d="M260 210c-14-24-52-22-52 8 0 26 52 52 52 52s52-26 52-52c0-30-38-32-52-8z"/>
+      </svg>
+      <nav class="comp-nav" aria-label="Bloomguard">
+        <span class="wm">Bloom<span class="acc">g</span>uard</span>
+        <a href="#">Support</a>
+      </nav>
+      <div class="comp-inner">
+        <div class="mini-shell" style="box-shadow:var(--card-shadow)">
+          <div class="wordmark">Bloom<span class="acc">g</span>uard</div>
+          <div class="tagline">Care access, kept simple.</div>
+          <h3 class="section-heading" style="margin:var(--sp-17) 0 var(--sp-12)">WELCOME BA<span class="acc">CK</span></h3>
+          <div class="field"><label class="field-label" for="xu">Username</label><div class="input-shell"><input id="xu" type="text" placeholder="you@bloomguard.co.uk"></div></div>
+          <div class="field"><label class="field-label" for="xp">Password</label>
+            <div class="input-shell"><input id="xp" type="password" placeholder="••••••••">
+              <button class="icon-toggle" type="button" aria-label="Show password" data-toggle><iconify-icon icon="lucide:eye" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+          <div class="util-row"><label class="cb-wrap"><input type="checkbox"> Remember me</label><a class="inline-link" href="#">Forgot password?</a></div>
+          <button class="btn-primary" type="button">LOGIN</button>
+          <p class="footer-line">Need an account? <a href="#">Sign Up</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--navy);color:#fff;padding:48px 24px;text-align:center}
+#footer .fwm{font-size:24px;font-weight:600}
+#footer .fwm .acc{color:#D8C0D8}
+#footer a{color:#D8C0D8;text-decoration:none}
+#footer p{margin-top:10px;font-size:14px;color:#fff}
+</style>
+<footer id="footer">
+  <div class="fwm">Bloom<span class="acc">g</span>uard</div>
+  <p><a href="https://client.wisterias.co.uk/">client.wisterias.co.uk</a></p>
+  <p>Design system captured and rendered by r3xdec.design</p>
+</footer>
+
+</main>
+
+<script>
+document.querySelectorAll('[data-toggle]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var input=btn.closest('.input-shell').querySelector('input');
+    var icon=btn.querySelector('iconify-icon');
+    if(input.type==='password'){input.type='text';icon.setAttribute('icon','lucide:eye-off');btn.setAttribute('aria-label','Hide password');}
+    else{input.type='password';icon.setAttribute('icon','lucide:eye');btn.setAttribute('aria-label','Show password');}
+  });
+});
+document.querySelectorAll('[data-replay]').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    var el=document.getElementById(btn.dataset.replay);var cls=btn.dataset.cls;
+    el.classList.remove(cls);void el.offsetWidth;el.classList.add(cls);
+  });
+});
+document.getElementById('moWash')&&document.getElementById('moWash').addEventListener('mouseenter',function(){this.classList.add('go');});
+</script>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en" class="is-loading">
+<head><script>function __threeuiStorageImage(...args){const image=new Image(...args);const property=Object.getOwnPropertyDescriptor(HTMLImageElement.prototype,"src");Object.defineProperty(image,"src",{configurable:true,get(){return property.get.call(this)},set(value){try{const url=new URL(value,document.baseURI);if(this.crossOrigin===null&&(url.href.startsWith("https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/")||url.origin===new URL(document.baseURI).origin))this.crossOrigin="anonymous"}catch{}property.set.call(this,value)}});return image;}
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elytra — Gilded armor for living networks</title>
+<meta name="description" content="Elytra wraps every endpoint in a gilded shell of quiet, self-healing defense. A jewel ladybug built in Blender, flying in Three.js.">
+<meta name="theme-color" content="#0A1C34">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="/landing-pages/aura-2026-10-assets/dd3c54cecf5437275369.css" rel="stylesheet">
+<link rel="stylesheet" href="/landing-pages/aura-2026-10-assets/772eb57426383bba5cda.css">
+<link rel="stylesheet" href="/landing-pages/aura-2026-10-assets/7b9126d9deeb91dd0c49.css">
+<link rel="stylesheet" href="/landing-pages/aura-2026-10-assets/abab922450704afccd1d.css">
+<script type="importmap">
+{ "imports": {
+"three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+} }
+</script>
+
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script><script data-threeui-capture>if(new URLSearchParams(location.search).has('threeuiCapture')){const style=document.createElement('style');style.textContent='html,body,body *{user-select:none!important;-webkit-user-select:none!important}';document.head.append(style);}</script></head>
+<body class="bg-navy text-white font-sans antialiased">
+<div id="loader" aria-hidden="true">
+<div class="ld-half ld-top"></div>
+<div class="ld-half ld-bot"></div>
+<div class="ld-inner">
+<svg class="ld-bug" viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
+<path class="ld-p" d="M100 46 C 132 46 158 72 160 108 C 162 146 134 170 100 170 C 66 170 38 146 40 108 C 42 72 68 46 100 46 Z"/>
+<path class="ld-p" d="M100 58 L100 168"/>
+<path class="ld-p" d="M70 58 C 82 66 118 66 130 58"/>
+<path class="ld-p" d="M84 46 C 84 30 116 30 116 46"/>
+<path class="ld-p" d="M90 34 C 84 22 76 18 70 22 C 64 26 68 34 74 32 C 78 31 77 26 74 26"/>
+<path class="ld-p" d="M110 34 C 116 22 124 18 130 22 C 136 26 132 34 126 32 C 122 31 123 26 126 26"/>
+<circle class="ld-p" cx="76" cy="96" r="9"/><circle class="ld-p" cx="124" cy="96" r="9"/>
+<circle class="ld-p" cx="70" cy="132" r="7"/><circle class="ld-p" cx="130" cy="132" r="7"/>
+<circle class="ld-p" cx="100" cy="80" r="11"/>
+<path class="ld-p" d="M60 118 C 52 112 50 104 56 100 M140 118 C 148 112 150 104 144 100"/>
+<path class="ld-p" d="M86 150 C 80 144 82 136 88 136 M114 150 C 120 144 118 136 112 136"/>
+</svg>
+<div class="ld-word" data-logo></div>
+</div>
+<div class="ld-count"><span id="ld-num">00</span><i>%</i></div>
+<div class="ld-caption">Polishing the filigree…</div>
+<div class="ld-bar"><i id="ld-bar"></i></div>
+</div>
+<div id="cursor" aria-hidden="true"><i class="c-ring"></i><i class="c-dot"></i><span class="c-label"></span></div>
+<canvas id="gl" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+<svg id="callouts" aria-hidden="true"></svg>
+<header id="nav" class="nav">
+<a href="#home" class="nav-logo" data-scroll="#home" aria-label="Elytra home">
+<span class="logo-mark" data-mark></span><span class="logo-word" data-logo></span>
+</a>
+<nav class="nav-links" aria-label="Primary">
+<a href="#home" data-scroll="#home" class="is-active">Overview</a>
+<a href="#armor" data-scroll="#armor">Armor</a>
+<a href="#protocol" data-scroll="#protocol">Protocol</a>
+<a href="#pricing" data-scroll="#pricing">Pricing</a>
+</nav>
+<button class="nav-signin" data-modal="signin">Sign in</button>
+<button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+<div id="menu" aria-hidden="true">
+<div class="menu-bg"></div>
+<div class="menu-inner">
+<p class="menu-kicker">Index</p>
+<ol class="menu-list">
+<li><a href="#home" data-scroll="#home"><em>01</em><span>Overview</span></a></li>
+<li><a href="#armor" data-scroll="#armor"><em>02</em><span>Armor</span></a></li>
+<li><a href="#anatomy" data-scroll="#anatomy"><em>03</em><span>Anatomy</span></a></li>
+<li><a href="#collection" data-scroll="#collection"><em>04</em><span>Collection</span></a></li>
+<li><a href="#protocol" data-scroll="#protocol"><em>05</em><span>Protocol</span></a></li>
+<li><a href="#pricing" data-scroll="#pricing"><em>06</em><span>Pricing</span></a></li>
+<li><a href="#voices" data-scroll="#voices"><em>07</em><span>Voices</span></a></li>
+<li><a href="#faq" data-scroll="#faq"><em>08</em><span>FAQ</span></a></li>
+</ol>
+<div class="menu-foot">
+<p>Gilded armor for living networks.</p>
+<button class="btn-ghost" data-modal="contact">Talk to a human</button>
+</div>
+</div>
+</div>
+<main id="smooth">
+<section id="home" class="hero" data-section="home">
+<div class="hero-bg" aria-hidden="true"></div>
+<h1 class="sr-only">Elytra — seal the gap, own the dark.</h1>
+<div class="hl hl-left" aria-hidden="true" data-depth="-1">
+<div class="hl-line l1"><span data-split>SEAL</span></div>
+<div class="hl-line l2"><span data-split>THE</span><b class="slash" data-split>/</b><span data-split>GAP</span></div>
+</div>
+<div class="hl hl-right" aria-hidden="true" data-depth="1">
+<div class="hl-line r1"><span data-split>OWN</span></div>
+<div class="hl-line r2"><span data-split>THE</span><b class="slash" data-split>/</b><span data-split>DARK</span></div>
+</div>
+<svg class="chev" viewBox="0 0 44 66" aria-hidden="true"><g fill="#8fa3bd" opacity=".55"><rect x="0" y="0" width="11" height="11"/><rect x="11" y="11" width="11" height="11"/><rect x="22" y="22" width="11" height="11"/><rect x="33" y="27.5" width="11" height="11" opacity=".55"/><rect x="11" y="44" width="11" height="11"/><rect x="0" y="55" width="11" height="11"/><rect x="22" y="33" width="11" height="11"/></g></svg>
+<div class="stat" data-reveal>
+<b><span data-count="1.4" data-dec="1">1.4</span>M+</b>
+<span>Attacks<br>contained</span>
+</div>
+<div class="cta-row">
+<a href="#pricing" class="pill magnetic" data-scroll="#pricing"><span>ARM UP!</span></a>
+<a href="#armor" class="pill-dot magnetic" data-scroll="#armor" aria-label="See the armor"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
+<p class="cta-copy">Slip every endpoint into<br>a gilded shell of quiet,<br>self-healing defense</p>
+</div>
+<div class="socials" aria-label="Social">
+<button class="soc" data-soon aria-label="X (coming soon)"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+<button class="soc" data-soon aria-label="Instagram (coming soon)"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+<button class="soc" data-soon aria-label="LinkedIn (coming soon)"><svg viewBox="0 0 24 24"><path d="M7 10v8M7 6.5v.01M11 18v-8M11 13.5c0-2 1.3-3.5 3.2-3.5S17 11.3 17 13.5V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+</div>
+<a href="#armor" class="scroll-badge" data-scroll="#armor" aria-label="Scroll down">
+<svg viewBox="0 0 160 160" class="sb-text"><defs><path id="sbArc" d="M30 114 A50 50 0 0 1 130 114"/></defs><text><textPath href="#sbArc" startOffset="50%" text-anchor="middle">S C R O L L &#160; &#160; D O W N</textPath></text></svg>
+<i class="sb-line"></i><i class="sb-mouse"></i>
+</a>
+<div class="relics" aria-label="The four seals">
+<a href="#armor" class="relic" data-relic="0" aria-label="Signet Cipher"><img data-a="icon_signet.webp" alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/2f6665d99e9e-icon_signet.webp" decoding="async"></a>
+<a href="#armor" class="relic" data-relic="1" aria-label="Elytra Wall"><img data-a="icon_shield.webp" alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/9cbdefd918cb-icon_shield.webp" decoding="async"></a>
+<a href="#armor" class="relic" data-relic="2" aria-label="Locket Vault"><img data-a="icon_locket.webp" alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/b92baeb5c47d-icon_locket.webp" decoding="async"></a>
+<a href="#armor" class="relic" data-relic="3" aria-label="Lantern Watch"><img data-a="icon_lantern.webp" alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/59004707693d-icon_lantern.webp" decoding="async"></a>
+</div>
+</section>
+<section id="armor" class="armor" data-section="armor">
+<div class="armor-bg" aria-hidden="true"><i class="armor-floor"></i></div>
+<div class="armor-stage">
+<h2 class="armor-title" aria-label="Gilded defenses">
+<span class="at-line" data-track>GILDED</span>
+<span class="at-line" data-track>DEFENSES</span>
+</h2>
+<article class="card c-tl" data-card="0">
+<div class="card-glass"></div>
+<div class="card-body">
+<h3>Signet<br>Cipher</h3>
+<p>Seal every identity with a hand-cut key only your people can turn</p>
+</div>
+<img class="card-art art-signet" data-a="art_signet.webp" alt="Gold filigree signet ring with a ruby" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/85e217a0e72c-art_signet.webp" decoding="async">
+<button class="card-go" data-detail="0" aria-label="Open Signet Cipher"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</article>
+<article class="card c-tr" data-card="3">
+<div class="card-glass"></div>
+<div class="card-body">
+<h3>Lantern<br>Watch</h3>
+<p>A sleepless light sweeping each endpoint, calling out anomalies live</p>
+</div>
+<img class="card-art art-lantern" data-a="art_lantern.webp" alt="Gold filigree lantern with a glowing ruby core" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/bb7d6da30e8c-art_lantern.webp" decoding="async">
+<button class="card-go" data-detail="3" aria-label="Open Lantern Watch"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</article>
+<article class="card c-bl" data-card="1">
+<div class="card-glass"></div>
+<div class="card-body">
+<h3>Elytra<br>Wall</h3>
+<p>Twin armored shells fold over your network and turn intrusions away</p>
+</div>
+<img class="card-art art-shield" data-a="art_shield.webp" alt="Domed gold filigree shield shaped like a wing case" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/938cab303158-art_shield.webp" decoding="async">
+<button class="card-go" data-detail="1" aria-label="Open Elytra Wall"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</article>
+<article class="card c-br" data-card="2">
+<div class="card-glass"></div>
+<div class="card-body">
+<h3>Locket<br>Vault</h3>
+<p>Sensitive records sealed in lockets, encrypted at rest and in motion</p>
+</div>
+<img class="card-art art-locket" data-a="art_locket.webp" alt="Open gold filigree locket set with a ruby" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/5bd34882dcb4-art_locket.webp" decoding="async">
+<button class="card-go" data-detail="2" aria-label="Open Locket Vault"><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</article>
+<div class="socials" aria-hidden="true">
+<button tabindex="-1" class="soc" data-soon aria-label="X (coming soon)"><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+<button tabindex="-1" class="soc" data-soon aria-label="Instagram (coming soon)"><svg viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+<button tabindex="-1" class="soc" data-soon aria-label="LinkedIn (coming soon)"><svg viewBox="0 0 24 24"><path d="M7 10v8M7 6.5v.01M11 18v-8M11 13.5c0-2 1.3-3.5 3.2-3.5S17 11.3 17 13.5V18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></button>
+</div>
+<a href="#anatomy" class="scroll-badge" data-scroll="#anatomy" tabindex="-1" aria-label="Scroll down">
+<svg viewBox="0 0 160 160" class="sb-text"><defs><path id="sbArc2" d="M30 114 A50 50 0 0 1 130 114"/></defs><text><textPath href="#sbArc2" startOffset="50%" text-anchor="middle">S C R O L L &#160; &#160; D O W N</textPath></text></svg>
+<i class="sb-line"></i><i class="sb-mouse"></i>
+</a>
+</div>
+</section>
+<section id="anatomy" class="anatomy" data-section="anatomy">
+<div class="anat-pin">
+<div class="anat-head">
+<p class="kicker"><i></i>03 — Anatomy of the jewel</p>
+<h2 class="h-stack"><span data-split>INSIDE</span><span><span data-split>THE</span><b class="slash" data-split>/</b><span data-split>SHELL</span></span></h2>
+<p class="anat-lede">Scroll to take the ladybug apart. Every layer of the jewel is a layer of your defense.</p>
+</div>
+<ol class="anat-steps">
+<li class="anat-step" data-step="0"><em>01</em><h4>Filigree mesh</h4><p>2,048 woven policies form a zero-trust lattice: open to your traffic, closed to everything else.</p></li>
+<li class="anat-step" data-step="1"><em>02</em><h4>Ruby sensors</h4><p>Sixty-four telemetry gems pulse with every packet, so drift is seen long before it spreads.</p></li>
+<li class="anat-step" data-step="2"><em>03</em><h4>Emerald core</h4><p>An isolated, encrypted kernel keeps keys and secrets far away from the attack surface.</p></li>
+<li class="anat-step" data-step="3"><em>04</em><h4>Glass wings</h4><p>Playbooks deploy in 38&#8202;ms, contain the threat and fold back without a second of downtime.</p></li>
+</ol>
+<div class="anat-progress" aria-hidden="true"><i></i><span>01</span><span>/04</span></div>
+</div>
+</section>
+<section id="collection" class="collection" data-section="collection">
+<div class="col-pin">
+<div class="col-head">
+<p class="kicker"><i></i>04 — The collection</p>
+<h2 class="h-stack"><span data-split>THE</span><span data-split>COLLECTiON</span></h2>
+<p class="col-lede">Field studies of the shell, modelled and lit in Blender. Drag, scroll or click to open.</p>
+</div>
+<div class="col-track" id="colTrack">
+<figure class="shot s-wide" data-shot="0"><div class="shot-mask"><img data-a="gal_1_dawn.webp" alt="The gold ladybug on a curved green leaf at dawn" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/f46ab7d73fad-gal_1_dawn.webp" decoding="async"></div><figcaption><em>01</em><b>Dawn patrol</b><span>Leaf study, 06:12</span></figcaption></figure>
+<figure class="shot s-wide" data-shot="1"><div class="shot-mask"><img data-a="gal_2_marble.webp" alt="The ladybug on a white marble plinth beside a gold rod" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/42117d80ea56-gal_2_marble.webp" decoding="async"></div><figcaption><em>02</em><b>Vault Nº 7</b><span>Marble and brass</span></figcaption></figure>
+<figure class="shot s-tall" data-shot="2"><div class="shot-mask"><img data-a="gal_4_eye.webp" alt="Macro of the ladybug's onyx eye and spiral antenna" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/8f25858ba17d-gal_4_eye.webp" decoding="async"></div><figcaption><em>03</em><b>Eye of the shell</b><span>Macro, f/2.8</span></figcaption></figure>
+<figure class="shot s-wide" data-shot="3"><div class="shot-mask"><img data-a="gal_3_seals.webp" alt="Four jewel artifacts on navy velvet" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/545c762fe47b-gal_3_seals.webp" decoding="async"></div><figcaption><em>04</em><b>The four seals</b><span>Navy velvet</span></figcaption></figure>
+<figure class="shot s-tall" data-shot="4"><div class="shot-mask"><img data-a="gal_5_glass.webp" alt="Backlit etched glass wing" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/b319896d92dc-gal_5_glass.webp" decoding="async"></div><figcaption><em>05</em><b>Glasswork</b><span>Etched wing, backlit</span></figcaption></figure>
+<figure class="shot s-wide" data-shot="5"><div class="shot-mask"><img data-a="gal_6_night.webp" alt="Top view of the ladybug walking through gold dust" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/8ca40c36bafa-gal_6_night.webp" decoding="async"></div><figcaption><em>06</em><b>Night shift</b><span>Top view, gold dust</span></figcaption></figure>
+<div class="col-end"><p>Six studies.<br>One jeweller.</p><a href="#protocol" data-scroll="#protocol" class="btn-ghost">Continue</a></div>
+</div>
+<div class="col-bar" aria-hidden="true"><i id="colBar"></i></div>
+<div class="col-count" aria-hidden="true"><b id="colNum">01</b>/06</div>
+</div>
+</section>
+<section id="protocol" class="protocol" data-section="protocol">
+<div class="proto-head">
+<p class="kicker"><i></i>05 — The protocol</p>
+<h2 class="h-stack"><span><span data-split>FIRST</span><b class="slash" data-split>/</b><span data-split>SCAN</span></span><span><span data-split>FULL</span><b class="slash" data-split>/</b><span data-split>SHELL</span></span></h2>
+<p class="proto-lede">Thirty days from the first agent to a hardened, audited shell. The ladybug walks it with you.</p>
+</div>
+<div class="proto-track" id="protoTrack">
+<svg class="proto-line" preserveAspectRatio="none" viewBox="0 0 10 1000" aria-hidden="true"><path id="protoPath" d="M5 0 L5 1000" /></svg>
+<div class="proto-item p-left" data-milestone="0"><i class="pdot"></i><img class="proto-art" data-a="art_locket.webp" alt="Open gold locket" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/5bd34882dcb4-art_locket.webp" decoding="async"><em>DAY 00</em><h4>Hatch</h4><p>Drop a four-minute agent onto every endpoint. No reboots, no tickets, no drama.</p></div>
+<div class="proto-item p-right" data-milestone="1"><i class="pdot"></i><img class="proto-art" data-a="art_signet.webp" alt="Gold signet ring" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/85e217a0e72c-art_signet.webp" decoding="async"><em>DAY 01</em><h4>Map</h4><p>Every device, identity and secret is charted into one living asset graph.</p></div>
+<div class="proto-item p-left" data-milestone="2"><i class="pdot"></i><img class="proto-art" data-a="art_shield.webp" alt="Domed filigree shield" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/938cab303158-art_shield.webp" decoding="async"><em>DAY 07</em><h4>Harden</h4><p>Policies tune themselves to your real traffic and quietly close what nobody uses.</p></div>
+<div class="proto-item p-right" data-milestone="3"><i class="pdot"></i><img class="proto-art" data-a="art_elytron.webp" alt="A single gold filigree wing case, shed" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/7bf279c866bb-art_elytron.webp" decoding="async"><em>DAY 30</em><h4>Molt</h4><p>An independent red team tries to crack the shell. You get every finding, fixed.</p></div>
+<div class="proto-item p-left" data-milestone="4"><i class="pdot"></i><img class="proto-art" data-a="art_lantern.webp" alt="Gold filigree lantern" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/bb7d6da30e8c-art_lantern.webp" decoding="async"><em>ALWAYS</em><h4>Watch</h4><p>The lantern never sleeps: round&#8209;the&#8209;clock response with real humans on the other end.</p></div>
+</div>
+</section>
+<section id="pricing" class="pricing" data-section="pricing">
+<div class="price-head">
+<p class="kicker"><i></i>06 — Pricing</p>
+<h2 class="h-stack"><span data-split>PICK</span><span><span data-split>YOUR</span><b class="slash" data-split>/</b><span data-split>SHELL</span></span></h2>
+<div class="billing" role="group" aria-label="Billing period">
+<button class="bill is-on" data-bill="m">Monthly</button>
+<button class="bill" data-bill="y">Yearly <i>−20%</i></button>
+<span class="bill-knob" aria-hidden="true"></span>
+</div>
+</div>
+<div class="plans">
+<article class="plan tilt" data-plan="0">
+<div class="plan-sheen"></div>
+<header><h3>Larva</h3><p>For side projects and curious teams</p></header>
+<div class="price"><b data-price-m="0" data-price-y="0">$0</b><span>forever</span></div>
+<ul><li>Up to 5 endpoints</li><li>Signet Cipher (SSO + MFA)</li><li>Community playbooks</li><li>Weekly threat digest</li></ul>
+<a href="#cta" data-scroll="#cta" class="plan-btn"><span>Start free</span><i><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i></a>
+</article>
+<article class="plan plan-hero tilt" data-plan="1">
+<div class="plan-sheen"></div>
+<span class="plan-flag">Most chosen</span>
+<header><h3>Elytra</h3><p>For teams that ship every day</p></header>
+<div class="price"><b data-price-m="24" data-price-y="19">$24</b><span>per seat / month</span></div>
+<ul><li>Unlimited endpoints</li><li>All four seals</li><li>38 ms auto-response</li><li>Quarterly red-team</li><li>Priority humans, 24/7</li></ul>
+<a href="#cta" data-scroll="#cta" class="plan-btn is-solid"><span>Arm up!</span><i><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i></a>
+</article>
+<article class="plan tilt" data-plan="2">
+<div class="plan-sheen"></div>
+<header><h3>Imperial</h3><p>For regulated fleets and sovereign data</p></header>
+<div class="price"><b class="is-word">Custom</b><span>annual agreement</span></div>
+<ul><li>Dedicated lantern crew</li><li>On-prem emerald core</li><li>Custom compliance packs</li><li>99.99% uptime SLA</li></ul>
+<button class="plan-btn" data-modal="contact"><span>Talk to us</span><i><svg viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></i></button>
+</article>
+</div>
+</section>
+<section id="voices" class="voices" data-section="voices">
+<div class="voices-head">
+<p class="kicker"><i></i>07 — Voices</p>
+<h2 class="h-stack"><span data-split>THEY</span><span><span data-split>SLEEP</span><b class="slash" data-split>/</b><span data-split>BETTER</span></span></h2>
+</div>
+<div class="quote-wrap">
+<svg class="q-mark" viewBox="0 0 64 48" aria-hidden="true"><path d="M0 48V28C0 12 8 2 26 0l2 7C18 10 14 16 14 24h12v24H0zm36 0V28c0-16 8-26 26-28l2 7c-10 3-14 9-14 17h12v24H36z" fill="currentColor"/></svg>
+<div class="quotes" id="quotes" aria-live="polite">
+<blockquote class="quote is-on"><p>We watched it fold over a live intrusion at 3&nbsp;a.m. and nobody had to wake&nbsp;up. That had never happened before.</p><footer><span class="mono">MV</span><b>Mara V.</b><span>CISO · regional fintech</span></footer></blockquote>
+<blockquote class="quote"><p>The asset map alone paid for it. We found 212 devices we didn’t know we had in the first afternoon.</p><footer><span class="mono">TR</span><b>Tomás R.</b><span>IT director · hospital network</span></footer></blockquote>
+<blockquote class="quote"><p>It’s the first security product our engineers actually enjoy opening. The playbooks read like plain English.</p><footer><span class="mono">IK</span><b>Ines K.</b><span>VP engineering · logistics platform</span></footer></blockquote>
+<blockquote class="quote"><p>Red-team day thirty found two real gaps. Both were closed by day thirty-one.</p><footer><span class="mono">KA</span><b>Kofi A.</b><span>Security lead · public-sector cloud</span></footer></blockquote>
+</div>
+<div class="q-nav">
+<button class="q-btn" data-q="-1" aria-label="Previous quote"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+<div class="q-prog"><i id="qbar"></i></div>
+<span class="q-count"><b id="qnum">01</b>/04</span>
+<button class="q-btn" data-q="1" aria-label="Next quote"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</div>
+</div>
+<ul class="stats">
+<li><b><span data-count="1.4" data-dec="1">0</span>M+</b><span>attacks contained</span></li>
+<li><b><span data-count="38">0</span> ms</b><span>median response</span></li>
+<li><b><span data-count="4">0</span> min</b><span>average install</span></li>
+<li><b><span data-count="99.99" data-dec="2">0</span>%</b><span>uptime, 12 months</span></li>
+</ul>
+</section>
+<section id="faq" class="faq" data-section="faq">
+<div class="faq-head">
+<p class="kicker"><i></i>08 — FAQ</p>
+<h2 class="h-stack"><span data-split>ASKED</span><span><span data-split>&amp;</span><b class="slash" data-split>/</b><span data-split>ANSWERED</span></span></h2>
+<p class="faq-lede">Still curious? A human answers within the hour, day or night.</p>
+<button class="btn-ghost" data-modal="contact">Ask a human</button>
+</div>
+<div class="faq-list">
+<details class="qa"><summary><span>Does Elytra replace my antivirus?</span><i></i></summary><div class="qa-a"><p>It can. The agent includes next-generation prevention, but it also runs politely alongside the tools you already have while you migrate.</p></div></details>
+<details class="qa"><summary><span>How long does deployment take?</span><i></i></summary><div class="qa-a"><p>About four minutes per fleet policy. Most teams are fully covered before the end of day one.</p></div></details>
+<details class="qa"><summary><span>Where does my data live?</span><i></i></summary><div class="qa-a"><p>In the region you choose. Imperial plans can keep the emerald core entirely on your own hardware.</p></div></details>
+<details class="qa"><summary><span>What happens during an attack?</span><i></i></summary><div class="qa-a"><p>Glass-wing playbooks isolate the device, revoke risky sessions and page a human, all in a 38&#8202;ms median.</p></div></details>
+<details class="qa"><summary><span>Can I try it without a card?</span><i></i></summary><div class="qa-a"><p>Yes. Larva is free forever for up to five endpoints, no card and no sales call.</p></div></details>
+<details class="qa"><summary><span>Do you help with compliance audits?</span><i></i></summary><div class="qa-a"><p>Evidence for common frameworks is collected continuously and exported in one click, so audit week stops being a week.</p></div></details>
+</div>
+</section>
+<section id="cta" class="cta" data-section="cta">
+<div class="cta-bg" aria-hidden="true"></div>
+<div class="cta-copy-block">
+<p class="kicker"><i></i>09 — Your move</p>
+<h2 class="cta-title">
+<span data-split>SLIP INTO</span>
+<span class="copper" data-split>“THE SHELL”</span>
+<span data-split>BEFORE THE</span>
+<span data-split>NEXT BREACH</span>
+</h2>
+<form class="cta-form" id="ctaForm" novalidate>
+<label class="sr-only" for="ctaEmail">Work email</label>
+<input id="ctaEmail" type="email" placeholder="you@company" autocomplete="email" required>
+<button class="pill magnetic" type="submit"><span>ARM UP!</span></button>
+<p class="form-note" id="ctaNote">Free for five endpoints. No card, no call.</p>
+</form>
+</div>
+</section>
+<footer id="footer" class="footer" data-section="footer">
+<div class="foot-grid">
+<div class="foot-brand">
+<span class="logo-mark" data-mark></span>
+<p>Gilded armor for living networks. A jewel ladybug, modelled in Blender and flying in Three.js.</p>
+</div>
+<nav class="foot-col" aria-label="Product"><h5>Product</h5><a href="#armor" data-scroll="#armor">Armor</a><a href="#anatomy" data-scroll="#anatomy">Anatomy</a><a href="#protocol" data-scroll="#protocol">Protocol</a><a href="#pricing" data-scroll="#pricing">Pricing</a></nav>
+<nav class="foot-col" aria-label="Company"><h5>Company</h5><a href="#collection" data-scroll="#collection">Collection</a><a href="#voices" data-scroll="#voices">Voices</a><a href="#faq" data-scroll="#faq">FAQ</a><button data-modal="contact">Contact</button></nav>
+<div class="foot-col"><h5>Social</h5><button data-soon>X</button><button data-soon>Instagram</button><button data-soon>LinkedIn</button></div>
+</div>
+<div class="foot-word" aria-hidden="true" data-logo-big></div>
+<div class="foot-base">
+<span>© 2026 Elytra. A concept site.</span>
+<span>Modelled in Blender · Three.js</span>
+<button class="to-top" data-scroll="#home" aria-label="Back to top"><svg viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</div>
+</footer>
+</main>
+<div class="modal" id="m-signin" role="dialog" aria-modal="true" aria-labelledby="m-signin-t" aria-hidden="true">
+<div class="modal-card">
+<button class="modal-x" data-close aria-label="Close"><i></i><i></i></button>
+<p class="kicker"><i></i>Client portal</p>
+<h3 id="m-signin-t" class="modal-title">WELCOME<br>BACK</h3>
+<form class="modal-form" data-fake="Portal access is by invitation during the preview. We’ll email you the moment yours is ready.">
+<label>Work email<input type="email" required placeholder="you@company"></label>
+<button class="pill" type="submit"><span>SEND LINK</span></button>
+<p class="form-note"></p>
+</form>
+</div>
+</div>
+<div class="modal" id="m-contact" role="dialog" aria-modal="true" aria-labelledby="m-contact-t" aria-hidden="true">
+<div class="modal-card">
+<button class="modal-x" data-close aria-label="Close"><i></i><i></i></button>
+<p class="kicker"><i></i>Talk to a human</p>
+<h3 id="m-contact-t" class="modal-title">WE’RE<br>LISTENING</h3>
+<form class="modal-form" data-fake="Thank you. A member of the lantern crew will reply within the hour.">
+<label>Name<input type="text" required placeholder="Your name"></label>
+<label>Work email<input type="email" required placeholder="you@company"></label>
+<label>What should we protect?<textarea rows="3" placeholder="Fleet size, stack, deadlines…"></textarea></label>
+<button class="pill" type="submit"><span>SEND</span></button>
+<p class="form-note"></p>
+</form>
+</div>
+</div>
+<div class="modal modal-detail" id="m-detail" role="dialog" aria-modal="true" aria-labelledby="m-detail-t" aria-hidden="true">
+<div class="modal-card">
+<button class="modal-x" data-close aria-label="Close"><i></i><i></i></button>
+<img class="detail-art" alt="">
+<div class="detail-copy">
+<p class="kicker"><i></i><span data-d="k"></span></p>
+<h3 id="m-detail-t" class="modal-title" data-d="t"></h3>
+<p data-d="p"></p>
+<ul data-d="l"></ul>
+</div>
+</div>
+</div>
+<div class="lightbox" id="lightbox" aria-hidden="true">
+<button class="modal-x" data-close aria-label="Close"><i></i><i></i></button>
+<figure><img alt=""><figcaption></figcaption></figure>
+<button class="lb-nav lb-prev" data-lb="-1" aria-label="Previous image"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+<button class="lb-nav lb-next" data-lb="1" aria-label="Next image"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+window.__ASSETS={"icon_signet.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/2f6665d99e9e-icon_signet.webp","icon_shield.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/9cbdefd918cb-icon_shield.webp","icon_locket.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/b92baeb5c47d-icon_locket.webp","icon_lantern.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/59004707693d-icon_lantern.webp","art_signet.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/85e217a0e72c-art_signet.webp","art_lantern.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/bb7d6da30e8c-art_lantern.webp","art_shield.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/938cab303158-art_shield.webp","art_locket.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/5bd34882dcb4-art_locket.webp","gal_1_dawn.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/f46ab7d73fad-gal_1_dawn.webp","gal_2_marble.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/42117d80ea56-gal_2_marble.webp","gal_4_eye.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/8f25858ba17d-gal_4_eye.webp","gal_3_seals.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/545c762fe47b-gal_3_seals.webp","gal_5_glass.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/b319896d92dc-gal_5_glass.webp","gal_6_night.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/8ca40c36bafa-gal_6_night.webp","art_elytron.webp":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/7bf279c866bb-art_elytron.webp","src/wing_etch.png":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/team-review-2026-10-14/elytra-ladybug/00f26ff76e5d-wing_etch.png","ladybug.glb":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/aura-2026-10/df7a2ac4c08a6e2dda668ea6c0c4bd6e2fd004333949d0eeb21fe3b2faee7d9e.glb"};
+window.__assetsReady=Promise.resolve();
+</script>
+<script type="module">
+import*as e from'three';import{GLTFLoader as t}from'three/addons/loaders/GLTFLoader.js';import{DRACOLoader as o}from'three/addons/loaders/DRACOLoader.js';import{EffectComposer as a}from'three/addons/postprocessing/EffectComposer.js';import{RenderPass as s}from'three/addons/postprocessing/RenderPass.js';import{UnrealBloomPass as r}from'three/addons/postprocessing/UnrealBloomPass.js'
+;import{OutputPass as i}from'three/addons/postprocessing/OutputPass.js';const n='/landing-pages/aura-2026-10-assets/draco/',l=(e,t,o)=>Math.min(o,Math.max(t,e)),c=(e,t,o)=>e+(t-e)*o,p=(e,t,o,a)=>c(e,t,1-Math.exp(-o*a)),d=e=>e*e*(3-2*e),h=e=>{e.sort(((e,t)=>e[0]-t[0]||e[1]-t[1]));const t=(e,t,o)=>(t[0]-e[0])*(o[1]-e[1])-(t[1]-e[1])*(o[0]-e[0]),o=[],a=[]
+;for(const a of e){for(;o.length>=2&&t(o[o.length-2],o[o.length-1],a)<=0;)o.pop();o.push(a)}for(let o=e.length-1;o>=0;o--){const s=e[o];for(;a.length>=2&&t(a[a.length-2],a[a.length-1],s)<=0;)a.pop();a.push(s)}return o.slice(0,-1).concat(a.slice(0,-1))},u=(e,t,o,a=0)=>{if(e.length<3)return!1;for(let s=0;s<e.length;s++){const r=e[s],i=e[(s+1)%e.length],n=Math.hypot(i[0]-r[0],i[1]-r[1])||1
+;if(((i[0]-r[0])*(o-r[1])-(i[1]-r[1])*(t-r[0]))/n<-a)return!1}return!0};export const DEFAULT_STATE={x:.5,y:.5,size:.55,yaw:-.45,pitch:.22,roll:0,z:0,flap:1,flapHz:13,wingRaise:0,elytra:.12,legs:0,walk:0,explode:0,shadow:0,vis:1,look:1,glow:0,spin:0,fold:0,sweep:0,nose:0};export const STATE_KEYS=Object.keys(DEFAULT_STATE);export class World{constructor(t){this.canvas=t,
+this.dpr=Math.min(window.devicePixelRatio||1,window.innerWidth<900?1.75:2),this.renderer=new e.WebGLRenderer({canvas:t,alpha:!0,antialias:!0,powerPreference:'high-performance',premultipliedAlpha:!0}),this.renderer.setClearColor(0,0),this.renderer.outputColorSpace=e.SRGBColorSpace,this.renderer.toneMapping=e.NeutralToneMapping,this.renderer.toneMappingExposure=1,this.scene=new e.Scene,
+this.camera=new e.PerspectiveCamera(20,1,.1,80),this.camera.position.set(0,0,16),this.state={...DEFAULT_STATE},this.target={...DEFAULT_STATE},this.pointer={x:0,y:0,sx:0,sy:0},this.scrollV=0,this.scrollY=0,this.time=0,this.walkPhase=0,this.flapPhase=0,this.spinA=0,this.ready=!1,this.paused=!1,this.anchors={},this.frameMs=16,this.slowFrames=0,this._buildEnv(),this._buildDust(),this._setupPost(),
+this.resize(),window.addEventListener('resize',(()=>this.resize())),window.addEventListener('pointermove',(e=>{this.pointer.x=e.clientX/innerWidth*2-1,this.pointer.y=e.clientY/innerHeight*2-1}),{passive:!0})}resize(){const t=window.innerWidth,o=window.innerHeight;this.w=t,this.h=o,this.renderer.setPixelRatio(this.dpr),this.renderer.setSize(t,o,!1),this.camera.aspect=t/o,
+this.camera.updateProjectionMatrix(),this.viewH=2*this.camera.position.z*Math.tan(e.MathUtils.degToRad(this.camera.fov/2)),this.viewW=this.viewH*this.camera.aspect,this.composer&&(this.composer.setPixelRatio(this.dpr),this.composer.setSize(t,o)),this.dust&&(this.dust.material.uniforms.uScale.value=o*this.dpr/900),
+this.glints&&this.glints.forEach((e=>e.material.uniforms.uScale.value=o*this.dpr/900))}_buildEnv(){const t=new e.Scene,o=new e.Mesh(new e.SphereGeometry(30,32,16),new e.ShaderMaterial({side:e.BackSide,depthWrite:!1,vertexShader:'varying vec3 vP; void main(){ vP = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position,1.); }',
+fragmentShader:'varying vec3 vP; void main(){ float h = vP.y*.5+.5; vec3 a = vec3(.010,.020,.040); vec3 b = vec3(.055,.085,.13); vec3 c = mix(a,b,smoothstep(.1,.95,h)); c += vec3(.05,.03,.015)*pow(max(0.,-vP.y),2.); gl_FragColor = vec4(c,1.); }'}));t.add(o);const a=(o,a,s,r,i,n,l)=>{const c=l?new e.CircleGeometry(o/2,48):new e.PlaneGeometry(o,a),p=new e.Mesh(c,new e.MeshBasicMaterial({
+color:new e.Color(...s).multiplyScalar(r),side:e.DoubleSide}));return p.position.set(...i),p.lookAt(...n||[0,0,0]),t.add(p),p};a(6.5,6.5,[1,.86,.68],8,[-7,7,8],null,!0),a(10,6,[1,.9,.78],.7,[0,13,1]),a(4,9,[.7,.82,1],2.2,[11,1,5]),a(14,1.6,[.75,.86,1],9,[3,7,-10]),a(.55,18,[1,.97,.92],12,[-11,0,-2]),a(.55,18,[1,.95,.9],9,[11,2,-6]),a(16,4,[.95,.72,.45],.9,[0,-10,4]),
+a(2.4,2.4,[1,.92,.8],18,[3,10,10],null,!0),a(1.8,1.8,[1,.95,.88],12,[-9,-2,9],null,!0),a(10,1.2,[.62,.78,1],6,[8,-1,-9]);const s=new e.PMREMGenerator(this.renderer);this.envMap=s.fromScene(t,.03).texture,this.scene.environment=this.envMap,s.dispose();const r=new e.HemisphereLight(11125214,1314826,.45);this.scene.add(r);const i=new e.DirectionalLight(16769208,3.4);i.position.set(-5,6,6),
+this.scene.add(i);const n=new e.DirectionalLight(9419007,4.2);n.position.set(6,3,-7),this.scene.add(n);const l=new e.DirectionalLight(16773597,.8);l.position.set(1,9,2),this.scene.add(l)}_buildDust(){const t=window.innerWidth<900?70:120,o=new Float32Array(3*t),a=new Float32Array(4*t);for(let e=0;e<t;e++){const s=e<.07*t;o[3*e]=22*(Math.random()-.5),o[3*e+1]=16*(Math.random()-.5),
+o[3*e+2]=s?6+6*Math.random():18*Math.random()-14,a[4*e]=Math.random(),a[4*e+1]=Math.random(),a[4*e+2]=s?1:0,a[4*e+3]=Math.random()}const s=new e.BufferGeometry;s.setAttribute('position',new e.BufferAttribute(o,3)),s.setAttribute('aSeed',new e.BufferAttribute(a,4));const r=new e.ShaderMaterial({transparent:!0,depthWrite:!1,blending:e.AdditiveBlending,uniforms:{uTime:{value:0},uScroll:{value:0},
+uScale:{value:1},uAlpha:{value:1},uPtr:{value:new e.Vector2}},
+vertexShader:'\n        attribute vec4 aSeed; uniform float uTime, uScroll, uScale; uniform vec2 uPtr;\n        varying float vA; varying float vBig; varying float vTw;\n        void main(){\n          vec3 p = position;\n          float t = uTime * (0.05 + aSeed.x * 0.08);\n          p.x += sin(t * 6.2831 + aSeed.y * 6.) * 0.35 + uPtr.x * (p.z + 14.) * 0.025;\n          p.y += mod(t * 1.6 + aSeed.w * 16. + uScroll * (0.4 + (p.z + 14.) * 0.05), 16.) - 8. - position.y * 0.0 + uPtr.y * (p.z + 14.) * -0.02;\n          vec4 mv = modelViewMatrix * vec4(p, 1.);\n          gl_Position = projectionMatrix * mv;\n          float d = -mv.z;\n          vBig = aSeed.z;\n          float sz = aSeed.z > .5 ? (70. + aSeed.x * 90.) : (5. + aSeed.y * 6.);\n          gl_PointSize = sz * uScale * (aSeed.z > .5 ? 1. : 16. / d);\n          vTw = 0.55 + 0.45 * sin(uTime * (1.5 + aSeed.x * 3.) + aSeed.y * 20.);\n          vA = aSeed.z > .5 ? 0.035 + aSeed.y * 0.03 : (0.18 + aSeed.w * 0.32) * smoothstep(40., 8., d);\n        }',
+fragmentShader:'\n        uniform float uAlpha; varying float vA; varying float vBig; varying float vTw;\n        void main(){\n          vec2 c = gl_PointCoord - .5; float r = length(c) * 2.;\n          float a;\n          if (vBig > .5) { a = smoothstep(1., .82, r) * (0.55 + 0.45 * smoothstep(.0, .9, r)); }\n          else { a = exp(-r * r * 3.2) * .8; }\n          vec3 col = mix(vec3(1., .78, .48), vec3(1., .93, .8), vTw);\n          gl_FragColor = vec4(col * a * vA * vTw * uAlpha, a * vA * uAlpha);\n        }'
+});this.dust=new e.Points(s,r),this.dust.frustumCulled=!1,this.dust.renderOrder=-1,this.scene.add(this.dust)}async load(e,a,s=()=>{}){const r=async(e,t)=>{const o=await fetch(String(e));if(!o.ok)throw new Error(`${o.status} loading ${e}`);return'arraybuffer'===t?o.arrayBuffer():o.text()},i=(new o).setDecoderPath(n);i._loadLibrary=(e,t)=>r({"draco_decoder.wasm":"https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/15610a2005bee929c5abe796/draco_decoder.wasm","draco_wasm_wrapper.js":"/landing-pages/aura-2026-10-assets/draco/draco_wasm_wrapper.js","draco_decoder.js":"/landing-pages/aura-2026-10-assets/draco/draco_decoder.js"}[e],t)
+;const l=(new t).setDRACOLoader(i),c=await this._etchTexture(a);s(.2);const p=e instanceof ArrayBuffer?e:await r(e,'arraybuffer');s(.7);const d=await new Promise(((e,t)=>l.parse(p,'',e,t)));return s(.85),this._rig(d.scene,c),this.renderer.compile(this.scene,this.camera),s(1),this.ready=!0,this}async _etchTexture(t){const o=await new Promise((e=>{const o=new __threeuiStorageImage;o.crossOrigin="anonymous";o.onload=()=>e(o),
+o.onerror=()=>e(null),o.src=t})),a=document.createElement('canvas');a.width=2048,a.height=1024;const s=a.getContext('2d');s.fillStyle='#000',s.fillRect(0,0,2048,1024),o&&s.drawImage(o,0,0,2048,1024);const r=new e.CanvasTexture(a);return r.flipY=!1,r.colorSpace=e.NoColorSpace,r.anisotropy=8,r}_materials(t){
+const o=(t,o,a)=>(new e.Color).setRGB(t,o,a,e.LinearSRGBColorSpace),a=new e.MeshPhysicalMaterial({color:o(.95,.585,.27),metalness:1,roughness:.1,envMapIntensity:1.35}),s=new e.MeshPhysicalMaterial({color:o(.96,.62,.26),metalness:1,roughness:.2,envMapIntensity:1.35}),r=new e.MeshPhysicalMaterial({color:o(.045,0,.004),metalness:0,roughness:.03,clearcoat:1,clearcoatRoughness:.01,envMapIntensity:1,
+emissive:o(.15,0,.02),emissiveIntensity:1,specularIntensity:1,specularColor:o(1,.85,.85)});this.rubyGlow={value:1},r.onBeforeCompile=e=>{e.uniforms.uGlow=this.rubyGlow,
+e.fragmentShader=e.fragmentShader.replace('#include <common>','#include <common>\nuniform float uGlow;').replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\n          float ndv = clamp(dot(normal, normalize(vViewPosition)), 0., 1.);\n          totalEmissiveRadiance *= (0.01 + 1.7 * pow(ndv, 4.5) + 0.3 * pow(1. - ndv, 6.)) * uGlow;\n          diffuseColor.rgb *= 0.35 + 0.65 * ndv;')
+};const i=new e.MeshPhysicalMaterial({color:o(.003,.048,.018),metalness:0,roughness:.55,clearcoat:.45,clearcoatRoughness:.05,envMapIntensity:.15,emissive:o(0,.006,.003)});i.onBeforeCompile=e=>{e.vertexShader=e.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vObj;').replace('#include <begin_vertex>','#include <begin_vertex>\nvObj = position;'),
+e.fragmentShader=e.fragmentShader.replace('#include <common>','#include <common>\n        varying vec3 vObj;\n        float h3(vec3 p){ p = fract(p * .3183099 + .1); p *= 17.; return fract(p.x * p.y * p.z * (p.x + p.y + p.z)); }\n        float n3(vec3 x){ vec3 i = floor(x), f = fract(x); f = f*f*(3.-2.*f);\n          return mix(mix(mix(h3(i),h3(i+vec3(1,0,0)),f.x),mix(h3(i+vec3(0,1,0)),h3(i+vec3(1,1,0)),f.x),f.y),\n                     mix(mix(h3(i+vec3(0,0,1)),h3(i+vec3(1,0,1)),f.x),mix(h3(i+vec3(0,1,1)),h3(i+vec3(1,1,1)),f.x),f.y),f.z); }').replace('#include <color_fragment>','#include <color_fragment>\n          float mot = n3(vObj * 9.) * .6 + n3(vObj * 23.) * .4;\n          diffuseColor.rgb *= mix(vec3(.72,.78,.72), vec3(1.2,1.35,1.2), mot);').replace('#include <normal_fragment_maps>','#include <normal_fragment_maps>\n          { // guilloché-like relief: concentric ripples + fine noise, as a cheap normal perturbation\n            float e = .004; vec3 q = vObj * 38.;\n            float f0 = n3(q) * .6 + n3(q * 2.3) * .4;\n            float fx = n3(q + vec3(e*38., 0., 0.)) * .6 + n3((q + vec3(e*38., 0., 0.)) * 2.3) * .4;\n            float fz = n3(q + vec3(0., 0., e*38.)) * .6 + n3((q + vec3(0., 0., e*38.)) * 2.3) * .4;\n            vec3 g = vec3(fx - f0, 0., fz - f0) / e;\n            normal = normalize(normal - (viewMatrix * vec4(g * .0035, 0.)).xyz);\n          }')
+};const n=new e.MeshPhysicalMaterial({color:o(.004,.004,.006),metalness:0,roughness:.05,clearcoat:1,clearcoatRoughness:.02,envMapIntensity:1.4}),l=new e.MeshPhysicalMaterial({color:1713462,metalness:0,roughness:.03,transparent:!0,premultipliedAlpha:!0,opacity:1,side:e.DoubleSide,depthWrite:!1,envMapIntensity:1.1,ior:1.5,specularIntensity:1,emissive:16774890,emissiveIntensity:1,emissiveMap:t})
+;this.glassFade={value:1},this.wingFold={value:0};const c=e=>t=>{t.uniforms.uFade=this.glassFade,t.uniforms.uMul=e,t.uniforms.uFold=this.wingFold
+;let o=t.fragmentShader.replace('#include <common>','#include <common>\nuniform float uFade; uniform float uMul; uniform float uFold;\nfloat gE, gFr, gBand;').replace('#include <emissivemap_fragment>','#include <emissivemap_fragment>\n          gE = emissiveColor.r;\n          float gNv = abs(dot(normal, normalize(vViewPosition)));\n          gFr = pow(1. - gNv, 3.);\n          float gEdge = smoothstep(.05, .32, gNv);\n          { float p = vEmissiveMapUv.x * .85 + vEmissiveMapUv.y * .55 + dot(normal, vec3(.55, .35, .2)) * .7;\n            float q = fract(p) - .5; gBand = exp(-q * q / .0032) + .45 * exp(-(q + .17) * (q + .17) / .0009); }\n          diffuseColor.a = (.1 + gE * .6 + gFr * .3) * gEdge * uFade * uMul;').replace('vec3 outgoingLight = totalDiffuse + totalSpecular + totalEmissiveRadiance;','vec3 outgoingLight = totalDiffuse * diffuseColor.a + (min(totalSpecular * (.22 + .5 * gE) * mix(1., .35, uFold), vec3(.45)) + totalEmissiveRadiance * .85 + (vec3(.87, .91, 1.) * gFr * .3 + vec3(1., .97, .92) * gBand * .1) * (1. - .7 * uFold)) * gEdge * uFade * uMul;').replace('#include <premultiplied_alpha_fragment>','')
+;o.includes('totalDiffuse * diffuseColor.a')||console.warn('glass shader hook did not apply'),t.fragmentShader=o};return this.glassMul={value:1},this.ghostMul={value:.2},l.onBeforeCompile=c(this.glassMul),this._ghostHook=c(this.ghostMul),{gold:a,gold_satin:s,gold_dark:new e.MeshPhysicalMaterial({color:o(.5,.3,.12),metalness:1,roughness:.3,envMapIntensity:1}),ruby:r,enamel:i,onyx:n,glass:l}}
+_rig(t,o){const a=this.M=this._materials(o),s={},r=[];t.traverse((e=>{if(e.name&&(s[e.name]=e),e.isMesh){const t=(e.material&&e.material.name||'').replace(/\.\d+$/,''),o=a[t]||a.gold;e.material=o,e.frustumCulled=!1,'ruby'===t&&r.push(e),'glass'===t&&(e.renderOrder=2)}})),this.nodes=s,this.actor=new e.Group,this.tilt=new e.Group,this.body=new e.Group,this.pivot=new e.Group,
+this.pivot.position.y=-.46,this.pivot.add(t),this.body.add(this.pivot),this.tilt.add(this.body),this.actor.add(this.tilt),this.scene.add(this.actor);const i=e=>s[e],n=e=>e&&{o:e,p:e.position.clone(),q:e.quaternion.clone()};this.rig={body:n(i('Body')),head:n(i('Head')),prono:n(i('Pronotum')),elyL:n(i('ElytronL')),elyR:n(i('ElytronR')),antL:n(i('AntennaL')),antR:n(i('AntennaR')),
+wings:['WingFL','WingFR','WingHL','WingHR'].map((e=>({...n(i(e)),side:e.endsWith('L')?-1:1,fore:'F'===e[4]}))),heart:n(i('Heart')),gearA:n(i('GearA')),gearB:n(i('GearB')),legs:[]};for(const t of['L','R'])for(const o of[1,2,3]){const a=n(i('Leg'+t+o)),s=n(i('Knee'+t+o)),r=n(i('Ankle'+t+o));if(!a||!s)continue;const l=s.p.clone();l.y=0,l.normalize()
+;const c=(new e.Vector3).crossVectors(l,new e.Vector3(0,1,0)).normalize();this.rig.legs.push({leg:a,knee:s,ankle:r,side:'L'===t?-1:1,k:o,d:l,lift:c,group:'L'===t==(o%2==1)?0:1})}const l=t=>new e.Vector3(t[0],t[2],-t[1]);for(const t of this.rig.wings){const o=t.o.userData||{};if(!o.span||!o.chord)continue
+;const a=l(o.span).normalize(),s=l(o.chord).normalize(),r=(new e.Vector3).crossVectors(a,s).normalize(),i=(t.fore?new e.Vector3(.3*t.side,.06,-.95):new e.Vector3(.46*t.side,-.02,-.89)).normalize(),n=(new e.Quaternion).setFromUnitVectors(a,i),c=r.clone().applyQuaternion(n),p=new e.Vector3(0,1,0);p.addScaledVector(i,-p.dot(i)).normalize(),c.dot(p)<0&&c.negate()
+;const d=Math.atan2((new e.Vector3).crossVectors(c,p).dot(i),c.dot(p)),h=(new e.Quaternion).setFromAxisAngle(i,d);t.foldQ=t.q.clone().premultiply(h.multiply(n))}this._wingGhosts(),this._glints(r),this._shadow(),this.anchorDefs=[{nodes:['elytronL','elytronR'],mat:'gold',face:.35,avoid:'glass'},{nodes:['pronotum','elytronL','elytronR'],mat:'ruby',face:.4,avoid:'glass'},{nodes:['core'],mat:'enamel',
+face:.62,avoid:'glass'},{nodes:['wingfl_glass','wingfr_glass'],mat:'glass',face:.15,inset:.18,uvMin:.45,avoid:'body'}],this._anchorCache=[],this._anchorSm=[]}_wingGhosts(){this.ghosts=[];const e=this.M.gold.clone();e.transparent=!0,e.depthWrite=!1,e.opacity=0;const t=this.M.glass.clone();t.premultipliedAlpha=!0,t.onBeforeCompile=this._ghostHook,t.customProgramCacheKey=()=>'ghostglass',
+this.ghostMats={gold:e,glass:t};for(const o of this.rig.wings)for(let a=1;a<=2;a++){const s=o.o.clone(!0);s.traverse((o=>{o.isMesh&&(o.material=o.material===this.M.glass?t:e)})),o.o.parent.add(s),this.ghosts.push({w:o,o:s,k:a})}}_glints(t){this.glints=[];const o=new e.ShaderMaterial({transparent:!0,depthWrite:!1,depthTest:!0,blending:e.AdditiveBlending,uniforms:{uTime:{value:0},uScale:{value:1},
+uAmt:{value:1}},
+vertexShader:'attribute float aPh; attribute float aR; uniform float uTime, uScale; varying float vA;\n        void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.); gl_Position = projectionMatrix * mv;\n          vec3 n = normalize(normalMatrix * normal); float facing = pow(max(0., dot(n, normalize(-mv.xyz))), 6.);\n          float tw = pow(max(0., sin(uTime * (0.9 + aPh * 1.7) + aPh * 40.)), 18.);\n          vA = facing * tw; gl_PointSize = (14. + aR * 900.) * uScale * (16. / -mv.z) * (0.4 + vA); }',
+fragmentShader:'uniform float uAmt; varying float vA; void main(){ vec2 c = gl_PointCoord - .5; float r = length(c);\n          float rays = max(0., 1. - abs(c.x) * 18.) * max(0., 1. - abs(c.y) * 2.1) + max(0., 1. - abs(c.y) * 18.) * max(0., 1. - abs(c.x) * 2.1);\n          float core = exp(-r * r * 90.); float a = (rays * .8 + core) * vA * uAmt;\n          gl_FragColor = vec4(vec3(1., .93, .86) * a, a); }'
+});for(const a of t){const t=a.geometry,s=t.attributes.position,r=t.attributes.normal,i=t.index;if(!i)continue;const n=new Int32Array(s.count).map(((e,t)=>t)),l=e=>{for(;n[e]!==e;)n[e]=n[n[e]],e=n[e];return e};for(let e=0;e<i.count;e+=3){const t=l(i.getX(e)),o=l(i.getX(e+1)),a=l(i.getX(e+2));n[o]=t,n[l(a)]=t}const c=new Map,p=new e.Vector3,d=new e.Vector3;for(let t=0;t<s.count;t++){const o=l(t)
+;let a=c.get(o);a||(a={s:new e.Vector3,nn:new e.Vector3,n:0},c.set(o,a)),a.s.add(p.fromBufferAttribute(s,t)),r&&a.nn.add(d.fromBufferAttribute(r,t)),a.n++}const h=[],u=[],g=[],m=[];for(const e of c.values()){if(e.n<20)continue;const t=e.s.multiplyScalar(1/e.n),o=e.nn.normalize(),a=Math.min(.08,.004*Math.cbrt(e.n));t.addScaledVector(o,.55*a),h.push(t.x,t.y,t.z),u.push(o.x,o.y,o.z),m.push(a),
+g.push(Math.random())}if(!h.length)continue;const f=new e.BufferGeometry;f.setAttribute('position',new e.Float32BufferAttribute(h,3)),f.setAttribute('normal',new e.Float32BufferAttribute(u,3)),f.setAttribute('aPh',new e.Float32BufferAttribute(g,1)),f.setAttribute('aR',new e.Float32BufferAttribute(m,1));const y=new e.Points(f,o);y.frustumCulled=!1,y.renderOrder=5,a.add(y),this.glints.push(y)}
+this.starMat=o}_shadow(){const t=document.createElement('canvas');t.width=t.height=256;const o=t.getContext('2d'),a=o.createRadialGradient(128,128,0,128,128,128);a.addColorStop(0,'rgba(0,0,0,0.92)'),a.addColorStop(.3,'rgba(0,0,0,0.72)'),a.addColorStop(.55,'rgba(0,0,0,0.34)'),a.addColorStop(.8,'rgba(0,0,0,0.08)'),a.addColorStop(1,'rgba(0,0,0,0)'),o.fillStyle=a,o.fillRect(0,0,256,256)
+;const s=new e.CanvasTexture(t);this.shadowMat=new e.MeshBasicMaterial({map:s,transparent:!1,blending:e.NoBlending,premultipliedAlpha:!0,depthWrite:!1,opacity:0,toneMapped:!1}),this.shadowMesh=new e.Mesh(new e.PlaneGeometry(2.6,2),this.shadowMat),this.shadowMesh.rotation.x=-Math.PI/2,this.shadowMesh.position.set(.16,-.456,.2),this.shadowMesh.renderOrder=-10,this.tilt.add(this.shadowMesh)}_pose(t){
+const o=this.state,a=this.rig,s=this.time,r=(new e.Quaternion,new e.Quaternion),i=new e.Quaternion,n=new e.Vector3(1,0,0),c=new e.Vector3(0,1,0),p=new e.Vector3(0,0,1),h=o.explode;this.flapPhase=this.freezeFlap?this.freezePhase??0:this.flapPhase+t*o.flapHz*Math.PI*2*(.25+.75*l(o.flap,0,1))
+;const u=(e,t)=>o.flap*(t.fore?1:.85)*(.62*Math.sin(e+(t.fore?0:.6))-.18)+.35*o.wingRaise+.55*h,g=l(o.fold,0,1)*(1-h);this.wingFold.value=g;for(const t of a.wings){const a=u(this.flapPhase,t)*(1-g);r.setFromAxisAngle(p,t.side*a),i.setFromAxisAngle(c,t.side*(.25*h+o.sweep*(t.fore?1:1.25)*(1-g)+(t.fore?0:.05*Math.sin(.7*s)))),t.o.quaternion.copy(t.q).premultiply(r).premultiply(i),
+g>.001&&t.foldQ&&t.o.quaternion.slerp(t.foldQ,d(g)),t.o.position.copy(t.p).add(new e.Vector3(.34*t.side*h,.18*h,(t.fore?.05:-.12)*h))}const m=l((o.flapHz-6)/10,0,1)*l(o.flap,0,1)*(1-h);for(const e of this.ghosts){const t=u(this.flapPhase-.55*e.k,e.w);r.setFromAxisAngle(p,e.w.side*t),i.setFromAxisAngle(c,e.w.side*o.sweep*(e.w.fore?1:1.25)),e.o.quaternion.copy(e.w.q).premultiply(r).premultiply(i),
+e.o.position.copy(e.w.o.position),e.o.visible=m>.02&&!this.freezeFlap}this.ghostMats.gold.opacity=.12*m,this.ghostMul.value=.2*m;const f=l(o.elytra+.9*h,0,1.4);for(const[t,l]of[[a.elyL,-1],[a.elyR,1]])t&&(r.setFromAxisAngle(p,l*f*.62),i.setFromAxisAngle(n,.32*f+.01*Math.sin(2.1*s)*o.flap),t.o.quaternion.copy(t.q).premultiply(i).premultiply(r),
+t.o.position.copy(t.p).add(new e.Vector3(.36*l*h,.22*h,-.05*h)));if(a.prono&&a.prono.o.position.copy(a.prono.p).add(new e.Vector3(0,.16*h,.12*h)),a.head){const t=.42*this.pointer.sx*o.look,l=.25*this.pointer.sy*o.look,p=.06*Math.sin(.6*s);r.setFromAxisAngle(c,t+p),i.setFromAxisAngle(n,l+.03*Math.sin(.9*s)),a.head.o.quaternion.copy(a.head.q).multiply(r).multiply(i),
+a.head.o.position.copy(a.head.p).add(new e.Vector3(0,.05*h,.32*h))}for(const[e,t]of[[a.antL,-1],[a.antR,1]])e&&(r.setFromAxisAngle(n,.08*Math.sin(2.3*s+t)+.12*o.flap),i.setFromAxisAngle(p,t*Math.sin(1.7*s+2*t)*.06),e.o.quaternion.copy(e.q).multiply(r).multiply(i));this.spinA+=t*(.4+2.2*h+2*o.spin),a.heart&&a.heart.o.position.copy(a.heart.p).add(new e.Vector3(0,.42*h,0)),
+a.gearA&&(a.gearA.o.position.copy(a.gearA.p).add(new e.Vector3(.1*h,.3*h,0)),a.gearA.o.quaternion.copy(a.gearA.q).multiply(r.setFromAxisAngle(c,this.spinA))),a.gearB&&(a.gearB.o.position.copy(a.gearB.p).add(new e.Vector3(-.1*h,.36*h,0)),a.gearB.o.quaternion.copy(a.gearB.q).multiply(r.setFromAxisAngle(c,1.3*-this.spinA))),this.rubyGlow.value=1+1.6*o.glow+.6*h;const y=l(o.legs,0,1)
+;this.walkPhase+=t*o.walk*7.5;for(const e of a.legs){const t=this.walkPhase+e.group*Math.PI,a=o.walk>.001?.32*Math.sin(t)*l(o.walk,0,1):0,n=o.walk>.001?.26*Math.max(0,Math.cos(t))*l(o.walk,0,1):0,p=(1-y)*(1===e.k?.2:2===e.k?.55:.85),d=(1-y)*(1===e.k?-.55:2===e.k?-.7:-.85),u=.035*Math.sin(1.3*s+1.7*e.k+e.side)*(1-y);r.setFromAxisAngle(c,e.side*(a+p+u)+h*e.side*.1),
+i.setFromAxisAngle(e.lift,n+d-.2*h),e.leg.o.quaternion.copy(e.leg.q).premultiply(i).premultiply(r),e.leg.o.position.copy(e.leg.p).add(e.d.clone().multiplyScalar(.16*h));const g=(1-y)*(3===e.k?-.3:-.45)+.12*y+-.6*n;e.knee.o.quaternion.copy(e.knee.q).premultiply(r.setFromAxisAngle(e.lift,g)),e.ankle&&e.ankle.o.quaternion.copy(e.ankle.q).premultiply(i.setFromAxisAngle(e.lift,-.5*(1-y)-.5*g))}}
+_place(){const e=this.state,t=(e.x-.5)*this.viewW,o=(.5-e.y)*this.viewH,a=this.w/this.h,s=a>=1?Math.min(1,a/(16/9)):1,r=e.size*s*this.viewH/1.3,i=.035*Math.sin(1.9*this.time)*r*e.flap*(1-e.legs);this.actor.position.set(t,o+i,e.z),this.actor.scale.setScalar(Math.max(1e-4,r)),this.tilt.rotation.set(e.pitch,0,0),
+this.body.rotation.set(-e.nose+.03*Math.sin(1.1*this.time)*e.flap,e.yaw+.08*this.pointer.sx*e.look,e.roll+.04*Math.sin(.8*this.time)*e.flap,'YZX'),this.actor.visible=e.vis>.01&&e.size>.005,this.shadowMat.opacity=l(e.shadow,0,1),this.shadowMesh.visible=e.shadow>.01,this.glassFade.value=l(e.vis,0,1)}project(e,t=this.w,o=this.h/2){const a=this.anchorDefs&&this.anchorDefs[e];if(!a)return null
+;this._anchorTick=(this._anchorTick||0)+1;let s=this._anchorCache[e];if(s&&this._anchorTick%4!=0||(s=this._anchorCache[e]=this._pickAnchor(a,t,o)||s),!s)return null;const r=this._anchorSm[e];return r&&this._anchorLast===e?(r.x+=.25*(s.x-r.x),r.y+=.25*(s.y-r.y),r.route=s.route):this._anchorSm[e]={x:s.x,y:s.y,route:s.route},this._anchorLast=e,{...this._anchorSm[e]}}_anchorSamples(e){
+if(e._samples)return e._samples;const t=this.M[e.mat],o=[];for(const a of e.nodes){const s=this.nodes[a];s&&s.traverse((a=>{if(!a.isMesh||a.material!==t)return;const s=a.geometry.attributes.position.count,r=Math.max(1,Math.ceil(s/700)),i=a.geometry.attributes.uv;for(let t=0;t<s;t+=r)(!e.uvMin||!i||i.getX(t)>=e.uvMin)&&o.push([a,t])}))}return e._samples=o}_pickAnchor(t,o,a){
+const s=this._anchorSamples(t);if(!s.length)return null;const r=this._pickScratch||(this._pickScratch={v:new e.Vector3,n:new e.Vector3,t:new e.Vector3,p:new e.Vector3,nm:new e.Matrix3}),{v:i,n,t:l,p:c,nm:p}=r,d=this.camera.position,h='glass'===t.mat,g='glass'===t.avoid?this._glassHulls():'body'===t.avoid?[this._bodyHull()]:null,m=[],f=new Map;let y=null,w=null,v=null,x=null;for(const[e,r]of s){
+e!==y&&(e.updateWorldMatrix(!0,!1),p.getNormalMatrix(e.matrixWorld),y=e,w=e.geometry.attributes.position,v=e.geometry.attributes.normal,x=f.get(e)||{x:0,y:0,n:0},f.set(e,x)),i.fromBufferAttribute(w,r).applyMatrix4(e.matrixWorld),c.copy(i).project(this.camera);const s=(.5*c.x+.5)*this.w,u=(.5*-c.y+.5)*this.h;if(x.x+=s,x.y+=u,x.n++,s<8||u<8||s>this.w-8||u>this.h-8)continue
+;n.fromBufferAttribute(v,r).applyMatrix3(p).normalize();let g=n.dot(l.copy(d).sub(i).normalize());h&&(g=Math.abs(g)),g<t.face||m.push({x:s,y:u,d:Math.hypot(s-o,1.4*(u-a)),o:e})}if(!m.length)return null;if(t.inset)for(const e of m){const s=f.get(e.o),r=t.inset;e.x+=(s.x/s.n-e.x)*r,e.y+=(s.y/s.n-e.y)*r,e.d=Math.hypot(e.x-o,1.4*(e.y-a))}m.sort(((e,t)=>e.d-t.d));let b=m[0],M='a';if(g){
+const e=(e,t,o,a)=>{for(let s=0;s<=14;s++){const r=s/14,i=e+(o-e)*r,n=t+(a-t)*r;if(g.some((e=>u(e.pts,i,n,10))))return!1}return!0},t=o-18;let s=null;for(const r of m){if(e(r.x,r.y,o-60,a)){s=r,M='a';break}if(r.x<t-20&&e(r.x,r.y,t,r.y)&&e(t,r.y,t,a)){s=r,M='b';break}}s&&(b=s)}return{x:b.x,y:b.y,route:M}}_bodyHull(){
+const t=this._bodyOcc||(this._bodyOcc=['core','elytronL','elytronR','pronotum'].flatMap((e=>{const t=[];return this.nodes[e]&&this.nodes[e].traverse((e=>e.isMesh&&t.push(e))),t}))),o=new e.Vector3,a=[];for(const e of t){e.updateWorldMatrix(!0,!1);const t=e.geometry.attributes.position,s=Math.max(1,Math.ceil(t.count/220))
+;for(let r=0;r<t.count;r+=s)o.fromBufferAttribute(t,r).applyMatrix4(e.matrixWorld).project(this.camera),a.push([(.5*o.x+.5)*this.w,(.5*-o.y+.5)*this.h])}return{pts:h(a)}}_glassHulls(){const t=this._glassOcc||(this._glassOcc=['wingfl_glass','wingfr_glass','winghl_glass','winghr_glass'].flatMap((e=>{const t=[];return this.nodes[e]&&this.nodes[e].traverse((e=>e.isMesh&&t.push(e))),t
+}))),o=new e.Vector3,a=this.camera.position,s=[];for(const e of t){e.updateWorldMatrix(!0,!1);const t=e.geometry.attributes.position,r=Math.max(1,Math.ceil(t.count/160)),i=[];let n=0,l=0;for(let s=0;s<t.count;s+=r)o.fromBufferAttribute(t,s).applyMatrix4(e.matrixWorld),n+=o.distanceTo(a),l++,o.project(this.camera),i.push([(.5*o.x+.5)*this.w,(.5*-o.y+.5)*this.h]);s.push({pts:h(i),dist:n/l})}return s
+}update(e){this.time+=e;const t=this.pointer;if(t.sx=p(t.sx,t.x,3,e),t.sy=p(t.sy,t.y,3,e),this.ready){for(const t of STATE_KEYS){const o='x'===t||'y'===t||'size'===t?this.posRate||7:'vis'===t?10:5;this.state[t]=p(this.state[t],this.target[t],o,e)}this._pose(e),this._place(),this.actor.updateMatrixWorld(!0),this.starMat.uniforms.uTime.value=this.time}const o=this.dust.material.uniforms
+;o.uTime.value=this.time,o.uScroll.value=this.scrollY/Math.max(1,this.h)*1.2,o.uPtr.value.set(t.sx,t.sy)}_setupPost(){if(!new URLSearchParams(location.search).has('bloom')||window.innerWidth<900)return;const t=new e.WebGLRenderTarget(4,4,{type:e.HalfFloatType,samples:4});this.composer=new a(this.renderer,t);const o=new s(this.scene,this.camera);o.clearAlpha=0,this.composer.addPass(o),
+this.bloom=new r(new e.Vector2(512,512),.1,.22,2.6);const n=this.bloom.blendMaterial;n.blending=e.CustomBlending,n.blendEquation=e.AddEquation,n.blendSrc=e.OneFactor,n.blendDst=e.OneFactor,n.blendSrcAlpha=e.ZeroFactor,n.blendDstAlpha=e.OneFactor,this.composer.addPass(this.bloom),this.composer.addPass(new i)}render(){this.composer?this.composer.render():this.renderer.render(this.scene,this.camera)}
+adapt(e){this.frameMs=c(this.frameMs,e,.05),this.frameMs>24&&this.dpr>1?(this.slowFrames++,this.slowFrames>90&&(this.dpr=Math.max(1,this.dpr-.25),this.resize(),this.slowFrames=0)):this.slowFrames=Math.max(0,this.slowFrames-1)}}{
+const g=(e,t=document)=>t.querySelector(e),m=(e,t=document)=>[...t.querySelectorAll(e)],f=(e,t,o)=>Math.min(o,Math.max(t,e)),y=(e,t,o)=>e+(t-e)*o,w=e=>e*e*(3-2*e),v=new URLSearchParams(location.search),x=v.get('cap'),b=x||v.has('nointro')||matchMedia('(prefers-reduced-motion: reduce)').matches,M=+(v.get('slow')||1),S=v.get('ov')?JSON.parse(v.get('ov')):null,k=matchMedia('(prefers-reduced-motion: reduce)').matches,A=matchMedia('(hover: hover) and (pointer: fine)').matches,T=()=>innerWidth<1024||innerWidth/innerHeight<1,E=e=>window.__ASSETS&&window.__ASSETS[e]||'assets/'+e
+;gsap.registerPlugin(ScrollTrigger),1!=+(new URLSearchParams(location.search).get('slow')||1)&&gsap.globalTimeline.timeScale(+new URLSearchParams(location.search).get('slow')),window.__errs=[],addEventListener('error',(e=>window.__errs.push(String(e.message))))
+;const _=[['M2 7H19V6C19 2.6 16.6.8 13 .8H8C4 .8 1 3 1 7S4 13.2 8 13.2H18.5',21],['M1-6V9.6C1 12 2.4 13.2 4.8 13.2',8],['M1 .8V5.6C1 9 3.4 10.8 7 10.8H11C14.6 10.8 17 9 17 5.6V.8M17 5.6V15.4C17 18.8 14.6 20.6 11 20.6H3',20],['M4-4V9.6C4 12 5.4 13.2 7.8 13.2H11M.4 .8H11',14],['M1 13.2V6C1 2.6 3.4.8 7 .8H13.6',16],['M2 .8H12C15.6.8 18 2.6 18 6V13.2M18 7.4H7.2C3.6 7.4 1 8.6 1 10.3S3.6 13.2 7.2 13.2H12.6C15.4 13.2 18 12 18 10',20]]
+;function L(e=1.7,t=''){let o=1,a='';for(const[e,t]of _)a+=`<path transform="translate(${o} 7)" d="${e}"/>`,o+=t+4;return`<svg class="${t}" viewBox="0 0 ${o-3} 35" fill="none" stroke="currentColor" stroke-width="${e}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${a}</svg>`}
+const C='<svg viewBox="0 0 32 32" fill="none" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">\n  <path d="M16 10.4C9.4 10.4 5 15.4 5 21.2c0 5.3 4.6 8.6 11 8.6s11-3.3 11-8.6c0-5.8-4.4-10.8-11-10.8Z" stroke="#fff" stroke-width="2"/>\n  <path d="M16 10.6v19" stroke="#fff" stroke-width="1.6"/><path d="M16 12.2l-4.6 4.2M16 12.2l4.6 4.2" stroke="#CD9864" stroke-width="1.6"/>\n  <circle cx="10.6" cy="22" r="1.7" fill="#CD9864"/><circle cx="21.4" cy="22" r="1.7" fill="#CD9864"/>\n  <path d="M11.6 10.8c.6-3.4 8.2-3.4 8.8 0" stroke="#fff" stroke-width="2"/><path d="M13.4 6.6 11 3.2M18.6 6.6 21 3.2" stroke="#CD9864" stroke-width="1.5"/></svg>'
+;function z(e){if(e.dataset.done)return;e.dataset.done=1;const t=e.textContent;e.textContent='';for(const o of t){const t=document.createElement('span');t.className='char',t.textContent=' '===o?'\xa0':o,e.appendChild(t)}}m('[data-logo]').forEach((e=>e.innerHTML=L(2.1))),m('[data-mark]').forEach((e=>e.innerHTML=C)),
+m('[data-logo-big]').forEach((e=>e.innerHTML=L(1.05,'big-word').replace('<svg','<svg preserveAspectRatio="xMidYMid meet"').replace('stroke="currentColor"','stroke="url(#goldWord)"').replace('aria-hidden="true">','aria-hidden="true"><defs><linearGradient id="goldWord" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F1D29A"/><stop offset=".45" stop-color="#CD9864"/><stop offset=".7" stop-color="#E7C27D"/><stop offset="1" stop-color="#9C6B3C"/></linearGradient></defs>'))),
+m('[data-split]').forEach(z),m('.quote p').forEach((e=>{e.innerHTML=e.textContent.split(' ').map((e=>`<span class="w">${e}</span>`)).join(' ')})),(()=>{const e=document.createElement('canvas');e.width=e.height=256;const t=e.getContext('2d'),o=t.createImageData(256,256);for(let e=0;e<o.data.length;e+=4){const t=96+64*Math.random();o.data[e]=o.data[e+1]=o.data[e+2]=t,o.data[e+3]=255}
+t.putImageData(o,0,0),g('#grain').style.backgroundImage=`url(${e.toDataURL()})`})();const P=new World(g('#gl'));window.__world=P;const q=new Lenis({duration:1.15,easing:e=>Math.min(1,1.001-Math.pow(2,-10*e)),smoothWheel:!k,syncTouch:!1});window.__lenis=q,q.on('scroll',ScrollTrigger.update),gsap.ticker.add((e=>q.raf(1e3*e))),gsap.ticker.lagSmoothing(0),b||q.stop();const H=(e,t=!1)=>{
+const o='string'==typeof e?g(e):e;o&&q.scrollTo(o,{duration:t?0:1.6,immediate:t,easing:e=>1-Math.pow(1-e,4),offset:0})};m('[data-scroll]').forEach((e=>e.addEventListener('click',(t=>{t.preventDefault(),ue(),H(e.dataset.scroll)}))));const F=e=>({...DEFAULT_STATE,...e});function R(){const e=T();return{hero:F(e?{x:.5,y:.47,size:.22,yaw:-.7,pitch:.42,roll:.12,nose:.3,flap:1,flapHz:14,elytra:.05,
+wingRaise:.45,sweep:.15}:{x:.525,y:.43,size:.53,yaw:-.7,pitch:.42,roll:.12,nose:.3,flap:1,flapHz:14,elytra:.05,wingRaise:.45,sweep:.15}),armor:F(e?{x:.5,y:.35,size:.21,yaw:-1,pitch:.38,flap:0,flapHz:2.5,legs:1,elytra:0,shadow:1,look:.5,fold:1}:{x:.5,y:.565,size:.5,yaw:-1,pitch:.32,flap:0,flapHz:2.5,legs:1,elytra:0,shadow:1,look:.5,fold:1}),armorOut:F(e?{x:.5,y:.2,size:.3,yaw:-.3,pitch:.3,flap:1,
+flapHz:13,legs:.2,elytra:.3}:{x:.52,y:.45,size:.52,yaw:-.25,pitch:.3,flap:1,flapHz:13,legs:.2,elytra:.3}),anat0:F(e?{x:.5,y:.48,size:.27,yaw:-.2,pitch:.28,flap:.2,flapHz:3,legs:1,look:.3}:{x:.475,y:.55,size:.5,yaw:-.55,pitch:.34,flap:.2,flapHz:3,legs:1,look:.3,sweep:.5}),anat1:F(e?{x:.5,y:.56,size:.19,yaw:.9,pitch:.45,flap:0,flapHz:2,legs:1,explode:1,look:0,glow:.6}:{x:.5,y:.58,size:.42,yaw:.9,
+pitch:.45,flap:0,flapHz:2,legs:1,explode:1,look:0,glow:.6}),anat2:F(e?{x:.5,y:.56,size:.19,yaw:2.7,pitch:.35,flap:0,flapHz:2,legs:1,explode:1,look:0,glow:1}:{x:.5,y:.58,size:.42,yaw:2.7,pitch:.35,flap:0,flapHz:2,legs:1,explode:1,look:0,glow:1}),anat3:F(e?{x:.5,y:.48,size:.27,yaw:5.6,pitch:.3,flap:.5,flapHz:8,legs:1,explode:0,look:.3}:{x:.48,y:.55,size:.5,yaw:5.6,pitch:.3,flap:.18,flapHz:3,legs:1,
+explode:0,look:.3,wingRaise:.9,sweep:-.15}),away:F({x:1.15,y:-.15,size:.18,yaw:5.9,pitch:.1,roll:-.4,flap:1,flapHz:15,vis:1}),hidden:F({x:1.15,y:-.15,size:.18,yaw:5.9,flap:1,flapHz:15,vis:0}),topIn:F({x:e?49/innerWidth:.5,y:-.25,size:e?.1:.17,yaw:6.283,pitch:1.57,flap:1,flapHz:15,legs:.3,vis:1}),walk:F({x:e?49/innerWidth:.5,y:.55,size:e?.085:.17,yaw:6.283,pitch:1.35,flap:0,flapHz:2,legs:1,look:0,
+shadow:0,fold:1}),perch:F({size:e?.1:.16,yaw:5.3,pitch:.3,flap:0,flapHz:3,legs:1,look:.7,fold:1,shadow:.55}),hover:F({size:e?.1:.16,yaw:6.7,pitch:.25,flap:1,flapHz:14,legs:0,look:.8}),cta:F(e?{x:.76,y:.905,size:.29,yaw:6.283-1.15,pitch:.2,flap:.4,flapHz:4,legs:.5,look:.6}:{x:.93,y:.62,size:1.4,yaw:6.283-1.05,pitch:.2,roll:.05,flap:.4,flapHz:4,legs:.5,look:.6}),exit:F({x:.9,y:-.4,size:.3,
+yaw:6.283+.4,pitch:-.2,flap:1,flapHz:15,vis:0})}}let B=R();const $=e=>e.getBoundingClientRect().top+scrollY;let V=[];function W(e,t,o,a,s=0){return()=>{const r=g(t);if(!r)return e;const i=r.getBoundingClientRect();return{...e,x:(i.left+i.width*o)/innerWidth,y:(i.top+i.height*a)/innerHeight+s}}}function D(){B=R()
+;const e=innerHeight,t=e=>$(g(e)),o=g('#anatomy'),a=g('#collection'),s=g('#protoTrack'),r=$(o),i=o.offsetHeight-e,n=$(a),l=(a.offsetHeight,$(s)),c=l+s.offsetHeight,p=T();V=[{at:0,s:B.hero},{at:.92*t('#armor'),s:B.armor,e:'io'},{at:t('#armor')+.3*e,s:B.armor},{at:r,s:B.armorOut,e:'io'},{at:r+.08*i,s:B.anat0,e:'io'},{at:r+.3*i,s:B.anat1,e:'io'},{at:r+.6*i,s:B.anat2},{at:r+.92*i,s:B.anat3,e:'io'},{
+at:n+.05*e,s:B.away,e:'in'},{at:n+.35*e,s:B.hidden},{at:l-1*e,s:B.hidden},{at:l-.82*e,s:W(B.walk,'.proto-item[data-milestone="0"] .pdot',.5,.5,-.02),e:'out'},{at:l-.5*e,s:W(B.walk,'.proto-item[data-milestone="0"] .pdot',.5,.5,-.02)},{at:l-.3*e,s:B.walk,e:'io'},{at:c-.75*e,s:B.walk},{at:t('#pricing')+.2*e,s:W(B.perch,'.plan-hero',p?.72:.4,0,p?-.038:-.066),e:'io'},{at:t('#pricing')+.75*e,
+s:W(B.perch,'.plan-hero',p?.72:.4,0,p?-.038:-.066)},{at:t('#voices')-.2*e,s:{...B.hover,x:p?.88:.94,y:.22,yaw:5.9},e:'io'},{at:t('#voices')+.15*e,s:p?W(B.hover,'.quote-wrap',.78,0,-.01):W(B.hover,'.q-mark',.5,2.75),e:'io'},{at:t('#voices')+.7*e,s:p?W(B.hover,'.quote-wrap',.78,0,-.01):W(B.hover,'.q-mark',.5,2.75)},{at:t('#voices')+1.05*e,s:{...B.hover,x:p?.86:.9,y:p?.2:.3,yaw:5.9},e:'io'},{
+at:t('#faq')+.05*e,s:W({...B.perch,shadow:0},'.faq-head .h-stack > span',p?.82:.58,.1,-.055),e:'io'},{at:t('#faq')+.45*e,s:W({...B.perch,shadow:0},'.faq-head .h-stack > span',p?.82:.58,.1,-.055)},{at:t('#cta')-.1*e,s:B.cta,e:'io'},{at:t('#cta')+.12*e,s:B.cta},{at:t('#footer')-.08*e,s:B.exit,e:'in'}]}const O={io:w,in:e=>e*e,out:e=>1-(1-e)*(1-e),lin:e=>e},G=e=>'function'==typeof e?e():e
+;function j(e){if(!V.length)return B.hero;if(e<=V[0].at)return G(V[0].s);for(let t=0;t<V.length-1;t++){const o=V[t],a=V[t+1];if(e<a.at){const t=(O[a.e]||O.lin)(f((e-o.at)/Math.max(1,a.at-o.at),0,1)),s=G(o.s),r=G(a.s),i={};for(const e of STATE_KEYS)i[e]=y(s[e],r[e],t);return i}}return G(V[V.length-1].s)}
+const Y=[[0,.18,.58,1.55,-1.05,.18,.35],[.55,.42,.4,1.25,-.55,.22,.12],[1.05,.83,.38,.98,.85,.25,-.38],[1.38,1.3,.44,.9,1.1,.25,-.5],[1.52,.66,1.45,.92,-.35,.5,.1],[1.95,.55,.7,.74,-.62,.38,.12],[2.45,.525,.43,.53,-.7,.42,.12]];function I(e,t){const o=Y;if(e>=o[o.length-1][0])return t;let a=0;for(;a<o.length-2&&e>o[a+1][0];)a++;const s=o[a],r=o[a+1];if(s[1]>1.1&&r[2]>1.1)return null
+;const i=w(f((e-s[0])/(r[0]-s[0]),0,1)),n=o[Math.max(0,a-1)],l=o[Math.min(o.length-1,a+2)],c=e=>{const t=n[e],o=s[e],a=r[e],c=l[e];return.5*(2*o+(-t+a)*i+(2*t-5*o+4*a-c)*i*i+(3*o-t-3*a+c)*i*i*i)},p=s[1]>1.1,d={...t,flap:1,flapHz:17,legs:0,elytra:.15,look:0,vis:1};return d.x=p?y(s[1],r[1],i):c(1),d.y=p?y(s[2],r[2],i):c(2),d.size=y(s[3],r[3],i)*(t.size/.6),d.yaw=y(s[4],r[4],i),
+d.pitch=y(s[5],r[5],i),d.roll=y(s[6],r[6],i),T()&&(d.x=.5+.8*(d.x-.5)),d}let U=-1,N=!!b,X=scrollY,Q=0;const K=g('#callouts');let Z=-1;function J(){if(!P.ready||Z<0||T())return void(K.childElementCount&&(K.innerHTML=''));const e=g(`.anat-step[data-step="${Z}"]`);if(!e)return;const t=e.getBoundingClientRect(),o=t.left-26,a=t.top+30,s=P.project(Z,o,a);if(!s)return
+;const r=o-60,i=11+2*Math.sin(performance.now()/300),n='b'===s.route?`${s.x},${s.y} ${o-18},${s.y} ${o-18},${a} ${o},${a}`:`${s.x},${s.y} ${r},${a} ${o},${a}`
+;K.innerHTML=`<polyline points="${n}" fill="none" stroke="#CD9864" stroke-width="1" stroke-dasharray="3 4"/>\n    <circle cx="${s.x}" cy="${s.y}" r="${i}" fill="none" stroke="rgba(6,15,29,.75)" stroke-width="4"/><circle class="ring" cx="${s.x}" cy="${s.y}" r="${i}"/>\n    <circle cx="${s.x}" cy="${s.y}" r="5.5" fill="rgba(6,15,29,.8)"/><circle cx="${s.x}" cy="${s.y}" r="3.5"/><circle cx="${o}" cy="${a}" r="2.5"/>`
+}gsap.ticker.add(((e,t)=>{const o=Math.min(.05,t/1e3)*M,a=scrollY;if(Q=y(Q,(a-X)/Math.max(o,.001),.2),X=a,P.scrollY=a,P.ready){let e;!N&&U>=0?(U+=o,e=I(U,B.hero),null===e&&(e={...B.hero,x:1.4,vis:1}),U>Y[Y.length-1][0]+.2&&(N=!0),P.posRate=14):N?(e=j(a),P.posRate=6):e={...B.hero,...I(0,B.hero),vis:0},e.legs>.9&&e.pitch>1&&(e={...e,walk:f(Math.abs(Q)/900,0,1)}),S&&(e={...e,...S}),
+Object.assign(P.target,e),x&&(Object.assign(P.state,e),P.freezeFlap=!0)}performance.now(),P.update(o),P.render(),P.adapt(t),J()}));const ee=g('#ld-num'),te=g('#ld-bar'),oe={v:0,shown:0},ae=e=>{oe.v=Math.max(oe.v,e)},se=()=>{oe.shown=y(oe.shown,oe.v,.12);const e=Math.round(100*oe.shown);ee.textContent=String(e).padStart(2,'0'),te.style.width=100*oe.shown+'%'};gsap.ticker.add(se)
+;const re=gsap.to('.ld-p',{strokeDashoffset:0,duration:2.2,ease:'power2.inOut',stagger:.06});async function ie(){await window.__assetsReady.catch((e=>window.__errs.push('assets: '+e.message)));const e=E('ladybug.glb'),t=document.fonts?document.fonts.ready:Promise.resolve(),o=m('img').map((e=>e.complete?Promise.resolve():new Promise((t=>{e.onload=e.onerror=t}))));let a=!0;try{
+await P.load(e,E('src/wing_etch.png'),(e=>ae(.1+.75*e)))}catch(e){a=!1,window.__errs.push('world: '+e.message),console.error(e)}await Promise.race([Promise.all([t,...o]),new Promise((e=>setTimeout(e,4e3)))]),ae(1),D(),pe(),b?ne(!0):(await new Promise((e=>setTimeout(e,450))),ne(!1))}function ne(e){gsap.ticker.remove(se);const t=document.documentElement;if(e)return g('#loader').style.display='none',
+t.classList.remove('is-loading'),gsap.set('#home .char, .stat, .cta-row > *, .socials .soc, .relic, .scroll-badge, .chev, #nav',{clearProps:'all'}),le.hero=!0,void(x&&qe());const o=gsap.timeline();re.progress(1),o.to('.ld-inner, .ld-count, .ld-caption, .ld-bar',{opacity:0,duration:.45,ease:'power2.in'}).add((()=>{t.classList.remove('is-loading'),U=0})).to('.ld-top',{yPercent:-100,duration:1.15,
+ease:'expo.inOut'},'<0.15').to('.ld-bot',{yPercent:100,duration:1.15,ease:'expo.inOut'},'<').set('#loader',{display:'none'}).add(ce(),'<-0.6')}const le={};function ce(){const e=gsap.timeline({onComplete:()=>{le.hero=!0,q.start()}});return e.to('#nav',{opacity:1,y:0,duration:1,ease:'power3.out'},.5).to('.hl-left .char',{opacity:1,yPercent:0,filter:'blur(0px)',duration:.9,ease:'power3.out',
+stagger:.055},2.45).to('.hl-right .char',{opacity:1,yPercent:0,filter:'blur(0px)',duration:.9,ease:'power3.out',stagger:.055},2.6).to('.chev, .stat',{opacity:1,y:0,duration:.8,ease:'power3.out',stagger:.1},2.7).to('.cta-row .pill',{opacity:1,scale:1,duration:.8,ease:'expo.out'},3.25).to('.cta-row .pill-dot',{opacity:1,scale:1,duration:.9,ease:'back.out(2.2)'},3.4).to('.cta-copy',{opacity:1,x:0,
+duration:.8,ease:'power3.out'},3.45).to('.socials .soc',{opacity:1,y:0,duration:.7,ease:'power3.out',stagger:.07},3.3).to('.relic',{opacity:1,y:0,duration:.7,ease:'power3.out',stagger:.07},3.35).to('.scroll-badge',{opacity:1,rotate:0,duration:1.2,ease:'expo.out'},3.3),e}function pe(){gsap.to('.hl-left',{yPercent:-38,ease:'none',scrollTrigger:{trigger:'#home',start:'top top',end:'bottom top',
+scrub:!0}}),gsap.to('.hl-right',{yPercent:-52,ease:'none',scrollTrigger:{trigger:'#home',start:'top top',end:'bottom top',scrub:!0}}),gsap.to('.scroll-badge .sb-text',{rotate:360,ease:'none',scrollTrigger:{trigger:'#home',start:'top top',end:'bottom top',scrub:!0}}),gsap.fromTo('.sb-line',{scaleY:.2},{scaleY:1,duration:1.4,ease:'power2.inOut',repeat:-1,yoyo:!0});const e=gsap.timeline({paused:!0})
+;e.fromTo('.at-line',{opacity:0,'--ls':.9,filter:'blur(14px)'},{opacity:1,'--ls':.3,filter:'blur(0px)',duration:1.3,ease:'expo.out',stagger:.12},0),['.c-tl','.c-tr','.c-bl','.c-br'].forEach(((t,o)=>{e.fromTo(`${t} .card-glass`,{opacity:0,scale:.92},{opacity:1,scale:1,duration:.9,ease:'expo.out'},.25+.16*o),e.fromTo(`${t} .card-body, ${t} .card-art, ${t} .card-go`,{opacity:0,filter:'blur(12px)',
+y:16},{opacity:1,filter:'blur(0px)',y:0,duration:1,ease:'power3.out',stagger:.06},.5+.16*o)})),ScrollTrigger.create({trigger:'#armor',start:'top 45%',end:'bottom 20%',onEnter:()=>e.play(),onLeaveBack:()=>e.reverse()});const t=m('.anat-step'),o=g('.anat-progress span');ScrollTrigger.create({trigger:'#anatomy',start:'top top',end:'bottom bottom',onUpdate:e=>{
+const a=e.progress,s=a<.06||a>.97?-1:Math.min(3,Math.floor((a-.06)/.225));t.forEach(((e,t)=>e.classList.toggle('is-on',t===s))),Z=s,g('.anat-progress').style.setProperty('--p',a.toFixed(3)),o&&(o.textContent=String(Math.max(1,s+1)).padStart(2,'0'))},onLeave:()=>Z=-1,onLeaveBack:()=>Z=-1});const a=g('#colTrack'),s=m('.shot'),r=g('#colBar');if(T())s.forEach((e=>gsap.from(e,{opacity:0,y:40,
+duration:1,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 85%'}})));else{const e=()=>a.scrollWidth-innerWidth;gsap.to(a,{x:()=>-e(),ease:'none',scrollTrigger:{trigger:'#collection',start:'top top',end:'bottom bottom',scrub:.6,invalidateOnRefresh:!0,onUpdate:e=>{r.style.transform=`scaleX(${e.progress})`}}})
+;const t=g('#collection'),o=s.map((e=>[e,e.querySelector('img'),e.querySelector('.shot-mask')])),i=()=>{const e=t.getBoundingClientRect();if(e.bottom<0||e.top>innerHeight)return;for(const[e,t,a]of o){const o=e.getBoundingClientRect(),s=(o.left+o.width/2)/innerWidth-.5;t.style.setProperty('--par',(-9*s).toFixed(2)+'%');const r=f((innerWidth-o.left)/(.42*innerWidth),0,1)
+;a.style.clipPath=`inset(0 ${(100*(1-w(r))).toFixed(2)}% 0 0 round calc(var(--u) * 28))`;const i=innerWidth/1920*680,n=(Math.min(o.right,innerWidth*(.42+.58*w(r)))-Math.max(o.left,i))/o.width,l=e.querySelector('figcaption');l.style.opacity=f((n-.3)/.15,0,1).toFixed(3),l.style.paddingLeft=Math.max(0,innerWidth/1920*760+8-o.left).toFixed(1)+'px',e._vis=n}let a=0,s=-1;o.forEach((([e],t)=>{
+e._vis>s&&(s=e._vis,a=t)}));const r=g('#colNum');r&&(r.textContent=String(a+1).padStart(2,'0'))};gsap.ticker.add(i),i()}const i=g('#protoPath'),n=i.cloneNode();n.classList.add('draw'),i.after(n),n.style.strokeDasharray='1000',n.style.strokeDashoffset='1000';const l=m('.proto-item');ScrollTrigger.create({trigger:'#protoTrack',start:'top 55%',end:'bottom 55%',onUpdate:e=>{
+n.style.strokeDashoffset=String(1e3*(1-e.progress));const t=.55*innerHeight;l.forEach((e=>e.classList.toggle('is-lit',e.querySelector('.pdot').getBoundingClientRect().top<t)))}}),l.forEach((e=>gsap.from(e.querySelectorAll('em, h4, p'),{opacity:0,y:30,duration:1,ease:'power3.out',stagger:.08,scrollTrigger:{trigger:e,start:'top 80%'}}))),m('.h-stack, .cta-title').forEach((e=>{
+e.closest('#home')||gsap.from(e.querySelectorAll('.char'),{yPercent:105,duration:1.1,ease:'expo.out',stagger:.022,scrollTrigger:{trigger:e,start:'top 82%'}})})),m('.kicker, .anat-lede, .col-lede, .proto-lede, .faq-lede, .billing').forEach((e=>{e.closest('#home')||gsap.from(e,{opacity:0,y:20,duration:1,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 88%'}})})),gsap.from('.plan',{opacity:0,
+y:60,rotateX:8,duration:1.2,ease:'expo.out',stagger:.12,scrollTrigger:{trigger:'.plans',start:'top 80%'}}),gsap.from('.qa',{opacity:0,y:24,duration:.9,ease:'power3.out',stagger:.07,scrollTrigger:{trigger:'.faq-list',start:'top 80%'}}),gsap.from('.cta-form',{opacity:0,y:26,duration:1,ease:'power3.out',scrollTrigger:{trigger:'.cta-form',start:'top 90%'}}),gsap.from('.foot-grid > *',{opacity:0,y:30,
+duration:1,ease:'power3.out',stagger:.08,scrollTrigger:{trigger:'.footer',start:'top 85%'}});const c=g('.big-word');if(c){const e=c.querySelectorAll('path');e.forEach((e=>{const t=e.getTotalLength();e.style.strokeDasharray=t,e.style.strokeDashoffset=t})),gsap.to(e,{strokeDashoffset:0,duration:2.4,ease:'power2.inOut',stagger:.12,scrollTrigger:{trigger:'.foot-word',start:'top 92%'}})}
+m('[data-count]').forEach((e=>{if(e.closest('.stat'))return;const t=parseFloat(e.dataset.count),o=+(e.dataset.dec||0),a={v:0};gsap.to(a,{v:t,duration:2,ease:'power3.out',scrollTrigger:{trigger:e,start:'top 90%'},onUpdate:()=>e.textContent=a.v.toFixed(o)})}));const p=m('.nav-links a'),d={home:0,armor:1,anatomy:1,collection:1,protocol:2,pricing:3}
+;m('[data-section]').forEach((e=>ScrollTrigger.create({trigger:e,start:'top 50%',end:'bottom 50%',onToggle:t=>{t.isActive&&void 0!==d[e.dataset.section]&&p.forEach(((t,o)=>t.classList.toggle('is-active',o===d[e.dataset.section])))}})));const h=g('#nav');ScrollTrigger.create({start:0,end:'max',onUpdate:e=>{h.classList.toggle('is-scrolled',scrollY>1.85*innerHeight),
+h.classList.toggle('is-hidden',1===e.direction&&scrollY>1.2*innerHeight&&!document.documentElement.classList.contains('menu-open'))}}),ScrollTrigger.addEventListener('refresh',D),ScrollTrigger.refresh()}if(gsap.set('#nav',{opacity:0,y:-20}),gsap.set('#home .hl .char',{opacity:0,yPercent:18,filter:'blur(12px)'}),gsap.set('.stat, .chev',{opacity:0,y:14}),gsap.set('.cta-row .pill',{opacity:0,
+scale:.92,transformOrigin:'left center'}),gsap.set('.cta-row .pill-dot',{opacity:0,scale:.4}),gsap.set('.cta-copy',{opacity:0,x:-14}),gsap.set('.socials .soc, .relic',{opacity:0,y:18}),gsap.set('.scroll-badge',{opacity:0,rotate:-90}),A){const He=m('#home [data-depth]'),Fe=He.map((e=>gsap.quickTo(e,'x',{duration:1.2,ease:'power3.out'}))),Re=He.map((e=>gsap.quickTo(e,'y',{duration:1.2,
+ease:'power3.out'})));addEventListener('pointermove',(e=>{if(scrollY>innerHeight)return;const t=e.clientX/innerWidth-.5,o=e.clientY/innerHeight-.5;He.forEach(((e,a)=>{const s=+e.dataset.depth;Fe[a](18*t*s),Re[a](10*o*s)}))}),{passive:!0})}if(A&&!x){document.documentElement.classList.add('has-cursor');const Be=g('#cursor'),$e=Be.querySelector('.c-label'),Ve=gsap.quickTo(Be,'x',{duration:.35,
+ease:'power3.out'}),We=gsap.quickTo(Be,'y',{duration:.35,ease:'power3.out'});addEventListener('pointermove',(e=>{Ve(e.clientX),We(e.clientY)}),{passive:!0}),document.addEventListener('pointerover',(e=>{const t=e.target.closest('a, button, summary, .shot, input, textarea, [data-cursor]');Be.classList.toggle('is-hover',!!t&&!t.matches('.shot, input, textarea'))
+;const o=t&&(t.matches('.shot')?'VIEW':t.matches('.card-go')?'OPEN':'');Be.classList.toggle('is-label',!!o),$e.textContent=o||''})),m('.magnetic').forEach((e=>{const t=gsap.quickTo(e,'x',{duration:.6,ease:'elastic.out(1, .4)'}),o=gsap.quickTo(e,'y',{duration:.6,ease:'elastic.out(1, .4)'});e.addEventListener('pointermove',(a=>{const s=e.getBoundingClientRect();t(.28*(a.clientX-s.left-s.width/2)),
+o(.35*(a.clientY-s.top-s.height/2))})),e.addEventListener('pointerleave',(()=>{t(0),o(0)}))})),m('.tilt').forEach((e=>{const t=gsap.quickTo(e,'rotationX',{duration:.8,ease:'power3.out'}),o=gsap.quickTo(e,'rotationY',{duration:.8,ease:'power3.out'});e.addEventListener('pointermove',(a=>{const s=e.getBoundingClientRect(),r=(a.clientX-s.left)/s.width,i=(a.clientY-s.top)/s.height;t(10*(.5-i)),
+o(12*(r-.5)),e.style.setProperty('--mx',100*r+'%'),e.style.setProperty('--my',100*i+'%')})),e.addEventListener('pointerleave',(()=>{t(0),o(0)}))})),m('.card').forEach((e=>e.addEventListener('pointermove',(t=>{const o=e.getBoundingClientRect();e.querySelector('.card-glass').style.setProperty('--mx',t.clientX-o.left+'px'),e.querySelector('.card-glass').style.setProperty('--my',t.clientY-o.top+'px')
+}))))}const de=g('#menu');let he=null;function ue(){document.documentElement.classList.contains('menu-open')&&(document.documentElement.classList.remove('menu-open'),g('#burger').setAttribute('aria-expanded','false'),de.setAttribute('aria-hidden','true'),he&&he.kill(),he=gsap.timeline({onComplete:()=>{gsap.set(de,{visibility:'hidden'})}}).to('#menu .menu-list span',{yPercent:-110,duration:.5,
+ease:'power3.in',stagger:.02}).to('#menu .menu-bg',{clipPath:'inset(100% 0 0% 0)',duration:.8,ease:'expo.inOut'},'-=0.25'),q.start())}g('#burger').addEventListener('click',(()=>document.documentElement.classList.contains('menu-open')?ue():(document.documentElement.classList.add('menu-open'),g('#burger').setAttribute('aria-expanded','true'),de.setAttribute('aria-hidden','false'),q.stop(),
+he&&he.kill(),void(he=gsap.timeline().set(de,{visibility:'visible'}).fromTo('#menu .menu-bg',{clipPath:'inset(0 0 100% 0)'},{clipPath:'inset(0 0 0% 0)',duration:.9,ease:'expo.inOut'}).fromTo('#menu .menu-list span',{yPercent:110},{yPercent:0,duration:.9,ease:'expo.out',stagger:.045},'-=0.35').fromTo('#menu .menu-kicker, #menu .menu-list em, #menu .menu-foot',{opacity:0},{opacity:1,duration:.6,
+stagger:.02},'<0.2')))));let ge=null;function me(e){const t=g('#m-'+e)||g('#'+e);t&&(ge=document.activeElement,ue(),t.classList.add('is-open'),t.setAttribute('aria-hidden','false'),q.stop(),setTimeout((()=>{const e=t.querySelector('input, button.modal-x');e&&e.focus()}),60))}function fe(){m('.modal.is-open, .lightbox.is-open').forEach((e=>{e.classList.remove('is-open'),
+e.setAttribute('aria-hidden','true')})),q.start(),ge&&ge.focus&&ge.focus()}document.addEventListener('click',(e=>{const t=e.target.closest('[data-modal]');if(t)return e.preventDefault(),void me(t.dataset.modal);(e.target.closest('[data-close]')||e.target.matches('.modal, .lightbox'))&&fe()})),addEventListener('keydown',(e=>{'Escape'===e.key&&(fe(),ue()),
+g('#lightbox').classList.contains('is-open')&&('ArrowRight'===e.key&&ke(1),'ArrowLeft'===e.key&&ke(-1))})),m('.modal-form').forEach((e=>e.addEventListener('submit',(t=>{t.preventDefault();const o=e.querySelector('.form-note'),a=[...e.querySelectorAll('input[required]')].find((e=>!e.value.trim()||'email'===e.type&&!/^\S+@\S+\.\S+$/.test(e.value)))
+;if(a)return o.textContent='Please check the highlighted field.',o.className='form-note is-err',void a.focus();o.textContent=e.dataset.fake,o.className='form-note is-ok',e.querySelectorAll('input, textarea').forEach((e=>e.value=''))})))),g('#ctaForm').addEventListener('submit',(e=>{e.preventDefault();const t=g('#ctaEmail'),o=g('#ctaNote')
+;if(!/^\S+@\S+\.\S+$/.test(t.value))return o.textContent='That email looks unfinished — mind checking it?',o.className='form-note is-err',void t.focus();o.textContent='You’re on the list. The shell will be ready when you are.',o.className='form-note is-ok',t.value='',P.target.spin=1,setTimeout((()=>P.target.spin=0),1600)}));const ye=e=>{const t=g('#toast');t.textContent=e,t.classList.add('is-on'),
+clearTimeout(t._t),t._t=setTimeout((()=>t.classList.remove('is-on')),2200)};m('[data-soon]').forEach((e=>e.addEventListener('click',(()=>ye('Our socials hatch soon')))));const we=[{k:'Seal 01 — Identity',t:'SIGNET<br>CIPHER',img:'art_signet.webp',p:'Every person, service and device signs in with a key that is cut for them alone and rotates itself before anyone can copy it.',
+l:['Passwordless SSO + phishing-proof MFA','Per-device hardware keys','Rotation every 24 hours']},{k:'Seal 02 — Network',t:'ELYTRA<br>WALL',img:'art_shield.webp',p:'Two adaptive shells close over your network edge and between workloads, so an intruder who gets in finds nowhere to go.',l:['Micro-segmentation in one click','Inline exploit blocking','Self-healing rules']},{k:'Seal 03 — Data',
+t:'LOCKET<br>VAULT',img:'art_locket.webp',p:'Sensitive records live in sealed lockets, encrypted at rest and in motion, opened only by the people your policy names.',l:['Field-level encryption','Customer-held keys','Tamper-evident audit trail']},{k:'Seal 04 — Detection',t:'LANTERN<br>WATCH',img:'art_lantern.webp',
+p:'A sleepless light sweeps every endpoint, correlates the faintest signals and calls out anomalies while they are still small.',l:['Behavioural detection','38 ms median auto-response','Humans on call, 24/7']}];function ve(e){const t=we[e],o=g('#m-detail');o.querySelector('.detail-art').src=E(t.img),o.querySelector('.detail-art').alt='',o.querySelector('[data-d="k"]').textContent=t.k,
+o.querySelector('[data-d="t"]').innerHTML=t.t,o.querySelector('[data-d="p"]').textContent=t.p,o.querySelector('[data-d="l"]').innerHTML=t.l.map((e=>`<li>${e}</li>`)).join(''),me('detail')}m('[data-detail]').forEach((e=>e.addEventListener('click',(()=>ve(+e.dataset.detail))))),m('.relic').forEach((e=>e.addEventListener('click',(t=>{t.preventDefault(),H('#armor')
+;const o=g(`.card[data-card="${e.dataset.relic}"]`);setTimeout((()=>gsap.fromTo(o,{scale:1},{scale:1.05,duration:.35,yoyo:!0,repeat:1,ease:'power2.inOut'})),1500)}))));const xe=g('#lightbox');let be=0;const Me=m('.shot').map((e=>({img:e.querySelector('img'),b:e.querySelector('b').textContent,s:e.querySelector('figcaption span').textContent})));function Se(e){be=(e+Me.length)%Me.length
+;const t=Me[be];xe.querySelector('img').src=t.img.src,xe.querySelector('figcaption').innerHTML=`${t.b}<span>${t.s}</span>`}function ke(e){gsap.fromTo(xe.querySelector('figure'),{opacity:0,x:30*e},{opacity:1,x:0,duration:.6,ease:'expo.out'}),Se(be+e)}m('.shot').forEach(((e,t)=>e.addEventListener('click',(()=>{Se(t),me('lightbox')})))),
+m('[data-lb]').forEach((e=>e.addEventListener('click',(()=>ke(+e.dataset.lb)))));const Ae=g('.bill-knob');function Te(e){m('.bill').forEach((t=>t.classList.toggle('is-on',t.dataset.bill===e)));const t=g(`.bill[data-bill="${e}"]`);Ae.style.width=t.offsetWidth+'px',Ae.style.transform=`translateX(${t.offsetLeft-6}px)`,m('[data-price-m]').forEach((t=>{const o=+t.dataset['price'+('m'===e?'M':'Y')],a={
+v:parseFloat(t.textContent.replace('$',''))||0};gsap.to(a,{v:o,duration:.8,ease:'power3.out',onUpdate:()=>t.textContent='$'+Math.round(a.v)})}))}m('.bill').forEach((e=>e.addEventListener('click',(()=>Te(e.dataset.bill))))),requestAnimationFrame((()=>Te('m')));const Ee=m('.quote');let _e=0;const Le=g('#qbar'),Ce=g('#qnum');let ze=null;function Pe(e){const t=Ee[_e];_e=(e+Ee.length)%Ee.length
+;const o=Ee[_e];t!==o&&(gsap.to(t.querySelectorAll('.w'),{opacity:0,y:-12,duration:.35,stagger:.008,ease:'power2.in',onComplete:()=>t.classList.remove('is-on')}),gsap.delayedCall(.4,(()=>{o.classList.add('is-on'),gsap.fromTo(o.querySelectorAll('.w'),{opacity:0,y:18,filter:'blur(6px)'},{opacity:1,y:0,filter:'blur(0px)',duration:.8,stagger:.025,ease:'power3.out'}),
+gsap.fromTo(o.querySelector('footer'),{opacity:0,y:14},{opacity:1,y:0,duration:.8,delay:.3,ease:'power3.out'})}))),Ce.textContent=String(_e+1).padStart(2,'0'),ze&&ze.kill(),ze=gsap.fromTo(Le,{scaleX:0},{scaleX:1,duration:7,ease:'none',onComplete:()=>Pe(_e+1)})}function qe(){gsap.globalTimeline.timeScale(1);const e=x,t=/^\d+$/.test(e)?+e:'top'===e?0:$(g(e))+ +(v.get('off')||0)*innerHeight
+;q.scrollTo(t,{immediate:!0}),ScrollTrigger.update(),('#armor'===e||t>=.7*innerHeight)&&(gsap.set('.at-line',{opacity:1,filter:'none','--ls':.3}),gsap.set('.card-glass, .card-body, .card-art, .card-go',{opacity:1,scale:1,y:0,filter:'none'})),ScrollTrigger.getAll().forEach((e=>{e.animation&&e.start<=t+innerHeight&&!e.vars.scrub&&e.animation.progress(1)})),m('[data-count]').forEach((e=>{
+e.getBoundingClientRect().top<innerHeight&&(e.textContent=(+e.dataset.count).toFixed(+(e.dataset.dec||0)))})),setTimeout((()=>{document.documentElement.dataset.cap='ready'}),300)}m('[data-q]').forEach((e=>e.addEventListener('click',(()=>Pe(_e+ +e.dataset.q))))),ScrollTrigger.create({trigger:'#voices',start:'top 70%',once:!0,onEnter:()=>Pe(0)}),m('.qa').forEach((e=>{
+const t=e.querySelector('summary'),o=e.querySelector('.qa-a');t.addEventListener('click',(t=>{t.preventDefault(),e.open?(gsap.to(o,{height:0,opacity:0,duration:.5,ease:'power3.inOut',onComplete:()=>{e.open=!1,gsap.set(o,{clearProps:'height,opacity'})}}),e.classList.remove('is-open')):(e.open=!0,gsap.fromTo(o,{height:0,opacity:0},{height:'auto',opacity:1,duration:.6,ease:'power3.out'}))}))})),
+window.__cap=(e,t=0)=>{const o=$(g(e))+t*innerHeight;q.scrollTo(o,{immediate:!0}),ScrollTrigger.update()},document.addEventListener('visibilitychange',(()=>document.hidden?gsap.ticker.sleep():gsap.ticker.wake())),ie()}
+</script>
+</body>
+</html>

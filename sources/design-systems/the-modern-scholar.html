@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>The Modern Scholar — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Inter:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#f9f9f7; color:#111111; font-family:'Inter',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Poppins',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Poppins',sans-serif; font-size: 22px; border-bottom: 1px solid #111111; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#111111; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#111111; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#f9f9f7; border: 1px solid #111111; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#111111; }
+  .swatch-meta p { color:#111111; font-size: 12px; }
+  .specimen { border: 1px solid #111111; border-radius:12px; padding: 20px; background:#f9f9f7; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#111111; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#111111; }
+  .bar { height: 10px; background:#586111; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #586111; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#f9f9f7; border: 1px solid #111111; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #586111; }
+  .btn-primary { background:#586111; color:#f9f9f7; }
+  .btn-secondary { background: transparent; color:#586111; }
+  footer { border-top: 1px solid #111111; padding-top: 20px; font-size: 13px; color:#111111; }
+  footer a { color:#586111; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · uploaded design.md · light mode</div>
+    <h1>The Modern Scholar</h1>
+    
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#f9f9f7"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#f9f9f7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#dadad8"></div>
+        <div class="swatch-meta"><strong>surface-dim</strong><code>#dadad8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#f9f9f7"></div>
+        <div class="swatch-meta"><strong>surface-bright</strong><code>#f9f9f7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffffff"></div>
+        <div class="swatch-meta"><strong>surface-container-lowest</strong><code>#ffffff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#f4f4f2"></div>
+        <div class="swatch-meta"><strong>surface-container-low</strong><code>#f4f4f2</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#eeeeec"></div>
+        <div class="swatch-meta"><strong>surface-container</strong><code>#eeeeec</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#e8e8e6"></div>
+        <div class="swatch-meta"><strong>surface-container-high</strong><code>#e8e8e6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#e2e3e1"></div>
+        <div class="swatch-meta"><strong>surface-container-highest</strong><code>#e2e3e1</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1a1c1b"></div>
+        <div class="swatch-meta"><strong>on-surface</strong><code>#1a1c1b</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#514538"></div>
+        <div class="swatch-meta"><strong>on-surface-variant</strong><code>#514538</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2f3130"></div>
+        <div class="swatch-meta"><strong>inverse-surface</strong><code>#2f3130</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#f1f1ef"></div>
+        <div class="swatch-meta"><strong>inverse-on-surface</strong><code>#f1f1ef</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#837567"></div>
+        <div class="swatch-meta"><strong>outline</strong><code>#837567</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#d5c4b3"></div>
+        <div class="swatch-meta"><strong>outline-variant</strong><code>#d5c4b3</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#5b6313"></div>
+        <div class="swatch-meta"><strong>surface-tint</strong><code>#5b6313</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#586111"></div>
+        <div class="swatch-meta"><strong>primary</strong><code>#586111</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffffff"></div>
+        <div class="swatch-meta"><strong>on-primary</strong><code>#ffffff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#717a29"></div>
+        <div class="swatch-meta"><strong>primary-container</strong><code>#717a29</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#feffdc"></div>
+        <div class="swatch-meta"><strong>on-primary-container</strong><code>#feffdc</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#c3cd73"></div>
+        <div class="swatch-meta"><strong>inverse-primary</strong><code>#c3cd73</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#904d00"></div>
+        <div class="swatch-meta"><strong>secondary</strong><code>#904d00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffffff"></div>
+        <div class="swatch-meta"><strong>on-secondary</strong><code>#ffffff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#fda04d"></div>
+        <div class="swatch-meta"><strong>secondary-container</strong><code>#fda04d</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6e3a00"></div>
+        <div class="swatch-meta"><strong>on-secondary-container</strong><code>#6e3a00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#7a5429"></div>
+        <div class="swatch-meta"><strong>tertiary</strong><code>#7a5429</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffffff"></div>
+        <div class="swatch-meta"><strong>on-tertiary</strong><code>#ffffff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#966c3f"></div>
+        <div class="swatch-meta"><strong>tertiary-container</strong><code>#966c3f</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#fffbff"></div>
+        <div class="swatch-meta"><strong>on-tertiary-container</strong><code>#fffbff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ba1a1a"></div>
+        <div class="swatch-meta"><strong>error</strong><code>#ba1a1a</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffffff"></div>
+        <div class="swatch-meta"><strong>on-error</strong><code>#ffffff</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffdad6"></div>
+        <div class="swatch-meta"><strong>error-container</strong><code>#ffdad6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#93000a"></div>
+        <div class="swatch-meta"><strong>on-error-container</strong><code>#93000a</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#dfea8b"></div>
+        <div class="swatch-meta"><strong>primary-fixed</strong><code>#dfea8b</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#c3cd73"></div>
+        <div class="swatch-meta"><strong>primary-fixed-dim</strong><code>#c3cd73</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1a1e00"></div>
+        <div class="swatch-meta"><strong>on-primary-fixed</strong><code>#1a1e00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#444b00"></div>
+        <div class="swatch-meta"><strong>on-primary-fixed-variant</strong><code>#444b00</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffdcc3"></div>
+        <div class="swatch-meta"><strong>secondary-fixed</strong><code>#ffdcc3</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffb77c"></div>
+        <div class="swatch-meta"><strong>secondary-fixed-dim</strong><code>#ffb77c</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2e1500"></div>
+        <div class="swatch-meta"><strong>on-secondary-fixed</strong><code>#2e1500</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#6e3900"></div>
+        <div class="swatch-meta"><strong>on-secondary-fixed-variant</strong><code>#6e3900</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#ffdcbc"></div>
+        <div class="swatch-meta"><strong>tertiary-fixed</strong><code>#ffdcbc</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#f0bd89"></div>
+        <div class="swatch-meta"><strong>tertiary-fixed-dim</strong><code>#f0bd89</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2c1700"></div>
+        <div class="swatch-meta"><strong>on-tertiary-fixed</strong><code>#2c1700</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#623f16"></div>
+        <div class="swatch-meta"><strong>on-tertiary-fixed-variant</strong><code>#623f16</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#f9f9f7"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#f9f9f7</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#1a1c1b"></div>
+        <div class="swatch-meta"><strong>on-background</strong><code>#1a1c1b</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#e2e3e1"></div>
+        <div class="swatch-meta"><strong>surface-variant</strong><code>#e2e3e1</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Poppins',sans-serif;font-size:3.5rem;font-weight:600;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Poppins · 3.5rem / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:600;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-sm · Poppins · 1.5rem / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:0.875rem;font-weight:400;line-height:1.6">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Inter · 0.875rem / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Inter',sans-serif;font-size:0.75rem;font-weight:500;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Inter · 0.75rem / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:0.25rem">sm<br><code>0.25rem</code></div>
+<div class="radius-chip" style="border-radius:0.5rem">DEFAULT<br><code>0.5rem</code></div>
+<div class="radius-chip" style="border-radius:0.75rem">md<br><code>0.75rem</code></div>
+<div class="radius-chip" style="border-radius:1rem">lg<br><code>1rem</code></div>
+<div class="radius-chip" style="border-radius:1.5rem">xl<br><code>1.5rem</code></div>
+<div class="radius-chip" style="border-radius:9999px">full<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#111111;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

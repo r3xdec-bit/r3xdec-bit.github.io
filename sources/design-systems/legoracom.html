@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>legora.com — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=CUSTOMV2%3BAktiv+Grotesk+VF+Variable+Regular:wght@400;500;700&family=Aktiv+Grotesk+VF+Variable+Regular:wght@400;500;700&family=Times+New+Roman:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FAFAF9; color:#000000; font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif; font-size: 22px; border-bottom: 1px solid #E6E6E6; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#68655E; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#68655E; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#E6E6E6; border: 1px solid #E6E6E6; border-radius:24px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#68655E; }
+  .swatch-meta p { color:#68655E; font-size: 12px; }
+  .specimen { border: 1px solid #E6E6E6; border-radius:24px; padding: 20px; background:#E6E6E6; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#68655E; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#68655E; }
+  .bar { height: 10px; background:#000000; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #000000; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#E6E6E6; border: 1px solid #E6E6E6; border-radius:24px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:5px; font-size: 14px; border: 1px solid #000000; }
+  .btn-primary { background:#000000; color:#FAFAF9; }
+  .btn-secondary { background: transparent; color:#000000; }
+  footer { border-top: 1px solid #E6E6E6; padding-top: 20px; font-size: 13px; color:#68655E; }
+  footer a { color:#000000; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · light mode</div>
+    <h1>legora.com</h1>
+    <p class="tagline">Full-bleed cinematic photographic hero in warm golden tones giving way to a stark off-white editorial system: flat gray capsule tags, hairline-divided stat rows, and deep forest-green brand ink.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FAFAF9"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FAFAF9</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E6E6E6"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#E6E6E6</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0D1016"></div>
+        <div class="swatch-meta"><strong>surface-dark-hero</strong><code>#0D1016</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#000000"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#000000</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#68655E"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#68655E</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#343434"></div>
+        <div class="swatch-meta"><strong>text-tertiary</strong><code>#343434</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#005032"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#005032</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0000EE"></div>
+        <div class="swatch-meta"><strong>link</strong><code>#0000EE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E6E6E6"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#E6E6E6</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif;font-size:60px;font-weight:400;line-height:1.05">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · CUSTOMV2;Aktiv Grotesk VF Variable Regular · 60px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif;font-size:12px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · CUSTOMV2;Aktiv Grotesk VF Variable Regular · 12px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'CUSTOMV2;Aktiv Grotesk VF Variable Regular',sans-serif;font-size:36px;font-weight:400;line-height:1.2">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · CUSTOMV2;Aktiv Grotesk VF Variable Regular · 36px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Aktiv Grotesk VF Variable Regular',sans-serif;font-size:12px;font-weight:400;line-height:1.4">Aa — The quick brown fox</div>
+        <div class="specimen-meta">caption-sm · Aktiv Grotesk VF Variable Regular · 12px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Times New Roman',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-serif · Times New Roman ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>gap-sm · 5px</span>
+        <div class="bar" style="width:min(5px, 100%)"></div></div>
+<div class="bar-row"><span>gap-md · 10px</span>
+        <div class="bar" style="width:min(10px, 100%)"></div></div>
+<div class="bar-row"><span>gap-lg · 15px</span>
+        <div class="bar" style="width:min(15px, 100%)"></div></div>
+<div class="bar-row"><span>gap-xl · 30px</span>
+        <div class="bar" style="width:min(30px, 100%)"></div></div>
+<div class="bar-row"><span>gap-xxl · 40px</span>
+        <div class="bar" style="width:min(40px, 100%)"></div></div>
+<div class="bar-row"><span>content-max-width · 40px</span>
+        <div class="bar" style="width:min(40px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:9999px">pill-tag<br><code>9999px</code></div>
+<div class="radius-chip" style="border-radius:5px">control<br><code>5px</code></div>
+<div class="radius-chip" style="border-radius:24px">card<br><code>24px</code></div>
+<div class="radius-chip" style="border-radius:48px">card-lg<br><code>48px</code></div>
+<div class="radius-chip" style="border-radius:2px">sharp<br><code>2px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#68655E;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

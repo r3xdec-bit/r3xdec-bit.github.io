@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Blueprint Grotesk — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#F2F2F1;
+  --surface:#EFEFEF;
+  --white:#FFFFFF;
+  --text-primary:#282828;
+  --text-secondary:#B3B3AF;
+  --accent:#FA3600;
+  --disabled:#B4B4B0;
+  --surface-alt:#72726F;
+  --granite:#626260;
+  --base:9px;
+  --gap:18px;
+  --section-padding:36px;
+  --r-control:0px;
+  --r-pill:99px;
+  --r-hero-cta:6px;
+  --display-lg:62px;
+  --headline-md:44px;
+  --body-md:16px;
+  --label-mono:13px;
+  --font-display:"Space Grotesk","BT Grotesk",sans-serif;
+  --font-mono:"Geist Mono","Geistmono",monospace;
+  --ease-mech:cubic-bezier(0.625,0.05,0,1);
+  --drop-ledge:0px 8.88889px 0px -2.22222px rgba(0,0,0,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font-mono);
+  font-size:var(--body-md);
+  line-height:1.3;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+h1,h2,h3{font-family:var(--font-display);font-weight:700;letter-spacing:-1.2px;line-height:1}
+a{color:var(--text-primary);text-decoration:none}
+.wrap{max-width:927px;margin:0 auto;padding:0 18px}
+.eyebrow{font-family:var(--font-mono);font-size:var(--label-mono);text-transform:uppercase;letter-spacing:1px;color:var(--granite)}
+iconify-icon{display:inline-block;vertical-align:middle}
+
+/* Navbar */
+.nav{
+  position:sticky;top:0;z-index:50;
+  width:100%;height:75px;
+  background:transparent;
+  border-bottom:1px solid var(--text-secondary);
+  display:flex;align-items:center;
+  padding:0 9px;
+  backdrop-filter:none;
+}
+.nav-inner{display:flex;align-items:center;width:100%;gap:0}
+.nav-logo{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-0.9px;padding-right:27px}
+.nav-logo .vm{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:0;flex:1}
+.btn-nav{
+  height:37px;padding:0 14px;background:transparent;color:var(--text-primary);
+  border:none;border-radius:0;font-family:var(--font-mono);font-size:var(--label-mono);
+  font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;
+  transition:color .4s ease;
+}
+.btn-nav:hover{color:var(--accent)}
+.btn-util{
+  height:37px;padding:0 16px;background:var(--surface);color:var(--granite);
+  border:1px solid var(--text-secondary);border-radius:0;font-family:var(--font-mono);
+  font-size:var(--label-mono);font-weight:600;cursor:pointer;transition:color .4s ease;
+}
+.btn-util:hover{color:var(--text-primary)}
+.nav-trailing{display:flex;align-items:center;gap:9px;margin-left:auto}
+
+/* Hero */
+#hero{position:relative;padding:54px 0 36px;overflow:hidden}
+.hero-grid{position:relative;max-width:1200px;margin:0 auto;padding:0 18px;min-height:520px}
+.hero-diagram{
+  position:relative;margin-left:auto;width:66%;max-width:760px;
+  border:1px solid var(--text-secondary);background:transparent;border-radius:0;
+  aspect-ratio:16/9;margin-bottom:36px;
+}
+.hero-display{
+  font-family:var(--font-display);font-weight:700;font-size:var(--display-lg);
+  line-height:1;letter-spacing:-1.2px;text-align:left;max-width:12ch;
+}
+.hero-row{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-end;margin-top:27px}
+.hero-ctas{display:flex;gap:9px;margin-top:18px}
+.btn-primary{
+  height:44px;padding:0 24px;background:var(--text-primary);color:var(--background);
+  border:none;border-radius:6px;font-family:var(--font-mono);font-size:var(--label-mono);
+  font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+  transition:transform .4s ease;
+}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-secondary{
+  height:44px;padding:0 24px;background:transparent;color:var(--text-primary);
+  border:1px solid var(--text-primary);border-radius:0;font-family:var(--font-mono);
+  font-size:var(--label-mono);font-weight:600;cursor:pointer;transition:color .4s ease;
+}
+.btn-secondary:hover{color:var(--accent)}
+@media(max-width:768px){
+  :root{--display-lg:40px}
+  .hero-diagram{width:100%}
+  .hero-display{max-width:none}
+}
+@media(max-width:640px){:root{--display-lg:32px;--headline-md:30px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="nav-logo">Heron<span class="vm">/</span></span>
+    <nav class="nav-links" aria-label="Primary">
+      <button class="btn-nav">Platform</button>
+      <button class="btn-nav">System</button>
+      <button class="btn-nav">Method</button>
+      <button class="btn-nav">Diagrams</button>
+      <button class="btn-nav">Ledger</button>
+      <button class="btn-nav">Docs</button>
+    </nav>
+    <div class="nav-trailing">
+      <button class="btn-util">Sign in</button>
+      <button class="btn-primary" style="height:37px;border-radius:0">Request access</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-grid">
+    <div class="hero-diagram" role="img" aria-label="Wireframe architectural elevation crossed by a vermillion measurement line">
+      <svg viewBox="0 0 760 428" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+        <g stroke="#B3B3AF" stroke-width="1" fill="none">
+          <rect x="120" y="80" width="420" height="260"/>
+          <line x1="120" y1="140" x2="540" y2="140"/>
+          <line x1="120" y1="200" x2="540" y2="200"/>
+          <line x1="120" y1="260" x2="540" y2="260"/>
+          <line x1="220" y1="80" x2="220" y2="340"/>
+          <line x1="340" y1="80" x2="340" y2="340"/>
+          <line x1="440" y1="80" x2="440" y2="340"/>
+          <path d="M120 80 L330 20 L540 80"/>
+          <circle cx="330" cy="200" r="48"/>
+          <line x1="560" y1="80" x2="620" y2="80"/>
+          <line x1="620" y1="80" x2="620" y2="340"/>
+          <line x1="560" y1="340" x2="620" y2="340"/>
+        </g>
+        <line x1="60" y1="300" x2="700" y2="300" stroke="#FA3600" stroke-width="1.5"/>
+        <text x="62" y="292" font-family="monospace" font-size="12" fill="#FA3600">0.069%</text>
+      </svg>
+    </div>
+    <div class="hero-row">
+      <div>
+        <p class="eyebrow" style="margin-bottom:9px">// blueprint_grotesk.init</p>
+        <h1 class="hero-display">Draw the<br>system, then<br>build it.</h1>
+        <div class="hero-ctas">
+          <button class="btn-primary">Start a drawing <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+          <button class="btn-secondary">View the ledger</button>
+        </div>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:var(--label-mono);min-width:220px">
+        <div style="border-bottom:1px dotted var(--text-secondary);padding-bottom:6px;margin-bottom:9px;color:var(--granite)">· · · SPEC SHEET · · ·</div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--granite)">type</span><span>design-system</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--granite)">founded</span><span>2024</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--granite)">focus</span><span>technical UI</span></div>
+        <div style="display:flex;justify-content:space-between"><span style="color:var(--granite)">location</span><span>paper-sheet</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PALETTE ============ -->
+<style data-section-styles="palette">
+#palette{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.sec-head{margin-bottom:27px}
+.sec-head h2{font-size:var(--headline-md);font-weight:600;letter-spacing:-0.9px}
+.swatch-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:18px}
+.swatch{border:1px solid var(--text-secondary);background:transparent}
+.swatch .chip{height:88px;border-bottom:1px solid var(--text-secondary)}
+.swatch .meta{padding:9px 12px;font-family:var(--font-mono);font-size:var(--label-mono)}
+.swatch .val{font-weight:600}
+.swatch .note{color:var(--granite);margin-top:4px}
+.role-label{font-family:var(--font-mono);font-size:var(--label-mono);text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin:27px 0 12px}
+.checker{background-image:linear-gradient(45deg,#ccc 25%,transparent 25%),linear-gradient(-45deg,#ccc 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ccc 75%),linear-gradient(-45deg,transparent 75%,#ccc 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">02 — Palette</p>
+      <h2>Paper, ink, and one pen stroke.</h2>
+    </div>
+    <p class="role-label">Surfaces</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#F2F2F1"></div><div class="meta"><div class="val">#F2F2F1</div><div class="note">Page paper tone — the canvas.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="meta"><div class="val">#FFFFFF</div><div class="note">Elevated white surface, 63.9% area.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#EFEFEF"></div><div class="meta"><div class="val">#EFEFEF</div><div class="note">Utility button surface.</div></div></div>
+    </div>
+    <p class="role-label">Text &amp; structure</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#282828"></div><div class="meta"><div class="val" style="color:#282828">#282828</div><div class="note">Primary ink — type &amp; strokes.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#626260"></div><div class="meta"><div class="val">#626260</div><div class="note">Granite — annotation labels.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#72726F"></div><div class="meta"><div class="val">#72726F</div><div class="note">Alt surface tone.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#B3B3AF"></div><div class="meta"><div class="val">#B3B3AF</div><div class="note">Structural gray — hairlines, borders.</div></div></div>
+      <div class="swatch"><div class="chip" style="background:#B4B4B0"></div><div class="meta"><div class="val">#B4B4B0</div><div class="note">Disabled state.</div></div></div>
+    </div>
+    <p class="role-label">Accent — rationed</p>
+    <div class="swatch-grid">
+      <div class="swatch"><div class="chip" style="background:#FA3600"></div><div class="meta"><div class="val" style="color:#FA3600">#FA3600</div><div class="note">Vermillion — one measurement line per screen, never a fill.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TYPE SCALE ============ -->
+<style data-section-styles="type-scale">
+#type-scale{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.spec-row{border-bottom:1px solid var(--text-secondary);padding:27px 0;display:grid;grid-template-columns:1fr 220px;gap:18px;align-items:baseline}
+.spec-metrics{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite);line-height:1.6}
+.weight-ramp{display:flex;flex-wrap:wrap;gap:27px;margin-top:27px}
+.weight-ramp span{font-family:var(--font-display);font-size:36px;letter-spacing:-0.9px}
+@media(max-width:640px){.spec-row{grid-template-columns:1fr}}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">03 — Type scale</p>
+      <h2>Grotesk for statements, mono for facts.</h2>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--font-display);font-weight:700;font-size:62px;line-height:1;letter-spacing:-1.2px">Elevation A-01</div>
+      <div class="spec-metrics">display-lg<br>62px · 700 · lh 1 · -1.2px<br>BT Grotesk</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--font-display);font-weight:600;font-size:44px;line-height:1;letter-spacing:-0.9px">Section headline</div>
+      <div class="spec-metrics">headline-md<br>44px · 600 · lh 1 · -0.9px<br>BT Grotesk</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--font-mono);font-weight:500;font-size:16px;line-height:1.3">Body and annotation run in monospace — the system's voice for anything that reads as data, status, or metadata.</div>
+      <div class="spec-metrics">body-md<br>16px · 500 · lh 1.3<br>Geistmono</div>
+    </div>
+    <div class="spec-row">
+      <div style="font-family:var(--font-mono);font-weight:500;font-size:13px;line-height:1.3">type: design-system · founded: 2024 · focus: technical UI</div>
+      <div class="spec-metrics">label-mono<br>13px · 500 · lh 1.3<br>Geistmono</div>
+    </div>
+    <div class="weight-ramp">
+      <span style="font-weight:400">Regular 400</span>
+      <span style="font-weight:500">Medium 500</span>
+      <span style="font-weight:600">Semibold 600</span>
+      <span style="font-weight:700">Bold 700</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPONENTS ============ -->
+<style data-section-styles="components">
+#components{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.comp-block{border-top:1px solid var(--text-secondary);padding:27px 0}
+.comp-block:first-of-type{border-top:none}
+.comp-title{display:flex;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap}
+.comp-title h3{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-0.6px}
+.count-tag{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--accent)}
+.spec-card{font-family:var(--font-mono);font-size:12px;color:var(--granite);border:1px solid var(--text-secondary);padding:9px 12px;margin-top:18px;line-height:1.6}
+.spec-card b{color:var(--text-primary);font-weight:600}
+.demo{margin-top:9px}
+
+/* button matrix */
+.matrix{border-collapse:collapse;width:100%;font-family:var(--font-mono);font-size:var(--label-mono)}
+.matrix th,.matrix td{border:1px solid var(--text-secondary);padding:12px;text-align:left}
+.matrix th{color:var(--granite);font-weight:500;text-transform:uppercase;font-size:11px;letter-spacing:1px}
+.mx-nav{height:37px;padding:0 14px;background:transparent;color:#282828;border:none;font-family:var(--font-mono);font-size:13px;font-weight:500;cursor:pointer}
+.mx-nav.hover{color:var(--accent)}
+.mx-nav.disabled{color:var(--disabled);cursor:not-allowed}
+.mx-util{height:37px;padding:0 16px;background:var(--surface);color:var(--granite);border:1px solid var(--text-secondary);font-family:var(--font-mono);font-size:13px;font-weight:600;cursor:pointer}
+.mx-util.hover{color:var(--text-primary)}
+.mx-util.disabled{color:var(--disabled);cursor:not-allowed}
+.mx-prim{height:44px;padding:0 24px;background:var(--text-primary);color:var(--background);border:none;border-radius:6px;font-family:var(--font-mono);font-size:13px;font-weight:600;cursor:pointer}
+.mx-prim.hover{transform:translateY(-2px)}
+.mx-prim.disabled{background:var(--disabled);color:var(--background);cursor:not-allowed}
+
+/* icon-body rows */
+.ib-row{width:100%;background:transparent;border:0;border-bottom:1px solid var(--text-secondary);padding:26.6667px 35.5556px 26.6667px 171.111px;position:relative}
+.ib-row iconify-icon{position:absolute;left:62px;top:26.6667px;font-size:28px;color:var(--text-primary)}
+.ib-row h4{font-family:var(--font-display);font-weight:600;font-size:20px;letter-spacing:-0.4px;margin-bottom:6px}
+.ib-row p{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite);max-width:52ch}
+@media(max-width:640px){.ib-row{padding:18px 18px 18px 56px}.ib-row iconify-icon{left:18px;top:18px;font-size:22px}}
+
+/* bleed panels */
+.bleed-panel{display:grid;grid-template-columns:40% 1fr;gap:0;border-bottom:1px solid var(--text-secondary);padding:0;background:transparent}
+.bleed-media{background:var(--surface);min-height:140px;position:relative;border-right:1px solid var(--text-secondary)}
+.bleed-media svg{position:absolute;inset:0;width:100%;height:100%}
+.bleed-body{padding:27px 18px}
+.bleed-body h4{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-0.5px;margin-bottom:9px}
+.bleed-body p{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite)}
+@media(max-width:640px){.bleed-panel{grid-template-columns:1fr}.bleed-media{border-right:0;border-bottom:1px solid var(--text-secondary)}}
+
+/* media-top cards */
+.mt-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.mt-card{background:transparent;border:1px solid var(--text-secondary);border-radius:0;padding:0}
+.mt-media{height:96px;background:var(--surface);border-bottom:1px solid var(--text-secondary);position:relative;overflow:hidden}
+.mt-media svg{width:100%;height:100%}
+.mt-body{padding:12px}
+.mt-body h5{font-family:var(--font-display);font-weight:600;font-size:15px;margin-bottom:4px}
+.mt-body p{font-family:var(--font-mono);font-size:12px;color:var(--granite)}
+@media(max-width:768px){.mt-grid{grid-template-columns:repeat(2,1fr)}}
+
+/* composite */
+.cmp-panel{border:1px solid var(--text-secondary);padding:18px;margin-bottom:18px;display:grid;grid-template-columns:1fr;gap:18px}
+.cmp-head{display:flex;gap:12px;align-items:flex-start}
+.cmp-head iconify-icon{font-size:26px;color:var(--text-primary)}
+.cmp-head p{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite);max-width:60ch}
+.cmp-tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.cmp-tile{border:1px solid var(--text-secondary);padding:12px;min-height:70px}
+.cmp-tile span{font-family:var(--font-mono);font-size:11px;color:var(--accent)}
+.cmp-tile h6{font-family:var(--font-display);font-weight:600;font-size:14px;margin-top:6px}
+@media(max-width:640px){.cmp-tiles{grid-template-columns:repeat(2,1fr)}}
+
+/* dense fractional */
+.frac-row{display:flex;gap:9px;border-bottom:1px solid var(--text-secondary);padding:12px 0}
+.frac-cell{border:1px solid var(--text-secondary);padding:9px;font-family:var(--font-mono);font-size:11px;color:var(--granite);min-height:48px}
+.frac-cell b{display:block;color:var(--text-primary);font-size:13px}
+
+/* 12col feature */
+.feat-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:0 22.2222px}
+.feat-item{grid-column:span 6;border:1px solid var(--text-secondary);padding:18px}
+.feat-item h4{font-family:var(--font-display);font-weight:600;font-size:20px;margin-bottom:6px}
+.feat-item p{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite)}
+@media(max-width:640px){.feat-item{grid-column:span 12}}
+
+/* data ledger */
+.ledger{display:grid;grid-template-columns:1fr 1fr;gap:27px;font-family:var(--font-mono);font-size:var(--label-mono);border:1px solid var(--text-secondary);padding:18px}
+.ledger .hd{border-bottom:1px dotted var(--text-secondary);padding-bottom:6px;margin-bottom:9px;color:var(--granite)}
+.ledger .kv{display:flex;justify-content:space-between;padding:3px 0}
+.ledger .kv span:first-child{color:var(--granite)}
+.ledger ol{margin-left:18px;color:var(--text-primary)}
+.ledger ol li{padding:2px 0}
+@media(max-width:640px){.ledger{grid-template-columns:1fr}}
+
+/* diagram panel */
+.diag-panel{border:1px solid var(--text-secondary);background:transparent;position:relative;aspect-ratio:21/9}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">04 — Components</p>
+      <h2>The measured inventory.</h2>
+    </div>
+
+    <!-- Navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-title"><h3>Navbar</h3><span class="count-tag">×1 · 14 items · 75px</span></div>
+      <div class="demo" style="border:1px solid var(--text-secondary)">
+        <div style="height:75px;display:flex;align-items:center;padding:0 9px;background:transparent">
+          <span class="nav-logo">Heron<span class="vm">/</span></span>
+          <div style="display:flex;flex:1;align-items:center">
+            <button class="btn-nav">Platform</button>
+            <button class="btn-nav">System</button>
+            <button class="btn-nav">Method</button>
+            <button class="btn-nav">Docs</button>
+          </div>
+          <div style="margin-left:auto;display:flex;gap:9px">
+            <button class="btn-util">Sign in</button>
+            <button class="btn-primary" style="height:37px;border-radius:0">Request access</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--nav · <b>bg</b> transparent · <b>height</b> 75 · <b>radius</b> 0 · <b>sticky</b> true · border <b>#B3B3AF</b></div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp-block" data-tier-a-component="button-nav-transparent">
+      <div class="comp-title"><h3>Button matrix</h3><span class="count-tag">nav ×6 · util ×1 · primary ×1</span></div>
+      <div class="demo" data-tier-a-component="button-nav-cta-filled">
+        <table class="matrix">
+          <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Nav / transparent<br><span style="color:var(--granite)">37px · 0px radius</span></td>
+              <td><button class="mx-nav">Method</button></td>
+              <td><button class="mx-nav hover">Method</button></td>
+              <td><button class="mx-nav disabled" disabled>Method</button></td>
+            </tr>
+            <tr>
+              <td>Nav CTA / util fill<br><span style="color:var(--granite)">#EFEFEF · 37px</span></td>
+              <td><button class="mx-util">Sign in</button></td>
+              <td><button class="mx-util hover">Sign in</button></td>
+              <td><button class="mx-util disabled" disabled>Sign in</button></td>
+            </tr>
+            <tr data-tier-a-component="button-primary-hero">
+              <td>Hero primary<br><span style="color:var(--granite)">#282828 · 44px · 6px</span></td>
+              <td><button class="mx-prim">Start a drawing</button></td>
+              <td><button class="mx-prim hover">Start a drawing</button></td>
+              <td><button class="mx-prim disabled" disabled>Start a drawing</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="spec-card">
+        --button-nav · <b>bg</b> transparent · <b>text</b> #282828 · <b>h</b> 37 · <b>radius</b> 0<br>
+        --button-utility · <b>bg</b> #EFEFEF · <b>h</b> 37 · <b>radius</b> 0<br>
+        --button-primary-hero · <b>bg</b> #282828 · <b>text</b> #F2F2F1 · <b>h</b> 44 · <b>radius</b> 6 · <b>pad</b> 0 24<br>
+        motion <b>transform 0.4s ease</b> · disabled <b>#B4B4B0</b>
+      </div>
+    </div>
+
+    <!-- Architectural diagram panel -->
+    <div class="comp-block" data-tier-a-component="architectural-diagram-panel">
+      <div class="comp-title"><h3>Architectural diagram panel</h3><span class="count-tag">×1</span></div>
+      <div class="demo diag-panel" role="img" aria-label="Wireframe elevation with single vermillion measurement rule">
+        <svg viewBox="0 0 840 360" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <g stroke="#B3B3AF" stroke-width="1" fill="none">
+            <rect x="140" y="60" width="520" height="220"/>
+            <line x1="140" y1="120" x2="660" y2="120"/>
+            <line x1="140" y1="180" x2="660" y2="180"/>
+            <line x1="260" y1="60" x2="260" y2="280"/>
+            <line x1="400" y1="60" x2="400" y2="280"/>
+            <line x1="540" y1="60" x2="540" y2="280"/>
+            <path d="M140 60 L400 20 L660 60"/>
+          </g>
+          <line x1="80" y1="230" x2="780" y2="230" stroke="#FA3600" stroke-width="1.5"/>
+          <text x="82" y="222" font-family="monospace" font-size="12" fill="#FA3600">0.069%</text>
+        </svg>
+      </div>
+      <div class="spec-card">--card-diagram-panel · <b>bg</b> transparent · <b>radius</b> 0 · <b>border</b> 1px #B3B3AF · accent <b>#FA3600</b> rule only</div>
+    </div>
+
+    <!-- Data ledger block -->
+    <div class="comp-block" data-tier-a-component="data-ledger-block">
+      <div class="comp-title"><h3>Data ledger block</h3><span class="count-tag">×1 · monospace</span></div>
+      <div class="demo ledger">
+        <div>
+          <div class="hd">· · · LEDGER · · ·</div>
+          <div class="kv"><span>type</span><span>design-system</span></div>
+          <div class="kv"><span>founded</span><span>2024</span></div>
+          <div class="kv"><span>focus</span><span>technical UI</span></div>
+          <div class="kv"><span>location</span><span>paper-sheet</span></div>
+        </div>
+        <div>
+          <div class="hd">· · · INIT SEQUENCE · · ·</div>
+          <ol>
+            <li>load paper tone</li>
+            <li>set square geometry</li>
+            <li>ration vermillion</li>
+            <li>mount monospace voice</li>
+          </ol>
+        </div>
+      </div>
+      <div class="spec-card">--label-mono · <b>13px</b> · 500 · lh 1.3 · Geistmono · <b>text</b> granite #626260</div>
+    </div>
+
+    <!-- Icon body rows -->
+    <div class="comp-block" data-tier-a-component="icon-body-row">
+      <div class="comp-title"><h3>Icon + body-text rows</h3><span class="count-tag">×8 · 100/100/100/100</span></div>
+      <div class="demo" style="border:1px solid var(--text-secondary);border-bottom:none">
+        <div class="ib-row"><iconify-icon icon="lucide:ruler" aria-hidden="true"></iconify-icon><h4>Measured, not guessed</h4><p>Every property traces to a documented value — heights, insets, and tracking are literal.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:square" aria-hidden="true"></iconify-icon><h4>Square edges throughout</h4><p>Zero radius on navbar, buttons, and cards. The identity is sharp.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:minus" aria-hidden="true"></iconify-icon><h4>Rationed vermillion</h4><p>One accent line per screen — a thin measurement rule, never a fill.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:type" aria-hidden="true"></iconify-icon><h4>Grotesk meets mono</h4><p>Statements in BT Grotesk, facts in Geistmono. No serif anywhere.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:layout-grid" aria-hidden="true"></iconify-icon><h4>Asymmetric grids</h4><p>Repeating families reproduce their exact column splits, never uniform.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:file-text" aria-hidden="true"></iconify-icon><h4>Spec-sheet voice</h4><p>The page opens like a plotted drawing, not a hero banner.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:scan-line" aria-hidden="true"></iconify-icon><h4>Paper grain</h4><p>A faint noise texture gives the off-white base a printed-sheet quality.</p></div>
+        <div class="ib-row"><iconify-icon icon="lucide:move-horizontal" aria-hidden="true"></iconify-icon><h4>Structural left inset</h4><p>171.111px of left padding clears space for the leading glyph.</p></div>
+      </div>
+      <div class="spec-card">--card-icon-body · <b>bg</b> transparent · <b>radius</b> 0 · <b>pad</b> 26.6667 35.5556 26.6667 <b>171.111</b></div>
+    </div>
+
+    <!-- Full-width bleed panels -->
+    <div class="comp-block" data-tier-a-component="full-width-bleed-panel">
+      <div class="comp-title"><h3>Full-width bleed panels</h3><span class="count-tag">×4 · left-bled media</span></div>
+      <div class="demo" style="border:1px solid var(--text-secondary);border-bottom:none">
+        <div class="bleed-panel"><div class="bleed-media"><svg viewBox="0 0 100 60" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="10" y="10" width="80" height="40"/><line x1="10" y1="30" x2="90" y2="30"/><line x1="50" y1="10" x2="50" y2="50"/></g></svg></div><div class="bleed-body"><h4>Elevation drawing</h4><p>A full-bleed illustration anchors the left; body copy fills the remainder.</p></div></div>
+        <div class="bleed-panel"><div class="bleed-media"><svg viewBox="0 0 100 60" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><circle cx="50" cy="30" r="20"/><line x1="0" y1="30" x2="100" y2="30" stroke="#FA3600"/></g></svg></div><div class="bleed-body"><h4>Section plan</h4><p>Media and text never pair side-by-side as equal cards — strict single column.</p></div></div>
+        <div class="bleed-panel"><div class="bleed-media"><svg viewBox="0 0 100 60" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><path d="M10 50 L50 10 L90 50 Z"/></g></svg></div><div class="bleed-body"><h4>Detail callout</h4><p>Transparent fill, zero radius, zero padding at the panel level.</p></div></div>
+        <div class="bleed-panel"><div class="bleed-media"><svg viewBox="0 0 100 60" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="20" y="15" width="60" height="30"/><rect x="30" y="25" width="40" height="10"/></g></svg></div><div class="bleed-body"><h4>Floorplate</h4><p>The media bleeds to the left margin, body to the reading measure.</p></div></div>
+      </div>
+      <div class="spec-card">--card-media-bleed · <b>bg</b> transparent · <b>radius</b> 0 · <b>pad</b> 0</div>
+    </div>
+
+    <!-- Media top bleed -->
+    <div class="comp-block" data-tier-a-component="media-top-bleed-card">
+      <div class="comp-title"><h3>Media-top-bleed cards</h3><span class="count-tag">×8 · top media</span></div>
+      <div class="demo mt-grid">
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="10" y="8" width="80" height="24"/><line x1="10" y1="20" x2="90" y2="20"/></g></svg></div><div class="mt-body"><h5>A-01</h5><p>Edge-to-edge top media.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><circle cx="50" cy="20" r="14"/></g></svg></div><div class="mt-body"><h5>A-02</h5><p>Body content below.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><path d="M10 30 L50 8 L90 30"/></g></svg></div><div class="mt-body"><h5>A-03</h5><p>Zero radius.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><line x1="10" y1="20" x2="90" y2="20" stroke="#FA3600"/></svg></div><div class="mt-body"><h5>A-04</h5><p>Rationed accent.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="20" y="10" width="60" height="20"/></g></svg></div><div class="mt-body"><h5>A-05</h5><p>Transparent fill.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><line x1="20" y1="10" x2="80" y2="30"/><line x1="20" y1="30" x2="80" y2="10"/></g></svg></div><div class="mt-body"><h5>A-06</h5><p>Flat strokes.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="30" y="8" width="40" height="24"/></g></svg></div><div class="mt-body"><h5>A-07</h5><p>Paper base.</p></div></div>
+        <div class="mt-card"><div class="mt-media"><svg viewBox="0 0 100 40" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><circle cx="50" cy="20" r="10"/><rect x="25" y="8" width="50" height="24"/></g></svg></div><div class="mt-body"><h5>A-08</h5><p>Media at top.</p></div></div>
+      </div>
+      <div class="spec-card">--card-media-top · <b>bg</b> transparent · <b>radius</b> 0 · <b>pad</b> 0 · border #B3B3AF</div>
+    </div>
+
+    <!-- Composite tiles -->
+    <div class="comp-block" data-tier-a-component="composite-tile-panel">
+      <div class="comp-title"><h3>Composite tile panels</h3><span class="count-tag">×6 · nested 4-tile grid</span></div>
+      <div class="demo">
+        <div class="cmp-panel">
+          <div class="cmp-head"><iconify-icon icon="lucide:boxes" aria-hidden="true"></iconify-icon><p>A full-width band carrying an icon, body copy, and an embedded cluster of four smaller tiles — the most structurally complex repeating family.</p></div>
+          <div class="cmp-tiles">
+            <div class="cmp-tile"><span>01</span><h6>Paper</h6></div>
+            <div class="cmp-tile"><span>02</span><h6>Ink</h6></div>
+            <div class="cmp-tile"><span>03</span><h6>Rule</h6></div>
+            <div class="cmp-tile"><span>04</span><h6>Mono</h6></div>
+          </div>
+        </div>
+        <div class="cmp-panel">
+          <div class="cmp-head"><iconify-icon icon="lucide:layout-template" aria-hidden="true"></iconify-icon><p>A second instance — a mini feature-grid nested inside a full-width panel, transparent with zero radius.</p></div>
+          <div class="cmp-tiles">
+            <div class="cmp-tile"><span>05</span><h6>Grid</h6></div>
+            <div class="cmp-tile"><span>06</span><h6>Stack</h6></div>
+            <div class="cmp-tile"><span>07</span><h6>Split</h6></div>
+            <div class="cmp-tile"><span>08</span><h6>Scale</h6></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--composite-tile · <b>bg</b> transparent · <b>radius</b> 0 · nested 4-tile mini-grid · border #B3B3AF</div>
+    </div>
+
+    <!-- Dense fractional cluster -->
+    <div class="comp-block" data-tier-a-component="dense-fractional-card-cluster">
+      <div class="comp-title"><h3>Dense fractional card cluster</h3><span class="count-tag">×13 · asymmetric splits</span></div>
+      <div class="demo">
+        <div class="frac-row">
+          <div class="frac-cell" style="flex:6"><b>6%</b>idx</div>
+          <div class="frac-cell" style="flex:14"><b>14%</b>label</div>
+          <div class="frac-cell" style="flex:4"><b>4%</b>n</div>
+          <div class="frac-cell" style="flex:6"><b>6%</b>t</div>
+        </div>
+        <div class="frac-row">
+          <div class="frac-cell" style="flex:25"><b>25%</b>wide span</div>
+          <div class="frac-cell" style="flex:23"><b>23%</b>wide span</div>
+          <div class="frac-cell" style="flex:7"><b>7%</b>s</div>
+          <div class="frac-cell" style="flex:7"><b>7%</b>s</div>
+          <div class="frac-cell" style="flex:5"><b>5%</b>s</div>
+        </div>
+        <div class="frac-row">
+          <div class="frac-cell" style="flex:14"><b>14%</b>a</div>
+          <div class="frac-cell" style="flex:6"><b>6%</b>b</div>
+          <div class="frac-cell" style="flex:25"><b>25%</b>c</div>
+          <div class="frac-cell" style="flex:23"><b>23%</b>d</div>
+        </div>
+      </div>
+      <div class="spec-card">--frac-cluster · <b>bg</b> transparent · <b>radius</b> 0 · <b>pad</b> 0 · splits 6/14·4·6·25·23·7·7·5</div>
+    </div>
+
+    <!-- 12 col feature grid -->
+    <div class="comp-block" data-tier-a-component="feature-grid-12col">
+      <div class="comp-title"><h3>12-col feature grid</h3><span class="count-tag">×3 · 50/50 then 50</span></div>
+      <div class="demo feat-grid">
+        <div class="feat-item"><h4>Discipline</h4><p>Strict left alignment, ruled dividers, monospace metadata.</p></div>
+        <div class="feat-item"><h4>Restraint</h4><p>No color fields, no shadows — rhythm carried by rule lines.</p></div>
+        <div class="feat-item"><h4>Density</h4><p>A tight base unit produces low-air, spec-sheet rhythm. A two-up pairing followed by one half-width item.</p></div>
+      </div>
+      <div class="spec-card">--feature-grid · 12 col · <b>gap</b> 0 22.2222 · split 50/50 then 50 · border #B3B3AF</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ SURFACE & DEPTH ============ -->
+<style data-section-styles="surface-depth">
+#surface-depth{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:36px}
+.depth-card{background:var(--white);border:1px solid var(--text-secondary);padding:18px}
+.depth-card.ledge{box-shadow:var(--drop-ledge)}
+.depth-card.pill{border-radius:99px;padding:18px 36px;text-align:center}
+.depth-card h4{font-family:var(--font-display);font-weight:600;font-size:18px;margin-bottom:6px}
+.depth-card p{font-family:var(--font-mono);font-size:12px;color:var(--granite)}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">05 — Surface &amp; depth</p>
+      <h2>Flat drop-ledge, square edges.</h2>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card"><h4>Square card · 0px</h4><p>The dominant radius. Every measured card is sharp-cornered, white surface over paper.</p></div>
+      <div class="depth-card ledge"><h4>Drop-ledge shadow</h4><p>0px 8.88889px 0px -2.22222px — a hard-edged offset with no blur, used sparingly as a thin ledge.</p></div>
+      <div class="depth-card pill"><h4>Pill · 99px</h4><p>Reserved for isolated capsule elements only.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MOTION ============ -->
+<style data-section-styles="motion">
+#motion{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+.motion-cell{border:1px solid var(--text-secondary);padding:18px}
+.motion-cell h4{font-family:var(--font-mono);font-size:13px;color:var(--granite);margin-bottom:12px}
+.mover{width:40px;height:40px;background:var(--text-primary);cursor:pointer}
+.mover.go{transform:translateX(140px)}
+.m1{transition:transform .4s ease}
+.m2{transition:transform .48s cubic-bezier(0.625,0.05,0,1)}
+.m3{transition:opacity .4s ease}
+.m3.go{opacity:.2}
+.replay{margin-top:12px;font-family:var(--font-mono);font-size:12px;background:transparent;border:1px solid var(--text-secondary);padding:6px 12px;cursor:pointer;color:var(--text-primary)}
+.marquee{overflow:hidden;border:1px solid var(--text-secondary);margin-top:18px;white-space:nowrap}
+.marquee-track{display:inline-block;font-family:var(--font-mono);font-size:13px;color:var(--granite);padding:9px 0;animation:marqueeLeft 18s linear infinite}
+@keyframes marqueeLeft{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.marquee-track span{padding:0 27px}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">06 — Motion</p>
+      <h2>Quick and mechanical.</h2>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-cell"><h4>transform 0.4s ease</h4><div class="mover m1" id="mv1" role="button" tabindex="0" aria-label="Replay transform ease"></div><button class="replay" data-t="mv1">Replay</button></div>
+      <div class="motion-cell"><h4>0.48s cubic-bezier(.625,.05,0,1)</h4><div class="mover m2" id="mv2" role="button" tabindex="0" aria-label="Replay spring curve"></div><button class="replay" data-t="mv2">Replay</button></div>
+      <div class="motion-cell"><h4>opacity 0.4s ease</h4><div class="mover m3" id="mv3" role="button" tabindex="0" aria-label="Replay opacity fade"></div><button class="replay" data-t="mv3">Replay</button></div>
+    </div>
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>type: design-system</span><span>·</span><span>founded: 2024</span><span>·</span><span>focus: technical UI</span><span>·</span><span>0.069%</span><span>·</span>
+        <span>type: design-system</span><span>·</span><span>founded: 2024</span><span>·</span><span>focus: technical UI</span><span>·</span><span>0.069%</span><span>·</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPOSITION ============ -->
+<style data-section-styles="composition">
+#composition{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary)}
+.mock{border:1px solid var(--text-secondary);background:var(--background)}
+.mock-nav{height:64px;display:flex;align-items:center;padding:0 18px;border-bottom:1px solid var(--text-secondary)}
+.mock-nav .nav-logo{font-size:18px;padding-right:18px}
+.mock-nav .btn-nav{height:37px}
+.mock-hero{padding:36px 18px;display:grid;grid-template-columns:1fr 1fr;gap:27px;align-items:end;border-bottom:1px solid var(--text-secondary)}
+.mock-hero h3{font-size:40px;letter-spacing:-1px;line-height:1}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding:27px 18px}
+.mock-card{border:1px solid var(--text-secondary);padding:18px}
+.mock-card h5{font-family:var(--font-display);font-weight:600;font-size:16px;margin-bottom:6px}
+.mock-card p{font-family:var(--font-mono);font-size:12px;color:var(--granite)}
+.mock-cta{padding:27px 18px;border-top:1px solid var(--text-secondary);display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.mock-cta p{font-family:var(--font-mono);font-size:var(--label-mono);color:var(--granite);max-width:40ch}
+@media(max-width:640px){.mock-hero,.mock-cards{grid-template-columns:1fr}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">07 — In composition</p>
+      <h2>The system, holding together.</h2>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="nav-logo">Heron<span class="vm">/</span></span>
+        <button class="btn-nav">Platform</button>
+        <button class="btn-nav">Docs</button>
+        <button class="btn-primary" style="height:37px;border-radius:0;margin-left:auto">Request access</button>
+      </div>
+      <div class="mock-hero">
+        <div>
+          <p class="eyebrow" style="margin-bottom:9px">// composition.render</p>
+          <h3>Draw it, then build it.</h3>
+          <div style="margin-top:18px;display:flex;gap:9px">
+            <button class="btn-primary">Start <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+            <button class="btn-secondary">Ledger</button>
+          </div>
+        </div>
+        <svg viewBox="0 0 400 200" width="100%" aria-hidden="true"><g stroke="#B3B3AF" fill="none"><rect x="60" y="30" width="280" height="130"/><line x1="60" y1="95" x2="340" y2="95"/><line x1="200" y1="30" x2="200" y2="160"/></g><line x1="20" y1="130" x2="380" y2="130" stroke="#FA3600" stroke-width="1.5"/><text x="22" y="124" font-family="monospace" font-size="11" fill="#FA3600">0.069%</text></svg>
+      </div>
+      <div class="mock-cards">
+        <div class="mock-card"><h5>Paper base</h5><p>Off-white #F2F2F1 with faint grain.</p></div>
+        <div class="mock-card"><h5>Square edges</h5><p>Zero radius across the flow.</p></div>
+        <div class="mock-card"><h5>One pen stroke</h5><p>Vermillion rationed to a single rule.</p></div>
+      </div>
+      <div class="mock-cta">
+        <p>A paper-and-ink diagram feel, assembled entirely from documented tokens.</p>
+        <button class="btn-primary">Request access</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<style data-section-styles="footer">
+#footer{padding:var(--section-padding) 0;border-top:1px solid var(--text-secondary);background:transparent}
+.foot-links{display:flex;flex-wrap:wrap;gap:0 27px;font-family:var(--font-mono);font-size:var(--label-mono)}
+.foot-links a{padding:6px 0;color:var(--granite);transition:color .4s ease}
+.foot-links a:hover{color:var(--text-primary)}
+.foot-meta{margin-top:27px;font-family:var(--font-mono);font-size:12px;color:var(--granite);display:flex;flex-wrap:wrap;gap:12px 27px;align-items:baseline}
+.foot-meta .brand{font-family:var(--font-display);font-weight:700;font-size:20px;letter-spacing:-0.6px;color:var(--text-primary)}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <nav class="foot-links" aria-label="Footer">
+      <a href="#hero">Platform</a><a href="#palette">Palette</a><a href="#type-scale">Type</a><a href="#components">Components</a><a href="#surface-depth">Surfaces</a><a href="#motion">Motion</a><a href="#composition">Composition</a><a href="#hero">Method</a><a href="#components">Diagrams</a><a href="#components">Ledger</a><a href="#hero">Docs</a><a href="#hero">System</a><a href="#hero">Changelog</a><a href="#hero">Guides</a><a href="#hero">Tokens</a><a href="#hero">Grid</a><a href="#hero">Motion curves</a><a href="#hero">Accessibility</a><a href="#hero">Status</a><a href="#hero">Contact</a><a href="#hero">Terms</a><a href="#hero">Privacy</a><a href="#hero">Access</a>
+    </nav>
+    <div class="foot-meta">
+      <span class="brand">Blueprint Grotesk</span>
+      <span>Source: heronaiapp.com</span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  function play(el){
+    if(!el)return;
+    el.classList.remove('go');
+    void el.offsetWidth;
+    el.classList.add('go');
+    setTimeout(function(){el.classList.remove('go');},900);
+  }
+  document.querySelectorAll('.mover').forEach(function(m){
+    m.addEventListener('click',function(){play(m);});
+    m.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();play(m);}});
+  });
+  document.querySelectorAll('.replay').forEach(function(b){
+    b.addEventListener('click',function(){play(document.getElementById(b.dataset.t));});
+  });
+})();
+</script>
+</body>
+</html>

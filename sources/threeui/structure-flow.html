@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kinetic Particle Typography — r3xdec 3D</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #05060b; font-family: ui-monospace, monospace; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    .bar { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 10; }
+    .bar button { padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.16); background: rgba(15,18,28,0.8); color: #cbd5e1; font-family: inherit; font-size: 11px; cursor: pointer; }
+    .bar button.active { background: rgba(56,189,248,0.22); border-color: #38bdf8; color: #fff; }
+  </style>
+</head>
+<body>
+  <canvas id="c"></canvas>
+  <div class="bar">
+    <button class="active" data-w="r3xdec">r3xdec</button>
+    <button data-w="WEBGL2">WEBGL2</button>
+    <button data-w="60FPS">60FPS</button>
+  </div>
+  <script>
+    const c = document.getElementById('c'), ctx = c.getContext('2d');
+    const off = document.createElement('canvas'), octx = off.getContext('2d');
+    let W = 0, H = 0, particles = [], mx = -9999, my = -9999, currentWord = 'r3xdec';
+
+    function sampleWord(word) {
+      currentWord = word;
+      off.width = W; off.height = H;
+      octx.clearRect(0, 0, W, H);
+      const fs = Math.min(W * 0.21, 210);
+      octx.fillStyle = '#fff';
+      octx.font = `800 ${fs}px system-ui, sans-serif`;
+      octx.textAlign = 'center'; octx.textBaseline = 'middle';
+      octx.fillText(word, W / 2, H / 2);
+      const data = octx.getImageData(0, 0, W, H).data;
+      const targets = [];
+      const gap = Math.max(5, Math.floor(W / 180));
+      for (let y = 0; y < H; y += gap) {
+        for (let x = 0; x < W; x += gap) {
+          if (data[(y * W + x) * 4 + 3] > 128) targets.push({ x, y });
+        }
+      }
+      while (particles.length < targets.length) {
+        particles.push({ x: Math.random() * W, y: Math.random() * H, vx: 0, vy: 0, tx: W / 2, ty: H / 2, hue: 195 + Math.random() * 65 });
+      }
+      particles.length = targets.length;
+      for (let i = 0; i < targets.length; i++) {
+        particles[i].tx = targets[i].x;
+        particles[i].ty = targets[i].y;
+      }
+    }
+
+    function resize() { W = c.width = innerWidth; H = c.height = innerHeight; sampleWord(currentWord); }
+    addEventListener('resize', resize); resize();
+    addEventListener('pointermove', e => { mx = e.clientX; my = e.clientY; });
+    addEventListener('pointerleave', () => { mx = my = -9999; });
+    document.querySelectorAll('.bar button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.bar button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active'); sampleWord(b.dataset.w);
+    }));
+
+    function tick(ms) {
+      const t = ms * 0.002;
+      ctx.fillStyle = 'rgba(5, 6, 11, 0.28)';
+      ctx.fillRect(0, 0, W, H);
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        const jx = Math.sin(t + i * 0.13) * 1.4, jy = Math.cos(t * 1.1 + i * 0.17) * 1.4;
+        p.vx += (p.tx + jx - p.x) * 0.075;
+        p.vy += (p.ty + jy - p.y) * 0.075;
+        const dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
+        if (d2 < 14000 && d2 > 1) {
+          const f = (1 - Math.sqrt(d2) / 118) * 14;
+          p.vx += (dx / Math.sqrt(d2)) * f;
+          p.vy += (dy / Math.sqrt(d2)) * f;
+        }
+        p.vx *= 0.82; p.vy *= 0.82;
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = `hsl(${p.hue}, 90%, 70%)`;
+        ctx.fillRect(p.x, p.y, 2.4, 2.4);
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  </script>
+</body>
+</html>

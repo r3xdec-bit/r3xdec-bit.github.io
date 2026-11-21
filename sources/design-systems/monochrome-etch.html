@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monochrome Etch — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500&family=Raleway:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#FFFFFF;
+  --surface:#333333;
+  --text-primary:#000000;
+  --text-secondary:#FFFFFF;
+  --accent:#A0DD79;
+  --neutral-303030:#303030;
+  --neutral-181818:#181818;
+  --neutral-484848:#484848;
+  --neutral-606060:#606060;
+  --r-control:5px;
+  --r-pill:200px;
+  --r-circle:100px;
+  --sp-base:10px;
+  --sp-gap:27px;
+  --sp-section:40px;
+  --display-serif:"Playfair Display",Georgia,serif;
+  --body-sans:"Inter",system-ui,sans-serif;
+  --accent-serif:Georgia,serif;
+  --label-mono:"Raleway",sans-serif;
+  --ease-state:cubic-bezier(0.25,1,0.33,1);
+  --ease-reveal:cubic-bezier(0.05,0.2,0.1,1);
+  --shadow-ambient:rgba(0,0,0,0.08) 0px 6px 28px 0px;
+  --shadow-btn-hover:rgba(0,0,0,0.16) 0px 20px 38px 0px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--background);color:var(--text-primary);font-family:var(--body-sans);font-size:18px;line-height:1.78;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2,h3{font-family:var(--display-serif);font-weight:400;text-transform:uppercase;margin:0}
+a{color:inherit}
+.container{max-width:1500px;margin:0 auto;padding:0 40px}
+.eyebrow{font-family:var(--body-sans);font-size:13px;letter-spacing:.18em;text-transform:uppercase;color:var(--neutral-484848)}
+.sans{font-family:var(--body-sans)}
+.gray-photo{background:linear-gradient(135deg,#606060,#303030 45%,#181818);filter:grayscale(1)}
+
+/* hero critical */
+#hero{position:relative;min-height:100vh;display:flex;flex-direction:column;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(120deg,#484848,#303030 40%,#181818);filter:grayscale(1)}
+.hero-nav{position:sticky;top:0;z-index:10;height:128px;width:100%;display:flex;align-items:center;background:transparent}
+.hero-nav .container{display:flex;align-items:center;justify-content:space-between;width:100%}
+.wordmark{line-height:1}
+.wordmark .mark{font-family:var(--display-serif);text-transform:uppercase;font-size:26px;letter-spacing:.04em;color:var(--text-secondary)}
+.wordmark .sub{font-family:var(--body-sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--text-secondary);opacity:.85}
+.nav-links{display:flex;align-items:center}
+.nav-link{height:28px;padding:0 0 0 40px;background:transparent;border:0;color:var(--text-secondary);font-family:var(--body-sans);font-size:16px;text-decoration:none;cursor:pointer;line-height:28px}
+.phone-link{padding-left:40px;color:var(--text-secondary);text-decoration:none;font-size:16px}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--text-primary);border:0;border-radius:var(--r-pill);height:51px;padding:15px 22px;font-family:var(--body-sans);font-size:16px;font-weight:500;cursor:pointer;text-decoration:none;transition:box-shadow .45s var(--ease-state),transform .45s var(--ease-state)}
+.btn-primary:hover{box-shadow:var(--shadow-btn-hover);transform:translateY(-3px)}
+.nav-cta{margin-left:40px}
+.hero-body{position:relative;flex:1;display:flex;align-items:center}
+.hero-block{position:relative;max-width:720px;padding:60px 56px;color:var(--text-secondary)}
+.hero-scrim{position:absolute;inset:0;background:rgba(24,24,24,.72);z-index:-1}
+.hero-block h1{font-size:52px;line-height:1.08;letter-spacing:.01em;color:var(--text-secondary)}
+.hero-block p{font-size:18px;line-height:1.78;color:var(--text-secondary);max-width:46ch;margin:22px 0 32px}
+.hero-ctas{display:flex;gap:18px;flex-wrap:wrap}
+.btn-ghost-dark{display:inline-flex;align-items:center;gap:8px;height:51px;padding:15px 22px;background:transparent;border:1px solid var(--text-secondary);border-radius:var(--r-pill);color:var(--text-secondary);font-family:var(--body-sans);font-size:16px;text-decoration:none;cursor:pointer}
+@media(max-width:768px){
+  .container{padding:0 22px}
+  .hero-nav{height:80px}
+  .nav-links{display:none}
+  .hero-block{padding:40px 24px}
+  .hero-block h1{font-size:34px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <nav class="hero-nav" aria-label="Primary">
+    <div class="container">
+      <div class="wordmark">
+        <div class="mark">Etch Salon</div>
+        <div class="sub">Editorial Hair Studio</div>
+      </div>
+      <div class="nav-links">
+        <a class="nav-link" href="#components">Services</a>
+        <a class="nav-link" href="#composition">Team</a>
+        <a class="nav-link" href="#palette">Studio</a>
+        <a class="nav-link" href="#footer">Contact</a>
+        <a class="phone-link" href="tel:+10000000000">+1 (000) 000-0000</a>
+        <a class="btn-primary nav-cta" href="#footer"><iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon>Book Now</a>
+      </div>
+    </div>
+  </nav>
+  <div class="hero-body">
+    <div class="container">
+      <div class="hero-block">
+        <div class="hero-scrim" aria-hidden="true"></div>
+        <h1>Precision Cutting, Rendered in Black &amp; White</h1>
+        <p>An editorial salon where monochrome photography does the work of a palette and every detail is etched with intent. One chair, one cut, one unhurried hour.</p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#components"><iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon>View Services</a>
+          <a class="btn-ghost-dark" href="#composition">Meet the Team</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{padding:96px 0;background:var(--background)}
+.section-head{margin-bottom:48px}
+.section-head h2{font-size:44px;line-height:1.23}
+.section-head .lead{font-family:var(--body-sans);max-width:60ch;color:var(--neutral-303030);margin-top:16px}
+.pal-group{margin-top:40px}
+.pal-group > h3{font-size:22px;text-transform:uppercase;font-family:var(--display-serif);margin-bottom:20px;border-bottom:1px solid #e3e3e3;padding-bottom:12px}
+.swatches{display:grep;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:27px}
+.swatch{border:1px solid #e3e3e3}
+.swatch .chip{height:120px}
+.checker{background-image:linear-gradient(45deg,#ddd 25%,transparent 25%),linear-gradient(-45deg,#ddd 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#ddd 75%),linear-gradient(-45deg,transparent 75%,#ddd 75%);background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+.swatch .meta{padding:16px}
+.swatch .name{font-family:var(--body-sans);font-size:15px;font-weight:500}
+.swatch .val{font-family:var(--body-sans);font-size:13px;color:var(--neutral-606060);letter-spacing:.04em}
+.swatch .note{font-family:var(--body-sans);font-size:13px;line-height:1.5;color:var(--neutral-484848);margin-top:8px}
+</style>
+<section id="palette" aria-labelledby="palette-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">01 — Colour</p>
+      <h2 id="palette-h">A Palette of Almost None</h2>
+      <p class="lead">White ground, black ink, and a single rationed celadon pill. Everything achromatic stays achromatic so the one green reads as the sole actionable colour in the interface.</p>
+    </div>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#FFFFFF;border-bottom:1px solid #e3e3e3"></div><div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="note">The dominant page ground — roughly 74% of rendered area outside hero and footer.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#333333"></div><div class="meta"><div class="name">Surface — Dark</div><div class="val">#333333</div><div class="note">Flat footer and closing-band surface tone.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#303030"></div><div class="meta"><div class="name">Photo Neutral</div><div class="val">#303030</div><div class="note">Deep grey drawn from the grayscale photography itself.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#181818"></div><div class="meta"><div class="name">Photo Shadow</div><div class="val">#181818</div><div class="note">Darkest tonal step in the monochrome imagery.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip" style="background:#000000"></div><div class="meta"><div class="name">Text Primary</div><div class="val">#000000</div><div class="note">Headlines and dense body copy on white.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#333333"></div><div class="meta"><div class="name">Text — Label Tone</div><div class="val">#333333</div><div class="note">Navbar and body-label ink.</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#333333;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-family:var(--body-sans)">Aa</div><div class="meta"><div class="name">Text Secondary</div><div class="val">#FFFFFF</div><div class="note">White type reserved for dark grounds and scrimmed hero.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accent</h3>
+      <div class="swatches">
+        <div class="swatch"><div class="chip checker"><div style="height:100%;background:#A0DD79"></div></div><div class="meta"><div class="name">Accent — Celadon</div><div class="val">#A0DD79</div><div class="note">The only saturated colour. Confined to button fills — never text, tint, or icon.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{padding:96px 0;background:var(--background);border-top:1px solid #e3e3e3}
+.spec-row{padding:36px 0;border-bottom:1px solid #e3e3e3}
+.spec-row:last-child{border-bottom:0}
+.spec-metrics{font-family:var(--body-sans);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--neutral-606060);margin-bottom:18px}
+.sp-display{font-family:var(--display-serif);text-transform:uppercase;font-size:52px;line-height:1.08;letter-spacing:.01em}
+.sp-headline{font-family:var(--display-serif);text-transform:uppercase;font-size:44px;line-height:1.23}
+.sp-body{font-family:var(--body-sans);font-size:18px;line-height:1.78;max-width:64ch}
+.sp-label{font-family:var(--body-sans);font-size:18px;line-height:1.56}
+.sp-accent{font-family:var(--accent-serif);font-style:italic;font-size:26px;color:var(--neutral-303030)}
+.sp-mono{font-family:var(--label-mono);font-size:14px;letter-spacing:.2em;text-transform:uppercase}
+@media(max-width:768px){.sp-display{font-size:34px}.sp-headline{font-size:28px}}
+</style>
+<section id="type-scale" aria-labelledby="type-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">02 — Typography</p>
+      <h2 id="type-h" class="sp-headline">Two Families, One Monumental Voice</h2>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">display-lg · etch-salon-serif · 52px · 400 · 1.08</div>
+      <div class="sp-display">Etched by Hand</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">headline-md · etch-salon-serif · 44px · 400 · 1.23</div>
+      <div class="sp-headline">A Quieter Kind of Luxury</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">body-md · etch-salon-san-serif · 18px · 400 · 1.78</div>
+      <p class="sp-body">Our chairs are booked by the hour, never by the slot. Every appointment begins with an unhurried consultation and ends with a cut that holds its line for weeks. The room is white, the photography is black, and the work speaks in grayscale.</p>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">label-md · etch-salon-san-serif · 18px · 400 · 1.56</div>
+      <div class="sp-label">Studio Hours · Tuesday to Saturday · By Appointment</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">accent-serif · Georgia italic</div>
+      <div class="sp-accent">“The most considered haircut I have ever sat for.”</div>
+    </div>
+    <div class="spec-row">
+      <div class="spec-metrics">label-mono · Raleway · small label &amp; glyph role</div>
+      <div class="sp-mono">Founder · Co-Owner · Colourist</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{padding:96px 0;background:var(--background);border-top:1px solid #e3e3e3}
+.comp-block{padding:56px 0;border-bottom:1px solid #e3e3e3}
+.comp-block:last-child{border-bottom:0}
+.comp-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:14px;margin-bottom:8px}
+.comp-head h3{font-size:28px;font-family:var(--display-serif);text-transform:uppercase}
+.badge{font-family:var(--body-sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--neutral-606060);border:1px solid #d6d6d6;padding:2px 9px;border-radius:var(--r-pill)}
+.comp-desc{font-family:var(--body-sans);color:var(--neutral-303030);max-width:64ch;margin:0 0 28px}
+.spec-card{font-family:var(--body-sans);font-size:12.5px;line-height:1.8;color:var(--neutral-484848);background:#fafafa;border-left:2px solid var(--surface);padding:14px 18px;margin-top:26px}
+.spec-card code{font-family:var(--label-mono);letter-spacing:.02em}
+
+/* matrix */
+.matrix{width:100%;border-collapse:collapse;margin-top:8px}
+.matrix th,.matrix td{text-align:left;padding:18px 20px;border:1px solid #e3e3e3;vertical-align:middle}
+.matrix th{font-family:var(--body-sans);font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--neutral-606060);font-weight:500}
+.btn-primary[disabled]{opacity:.45;pointer-events:none}
+
+/* nav demo */
+.navdemo{background:linear-gradient(120deg,#484848,#181818);padding:0;position:relative}
+.navdemo .bar{height:128px;display:flex;align-items:center;justify-content:space-between;padding:0 40px}
+.navdemo .wordmark .mark,.navdemo .wordmark .sub{color:#fff}
+.navdemo .nav-link{color:#fff}
+.navdemo .phone-link{color:#fff;padding-left:40px;text-decoration:none;font-size:16px}
+.navdemo-links{display:flex;align-items:center}
+@media(max-width:768px){.navdemo .bar{height:80px;padding:0 20px}.navdemo-links .nav-link,.navdemo-links .phone-link{display:none}}
+
+/* nav panel */
+.navpanel{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1px solid #e3e3e3}
+.navpanel .cell{padding:0;border-right:1px solid #e3e3e3}
+.navpanel .cell:nth-child(3n){border-right:0}
+.navpanel .cell .ph{height:120px}
+.navpanel .cell .txt{padding:16px}
+.navpanel h4{font-family:var(--display-serif);text-transform:uppercase;font-size:18px;margin:0 0 6px}
+.navpanel p{font-family:var(--body-sans);font-size:14px;color:var(--neutral-484848);margin:0;line-height:1.5}
+
+/* service tiles */
+.svc-track{display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+.svc-tile{padding:0 10px}
+.svc-inner{position:relative;aspect-ratio:3/5;display:flex;align-items:flex-end}
+.svc-inner .ph{position:absolute;inset:0;background:linear-gradient(180deg,#606060,#181818)}
+.svc-inner .scr{position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.6))}
+.svc-inner .lbl{position:relative;padding:16px;color:#fff;display:flex;flex-direction:column;gap:8px}
+.svc-inner .lbl iconify-icon{font-size:22px}
+.svc-inner .lbl span{font-family:var(--display-serif);text-transform:uppercase;font-size:16px;letter-spacing:.04em}
+@media(max-width:768px){.svc-track{grid-template-columns:repeat(2,1fr)}}
+
+/* media feature pair */
+.pair-2{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.pair-2 .item{padding:0 40px}
+.pair-2 .ph{height:260px;background:linear-gradient(135deg,#606060,#303030)}
+.pair-2 h4{font-family:var(--display-serif);text-transform:uppercase;font-size:24px;margin:20px 0 8px}
+.pair-2 p{font-family:var(--body-sans);font-size:15px;color:var(--neutral-303030);line-height:1.7;margin:0}
+@media(max-width:768px){.pair-2{grid-template-columns:1fr}.pair-2 .item{padding:0 0 32px}}
+
+/* full bleed media */
+.fb-2{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.fb-2 .ph{height:320px;background:linear-gradient(135deg,#484848,#181818)}
+.fb-2 .ph:nth-child(2){background:linear-gradient(135deg,#606060,#303030)}
+@media(max-width:768px){.fb-2{grid-template-columns:1fr}}
+
+/* icon value row */
+.icon-rows .row{display:flex;gap:20px;align-items:flex-start;padding:28px 0;border-top:1px solid #e3e3e3}
+.icon-rows .row iconify-icon{font-size:30px;color:var(--text-primary)}
+.icon-rows h4{font-family:var(--display-serif);text-transform:uppercase;font-size:22px;margin:0 0 6px}
+.icon-rows p{font-family:var(--body-sans);font-size:15px;color:var(--neutral-303030);margin:0;max-width:60ch}
+
+/* stacked text rows */
+.stack .block{padding:0 0 92.3906px}
+.stack .block h4{font-family:var(--display-serif);text-transform:uppercase;font-size:30px;margin:0 0 12px}
+.stack .block p{font-family:var(--body-sans);font-size:16px;color:var(--neutral-303030);max-width:62ch;margin:0}
+
+/* closing value pair */
+.cvp{display:grid;grid-template-columns:1fr 1fr;gap:0}
+.cvp .item{padding:192px 0;text-align:center}
+.cvp .item iconify-icon{font-size:34px;color:var(--text-primary)}
+.cvp h4{font-family:var(--display-serif);text-transform:uppercase;font-size:26px;margin:16px 0 10px}
+.cvp p{font-family:var(--body-sans);font-size:15px;color:var(--neutral-303030);margin:0 auto;max-width:40ch}
+@media(max-width:768px){.cvp{grid-template-columns:1fr}.cvp .item{padding:72px 0}}
+
+/* team */
+.team{display:grid;grid-template-columns:repeat(3,1fr);gap:27px}
+.team .card .ph{aspect-ratio:3/4;background:linear-gradient(160deg,#606060,#181818)}
+.team .card .eyebrow{margin:16px 0 6px}
+.team .card .name{font-family:var(--display-serif);text-transform:uppercase;font-size:22px}
+.team .card .arrow{margin-top:8px;font-size:22px}
+@media(max-width:768px){.team{grid-template-columns:1fr}}
+
+/* testimonial */
+.testi{border-top:1px solid var(--text-primary);padding-top:32px;display:flex;gap:22px;align-items:flex-start;max-width:720px}
+.testi .q{font-family:var(--accent-serif);font-style:italic;font-size:26px;line-height:1.4;color:var(--neutral-181818)}
+.testi .by{display:flex;align-items:center;gap:14px;margin-top:20px}
+.testi .av{width:52px;height:52px;border-radius:var(--r-circle);background:linear-gradient(135deg,#606060,#303030);flex:none}
+.testi .by .n{font-family:var(--body-sans);font-size:14px;line-height:1.5}
+.testi .by .n strong{display:block}
+</style>
+<section id="components" aria-labelledby="comp-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">03 — Components</p>
+      <h2 id="comp-h" class="sp-headline">The Working Inventory</h2>
+      <p class="lead">Every structural frame is perfectly square. Only buttons and avatars earn a radius. The celadon pill is the single primary action, reused verbatim wherever a CTA appears.</p>
+    </div>
+
+    <!-- Navbar -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="badge">×1 · 12 items · 128px</span></div>
+      <p class="comp-desc">Edge-to-edge, transparent, perfectly square bar sitting directly over the hero photograph. Wordmark lockup, text links, phone link, and a terminal green pill.</p>
+      <div class="navdemo">
+        <div class="bar">
+          <div class="wordmark"><div class="mark" style="font-family:var(--display-serif);text-transform:uppercase;font-size:24px;letter-spacing:.04em">Etch Salon</div><div class="sub" style="font-family:var(--body-sans);font-size:11px;letter-spacing:.32em;text-transform:uppercase;opacity:.85">Editorial Hair Studio</div></div>
+          <div class="navdemo-links">
+            <a class="nav-link" href="#components">Services</a>
+            <a class="nav-link" href="#composition">Team</a>
+            <a class="nav-link" href="#palette">Studio</a>
+            <a class="nav-link" href="#footer">Journal</a>
+            <a class="phone-link" href="tel:+10000000000">+1 (000) 000-0000</a>
+            <a class="btn-primary nav-cta" href="#footer"><iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon>Book Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card"><code>--navbar · fill transparent · height 128 · radius 0 · inset 0 · wordmark display-serif · links body-sans #333333 · cta button-primary</code></div>
+    </div>
+
+    <!-- Button matrix -->
+    <div class="comp-block" data-tier-a-component="button-primary">
+      <div class="comp-head"><h3>Button — Primary (CTA Pill)</h3><span class="badge">×4 · reused verbatim</span></div>
+      <p class="comp-desc">The single filled-button token in the system — celadon fill, black label, full pill, soft ambient lift on hover. There is no second filled variant.</p>
+      <table class="matrix">
+        <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Primary pill</td>
+            <td><button class="btn-primary"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>Book Now</button></td>
+            <td><button class="btn-primary" style="box-shadow:var(--shadow-btn-hover);transform:translateY(-3px)"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>Book Now</button></td>
+            <td><button class="btn-primary" disabled><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>Book Now</button></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spec-card"><code>--button-primary · fill accent #A0DD79 · text text-primary #000 · radius pill 200 · height 51 · padding 15 22 · hover-shadow rgba(0,0,0,.16) 0 20 38 0 · hover-transform −3px · motion 0.45s ease-state</code></div>
+    </div>
+
+    <!-- Nav text link -->
+    <div class="comp-block" data-tier-a-component="button-nav-link">
+      <div class="comp-head"><h3>Button — Nav Text Link</h3><span class="badge">×4 · 28px</span></div>
+      <p class="comp-desc">Plain underline-free text link used only in the navbar row, with 40px left-padding stacking. Shown here on its native dark ground.</p>
+      <div style="background:#333333;padding:24px 40px;display:flex;align-items:center">
+        <a class="nav-link" href="#components" style="color:#fff;padding-left:0">Services</a>
+        <a class="nav-link" href="#composition" style="color:#fff">Team</a>
+        <a class="nav-link" href="#palette" style="color:#fff">Studio</a>
+        <a class="nav-link" href="#footer" style="color:#fff">Journal</a>
+      </div>
+      <div class="spec-card"><code>--button-nav-link · fill transparent · text #333333 · radius 0 · height 28 · padding 0 0 0 40 · no underline</code></div>
+    </div>
+
+    <!-- Nav panel card -->
+    <div class="comp-block" data-tier-a-component="card-nav-panel">
+      <div class="comp-head"><h3>Card — Nav / Full-Width Panel</h3><span class="badge">×12</span></div>
+      <p class="comp-desc">Transparent, square, zero-padding panels used for dropdown-style navigation reveals — media top-bleed, heading, body.</p>
+      <div class="navpanel">
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Precision Cut</h4><p>By-the-hour editorial cutting.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Colour</h4><p>Low-maintenance monochrome tones.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Consultation</h4><p>Unhurried, seated, considered.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Styling</h4><p>Event and editorial finishing.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Treatments</h4><p>Restorative, structural care.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Studio Rental</h4><p>The chair, after hours.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Gift Cards</h4><p>An hour, given.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Journal</h4><p>Notes from the chair.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Press</h4><p>Selected coverage.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Careers</h4><p>Join the bench.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Location</h4><p>Find the studio.</p></div></div>
+        <div class="cell"><div class="ph gray-photo"></div><div class="txt"><h4>Contact</h4><p>Reach the front desk.</p></div></div>
+      </div>
+      <div class="spec-card"><code>--card-nav-panel · fill transparent · radius 0 · padding 0 · media-top-bleed + heading + body</code></div>
+    </div>
+
+    <!-- Service tiles -->
+    <div class="comp-block" data-tier-a-component="card-service-tile">
+      <div class="comp-head"><h3>Card — Service Tile</h3><span class="badge">×5 · rows [5]</span></div>
+      <p class="comp-desc">Uniform track of five narrow grayscale photo crops. Outline icon and serif caps label pinned near the bottom — no body copy.</p>
+      <div class="svc-track">
+        <div class="svc-tile"><div class="svc-inner"><div class="ph"></div><div class="scr"></div><div class="lbl"><iconify-icon icon="lucide:scissors" aria-hidden="true"></iconify-icon><span>Cut</span></div></div></div>
+        <div class="svc-tile"><div class="svc-inner"><div class="ph"></div><div class="scr"></div><div class="lbl"><iconify-icon icon="lucide:palette" aria-hidden="true"></iconify-icon><span>Colour</span></div></div></div>
+        <div class="svc-tile"><div class="svc-inner"><div class="ph"></div><div class="scr"></div><div class="lbl"><iconify-icon icon="lucide:sparkles" aria-hidden="true"></iconify-icon><span>Style</span></div></div></div>
+        <div class="svc-tile"><div class="svc-inner"><div class="ph"></div><div class="scr"></div><div class="lbl"><iconify-icon icon="lucide:droplet" aria-hidden="true"></iconify-icon><span>Treat</span></div></div></div>
+        <div class="svc-tile"><div class="svc-inner"><div class="ph"></div><div class="scr"></div><div class="lbl"><iconify-icon icon="lucide:message-square" aria-hidden="true"></iconify-icon><span>Consult</span></div></div></div>
+      </div>
+      <div class="spec-card"><code>--card-service-tile · fill transparent · radius 0 · padding 0 10 · icon + serif caps label · rows [5]</code></div>
+    </div>
+
+    <!-- Media feature pair -->
+    <div class="comp-block" data-tier-a-component="card-media-feature">
+      <div class="comp-head"><h3>Card — Media-Feature Pair</h3><span class="badge">×3 · rows [2 wide]</span></div>
+      <p class="comp-desc">Two-up photo-plus-copy pairing with 40px horizontal padding per item.</p>
+      <div class="pair-2">
+        <div class="item"><div class="ph"></div><h4>The Consultation</h4><p>We begin seated, unhurried, mapping the shape of the cut before a single section is taken.</p></div>
+        <div class="item"><div class="ph"></div><h4>The Cut</h4><p>One chair, one hour, one line held clean for weeks — editorial precision, rendered in grayscale.</p></div>
+      </div>
+      <div class="spec-card"><code>--card-media-feature · fill transparent · radius 0 · padding 0 40 · media-top + heading + body · contains 2 tiles</code></div>
+    </div>
+
+    <!-- Full bleed media -->
+    <div class="comp-block" data-tier-a-component="card-full-bleed-media">
+      <div class="comp-head"><h3>Card — Full-Bleed Media Block</h3><span class="badge">×3 · no text</span></div>
+      <p class="comp-desc">Pure grayscale architectural photography spanning the full card width, used in two-up pairing.</p>
+      <div class="fb-2">
+        <div class="ph" role="img" aria-label="Grayscale interior of the salon"></div>
+        <div class="ph" role="img" aria-label="Grayscale architectural detail of the studio"></div>
+      </div>
+      <div class="spec-card"><code>--card-full-bleed-media · fill transparent · radius 0 · padding 0 · media-top-bleed only</code></div>
+    </div>
+
+    <!-- Icon value row -->
+    <div class="comp-block" data-tier-a-component="card-icon-value-row">
+      <div class="comp-head"><h3>Card — Icon Value Row</h3><span class="badge">×3 · rows [100 | 100]</span></div>
+      <p class="comp-desc">Two full-width stacked items — heading, icon, body — not a multi-column grid.</p>
+      <div class="icon-rows">
+        <div class="row"><iconify-icon icon="lucide:clock" aria-hidden="true"></iconify-icon><div><h4>Booked by the Hour</h4><p>Never by the slot. Every appointment is given the time it actually needs.</p></div></div>
+        <div class="row"><iconify-icon icon="lucide:aperture" aria-hidden="true"></iconify-icon><div><h4>Monochrome by Design</h4><p>Black-and-white photography does the work of a palette — the room stays quiet.</p></div></div>
+        <div class="row"><iconify-icon icon="lucide:leaf" aria-hidden="true"></iconify-icon><div><h4>One Rationed Colour</h4><p>A single celadon pill marks every action, and nothing else.</p></div></div>
+      </div>
+      <div class="spec-card"><code>--card-icon-value-row · fill transparent · radius 0 · padding 0 · heading + icon + body · rows [100 | 100]</code></div>
+    </div>
+
+    <!-- Stacked text row -->
+    <div class="comp-block" data-tier-a-component="card-stacked-text-row">
+      <div class="comp-head"><h3>Card — Stacked Text Row</h3><span class="badge">×3 · rows [100 | 100 | 100]</span></div>
+      <p class="comp-desc">Three full-width statement blocks with 92.3906px bottom padding between each.</p>
+      <div class="stack">
+        <div class="block"><h4>Let the Imagery Carry the Voice</h4><p>There is no gradient language and no shadow-heavy elevation. Depth comes from photographic tone alone.</p></div>
+        <div class="block"><h4>Restraint as a House Style</h4><p>Swiss-adjacent minimalism crossed with salon-luxury editorial. Generous white ground, near-full-bleed grayscale.</p></div>
+        <div class="block" style="padding-bottom:0"><h4>Confident, Never Loud</h4><p>The serif headline is always uppercase — monumental, engraved, appropriate to the name.</p></div>
+      </div>
+      <div class="spec-card"><code>--card-stacked-text-row · fill transparent · radius 0 · padding 0 0 92.3906 · heading + body · rows [100 | 100 | 100]</code></div>
+    </div>
+
+    <!-- Closing value pair -->
+    <div class="comp-block" data-tier-a-component="card-closing-value-pair">
+      <div class="comp-head"><h3>Card — Closing Value Pair</h3><span class="badge">×2 · rows [88 | 88] · 192px padding</span></div>
+      <p class="comp-desc">Two near-full-width items with heavy vertical breathing room, sitting just above the closing CTA band.</p>
+      <div class="cvp">
+        <div class="item"><iconify-icon icon="lucide:map-pin" aria-hidden="true"></iconify-icon><h4>Find the Studio</h4><p>One room, white walls, a single chair facing the light.</p></div>
+        <div class="item"><iconify-icon icon="lucide:calendar" aria-hidden="true"></iconify-icon><h4>Reserve Your Hour</h4><p>Tuesday through Saturday, strictly by appointment.</p></div>
+      </div>
+      <div class="spec-card"><code>--card-closing-value-pair · fill transparent · radius 0 · padding 192 0 · heading + icon + body · rows [88 | 88]</code></div>
+    </div>
+
+    <!-- Team portrait -->
+    <div class="comp-block" data-tier-a-component="team-portrait-card">
+      <div class="comp-head"><h3>Team Portrait Card</h3><span class="badge">×3 · 3-across</span></div>
+      <p class="comp-desc">Full-bleed black-and-white portrait, sans role eyebrow, serif caps name, and a small diagonal arrow glyph.</p>
+      <div class="team">
+        <div class="card"><div class="ph" role="img" aria-label="Black and white portrait of the founder"></div><p class="eyebrow">Founder · Colourist</p><div class="name">Marin Holt</div><iconify-icon class="arrow" icon="lucide:arrow-up-right" aria-label="View profile"></iconify-icon></div>
+        <div class="card"><div class="ph" role="img" aria-label="Black and white portrait of the co-owner"></div><p class="eyebrow">Co-Owner · Cutting</p><div class="name">Rae Adeyemi</div><iconify-icon class="arrow" icon="lucide:arrow-up-right" aria-label="View profile"></iconify-icon></div>
+        <div class="card"><div class="ph" role="img" aria-label="Black and white portrait of the senior stylist"></div><p class="eyebrow">Senior Stylist</p><div class="name">Jonas Vey</div><iconify-icon class="arrow" icon="lucide:arrow-up-right" aria-label="View profile"></iconify-icon></div>
+      </div>
+      <div class="spec-card"><code>--card-team-portrait · fill transparent · radius 0 · portrait bleed + role eyebrow (body-sans) + serif caps name + arrow glyph · grid 3-across</code></div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="comp-block" data-tier-a-component="testimonial-block">
+      <div class="comp-head"><h3>Testimonial Block</h3><span class="badge">×1 · no chrome</span></div>
+      <p class="comp-desc">No card chrome — a divider rule above, an italic Georgia quote, and a small circular avatar with a two-line attribution.</p>
+      <div class="testi">
+        <div>
+          <div class="q">“The most considered haircut I have ever sat for — an hour that felt like it was designed, not scheduled.”</div>
+          <div class="by"><div class="av" role="img" aria-label="Portrait of the reviewer"></div><div class="n"><strong>Delphine Marr</strong>Repeat client, three years</div></div>
+        </div>
+      </div>
+      <div class="spec-card"><code>--testimonial · divider rule text-primary · quote accent-serif Georgia italic · avatar radius circle 100 · attribution body-sans</code></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{padding:96px 0;background:var(--background);border-top:1px solid #e3e3e3}
+.depth-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:27px;margin-top:40px}
+.depth-card{border:1px solid #e3e3e3;padding:28px;background:#fff}
+.depth-card .demo{height:150px;background:linear-gradient(135deg,#606060,#181818);margin-bottom:20px}
+.depth-card.sq .demo{border-radius:0}
+.depth-card.pill .demo{border-radius:var(--r-pill);height:51px;background:var(--accent)}
+.depth-card.circ .demo{border-radius:var(--r-circle);width:120px;height:120px;margin:0 auto 20px}
+.depth-card.amb .demo{border-radius:0;box-shadow:var(--shadow-ambient)}
+.depth-card h4{font-family:var(--display-serif);text-transform:uppercase;font-size:18px;margin:0 0 6px}
+.depth-card p{font-family:var(--body-sans);font-size:13px;color:var(--neutral-606060);margin:0}
+@media(max-width:768px){.depth-grid{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth" aria-labelledby="depth-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">04 — Surface &amp; Depth</p>
+      <h2 id="depth-h" class="sp-headline">Square, or Fully Round</h2>
+      <p class="lead">Corner treatment is binary. Structural frames are 0px. Buttons and avatars take the full pill or circle. Exactly one soft ambient shadow lifts photographic groupings.</p>
+    </div>
+    <div class="depth-grid">
+      <div class="depth-card sq"><div class="demo"></div><h4>Structural · 0px</h4><p>r-control reserved; every card, panel and photo frame is perfectly square.</p></div>
+      <div class="depth-card pill"><div class="demo"></div><h4>Pill · 200px</h4><p>r-pill — buttons only.</p></div>
+      <div class="depth-card circ"><div class="demo"></div><h4>Circle · 100px</h4><p>r-circle — avatars and icon glyphs only.</p></div>
+      <div class="depth-card amb"><div class="demo"></div><h4>Ambient Lift</h4><p>rgba(0,0,0,0.08) 0 6 28 0 — the single soft shadow in the system.</p></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{padding:96px 0;background:var(--background);border-top:1px solid #e3e3e3}
+.motion-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:27px;margin-top:40px}
+.motion-card{border:1px solid #e3e3e3;padding:28px}
+.motion-card h4{font-family:var(--display-serif);text-transform:uppercase;font-size:18px;margin:0 0 6px}
+.motion-card .meta{font-family:var(--body-sans);font-size:12px;color:var(--neutral-606060);margin-bottom:20px;letter-spacing:.04em}
+.mover{width:46px;height:46px;background:var(--accent);border-radius:var(--r-pill)}
+.m-color .mover{background:#333}
+.m-color.on .mover{background:var(--accent);transition:background .3s ease}
+.m-opacity .mover{background:#333;opacity:1}
+.m-opacity.on .mover{opacity:.2;transition:opacity .5s ease}
+.m-transform .mover{transform:translateX(0)}
+.m-transform.on .mover{transform:translateX(200px);transition:transform .65s var(--ease-reveal)}
+.m-state .mover{transform:translateY(0);box-shadow:none}
+.m-state.on .mover{transform:translateY(-3px);box-shadow:var(--shadow-btn-hover);transition:transform .45s var(--ease-state),box-shadow .45s var(--ease-state)}
+.replay{margin-top:20px;background:transparent;border:1px solid #333;border-radius:var(--r-pill);height:40px;padding:0 20px;font-family:var(--body-sans);font-size:13px;cursor:pointer}
+@media(max-width:768px){.motion-grid{grid-template-columns:1fr}}
+</style>
+<section id="motion" aria-labelledby="motion-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">05 — Motion</p>
+      <h2 id="motion-h" class="sp-headline">Soft, Confident Settle</h2>
+      <p class="lead">Decelerating springs rather than linear ticks. Hover lifts resolve with a slight overshoot — a settle, never a snap.</p>
+    </div>
+    <div class="motion-grid">
+      <div class="motion-card m-color"><h4>Colour</h4><div class="meta">0.3s · ease</div><div class="mover"></div><button class="replay" type="button">Replay</button></div>
+      <div class="motion-card m-opacity"><h4>Opacity Fade</h4><div class="meta">0.5s · ease</div><div class="mover"></div><button class="replay" type="button">Replay</button></div>
+      <div class="motion-card m-transform"><h4>Reveal Transform</h4><div class="meta">0.65s · cubic-bezier(0.05,0.2,0.1,1)</div><div class="mover"></div><button class="replay" type="button">Replay</button></div>
+      <div class="motion-card m-state"><h4>State Lift</h4><div class="meta">0.45s · cubic-bezier(0.25,1,0.33,1)</div><div class="mover"></div><button class="replay" type="button">Replay</button></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{padding:96px 0;background:var(--background);border-top:1px solid #e3e3e3}
+.mock{border:1px solid #e3e3e3;margin-top:40px;overflow:hidden}
+.mock-hero{position:relative;height:420px;background:linear-gradient(120deg,#484848,#181818);display:flex;flex-direction:column}
+.mock-bar{height:80px;display:flex;align-items:center;justify-content:space-between;padding:0 32px}
+.mock-bar .mark{font-family:var(--display-serif);text-transform:uppercase;color:#fff;font-size:20px;letter-spacing:.04em}
+.mock-bar .links{display:flex;gap:28px}
+.mock-bar .links a{color:#fff;text-decoration:none;font-family:var(--body-sans);font-size:14px}
+.mock-herobody{flex:1;display:flex;align-items:center;padding:0 32px}
+.mock-block{position:relative;max-width:460px;padding:36px;color:#fff}
+.mock-block .scr{position:absolute;inset:0;background:rgba(24,24,24,.72);z-index:-1}
+.mock-block h3{color:#fff;font-size:34px;line-height:1.08}
+.mock-block p{font-family:var(--body-sans);font-size:14px;margin:12px 0 20px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.mock-cards .c{padding:0}
+.mock-cards .c .ph{height:200px;background:linear-gradient(160deg,#606060,#181818)}
+.mock-cards .c .txt{padding:20px 24px}
+.mock-cards .c h4{font-family:var(--display-serif);text-transform:uppercase;font-size:18px;margin:0 0 6px}
+.mock-cards .c p{font-family:var(--body-sans);font-size:13px;color:var(--neutral-484848);margin:0}
+.mock-cta{background:#333;padding:72px 32px;text-align:center}
+.mock-cta h3{color:#fff;font-size:30px;margin-bottom:22px}
+@media(max-width:768px){.mock-bar .links{display:none}.mock-cards{grid-template-columns:1fr}.mock-block h3{font-size:26px}}
+</style>
+<section id="composition" aria-labelledby="comp2-h">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">06 — In Composition</p>
+      <h2 id="comp2-h" class="sp-headline">The System, Assembled</h2>
+      <p class="lead">A full page fragment built only from the tokens above — scrimmed photo hero, white content band, three square cards, and the dark closing CTA bleeding into footer tone.</p>
+    </div>
+    <div class="mock">
+      <div class="mock-hero">
+        <div class="mock-bar">
+          <div class="mark">Etch Salon</div>
+          <div class="links"><a href="#composition">Services</a><a href="#composition">Team</a><a href="#composition">Studio</a></div>
+        </div>
+        <div class="mock-herobody">
+          <div class="mock-block"><div class="scr"></div><h3>An Hour, Designed</h3><p>Editorial cutting in a room of white walls and black-and-white photography.</p><a class="btn-primary" href="#composition"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>View Services</a></div>
+        </div>
+      </div>
+      <div class="mock-cards">
+        <div class="c"><div class="ph"></div><div class="txt"><h4>Precision Cut</h4><p>By the hour, never the slot.</p></div></div>
+        <div class="c"><div class="ph"></div><div class="txt"><h4>Monochrome Colour</h4><p>Low-maintenance tonal work.</p></div></div>
+        <div class="c"><div class="ph"></div><div class="txt"><h4>Consultation</h4><p>Seated, unhurried, considered.</p></div></div>
+      </div>
+      <div class="mock-cta">
+        <h3>Reserve Your Chair</h3>
+        <a class="btn-primary" href="#footer"><iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon>Book Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:#333333;color:#fff;padding:80px 0 0}
+.foot-cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;padding-bottom:56px}
+.foot-cols h3{color:#fff;font-size:26px;margin-bottom:18px}
+.foot-cols a{color:#fff}
+.foot-left p{font-family:var(--body-sans);font-size:15px;line-height:1.8;color:#f0f0f0;margin:0 0 16px}
+.foot-social{display:flex;flex-direction:column;gap:8px}
+.foot-social a{font-family:var(--body-sans);font-size:15px;text-decoration:underline;color:#fff}
+.news{display:flex;gap:0;max-width:440px;margin-top:8px}
+.news input{flex:1;height:51px;border:0;border-radius:0;padding:0 18px;font-family:var(--body-sans);font-size:15px;background:#fff;color:#000}
+.news input::placeholder{color:#606060}
+.news button{border:0;cursor:pointer}
+.foot-icons{display:flex;gap:12px;margin-top:22px}
+.foot-icons a{width:40px;height:40px;border-radius:var(--r-circle);background:#484848;color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+.foot-rule{border-top:1px solid #484848;padding:26px 0;font-family:var(--body-sans);font-size:13px;color:#cfcfcf;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.foot-rule a{color:#cfcfcf;text-decoration:none}
+@media(max-width:768px){.foot-cols{grid-template-columns:1fr;gap:40px}}
+</style>
+<footer id="footer">
+  <div class="container">
+    <div class="foot-cols">
+      <div class="foot-left">
+        <h3>Etch Salon</h3>
+        <p>An editorial hair studio in black and white.<br>Tuesday — Saturday, by appointment.</p>
+        <div class="foot-social">
+          <a href="https://etchsalon.com/">Instagram</a>
+          <a href="https://etchsalon.com/">Pinterest</a>
+          <a href="https://etchsalon.com/">Journal</a>
+        </div>
+      </div>
+      <div class="foot-right">
+        <h3>Stay in Frame</h3>
+        <p class="foot-left" style="margin-bottom:12px"><span style="color:#f0f0f0;font-family:var(--body-sans);font-size:15px">Occasional notes from the chair.</span></p>
+        <form class="news" onsubmit="return false">
+          <label for="news-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Email address</label>
+          <input id="news-email" type="email" placeholder="Your email address">
+          <button class="btn-primary" type="submit"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon>Subscribe</button>
+        </form>
+        <div class="foot-icons">
+          <a href="https://etchsalon.com/" aria-label="Instagram"><iconify-icon icon="lucide:instagram" aria-hidden="true"></iconify-icon></a>
+          <a href="https://etchsalon.com/" aria-label="Facebook"><iconify-icon icon="lucide:facebook" aria-hidden="true"></iconify-icon></a>
+          <a href="https://etchsalon.com/" aria-label="Email"><iconify-icon icon="lucide:mail" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-rule">
+      <span>© Etch Salon. All rights reserved.</span>
+      <span><a href="https://etchsalon.com/">etchsalon.com</a> · Design system captured and rendered by r3xdec.design</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.querySelectorAll('#motion .motion-card').forEach(function(card){
+    var btn=card.querySelector('.replay');
+    function run(){card.classList.remove('on');void card.offsetWidth;card.classList.add('on');}
+    btn.addEventListener('click',run);
+  });
+})();
+</script>
+</body>
+</html>

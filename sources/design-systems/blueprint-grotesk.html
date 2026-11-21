@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Blueprint Grotesk — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=BT+Grotesk:wght@400;500;700&family=Geistmono:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#F2F2F1; color:#282828; font-family:'Geistmono',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'BT Grotesk',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'BT Grotesk',sans-serif; font-size: 22px; border-bottom: 1px solid #B3B3AF; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#B3B3AF; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#B3B3AF; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#EFEFEF; border: 1px solid #B3B3AF; border-radius:99px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#B3B3AF; }
+  .swatch-meta p { color:#B3B3AF; font-size: 12px; }
+  .specimen { border: 1px solid #B3B3AF; border-radius:99px; padding: 20px; background:#EFEFEF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#B3B3AF; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#B3B3AF; }
+  .bar { height: 10px; background:#282828; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #282828; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#EFEFEF; border: 1px solid #B3B3AF; border-radius:99px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:99px; font-size: 14px; border: 1px solid #282828; }
+  .btn-primary { background:#282828; color:#F2F2F1; }
+  .btn-secondary { background: transparent; color:#282828; }
+  footer { border-top: 1px solid #B3B3AF; padding-top: 20px; font-size: 13px; color:#B3B3AF; }
+  footer a { color:#282828; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from heronaiapp.com · light mode</div>
+    <h1>Blueprint Grotesk</h1>
+    <p class="tagline">Off-white technical-drawing system with square edge-to-edge geometry, a rationed vermillion accent, and monospace annotation set against oversized grotesk display type.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#F2F2F1"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#F2F2F1</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#EFEFEF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#EFEFEF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#282828"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#282828</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#B3B3AF"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#B3B3AF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FA3600"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#FA3600</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#B4B4B0"></div>
+        <div class="swatch-meta"><strong>disabled</strong><code>#B4B4B0</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#72726F"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#72726F</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#626260"></div>
+        <div class="swatch-meta"><strong>granite</strong><code>#626260</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>white</strong><code>#FFFFFF</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'BT Grotesk',sans-serif;font-size:62px;font-weight:700;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · BT Grotesk · 62px / w700</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'BT Grotesk',sans-serif;font-size:44px;font-weight:600;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · BT Grotesk · 44px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geistmono',sans-serif;font-size:16px;font-weight:500;line-height:1.3">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Geistmono · 16px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Geistmono',sans-serif;font-size:13px;font-weight:500;line-height:1.3">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-mono · Geistmono · 13px / w500</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 9px</span>
+        <div class="bar" style="width:min(9px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 18px</span>
+        <div class="bar" style="width:min(18px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 36px</span>
+        <div class="bar" style="width:min(36px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:99px">control<br><code>99px</code></div>
+<div class="radius-chip" style="border-radius:99px">card<br><code>99px</code></div>
+<div class="radius-chip" style="border-radius:99px">pill<br><code>99px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#B3B3AF;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

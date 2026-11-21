@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scatter-field white cabinet — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400&family=Spectral:ital@1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --background:#FFFFFF;
+    --surface:#EDEDED;
+    --text-primary:#000000;
+    --text-secondary:#FFFFFF;
+    --accent:#000000;
+    --r-control:4px;
+    --r-card:4px;
+    --r-pill:9999px;
+    --space-base:4px;
+    --space-gap:6px;
+    --section-padding:14px;
+    --nav-h:27px;
+    --dot-h:6px;
+    --font-grotesk:"LayGrotesk","Space Grotesk",system-ui,sans-serif;
+    --font-serif:"Teodor","Spectral",Georgia,serif;
+    --ease-structural:cubic-bezier(0.65,0,0.35,1);
+    --ease-fade:cubic-bezier(0.4,0,0.2,1);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--background);
+    color:var(--text-primary);
+    font-family:var(--font-grotesk);
+    font-size:16px;
+    font-weight:400;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,p{margin:0;font-weight:400}
+  a{color:inherit}
+  .band{padding:96px 48px}
+  .band-inner{max-width:1200px;margin:0 auto}
+  .section-label{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1.5;
+    margin-bottom:8px;
+  }
+  .section-cap{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1.5;
+    color:var(--text-primary);
+    max-width:52ch;margin-bottom:48px;
+  }
+  .kicker{
+    display:inline-block;
+    background:var(--surface);
+    color:var(--text-primary);
+    border-radius:var(--r-control);
+    padding:4px 10px;
+    font-size:16px;line-height:1;
+    margin-bottom:24px;
+  }
+  /* Navbar */
+  .nav{
+    position:sticky;top:0;left:0;
+    width:100%;height:var(--nav-h);
+    background:transparent;
+    border-radius:0;
+    display:flex;align-items:center;
+    gap:6px;
+    padding:0 6px;
+    z-index:1000;
+    backdrop-filter:blur(40px);
+    -webkit-backdrop-filter:blur(40px);
+  }
+  .nav-wordmark{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1;
+    white-space:nowrap;
+  }
+  .tabctl{
+    display:inline-flex;align-items:center;
+    background:var(--surface);
+    border-radius:var(--r-control);
+    height:var(--nav-h);
+    padding:0 2px;
+    gap:2px;
+  }
+  .tabctl .tab{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1;
+    height:calc(var(--nav-h) - 6px);
+    display:inline-flex;align-items:center;
+    padding:0 8px;
+    border:none;background:transparent;
+    color:var(--text-primary);
+    cursor:pointer;border-radius:2px;
+  }
+  .tabctl .tab[aria-selected="true"]{
+    background:var(--background);
+  }
+  .status-dot{
+    margin-left:auto;
+    width:var(--dot-h);height:var(--dot-h);
+    background:var(--accent);
+    border-radius:var(--r-pill);
+    flex:none;
+  }
+  /* Hero */
+  #hero{position:relative;background:var(--background);padding:0}
+  .hero-canvas{
+    position:relative;
+    min-height:82vh;
+    background:var(--background);
+    overflow:hidden;
+  }
+  .scatter{
+    position:relative;
+    max-width:820px;
+    margin:64px auto 0;
+    height:340px;
+  }
+  .tile{
+    position:absolute;
+    border-radius:0;
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .tile.light{background:var(--surface)}
+  .tile.dark{background:#000000}
+  .tile svg{display:block;width:72%;height:72%}
+  .hero-copy{
+    text-align:center;
+    max-width:640px;
+    margin:48px auto 0;
+    padding:0 24px 80px;
+  }
+  .hero-copy .lead{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1.5;
+  }
+  .hero-copy .em{font-family:var(--font-serif);font-style:italic}
+  .cta-row{
+    display:flex;gap:6px;justify-content:center;
+    margin-top:24px;flex-wrap:wrap;
+  }
+  .btn{
+    font-family:var(--font-grotesk);
+    font-size:16px;line-height:1;
+    height:27px;
+    display:inline-flex;align-items:center;gap:6px;
+    padding:0 12px;
+    border-radius:var(--r-control);
+    border:none;cursor:pointer;
+    transition:background .3s var(--ease-fade),color .3s var(--ease-fade);
+  }
+  .btn-primary{background:#000000;color:#FFFFFF}
+  .btn-primary:hover{background:var(--surface);color:#000000}
+  .btn-secondary{background:var(--surface);color:#000000}
+  .btn-secondary:hover{background:#000000;color:#FFFFFF}
+  @media(max-width:768px){
+    .band{padding:64px 24px}
+    .scatter{height:auto;min-height:300px}
+  }
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+  }
+</style>
+</head>
+<body>
+
+<header>
+<nav class="nav" aria-label="Primary">
+  <span class="nav-wordmark">gionatannese</span>
+  <div class="tabctl" role="tablist" aria-label="Sections">
+    <button class="tab" role="tab" aria-selected="true">01</button>
+    <button class="tab" role="tab" aria-selected="false">02</button>
+    <button class="tab" role="tab" aria-selected="false">03</button>
+  </div>
+  <span class="status-dot" aria-label="Online" role="img"></span>
+</nav>
+</header>
+
+<main>
+
+<!-- HERO -->
+<section id="hero" aria-label="Hero">
+  <div class="hero-canvas">
+    <div class="scatter" aria-hidden="true">
+      <!-- hand-placed scatter, mix of light + dark -->
+      <div class="tile light" style="left:40px;top:20px;width:96px;height:110px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="20" cy="20" r="12"/><path d="M8 32 32 8"/></svg>
+      </div>
+      <div class="tile dark" style="left:150px;top:8px;width:80px;height:80px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><rect x="10" y="10" width="20" height="20"/></svg>
+      </div>
+      <div class="tile light" style="left:250px;top:34px;width:70px;height:90px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M6 34 20 6 34 34Z"/></svg>
+      </div>
+      <div class="tile light" style="left:336px;top:12px;width:110px;height:100px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M8 20h24M20 8v24"/></svg>
+      </div>
+      <div class="tile dark" style="left:460px;top:40px;width:88px;height:120px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><circle cx="20" cy="20" r="10"/><circle cx="20" cy="20" r="3"/></svg>
+      </div>
+      <div class="tile light" style="left:560px;top:14px;width:76px;height:76px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M10 30c0-11 20-11 20 0" /><path d="M14 16h12"/></svg>
+      </div>
+      <div class="tile light" style="left:648px;top:36px;width:100px;height:112px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="8" y="12" width="24" height="18"/><path d="M8 20h24"/></svg>
+      </div>
+      <div class="tile dark" style="left:96px;top:150px;width:92px;height:92px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M12 28 28 12M12 12l16 16"/></svg>
+      </div>
+      <div class="tile light" style="left:210px;top:158px;width:104px;height:80px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="14" cy="20" r="6"/><circle cx="28" cy="20" r="6"/></svg>
+      </div>
+      <div class="tile light" style="left:330px;top:172px;width:82px;height:100px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M20 6v28M6 20h28"/></svg>
+      </div>
+      <div class="tile dark" style="left:436px;top:186px;width:96px;height:78px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M8 32 20 8 32 32"/></svg>
+      </div>
+      <div class="tile light" style="left:548px;top:166px;width:90px;height:96px">
+        <svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="12" y="12" width="16" height="16" rx="2"/></svg>
+      </div>
+    </div>
+    <div class="hero-copy">
+      <p class="lead">A near-blank white field. A loose constellation of small objects. <span class="em">Whitespace</span> as the medium, tonal contrast as the only hierarchy.</p>
+      <div class="cta-row">
+        <button class="btn btn-primary">Enter the cabinet <iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        <button class="btn btn-secondary">View the system</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="palette">
+  #palette{background:var(--background)}
+  .pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:6px}
+  .pal-group{margin-bottom:48px}
+  .pal-group h3{font-size:16px;margin-bottom:14px}
+  .swatch{
+    border-radius:var(--r-card);
+    overflow:hidden;
+  }
+  .swatch .chip{height:120px;display:block}
+  .swatch .meta{padding:14px 0}
+  .swatch .name{font-size:16px}
+  .swatch .val{font-size:16px}
+  .swatch .use{font-size:16px}
+  .checker{
+    background-image:
+      linear-gradient(45deg,#ddd 25%,transparent 25%),
+      linear-gradient(-45deg,#ddd 25%,transparent 25%),
+      linear-gradient(45deg,transparent 75%,#ddd 75%),
+      linear-gradient(-45deg,transparent 75%,#ddd 75%);
+    background-size:16px 16px;
+    background-position:0 0,0 8px,8px -8px,-8px 0;
+  }
+</style>
+<section id="palette" class="band" aria-label="Palette">
+  <div class="band-inner">
+    <span class="kicker">Palette</span>
+    <p class="section-cap">There is no hue in the chrome. Colour is rationed entirely to the content inside tiles; the interface is white, grey, and ink.</p>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <span class="chip" style="background:#FFFFFF;border:1px solid #EDEDED" aria-hidden="true"></span>
+          <div class="meta"><div class="name">Background</div><div class="val">#FFFFFF</div><div class="use">The dominant field — ~96%+ of rendered pixels.</div></div>
+        </div>
+        <div class="swatch">
+          <span class="chip" style="background:#EDEDED" aria-hidden="true"></span>
+          <div class="meta"><div class="name">Surface</div><div class="val">#EDEDED</div><div class="use">Light object-tile mount. Never a section background.</div></div>
+        </div>
+        <div class="swatch">
+          <span class="chip" style="background:#000000" aria-hidden="true"></span>
+          <div class="meta"><div class="name">Dark mount</div><div class="val">#000000</div><div class="use">Card fill for dark tiles — the only strong tonal pop.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <span class="chip" style="background:#000000" aria-hidden="true"></span>
+          <div class="meta"><div class="name">Text primary</div><div class="val">#000000</div><div class="use">Ink on white grounds; all UI labels.</div></div>
+        </div>
+        <div class="swatch">
+          <span class="chip" style="background:#000000;color:#FFFFFF;display:flex;align-items:center;justify-content:center;font-size:16px" aria-hidden="true">Aa</span>
+          <div class="meta"><div class="name">Text on-colour</div><div class="val">#FFFFFF</div><div class="use">Reappears as text on black tiles.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accent</h3>
+      <div class="pal-grid">
+        <div class="swatch">
+          <span class="chip" style="background:#000000" aria-hidden="true"></span>
+          <div class="meta"><div class="name">Accent</div><div class="val">#000000</div><div class="use">Ink doubles as accent — status dot, active states.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+  #type-scale{background:var(--background)}
+  .spec{border-top:1px solid var(--surface);padding:24px 0}
+  .spec .live{font-family:var(--font-grotesk);font-size:16px;line-height:1.5;font-weight:400}
+  .spec .live.serif{font-family:var(--font-serif);font-style:italic}
+  .spec .metrics{font-size:16px;color:#000;margin-top:8px}
+</style>
+<section id="type-scale" class="band" aria-label="Type scale">
+  <div class="band-inner">
+    <span class="kicker">Type</span>
+    <p class="section-cap">A flat hierarchy. Every role — display, headline, body, label — resolves to one face at one size. Meaning is carried by placement, not scale.</p>
+
+    <div class="spec">
+      <div class="live">Display · every measured role shares these metrics</div>
+      <div class="metrics">LayGrotesk · 16px · 400 · 1.5 · display-lg</div>
+    </div>
+    <div class="spec">
+      <div class="live">Headline · hierarchy through position and tonal fill</div>
+      <div class="metrics">LayGrotesk · 16px · 400 · 1.5 · headline-md</div>
+    </div>
+    <div class="spec">
+      <div class="live">Body copy carries every running line at one uniform hairline weight, and the cabinet stays quiet.</div>
+      <div class="metrics">LayGrotesk · 16px · 400 · 1.5 · body-md</div>
+    </div>
+    <div class="spec">
+      <div class="live">Label — the single UI voice</div>
+      <div class="metrics">LayGrotesk · 16px · 400 · 1.5 · label-md</div>
+    </div>
+    <div class="spec">
+      <div class="live serif">A single interruption, set in italic serif.</div>
+      <div class="metrics">Teodor · italic · accent-serif</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+  #components{background:var(--background)}
+  .comp-block{padding:48px 0;border-top:1px solid var(--surface)}
+  .comp-head{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+  .comp-head h3{font-size:16px}
+  .comp-count{font-size:16px;background:var(--surface);border-radius:var(--r-control);padding:2px 8px;line-height:1}
+  .comp-desc{font-size:16px;max-width:56ch;margin-bottom:24px}
+  .comp-stage{background:var(--background);padding:32px;border:1px solid var(--surface);border-radius:var(--r-card)}
+  .comp-stage.dark{background:#000000}
+  .speccard{
+    margin-top:20px;font-size:16px;line-height:1.6;
+    background:var(--surface);border-radius:var(--r-card);
+    padding:14px;color:#000;
+  }
+  .speccard b{font-weight:400}
+  /* navbar demo */
+  .nav-demo{position:relative;height:27px;display:flex;align-items:center;gap:6px;padding:0 6px;background:#FFFFFF;border-radius:0}
+  /* scatter demo */
+  .demo-scatter{position:relative;height:220px;background:#FFFFFF}
+  .demo-scatter .tile svg{width:70%;height:70%}
+  /* tab demo */
+  .btn-matrix{display:grid;grid-template-columns:auto repeat(3,1fr);gap:6px;align-items:center;font-size:16px}
+  .btn-matrix .rh{font-size:16px}
+  .btn-matrix .ch{font-size:16px;text-align:center}
+  .mrow-btn{
+    font-family:var(--font-grotesk);font-size:16px;line-height:1;
+    height:27px;display:inline-flex;align-items:center;justify-content:center;
+    padding:0 12px;border-radius:var(--r-control);border:none;width:100%;
+  }
+</style>
+<section id="components" class="band" aria-label="Components">
+  <div class="band-inner">
+    <span class="kicker">Components</span>
+    <p class="section-cap">The full inventory. Flat, square-edged surfaces; no borders on tiles, no shadows, no rounded corners above 4px. Chrome stays uncoloured.</p>
+
+    <!-- NAVBAR -->
+    <div class="comp-block" data-tier-a-component="navbar">
+      <div class="comp-head"><h3>Navbar</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Edge-to-edge, sharp-cornered, transparent sticky bar. Wordmark left, tab control beside it, status dot far right. The only full-width element in the system.</p>
+      <div class="comp-stage" style="padding:0;overflow:hidden">
+        <div class="nav-demo">
+          <span class="nav-wordmark">gionatannese</span>
+          <div class="tabctl" role="tablist" aria-label="Demo sections">
+            <button class="tab" role="tab" aria-selected="true">01</button>
+            <button class="tab" role="tab" aria-selected="false">02</button>
+            <button class="tab" role="tab" aria-selected="false">03</button>
+          </div>
+          <span class="status-dot" role="img" aria-label="Status"></span>
+        </div>
+      </div>
+      <div class="speccard">
+        <b>--navbar</b> · height 27 · radius 0 · background transparent · position sticky · width 100% · type label-md · blur(40px)
+      </div>
+    </div>
+
+    <!-- OBJECT TILE LIGHT -->
+    <div class="comp-block" data-tier-a-component="object-tile-light">
+      <div class="comp-head"><h3>Object tile — light</h3><span class="comp-count">×12</span></div>
+      <p class="comp-desc">Flat #EDEDED mount, 0px radius, no border, no shadow. A single centered illustration fills most of the tile with an even surface margin. No caption, no CTA — a pure visual artifact.</p>
+      <div class="comp-stage" style="padding:0;overflow:hidden">
+        <div class="demo-scatter" aria-hidden="true">
+          <div class="tile light" style="left:30px;top:20px;width:88px;height:96px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="20" cy="20" r="12"/></svg></div>
+          <div class="tile light" style="left:132px;top:44px;width:72px;height:80px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M6 34 20 6 34 34Z"/></svg></div>
+          <div class="tile light" style="left:216px;top:16px;width:100px;height:92px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M8 20h24M20 8v24"/></svg></div>
+          <div class="tile light" style="left:328px;top:52px;width:78px;height:88px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="10" y="12" width="20" height="16"/></svg></div>
+          <div class="tile light" style="left:418px;top:24px;width:92px;height:84px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="14" cy="20" r="6"/><circle cx="28" cy="20" r="6"/></svg></div>
+          <div class="tile light" style="left:520px;top:48px;width:70px;height:96px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M10 30c0-11 20-11 20 0"/><path d="M14 16h12"/></svg></div>
+          <div class="tile light" style="left:602px;top:18px;width:96px;height:78px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="12" y="12" width="16" height="16" rx="2"/></svg></div>
+          <div class="tile light" style="left:60px;top:126px;width:82px;height:70px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M8 8 32 32M8 32 32 8"/></svg></div>
+          <div class="tile light" style="left:158px;top:132px;width:74px;height:74px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M6 20h28"/></svg></div>
+          <div class="tile light" style="left:246px;top:122px;width:100px;height:80px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="8" y="14" width="24" height="14"/></svg></div>
+          <div class="tile light" style="left:360px;top:140px;width:80px;height:72px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="20" cy="20" r="10"/><circle cx="20" cy="20" r="3"/></svg></div>
+          <div class="tile light" style="left:456px;top:128px;width:88px;height:78px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M20 6v28"/></svg></div>
+        </div>
+      </div>
+      <div class="speccard">
+        <b>--card-object-tile</b> · background surface #EDEDED · radius 0 · padding 0 · no border · no shadow · type label-md
+      </div>
+    </div>
+
+    <!-- OBJECT TILE DARK -->
+    <div class="comp-block" data-tier-a-component="object-tile-dark">
+      <div class="comp-head"><h3>Object tile — dark</h3><span class="comp-count">×5</span></div>
+      <p class="comp-desc">Flat #000000 mount, 0px radius, no border. A near-full-bleed high-contrast image or white linework icon. Provides the only strong tonal contrast in the composition.</p>
+      <div class="comp-stage" style="padding:0;overflow:hidden">
+        <div class="demo-scatter" aria-hidden="true">
+          <div class="tile dark" style="left:40px;top:24px;width:96px;height:110px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><rect x="10" y="10" width="20" height="20"/></svg></div>
+          <div class="tile dark" style="left:170px;top:40px;width:88px;height:88px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><circle cx="20" cy="20" r="10"/><circle cx="20" cy="20" r="3"/></svg></div>
+          <div class="tile dark" style="left:296px;top:20px;width:104px;height:96px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M12 28 28 12M12 12l16 16"/></svg></div>
+          <div class="tile dark" style="left:428px;top:48px;width:80px;height:104px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M8 32 20 8 32 32"/></svg></div>
+          <div class="tile dark" style="left:540px;top:28px;width:100px;height:90px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M8 20h24M20 8v24"/></svg></div>
+        </div>
+      </div>
+      <div class="speccard">
+        <b>--card-object-tile-dark</b> · background #000000 · radius 0 · padding 0 · no border · text on-colour #FFFFFF · type label-md
+      </div>
+    </div>
+
+    <!-- TAB CONTROL -->
+    <div class="comp-block" data-tier-a-component="tab-control">
+      <div class="comp-head"><h3>Tab control</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">Rounded-rectangle container (radius 4px, not full pill), #EDEDED fill. The active tab merges into the background fill; inactive tabs sit as plain text with no fill. Click to switch.</p>
+      <div class="comp-stage">
+        <div class="tabctl" role="tablist" aria-label="Cabinet views" id="tabDemo">
+          <button class="tab" role="tab" aria-selected="true">01 Objects</button>
+          <button class="tab" role="tab" aria-selected="false">02 Notes</button>
+          <button class="tab" role="tab" aria-selected="false">03 Index</button>
+        </div>
+      </div>
+      <div class="speccard">
+        <b>--button-nav-tab</b> · fill #EDEDED · text #000000 · radius r-control 4 · height 27 · type label-md<br>
+        <b>--button-nav-tab-inactive</b> · fill transparent · text #000000 · radius 4 · height 27 · motion structural 0.45s var(--ease-structural)
+      </div>
+    </div>
+
+    <!-- STATUS DOT -->
+    <div class="comp-block" data-tier-a-component="status-dot">
+      <div class="comp-head"><h3>Status dot</h3><span class="comp-count">×1</span></div>
+      <p class="comp-desc">A small solid circle, #000000 fill, full pill radius, ~6px. A minimal presence indicator with no label.</p>
+      <div class="comp-stage">
+        <span class="status-dot" role="img" aria-label="Presence indicator" style="margin-left:0"></span>
+      </div>
+      <div class="speccard">
+        <b>--avatar-dot</b> · background #000000 · radius r-pill 9999 · height 6 · no label
+      </div>
+    </div>
+
+    <!-- BUTTONS (derived from tab tokens) matrix -->
+    <div class="comp-block">
+      <div class="comp-head"><h3>Buttons</h3><span class="comp-count">derived</span></div>
+      <p class="comp-desc">Constructed from the documented tab tokens: a filled treatment (#EDEDED / ink) and a plain treatment (transparent / ink). Hover follows the tab-fill logic; disabled uses the surface tone.</p>
+      <div class="comp-stage">
+        <div class="btn-matrix">
+          <span class="rh"></span><span class="ch">Rest</span><span class="ch">Hover</span><span class="ch">Disabled</span>
+          <span class="rh">Filled</span>
+          <button class="mrow-btn" style="background:#EDEDED;color:#000">Object</button>
+          <button class="mrow-btn" style="background:#000;color:#fff">Object</button>
+          <button class="mrow-btn" style="background:#EDEDED;color:#000;opacity:.4" disabled>Object</button>
+          <span class="rh">Plain</span>
+          <button class="mrow-btn" style="background:transparent;color:#000">Object</button>
+          <button class="mrow-btn" style="background:#EDEDED;color:#000">Object</button>
+          <button class="mrow-btn" style="background:transparent;color:#000;opacity:.4" disabled>Object</button>
+        </div>
+      </div>
+      <div class="speccard">
+        <b>filled</b> · fill button-nav-tab #EDEDED · text #000000 · radius 4 · height 27 · hover→#000000/#FFFFFF<br>
+        <b>plain</b> · fill button-nav-tab-inactive transparent · text #000000 · radius 4 · height 27 · motion fade 0.3s var(--ease-fade)
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+  #surface-depth{background:var(--background)}
+  .depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+  .depth-card{padding:24px;border-radius:var(--r-card);font-size:16px}
+  .depth-card .lbl{font-size:16px;margin-top:12px}
+</style>
+<section id="surface-depth" class="band" aria-label="Surface and depth">
+  <div class="band-inner">
+    <span class="kicker">Surface &amp; depth</span>
+    <p class="section-cap">A shadowless, borderless system. Elevation is expressed only through flat tonal contrast — light tile, dark tile, white void. Radii top out at 4px.</p>
+    <div class="depth-grid">
+      <div class="depth-card" style="background:#FFFFFF;border:1px solid #EDEDED;border-radius:0">
+        Void<div class="lbl">#FFFFFF · radius 0</div>
+      </div>
+      <div class="depth-card" style="background:#EDEDED;border-radius:0">
+        Light mount<div class="lbl">#EDEDED · radius 0</div>
+      </div>
+      <div class="depth-card" style="background:#000000;color:#FFFFFF;border-radius:0">
+        Dark mount<div class="lbl" style="color:#fff">#000000 · radius 0</div>
+      </div>
+      <div class="depth-card" style="background:#EDEDED;border-radius:var(--r-control)">
+        Control<div class="lbl">#EDEDED · radius 4</div>
+      </div>
+      <div class="depth-card" style="background:#000000;color:#FFFFFF;border-radius:var(--r-pill);text-align:center">
+        Pill<div class="lbl" style="color:#fff">radius 9999</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+  #motion{background:var(--background)}
+  .motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+  .motion-card{background:var(--surface);border-radius:var(--r-card);padding:24px}
+  .motion-card h3{font-size:16px;margin-bottom:16px}
+  .mover{width:36px;height:36px;background:#000;border-radius:0}
+  .motion-track{height:60px;display:flex;align-items:center}
+  .m-structural .mover{transition:transform .45s cubic-bezier(0.65,0,0.35,1)}
+  .m-fade .mover{transition:opacity .3s cubic-bezier(0.4,0,0.2,1)}
+  .motion-card.play .m-structural-mover{transform:translateX(180px)}
+  .motion-card.play .m-fade-mover{opacity:.15}
+  .motion-meta{font-size:16px;margin-top:12px}
+  .replay{margin-top:14px;background:#000;color:#fff;border:none;border-radius:var(--r-control);height:27px;padding:0 12px;font-family:var(--font-grotesk);font-size:16px;cursor:pointer}
+</style>
+<section id="motion" class="band" aria-label="Motion">
+  <div class="band-inner">
+    <span class="kicker">Motion</span>
+    <p class="section-cap">Two curves govern the system: a slower structural curve with gentle overshoot for repositioning, and a fast standard fade for incidental state changes. State-triggered, never ambient.</p>
+    <div class="motion-grid">
+      <div class="motion-card" id="mc1">
+        <h3>Structural</h3>
+        <div class="motion-track m-structural"><span class="mover m-structural-mover"></span></div>
+        <div class="motion-meta">transform · 0.45s · cubic-bezier(0.65, 0, 0.35, 1)</div>
+        <button class="replay" data-play="mc1">Replay</button>
+      </div>
+      <div class="motion-card" id="mc2">
+        <h3>Fade</h3>
+        <div class="motion-track m-fade"><span class="mover m-fade-mover"></span></div>
+        <div class="motion-meta">opacity · 0.3s · cubic-bezier(0.4, 0, 0.2, 1)</div>
+        <button class="replay" data-play="mc2">Replay</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+  #composition{background:var(--background)}
+  .mock{border:1px solid var(--surface);border-radius:var(--r-card);overflow:hidden;background:#FFFFFF}
+  .mock-nav{height:27px;display:flex;align-items:center;gap:6px;padding:0 6px;background:#FFFFFF}
+  .mock-canvas{position:relative;height:420px;background:#FFFFFF}
+  .mock-canvas .tile svg{width:70%;height:70%}
+</style>
+<section id="composition" class="band" aria-label="In composition">
+  <div class="band-inner">
+    <span class="kicker">In composition</span>
+    <p class="section-cap">The whole system in one screen: a sharp edge-to-edge navbar, a hand-placed scatter cluster in the upper-middle third, and two-thirds of empty white below.</p>
+    <div class="mock">
+      <div class="mock-nav">
+        <span class="nav-wordmark">gionatannese</span>
+        <div class="tabctl" role="tablist" aria-label="Mock sections">
+          <button class="tab" role="tab" aria-selected="true">01</button>
+          <button class="tab" role="tab" aria-selected="false">02</button>
+        </div>
+        <span class="status-dot" role="img" aria-label="Status"></span>
+      </div>
+      <div class="mock-canvas" aria-hidden="true">
+        <div class="tile light" style="left:80px;top:30px;width:90px;height:104px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="20" cy="20" r="12"/></svg></div>
+        <div class="tile dark" style="left:190px;top:14px;width:82px;height:82px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><rect x="10" y="10" width="20" height="20"/></svg></div>
+        <div class="tile light" style="left:292px;top:40px;width:74px;height:92px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M6 34 20 6 34 34Z"/></svg></div>
+        <div class="tile light" style="left:384px;top:20px;width:108px;height:96px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M8 20h24M20 8v24"/></svg></div>
+        <div class="tile dark" style="left:510px;top:44px;width:86px;height:112px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><circle cx="20" cy="20" r="10"/><circle cx="20" cy="20" r="3"/></svg></div>
+        <div class="tile light" style="left:126px;top:150px;width:96px;height:82px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><circle cx="14" cy="20" r="6"/><circle cx="28" cy="20" r="6"/></svg></div>
+        <div class="tile light" style="left:240px;top:158px;width:80px;height:100px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><path d="M20 6v28M6 20h28"/></svg></div>
+        <div class="tile dark" style="left:340px;top:172px;width:92px;height:78px"><svg viewBox="0 0 40 40" fill="none" stroke="#fff" stroke-width="1"><path d="M8 32 20 8 32 32"/></svg></div>
+        <div class="tile light" style="left:450px;top:150px;width:88px;height:94px"><svg viewBox="0 0 40 40" fill="none" stroke="#000" stroke-width="1"><rect x="12" y="12" width="16" height="16" rx="2"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+  #footer{background:#FFFFFF;border-top:1px solid var(--surface)}
+  #footer .band-inner{display:flex;flex-direction:column;gap:8px}
+  #footer .fname{font-size:16px}
+  #footer a{font-size:16px;color:#000}
+  #footer .cred{font-size:16px}
+</style>
+<footer id="footer" class="band" aria-label="Footer">
+  <div class="band-inner">
+    <div class="fname">Scatter-field white cabinet</div>
+    <a href="https://www.gionatannese.com/">https://www.gionatannese.com/</a>
+    <div class="cred">Design system captured and rendered by r3xdec.design</div>
+  </div>
+</footer>
+
+</main>
+
+<script>
+  // Tab switching (structural curve)
+  document.querySelectorAll('[role="tablist"]').forEach(function(list){
+    list.querySelectorAll('[role="tab"]').forEach(function(tab){
+      tab.addEventListener('click',function(){
+        list.querySelectorAll('[role="tab"]').forEach(function(t){t.setAttribute('aria-selected','false');});
+        tab.setAttribute('aria-selected','true');
+      });
+    });
+  });
+  // Motion replay
+  function playCard(card){
+    card.classList.remove('play');
+    void card.offsetWidth;
+    card.classList.add('play');
+  }
+  document.querySelectorAll('.replay').forEach(function(btn){
+    btn.addEventListener('click',function(){playCard(document.getElementById(btn.dataset.play));});
+  });
+</script>
+</body>
+</html>

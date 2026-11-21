@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" class="loaded"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Sunseto Energy Chart · ThreeUI</title><link rel="stylesheet" href="./sunseto-energy-chart.css"></head><body data-template="sunseto-energy-chart" data-kind="UI Elements" data-dark="false"><div class="element-stage"><div class="chart" id="chart">
+            <div class="tabs"><span>This week</span><span>Savings</span></div>
+            <div class="c3d" id="chart3d">
+              <div class="c3-stage" id="chartStage">
+                <!-- back: two sheets of washi, the lower one askew, an engraving and the seal -->
+                <!-- the hinoki tray the sheets rest in: its shadow, outer faces, recess walls, floor, rim -->
+                <div class="c3-wood" id="chartWood" aria-hidden="true">
+                  <div class="w-sh"></div>
+                  <div class="w-sb"><div data-l="py"></div></div><div class="w-sr"><div data-l="px"></div></div><div class="w-st"><div data-l="ny"></div></div><div class="w-sl"><div data-l="nx"></div></div>
+                  <div class="w-fl"></div><div class="w-oc"></div>
+                  <div class="w-wt"><div data-l="py" data-w></div></div><div class="w-wr"><div data-l="nx" data-w></div></div><div class="w-wb"><div data-l="ny" data-w></div></div><div class="w-wl"><div data-l="px" data-w></div></div>
+                  <div class="w-rt"></div><div class="w-rb"></div><div class="w-rl"></div><div class="w-rr"></div>
+                </div>
+                <div class="c3-l c3-under" style="--z:-96px"></div>
+                <div class="c3-l c3-paper" style="--z:-64px">
+                  <img crossorigin="anonymous" class="c3-draw" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/f8eab733a9fdbd46a4aaef6c9d4ba4f0731ad7e4aaaa5cd13d652d26662013fe.webp" alt="">
+                  <svg class="c3-plot" viewBox="0 0 410 211" preserveAspectRatio="none" aria-hidden="true">
+                    <use href="#chartLineShape" class="c3-cast" clip-path="url(#chartClip)"/>
+                  </svg>
+                </div>
+                <!-- grid sheet -->
+                <div class="c3-l c3-grid" style="--z:-32px">
+                  <svg class="c3-plot" viewBox="0 0 410 211" preserveAspectRatio="none" aria-hidden="true" id="chartGrid"></svg>
+                  <div class="c3-yax"><span>24</span><span>16</span><span>8</span><span>0</span></div>
+                </div>
+                <!-- vellum: the reading, the legend and the filled area -->
+                <div class="c3-l c3-vellum" style="--z:0px">
+                  <div class="val"><b id="kwh">0.0</b><span>kWh</span></div>
+                  <img class="c3-seal" data-img="layers/hanko.webp" alt="">
+                  <div class="days"><span>Sun</span><span>Mon</span><span>Tue</span><span class="on">Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                  <div class="c3-legend"><i style="--c:#e5482f"></i>Solar<i style="--c:#f3b27a" class="d"></i>Forecast<i style="--c:#6b4a2e"></i>Home<i style="--c:#3f72dc"></i>Battery</div>
+                  <svg class="c3-plot" viewBox="0 0 410 211" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <linearGradient id="chartAreaG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8a2a" stop-opacity=".32"/><stop offset="1" stop-color="#ff8a2a" stop-opacity="0"/></linearGradient>
+                    </defs>
+                    <path id="chartArea" d="" fill="url(#chartAreaG)" clip-path="url(#chartClip)"/>
+                  </svg>
+                </div>
+                <!-- lines, floating -->
+                <div class="c3-l c3-lines" style="--z:34px">
+                  <svg class="c3-plot" viewBox="0 0 410 211" preserveAspectRatio="none" aria-hidden="true">
+                    <defs>
+                      <clipPath id="chartClip"><rect id="chartClipRect" x="0" y="-20" width="0" height="260"/></clipPath>
+                    </defs>
+                    <path id="chartUse" d="" fill="none" stroke="#6b4a2e" stroke-opacity=".38" stroke-width="1.1" vector-effect="non-scaling-stroke"/>
+                    <path id="chartGhost" d="" fill="none" stroke="#f3b27a" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                    <path id="chartBattShape" d="" fill="none" stroke="#3f63b8" stroke-opacity=".9" stroke-width="1.6" stroke-linecap="round" vector-effect="non-scaling-stroke"/>
+                  </svg>
+                </div>
+                <div class="c3-l c3-top" style="--z:64px">
+                  <svg class="c3-plot" viewBox="0 0 410 211" preserveAspectRatio="none" aria-hidden="true">
+                    <line id="chartNow" x1="203" x2="203" y1="0" y2="211" stroke="rgba(76,40,6,.45)" stroke-width="1" vector-effect="non-scaling-stroke"/>
+                    <path id="chartLineShape" d="" fill="none" stroke="#d8452c" stroke-width="2.4" stroke-linecap="round" vector-effect="non-scaling-stroke" clip-path="url(#chartClip)"/>
+                    <path id="chartLine" d="" fill="none" stroke="#fff3e0" stroke-opacity="0" stroke-width="1" stroke-linecap="round" vector-effect="non-scaling-stroke" clip-path="url(#chartClip)"/>
+                  </svg>
+                  <div class="c3-chip" id="chartChip"><b>11.9</b> kWh · Wed</div>
+                </div>
+              </div>
+            </div>
+          </div></div><script type="module" src="./sunseto-energy-chart.ui.js"></script></body></html>

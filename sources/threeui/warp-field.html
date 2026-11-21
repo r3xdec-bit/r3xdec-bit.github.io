@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="data:," />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warp Field Hyperspace — r3xdec 3D</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: #03040a; font-family: ui-sans-serif, system-ui, sans-serif; color: #fff; }
+    canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+    .controls {
+      position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); z-index: 10;
+      display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-radius: 999px;
+      background: rgba(8, 10, 22, 0.72); backdrop-filter: blur(14px); border: 1px solid rgba(140, 175, 255, 0.22);
+    }
+    .btn {
+      padding: 7px 14px; border-radius: 999px; border: 1px solid rgba(130, 180, 255, 0.45);
+      background: rgba(59, 130, 246, 0.22); color: #e6f0ff; font-size: 12px; font-weight: 600; cursor: pointer;
+    }
+    .btn.boost { background: rgba(168, 85, 247, 0.35); border-color: #c084fc; }
+    .lbl { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: #94a3b8; font-family: ui-monospace, monospace; }
+  </style>
+</head>
+<body>
+  <canvas id="gl"></canvas>
+  <div class="controls">
+    <span class="lbl">WARP · MACH <b id="mach">4.2</b></span>
+    <button class="btn" id="boostBtn">Hold / Toggle Hyperdrive</button>
+  </div>
+  <script>
+    const canvas = document.getElementById('gl');
+    const gl = canvas.getContext('webgl2', { preserveDrawingBuffer: true });
+    const vs = `#version 300 es
+      in vec2 p; void main() { gl_Position = vec4(p, 0.0, 1.0); }
+    `;
+    const fs = `#version 300 es
+      precision highp float;
+      uniform float u_time;
+      uniform vec2 u_res;
+      uniform vec2 u_mouse;
+      uniform float u_boost;
+      out vec4 fragColor;
+
+      float hash21(vec2 p) {
+        p = fract(p * vec2(234.34, 435.345));
+        p += dot(p, p + 34.23);
+        return fract(p.x * p.y);
+      }
+
+      vec3 starLayer(vec2 uv, float depth, float speed) {
+        vec3 col = vec3(0.0);
+        float a = atan(uv.y, uv.x);
+        float r = length(uv);
+        float z = fract(depth);
+        float fade = smoothstep(0.0, 0.25, z) * smoothstep(1.0, 0.72, z);
+
+        float sectors = 64.0;
+        float id = floor((a + 3.14159265) / 6.2831853 * sectors);
+        float rnd = hash21(vec2(id, floor(depth)));
+        float angleCenter = (id + 0.5) / sectors * 6.2831853 - 3.14159265;
+        float angDiff = abs(atan(sin(a - angleCenter), cos(a - angleCenter)));
+
+        float starR = mix(0.04, 1.45, pow(z, 2.2)) * (0.4 + 0.9 * rnd);
+        float streakLen = 0.04 + 0.26 * z * (1.0 + u_boost * 1.4);
+        float radial = smoothstep(streakLen, 0.0, abs(r - starR));
+        float angular = smoothstep(0.018 / max(r, 0.12), 0.001, angDiff);
+
+        vec3 tint = mix(vec3(0.45, 0.72, 1.0), vec3(0.92, 0.65, 1.0), fract(rnd * 13.7));
+        tint = mix(tint, vec3(0.25, 0.98, 0.88), step(0.82, rnd));
+        col += tint * radial * angular * fade * (1.4 + u_boost * 1.2);
+        return col;
+      }
+
+      void main() {
+        vec2 uv = (gl_FragCoord.xy - 0.5 * u_res) / min(u_res.x, u_res.y);
+        vec2 steer = (u_mouse - 0.5) * 0.42;
+        uv -= steer;
+
+        float r = length(uv);
+        float a = atan(uv.y, uv.x);
+
+        // Background tunnel nebula
+        float twist = a * 3.0 + 1.8 / (r + 0.18) - u_time * (2.6 + u_boost * 3.5);
+        float wave = 0.5 + 0.5 * sin(twist) * cos(a * 5.0 - u_time * 1.3);
+        vec3 col = vec3(0.012, 0.016, 0.042);
+        col += mix(vec3(0.08, 0.24, 0.65), vec3(0.48, 0.16, 0.85), wave) * exp(-r * 2.1) * 0.65;
+
+        // Multi-depth starfield streaks
+        for (float i = 0.0; i < 14.0; i++) {
+          float d = u_time * (0.65 + u_boost * 0.95) + i / 14.0;
+          col += starLayer(uv, d, 1.0);
+        }
+
+        // Core singularity bloom
+        float core = exp(-r * 6.5) * (0.65 + 0.35 * sin(u_time * 3.0));
+        col += vec3(0.55, 0.78, 1.0) * core;
+        col = pow(col, vec3(0.92));
+        fragColor = vec4(col, 1.0);
+      }
+    `;
+
+    function mk(t, s) {
+      const o = gl.createShader(t); gl.shaderSource(o, s); gl.compileShader(o);
+      if (!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o));
+      return o;
+    }
+    const pr = gl.createProgram();
+    gl.attachShader(pr, mk(gl.VERTEX_SHADER, vs));
+    gl.attachShader(pr, mk(gl.FRAGMENT_SHADER, fs));
+    gl.linkProgram(pr); gl.useProgram(pr);
+    const b = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, b);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]), gl.STATIC_DRAW);
+    const loc = gl.getAttribLocation(pr, 'p'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+
+    const uT = gl.getUniformLocation(pr, 'u_time');
+    const uR = gl.getUniformLocation(pr, 'u_res');
+    const uM = gl.getUniformLocation(pr, 'u_mouse');
+    const uB = gl.getUniformLocation(pr, 'u_boost');
+
+    let mx = 0.5, my = 0.5, tx = 0.5, ty = 0.5, boost = 0, targetBoost = 0;
+    const btn = document.getElementById('boostBtn');
+    const machEl = document.getElementById('mach');
+    btn.addEventListener('click', () => {
+      targetBoost = targetBoost > 0.5 ? 0 : 1;
+      btn.classList.toggle('boost', targetBoost > 0.5);
+    });
+    window.addEventListener('pointermove', (e) => {
+      tx = e.clientX / window.innerWidth;
+      ty = 1.0 - e.clientY / window.innerHeight;
+    });
+    function resize() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+    window.addEventListener('resize', resize); resize();
+
+    function draw(ms) {
+      mx += (tx - mx) * 0.07; my += (ty - my) * 0.07;
+      boost += (targetBoost - boost) * 0.06;
+      machEl.textContent = (4.2 + boost * 8.6).toFixed(1);
+      gl.uniform1f(uT, ms * 0.001);
+      gl.uniform2f(uR, canvas.width, canvas.height);
+      gl.uniform2f(uM, mx, my);
+      gl.uniform1f(uB, boost);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
+      requestAnimationFrame(draw);
+    }
+    requestAnimationFrame(draw);
+  </script>
+</body>
+</html>

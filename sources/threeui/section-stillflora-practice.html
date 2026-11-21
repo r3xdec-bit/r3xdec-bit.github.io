@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>Stillflora — Practice · ThreeUI</title><style>:root{--ink:#f4dde8;--paper:#e3ebed;--blue:#183444;--muted:#b9c7cd;--serif:"Cormorant Garamond",Georgia,serif;--sans:"Karla",Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:0px;background:var(--blue)}
+body{margin:0;background:var(--blue);color:var(--paper);font-family:var(--sans);font-size:16px;-webkit-font-smoothing:antialiased}
+button,a{-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit}
+a{color:inherit;text-decoration:none}
+button{border:0;cursor:pointer}
+button,a{touch-action:manipulation}
+button:focus-visible,a:focus-visible{outline:1px solid var(--ink);outline-offset:7px}
+::selection{background:#f4dde8;color:#183444}
+#world{position:fixed;inset:0;overflow:hidden;background:#183444;pointer-events:none}
+.vignette{position:fixed;inset:0;pointer-events:none;z-index:1;background:linear-gradient(180deg,rgba(6,23,34,.05),transparent 30%,transparent 70%,rgba(8,26,38,.18))}
+main{position:relative;z-index:2}
+.chapter{min-height:760px;height:100svh;position:relative;isolation:isolate;scroll-margin-top:0}
+.story-cta{background:#f1f4f2;color:#243747;min-height:43px;display:inline-flex;align-items:center;justify-content:center;padding:0 19px;font-size:12px;text-transform:uppercase;transition:background .25s,transform .25s}
+.story-cta:hover{background:#f4dde8;transform:translateY(-2px)}
+.section-heading{font-family:var(--serif);font-weight:300;text-transform:uppercase;color:var(--ink);margin:0;text-align:center;font-size:clamp(60px,8vw,132px);line-height:1;letter-spacing:.23em;padding-left:.23em}
+.eyebrow{text-transform:uppercase;font-size:12px;letter-spacing:.2em;color:#c6d2d7}
+.manifesto{padding-top:16vh;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow:hidden}
+.manifesto .section-heading{font-size:clamp(60px,7.3vw,115px)}
+.manifesto .eyebrow{display:none}
+.card-rail{width:100%;display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:28px calc((100vw - 258px)/2) 30px;align-items:center;perspective:1200px}
+.card-rail::-webkit-scrollbar{display:none}
+.manifesto-card{flex:0 0 258px;min-height:325px;border:1px solid #fcffffd9;border-radius:29px;background:radial-gradient(ellipse at 15% 0%,#ffffffb3,transparent 65%),linear-gradient(145deg,#e8edef 12%,#d3e0e5 92%);color:#24333b;position:relative;padding:48px 33px 32px;scroll-snap-align:center;box-shadow:inset 0 1px 1px #fffffffa,inset -1px -2px 3px #75889428,0 3px 5px #03182135,0 20px 35px #03182155;transform:rotateY(-9deg);transition:transform .5s,box-shadow .5s;text-align:left}
+.manifesto-card:before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.86' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23000' filter='url("/src/shaders/stillflora-landing-page/sources/%23n")' opacity='.7' d='M0 0h160v160H0z'/%3E%3C/svg%3E")}
+.manifesto-card:nth-child(2n){transform:rotateY(8deg)}
+.manifesto-card:hover{transform:translateY(-10px) rotateY(0);box-shadow:inset 1px 1px 5px #fff,0 0 1px 2px #f7d4e5,0 24px 60px #03182150}
+.card-number{position:absolute;right:20px;top:17px;width:30px;height:30px;border-radius:50%;background:#f6f9f8;display:grid;place-items:center;color:#60737c;font-family:var(--serif);font-size:18px;box-shadow:0 0 12px #fff}
+.manifesto-card h3{margin:0 0 46px;font-family:var(--serif);font-weight:400;line-height:.8;letter-spacing:-.07em;font-size:38px}
+.manifesto-card p{font-size:13px;line-height:1.45;margin:0}
+.rail-controls{display:flex;align-items:center;gap:25px;font-size:12px;letter-spacing:.15em;margin:8px 0}
+.rail-controls button{height:38px;width:38px;border:1px solid #c6d2d65e;border-radius:50%;background:transparent;transition:background .3s}
+.rail-controls button:hover{background:#dce5e51c}
+.rail-controls svg{width:15px;height:15px}
+.section-footnote{display:none;font-size:12px;letter-spacing:.05em;opacity:.65;margin:20px 0 0}
+dialog{border:1px solid #c0d1d347;padding:0;background:#193746;color:var(--paper);width:min(680px,calc(100% - 32px));max-height:86svh;overflow:auto;box-shadow:0 30px 150px #0008}
+dialog::backdrop{background:#071824b8;backdrop-filter:blur(14px)}
+.dialog-content{padding:65px 65px 55px}
+.dialog-close{position:absolute;top:20px;right:23px;background:none;padding:8px;width:36px;height:36px;font-size:23px;font-weight:400;line-height:1}
+.dialog-content h2{font-family:var(--serif);font-weight:300;font-size:67px;color:var(--ink);letter-spacing:-.05em;line-height:.9;margin:28px 0}
+.dialog-content .story-cta{margin-top:16px}
+@keyframes appear{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes breathe{0%,100%{transform:scaleY(.7);opacity:.4}50%{transform:scaleY(1);opacity:.8}}
+@media (min-width:1600px){.story-cta{font-size:12px;min-height:48px}}
+@media (max-width:1100px){.chapter{min-height:700px}}
+@media (max-width:700px){.vignette{background:linear-gradient(90deg,#112c3e75,transparent 90%),linear-gradient(0deg,#102b3e 5%,#102b3ee8 22%,#102b3e88 42%,transparent 70%)}
+.manifesto{padding-top:135px;min-height:800px}
+.manifesto .section-heading{font-size:11vw;letter-spacing:.08em;padding-left:.08em}
+.manifesto .eyebrow{font-size:12px;margin:23px 0 26px}
+.card-rail{gap:24px;padding-left:calc((100vw - 258px)/2);padding-right:calc((100vw - 258px)/2);padding-top:20px}
+.manifesto-card{transform:none!important;min-height:335px}
+.rail-controls{margin-top:10px}
+.dialog-content{padding:65px 30px 40px}
+.dialog-content h2{font-size:52px}}
+.model-credit{font-size:12px;line-height:1.8;opacity:.6;margin-top:22px}
+.model-credit a{text-decoration:underline;text-underline-offset:3px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}
+*,*:before,*:after{animation:none!important;transition:none!important}}
+.manifesto{padding-top:20vh}
+.manifesto .section-heading{position:absolute;top:13vh;left:0;width:100%;font-size:clamp(110px,16vw,270px);letter-spacing:.065em;padding-left:.065em;z-index:-1}
+.card-rail{padding-top:35px;padding-bottom:35px;margin-top:10px}
+.manifesto-card{min-height:365px;background:linear-gradient(140deg,rgba(243,250,250,.70),rgba(210,230,236,.54));backdrop-filter:blur(15px) saturate(.85);-webkit-backdrop-filter:blur(15px) saturate(.85);border-color:#f3ffffc2}
+.manifesto-card h3{font-size:47px;margin-bottom:36px}
+.manifesto-card p{font-size:14px}
+dialog{background:rgba(17,43,58,.49);backdrop-filter:blur(18px) saturate(1.05);-webkit-backdrop-filter:blur(18px) saturate(1.05);border-color:#dceef36b;box-shadow:inset 0 1px 0 #e9faff3b,0 30px 130px #0316236b}
+dialog::backdrop{background:#07182445;backdrop-filter:blur(2px)}
+.dialog-content{background:linear-gradient(140deg,#dff1f00d,transparent 55%)}
+.dialog-content h2{font-size:94px;line-height:.9}
+@media (max-width:700px){.manifesto{padding-top:178px}
+.manifesto .section-heading{top:159px;font-size:19.5vw;letter-spacing:.025em}
+.card-rail{margin-top:0;padding-top:24px}
+.manifesto-card{min-height:365px}
+.dialog-content h2{font-size:67px}
+.eyebrow{font-size:12px}}
+@media (max-width:370px){.dialog-content h2{font-size:58px}
+.dialog-content{padding-left:24px;padding-right:24px}}
+.manifesto .section-heading{font-size:clamp(130px,18vw,304px);letter-spacing:.035em}
+.manifesto-card{background:linear-gradient(135deg,#eaf9fa88,#daeaf35e 55%,#e5f7f87a);border:1px solid #eeffff91;backdrop-filter:blur(12px) saturate(1.25);-webkit-backdrop-filter:blur(12px) saturate(1.25);box-shadow:inset 1px 1px 2px #ffffffd6,inset -1px -2px 3px #d8efff66,0 20px 45px #03182140}
+.manifesto-card:after{content:"";position:absolute;inset:4px;border-radius:25px;border:1px solid #ffffff20;box-shadow:inset 0 1px 7px #ffffff29;pointer-events:none}
+.manifesto-card p{font-size:14px;line-height:1.5}
+.model-credit{font-size:12px}
+dialog{border-radius:28px;background:linear-gradient(135deg,#bce4ed20,#15394b55 48%,#c0e6f21b);backdrop-filter:blur(13px) saturate(1.25);-webkit-backdrop-filter:blur(13px) saturate(1.25);box-shadow:inset 1px 1px 2px #f0ffff91,inset -1px -1px 3px #d1f3ff38,0 35px 140px #03162370}
+@media (max-width:700px){.manifesto .section-heading{font-size:21vw;top:154px}}
+html{height:auto!important;min-height:100%;overflow-x:hidden!important;overflow-y:auto!important;scroll-behavior:smooth}body{height:auto!important;min-height:100vh;margin:0;overflow-x:hidden!important;overflow-y:auto!important;cursor:auto!important}body>[data-section-ancestor],[data-section-ancestor]{height:auto!important;min-height:0!important;position:relative!important;inset:auto!important;transform:none!important;overflow:visible!important}[data-section-root]{position:relative!important;inset:auto!important;transform:none!important;margin-block:0!important}[data-section-root] :is(.reveal,.rv,[data-reveal],[data-io]){opacity:1!important;visibility:visible!important;clip-path:none!important;transform:none!important}a,button{cursor:pointer}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:300;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/63e313fb9c65b6b2e177222010bbea911bfc5c79bee0fb69f8246fcc4e08c93a.ttf) format('truetype');}
+@font-face{font-family:'Cormorant Garamond';font-style:normal;font-weight:400;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/6d37a86241a25d63f8fe6018b4c083449886b7165c1acb15edd0f574f690ecf7.ttf) format('truetype');}
+@font-face{font-family:'Karla';font-style:normal;font-weight:400;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/312f8ebaede0db3bb202ee6b116cbe0d467e109b69b93b1e8ff869fc76a210d1.ttf) format('truetype');}
+html{scrollbar-width:none;scrollbar-gutter:auto}html::-webkit-scrollbar{display:none}body{overflow:visible!important}#world{position:fixed;z-index:-2;inset:0}.vignette{position:fixed;z-index:-1;inset:0}.chapter>.model-credit{position:absolute;bottom:18px;left:4%;right:4%;margin:0;font-size:10px}.chapter.archive>.model-credit{position:static;font-size:12px;margin-top:22px}dialog{z-index:30}#world:before{content:"";position:absolute;inset:0;background:url('https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/sections-release/1b89add0ffb57ef687af756ebfe8ff709719877614f1ec8f55adf97339ee4c0c.webp') center/cover no-repeat}#world.ready:before{display:none}@media(max-width:700px){.chapter.manifesto{min-height:800px}.chapter.stories{min-height:1170px}.chapter.archive{min-height:790px}} body.dialog-open{overflow:hidden!important}.glass-type-ready .manifesto .section-heading{color:transparent;text-shadow:none}#world:not(.ready) canvas{visibility:hidden}.archive{background:none}.archive::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,#0b2332b3);z-index:-1;pointer-events:none}</style></head><body data-threeui-section="section-stillflora-practice"><main data-section-ancestor=""><section aria-labelledby="practice-heading" class="chapter manifesto" data-section-root="" id="practice">
+<h2 class="section-heading" id="practice-heading">Practice</h2><p class="eyebrow">Made of attention, shaped by nature.</p>
+<div aria-label="Studio principles" class="card-rail" role="region" tabindex="0"><button class="manifesto-card" data-story="tend"><span class="card-number">I</span><h3>GROW<br/>WITH<br/>CARE</h3><p>Give each stem room to breathe. A considered arrangement begins with patience, a little space, and a careful hand.</p></button><button class="manifesto-card" data-story="observe"><span class="card-number">II</span><h3>SEEK<br/>THE<br/>SMALL</h3><p>Look for the details that almost disappear: a translucent edge, a branching vein, the shadow beneath a leaf.</p></button><button class="manifesto-card" data-story="gather"><span class="card-number">III</span><h3>MAKE<br/>ROOM<br/>FOR LIFE</h3><p>Let an unexpected shape change the composition. A little asymmetry gives a piece its own character.</p></button><button class="manifesto-card" data-story="preserve"><span class="card-number">IV</span><h3>HOLD<br/>THE<br/>LIGHT</h3><p>Turn a piece toward the window. Notice how clear glass gathers light and carries it into the smallest spaces.</p></button><button class="manifesto-card" data-story="rewild"><span class="card-number">V</span><h3>LEAVE<br/>IT<br/>WILD</h3><p>Keep the crooked stem and the unruly branch. Nature brings a kind of order that cannot be drawn in advance.</p></button></div>
+<div class="rail-controls"><button aria-label="Previous principle" id="previous-card"><svg fill="none" stroke="currentColor" stroke-width="1" viewbox="0 0 24 24"><path d="m14 6-6 6 6 6M8 12h12"></path></svg></button><span aria-live="polite" id="card-counter">I / V</span><button aria-label="Next principle" id="next-card"><svg fill="none" stroke="currentColor" stroke-width="1" viewbox="0 0 24 24"><path d="m10 6 6 6-6 6M16 12H4"></path></svg></button></div>
+<p class="section-footnote">Ways of tending to what catches the eye.</p>
+<div aria-hidden="true" id="world"></div><div aria-hidden="true" class="vignette"></div><dialog aria-labelledby="story-title" id="story-dialog"><button aria-label="Close note" class="dialog-close">×</button><article class="dialog-content"><span class="eyebrow" id="story-category"></span><h2 id="story-title"></h2><div id="story-body"></div><button class="story-cta dialog-done">Back to the page</button></article></dialog><p class="model-credit"><a href="https://commons.wikimedia.org/wiki/File:Body_female_realistic_by_Dan_Ulrich_(CC0).stl" rel="noopener noreferrer" target="_blank">Female form by Dan Ulrich / Blender Studio</a> · <a href="https://creativecommons.org/publicdomain/zero/1.0/" rel="noopener noreferrer" target="_blank">CC0</a> · adapted for Stillflora.</p><link href="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/sections-release/ef0e54eb35f203196de2e5354a3728442c328e7f7705ab4bb78e612664d8ec12.txt" rel="license"/></section></main><script defer="" src="./runtime.js"></script><script>(()=>{const root=document.querySelector('[data-section-root]'),life=new AbortController();const listen=(target,type,fn,options={})=>target.addEventListener(type,fn,{...options,signal:life.signal});let dead=false;listen(window,'pagehide',()=>{dead=true;life.abort()},{once:true});const motion=matchMedia('(prefers-reduced-motion: reduce)');const folios=['I','II','III','IV','V'];
+const stories={"tend": {"category": "Practice / I", "title": "Grow with care.", "paragraphs": ["An arrangement starts with the space around it. Before adding another stem, pause to see what is already there: a line, a weight, a patch of light.", "Care lives in these small decisions. Turn a leaf to reveal its shape. Leave a little air between two blooms. Let the materials tell you when the piece is complete."]}, "observe": {"category": "Practice / II", "title": "Seek the small.", "paragraphs": ["At first, a blossom reads as a single shape. Closer up, it becomes a landscape of folds, fine veins, and tiny grains of pollen.", "Our studies begin at this scale. A curled edge or a broken line can give an entire composition its character. Looking closely is part of making."]}, "gather": {"category": "Practice / III", "title": "Make room for life.", "paragraphs": ["A stem rarely grows in a perfect line. Leaves turn toward the light; petals open at their own pace. These small differences bring an arrangement to life.", "Leave enough space for them. Try a branch at an unfamiliar angle, or place a single bud where a larger flower might have been. Follow what changes."]}, "preserve": {"category": "Practice / IV", "title": "Hold the light.", "paragraphs": ["Clear glass can nearly disappear, then announce its whole shape in a single bright edge. Inside it, petals filter the light into quieter shades of cream and pink.", "Watch the relationship between the two materials. A reflection travels across the surface while a leaf stays still behind it. The piece holds both moments at once."]}, "rewild": {"category": "Practice / V", "title": "Leave it wild.", "paragraphs": ["The garden offers more than perfect specimens. A crooked stem has direction. A curled leaf casts a deeper shadow. An uneven blossom asks to be seen on its own terms.", "Keep a little of that unruliness. Let a branch interrupt the outline. The most memorable part of a piece may be the detail that refuses to fit neatly."]}};
+const dialog=document.getElementById('story-dialog');document.body.appendChild(dialog);let lastFocus=null;
+document.querySelectorAll('[data-story]').forEach(button=>listen(button,'click',()=>{const story=stories[button.dataset.story];lastFocus=button;document.getElementById('story-category').textContent=story.category;document.getElementById('story-title').textContent=story.title;const body=document.getElementById('story-body');body.replaceChildren(...story.paragraphs.map(text=>{const p=document.createElement('p');p.textContent=text;return p}));dialog.showModal();dialog.scrollTop=0;document.body.classList.add('dialog-open')}));
+document.querySelectorAll('.dialog-close,.dialog-done').forEach(button=>listen(button,'click',()=>dialog.close()));
+listen(dialog,'click',e=>{if(e.target===dialog){const r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)dialog.close()}});
+listen(dialog,'close',()=>{document.body.classList.remove('dialog-open');lastFocus?.focus({preventScroll:true})});
+const rail=document.querySelector('.card-rail'),cards=[...rail.children];let cardIndex=innerWidth<701?0:2;rail.scrollLeft=cards[cardIndex].offsetLeft-rail.clientWidth/2+cards[cardIndex].offsetWidth/2;document.getElementById('card-counter').textContent=folios[cardIndex]+' / V';
+function stepCard(dir){cardIndex=Math.max(0,Math.min(cards.length-1,cardIndex+dir));const card=cards[cardIndex];rail.scrollTo({left:card.offsetLeft-rail.clientWidth/2+card.offsetWidth/2,behavior:motion.matches?'instant':'smooth'});document.getElementById('card-counter').textContent=folios[cardIndex]+' / V'}
+listen(document.getElementById('previous-card'),'click',()=>stepCard(-1));listen(document.getElementById('next-card'),'click',()=>stepCard(1));
+listen(rail,'keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();stepCard(e.key==='ArrowRight'?1:-1)}});
+let railTimer;listen(rail,'scroll',()=>{clearTimeout(railTimer);railTimer=setTimeout(()=>{if(rail.scrollLeft<2)cardIndex=0;else if(Math.abs(rail.scrollWidth-rail.clientWidth-rail.scrollLeft)<3)cardIndex=cards.length-1;else {const center=rail.scrollLeft+rail.clientWidth/2;cardIndex=cards.reduce((best,c,i)=>Math.abs(c.offsetLeft+c.offsetWidth/2-center)<Math.abs(cards[best].offsetLeft+cards[best].offsetWidth/2-center)?i:best,0)}document.getElementById('card-counter').textContent=folios[cardIndex]+' / V'},120)},{passive:true});
+
+listen(window,'pagehide',()=>clearTimeout(railTimer),{once:true});
+const load=src=>new Promise((resolve,reject)=>{const script=document.createElement('script');script.src=src;script.onload=resolve;script.onerror=reject;document.head.append(script)});
+(async()=>{try{await load('/sections/assets/stillflora-three-d2d0e68a41a8.js');if(dead)return;await load('/sections/assets/stillflora-geometry.js');if(dead)return;await load('/sections/assets/stillflora-scene.js');if(dead)return;window.mountThreeUIStillfloraScene(root,1)}catch(error){console.error("Stillflora scene unavailable; using its poster.",error)}})();})();
+</script></body></html>

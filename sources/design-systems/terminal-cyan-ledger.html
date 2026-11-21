@@ -1,0 +1,765 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terminal Cyan Ledger — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600&family=Geist:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --background:#000000;
+  --surface:#000D0B;
+  --surface-alt:#001412;
+  --text-primary:#FFFFFF;
+  --text-secondary:#919D9C;
+  --text-tertiary:#CAC9D1;
+  --accent:#00FFE1;
+  --accent-deep:#0000EE;
+  --border:#767676;
+  --r-control:24px;
+  --r-card:32px;
+  --r-pill:100px;
+  --r-circle:9999px;
+  --base:8px;
+  --gap:16px;
+  --section-padding:150px;
+  --maxw:1130px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:"Bricolage Grotesque",system-ui,sans-serif;
+  font-size:14px;
+  line-height:1.3;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,p{margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.noise{position:relative}
+.noise::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.04;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:"Geist",monospace;font-size:13px;line-height:1.3;color:var(--text-secondary);display:flex;gap:12px;align-items:center;letter-spacing:.04em}
+.eyebrow .idx{color:var(--accent)}
+.eyebrow .slash{color:var(--accent)}
+.cyan{color:var(--accent)}
+section{padding:var(--section-padding) 0}
+.band-label{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em}
+
+/* Navbar */
+.navbar{
+  position:sticky;top:0;z-index:50;
+  height:66px;width:100%;
+  background:var(--surface);
+  border-radius:0;
+  display:flex;align-items:center;
+  border-bottom:1px solid rgba(118,118,118,.25);
+}
+.navbar .inner{max-width:100%;width:100%;padding:0 32px;display:flex;align-items:center;gap:24px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:600;font-size:18px}
+.logo iconify-icon{color:var(--accent);font-size:22px}
+.nav-links{display:flex;gap:28px;margin-left:32px}
+.nav-links a{color:var(--text-secondary);font-size:14px;transition:color .3s var(--ease)}
+.nav-links a:hover{color:var(--text-primary)}
+.nav-cta{
+  margin-left:auto;
+  background:var(--accent);color:var(--accent-deep);
+  border:none;border-radius:var(--r-pill);height:34px;
+  padding:0 20px;font-family:inherit;font-weight:600;font-size:14px;
+  cursor:pointer;transition:filter .3s var(--ease);
+}
+.nav-cta:hover{filter:brightness(.9)}
+
+/* Hero */
+.hero{
+  position:relative;overflow:hidden;
+  padding:120px 0 0;
+  text-align:center;
+  background:var(--background);
+}
+.hero .terrain{
+  position:absolute;top:0;left:0;right:0;height:340px;pointer-events:none;opacity:.5;
+  background:
+    repeating-linear-gradient(90deg,transparent 0,transparent 58px,rgba(0,255,225,.09) 59px,transparent 60px),
+    repeating-linear-gradient(0deg,transparent 0,transparent 58px,rgba(0,255,225,.06) 59px,transparent 60px);
+  transform:perspective(400px) rotateX(58deg);
+  transform-origin:top;
+  animation:terrain-drift 18s linear infinite;
+}
+@keyframes terrain-drift{from{background-position:0 0,0 0}to{background-position:0 120px,120px 0}}
+.hero-proof{display:inline-flex;align-items:center;gap:8px;font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);margin-bottom:28px;position:relative}
+.hero-proof iconify-icon{color:var(--accent)}
+.hero h1{
+  font-size:64px;font-weight:600;line-height:1.2;letter-spacing:-.02em;
+  max-width:900px;margin:0 auto;position:relative;
+}
+.hero p.sub{color:var(--text-secondary);font-size:16px;max-width:520px;margin:24px auto 0;position:relative}
+.hero-cta{
+  margin-top:36px;position:relative;
+  background:var(--accent);color:var(--accent-deep);
+  border:none;border-radius:var(--r-pill);height:40px;padding:0 28px;
+  font-family:inherit;font-weight:600;font-size:15px;cursor:pointer;
+  transition:filter .3s var(--ease);
+}
+.hero-cta:hover{filter:brightness(.9)}
+.hero-shot{
+  position:relative;margin:80px auto -1px;max-width:960px;
+  border-radius:var(--r-card) var(--r-card) 0 0;
+  overflow:hidden;
+}
+.hero-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,6,5,0) 55%,rgb(0,6,5) 100%)}
+.shot-chrome{background:var(--surface);border:1px solid rgba(118,118,118,.3);border-bottom:none;border-radius:var(--r-card) var(--r-card) 0 0;padding:24px}
+.shot-chrome .bar{display:flex;gap:8px;margin-bottom:20px}
+.shot-chrome .bar span{width:10px;height:10px;border-radius:var(--r-circle);background:var(--border)}
+.shot-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.shot-cell{background:var(--surface-alt);border-radius:var(--r-control);padding:18px;min-height:110px;display:flex;flex-direction:column;justify-content:space-between}
+.shot-cell .k{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary)}
+.shot-cell .v{font-size:28px;font-weight:600}
+.shot-cell .v em{font-style:normal;color:var(--accent)}
+@media(max-width:768px){
+  .hero h1{font-size:40px}
+  :root{--section-padding:90px}
+  .shot-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+}
+@media(max-width:640px){.hero h1{font-size:32px}}
+</style>
+</head>
+<body class="noise">
+
+<nav class="navbar" aria-label="Primary">
+  <div class="inner">
+    <a class="logo" href="#hero"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Cryptolab</a>
+    <div class="nav-links">
+      <a href="#palette">Palette</a>
+      <a href="#type-scale">Type</a>
+      <a href="#components">Components</a>
+      <a href="#motion">Motion</a>
+      <a href="#composition">Composition</a>
+    </div>
+    <button class="nav-cta">Open console</button>
+  </div>
+</nav>
+
+<header class="hero" id="hero">
+  <div class="terrain" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero-proof"><iconify-icon icon="lucide:activity" aria-hidden="true"></iconify-icon>Rated 4.9 · 12,400 ledgers monitored live</div>
+    <h1>The operator console for <span class="cyan">/ real-time</span> asset monitoring</h1>
+    <p class="sub">A near-black terminal surface, one rationed cyan signal, and dashboard density where marketing gloss usually sits.</p>
+    <div><button class="hero-cta">Launch dashboard</button></div>
+    <div class="hero-shot" role="img" aria-label="Trading dashboard interface stand-in">
+      <div class="shot-chrome">
+        <div class="bar"><span></span><span></span><span></span></div>
+        <div class="shot-grid">
+          <div class="shot-cell"><div class="k">/ balance</div><div class="v">$4.20<em>M</em></div></div>
+          <div class="shot-cell"><div class="k">/ throughput</div><div class="v">98<em>%</em></div></div>
+          <div class="shot-cell"><div class="k">/ latency</div><div class="v">12<em>ms</em></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface)}
+.pal-head{margin-bottom:56px}
+.pal-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.pal-groups{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+.pal-group h3{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:20px}
+.swatch{margin-bottom:20px}
+.swatch .chip{height:72px;border-radius:var(--r-control);border:1px solid rgba(118,118,118,.3)}
+.swatch .name{font-weight:600;margin-top:10px;font-size:14px}
+.swatch .val{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary)}
+.swatch .note{font-size:13px;color:var(--text-secondary);margin-top:4px}
+.checker{background-image:linear-gradient(45deg,#111 25%,transparent 25%),linear-gradient(-45deg,#111 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#111 75%),linear-gradient(-45deg,transparent 75%,#111 75%);background-size:16px 16px;background-position:0 0,0 8px,8px -8px,-8px 0}
+@media(max-width:768px){.pal-groups{grid-template-columns:1fr}}
+</style>
+<section id="palette" class="wrap-band">
+  <div class="wrap">
+    <div class="pal-head">
+      <div class="eyebrow"><span class="idx">[ 01 ]</span><span class="slash">/</span>Palette</div>
+      <h2>One black canvas. One <span class="cyan">rationed</span> signal.</h2>
+    </div>
+    <div class="pal-groups">
+      <div class="pal-group">
+        <h3>Surfaces</h3>
+        <div class="swatch"><div class="chip" style="background:#000000"></div><div class="name">Background</div><div class="val">#000000</div><div class="note">Dominant black field, ~43% of canvas.</div></div>
+        <div class="swatch"><div class="chip" style="background:#000D0B"></div><div class="name">Surface</div><div class="val">#000D0B</div><div class="note">Navbar and monitor-panel fill.</div></div>
+        <div class="swatch"><div class="chip" style="background:#001412"></div><div class="name">Surface Alt</div><div class="val">#001412</div><div class="note">Teal-tinted trust-zone band.</div></div>
+      </div>
+      <div class="pal-group">
+        <h3>Text</h3>
+        <div class="swatch"><div class="chip" style="background:#FFFFFF"></div><div class="name">Text Primary</div><div class="val">#FFFFFF</div><div class="note">Headlines and primary copy.</div></div>
+        <div class="swatch"><div class="chip" style="background:#919D9C"></div><div class="name">Text Secondary</div><div class="val">#919D9C</div><div class="note">Muted labels and metadata.</div></div>
+        <div class="swatch"><div class="chip" style="background:#CAC9D1"></div><div class="name">Text Tertiary</div><div class="val">#CAC9D1</div><div class="note">Soft supporting captions.</div></div>
+      </div>
+      <div class="pal-group">
+        <h3>Accents</h3>
+        <div class="swatch"><div class="chip" style="background:#00FFE1"></div><div class="name">Accent Cyan</div><div class="val">#00FFE1</div><div class="note">Labels, links, one CTA family.</div></div>
+        <div class="swatch"><div class="chip" style="background:#0000EE"></div><div class="name">Accent Deep</div><div class="val">#0000EE</div><div class="note">On-color text over cyan fills.</div></div>
+        <div class="swatch"><div class="chip checker" style="background:linear-gradient(rgba(0,255,225,1) 0%,rgba(0,6,5,1) 100%)"></div><div class="name">Scrim Gradient</div><div class="val">cyan → #000605</div><div class="note">Small scrim only, never a page wash.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background)}
+.ts-head{margin-bottom:56px}
+.ts-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.specimen{padding:28px 0;border-top:1px solid rgba(118,118,118,.25)}
+.specimen .meta{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);margin-top:12px;letter-spacing:.03em}
+.sp-display{font-size:64px;font-weight:600;line-height:1.2;letter-spacing:-.02em}
+.sp-headline{font-size:36px;font-weight:600;line-height:1}
+.sp-label{font-size:40px;font-weight:600;line-height:1.1}
+.sp-body{font-size:14px;font-weight:400;line-height:1.3;max-width:520px;color:var(--text-tertiary)}
+.sp-mono{font-family:"Geist",monospace;font-size:13px;font-weight:400;line-height:1.3;color:var(--accent)}
+@media(max-width:768px){.sp-display{font-size:40px}.sp-headline{font-size:28px}.sp-label{font-size:30px}}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <div class="ts-head">
+      <div class="eyebrow"><span class="idx">[ 02 ]</span><span class="slash">/</span>Type Scale</div>
+      <h2>Hierarchy built from <span class="cyan">size and color</span>, one family.</h2>
+    </div>
+    <div class="specimen"><div class="sp-display">Monitor the ledger <span class="cyan">/ live</span></div><div class="meta">display-lg · Bricolage Grotesque · 64px / 600 / 1.2</div></div>
+    <div class="specimen"><div class="sp-headline">Console-grade clarity <span class="cyan">/ signal</span></div><div class="meta">headline-md · Bricolage Grotesque · 36px / 600 / 1.0</div></div>
+    <div class="specimen"><div class="sp-label">98%</div><div class="meta">label-md · Bricolage Grotesque · 40px / 600 / 1.1 — standalone stat numerals</div></div>
+    <div class="specimen"><p class="sp-body">Every surface stays near-black and recessive, so the single cyan signal reads as instrumentation rather than decoration. Density does the persuading.</p><div class="meta">body-md · Bricolage Grotesque · 14px / 400 / 1.3</div></div>
+    <div class="specimen"><div class="sp-mono">status: online / latency: 12ms / peers: 42</div><div class="meta">accent-mono · Geist · 13px / 400 / 1.3 — terminal readouts</div></div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface)}
+.comp-head{margin-bottom:64px}
+.comp-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.family{margin-bottom:96px}
+.family-title{font-size:24px;font-weight:600;margin-bottom:8px}
+.family-eyebrow{margin-bottom:28px}
+.family-grid{display:grid;grid-template-columns:1.6fr 1fr;gap:40px;align-items:start}
+.spec-card{
+  background:var(--background);border:1px solid rgba(118,118,118,.3);border-radius:var(--r-control);
+  padding:20px;font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);line-height:1.7;
+}
+.spec-card b{color:var(--accent);font-weight:400}
+.demo{background:var(--background);border:1px solid rgba(118,118,118,.25);border-radius:var(--r-card);padding:32px}
+
+/* buttons */
+.btn{font-family:"Bricolage Grotesque";font-weight:600;cursor:pointer;transition:filter .3s var(--ease),background .3s var(--ease);border:none}
+.btn-primary{background:var(--accent);color:var(--accent-deep);border-radius:var(--r-pill);height:34px;padding:0 20px;font-size:14px}
+.btn-hero{background:var(--accent);color:var(--accent-deep);border-radius:var(--r-pill);height:40px;padding:0 26px;font-size:15px}
+.btn-glass{background:rgba(0,0,0,.2);color:#0000EE;border-radius:40px;height:40px;padding:0 22px;font-size:14px;backdrop-filter:blur(15px);border:1px solid rgba(118,118,118,.4)}
+.btn-ghost{background:transparent;color:var(--accent);border-radius:20px;height:40px;padding:8px 24px;font-size:14px;border:1px solid var(--border)}
+.btn:hover{filter:brightness(.9)}
+.btn[disabled]{opacity:.4;cursor:not-allowed;filter:none}
+
+.matrix{width:100%;border-collapse:collapse}
+.matrix th,.matrix td{padding:14px 12px;text-align:left;border-bottom:1px solid rgba(118,118,118,.2);vertical-align:middle}
+.matrix th{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);font-weight:400;text-transform:uppercase;letter-spacing:.06em}
+.matrix td .rowlabel{font-family:"Geist",monospace;font-size:13px;color:var(--text-tertiary)}
+
+/* service cards */
+.svc-row{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.svc-card{background:transparent;border-radius:0;border-top:1px solid rgba(118,118,118,.35);padding-top:20px}
+.svc-card .top{display:flex;justify-content:space-between;align-items:flex-start}
+.svc-card .top iconify-icon{color:var(--accent);font-size:22px}
+.svc-card .idx{font-family:"Geist",monospace;font-size:13px;color:var(--accent)}
+.svc-card h4{font-size:18px;font-weight:600;margin:20px 0 14px}
+.svc-card .rule{height:1px;background:rgba(118,118,118,.3);margin-bottom:14px}
+.svc-card p{font-size:14px;color:var(--text-secondary)}
+
+/* badge cluster */
+.badge-cluster{display:flex;gap:28px;flex-wrap:wrap;align-items:center}
+.badge{width:96px;height:96px;border-radius:var(--r-circle);border:1px solid rgba(0,255,225,.4);display:flex;align-items:center;justify-content:center;flex-direction:column;background:transparent}
+.badge iconify-icon{color:var(--accent);font-size:26px}
+.badge span{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);margin-top:6px}
+
+/* live metrics */
+.metrics{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:var(--background);border-radius:var(--r-card);padding:40px}
+.dial{width:180px;height:180px;border-radius:var(--r-circle);background:conic-gradient(from 178deg,var(--accent) 0%,var(--accent) 69%,rgba(0,255,225,.08) 69%,rgba(0,255,225,.08) 100%);display:flex;align-items:center;justify-content:center;margin:0 auto;box-shadow:0 0 40px -8px rgba(0,255,225,.4)}
+.dial .inner{width:140px;height:140px;border-radius:var(--r-circle);background:var(--background);display:flex;align-items:center;justify-content:center;flex-direction:column}
+.dial .inner .num{font-size:40px;font-weight:600;line-height:1.1}
+.dial .inner .lbl{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary)}
+.statuslist{font-family:"Geist",monospace;font-size:13px;line-height:2.1}
+.statuslist .k{color:var(--text-secondary)}
+.statuslist .v{color:var(--accent)}
+.bigstat{font-size:40px;font-weight:600;line-height:1.1;margin-top:18px}
+.icon-cta{width:44px;height:44px;border-radius:var(--r-circle);background:var(--accent);color:var(--accent-deep);border:none;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;margin-top:20px;font-size:20px;transition:filter .3s var(--ease)}
+.icon-cta:hover{filter:brightness(.9)}
+
+/* dashboard band */
+.dash-band{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.dash-shot{position:relative;background:var(--surface);border:1px solid rgba(118,118,118,.3);border-radius:var(--r-card);padding:20px;overflow:hidden}
+.dash-shot::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(0,6,5,0) 55%,rgb(0,6,5) 100%)}
+.dash-shot .line{height:10px;border-radius:var(--r-pill);background:var(--surface-alt);margin-bottom:12px}
+.dash-shot .line.accent{background:linear-gradient(90deg,var(--accent),rgba(0,255,225,.1));width:60%}
+.dash-copy h4{font-size:28px;font-weight:600;line-height:1.1}
+.dash-copy p{color:var(--text-secondary);margin:18px 0 26px;font-size:14px}
+.dash-cta{display:inline-flex;align-items:center;gap:10px}
+.dash-cta .idx{font-family:"Geist",monospace;font-size:13px;color:var(--accent)}
+
+/* floating tags */
+.tags-band{position:relative;min-height:240px}
+.tag{position:absolute;background:var(--surface-alt);color:var(--accent);border-radius:var(--r-pill);padding:10px 22px;font-family:"Geist",monospace;font-size:13px;border:1px solid rgba(0,255,225,.3)}
+
+/* testimonial */
+.testi{background:var(--surface-alt);border-radius:var(--r-card);padding:48px;display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
+.portrait{width:200px;height:240px;border-radius:var(--r-card);background:linear-gradient(160deg,var(--surface),var(--accent-deep));display:flex;align-items:flex-end;justify-content:center;padding:16px;color:var(--text-tertiary);font-family:"Geist",monospace;font-size:13px}
+.quote{font-size:24px;font-weight:600;line-height:1.3}
+.quote .attr{display:block;font-size:14px;font-weight:400;color:var(--text-secondary);font-family:"Geist",monospace;margin-top:20px}
+
+/* closing cta */
+.closing{position:relative;border-radius:var(--r-card);overflow:hidden;padding:72px 48px;text-align:center;background:var(--background);border:1px solid rgba(118,118,118,.25)}
+.closing .scrim{position:absolute;inset:0;background:linear-gradient(rgb(0,255,225) 0%,rgb(0,6,5) 100%);opacity:.28}
+.closing h3{position:relative;font-size:36px;font-weight:600;line-height:1}
+.closing .btn{position:relative;margin-top:28px}
+
+@media(max-width:768px){
+  .family-grid{grid-template-columns:1fr}
+  .svc-row{grid-template-columns:1fr 1fr}
+  .metrics,.dash-band,.testi{grid-template-columns:1fr}
+  .portrait{width:100%}
+}
+@media(max-width:640px){.svc-row{grid-template-columns:1fr}}
+</style>
+<section id="components">
+  <div class="wrap">
+    <div class="comp-head">
+      <div class="eyebrow"><span class="idx">[ 03 ]</span><span class="slash">/</span>Components</div>
+      <h2>The full <span class="cyan">console</span> inventory.</h2>
+    </div>
+
+    <!-- Navbar -->
+    <div class="family" data-tier-a-component="navbar">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Navbar</div>
+      <h3 class="family-title">Navbar — edge-to-edge bar</h3>
+      <div class="family-grid">
+        <div>
+          <div style="border:1px solid rgba(118,118,118,.25);border-radius:var(--r-card);overflow:hidden">
+            <div style="height:66px;background:var(--surface);display:flex;align-items:center;padding:0 24px;gap:20px">
+              <a class="logo" href="#components" style="font-size:16px"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Cryptolab</a>
+              <div style="display:flex;gap:22px;margin-left:24px">
+                <a style="color:var(--text-secondary);font-size:14px" href="#components">Product</a>
+                <a style="color:var(--text-secondary);font-size:14px" href="#components">Ledger</a>
+                <a style="color:var(--text-secondary);font-size:14px" href="#components">Pricing</a>
+                <a style="color:var(--text-secondary);font-size:14px" href="#components">Docs</a>
+                <a style="color:var(--text-secondary);font-size:14px" href="#components">Company</a>
+              </div>
+              <button class="btn btn-primary" style="margin-left:auto">Open console</button>
+            </div>
+          </div>
+        </div>
+        <div class="spec-card">
+          --navbar · height <b>66</b> · fill <b>surface #000D0B</b><br>
+          radius <b>0 / edge-to-edge</b> · sticky<br>
+          items <b>7</b> = logo + 5 links + CTA<br>
+          cta fill <b>accent</b> · text <b>accent-deep</b> · r-pill <b>100</b> · h <b>34</b><br>
+          motion ease <b>0.3s</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons matrix -->
+    <div class="family" data-tier-a-component="hero-primary-cta">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Buttons</div>
+      <h3 class="family-title">Control matrix — variants × states</h3>
+      <div class="family-grid">
+        <div class="demo">
+          <table class="matrix">
+            <thead><tr><th>Variant</th><th>Rest</th><th>Hover</th><th>Disabled</th></tr></thead>
+            <tbody>
+              <tr>
+                <td><span class="rowlabel">Hero primary</span></td>
+                <td><button class="btn btn-hero">Launch</button></td>
+                <td><button class="btn btn-hero" style="filter:brightness(.9)">Launch</button></td>
+                <td><button class="btn btn-hero" disabled>Launch</button></td>
+              </tr>
+              <tr>
+                <td><span class="rowlabel">Navbar pill</span></td>
+                <td><button class="btn btn-primary">Open</button></td>
+                <td><button class="btn btn-primary" style="filter:brightness(.9)">Open</button></td>
+                <td><button class="btn btn-primary" disabled>Open</button></td>
+              </tr>
+              <tr>
+                <td><span class="rowlabel">Outline / ghost</span></td>
+                <td><button class="btn btn-ghost">Details</button></td>
+                <td><button class="btn btn-ghost" style="filter:brightness(.9)">Details</button></td>
+                <td><button class="btn btn-ghost" disabled>Details</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="spec-card">
+          --btn-hero · fill <b>accent</b> · text <b>accent-deep</b><br>
+          r <b>pill 100</b> · h <b>40</b> · type <b>label 15/600</b><br>
+          --btn-primary · h <b>34</b> · r <b>pill</b><br>
+          hover <b>brightness .9</b> · disabled <b>opacity .4</b><br>
+          motion ease <b>0.3s</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- Glass utility -->
+    <div class="family" data-tier-a-component="button-glass-utility">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Button — Glass Utility</div>
+      <h3 class="family-title">Mid-page dashboard control</h3>
+      <div class="family-grid">
+        <div class="demo" style="background:linear-gradient(135deg,#001412,#000605)">
+          <button class="btn btn-glass">Toggle grid</button>
+          <button class="btn btn-glass" style="margin-left:14px">Refresh</button>
+        </div>
+        <div class="spec-card">
+          --button-glass-utility · fill <b>rgba(0,0,0,.2)</b><br>
+          radius <b>40</b> · h <b>40</b> · backdrop <b>blur 15</b><br>
+          reserved for chrome/toggles — <b>never hero</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outline ghost -->
+    <div class="family" data-tier-a-component="button-outline-ghost">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Button — Outline / Ghost</div>
+      <h3 class="family-title">Secondary actions</h3>
+      <div class="family-grid">
+        <div class="demo"><button class="btn btn-ghost">View history</button></div>
+        <div class="spec-card">
+          --button-outline-ghost · bg <b>transparent</b><br>
+          border <b>#767676</b> · radius <b>20</b> · h <b>40</b><br>
+          padding <b>8 24</b>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service cards -->
+    <div class="family" data-tier-a-component="service-capability-cards">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Service Capability Cards ×4</div>
+      <h3 class="family-title">Uniform equal-width row</h3>
+      <div class="family-grid">
+        <div class="demo" style="grid-column:1 / -1">
+          <div class="svc-row">
+            <div class="svc-card"><div class="top"><iconify-icon icon="lucide:radar" aria-hidden="true"></iconify-icon><span class="idx">/001</span></div><h4>Live watch</h4><div class="rule"></div><p>Streaming positions with sub-15ms refresh across every connected ledger.</p></div>
+            <div class="svc-card"><div class="top"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon><span class="idx">/002</span></div><h4>Signed audit</h4><div class="rule"></div><p>Every state transition hashed and pinned for a tamper-evident trail.</p></div>
+            <div class="svc-card"><div class="top"><iconify-icon icon="lucide:git-branch" aria-hidden="true"></iconify-icon><span class="idx">/003</span></div><h4>Routing</h4><div class="rule"></div><p>Deterministic order routing tuned for terminal-grade throughput.</p></div>
+            <div class="svc-card"><div class="top"><iconify-icon icon="lucide:bell-ring" aria-hidden="true"></iconify-icon><span class="idx">/004</span></div><h4>Alerts</h4><div class="rule"></div><p>Threshold triggers surface as cyan status lines, never noise.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:24px">--card-transparent-list · fill <b>transparent</b> · radius <b>0</b> · rule <b>border .3</b> · icon <b>accent 22</b> · index <b>accent-mono 13</b></div>
+    </div>
+
+    <!-- Badge cluster -->
+    <div class="family" data-tier-a-component="about-badge-cluster">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>About Badge Cluster</div>
+      <h3 class="family-title">Circular trust marks</h3>
+      <div class="family-grid">
+        <div class="demo">
+          <div class="badge-cluster">
+            <div class="badge"><iconify-icon icon="lucide:award" aria-hidden="true"></iconify-icon><span>SOC 2</span></div>
+            <div class="badge"><iconify-icon icon="lucide:lock" aria-hidden="true"></iconify-icon><span>Vault</span></div>
+            <div class="badge"><iconify-icon icon="lucide:check-circle" aria-hidden="true"></iconify-icon><span>Verified</span></div>
+            <div class="badge"><iconify-icon icon="lucide:globe" aria-hidden="true"></iconify-icon><span>Global</span></div>
+          </div>
+        </div>
+        <div class="spec-card">--badge · radius <b>circle 9999</b> · fill <b>transparent</b> · stroke <b>accent .4</b> · label <b>accent-mono</b></div>
+      </div>
+    </div>
+
+    <!-- Live metrics -->
+    <div class="family" data-tier-a-component="live-metrics-panel">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Live-Metrics Panel</div>
+      <h3 class="family-title">Radial dial + status log</h3>
+      <div class="family-grid">
+        <div class="demo" style="grid-column:1 / -1">
+          <div class="metrics">
+            <div>
+              <div class="dial"><div class="inner"><div class="num">69<span class="cyan">%</span></div><div class="lbl">/ capacity</div></div></div>
+            </div>
+            <div>
+              <div class="statuslist">
+                <div><span class="k">status</span> : <span class="v">online</span></div>
+                <div><span class="k">peers</span> : <span class="v">42</span></div>
+                <div><span class="k">latency</span> : <span class="v">12ms</span></div>
+                <div><span class="k">throughput</span> : <span class="v">98%</span></div>
+              </div>
+              <div class="bigstat">$4.20<span class="cyan">M</span></div>
+              <button class="icon-cta" aria-label="Expand metrics"><iconify-icon icon="lucide:arrow-up-right" aria-hidden="true"></iconify-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card" style="margin-top:24px">--live-metrics · bg <b>black</b> · dial <b>178deg cyan glow</b> · readouts <b>accent-mono</b> · values <b>accent</b> · stat <b>label 40/600</b> · icon-cta <b>circle</b></div>
+    </div>
+
+    <!-- Dashboard band -->
+    <div class="family" data-tier-a-component="dashboard-screenshot-band">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Dashboard Screenshot Band</div>
+      <h3 class="family-title">Image-left, copy-right</h3>
+      <div class="demo" style="margin-bottom:24px">
+        <div class="dash-band">
+          <div class="dash-shot" role="img" aria-label="Wallet interface stand-in">
+            <div class="line accent"></div>
+            <div class="line" style="width:90%"></div>
+            <div class="line" style="width:75%"></div>
+            <div class="line" style="width:82%"></div>
+            <div class="line" style="width:60%"></div>
+          </div>
+          <div class="dash-copy">
+            <h4>Your whole ledger, one glass panel.</h4>
+            <p>The dashboard is the product. Positions, flows, and signed events all resolve into the same terminal surface — no context switching.</p>
+            <div class="dash-cta"><button class="btn btn-primary">Explore</button><span class="idx">/001</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">--dash-band · shot <b>~50% width</b> · scrim <b>bottom-fade</b> · cta <b>btn-primary + /001</b></div>
+    </div>
+
+    <!-- Floating tags -->
+    <div class="family" data-tier-a-component="why-us-floating-tags">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Why-Us Floating Tags</div>
+      <h3 class="family-title">Scattered mosaic cluster</h3>
+      <div class="demo" style="margin-bottom:24px">
+        <div class="tags-band">
+          <span class="tag" style="top:10px;left:20px;transform:rotate(-6deg)">/ zero downtime</span>
+          <span class="tag" style="top:70px;left:220px;transform:rotate(4deg)">/ signed events</span>
+          <span class="tag" style="top:140px;left:60px;transform:rotate(-3deg)">/ 12ms latency</span>
+          <span class="tag" style="top:30px;left:420px;transform:rotate(8deg)">/ terminal native</span>
+          <span class="tag" style="top:170px;left:340px;transform:rotate(-9deg)">/ audit ready</span>
+        </div>
+      </div>
+      <div class="spec-card">--tag · radius <b>pill 100</b> · fill <b>surface-alt</b> · text <b>accent</b> · rotated cluster</div>
+    </div>
+
+    <!-- Testimonial -->
+    <div class="family" data-tier-a-component="testimonial-row">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Testimonial Row</div>
+      <h3 class="family-title">Portrait + quote on teal band</h3>
+      <div class="testi" style="margin-bottom:24px">
+        <div class="portrait">Ops lead, Meridian</div>
+        <div class="quote">"We replaced three dashboards with one Cryptolab console. The cyan is the only thing that ever moves — that's exactly the point."
+          <span class="attr">— A. Okonkwo · Head of Trading Ops</span>
+        </div>
+      </div>
+      <div class="spec-card">--testimonial · band <b>surface-alt #001412</b> · portrait radius <b>card 32</b> · quote <b>24/600</b></div>
+    </div>
+
+    <!-- Closing CTA -->
+    <div class="family" data-tier-a-component="closing-cta-band">
+      <div class="family-eyebrow eyebrow"><span class="slash">/</span>Closing CTA Band</div>
+      <h3 class="family-title">Gradient-washed scrim</h3>
+      <div class="closing" style="margin-bottom:24px">
+        <div class="scrim" aria-hidden="true"></div>
+        <h3>Bring the ledger <span class="cyan">/ online</span></h3>
+        <button class="btn btn-hero">Launch dashboard</button>
+      </div>
+      <div class="spec-card">--closing · scrim <b>cyan → #000605</b> (small element only) · cta <b>btn-hero</b> · r <b>card 32</b></div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background)}
+.sd-head{margin-bottom:56px}
+.sd-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.sd-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.depth-card{background:var(--surface);padding:28px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between}
+.depth-card .lbl{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary)}
+.depth-card h4{font-size:18px;font-weight:600}
+.r-control{border-radius:var(--r-control)}
+.r-card{border-radius:var(--r-card)}
+.r-pill{border-radius:var(--r-pill)}
+.shadow-soft{box-shadow:rgba(0,0,0,.17) 0 .6px 1.6px -1.5px,rgba(0,0,0,.14) 0 2.3px 6px -3px,rgba(0,0,0,.02) 0 10px 26px -4.5px}
+.shadow-inset{box-shadow:rgb(0,0,0) 0 0 0 1px inset;border:1px solid rgba(118,118,118,.3)}
+@media(max-width:768px){.sd-grid{grid-template-columns:1fr}}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <div class="sd-head">
+      <div class="eyebrow"><span class="idx">[ 04 ]</span><span class="slash">/</span>Surface & Depth</div>
+      <h2>Soft radii, <span class="cyan">recessive</span> shadow.</h2>
+    </div>
+    <div class="sd-grid">
+      <div class="depth-card r-control shadow-soft"><div class="lbl">/ radius</div><h4>Control 24px</h4><span class="lbl">layered soft shadow</span></div>
+      <div class="depth-card r-card shadow-inset"><div class="lbl">/ radius</div><h4>Panel 32px</h4><span class="lbl">1px black inset edge</span></div>
+      <div class="depth-card r-pill shadow-soft" style="align-items:flex-start"><div class="lbl">/ radius</div><h4>Pill 100px</h4><span class="lbl">controls & tags</span></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface)}
+.mo-head{margin-bottom:56px}
+.mo-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.mo-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.mo-card{background:var(--background);border:1px solid rgba(118,118,118,.25);border-radius:var(--r-card);padding:32px}
+.mo-card h4{font-size:18px;font-weight:600;margin-bottom:20px}
+.mover{width:56px;height:56px;border-radius:var(--r-control);background:var(--accent)}
+.mo-card.play .mover{animation:slideup .6s var(--ease)}
+@keyframes slideup{from{transform:translateY(24px);opacity:.2}to{transform:translateY(0);opacity:1}}
+.spinner{width:44px;height:44px;border-radius:var(--r-circle);border:3px solid rgba(0,255,225,.2);border-top-color:var(--accent);animation:framer-loading-spin 1s linear infinite}
+@keyframes framer-loading-spin{to{transform:rotate(360deg)}}
+.mo-card .meta{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);margin-top:20px}
+.replay{margin-top:16px;background:transparent;color:var(--accent);border:1px solid var(--border);border-radius:20px;height:40px;padding:8px 24px;font-family:inherit;font-weight:600;cursor:pointer}
+@media(max-width:768px){.mo-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <div class="mo-head">
+      <div class="eyebrow"><span class="idx">[ 05 ]</span><span class="slash">/</span>Motion</div>
+      <h2>Low-key, <span class="cyan">functional</span> reveals.</h2>
+    </div>
+    <div class="mo-grid">
+      <div class="mo-card play" id="reveal-demo">
+        <h4>Staggered reveal</h4>
+        <div class="mover"></div>
+        <div class="meta">fade / slide-up · 0.6s · cubic-bezier(.22,.61,.36,1)</div>
+        <button class="replay" onclick="var c=document.getElementById('reveal-demo');c.classList.remove('play');void c.offsetWidth;c.classList.add('play')">Replay</button>
+      </div>
+      <div class="mo-card">
+        <h4>Loader spin</h4>
+        <div class="spinner" role="img" aria-label="Loading indicator"></div>
+        <div class="meta">__framer-loading-spin · 1s · linear · infinite</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background)}
+.cmp-head{margin-bottom:56px}
+.cmp-head h2{font-size:36px;font-weight:600;line-height:1;margin-top:16px}
+.mock{border:1px solid rgba(118,118,118,.3);border-radius:var(--r-card);overflow:hidden;background:var(--background)}
+.mock-nav{height:66px;background:var(--surface);display:flex;align-items:center;padding:0 24px;gap:20px}
+.mock-nav a{color:var(--text-secondary);font-size:14px}
+.mock-hero{padding:72px 32px;text-align:center;position:relative;overflow:hidden}
+.mock-hero .eb{justify-content:center;margin-bottom:20px}
+.mock-hero h3{font-size:40px;font-weight:600;line-height:1.2;letter-spacing:-.02em}
+.mock-hero p{color:var(--text-secondary);max-width:420px;margin:18px auto 26px}
+.mock-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;padding:0 32px 40px}
+.mock-cta{background:var(--surface-alt);padding:56px 32px;text-align:center;position:relative;overflow:hidden}
+.mock-cta .scrim{position:absolute;inset:0;background:linear-gradient(rgb(0,255,225) 0%,rgb(0,6,5) 100%);opacity:.2}
+.mock-cta h3{position:relative;font-size:28px;font-weight:600}
+.mock-cta .btn{position:relative;margin-top:20px}
+@media(max-width:768px){.mock-cards{grid-template-columns:1fr}.mock-hero h3{font-size:28px}}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <div class="cmp-head">
+      <div class="eyebrow"><span class="idx">[ 06 ]</span><span class="slash">/</span>In Composition</div>
+      <h2>The system, <span class="cyan">assembled</span>.</h2>
+    </div>
+    <div class="mock">
+      <div class="mock-nav">
+        <a class="logo" href="#composition" style="font-size:16px"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Cryptolab</a>
+        <a href="#composition" style="margin-left:20px">Product</a>
+        <a href="#composition">Ledger</a>
+        <a href="#composition">Docs</a>
+        <button class="btn btn-primary" style="margin-left:auto">Open console</button>
+      </div>
+      <div class="mock-hero">
+        <div class="eyebrow eb"><span class="idx">[ 00 ]</span><span class="slash">/</span>Overview</div>
+        <h3>Monitor everything <span class="cyan">/ live</span></h3>
+        <p>One black surface, one cyan signal, and the density of a real trading floor.</p>
+        <button class="btn btn-hero">Launch dashboard</button>
+      </div>
+      <div class="mock-cards">
+        <div class="svc-card"><div class="top"><iconify-icon icon="lucide:radar" aria-hidden="true"></iconify-icon><span class="idx">/001</span></div><h4>Live watch</h4><div class="rule"></div><p>Sub-15ms refresh across all ledgers.</p></div>
+        <div class="svc-card"><div class="top"><iconify-icon icon="lucide:shield-check" aria-hidden="true"></iconify-icon><span class="idx">/002</span></div><h4>Signed audit</h4><div class="rule"></div><p>Tamper-evident event trail.</p></div>
+        <div class="svc-card"><div class="top"><iconify-icon icon="lucide:bell-ring" aria-hidden="true"></iconify-icon><span class="idx">/003</span></div><h4>Alerts</h4><div class="rule"></div><p>Thresholds as cyan status lines.</p></div>
+      </div>
+      <div class="mock-cta">
+        <div class="scrim" aria-hidden="true"></div>
+        <h3>Bring the ledger <span class="cyan">/ online</span></h3>
+        <button class="btn btn-hero">Get started</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--background);border-top:1px solid rgba(118,118,118,.25);padding:80px 0 40px}
+.ft-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:40px}
+.ft-brand .logo{margin-bottom:16px}
+.ft-brand p{color:var(--text-secondary);font-size:14px;max-width:240px}
+.ft-col h4{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:16px}
+.ft-col a{display:block;color:var(--text-tertiary);font-size:14px;margin-bottom:10px}
+.ft-col a:hover{color:var(--accent)}
+.ft-news label{font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);text-transform:uppercase;letter-spacing:.08em;display:block;margin-bottom:16px}
+.ft-news .row{display:flex;gap:8px}
+.ft-news input{flex:1;height:40px;background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:0 16px;color:var(--text-primary);font-family:inherit;font-size:14px}
+.ft-news input::placeholder{color:var(--text-secondary)}
+.ft-news button{background:var(--accent);color:var(--accent-deep);border:none;border-radius:var(--r-circle);width:40px;height:40px;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px}
+.ft-social{display:flex;gap:14px;margin-top:20px}
+.ft-social a{color:var(--text-secondary);font-size:20px}
+.ft-social a:hover{color:var(--accent)}
+.ft-legal{display:flex;justify-content:space-between;align-items:center;margin-top:56px;padding-top:24px;border-top:1px solid rgba(118,118,118,.25);font-family:"Geist",monospace;font-size:13px;color:var(--text-secondary);flex-wrap:wrap;gap:16px}
+.ft-legal a{color:var(--text-secondary)}
+.ft-legal .top{color:var(--accent);display:inline-flex;align-items:center;gap:6px}
+@media(max-width:768px){.ft-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.ft-grid{grid-template-columns:1fr}}
+</style>
+<footer id="footer">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <a class="logo" href="#hero"><iconify-icon icon="lucide:terminal-square" aria-hidden="true"></iconify-icon>Cryptolab</a>
+        <p>The operator console for real-time asset monitoring. Black canvas, one cyan signal.</p>
+        <div class="ft-social">
+          <a href="#footer" aria-label="Cryptolab on X"><iconify-icon icon="lucide:twitter" aria-hidden="true"></iconify-icon></a>
+          <a href="#footer" aria-label="Cryptolab on GitHub"><iconify-icon icon="lucide:github" aria-hidden="true"></iconify-icon></a>
+          <a href="#footer" aria-label="Cryptolab on LinkedIn"><iconify-icon icon="lucide:linkedin" aria-hidden="true"></iconify-icon></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Product</h4>
+        <a href="#footer">Console</a>
+        <a href="#footer">Ledger API</a>
+        <a href="#footer">Alerts</a>
+        <a href="#footer">Pricing</a>
+      </div>
+      <div class="ft-col">
+        <h4>Company</h4>
+        <a href="#footer">About</a>
+        <a href="#footer">Docs</a>
+        <a href="#footer">Contact</a>
+        <a href="#footer">Status</a>
+      </div>
+      <div class="ft-news">
+        <label for="ft-email">Newsletter</label>
+        <div class="row">
+          <input id="ft-email" type="email" placeholder="ops@company.com">
+          <button aria-label="Subscribe"><iconify-icon icon="lucide:arrow-right" aria-hidden="true"></iconify-icon></button>
+        </div>
+        <div style="margin-top:20px;font-family:'Geist',monospace;font-size:13px;color:var(--text-secondary)">
+          <a href="#footer" style="display:block;margin-bottom:8px">hello@cryptolab.io</a>
+          <a href="#footer" style="display:block">+1 (555) 010-0110</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-legal">
+      <span>Terminal Cyan Ledger — <a href="https://cryptolab.framer.website/">cryptolab.framer.website</a></span>
+      <span>Design system captured and rendered by r3xdec.design</span>
+      <a class="top" href="#hero"><iconify-icon icon="lucide:arrow-up" aria-hidden="true"></iconify-icon>Back to top</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

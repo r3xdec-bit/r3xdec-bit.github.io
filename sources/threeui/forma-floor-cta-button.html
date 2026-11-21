@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><title>FORMA Floor — Beam Button · ThreeUI</title><style>@property --a{syntax:"<angle>";inherits:false;initial-value:0deg}
+:root{--ink:#0d0f12;--char:#15181c;--bone:#ece9e2;--muted:#8b8f95;--line:#ece9e224;--mint:#3fd6a6;--mint-deep:#1c8f6c;--paper:#ebe8e1;--paper-ink:#17191c;--paper-muted:#6d6a64;--nav:72px;--gut:clamp(20px, 5.4vw, 96px);--bg-top:#0d0f12;--bg-bottom:#16191d;--glow:#788ca01a;--fg:var(--bone);--ease:cubic-bezier(.2, .7, .1, 1);color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--ink);scroll-padding-top:var(--nav)}
+body{color:var(--fg);-webkit-font-smoothing:antialiased;transition:color .6s var(--ease);background:0 0;margin:0;font:400 17px/1.55 Geist,system-ui,sans-serif;overflow-x:clip}
+a{color:inherit}
+::selection{background:var(--mint);color:var(--ink)}
+@keyframes grain{0%{transform:translate(0)}
+20%{transform:translate(-6%,4%)}
+40%{transform:translate(4%,-7%)}
+60%{transform:translate(-3%,6%)}
+80%{transform:translate(7%,2%)}
+to{transform:translate(0)}
+}
+.btn{cursor:pointer;isolation:isolate;letter-spacing:-.01em;height:56px;color:var(--bone);transition:transform .5s var(--ease);background:0 0;border:0;border-radius:999px;align-items:center;gap:14px;padding:0 26px;font:500 15px/1 Geist,sans-serif;text-decoration:none;display:inline-flex;position:relative;overflow:hidden}
+.btn:active{transform:scale(.98)}
+.btn-beam{background:#0b0d0f}
+.btn-beam:before{content:"";border-radius:inherit;z-index:-1;background:conic-gradient(from var(--a), #3fd6a600 0deg, #3fd6a600 220deg, #3fd6a6 300deg, #e6fff6 335deg, #3fd6a600 360deg), #ffffff24;-webkit-mask-composite:xor;padding:1.2px;animation:4.2s linear infinite beam;position:absolute;inset:0;-webkit-mask-image:linear-gradient(#000 0 0),linear-gradient(#000 0 0);-webkit-mask-position:0 0,0 0;-webkit-mask-size:auto,auto;-webkit-mask-repeat:repeat,repeat;-webkit-mask-clip:content-box,border-box;-webkit-mask-origin:content-box,border-box;mask-composite:exclude;mask-mode:match-source,match-source}
+.btn-beam:after{content:"";z-index:-2;border-radius:inherit;opacity:.7;background:radial-gradient(120% 140% at 50% 120%,#3fd6a647,#0000 60%);transition:opacity .5s;position:absolute;inset:0}
+.btn-beam:hover:after{opacity:1}
+.btn-beam b{color:var(--mint);font-family:Geist Mono,monospace;font-size:13px;font-weight:500}
+.btn-beam span{position:relative}
+.btn-beam span:after{content:""}
+.btn>span{background:linear-gradient(100deg,currentColor 40%,#fff 50%,currentColor 60%) 200% 0/300% 100% no-repeat;transition:background-position 1s var(--ease);-webkit-background-clip:text;background-clip:text}
+.btn:hover>span{color:#0000;background-position:-100% 0}
+@keyframes beam{to{--a:360deg}
+}
+@keyframes star{0%{transform:translate(0)}
+to{transform:translate(-150%)}
+}
+section{position:relative}
+.arrival{height:100vh;min-height:640px}
+.arrival-foot{left:var(--gut);flex-wrap:wrap;gap:14px;display:flex;position:absolute;bottom:7vh}
+:focus-visible{outline:2px solid var(--mint);outline-offset:3px}
+@media  (width<=760px),(width<=900px) and (orientation:portrait){:root{--nav:64px}
+.arrival-foot{bottom:4vh}}
+@media  (prefers-reduced-motion:reduce){.btn-beam:before{animation:none}}
+@media  (width<=760px),(width<=900px) and (orientation:portrait){:root{--nav:68px}}
+html{height:auto!important;min-height:100%;overflow-x:hidden!important;overflow-y:auto!important;scroll-behavior:smooth}body{height:auto!important;min-height:100vh;margin:0;overflow-x:hidden!important;overflow-y:auto!important;cursor:auto!important}body>[data-section-ancestor],[data-section-ancestor]{height:auto!important;min-height:0!important;position:relative!important;inset:auto!important;transform:none!important;overflow:visible!important}[data-section-root]{position:relative!important;inset:auto!important;transform:none!important;margin-block:0!important}[data-section-root] :is(.reveal,.rv,[data-reveal],[data-io]){opacity:1!important;visibility:visible!important;clip-path:none!important;transform:none!important}a,button{cursor:pointer}
+body{background:#101416;display:grid;place-items:center}[data-section-ancestor]{display:contents!important} .hero-copy{display:contents!important} [data-section-root]{opacity:1!important;white-space:nowrap}@font-face{font-family:"Geist Mono";src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/5f3d6ad60f29d6cb708414ec6887163d63bf197377ef5417d2483ff31ace6c3b.woff2);font-weight:100 900}</style></head><body data-threeui-section="forma-floor-cta-button"><main data-section-ancestor="" id="main"><section class="arrival" data-section-ancestor="" id="arrival"><div class="arrival-foot" data-section-ancestor=""><a class="btn btn-beam" data-section-root="" href="#"><span>Reserve FORMA</span><b data-price-hero="">$749</b></a></div></section></main><script defer="" src="./runtime.js"></script><script>const b=document.querySelector('[data-section-root]');b.addEventListener('click',e=>{e.preventDefault();window.dispatchEvent(new CustomEvent('threeui-button-action',{detail:{id:document.body.dataset.threeuiSection}}));});</script></body></html>

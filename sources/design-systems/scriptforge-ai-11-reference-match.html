@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>ScriptForge AI — 1:1 Reference Match — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Clash+Grotesk:wght@400;500;700&family=Satoshi:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#0A0A0A; color:#FFFFFF; font-family:'Satoshi',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'Clash Grotesk',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'Clash Grotesk',sans-serif; font-size: 22px; border-bottom: 1px solid #71717A; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#71717A; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#71717A; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#121212; border: 1px solid #71717A; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#71717A; }
+  .swatch-meta p { color:#71717A; font-size: 12px; }
+  .specimen { border: 1px solid #71717A; border-radius:12px; padding: 20px; background:#121212; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#71717A; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#71717A; }
+  .bar { height: 10px; background:#FFFFFF; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #FFFFFF; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#121212; border: 1px solid #71717A; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:6px; font-size: 14px; border: 1px solid #FFFFFF; }
+  .btn-primary { background:#FFFFFF; color:#0A0A0A; }
+  .btn-secondary { background: transparent; color:#FFFFFF; }
+  footer { border-top: 1px solid #71717A; padding-top: 20px; font-size: 13px; color:#71717A; }
+  footer a { color:#FFFFFF; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from a project draft · dark mode</div>
+    <h1>ScriptForge AI — 1:1 Reference Match</h1>
+    <p class="tagline">Near-black engineering-console aesthetic with a rationed amber accent, hairline grid texture, and a mono-adjacent geometric sans carrying every headline.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#0A0A0A"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#0A0A0A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#121212"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#121212</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#141414"></div>
+        <div class="swatch-meta"><strong>surface-alt</strong><code>#141414</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#71717A"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#71717A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#A1A1AA"></div>
+        <div class="swatch-meta"><strong>text-tertiary</strong><code>#A1A1AA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#52525B"></div>
+        <div class="swatch-meta"><strong>text-muted</strong><code>#52525B</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#F5C400"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#F5C400</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF5A3C"></div>
+        <div class="swatch-meta"><strong>accent-alt</strong><code>#FF5A3C</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#DC2626"></div>
+        <div class="swatch-meta"><strong>danger</strong><code>#DC2626</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#10B981"></div>
+        <div class="swatch-meta"><strong>success</strong><code>#10B981</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#2A2A2A"></div>
+        <div class="swatch-meta"><strong>border-subtle</strong><code>#2A2A2A</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:rgba(255, 255, 255, 0.1)"></div>
+        <div class="swatch-meta"><strong>border-hairline</strong><code>rgba(255, 255, 255, 0.1)</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'Clash Grotesk',sans-serif;font-size:62px;font-weight:600;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · Clash Grotesk · 62px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Clash Grotesk',sans-serif;font-size:44px;font-weight:600;line-height:0.91">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · Clash Grotesk · 44px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Satoshi',sans-serif;font-size:15px;font-weight:400;line-height:1.63">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · Satoshi · 15px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Clash Grotesk',sans-serif;font-size:18px;font-weight:600;line-height:1.56">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · Clash Grotesk · 18px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'Satoshi',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-sm · Satoshi · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'monospace',sans-serif;font-size:14px;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-mono · monospace · 14px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 8px</span>
+        <div class="bar" style="width:min(8px, 100%)"></div></div>
+<div class="bar-row"><span>scale · 0px, 4px, 8px, 10px, 12px, 16px</span>
+        <div class="bar" style="width:min(0px, 4px, 8px, 10px, 12px, 16px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 20px</span>
+        <div class="bar" style="width:min(20px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 112px</span>
+        <div class="bar" style="width:min(112px, 100%)"></div></div>
+<div class="bar-row"><span>section-gap · 174px</span>
+        <div class="bar" style="width:min(174px, 100%)"></div></div>
+<div class="bar-row"><span>content-max-width · 174px</span>
+        <div class="bar" style="width:min(174px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:2px">sharp<br><code>2px</code></div>
+<div class="radius-chip" style="border-radius:6px">control<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:8px">button<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:12px">card<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:16px">panel<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#71717A;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

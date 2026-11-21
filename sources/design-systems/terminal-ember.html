@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Terminal Ember — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=rinterFont:wght@400;500;700&family=GeistMono:wght@400;500;700&family=kalamFont:wght@400;500;700&family=GeistSans:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#181818; color:#FBFAF9; font-family:'GeistMono',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'rinterFont',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'rinterFont',sans-serif; font-size: 22px; border-bottom: 1px solid #151513; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#898580; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#898580; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#252422; border: 1px solid #151513; border-radius:16px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#898580; }
+  .swatch-meta p { color:#898580; font-size: 12px; }
+  .specimen { border: 1px solid #151513; border-radius:16px; padding: 20px; background:#252422; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#898580; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#898580; }
+  .bar { height: 10px; background:#FBFAF9; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #FBFAF9; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#252422; border: 1px solid #151513; border-radius:16px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:6px; font-size: 14px; border: 1px solid #FBFAF9; }
+  .btn-primary { background:#FBFAF9; color:#181818; }
+  .btn-secondary { background: transparent; color:#FBFAF9; }
+  footer { border-top: 1px solid #151513; padding-top: 20px; font-size: 13px; color:#898580; }
+  footer a { color:#FBFAF9; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from expand.ai · dark mode</div>
+    <h1>Terminal Ember</h1>
+    <p class="tagline">A near-black developer-tool dark mode built on monospace labels and a radial ember accent rationed to hero and footer, interrupted by a single cream editorial band.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#181818"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#181818</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#252422"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#252422</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#030302"></div>
+        <div class="swatch-meta"><strong>surface-deep</strong><code>#030302</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FBFAF9"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#FBFAF9</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0C0B09"></div>
+        <div class="swatch-meta"><strong>text-ink-on-light</strong><code>#0C0B09</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#898580"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#898580</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#151513"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#151513</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF6542"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#FF6542</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FF6543"></div>
+        <div class="swatch-meta"><strong>accent-border</strong><code>#FF6543</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'rinterFont',sans-serif;font-size:48px;font-weight:500;line-height:1.05">Aa — The quick brown fox</div>
+        <div class="specimen-meta">display-lg · rinterFont · 48px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'rinterFont',sans-serif;font-size:40px;font-weight:500;line-height:1">Aa — The quick brown fox</div>
+        <div class="specimen-meta">headline-md · rinterFont · 40px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'GeistMono',sans-serif;font-size:13px;font-weight:500;line-height:1.15">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · GeistMono · 13px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'GeistMono',sans-serif;font-size:13px;font-weight:500;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · GeistMono · 13px / w500</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'kalamFont',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">accent-script · kalamFont ·  / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'GeistSans',sans-serif;font-size:;font-weight:400;line-height:">Aa — The quick brown fox</div>
+        <div class="specimen-meta">ui-sans · GeistSans ·  / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 10px</span>
+        <div class="bar" style="width:min(10px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 80px</span>
+        <div class="bar" style="width:min(80px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:6px">control<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:16px">card<br><code>16px</code></div>
+<div class="radius-chip" style="border-radius:12px">panel<br><code>12px</code></div>
+<div class="radius-chip" style="border-radius:9999px">pill<br><code>9999px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#898580;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

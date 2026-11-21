@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; connect-src 'none'; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Sunrise glass auth — design.md</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=-apple-system:wght@400;500;700&display=swap">
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  body { background:#FAFBFC; color:#202020; font-family:'-apple-system',sans-serif; padding:48px 24px; }
+  main { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+  h1 { font-family:'-apple-system',sans-serif; font-size: clamp(32px, 6vw, 56px); }
+  h2 { font-family:'-apple-system',sans-serif; font-size: 22px; border-bottom: 1px solid #E8E8E8; padding-bottom: 8px; margin-bottom: 20px; }
+  .eyebrow { color:#646464; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; margin-bottom: 8px; }
+  .tagline { color:#646464; margin-top: 12px; max-width: 60ch; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .swatch { background:#FFFFFF; border: 1px solid #E8E8E8; border-radius:12px; overflow: hidden; }
+  .chip { height: 72px; }
+  .swatch-meta { padding: 12px; font-size: 13px; display: grid; gap: 4px; }
+  .swatch-meta code { color:#646464; }
+  .swatch-meta p { color:#646464; font-size: 12px; }
+  .specimen { border: 1px solid #E8E8E8; border-radius:12px; padding: 20px; background:#FFFFFF; margin-bottom: 12px; overflow: hidden; }
+  .specimen-meta { color:#646464; font-size: 12px; margin-top: 8px; }
+  .bar-row { display: grid; gap: 6px; margin-bottom: 12px; font-size: 13px; color:#646464; }
+  .bar { height: 10px; background:#202020; border-radius: 4px; min-width: 4px; }
+  .radius-row { display: flex; gap: 16px; flex-wrap: wrap; }
+  .radius-chip { border: 2px solid #202020; padding: 20px 28px; text-align: center; font-size: 13px; }
+  .sample-card { background:#FFFFFF; border: 1px solid #E8E8E8; border-radius:12px; padding: 24px; display: grid; gap: 12px; max-width: 420px; }
+  .btn { display: inline-block; padding: 10px 20px; border-radius:8px; font-size: 14px; border: 1px solid #202020; }
+  .btn-primary { background:#202020; color:#FAFBFC; }
+  .btn-secondary { background: transparent; color:#202020; }
+  footer { border-top: 1px solid #E8E8E8; padding-top: 20px; font-size: 13px; color:#646464; }
+  footer a { color:#202020; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="eyebrow">design.md · extracted from app.clickup.com · light mode</div>
+    <h1>Sunrise glass auth</h1>
+    <p class="tagline">A near-white, minimalist authentication surface topped by a single fixed pastel-aurora band; sharp-edged inputs, mixed-radius buttons, and a violet brand mark rationed to one small glyph.</p>
+    
+  </header>
+  <section><h2>Colors</h2><div class="grid"><div class="swatch">
+        <div class="chip" style="background:#FAFBFC"></div>
+        <div class="swatch-meta"><strong>background</strong><code>#FAFBFC</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#FFFFFF"></div>
+        <div class="swatch-meta"><strong>surface</strong><code>#FFFFFF</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#202020"></div>
+        <div class="swatch-meta"><strong>text-primary</strong><code>#202020</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#646464"></div>
+        <div class="swatch-meta"><strong>text-secondary</strong><code>#646464</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#E8E8E8"></div>
+        <div class="swatch-meta"><strong>border</strong><code>#E8E8E8</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#202020"></div>
+        <div class="swatch-meta"><strong>border-strong</strong><code>#202020</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#0B68CB"></div>
+        <div class="swatch-meta"><strong>accent</strong><code>#0B68CB</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#7B68EE"></div>
+        <div class="swatch-meta"><strong>accent-brand</strong><code>#7B68EE</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#5F48EA"></div>
+        <div class="swatch-meta"><strong>accent-brand-dark</strong><code>#5F48EA</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#D3CDF9"></div>
+        <div class="swatch-meta"><strong>accent-brand-light</strong><code>#D3CDF9</code></div>
+      </div>
+<div class="swatch">
+        <div class="chip" style="background:#BBBBBB"></div>
+        <div class="swatch-meta"><strong>disabled-fill</strong><code>#BBBBBB</code></div>
+      </div></div></section>
+  <section><h2>Typography</h2><div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">body-md · -apple-system · 14px / w400</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:18px;font-weight:600;line-height:1.25">Aa — The quick brown fox</div>
+        <div class="specimen-meta">label-md · -apple-system · 18px / w600</div>
+      </div>
+<div class="specimen">
+        <div class="specimen-sample" style="font-family:'-apple-system',sans-serif;font-size:14px;font-weight:400;line-height:1.5">Aa — The quick brown fox</div>
+        <div class="specimen-meta">link-inline · -apple-system · 14px / w400</div>
+      </div></section>
+  <section><h2>Spacing</h2><div class="bar-row"><span>base · 4px</span>
+        <div class="bar" style="width:min(4px, 100%)"></div></div>
+<div class="bar-row"><span>gap · 12px</span>
+        <div class="bar" style="width:min(12px, 100%)"></div></div>
+<div class="bar-row"><span>input-padding · 10px 12px</span>
+        <div class="bar" style="width:min(10px 12px, 100%)"></div></div>
+<div class="bar-row"><span>section-padding · 16px</span>
+        <div class="bar" style="width:min(16px, 100%)"></div></div></section>
+  <section><h2>Radius</h2><div class="radius-row"><div class="radius-chip" style="border-radius:6px">input-sharp<br><code>6px</code></div>
+<div class="radius-chip" style="border-radius:8px">control<br><code>8px</code></div>
+<div class="radius-chip" style="border-radius:12px">card<br><code>12px</code></div></div></section>
+  <section><h2>Components</h2>
+    <div class="sample-card">
+      <strong>Sample card</strong>
+      <p style="color:#646464;font-size:14px">Rendered from the design.md tokens.</p>
+      <div><a class="btn btn-primary">Primary action</a> <a class="btn btn-secondary">Secondary</a></div>
+    </div>
+    
+  </section>
+  <footer>Generated with <a href="https://r3xdec.design/design-systems">r3xdec.design</a> — the design.md registry.</footer>
+</main>
+</body>
+</html>

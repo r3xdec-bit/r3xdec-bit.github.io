@@ -1,0 +1,1378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Workshop Codex — Build $10k Designs with Codex</title>
+<meta name="description" content="A one-day masterclass in five chapters: get started, find direction, build, improve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Geist:wght@300;400;500&family=Poppins:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d1117;
+  --paper:#f0f3f3;
+  --sky-deep:#141d2e;
+  --sky-haze:#8a99a6;
+  --serif:"Bodoni Moda",'Didot','Bodoni MT',serif;
+  /* Bodoni is the mark — the hero lockup, the wordmark, the two seals and
+     the tabular numerals. Geist is the voice: every heading below the hero. */
+  --display:"Geist",-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --sans:"Poppins",-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --u: calc(100vw / 1600);       /* 1 design px at 1600-wide reference */
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:auto}
+body{
+  background:var(--paper); color:var(--ink);
+  font-family:var(--sans); font-weight:300;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+canvas{display:block}
+a:focus-visible,.explore:focus-visible{outline:2px solid #7fb2d8;outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;z-index:300;background:#fff;color:#0d1117;
+  padding:10px 16px;border-radius:0 0 6px 0;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.skip:focus{left:0}
+
+/* ── stage ─────────────────────────────────────────────────────────── */
+#stage{position:fixed;inset:0;z-index:0;background:#141d2e}
+#gl{position:absolute;inset:0;width:100%;height:100%}
+#whiteout{position:absolute;inset:0;background:var(--paper);opacity:0;pointer-events:none}
+#vignette{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 90% at 62% 34%, rgba(255,255,255,0) 38%, rgba(10,16,28,.28) 100%);
+  mix-blend-mode:multiply}
+#grain{position:absolute;inset:0;pointer-events:none;opacity:.055;mix-blend-mode:overlay}
+
+/* ── nav ───────────────────────────────────────────────────────────── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:calc(26*var(--u)) calc(40*var(--u));
+  color:#fff; transition:color .45s ease;
+}
+.nav.dark{color:#101418}
+.brand{display:flex;align-items:center;gap:calc(9*var(--u));flex:0 0 auto}
+.brand svg{width:calc(21*var(--u));height:calc(21*var(--u));display:block}
+.brand .word{
+  font-family:var(--serif);font-weight:400;
+  font-size:max(13px, calc(16.5*var(--u)));letter-spacing:calc(1.6*var(--u));
+}
+.navlinks{
+  flex:1;display:flex;justify-content:center;gap:calc(52*var(--u));
+}
+.navlinks a,.navright a,.pill{
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.25*var(--u));
+  text-transform:uppercase;font-weight:400;text-decoration:none;color:inherit;
+  opacity:.86;transition:opacity .3s
+}
+.navlinks a:hover,.navright a:hover{opacity:1}
+.navlinks a.on{opacity:1}
+.navright{flex:0 0 auto;display:flex;align-items:center;gap:calc(30*var(--u))}
+.pill{
+  display:inline-flex;align-items:center;justify-content:center;
+  height:calc(37*var(--u));padding:0 calc(24*var(--u));
+  border:1px solid rgba(255,255,255,.55);border-radius:999px;
+  background:rgba(255,255,255,.10);backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+  transition:background .3s,border-color .45s,color .45s;
+}
+.pill:hover{background:rgba(255,255,255,.22)}
+.nav.dark .pill{border-color:rgba(16,20,24,.55);background:rgba(255,255,255,.35)}
+
+/* ── hero ──────────────────────────────────────────────────────────── */
+.hero{position:relative;height:340vh;z-index:1}
+.hero-ui{
+  position:sticky;top:0;height:100vh;width:100%;
+  pointer-events:none;
+}
+.explore-row{
+  position:absolute;left:50%;bottom:calc(56*var(--u));
+  transform:translateX(-50%);
+  display:flex;align-items:flex-end;gap:calc(22*var(--u));
+  pointer-events:auto;
+}
+.thumb{
+  border-radius:50%;flex:0 0 auto;background:none;position:relative;
+  -webkit-tap-highlight-color:transparent;
+}
+/* the cast shadow and the halo are drawn in GL now, with a real penumbra,
+   a contact core and the caustic the stone throws past its own shadow */
+.t0{width:calc(56*var(--u));height:calc(56*var(--u));margin-bottom:calc(-2*var(--u))}
+.t1{width:calc(74*var(--u));height:calc(74*var(--u));margin-bottom:calc(8*var(--u))}
+.t2{width:calc(72*var(--u));height:calc(72*var(--u));margin-bottom:calc(7*var(--u))}
+.t3{width:calc(58*var(--u));height:calc(58*var(--u));margin-bottom:calc(-3*var(--u))}
+.explore{
+  border:0;padding:0;background:none;font-family:inherit;
+  width:calc(112*var(--u));height:calc(112*var(--u));border-radius:50%;
+  pointer-events:auto;cursor:pointer;position:relative;overflow:visible;
+  -webkit-tap-highlight-color:transparent;
+}
+.explore-label{
+  position:absolute;left:50%;bottom:calc(30*var(--u));transform:translateX(-50%);
+  font-size:max(11px, calc(11.5*var(--u)));letter-spacing:calc(2*var(--u));
+  text-transform:uppercase;color:rgba(255,255,255,.92);pointer-events:none;
+  text-shadow:0 1px calc(10*var(--u)) rgba(10,20,34,.5);
+}
+.scroll-hint{
+  position:absolute;left:50%;bottom:calc(-16*var(--u));transform:translateX(-50%);
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(2.2*var(--u));color:rgba(255,255,255,.5);
+  text-transform:uppercase;
+}
+
+/* ── sections ──────────────────────────────────────────────────────── */
+/* The page below is pulled up into the last stretch of the hero, so it is
+   already rising past the ring by the time the O settles on the cloud. Its top
+   edge fades in over 34vh — an opaque edge sliding over the deck would read as
+   exactly the razor horizon the scene works to avoid. */
+.sheet{position:relative;z-index:2;margin-top:-55vh}
+.statement{background:var(--paper);
+  -webkit-mask-image:linear-gradient(to bottom, rgba(0,0,0,0) 0, #000 34vh);
+          mask-image:linear-gradient(to bottom, rgba(0,0,0,0) 0, #000 34vh)}
+.statement{
+  height:100vh;min-height:calc(560*var(--u));position:relative;overflow:hidden;
+}
+.seal{
+  position:absolute;top:calc(96*var(--u));left:50%;transform:translateX(-50%);
+  width:max(140px, calc(150*var(--u)));height:max(140px, calc(150*var(--u)));opacity:.7;
+}
+.seal .ring{width:100%;height:100%;animation:spin 34s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.seal .mark{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+}
+.seal .mark svg{width:calc(46*var(--u));height:calc(46*var(--u))}
+.statement h2 .sp{display:none}
+/* The statement arrives a word at a time, scrubbed from the sheet's own
+   position rather than an IntersectionObserver — the page already runs a frame
+   loop, and IO does not fire at all in some embedded browsers. */
+.statement h2 .w{display:inline-block;opacity:0;
+  transform:translateY(calc(16*var(--u)));filter:blur(calc(5*var(--u)));
+  transition:opacity .6s cubic-bezier(.16,1,.3,1),
+             transform .6s cubic-bezier(.16,1,.3,1), filter .6s ease}
+.statement h2 .w.on{opacity:1;transform:none;filter:none}
+.statement h2{
+  position:absolute;left:50%;top:calc(272*var(--u));transform:translateX(-50%);
+  font-family:var(--display);font-weight:400;letter-spacing:-.024em;
+  --fs:64; font-size:calc(var(--fs)*var(--u));line-height:calc(78*var(--u));
+  text-align:center;white-space:nowrap;color:#080b0e;
+}
+
+/* descent */
+/* The two scene sections share one fixed canvas that draws over their own
+   background and under their content, so the page can alternate paper and ink
+   without a second WebGL context. It hides itself when neither is on screen. */
+#sx{position:fixed;inset:0;width:100%;height:100%;z-index:3;pointer-events:none;opacity:0;transition:opacity .4s ease}
+/* everything below the canvas in the page, above it in paint order */
+.frame > .layer{position:relative;z-index:4;height:100%}
+
+.stage{position:relative;height:300vh}
+.frame{position:sticky;top:0;height:100vh;overflow:hidden}
+.frame > .layer{position:relative;z-index:4;height:100%}
+
+/* ── the long ascent · the hero's own massif, at sunset ───────────── */
+/* transparent, so the fixed hero canvas behind main shows through it */
+.descent{background:transparent;color:#e8eef4}
+.descent .frame::after{content:'';position:absolute;left:0;right:0;bottom:0;height:52vh;z-index:3;
+  pointer-events:none;
+  background:linear-gradient(to bottom, rgba(10,9,16,0) 0%, rgba(10,9,16,.58) 46%, rgba(12,10,18,.90) 100%)}
+.descent .frame::before{content:'';position:absolute;left:0;right:0;top:0;height:26vh;z-index:3;
+  pointer-events:none;
+  background:linear-gradient(to top, rgba(10,9,16,0) 0%, rgba(10,9,16,.62) 100%)}
+.descent .head{position:absolute;left:calc(64*var(--u));top:calc(112*var(--u))}
+.descent h2{font-family:var(--display);font-weight:400;letter-spacing:-.03em;color:#eaf3f8;
+  --fs:64;font-size:calc(var(--fs)*var(--u));line-height:1.02;margin-top:calc(16*var(--u))}
+.descent .lab{color:#6d8092}
+.readout{position:absolute;right:calc(64*var(--u));top:calc(122*var(--u));width:calc(266*var(--u));
+  border:1px solid rgba(159,228,242,.20);background:rgba(9,15,22,.5);
+  backdrop-filter:blur(calc(3*var(--u)));padding:calc(17*var(--u))}
+.readout .r{display:flex;justify-content:space-between;align-items:baseline;padding:calc(5*var(--u)) 0;
+  font-size:max(11px,calc(11*var(--u)));letter-spacing:calc(.9*var(--u));text-transform:uppercase;color:#6d8092}
+.readout .r b{font-family:var(--serif);font-weight:400;color:#cfeaf3;
+  font-size:max(12px,calc(15*var(--u)));font-variant-numeric:tabular-nums}
+.steps{position:absolute;left:calc(64*var(--u));bottom:calc(96*var(--u));display:flex;gap:calc(48*var(--u))}
+.step{opacity:.26;transition:opacity .6s ease;max-width:calc(250*var(--u))}
+.step.on{opacity:1}
+.step .t{font-family:var(--display);font-weight:400;letter-spacing:-.014em;
+  font-size:max(15px,calc(20*var(--u)));color:#eaf3f8;
+  margin:calc(6*var(--u)) 0 calc(6*var(--u))}
+.step .kit{width:calc(58*var(--u));height:calc(58*var(--u));object-fit:contain;
+  filter:invert(1);opacity:.5;margin-bottom:calc(6*var(--u));transition:opacity .6s ease}
+.step.on .kit{opacity:.95}
+.step p{font-size:max(12px,calc(13.5*var(--u)));line-height:max(19px,calc(20.5*var(--u)));color:#8fa3b3}
+.step .num{color:#5b7183}
+.trackline{position:absolute;left:calc(64*var(--u));right:calc(64*var(--u));bottom:calc(72*var(--u));
+  height:1px;background:rgba(159,228,242,.15)}
+.trackfill{position:absolute;left:calc(64*var(--u));bottom:calc(72*var(--u));height:1px;
+  max-width:calc(1472*var(--u));background:#9fe4f2;box-shadow:0 0 calc(10*var(--u)) #9fe4f2}
+
+/* ── the stations · paper ─────────────────────────────────────────── */
+.stations{background:
+  radial-gradient(84% 70% at 32% 44%, #ffffff 0%, #eef2f3 56%, #e2e8ec 100%) fixed}
+.stations .frame{background:none;z-index:4}
+.stations .head{position:absolute;left:calc(64*var(--u));top:calc(112*var(--u))}
+.stations h2{font-family:var(--display);font-weight:400;letter-spacing:-.03em;color:#080b0e;
+  --fs:48;font-size:calc(var(--fs)*var(--u));line-height:1.06;margin-top:calc(14*var(--u))}
+.plates{position:absolute;right:calc(64*var(--u));top:calc(118*var(--u));
+  width:calc(360*var(--u));display:flex;flex-direction:column;gap:calc(12*var(--u))}
+.station{border:1px solid rgba(13,17,23,.16);padding:calc(18*var(--u));
+  background:rgba(252,253,253,.92);
+  transition:border-color .5s ease, background .5s ease, transform .6s cubic-bezier(.16,1,.3,1)}
+.station.on{border-color:rgba(13,17,23,.6);background:#fff;
+  transform:translateX(calc(-14*var(--u)));
+  box-shadow:0 calc(16*var(--u)) calc(40*var(--u)) rgba(40,60,80,.13)}
+.station .name{display:flex;justify-content:space-between;align-items:baseline}
+.station .name h3{font-family:var(--display);font-weight:400;letter-spacing:-.018em;
+  --fs:24;font-size:calc(var(--fs)*var(--u));color:#080b0e}
+.station dl{display:grid;grid-template-columns:calc(92*var(--u)) 1fr;row-gap:calc(5*var(--u));
+  margin-top:calc(12*var(--u));font-size:max(11px,calc(12.5*var(--u)));line-height:max(17px,calc(18*var(--u)))}
+.station dt{font-size:max(11px,calc(11*var(--u)));letter-spacing:calc(1.2*var(--u));
+  text-transform:uppercase;color:#7c8794}
+.station dd{color:#2b343e;font-variant-numeric:tabular-nums}
+.station dd a{color:#1b232b;text-decoration:none;border-bottom:1px solid rgba(13,17,23,.28)}
+.station dd a:hover{border-color:#1b232b}
+.contactbar{position:absolute;left:calc(64*var(--u));bottom:calc(80*var(--u));
+  display:flex;flex-direction:column;gap:calc(22*var(--u));align-items:flex-start}
+.contactbar .lines{display:flex;gap:calc(52*var(--u))}
+.stations .contactbar .lines{flex-direction:column;gap:calc(18*var(--u))}
+.contactbar .lines div{display:flex;flex-direction:column;gap:calc(6*var(--u))}
+.contactbar .lines a{font-size:max(13px,calc(17*var(--u)));color:#141b22;text-decoration:none;
+  border-bottom:1px solid rgba(13,17,23,.24)}
+.contactbar .lines a:hover{border-color:#141b22}
+.contactbar .cta{margin-top:0}
+
+.num{font-family:var(--serif);font-weight:400;font-size:max(11px, calc(13*var(--u)));
+  color:#8a99a6;letter-spacing:.04em;font-variant-numeric:tabular-nums}
+.lab{font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.9*var(--u));
+  text-transform:uppercase;color:#6a7683;font-weight:400}
+.blocknum{display:flex;gap:calc(16*var(--u));align-items:baseline}
+.copy p{font-size:max(14px, calc(16*var(--u)));line-height:max(26px, calc(29.5*var(--u)));
+  color:#2b343e;letter-spacing:.004em;font-weight:300}
+.cta{
+  display:inline-flex;align-items:center;justify-content:center;
+  margin-top:calc(26*var(--u));height:calc(63*var(--u));padding:0 calc(44*var(--u));
+  border-radius:999px;background:#0d1117;color:#fff;
+  font-size:max(12px, calc(13.5*var(--u)));letter-spacing:calc(2.2*var(--u));text-transform:uppercase;
+  text-decoration:none;box-shadow:0 calc(10*var(--u)) calc(28*var(--u)) rgba(40,60,80,.18);
+  transition:transform .4s cubic-bezier(.16,1,.3,1)
+}
+.cta:hover{transform:translateY(calc(-3*var(--u)))}
+
+/* paper grain — a canvas bitmap, because a tiled feTurbulence background
+   measured about ten times the cost for the same veil */
+.grainy{position:relative}
+.grainy::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:1;
+  background-image:var(--grain);background-size:220px 220px;opacity:.5;mix-blend-mode:multiply}
+.grainy > *{position:relative;z-index:2}
+
+/* ── field notes ──────────────────────────────────────────────────── */
+/* The three rules are the one thing meant to be carried out of the room, so
+   the sheet turns to ink and each becomes a card you could pin up. */
+.voices{position:relative;background:#0c1219;color:#c4d1dc;
+  padding:calc(126*var(--u)) calc(72*var(--u)) calc(114*var(--u))}
+.voices .secHead{border-bottom-color:rgba(255,255,255,.16)}
+.voices .secHead h2{color:#eef4f8}
+.voices .num{color:#5d7080}
+.voices .lab{color:#7b8b99}
+.secHead{display:flex;justify-content:space-between;align-items:flex-end;gap:calc(40*var(--u));
+  padding-bottom:calc(20*var(--u));border-bottom:1px solid rgba(13,17,23,.22)}
+.secHead h2{font-family:var(--display);font-weight:400;letter-spacing:-.028em;
+  --fs:44; font-size:calc(var(--fs)*var(--u));line-height:calc(48*var(--u));color:#080b0e}
+.ledger{display:grid;grid-template-columns:repeat(3,1fr);gap:calc(28*var(--u));margin-top:calc(58*var(--u))}
+.entry{display:flex;flex-direction:column;gap:calc(20*var(--u));
+  padding:calc(32*var(--u)) calc(30*var(--u)) calc(30*var(--u));
+  background:rgba(255,255,255,.038);border:1px solid rgba(255,255,255,.13);
+  transition:background-color .5s ease, border-color .5s ease,
+             transform .6s cubic-bezier(.16,1,.3,1), box-shadow .6s ease}
+.entry:hover{background:rgba(255,255,255,.07);border-color:rgba(159,212,228,.42);
+  transform:translateY(calc(-6*var(--u)));
+  box-shadow:0 calc(20*var(--u)) calc(48*var(--u)) rgba(0,0,0,.34)}
+.entry .head{display:flex;justify-content:space-between;align-items:baseline;
+  padding-bottom:calc(14*var(--u));border-bottom:1px solid rgba(255,255,255,.14)}
+.entry .fig{margin:calc(-4*var(--u)) 0 calc(-10*var(--u));display:flex;justify-content:flex-end}
+.entry .fig img{width:calc(112*var(--u));height:calc(112*var(--u));object-fit:contain;
+  filter:drop-shadow(0 calc(12*var(--u)) calc(26*var(--u)) rgba(0,0,0,.55));
+  animation:drift 9s ease-in-out infinite}
+.entry:nth-child(2) .fig img{animation-duration:10.4s;animation-delay:-2.6s}
+.entry:nth-child(3) .fig img{animation-duration:8.7s;animation-delay:-5.1s}
+.entry blockquote{font-family:var(--display);font-weight:400;letter-spacing:-.02em;
+  font-size:max(16px, calc(23*var(--u)));line-height:max(24px, calc(30*var(--u)));
+  color:#eef4f8}
+.entry blockquote::before{content:'\201C'}
+.entry blockquote::after{content:'\201D'}
+.entry .who{display:flex;flex-direction:column;gap:calc(4*var(--u));margin-top:auto;
+  padding-top:calc(18*var(--u));border-top:1px solid rgba(255,255,255,.14)}
+.entry .who b{font-weight:400;font-size:max(13px, calc(15*var(--u)));color:#e4edf4}
+.entry .who span{font-size:max(11px, calc(12.5*var(--u)));color:#7b8b99;font-weight:300}
+
+/* ── footer: observatory ──────────────────────────────────────────── */
+/* Six layers, each drifting at its own rate as the footer comes up: stars,
+   aurora, a far ridge, a near ridge, a graticule and a vignette. Parallax is
+   applied to the stack, not to the content, so the type never moves. */
+footer{
+  position:relative;z-index:2;background:#080d14;color:#c8d3dd;overflow:hidden;
+  padding:calc(230*var(--u)) calc(60*var(--u)) calc(40*var(--u));
+}
+.fx{position:absolute;inset:calc(-60*var(--u)) 0 0;pointer-events:none;overflow:hidden}
+.fx > *{position:absolute;left:0;right:0;will-change:transform}
+.fx-stars{top:0;height:calc(560*var(--u));width:100%}
+.fx-aurora{top:calc(40*var(--u));height:calc(300*var(--u));
+  background:
+    radial-gradient(58% 100% at 26% 100%, rgba(94,196,206,.20) 0%, rgba(94,196,206,0) 70%),
+    radial-gradient(46% 100% at 63% 100%, rgba(126,168,220,.16) 0%, rgba(126,168,220,0) 72%),
+    radial-gradient(38% 100% at 86% 100%, rgba(94,196,206,.13) 0%, rgba(94,196,206,0) 70%);
+  filter:blur(calc(16*var(--u)));opacity:.9}
+.fx-ridge-far{top:calc(40*var(--u));height:calc(340*var(--u));width:116%;left:-8%;
+  object-fit:cover;object-position:50% 28%;opacity:.26;filter:blur(calc(1.6*var(--u)));
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 52%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 14%,#000 52%,transparent 100%)}
+.fx-ridge-near{top:calc(84*var(--u));height:calc(376*var(--u));width:100%;
+  object-fit:cover;object-position:50% 52%;opacity:.72;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 42%,transparent 96%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 12%,#000 42%,transparent 96%)}
+.fx-grat{top:0;height:calc(620*var(--u));opacity:.5;
+  background-image:repeating-linear-gradient(to right, rgba(160,196,214,.09) 0 1px, transparent 1px calc(80*var(--u))),
+                   repeating-linear-gradient(to bottom, rgba(160,196,214,.07) 0 1px, transparent 1px calc(80*var(--u)));
+  -webkit-mask-image:radial-gradient(72% 78% at 50% 26%, #000 0%, transparent 100%);
+          mask-image:radial-gradient(72% 78% at 50% 26%, #000 0%, transparent 100%)}
+.fx-veil{top:0;bottom:0;height:auto;
+  background:linear-gradient(to bottom, rgba(8,13,20,0) 0%, rgba(8,13,20,.55) 46%, rgba(8,13,20,.93) 100%)}
+footer .inner{position:relative;z-index:2}
+
+.fmast{display:grid;grid-template-columns:calc(700*var(--u)) 1fr;gap:calc(48*var(--u));
+  align-items:end;padding-bottom:calc(44*var(--u));border-bottom:1px solid rgba(255,255,255,.12)}
+footer h3{
+  font-family:var(--display);font-weight:400;letter-spacing:-.036em;
+  --fs:84; font-size:calc(var(--fs)*var(--u));
+  line-height:.88;color:#eef4f8;white-space:nowrap
+}
+.fmast p{font-size:max(13px, calc(16*var(--u)));line-height:max(22px, calc(26*var(--u)));
+  color:#8b9aa8;font-weight:300;max-width:calc(420*var(--u));margin-left:auto}
+
+.frow{display:grid;grid-template-columns:repeat(4,1fr) calc(300*var(--u));
+  gap:calc(34*var(--u));align-items:start;margin-top:calc(56*var(--u))}
+.fcol{border-top:1px solid rgba(255,255,255,.13);padding-top:calc(14*var(--u))}
+.fcol h4{font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.9*var(--u));
+  text-transform:uppercase;color:#5f6f7f;font-weight:400;margin-bottom:calc(16*var(--u))}
+.fcol a{display:flex;justify-content:space-between;align-items:baseline;gap:calc(10*var(--u));
+  color:#a9b7c4;text-decoration:none;font-size:max(12px, calc(13.5*var(--u)));
+  padding:calc(6*var(--u)) 0;transition:color .3s}
+.fcol a i{font-style:normal;font-family:var(--serif);color:#44525f;
+  font-size:max(11px, calc(11*var(--u)));font-variant-numeric:tabular-nums}
+.fcol a:hover{color:#fff}
+.panel{border:1px solid rgba(255,255,255,.13);padding:calc(18*var(--u));display:grid;gap:calc(11*var(--u));
+  background:rgba(12,19,28,.55);backdrop-filter:blur(calc(3*var(--u)))}
+.panel .prow{display:flex;justify-content:space-between;align-items:baseline;
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(.9*var(--u));color:#7e8d9b;text-transform:uppercase}
+.panel .prow b{font-family:var(--serif);font-weight:400;color:#dbe6ef;letter-spacing:.02em;
+  font-size:max(12px, calc(14*var(--u)));font-variant-numeric:tabular-nums}
+.panel .bar{height:calc(3*var(--u));background:rgba(255,255,255,.10);position:relative;overflow:hidden}
+.panel .bar i{position:absolute;inset:0 26% 0 0;background:linear-gradient(90deg,#4e7f96,#9fd4e4)}
+
+.dispatch{display:grid;grid-template-columns:calc(420*var(--u)) 1fr;gap:calc(48*var(--u));
+  align-items:center;margin-top:calc(46*var(--u));padding:calc(30*var(--u)) 0;
+  border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12)}
+.dispatch h5{font-family:var(--display);font-weight:400;
+  --fs:28;font-size:calc(var(--fs)*var(--u));color:#e6eef4;letter-spacing:-.024em}
+.dispatch .sub{font-size:max(11px, calc(12.5*var(--u)));color:#7e8d9b;margin-top:calc(6*var(--u))}
+.signup{display:flex;gap:calc(12*var(--u));align-items:stretch;max-width:calc(520*var(--u));margin-left:auto}
+.signup input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);
+  color:#e6eef4;font-family:inherit;font-weight:300;
+  font-size:max(13px, calc(14*var(--u)));padding:0 calc(18*var(--u));height:calc(54*var(--u))}
+.signup input::placeholder{color:#61707e}
+.signup input:focus{outline:none;border-color:rgba(159,212,228,.7)}
+.signup button{background:#e9f1f6;color:#0b1119;border:0;font-family:inherit;cursor:pointer;
+  font-size:max(11px, calc(12*var(--u)));letter-spacing:calc(2*var(--u));text-transform:uppercase;
+  padding:0 calc(28*var(--u));height:calc(54*var(--u));transition:background .3s}
+.signup button:hover{background:#fff}
+
+.fseal{position:absolute;right:calc(60*var(--u));top:calc(74*var(--u));
+  width:calc(118*var(--u));height:calc(118*var(--u));opacity:.42;z-index:3}
+.fseal svg{width:100%;height:100%;animation:spin 44s linear infinite}
+.fbase{
+  margin-top:calc(34*var(--u));
+  display:flex;justify-content:space-between;align-items:center;gap:calc(26*var(--u));
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.1*var(--u));color:#5f6f7f;text-transform:uppercase;
+  font-variant-numeric:tabular-nums
+}
+.glyphs{display:flex;gap:calc(16*var(--u));opacity:.6}
+.glyphs svg{width:calc(15*var(--u));height:calc(15*var(--u))}
+
+/* loader */
+#boot{
+  position:fixed;inset:0;z-index:200;background:#141d2e;
+  display:flex;align-items:center;justify-content:center;
+  transition:opacity .55s ease;
+}
+#boot.gone{opacity:0;pointer-events:none}
+#boot .b{
+  font-family:var(--serif);font-size:max(13px, calc(15*var(--u)));letter-spacing:calc(7*var(--u));
+  color:rgba(255,255,255,.62);text-transform:uppercase
+}
+
+@media (max-width:900px){
+  :root{--u: calc(100vw / 430)}
+  .navlinks{display:none}
+  .nav{padding:calc(18*var(--u)) calc(20*var(--u))}
+  .brand svg{width:calc(18*var(--u));height:calc(18*var(--u))}
+  .brand .word{font-size:max(14px, calc(16*var(--u)));letter-spacing:calc(1.3*var(--u))}
+  .navright{gap:calc(16*var(--u))}
+  .pill{height:calc(32*var(--u));padding:0 calc(16*var(--u))}
+  .navright a:not(.pill){display:none}
+
+  .hero{height:280vh}
+  .explore-row{bottom:calc(52*var(--u));gap:calc(10*var(--u))}
+  .t0,.t3{width:calc(40*var(--u));height:calc(40*var(--u))}
+  .t1,.t2{width:calc(52*var(--u));height:calc(52*var(--u))}
+  .explore{width:calc(88*var(--u));height:calc(88*var(--u))}
+  .explore-label{font-size:max(11px, calc(11*var(--u)))}
+
+  .statement{height:auto;min-height:0;padding:calc(150*var(--u)) calc(22*var(--u)) calc(90*var(--u));
+    display:flex;flex-direction:column;align-items:center}
+  .seal{position:static;transform:none;width:max(120px, calc(110*var(--u)));height:max(120px, calc(110*var(--u)));margin-bottom:calc(40*var(--u))}
+  .seal .mark svg{width:calc(30*var(--u));height:calc(30*var(--u))}
+  .statement h2{position:static;transform:none;white-space:normal;text-align:center;
+    --fs:32; font-size:calc(var(--fs)*var(--u));line-height:calc(40*var(--u));max-width:100%}
+  .statement h2 br{display:none}
+  .statement h2 .sp{display:inline}
+
+  /* the two scene sections keep their canvas but stack their furniture: three
+     steps side by side and a 360u card rail do not fit a portrait frame */
+  .stage{height:260vh}
+  .descent .head,.stations .head{left:calc(22*var(--u));top:calc(88*var(--u))}
+  .descent h2{--fs:36;font-size:calc(var(--fs)*var(--u))}
+  .stations h2{--fs:30;font-size:calc(var(--fs)*var(--u))}
+  .readout{right:calc(22*var(--u));top:auto;bottom:calc(268*var(--u));width:calc(176*var(--u));
+    padding:calc(12*var(--u))}
+  .steps{left:calc(22*var(--u));right:calc(22*var(--u));bottom:calc(52*var(--u));
+    flex-direction:column;gap:calc(13*var(--u))}
+  .step{max-width:100%}
+  .step p{display:none}
+  .step.on p{display:block}
+  .step .kit{width:calc(34*var(--u));height:calc(34*var(--u));margin-bottom:calc(2*var(--u))}
+  .trackline,.trackfill{left:calc(22*var(--u));right:calc(22*var(--u));bottom:calc(32*var(--u));
+    max-width:calc(386*var(--u))}
+  /* three full cards, a heading and a contact block will not co-exist in 932px.
+     Only the station the scroll is on opens; the other two stay as a name row,
+     which is also the clearer reading of what the globe is doing. */
+  /* absolute anchors fight each other in a portrait frame — let the stations
+     column run in flow inside the sticky frame instead */
+  .stations .layer{display:flex;flex-direction:column;
+    padding:calc(86*var(--u)) calc(22*var(--u)) calc(40*var(--u));gap:calc(18*var(--u))}
+  .stations .head{position:static}
+  .contactbar{position:static;margin-top:auto}
+  .plates{position:static;width:auto;gap:calc(8*var(--u))}
+  /* the planet sits right behind the rail on a phone; the cards have to hold
+     their own contrast against it */
+  .station{padding:calc(12*var(--u)) calc(14*var(--u));background:rgba(255,255,255,.86)}
+  .station.on{background:rgba(255,255,255,.96)}
+  .station.on{transform:none}
+  .station dl{grid-template-columns:calc(86*var(--u)) 1fr;
+    max-height:0;overflow:hidden;margin-top:0;opacity:0;
+    transition:max-height .5s ease, opacity .4s ease, margin-top .5s ease}
+  .station.on dl{max-height:calc(180*var(--u));opacity:1;margin-top:calc(12*var(--u))}
+  .contactbar{flex-direction:column;align-items:flex-start;gap:calc(16*var(--u))}
+  .contactbar .lines{gap:calc(26*var(--u))}
+  .cta{height:calc(52*var(--u));font-size:max(12px, calc(13*var(--u)));margin-top:0}
+
+  .secHead{flex-direction:column;align-items:flex-start;gap:calc(14*var(--u))}
+  .secHead h2{--fs:31;font-size:calc(var(--fs)*var(--u));line-height:calc(36*var(--u))}
+  .voices{padding:calc(78*var(--u)) calc(22*var(--u)) calc(70*var(--u))}
+  .ledger{grid-template-columns:1fr;gap:calc(14*var(--u));margin-top:calc(34*var(--u))}
+  .entry blockquote{font-size:max(16px, calc(21*var(--u)));line-height:max(24px, calc(29*var(--u)))}
+
+  .stations{padding:calc(78*var(--u)) calc(22*var(--u)) calc(70*var(--u))}
+  .plates{grid-template-columns:1fr;gap:calc(44*var(--u));margin-top:calc(38*var(--u))}
+  .station .name h3{--fs:23;font-size:calc(var(--fs)*var(--u))}
+  .station dl{grid-template-columns:calc(104*var(--u)) 1fr}
+  .contactbar{flex-direction:column;align-items:flex-start;gap:calc(28*var(--u));
+    margin-top:calc(46*var(--u))}
+  .contactbar .lines{gap:calc(26*var(--u));flex-direction:column}
+
+  footer{padding:calc(210*var(--u)) calc(22*var(--u)) calc(34*var(--u))}
+  .fx-stars{height:calc(420*var(--u))}
+  .fx-aurora{height:calc(230*var(--u))}
+  .fx-ridge-far{height:calc(230*var(--u));top:calc(34*var(--u))}
+  .fx-ridge-near{height:calc(260*var(--u));top:calc(74*var(--u))}
+  .fx-grat{height:calc(460*var(--u))}
+  .fmast{grid-template-columns:1fr;gap:calc(24*var(--u));padding-bottom:calc(32*var(--u))}
+  .fmast p{margin-left:0;max-width:100%}
+  footer h3{--fs:40;font-size:calc(var(--fs)*var(--u))}
+  .frow{grid-template-columns:1fr;gap:calc(26*var(--u));margin-top:calc(36*var(--u))}
+  .fseal{display:none}
+  .fcol a{font-size:max(13px, calc(15*var(--u)))}
+  .panel{padding:calc(16*var(--u))}
+  .dispatch{grid-template-columns:1fr;gap:calc(22*var(--u));margin-top:calc(38*var(--u))}
+  .dispatch h5{--fs:25;font-size:calc(var(--fs)*var(--u))}
+  .signup{margin-left:0;max-width:100%;flex-direction:column}
+  .signup input,.signup button{height:calc(52*var(--u));width:100%}
+  .fbase{flex-direction:column;align-items:flex-start;gap:calc(10*var(--u));
+    font-size:max(11px, calc(11*var(--u)))}
+}
+@media (max-width:900px) and (orientation:landscape){
+  :root{--u: calc(100vw / 900)}
+  .hero{height:240vh}
+}
+@media (prefers-reduced-motion:reduce){
+  .seal .ring,.vol .plate img,.entry .fig img,.kitcol .fig img{animation:none}
+  .statement h2 .w,.manifest .w{opacity:1;transform:none;filter:none;transition:none}
+  .manifest [data-unit]{opacity:1;transform:none}
+  .manifest [data-unit] path{stroke-dashoffset:0}
+  .thumb,.explore,.cta{transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   Sections added for the codex: the shelf of five volumes and the kit.
+   Both are built out of the page's existing materials — hairlines on
+   paper, serif small-caps numerals, the same --u grid — so they read as
+   further sheets of the same survey rather than new furniture.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ── sheet 03 · the five books ────────────────────────────────────── */
+.books{position:relative;background:#eff2f3;
+  padding:calc(132*var(--u)) calc(72*var(--u)) calc(116*var(--u))}
+.shelf{margin-top:calc(52*var(--u))}
+.vol{
+  display:grid;grid-template-columns:calc(148*var(--u)) 1fr calc(352*var(--u)) calc(112*var(--u));
+  gap:calc(48*var(--u));align-items:start;
+  padding:calc(42*var(--u)) calc(14*var(--u)) calc(44*var(--u));
+  margin:0 calc(-14*var(--u));
+  border-bottom:1px solid rgba(13,17,23,.16);
+  transition:background-color .45s ease;
+}
+.vol:hover{background:rgba(13,17,23,.035)}
+/* Each chapter carries a plate of the instrument it teaches you to hold —
+   drawn rather than photographed, so it keys off the page's own ink colour
+   and stays a line at any size. */
+.vol .plate{margin:0;transition:transform .6s cubic-bezier(.16,1,.3,1)}
+.vol .plate img{display:block;width:100%;height:calc(148*var(--u));
+  object-fit:contain;object-position:center top;
+  filter:drop-shadow(0 calc(13*var(--u)) calc(22*var(--u)) rgba(40,60,80,.22));
+  animation:drift 7.5s ease-in-out infinite}
+.vol:hover .plate{transform:translateY(calc(-5*var(--u)))}
+/* the plates are cut out and sit above the sheet, so give them a little of
+   their own motion — offset per row, or five objects bob in lockstep */
+@keyframes drift{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(calc(-8*var(--u)))} }
+.vol:nth-of-type(2) .plate img{animation-duration:8.6s;animation-delay:-1.7s}
+.vol:nth-of-type(3) .plate img{animation-duration:9.4s;animation-delay:-3.1s}
+.vol:nth-of-type(4) .plate img{animation-duration:8.1s;animation-delay:-4.4s}
+.vol:nth-of-type(6) .plate img{animation-duration:9.9s;animation-delay:-2.3s}
+.vol:nth-of-type(7) .plate img{animation-duration:8.9s;animation-delay:-5.6s}
+.vol .body .volno{margin-bottom:calc(12*var(--u));display:flex;flex-wrap:wrap;
+  gap:calc(4*var(--u)) calc(14*var(--u));align-items:baseline}
+.vol .body .volno .num{white-space:nowrap}
+.vol .body h3{
+  font-family:var(--display);font-weight:400;color:#080b0e;
+  --fs:26;font-size:calc(var(--fs)*var(--u));line-height:1.06;letter-spacing:-.022em}
+.vol .body p{
+  margin-top:calc(14*var(--u));max-width:calc(740*var(--u));
+  font-size:max(13px, calc(15.5*var(--u)));line-height:max(21px, calc(24.5*var(--u)));
+  color:#3c4650;font-weight:300}
+.vol .tags{
+  margin-top:calc(18*var(--u));
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.5*var(--u));
+  text-transform:uppercase;color:#7c8794;line-height:max(17px, calc(19*var(--u)))}
+.vol dl{display:grid;grid-template-columns:calc(106*var(--u)) 1fr;
+  row-gap:calc(11*var(--u));column-gap:calc(14*var(--u));margin-top:calc(4*var(--u))}
+.vol dt{display:flex;align-items:center;gap:calc(7*var(--u));
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.2*var(--u));
+  text-transform:uppercase;color:#7c8794}
+.vol dd{font-size:max(11px, calc(12.5*var(--u)));line-height:max(17px, calc(18.5*var(--u)));
+  color:#2b343e}
+.vol .when{text-align:right;margin-top:calc(2*var(--u))}
+.vol .when b{display:flex;align-items:center;justify-content:flex-end;gap:calc(9*var(--u));
+  font-family:var(--display);font-weight:400;letter-spacing:-.022em;
+  font-size:max(15px, calc(23*var(--u)));color:#141b22;font-variant-numeric:tabular-nums}
+.vol .when span{display:flex;align-items:center;justify-content:flex-end;gap:calc(7*var(--u));
+  margin-top:calc(9*var(--u));
+  font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.4*var(--u));
+  text-transform:uppercase;color:#7c8794}
+/* the icon set: a hairline mark that sits on the cap line of its label */
+.ic{width:1em;height:1em;flex:none;stroke:currentColor;fill:none;
+  stroke-width:1.35;stroke-linecap:round;stroke-linejoin:round}
+.vol .when b .ic{width:calc(19*var(--u));height:calc(19*var(--u));color:#6a7683;stroke-width:1.2}
+.vol .when span .ic,.vol dt .ic{width:calc(13*var(--u));height:calc(13*var(--u));min-width:11px;min-height:11px}
+/* the two breaks and the close are shelved between the volumes, but they are
+   not volumes — no plate, and the copy drops back a step */
+.vol.rest{padding:calc(24*var(--u)) calc(14*var(--u))}
+.vol.rest:hover{background:none}
+.vol.rest .plate{height:1px;background:rgba(13,17,23,.28);align-self:start;
+  margin-top:calc(13*var(--u));opacity:1}
+.vol.rest:hover .plate{transform:none}
+.vol.rest .body{grid-column:2 / 4}
+.vol.rest .body h3{--fs:16;color:#5e6975;letter-spacing:calc(2*var(--u));text-transform:uppercase;
+  font-family:var(--sans);font-weight:400}
+.vol.rest .body p{margin-top:calc(8*var(--u));color:#6a7683;
+  font-size:max(12px, calc(13.5*var(--u)));line-height:max(19px, calc(20*var(--u)))}
+.vol.rest .when b{font-size:max(13px, calc(17*var(--u)));color:#5e6975}
+.bounds{margin-top:calc(64*var(--u));padding-top:calc(24*var(--u));
+  border-top:1px solid rgba(13,17,23,.22);
+  display:grid;grid-template-columns:calc(226*var(--u)) repeat(4,1fr);gap:calc(34*var(--u))}
+.bounds p{font-size:max(12px, calc(13*var(--u)));line-height:max(19px, calc(20*var(--u)));
+  color:#5a6470;font-weight:300}
+
+/* ── sheet 04 · the room ──────────────────────────────────────────── */
+.room{position:relative;background:#eef1f2;
+  padding:calc(126*var(--u)) calc(72*var(--u)) calc(108*var(--u))}
+/* Sheet 04 was the guest roster with the sponsors beneath it; the people have
+   been taken off the page, so the sponsors carry the sheet on their own. */
+.sponsors{margin-top:calc(56*var(--u))}
+.sponsorrow{display:grid;grid-template-columns:repeat(5,1fr);
+  gap:calc(16*var(--u));margin-top:calc(34*var(--u))}
+.sponsor{display:flex;flex-direction:column;
+  padding:calc(20*var(--u)) calc(18*var(--u)) calc(18*var(--u));
+  border:1px solid rgba(13,17,23,.16);background:rgba(255,255,255,.6);
+  transition:border-color .45s ease, background-color .45s ease,
+             transform .55s cubic-bezier(.16,1,.3,1)}
+.sponsor:hover{border-color:rgba(13,17,23,.45);background:#fff;
+  transform:translateY(calc(-5*var(--u)))}
+.sponsor b{font-family:var(--display);font-weight:400;letter-spacing:-.016em;
+  font-size:max(14px, calc(19*var(--u)));color:#141b22}
+.sponsor p{margin-top:calc(10*var(--u));
+  font-size:max(11px, calc(12.5*var(--u)));line-height:max(17px, calc(18*var(--u)));
+  color:#4d5560;font-weight:300}
+.sponsor .worth{margin-top:auto;padding-top:calc(16*var(--u));
+  font-family:var(--serif);font-weight:400;font-variant-numeric:tabular-nums;
+  font-size:max(12px, calc(15*var(--u)));color:#7c8794}
+
+/* Sheet 04 shares Sheet 05's ink, cool hairlines and pinned-card logic.
+   The faces are evidence, not decoration, so colour stays quiet until hover. */
+.room{color:#c4d1dc;
+  background:radial-gradient(76% 52% at 12% 0%,rgba(105,145,166,.11),transparent 68%),#0c1219}
+.room.grainy::before{opacity:.13;mix-blend-mode:screen}
+.room .secHead{border-bottom-color:rgba(255,255,255,.16)}
+.room .secHead h2{color:#eef4f8}
+.room .num{color:#5d7080}
+.room .lab{color:#7b8b99}
+.sponsor{min-height:calc(238*var(--u));border-color:rgba(255,255,255,.13);
+  background:rgba(255,255,255,.038);
+  transition:border-color .45s ease,background-color .45s ease,
+             transform .55s cubic-bezier(.16,1,.3,1),box-shadow .55s ease}
+.sponsor:hover{border-color:rgba(159,212,228,.42);background:rgba(255,255,255,.07);
+  box-shadow:0 calc(20*var(--u)) calc(44*var(--u)) rgba(0,0,0,.30)}
+.sponsor .brandmark{display:flex;align-items:center;justify-content:flex-end;
+  min-height:calc(58*var(--u));margin-bottom:calc(18*var(--u));padding-bottom:calc(16*var(--u));
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.sponsor .brandmark img{display:block;width:calc(48*var(--u));height:calc(48*var(--u));
+  object-fit:contain;filter:grayscale(1) brightness(0) invert(1);opacity:.84;
+  transition:opacity .45s ease,transform .55s cubic-bezier(.16,1,.3,1)}
+.sponsor .brandmark img[src$="sq-collective.png"]{width:calc(62*var(--u));
+  filter:grayscale(.82) contrast(1.08) brightness(1.2)}
+.sponsor .brandmark img[src$="designcode.png"]{filter:grayscale(.7) contrast(1.12) brightness(1.2)}
+.sponsor:hover .brandmark img{opacity:1;transform:translateY(calc(-3*var(--u)))}
+.sponsor b{color:#e4edf4}
+.sponsor p{color:#9cadba}
+.sponsor .worth{color:#718696}
+
+/* ── sheet 05 · manifest ─────────────────────────────────────────── */
+.manifest{position:relative;background:#0c1219;color:#c4d1dc;
+  padding:calc(150*var(--u)) calc(72*var(--u)) calc(140*var(--u))}
+.mf-inner{max-width:calc(1180*var(--u))}
+.manifest .lab{color:#7b8b99}
+.orn-rule{display:block;width:calc(300*var(--u));height:auto;color:#4a5b6b;
+  margin:calc(22*var(--u)) 0 calc(34*var(--u))}
+.manifest h2{font-family:var(--display);font-weight:400;letter-spacing:-.028em;
+  --fs:56;font-size:calc(var(--fs)*var(--u));line-height:1.16;color:#eef4f8;
+  max-width:calc(1080*var(--u))}
+.mf-lede{margin-top:calc(40*var(--u));max-width:calc(720*var(--u));
+  font-size:max(14px, calc(17*var(--u)));line-height:max(24px, calc(28*var(--u)));
+  color:#8d9caa;font-weight:300}
+.tenets{margin-top:calc(84*var(--u));border-top:1px solid rgba(255,255,255,.14)}
+.tenet{display:grid;grid-template-columns:calc(58*var(--u)) calc(72*var(--u)) 1fr calc(190*var(--u));
+  gap:calc(30*var(--u));align-items:start;
+  padding:calc(38*var(--u)) 0 calc(40*var(--u));
+  border-bottom:1px solid rgba(255,255,255,.14)}
+.tenet .num{color:#5d7080;padding-top:calc(6*var(--u))}
+.tenet .orn{width:calc(72*var(--u));height:auto;color:#7f96a8}
+.tenet p{font-size:max(15px, calc(22*var(--u)));line-height:max(24px, calc(31*var(--u)));
+  color:#dce5ec;font-weight:300;letter-spacing:-.008em}
+.mf-plate{margin:0}
+.mf-plate img{display:block;width:100%;height:calc(120*var(--u));
+  object-fit:contain;object-position:center top;
+  filter:drop-shadow(0 calc(12*var(--u)) calc(26*var(--u)) rgba(0,0,0,.6))}
+
+/* The reveal units: words fade up, linework draws itself, plates arrive whole.
+   pathLength="1" normalises every path, so the dash trick needs no measuring. */
+.manifest [data-unit]{opacity:0;transform:translateY(calc(14*var(--u)));
+  transition:opacity .75s cubic-bezier(.16,1,.3,1),
+             transform .75s cubic-bezier(.16,1,.3,1)}
+.manifest [data-unit].on{opacity:1;transform:none}
+.manifest [data-unit] path{stroke-dasharray:1;stroke-dashoffset:1;
+  transition:stroke-dashoffset 1.15s cubic-bezier(.16,1,.3,1) .08s}
+.manifest [data-unit].on path{stroke-dashoffset:0}
+.manifest .w{display:inline-block;opacity:0;
+  transform:translateY(calc(13*var(--u)));filter:blur(calc(4*var(--u)));
+  transition:opacity .55s cubic-bezier(.16,1,.3,1),
+             transform .55s cubic-bezier(.16,1,.3,1), filter .55s ease}
+.manifest .w.on{opacity:1;transform:none;filter:none}
+
+/* ── sheet 06 · the kit ───────────────────────────────────────────── */
+.kitsheet{position:relative;background:#f1f4f4;
+  padding:calc(126*var(--u)) calc(72*var(--u)) calc(114*var(--u))}
+.kitrow{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:calc(22*var(--u));margin-top:calc(58*var(--u))}
+.kitcol{border:1px solid rgba(13,17,23,.16);background:rgba(255,255,255,.6);
+  padding:calc(26*var(--u)) calc(24*var(--u)) calc(12*var(--u));
+  backdrop-filter:blur(calc(3*var(--u)));
+  transition:border-color .5s ease, background-color .5s ease,
+             transform .6s cubic-bezier(.16,1,.3,1), box-shadow .6s ease}
+.kitcol:hover{border-color:rgba(13,17,23,.5);background:rgba(255,255,255,.92);
+  transform:translateY(calc(-6*var(--u)));
+  box-shadow:0 calc(18*var(--u)) calc(44*var(--u)) rgba(40,60,80,.14)}
+.kitcol .fig{display:flex;justify-content:flex-end;margin:calc(-6*var(--u)) 0 calc(2*var(--u))}
+.kitcol .fig img{width:calc(92*var(--u));height:calc(92*var(--u));object-fit:contain;
+  filter:drop-shadow(0 calc(9*var(--u)) calc(18*var(--u)) rgba(40,60,80,.22));
+  animation:drift 8.2s ease-in-out infinite}
+.kitcol:nth-child(2) .fig img{animation-duration:9.6s;animation-delay:-2.1s}
+.kitcol:nth-child(3) .fig img{animation-duration:8.8s;animation-delay:-4.3s}
+.kitcol:nth-child(4) .fig img{animation-duration:10.2s;animation-delay:-6.0s}
+.kitcol h4{font-size:max(11px, calc(11*var(--u)));letter-spacing:calc(1.9*var(--u));
+  text-transform:uppercase;color:#6a7683;font-weight:400;
+  padding-bottom:calc(14*var(--u));margin-bottom:calc(4*var(--u));
+  border-bottom:1px solid rgba(13,17,23,.16)}
+.kitcol .it{display:block;padding:calc(14*var(--u)) 0;
+  border-bottom:1px solid rgba(13,17,23,.11);color:inherit;text-decoration:none;
+  transition:padding-left .4s cubic-bezier(.16,1,.3,1)}
+.kitcol .it:last-child{border-bottom:0}
+.kitcol a.it:hover{padding-left:calc(8*var(--u))}
+.kitcol .it b{display:block;font-family:var(--display);font-weight:400;
+  font-size:max(14px, calc(17*var(--u)));color:#141b22;letter-spacing:-.014em}
+.kitcol a.it b{border-bottom:1px solid rgba(13,17,23,.22);display:inline-block}
+.kitcol a.it:hover b{border-color:#141b22}
+.kitcol .it span{display:block;margin-top:calc(5*var(--u));
+  font-size:max(11px, calc(12.5*var(--u)));line-height:max(17px, calc(18*var(--u)));
+  color:#6a7683;font-weight:300}
+.kitnote{margin-top:calc(30*var(--u));font-size:max(11px, calc(12.5*var(--u)));
+  color:#6a7683;font-weight:300}
+/* the surfaces sheet carries one line under its heading */
+.stations .head .fn{margin-top:calc(16*var(--u));max-width:calc(340*var(--u));
+  font-size:max(12px, calc(13.5*var(--u)));line-height:max(19px, calc(20.5*var(--u)));
+  color:#5a6470;font-weight:300}
+/* the contact rail states two conditions rather than two addresses */
+.contactbar .lines b{font-weight:300;font-size:max(13px, calc(17*var(--u)));color:#141b22}
+
+@media (max-width:900px){
+  .books,.kitsheet,.room{padding:calc(78*var(--u)) calc(22*var(--u)) calc(70*var(--u))}
+  .sponsors{margin-top:calc(34*var(--u))}
+  .sponsorrow{grid-template-columns:1fr;gap:calc(10*var(--u));margin-top:calc(24*var(--u))}
+  .sponsor .worth{padding-top:calc(12*var(--u))}
+  .manifest{padding:calc(86*var(--u)) calc(22*var(--u)) calc(74*var(--u))}
+  .manifest h2{--fs:31;line-height:1.2}
+  .orn-rule{width:calc(180*var(--u));margin:calc(16*var(--u)) 0 calc(24*var(--u))}
+  .mf-lede{margin-top:calc(26*var(--u));font-size:max(14px, calc(15.5*var(--u)));
+    line-height:max(23px, calc(25*var(--u)))}
+  .tenets{margin-top:calc(46*var(--u))}
+  .tenet{grid-template-columns:calc(40*var(--u)) 1fr;gap:calc(10*var(--u)) calc(14*var(--u));
+    padding:calc(26*var(--u)) 0 calc(28*var(--u))}
+  .tenet .orn{grid-column:2;width:calc(54*var(--u))}
+  .tenet p{grid-column:2;font-size:max(15px, calc(17*var(--u)));line-height:max(24px, calc(25*var(--u)))}
+  .mf-plate{grid-column:2;width:calc(120*var(--u))}
+  .mf-plate img{height:calc(84*var(--u))}
+  .kitcol{padding:calc(20*var(--u)) calc(18*var(--u)) calc(8*var(--u))}
+  .shelf{margin-top:calc(34*var(--u))}
+  .vol{grid-template-columns:calc(74*var(--u)) 1fr;gap:calc(10*var(--u)) calc(18*var(--u));
+    padding:calc(26*var(--u)) 0;margin:0}
+  .vol:hover{background:none}
+  .vol .plate{grid-row:1 / span 3;width:calc(74*var(--u))}
+  .vol .plate img{height:calc(94*var(--u))}
+  .entry .fig img{width:calc(88*var(--u));height:calc(88*var(--u))}
+  .kitcol .fig img{width:calc(76*var(--u));height:calc(76*var(--u))}
+  .vol.rest .plate{grid-row:1 / span 2;width:calc(40*var(--u));height:1px}
+  .vol > *:not(.plate){grid-column:2}
+  .vol.rest .body{grid-column:2}
+  .vol .body h3{--fs:21}
+  .vol .body p{margin-top:calc(8*var(--u))}
+  .vol dl{margin-top:calc(16*var(--u));grid-template-columns:calc(100*var(--u)) 1fr}
+  .vol .when{text-align:left;margin-top:calc(16*var(--u));
+    display:flex;gap:calc(18*var(--u));align-items:center}
+  .vol .when b{justify-content:flex-start;font-size:max(14px, calc(20*var(--u)))}
+  .vol .when span{margin-top:0}
+  .vol .when b .ic{width:calc(16*var(--u));height:calc(16*var(--u))}
+  .bounds{grid-template-columns:1fr;gap:calc(14*var(--u));margin-top:calc(38*var(--u))}
+  .kitrow{grid-template-columns:1fr;gap:calc(14*var(--u));margin-top:calc(34*var(--u))}
+  .stations .head .fn{display:none}
+  .contactbar .lines b{font-size:max(13px, calc(15*var(--u)))}
+  .vol.rest .plate{align-self:start;margin-top:calc(13*var(--u))}
+  /* Four movements have to sit in the room three sat in, or the column runs
+     up under the readout. The plate and the title carry the step on their
+     own, so the numeral goes and everything closes up by a few units. */
+  .step .num{display:none}
+  .step .kit{width:calc(28*var(--u));height:calc(28*var(--u));margin-bottom:calc(3*var(--u))}
+  .step .t{margin:calc(3*var(--u)) 0 calc(4*var(--u))}
+  .steps{gap:calc(11*var(--u))}
+}
+@media (max-width:520px){
+}
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div id="stage" aria-hidden="true">
+  <canvas id="gl"></canvas>
+  <div id="vignette"></div>
+  <canvas id="grain"></canvas>
+  <div id="whiteout"></div>
+</div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#" style="text-decoration:none;color:inherit">
+    <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+      <path d="M7 32 L19 11 L25 21 L31 13 L41 32 Z" fill="currentColor" opacity=".95"/>
+      <path d="M14.5 23.5 L19 15.5 L23 22 L19.4 25 Z" fill="#fff" opacity=".5"/>
+      <path d="M2 33.5 C9 30.5 13 35 20 33 C27 31 30 35.5 37 33.5 C41 32.4 44 33.4 46 34.6"
+            stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity=".85" fill="none"/>
+      <path d="M5 40 C11 37.6 15 41 21 39.4 C27 37.8 30 41.2 36 39.6 C39.4 38.7 42 39.4 44 40.4"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity=".4" fill="none"/>
+    </svg>
+    <span class="word">CODEX</span>
+  </a>
+  <nav class="navlinks">
+    <a href="#run" class="on">Run of show</a><a href="#books">Chapters</a><a href="#room">Sponsors</a><a href="#kit">Kit</a><a href="#surfaces">Surfaces</a>
+  </nav>
+  <div class="navright">
+    <a href="#books">29 Aug &#183; SGT</a>
+    <a href="#enrol" class="pill">Reserve a seat</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-ui">
+    <div class="explore-row" id="exploreRow">
+      <a class="thumb t0" href="#books" aria-label="Chapter one, get started"></a>
+      <a class="thumb t1" href="#books" aria-label="Chapter two, find direction"></a>
+      <button class="explore" type="button" aria-label="Begin the run of show"></button>
+      <a class="thumb t2" href="#books" aria-label="Chapter four, build"></a>
+      <a class="thumb t3" href="#books" aria-label="Chapter five, improve"></a>
+    </div>
+    <div class="explore-label" id="exploreLabel">Begin</div>
+    <div class="scroll-hint" id="scrollHint" aria-hidden="true">Scroll</div>
+  </div>
+</section>
+
+<main id="main" class="sheet">
+  <canvas id="sx" aria-hidden="true"></canvas>
+  <section class="statement grainy">
+    <div class="seal">
+      <svg class="ring" viewBox="0 0 200 200" aria-hidden="true">
+        <defs><path id="sealpath" d="M100,100 m-74,0 a74,74 0 1,1 148,0 a74,74 0 1,1 -148,0"/></defs>
+        <text font-family="Bodoni Moda, serif" font-size="16" letter-spacing="5.4" fill="#5d6a72">
+          <textPath href="#sealpath" startOffset="1%">FIND &#183; DIRECT &#183; BUILD &#183;</textPath>
+        </text>
+      </svg>
+      <div class="mark">
+        <svg viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <path d="M4 37 L18 12 L24 22 L30 12 L44 37 Z" fill="#3d4750" opacity=".9"/>
+          <path d="M6 20 C14 6 34 6 42 20" stroke="#3d4750" stroke-width="2.2" opacity=".5" fill="none"/>
+        </svg>
+      </div>
+    </div>
+    <h2 data-reveal="0.80" data-span="0.60"><span class="w">My</span> <span class="w">agents</span> <span class="w">handle</span> <span class="w">the</span> <span class="w">work</span> <span class="w">I</span> <span class="w">hate.</span><br><span class=sp> </span><span class="w">Design</span> <span class="w">is</span> <span class="w">still</span> <span class="w">my</span> <span class="w">moat.</span><br><span class=sp> </span><span class="w">AI</span> <span class="w">can</span> <span class="w">amplify</span> <span class="w">that,</span><br><span class=sp> </span><span class="w">it</span> <span class="w">can&#8217;t</span> <span class="w">replace</span> <span class="w">it.</span></h2>
+  </section>
+
+  <section class="descent stage" id="run">
+    <div class="frame">
+      <div class="layer">
+        <div class="head">
+          <div class="blocknum"><span class="num">Sheet 02</span><span class="lab">Run of show &#183; 10:00&#8211;17:00 SGT</span></div>
+          <h2>Six chapters.<br>One build.</h2>
+        </div>
+        <div class="readout">
+          <div class="r"><span>Clock</span><b id="sxAlt">10:00</b></div>
+          <div class="r"><span>Chapter</span><b id="sxGrade">01</b></div>
+          <div class="r"><span>Progress</span><b id="sxScan">0%</b></div>
+          <div class="r"><span>Minutes</span><b id="sxBear">000</b></div>
+        </div>
+        <div class="trackline"></div><div class="trackfill" id="sxProg" style="width:0"></div>
+        <div class="steps">
+          <div class="step"><span class="num">01</span>
+            <img crossorigin="anonymous" class="kit" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/eq-carabiner.png" alt="Engraved plate of a carabiner">
+            <div class="t">Open</div>
+            <p>Two landing pages, the sponsors, and the two themes you can build from. Then skills, plugins and Mobbin.</p></div>
+          <div class="step"><span class="num">02</span>
+            <img crossorigin="anonymous" class="kit" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/eq-compass.png" alt="Engraved plate of a sighting compass">
+            <div class="t">Direct</div>
+            <p>Typography, colour and layout, the best prompt for a reference, threads and Whisperflow, then images.</p></div>
+          <div class="step"><span class="num">03</span>
+            <img crossorigin="anonymous" class="kit" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/eq-axe.png" alt="Engraved plate of an ice axe">
+            <div class="t">Build</div>
+            <p>Start prompting before lunch on Team Mountain, Team Bookshelf or your own. Refine it after.</p></div>
+          <div class="step"><span class="num">04</span>
+            <img crossorigin="anonymous" class="kit" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/eq-crampon.png" alt="Engraved plate of a crampon">
+            <div class="t">Show</div>
+            <p>Turn what worked into a skill, then critique, present, and share the room&#8217;s work over pizza.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="books grainy" id="books">
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+      <symbol id="i-clock" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6.4"/><path d="M8 4.1V8l2.7 1.7"/></symbol>
+      <symbol id="i-span" viewBox="0 0 16 16"><path d="M4.4 1.8h7.2M4.4 14.2h7.2"/><path d="M5.4 1.8c0 3.1 2.6 4.4 2.6 6.2s-2.6 3.1-2.6 6.2M10.6 1.8c0 3.1-2.6 4.4-2.6 6.2s2.6 3.1 2.6 6.2"/></symbol>
+      <symbol id="i-task" viewBox="0 0 16 16"><path d="M2.4 3.4h11.2M2.4 8h7M2.4 12.6h5"/><path d="M10.2 12.1l1.5 1.6 3-3.6"/></symbol>
+      <symbol id="i-take" viewBox="0 0 16 16"><path d="M2.4 9.6v3.6h11.2V9.6"/><path d="M8 2.2v7.6"/><path d="M5.1 6.9L8 9.8l2.9-2.9"/></symbol>
+    </defs></svg>
+    <div class="secHead">
+      <div>
+        <div class="blocknum"><span class="num">Sheet 03</span><span class="lab">The six books</span></div>
+        <h2 style="margin-top:calc(18*var(--u))">One volume per chapter.</h2>
+      </div>
+      <div class="lab">360 teaching minutes &#183; 60 at lunch &#183; 420 exactly</div>
+    </div>
+
+    <div class="shelf">
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch0-open.png" alt="An open codex standing on a compact base"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 01</span><span class="lab">Open the room</span></p>
+          <h3>Two pages, and what the day is for</h3>
+          <p>Michael opens with the workshop and team intro and the sponsors. Meng takes over five minutes later with the Mountain landing page, the floor intro in images, the sponsors inside the page itself, and what you will actually learn today. At half past, the Bookshelf landing page &#8212; free for everyone in the room &#8212; then the ThreeUI intro, steering, and questions.</p>
+          <p class="tags">Team intro &#183; Sponsors &#183; Mountain landing page &#183; Bookshelf landing page &#183; ThreeUI &#183; Steering &#183; Q&amp;A</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>10:00 Open and intros<br>10:05 Mountain landing page<br>10:30 Bookshelf, ThreeUI, Q&amp;A</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>The two build themes</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>10:00</b><span><svg class="ic"><use href="#i-span"/></svg>60 min</span></div>
+      </article>
+
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch2-loupe.png" alt="A magnifying loupe on a short handle"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 02</span><span class="lab">Kit and inspiration</span></p>
+          <h3>Skills, plugins, and where to look</h3>
+          <p>Skills and plugins first, so the rest of the day runs on a machine that is already set up. Then Mobbin, and where inspiration actually comes from &#8212; a flow you can name, not a mood word.</p>
+          <p class="tags">Skills &#183; Plugins &#183; Mobbin &#183; Inspiration</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>11:00 Skills and plugins<br>11:15 Mobbin and inspiration</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>A reference worth building on</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>11:00</b><span><svg class="ic"><use href="#i-span"/></svg>30 min</span></div>
+      </article>
+
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch3-dividers.png" alt="A drawing compass standing with its legs opened"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 03</span><span class="lab">Direction</span></p>
+          <h3>Turn a reference into a direction</h3>
+          <p>Typography, colour and layout, and the best prompt to give a reference. Set up threads and Whisperflow so the work has somewhere to go. Then image generation, annotation, and running more than one thread at once.</p>
+          <p class="tags">Typography &#183; Colour &#183; Layout &#183; Reference prompt &#183; Threads &#183; Whisperflow &#183; Image generation &#183; Annotation &#183; Multithreading</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>11:30 Type, colour, layout<br>11:45 Images and annotation</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>A direction you can prompt</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>11:30</b><span><svg class="ic"><use href="#i-span"/></svg>30 min</span></div>
+      </article>
+
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch4-square.png" alt="A set square and rule"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 04</span><span class="lab">Build</span></p>
+          <h3>Team Mountain or Team Bookshelf</h3>
+          <p>You start prompting HTML before lunch, building from one of the two themes shown this morning &#8212; or from your own project if you brought one. Lunch at a quarter past, then back to refine the concept you chose and take feedback on it.</p>
+          <p class="tags">Team Mountain &#183; Team Bookshelf &#183; Your own project &#183; Refine &#183; Feedback</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>12:00 Start prompting HTML<br>13:15 Refine and feedback</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>One working concept</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>12:00</b><span><svg class="ic"><use href="#i-span"/></svg>120 min</span></div>
+      </article>
+
+      <article class="vol rest">
+        <div class="plate" aria-hidden="true"></div>
+        <div class="body">
+          <h3>Lunch</h3>
+          <p>Save your brief. Building picks up again at 13:15.</p>
+        </div>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>12:15</b><span><svg class="ic"><use href="#i-span"/></svg>60 min</span></div>
+      </article>
+
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch1-project.png" alt="Fanned folders held on one binder ring"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 05</span><span class="lab">Make it a skill</span></p>
+          <h3>Save the method, not the output</h3>
+          <p>Browser use and computer use, converted into a skill you keep. Meng&#8217;s skill showcase &#8212; superprompt and automations &#8212; then the no-design-slop skill, and live voice to turn the room&#8217;s work into Codex sites.</p>
+          <p class="tags">Browser use &#183; Computer use &#183; Superprompt &#183; Automations &#183; No-design-slop &#183; Live voice</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>14:00 Browser and computer use<br>14:15 Skill showcase<br>14:30 No-design-slop<br>14:45 Live voice</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>A skill of your own</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>14:00</b><span><svg class="ic"><use href="#i-span"/></svg>60 min</span></div>
+      </article>
+
+      <article class="vol">
+        <figure class="plate"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/ch5-callipers.png" alt="Callipers closed on the work"></figure>
+        <div class="body">
+          <p class="volno"><span class="num">Chapter 06</span><span class="lab">Critique and close</span></p>
+          <h3>Show it, then take it home</h3>
+          <p>Critique the results and pick six to eight people to present. Then DesignCode 5, the webinars, the courses and what is coming next; gang sharing on the Supercut; and pizza over the two questions that end every build &#8212; are you sure, and are we done.</p>
+          <p class="tags">Critique &#183; Six to eight present &#183; DesignCode 5 &#183; Webinars and courses &#183; Gang sharing &#183; Supercut &#183; Pizza</p>
+        </div>
+        <dl>
+          <dt><svg class="ic"><use href="#i-task"/></svg>Sequence</dt><dd>15:00 Critique and present<br>15:45 DesignCode 5 and what&#8217;s next<br>16:00 Gang sharing<br>16:15 Pizza</dd>
+          <dt><svg class="ic"><use href="#i-take"/></svg>Leaves with</dt><dd>Your work, shown</dd>
+        </dl>
+        <div class="when"><b><svg class="ic"><use href="#i-clock"/></svg>15:00</b><span><svg class="ic"><use href="#i-span"/></svg>120 min</span></div>
+      </article>
+    </div>
+
+    <div class="bounds">
+      <div class="lab">Honest boundaries</div>
+      <p>The floor is one strong responsive section, not a guaranteed production page.</p>
+      <p>A chart or data section is stretch, not guaranteed completion.</p>
+      <p>Desktop and mobile checks are required; publishing is outside the day.</p>
+      <p>Three.js, shaders and paid video generation are optional technique paths.</p>
+    </div>
+  </section>
+
+  <section class="room grainy darksec" id="room">
+    <!-- the guest roster was removed; this sheet is the sponsors now -->
+    <div class="secHead">
+      <div>
+        <div class="blocknum"><span class="num">Sheet 04</span><span class="lab">Sponsors</span></div>
+        <h2 style="margin-top:calc(18*var(--u))">S$1,000+ in tools, credits and support.</h2>
+      </div>
+      <div class="lab">Every seat carries</div>
+    </div>
+    <div class="sponsors">
+      <div class="sponsorrow">
+        <article class="sponsor">
+          <figure class="brandmark"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/f943ecfc192f6bad1a4a30ca/mobbin.svg" width="48" height="48" loading="lazy" decoding="async" alt=""></figure>
+          <b>Mobbin</b>
+          <p>Twelve months of Mobbin Pro, Aura Build Pro and DreamCut Pro.</p>
+          <span class="worth">US$432</span>
+        </article>
+        <article class="sponsor">
+          <figure class="brandmark"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/f943ecfc192f6bad1a4a30ca/openai.svg" width="48" height="48" loading="lazy" decoding="async" alt=""></figure>
+          <b>OpenAI</b>
+          <p>OpenAI and Codex API credits, and a month of ChatGPT Plus.</p>
+          <span class="worth">US$170</span>
+        </article>
+        <article class="sponsor">
+          <figure class="brandmark"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/f943ecfc192f6bad1a4a30ca/sq-collective.png" width="48" height="48" loading="lazy" decoding="async" alt=""></figure>
+          <b>SQ Collective</b>
+          <p>A one-month Build Community Pass.</p>
+          <span class="worth">S$300</span>
+        </article>
+        <article class="sponsor">
+          <figure class="brandmark"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/f943ecfc192f6bad1a4a30ca/notion.svg" width="48" height="48" loading="lazy" decoding="async" alt=""></figure>
+          <b>Notion</b>
+          <p>Up to six months of Notion Business, with Notion AI.</p>
+          <span class="worth">S$154</span>
+        </article>
+        <article class="sponsor">
+          <figure class="brandmark"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/f943ecfc192f6bad1a4a30ca/designcode.png" width="48" height="48" loading="lazy" decoding="async" alt=""></figure>
+          <b>DesignCode</b>
+          <p>Meng To&#8217;s Design Starter Kit, and thirty days in the alumni build channel.</p>
+          <span class="worth">Included</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="manifest darksec" id="manifest">
+    <div class="mf-inner" data-reveal="0.86" data-span="0.34">
+      <div class="blocknum"><span class="num">Sheet 05</span><span class="lab">Manifest</span></div>
+      <svg class="orn-rule" data-unit viewBox="0 0 600 8" fill="none" stroke="currentColor" stroke-width="1" aria-hidden="true">
+        <path pathLength="1" d="M0 4h214"/>
+        <path pathLength="1" d="M386 4h214"/>
+        <path pathLength="1" d="M300 1.2 L308 4 L300 6.8 L292 4 Z"/>
+      </svg>
+      <h2><span class="w">I</span> <span class="w">founded</span> <span class="w">DesignCode</span> <span class="w">after</span> <span class="w">traveling</span> <span class="w">for</span> <span class="w">two</span> <span class="w">years</span> <span class="w">across</span> <span class="w">the</span> <span class="w">globe,</span> <span class="w">teaching</span> <span class="w">designers</span> <span class="w">code</span> <span class="w">and</span> <span class="w">developers</span> <span class="w">design.</span></h2>
+      <p class="mf-lede"><span class="w">In</span> <span class="w">the</span> <span class="w">era</span> <span class="w">of</span> <span class="w">AI,</span> <span class="w">better</span> <span class="w">prompting</span> <span class="w">is</span> <span class="w">only</span> <span class="w">the</span> <span class="w">start.</span> <span class="w">The</span> <span class="w">real</span> <span class="w">edge</span> <span class="w">is</span> <span class="w">persistence,</span> <span class="w">sharper</span> <span class="w">workflows,</span> <span class="w">and</span> <span class="w">staying</span> <span class="w">current</span> <span class="w">while</span> <span class="w">the</span> <span class="w">tools</span> <span class="w">change</span> <span class="w">under</span> <span class="w">your</span> <span class="w">hands.</span></p>
+
+      <div class="tenets">
+        <article class="tenet">
+          <span class="num">01</span>
+          <svg class="orn" data-unit viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path pathLength="1" d="M22 14 L8 32 L22 50"/>
+            <path pathLength="1" d="M42 14 L56 32 L42 50"/>
+            <path pathLength="1" d="M32 20 v24"/>
+            <path pathLength="1" d="M27 32 h10"/>
+          </svg>
+          <p><span class="w">Designers</span> <span class="w">need</span> <span class="w">code</span> <span class="w">intuition.</span> <span class="w">Developers</span> <span class="w">need</span> <span class="w">design</span> <span class="w">taste.</span> <span class="w">Builders</span> <span class="w">need</span> <span class="w">both.</span></p>
+          <figure class="mf-plate" data-unit><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/mf1-craft.png" alt="A pen nib meshed into a gear"></figure>
+        </article>
+
+        <article class="tenet">
+          <span class="num">02</span>
+          <svg class="orn" data-unit viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path pathLength="1" d="M8 52 h48"/>
+            <path pathLength="1" d="M14 52 v-8"/>
+            <path pathLength="1" d="M26 52 v-18"/>
+            <path pathLength="1" d="M38 52 v-30"/>
+            <path pathLength="1" d="M50 52 v-40"/>
+          </svg>
+          <p><span class="w">Prompting</span> <span class="w">is</span> <span class="w">a</span> <span class="w">craft.</span> <span class="w">Persistence</span> <span class="w">is</span> <span class="w">the</span> <span class="w">multiplier.</span> <span class="w">Workflow</span> <span class="w">is</span> <span class="w">how</span> <span class="w">the</span> <span class="w">work</span> <span class="w">compounds.</span></p>
+          <figure class="mf-plate" data-unit><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/mf2-compound.png" alt="Five calibration weights climbing in a row"></figure>
+        </article>
+
+        <article class="tenet">
+          <span class="num">03</span>
+          <svg class="orn" data-unit viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path pathLength="1" d="M12 22 L32 14 L52 22 L32 30 Z"/>
+            <path pathLength="1" d="M12 32 L32 24 L52 32 L32 40 Z"/>
+            <path pathLength="1" d="M12 42 L32 34 L52 42 L32 50 Z"/>
+          </svg>
+          <p><span class="w">The</span> <span class="w">new</span> <span class="w">studio</span> <span class="w">is</span> <span class="w">not</span> <span class="w">a</span> <span class="w">room.</span> <span class="w">It</span> <span class="w">is</span> <span class="w">a</span> <span class="w">stack</span> <span class="w">of</span> <span class="w">agents,</span> <span class="w">references,</span> <span class="w">templates,</span> <span class="w">habits,</span> <span class="w">and</span> <span class="w">shipped</span> <span class="w">products.</span></p>
+          <figure class="mf-plate" data-unit><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/mf3-stack.png" alt="Six thin plates stacked on corner posts"></figure>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="kitsheet grainy" id="kit">
+    <div class="secHead">
+      <div>
+        <div class="blocknum"><span class="num">Sheet 06</span><span class="lab">The kit</span></div>
+        <h2 style="margin-top:calc(18*var(--u))">Four of each.</h2>
+      </div>
+      <div class="lab">Install first &#183; connect when asked</div>
+    </div>
+    <div class="kitrow">
+      <div class="kitcol">
+        <figure class="fig"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/kt1-module.png" alt="A plug-in module with contact pins"></figure>
+        <h4>Plugins &#183; search the directory</h4>
+        <div class="it"><b>Mobbin</b><span>Product UI flows and patterns</span></div>
+        <div class="it"><b>Higgsfield</b><span>Image and video generation</span></div>
+        <div class="it"><b>Figma</b><span>Design context and collaboration</span></div>
+        <div class="it"><b>Framer</b><span>Visual sites and publishing</span></div>
+      </div>
+      <div class="kitcol">
+        <figure class="fig"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/kt2-index.png" alt="A card index box"></figure>
+        <h4>Skills &#183; four to explore</h4>
+        <a class="it" href="https://github.com/MengTo/Skills"><b>Meng To Skills</b><span>Design, motion, Three.js and workflow</span></a>
+        <a class="it" href="https://skills.sh/pbakaus/impeccable"><b>Impeccable</b><span>Direction, critique and polish</span></a>
+        <a class="it" href="https://skills.sh/uizze/anti-ui-slop"><b>anti-ui-slop</b><span>Product-specific UI, not generic patterns</span></a>
+        <a class="it" href="https://skills.sh/cloudai-x/threejs-shaders"><b>threejs-shaders</b><span>ShaderMaterial, GLSL, uniforms and effects</span></a>
+      </div>
+      <div class="kitcol">
+        <figure class="fig"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/kt3-key.png" alt="A single flat key"></figure>
+        <h4>Shortcuts &#183; macOS shown</h4>
+        <div class="it"><b>&#8984;O</b><span>Open folder &#183; start in the real project</span></div>
+        <div class="it"><b>&#8984;&#8984;</b><span>Appshot &#183; capture the active window</span></div>
+        <div class="it"><b>&#8984;P</b><span>Search files &#183; jump to the source</span></div>
+        <div class="it"><b>&#8984;/</b><span>All shortcuts &#183; find or customise the rest</span></div>
+      </div>
+      <div class="kitcol">
+        <figure class="fig"><img crossorigin="anonymous" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/8289200ee96b4047c1b15c8b/kt4-archive.png" alt="A frosted archive box with a raised label tab"></figure>
+        <h4>Sources &#183; dated examples</h4>
+        <a class="it" href="https://collectui.com"><b>collectUI.com</b><span>Curated interface ideas</span></a>
+        <a class="it" href="https://mobbin.com"><b>Mobbin.com</b><span>Real product screens and flows</span></a>
+        <a class="it" href="https://threeui.com"><b>threeUI.com</b><span>Interactive 3D UI references</span></a>
+        <a class="it" href="https://canvasui.dev"><b>canvasUI.dev</b><span>Canvas and WebGL interface ideas</span></a>
+      </div>
+    </div>
+    <p class="kitnote">A plugin may bundle connector or MCP tools and still require authentication and extra setup. These are sources to search on the day, not permanent recommendations.</p>
+  </section>
+
+  <section class="stations stage" id="surfaces">
+    <div class="frame">
+      <div class="layer">
+        <div class="head">
+          <div class="blocknum"><span class="num">Sheet 07</span><span class="lab">Surfaces</span></div>
+          <h2>Three surfaces.<br>One system.</h2>
+          <p class="fn">The boundaries overlap. Choose by the work and the proof you need &#8212; these are working modes, not intelligence rankings.</p>
+        </div>
+        <div class="plates">
+        <div class="station">
+          <div class="name"><h3>Chat</h3><span class="num">01</span></div>
+          <dl><dt>Use for</dt><dd>Back-and-forth</dd>
+              <dt>Good at</dt><dd>Questions &#183; search &#183; ideas &#183; drafts</dd>
+              <dt>Output</dt><dd>A thread you steer</dd>
+              <dt>Move on</dt><dd>When you need a deliverable</dd></dl>
+        </div>
+        <div class="station">
+          <div class="name"><h3>Work</h3><span class="num">02</span></div>
+          <dl><dt>Use for</dt><dd>A reviewable outcome</dd>
+              <dt>Good at</dt><dd>Decks &#183; reports &#183; analysis &#183; plans</dd>
+              <dt>Output</dt><dd>One artefact to review</dd>
+              <dt>Move on</dt><dd>When the result becomes files</dd></dl>
+        </div>
+        <div class="station">
+          <div class="name"><h3>Codex</h3><span class="num">03</span></div>
+          <dl><dt>Use for</dt><dd>Developer workflow</dd>
+              <dt>Good at</dt><dd>Files &#183; diffs &#183; terminal &#183; tests</dd>
+              <dt>Output</dt><dd>A build you can run</dd>
+              <dt>Move on</dt><dd>This is where the day ends</dd></dl>
+        </div>
+        </div>
+        <div class="contactbar">
+          <div class="lines">
+            <div><span class="lab">Bring</span><b>Codex, signed in</b></div>
+            <div><span class="lab">And</span><b>one export or Figma link</b></div>
+          </div>
+          <a class="cta" href="#enrol">Reserve a seat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="darksec">
+  <div class="fx" aria-hidden="true">
+    <canvas class="fx-stars" id="fxStars"></canvas>
+    <div class="fx-aurora"></div>
+    <img crossorigin="anonymous" class="fx-ridge-far" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/footer-ridge.jpg" alt="">
+    <img crossorigin="anonymous" class="fx-ridge-near" src="https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/ebe2dff075ebc8069846fb15/footer-ridge.jpg" alt="">
+    <div class="fx-grat"></div>
+    <div class="fx-veil"></div>
+  </div>
+  <div class="fseal" aria-hidden="true"><svg viewBox="0 0 200 200" aria-hidden="true">
+      <defs><path id="fsp" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+      <circle cx="100" cy="100" r="88" fill="none" stroke="rgba(255,255,255,.18)"/>
+      <circle cx="100" cy="100" r="62" fill="none" stroke="rgba(255,255,255,.12)"/>
+      <text font-family="Bodoni Moda, serif" font-size="15" letter-spacing="5.2" fill="#8fa0b0">
+        <textPath href="#fsp" startOffset="1%">WORKSHOP CODEX &#183; SQ COLLECTIVE &#183;</textPath>
+      </text>
+    </svg></div>
+  <div class="inner">
+    <div class="fmast">
+      <h3>Monday,<br>not someday.</h3>
+      <p>Work, and a way to repeat it: a reference-led coded direction, a system and a critique method, and one reusable skill built from the day&#8217;s own evidence. Use it on one real screen.</p>
+    </div>
+    <div class="frow">
+      <div class="fcol"><h4>Chapters</h4>
+        <a href="#books">Open the room<i>01</i></a><a href="#books">Kit and inspiration<i>02</i></a><a href="#books">Direction<i>03</i></a><a href="#books">Build<i>04</i></a><a href="#books">Make it a skill<i>05</i></a><a href="#books">Critique and close<i>06</i></a></div>
+      <div class="fcol"><h4>Sources</h4>
+        <a href="#kit">Your own archive<i>06</i></a><a href="https://mobbin.com">Mobbin<i>07</i></a><a href="https://collectui.com">Collect UI<i>08</i></a><a href="https://recent.design">Recent<i>09</i></a></div>
+      <div class="fcol"><h4>Skills</h4>
+        <a href="https://github.com/MengTo/Skills">Meng To Skills<i>10</i></a><a href="https://skills.sh/pbakaus/impeccable">Impeccable<i>11</i></a><a href="https://skills.sh/uizze/anti-ui-slop">anti-ui-slop<i>12</i></a><a href="https://skills.sh/cloudai-x/threejs-shaders">threejs-shaders<i>13</i></a></div>
+      <div class="fcol"><h4>What leaves the room</h4>
+        <a href="#books">Coded direction<i>14</i></a><a href="#books">Design system<i>15</i></a><a href="#manifest">Critique method<i>16</i></a><a href="#kit">Reusable skill<i>17</i></a></div>
+      <div class="panel">
+        <div class="prow"><span>Date</span><b>29 AUG</b></div>
+        <div class="prow"><span>Hours</span><b>10:00&#8211;17:00</b></div>
+        <div class="prow"><span>Teaching</span><b>360 MIN</b></div>
+        <div class="prow"><span>Lunch</span><b>60 MIN</b></div>
+        <div class="prow"><span>Chapters</span><b>SIX</b></div>
+        <div class="bar"><i></i></div>
+        <div class="prow"><span>Day total</span><b>420 MIN</b></div>
+      </div>
+    </div>
+    <div class="dispatch" id="enrol">
+      <div>
+        <h5>The starter kit</h5>
+        <div class="sub">Meng&#8217;s Design Starter Kit and the day&#8217;s method, sent after the workshop.</div>
+      </div>
+      <form class="signup" onsubmit="return false">
+        <label class="skip" for="dispatchEmail">Email address</label>
+        <input id="dispatchEmail" type="email" placeholder="you@studio.com" autocomplete="email">
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+    <div class="fbase">
+      <span>&#169; 2026 Build $10k Designs with Codex</span>
+      <div class="glyphs">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8fa0b0" stroke-width="1.2" aria-hidden="true"><path d="M2 19 L9 6 L12 11 L15 6 L22 19 Z"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8fa0b0" stroke-width="1.2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="#8fa0b0" stroke-width="1.2" aria-hidden="true"><path d="M12 2 L21 12 L12 22 L3 12 Z"/></svg>
+      </div>
+      <span>SQ Collective &#183; Singapore &#183; 29 August</span>
+    </div>
+  </div>
+</footer>
+
+<div id="boot"><div class="b">Codex</div></div>
+
+<script>
+/* The hero lockup for this page: CODEX centred on its D, with the glass ring
+   standing in for the O to its left, and THE WORKSHOP arced above. Set before
+   scene.js loads. */
+window.__SCENE_TYPE = { word:'CODEX', oIndex:1, arc:'THE WORKSHOP', centreWord:true, fixedTypeBand:true };
+</script>
+<script src="nimbus-assets/three.min.js"></script>
+<script src="nimbus-assets/scene.js?v=workshop-type-band"></script>
+<script src="codex-sections.js?v=nimbus-earth"></script>
+<script>
+/* One grain tile for every paper section. A tiled feTurbulence background cost
+   roughly ten times this for the same veil, so it is drawn once to a canvas. */
+(function grain(){
+  var S = 220, c = document.createElement('canvas');
+  c.width = c.height = S;
+  var x = c.getContext('2d'), id = x.createImageData(S, S), d = id.data;
+  for (var i = 0; i < S*S; i++){
+    var n = 236 + ((Math.random()*20)|0);
+    d[i*4] = d[i*4+1] = d[i*4+2] = n;
+    d[i*4+3] = 26;
+  }
+  x.putImageData(id, 0, 0);
+  document.documentElement.style.setProperty('--grain', 'url(' + c.toDataURL('image/png') + ')');
+})();
+</script>
+<script>
+/* Footer atmosphere. The star plate is drawn once to a canvas — a tiled SVG
+   noise background costs ~10x (see the page grain) — and the six layers are
+   parallaxed as a group so the type never moves under them. */
+(function footerFx(){
+  var ft = document.querySelector('footer'), fx = ft && ft.querySelector('.fx');
+  if (!ft || !fx) return;
+  var cv = document.getElementById('fxStars'), cx = cv && cv.getContext('2d');
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function stars(){
+    if (!cx) return;
+    var w = Math.max(1, cv.clientWidth), h = Math.max(1, cv.clientHeight);
+    if (!w || !h) return;
+    var dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = w*dpr; cv.height = h*dpr; cx.setTransform(dpr,0,0,dpr,0,0);
+    cx.clearRect(0,0,w,h);
+    function fr(n){ var v = Math.sin(n)*43758.5453; return v - Math.floor(v); }
+    for (var i=0;i<520;i++){
+      var x = fr(i*1.7)*w, y = fr(i*3.3+2.0)*h;
+      var d = 1 - y/h;                               // thin out toward the ridge
+      var a = (0.10 + fr(i*7.1)*0.72) * (0.25 + d*0.75);
+      var r = 0.3 + fr(i*5.9)*1.15 + (fr(i*11.3)>0.965 ? 1.1 : 0);
+      cx.globalAlpha = a;
+      cx.fillStyle = fr(i*13.7) > 0.86 ? '#bfe4ef' : '#ffffff';
+      cx.beginPath(); cx.arc(x,y,r,0,6.2832); cx.fill();
+    }
+    cx.globalAlpha = 1;
+  }
+
+  var layers = [
+    [fx.querySelector('.fx-stars'),      0.06],
+    [fx.querySelector('.fx-aurora'),     0.16],
+    [fx.querySelector('.fx-ridge-far'),  0.22],
+    [fx.querySelector('.fx-ridge-near'), 0.40],
+    [fx.querySelector('.fx-grat'),       0.10]
+  ].filter(function(l){ return l[0]; });
+
+  var ticking = false, lastP = -1;
+  function apply(){
+    ticking = false;
+    var r = ft.getBoundingClientRect();
+    if (r.top > innerHeight || r.bottom < 0) return;
+    // 0 as the footer's top edge enters the viewport, 1 once it has fully arrived
+    var p = Math.max(0, Math.min(1, (innerHeight - r.top) / (innerHeight + r.height*0.35)));
+    if (Math.abs(p - lastP) < 0.0015) return;
+    lastP = p;
+    var span = ft.offsetHeight * 0.34;
+    for (var i=0;i<layers.length;i++){
+      layers[i][0].style.transform = 'translate3d(0,' + ((1-p) * span * layers[i][1]).toFixed(2) + 'px,0)';
+    }
+  }
+  function onScroll(){ if (!ticking && !reduced){ ticking = true; requestAnimationFrame(apply); } }
+  addEventListener('scroll', onScroll, {passive:true});
+  var rt=null;
+  function relayout(){ clearTimeout(rt); rt = setTimeout(function(){ stars(); lastP=-1; apply(); }, 120); }
+  addEventListener('resize', relayout);
+  if (window.ResizeObserver) new ResizeObserver(relayout).observe(document.documentElement);
+  stars(); apply();
+  // the pane and a background tab both lay out at zero — take the size again
+  // once one actually exists
+  var tries = 0, iv = setInterval(function(){
+    if (++tries > 20) return clearInterval(iv);
+    if (cv && cv.clientWidth > 0 && cv.width === 0) { stars(); }
+    if (cv && cv.width > 0) clearInterval(iv);
+  }, 250);
+})();
+</script>
+</body>
+</html>

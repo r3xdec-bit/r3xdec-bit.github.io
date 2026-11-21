@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src data: blob:; media-src data: blob:; script-src 'unsafe-inline' https://code.iconify.design; connect-src https://api.iconify.design https://api.simplesvg.com https://api.unisvg.com; frame-src 'none'; object-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
+
+<meta name="referrer" content="no-referrer">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Voidframe console — Design System</title>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+:root{
+  --background:#000000;
+  --surface:#1A1A1A;
+  --surface-alt:#111111;
+  --text-primary:#FFFFFF;
+  --text-secondary:#888888;
+  --text-field:#E0E0E0;
+  --accent:#3B82F6;
+  --accent-hover:#2563EB;
+  --border-default:#333333;
+  --border-focus:#3B82F6;
+  --r-control:8px;
+  --r-card:16px;
+  --base:8px;
+  --gap:16px;
+  --section-padding:40px;
+  --field-gap:30px;
+  --micro-gap:6px;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--text-primary);
+  font-family:var(--font);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3{font-weight:700;letter-spacing:-0.01em}
+a{color:var(--accent)}
+section{padding:calc(var(--section-padding)*2) var(--section-padding)}
+.band-label{
+  font-size:12px;
+  font-family:var(--font);
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--text-secondary);
+  margin-bottom:var(--gap);
+}
+.wrap{max-width:1080px;margin:0 auto}
+
+/* hero */
+#hero{
+  min-height:88vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--background);
+  text-align:center;
+  padding:var(--section-padding);
+}
+#hero .hero-inner{max-width:640px}
+#hero h1{
+  font-size:22px;
+  font-weight:700;
+  color:var(--text-primary);
+  margin-bottom:var(--micro-gap);
+}
+#hero .sub{
+  font-size:13px;
+  color:var(--text-secondary);
+  margin-bottom:var(--field-gap);
+}
+.hero-panel{
+  background:var(--surface);
+  border-radius:var(--r-card);
+  padding:var(--section-padding);
+  display:flex;
+  flex-direction:column;
+  gap:var(--field-gap);
+  text-align:left;
+  max-width:360px;
+  margin:0 auto;
+}
+.hero-panel .p-title{font-size:22px;font-weight:700;color:#fff;margin-bottom:var(--micro-gap)}
+.hero-panel .p-sub{font-size:13px;color:var(--text-secondary)}
+.cta-row{display:flex;flex-direction:column;gap:var(--gap);margin-top:var(--field-gap)}
+.btn{
+  font-family:var(--font);
+  border:none;
+  cursor:pointer;
+  border-radius:var(--r-control);
+  height:40px;
+  padding:0 12px;
+  font-size:16px;
+  font-weight:600;
+  transition:background .12s ease-out,border-color .12s ease-out;
+}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover{background:var(--accent-hover)}
+.btn-ghost{
+  background:transparent;
+  color:var(--text-field);
+  border:1px solid var(--border-default);
+}
+.btn-ghost:hover{border-color:var(--accent)}
+@media(max-width:640px){
+  #hero h1{font-size:20px}
+}
+</style>
+</head>
+<body>
+
+<header id="hero">
+  <div class="hero-inner">
+    <h1>Voidframe console</h1>
+    <p class="sub">One panel. One action. Everything else is void.</p>
+    <div class="hero-panel">
+      <div>
+        <div class="p-title">Sign in</div>
+        <div class="p-sub">Access your console.</div>
+      </div>
+      <div class="cta-row">
+        <button class="btn btn-primary">Continue</button>
+        <button class="btn btn-ghost">Create account</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<style data-section-styles="palette">
+#palette{background:var(--surface)}
+.pal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:var(--gap)}
+.pal-group h3{font-size:13px;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-secondary);margin:var(--field-gap) 0 var(--gap)}
+.swatch{
+  background:var(--surface-alt);
+  border-radius:var(--r-control);
+  overflow:hidden;
+  border:1px solid var(--border-default);
+}
+.swatch .chip{height:72px;display:block}
+.swatch.trans .chip{
+  background-image:linear-gradient(45deg,#2a2a2a 25%,transparent 25%),linear-gradient(-45deg,#2a2a2a 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#2a2a2a 75%),linear-gradient(-45deg,transparent 75%,#2a2a2a 75%);
+  background-size:16px 16px;
+  background-position:0 0,0 8px,8px -8px,-8px 0;
+}
+.swatch .meta{padding:12px}
+.swatch .name{font-size:13px;color:var(--text-field);font-weight:600}
+.swatch .val{font-size:12px;color:var(--text-secondary);font-family:monospace;margin-top:2px}
+.swatch .note{font-size:12px;color:var(--text-secondary);margin-top:6px;line-height:1.35}
+</style>
+<section id="palette">
+  <div class="wrap">
+    <p class="band-label">Palette</p>
+    <h2>An achromatic system with one rationed hue</h2>
+
+    <div class="pal-group">
+      <h3>Surfaces</h3>
+      <div class="pal-grid">
+        <div class="swatch"><span class="chip" style="background:#000"></span><div class="meta"><div class="name">background</div><div class="val">#000000</div><div class="note">Flat void canvas. The true page — never gray, never gradient.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#1A1A1A"></span><div class="meta"><div class="name">surface</div><div class="val">#1A1A1A</div><div class="note">The raised panel. Reads as the card by value alone.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#111111;border-bottom:1px solid #333"></span><div class="meta"><div class="name">surface-alt</div><div class="val">#111111</div><div class="note">Recessed field inset. Darker than the panel that holds it.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Text</h3>
+      <div class="pal-grid">
+        <div class="swatch"><span class="chip" style="background:#FFFFFF"></span><div class="meta"><div class="name">text-primary</div><div class="val">#FFFFFF</div><div class="note">Panel titles only. Maximum weight, minimal use.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#E0E0E0"></span><div class="meta"><div class="name">text-field</div><div class="val">#E0E0E0</div><div class="note">Field values inside inputs.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#888888"></span><div class="meta"><div class="name">text-secondary</div><div class="val">#888888</div><div class="note">Subtitles and all-caps micro-labels.</div></div></div>
+      </div>
+    </div>
+
+    <div class="pal-group">
+      <h3>Accent &amp; lines</h3>
+      <div class="pal-grid">
+        <div class="swatch"><span class="chip" style="background:#3B82F6"></span><div class="meta"><div class="name">accent</div><div class="val">#3B82F6</div><div class="note">Cobalt. Rationed to focus ring and primary fill only.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#2563EB"></span><div class="meta"><div class="name">accent-hover</div><div class="val">#2563EB</div><div class="note">Darkened accent on button hover.</div></div></div>
+        <div class="swatch"><span class="chip" style="background:#333333"></span><div class="meta"><div class="name">border-default</div><div class="val">#333333</div><div class="note">Hairline rest border on inputs.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="type-scale">
+#type-scale{background:var(--background)}
+.spec{border-top:1px solid var(--border-default);padding:var(--field-gap) 0}
+.spec:first-of-type{border-top:none}
+.spec .demo{color:var(--text-primary);margin-bottom:var(--gap)}
+.spec .metrics{font-size:12px;color:var(--text-secondary);font-family:monospace;letter-spacing:0.04em}
+</style>
+<section id="type-scale">
+  <div class="wrap">
+    <p class="band-label">Type scale</p>
+    <h2>Two sizes carry the whole hierarchy</h2>
+
+    <div class="spec">
+      <div class="demo" style="font-size:22px;font-weight:700;line-height:1.2">Sign in to the console</div>
+      <div class="metrics">display-lg · 22px · 700 · -apple-system</div>
+    </div>
+    <div class="spec">
+      <div class="demo" style="font-size:16px;font-weight:600;line-height:1.5">Continue</div>
+      <div class="metrics">body-base (button) · 16px · 600 · line-height 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="demo" style="font-size:16px;font-weight:400;line-height:1.5;color:var(--text-field)">A field value typed into a recessed input row.</div>
+      <div class="metrics">body-base · 16px · 400 · line-height 1.5</div>
+    </div>
+    <div class="spec">
+      <div class="demo" style="font-size:13px;font-weight:400;color:var(--text-secondary)">Access your console.</div>
+      <div class="metrics">body-md · 13px · 400 · #888888</div>
+    </div>
+    <div class="spec">
+      <div class="demo" style="font-size:13px;font-weight:400;text-transform:uppercase;letter-spacing:0.14em;color:var(--text-secondary)">Username</div>
+      <div class="metrics">label (caps) · 13px · 400 · tracked · #888888</div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="components">
+#components{background:var(--surface)}
+.comp-block{
+  display:grid;
+  grid-template-columns:1fr 300px;
+  gap:var(--field-gap);
+  align-items:start;
+  border-top:1px solid var(--border-default);
+  padding:calc(var(--field-gap)*1.4) 0;
+}
+.comp-block:first-of-type{border-top:none}
+.comp-block h3{font-size:16px;font-weight:600;margin-bottom:var(--micro-gap)}
+.comp-block .desc{font-size:13px;color:var(--text-secondary);margin-bottom:var(--gap);max-width:44ch}
+.spec-card{
+  background:var(--surface-alt);
+  border:1px solid var(--border-default);
+  border-radius:var(--r-control);
+  padding:var(--gap);
+  font-family:monospace;
+  font-size:12px;
+  line-height:1.7;
+  color:var(--text-secondary);
+}
+.spec-card .tok{color:var(--text-field)}
+.meta-tag{
+  display:inline-block;
+  font-size:12px;
+  font-family:monospace;
+  color:var(--text-secondary);
+  border:1px solid var(--border-default);
+  border-radius:var(--r-control);
+  padding:2px 8px;
+  margin-bottom:var(--gap);
+}
+/* auth panel demo */
+.auth-panel{
+  background:var(--surface);
+  border-radius:var(--r-card);
+  padding:var(--section-padding);
+  display:flex;
+  flex-direction:column;
+  gap:var(--field-gap);
+  max-width:360px;
+}
+.auth-panel .head .t{font-size:22px;font-weight:700;color:#fff;margin-bottom:var(--micro-gap)}
+.auth-panel .head .s{font-size:13px;color:var(--text-secondary)}
+.field{display:flex;flex-direction:column;gap:var(--micro-gap)}
+.field label{
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:0.14em;
+  color:var(--text-secondary);
+}
+.field .input{
+  background:var(--surface-alt);
+  border:1px solid var(--border-default);
+  border-radius:var(--r-control);
+  height:40px;
+  padding:0 12px;
+  display:flex;
+  align-items:center;
+  color:var(--text-field);
+  font-size:16px;
+  transition:border-color .12s ease-out;
+}
+.field .input.focused{border-color:var(--accent)}
+.field .input input{
+  background:transparent;border:none;outline:none;color:var(--text-field);
+  font-size:16px;width:100%;font-family:var(--font);
+}
+.field .input input::placeholder{color:var(--text-secondary)}
+.btn-full{width:100%}
+.state-row{display:flex;flex-wrap:wrap;gap:var(--gap);align-items:center;margin-bottom:var(--gap)}
+.state-row .lbl{font-size:12px;font-family:monospace;color:var(--text-secondary);width:64px}
+.btn[disabled]{opacity:0.4;cursor:not-allowed}
+@media(max-width:768px){
+  .comp-block{grid-template-columns:1fr}
+}
+</style>
+<section id="components">
+  <div class="wrap">
+    <p class="band-label">Components</p>
+    <h2>The full console inventory</h2>
+
+    <!-- Auth panel -->
+    <div class="comp-block" data-tier-a-component="auth-panel-card">
+      <div>
+        <h3>Auth panel (card)</h3>
+        <span class="meta-tag">×1</span>
+        <p class="desc">A single elevated dark panel floating on void-black. Strict top-to-bottom stack: title, subtitle, two fields, terminal button. No border, no shadow — it floats on value alone.</p>
+        <div class="auth-panel">
+          <div class="head">
+            <div class="t">Sign in</div>
+            <div class="s">Access your console.</div>
+          </div>
+          <div class="field">
+            <label for="cp-user">Username</label>
+            <div class="input focused"><input id="cp-user" type="text" value="ada.void" aria-label="Username"></div>
+          </div>
+          <div class="field">
+            <label for="cp-pass">Password</label>
+            <div class="input"><input id="cp-pass" type="password" value="········" aria-label="Password"></div>
+          </div>
+          <button class="btn btn-primary btn-full">Continue</button>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><span class="tok">--panel-card</span></div>
+        <div>fill <span class="tok">surface #1A1A1A</span></div>
+        <div>radius <span class="tok">r-card 16</span></div>
+        <div>padding <span class="tok">section-padding 40</span></div>
+        <div>gap <span class="tok">field-gap 30</span></div>
+        <div>border <span class="tok">none</span> · shadow <span class="tok">none</span></div>
+      </div>
+    </div>
+
+    <!-- Input field -->
+    <div class="comp-block" data-tier-a-component="input-field">
+      <div>
+        <h3>Input field</h3>
+        <span class="meta-tag">×2 · username, password</span>
+        <p class="desc">Two full-width rows stacked, one per line. Recessed #111111 fill sits darker than its panel. Rest border is hairline #333; focus swaps the ring to cobalt.</p>
+        <div style="display:flex;flex-direction:column;gap:var(--field-gap);max-width:360px">
+          <div class="field">
+            <label>Username · focused</label>
+            <div class="input focused"><input type="text" value="ada.void" aria-label="Username focused example"></div>
+          </div>
+          <div class="field">
+            <label>Password · rest</label>
+            <div class="input"><input type="password" value="········" aria-label="Password rest example"></div>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><span class="tok">--input-field</span></div>
+        <div>fill <span class="tok">surface-alt #111111</span></div>
+        <div>text <span class="tok">#E0E0E0</span></div>
+        <div>radius <span class="tok">r-control 8</span></div>
+        <div>height <span class="tok">40</span> · pad <span class="tok">12</span></div>
+        <div>border <span class="tok">1px #333333</span></div>
+        <div>focus <span class="tok">1px accent #3B82F6</span></div>
+      </div>
+    </div>
+
+    <!-- Button primary matrix -->
+    <div class="comp-block" data-tier-a-component="button-primary">
+      <div>
+        <h3>Button — primary (filled)</h3>
+        <span class="meta-tag">×1 · terminal action</span>
+        <p class="desc">The only saturated fill on the page. Full-width at the base of the stack. Hover darkens to #2563EB. Slightly-rounded at 8px — sharper than the card. No documented focus treatment, so none is authored.</p>
+        <div>
+          <div class="state-row">
+            <span class="lbl">rest</span>
+            <button class="btn btn-primary" style="width:220px">Continue</button>
+          </div>
+          <div class="state-row">
+            <span class="lbl">hover</span>
+            <button class="btn btn-primary" style="width:220px;background:var(--accent-hover)">Continue</button>
+          </div>
+          <div class="state-row">
+            <span class="lbl">disabled</span>
+            <button class="btn btn-primary" style="width:220px" disabled>Continue</button>
+          </div>
+        </div>
+      </div>
+      <div class="spec-card">
+        <div><span class="tok">--btn-primary</span></div>
+        <div>fill <span class="tok">accent #3B82F6</span></div>
+        <div>hover <span class="tok">#2563EB</span></div>
+        <div>text <span class="tok">#FFFFFF</span></div>
+        <div>radius <span class="tok">r-control 8</span></div>
+        <div>height <span class="tok">40</span> · pad <span class="tok">12</span></div>
+        <div>disabled <span class="tok">opacity ladder</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style data-section-styles="surface-depth">
+#surface-depth{background:var(--background)}
+.depth-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:var(--field-gap)}
+.depth-card{padding:var(--section-padding);color:var(--text-field)}
+.depth-card .t{font-size:16px;font-weight:600;color:#fff;margin-bottom:var(--micro-gap)}
+.depth-card .m{font-size:12px;font-family:monospace;color:var(--text-secondary)}
+.d-page{background:#000;border:1px solid var(--border-default);border-radius:var(--r-card)}
+.d-panel{background:var(--surface);border-radius:var(--r-card)}
+.d-field{background:var(--surface-alt);border-radius:var(--r-control);border:1px solid var(--border-default)}
+</style>
+<section id="surface-depth">
+  <div class="wrap">
+    <p class="band-label">Surface &amp; depth</p>
+    <h2>Elevation by value, not by shadow</h2>
+    <p class="desc" style="font-size:13px;color:var(--text-secondary);max-width:52ch;margin-bottom:var(--field-gap)">Three steps of lightness carry the entire depth model — page &lt; panel &lt; recessed field. Two radii: 16px for the card, 8px for interior controls.</p>
+    <div class="depth-grid">
+      <div class="depth-card d-page"><div class="t">Void canvas</div><div class="m">#000000 · r-card 16</div></div>
+      <div class="depth-card d-panel"><div class="t">Raised panel</div><div class="m">#1A1A1A · r-card 16</div></div>
+      <div class="depth-card d-field"><div class="t">Recessed field</div><div class="m">#111111 · r-control 8 · 1px #333</div></div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="motion">
+#motion{background:var(--surface)}
+.motion-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--field-gap)}
+.motion-card{
+  background:var(--surface-alt);
+  border:1px solid var(--border-default);
+  border-radius:var(--r-control);
+  padding:var(--section-padding);
+}
+.motion-card .t{font-size:16px;font-weight:600;margin-bottom:var(--gap)}
+.motion-card .m{font-size:12px;font-family:monospace;color:var(--text-secondary);margin-top:var(--gap)}
+.demo-input{
+  background:var(--surface-alt);border:1px solid var(--border-default);
+  border-radius:var(--r-control);height:40px;padding:0 12px;
+  display:flex;align-items:center;color:var(--text-field);cursor:pointer;
+  transition:border-color .12s ease-out;
+}
+.demo-input.on{border-color:var(--accent)}
+.demo-btn{transition:background .12s ease-out}
+.replay{
+  margin-top:var(--gap);font-size:12px;font-family:monospace;color:var(--text-field);
+  background:transparent;border:1px solid var(--border-default);border-radius:var(--r-control);
+  padding:6px 12px;cursor:pointer;
+}
+.replay:hover{border-color:var(--accent)}
+</style>
+<section id="motion">
+  <div class="wrap">
+    <p class="band-label">Motion</p>
+    <h2>Near-instant state swaps, nothing more</h2>
+    <div class="motion-grid">
+      <div class="motion-card">
+        <div class="t">Focus ring swap</div>
+        <div class="demo-input" id="m-focus" role="button" tabindex="0" aria-label="Toggle focus demonstration">ada.void</div>
+        <button class="replay" data-target="m-focus" data-cls="on">Replay focus</button>
+        <div class="m">border #333333 → #3B82F6 · 120ms ease-out</div>
+      </div>
+      <div class="motion-card">
+        <div class="t">Button hover fill</div>
+        <button class="btn btn-primary demo-btn" id="m-hover" style="width:100%">Continue</button>
+        <button class="replay" data-target="m-hover" data-cls="is-hover">Replay hover</button>
+        <div class="m">fill #3B82F6 → #2563EB · 120ms ease-out</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="composition">
+#composition{background:var(--background)}
+.mock{
+  background:#000;
+  border:1px solid var(--border-default);
+  border-radius:var(--r-card);
+  overflow:hidden;
+}
+.mock-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--gap) var(--section-padding);
+  border-bottom:1px solid var(--border-default);
+}
+.mock-nav .logo{font-size:16px;font-weight:700;color:#fff;display:flex;align-items:center;gap:8px}
+.mock-nav .logo iconify-icon{color:var(--accent)}
+.mock-nav .links{display:flex;gap:var(--gap);font-size:13px;color:var(--text-secondary)}
+.mock-stage{
+  min-height:420px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:calc(var(--section-padding)*1.5) var(--section-padding);
+}
+</style>
+<section id="composition">
+  <div class="wrap">
+    <p class="band-label">In composition</p>
+    <h2>The whole system, held together</h2>
+    <div class="mock" style="margin-top:var(--field-gap)">
+      <nav class="mock-nav" aria-label="Console navigation">
+        <div class="logo"><iconify-icon icon="lucide:square-terminal" aria-hidden="true"></iconify-icon> Voidframe</div>
+        <div class="links"><span>Status</span><span>Docs</span></div>
+      </nav>
+      <div class="mock-stage">
+        <div class="auth-panel">
+          <div class="head">
+            <div class="t">Sign in</div>
+            <div class="s">Access your console.</div>
+          </div>
+          <div class="field">
+            <label for="mk-user">Username</label>
+            <div class="input focused"><input id="mk-user" type="text" value="ada.void" aria-label="Username"></div>
+          </div>
+          <div class="field">
+            <label for="mk-pass">Password</label>
+            <div class="input"><input id="mk-pass" type="password" value="········" aria-label="Password"></div>
+          </div>
+          <button class="btn btn-primary btn-full">Continue</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style data-section-styles="footer">
+#footer{background:var(--surface);text-align:center;padding:calc(var(--section-padding)*1.5) var(--section-padding)}
+#footer .brand{font-size:16px;font-weight:700;color:#fff;margin-bottom:var(--micro-gap)}
+#footer .src{font-size:13px;color:var(--text-secondary)}
+#footer .src a{color:var(--accent);text-decoration:none}
+#footer .by{font-size:12px;color:var(--text-secondary);margin-top:var(--gap)}
+</style>
+<footer id="footer">
+  <div class="brand">Voidframe console</div>
+  <div class="src"><a href="https://brightplayground.my.id/dashboard">brightplayground.my.id/dashboard</a></div>
+  <div class="by">Design system captured and rendered by r3xdec.design</div>
+</footer>
+
+<style>
+.btn.is-hover{background:var(--accent-hover)}
+@media (prefers-reduced-motion: reduce){
+  *{transition:none!important;animation:none!important}
+}
+</style>
+<script>
+document.querySelectorAll('.replay').forEach(function(b){
+  b.addEventListener('click',function(){
+    var t=document.getElementById(b.dataset.target);
+    var cls=b.dataset.cls;
+    if(!t)return;
+    t.classList.remove(cls);
+    void t.offsetWidth;
+    t.classList.add(cls);
+    setTimeout(function(){t.classList.remove(cls);},700);
+  });
+});
+var mf=document.getElementById('m-focus');
+if(mf){
+  mf.addEventListener('click',function(){mf.classList.toggle('on');});
+  mf.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();mf.classList.toggle('on');}});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,2245 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analogue Pocket · a tribute to portable gaming</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%23050506%27/%3E%3Ccircle cx=%2726%27 cy=%2740%27 r=%278%27 fill=%27%23ececec%27/%3E%3Crect x=%2732%27 y=%2716%27 width=%2712%27 height=%2730%27 rx=%276%27 transform=%27rotate(-28 38 31)%27 fill=%27%23ececec%27/%3E%3C/svg%3E">
+<meta name="description" content="Analogue Pocket. A 615 ppi display, Original Display Modes, and every Game Boy, Game Boy Color and Game Boy Advance cartridge. $239.99.">
+<style>
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-stretch:75% 100%;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/19f8ec3200550a11859c7e52d7378354bf71bc6dd0441fdde79b9a660513f5e4.woff2) format('woff2')}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400 500;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/2c32b9b3ee358c119e210f6f5195f9bd34894d78a785ff2e95d60e718e400af4.woff2) format('woff2')}
+@font-face{font-family:'Silkscreen';font-style:normal;font-weight:400;font-display:swap;src:url(https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/embedded/17bb6d80eeea10c69887aa64a1b48e70a3f540de50480da9ec933fac1996bf97.woff2) format('woff2')}
+:root{
+--ground:#050506; --text:#ececec; --text-2:#b7b7bc; --dim:#8a8a91; --line:#1f1f23; --paper:#e9e8e4; --ink:#0c0c0e;
+--go:#3ed16c; --dmg:#9bbc0f;
+--sans:'Instrument Sans',ui-sans-serif,system-ui,-apple-system,sans-serif;
+--mono:'JetBrains Mono',ui-monospace,Menlo,monospace;
+--pix:'Silkscreen',monospace;
+/* scale · 1.414, display-led: 12 · 17 · 24 · 34 · 48 · 68 · 96 · 136 · 192 */
+--s0:13px; --s1:clamp(15px,.35vw + 13.5px,17px); --s2:clamp(19px,.9vw + 14px,24px); --s3:clamp(24px,1.6vw + 16px,34px);
+--s4:clamp(30px,2.6vw + 16px,48px); --s5:clamp(38px,4vw + 16px,68px); --s6:clamp(48px,6vw + 14px,96px); --s7:clamp(60px,9vw + 10px,136px); --s8:clamp(72px,12.5vw + 8px,192px);
+--gutter:clamp(20px,4vw,60px); --nav:60px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+html,body{margin:0;padding:0;background:var(--ground);color:var(--text);font:400 var(--s1)/1.55 var(--sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+html.lenis,html.lenis body{height:auto}
+::selection{background:var(--go);color:#000}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:1.5px solid var(--go);outline-offset:4px;border-radius:6px}
+#cv{position:fixed;inset:0;width:100vw;height:100vh;display:block;z-index:0;touch-action:pan-y}
+html.nogpu #cv{display:none}
+/* the hero intro: a Blender film framed by the hero camera. Height-matched like three.js's vertical FOV, so any
+aspect crops it the way the live scene crops; its last second is a still, and the crossfade is on that still */
+#intro{position:fixed;top:0;left:50%;height:100vh;width:auto;max-width:none;transform:translateX(-50%);z-index:1;pointer-events:none;background:#0b0b0c;opacity:0;visibility:hidden;transition:opacity 1s cubic-bezier(.45,0,.25,1),visibility 0s linear 1s}
+#intro.on{opacity:1;visibility:visible;transition:none}
+#intro.narrow{-webkit-mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent);mask-image:linear-gradient(90deg,transparent,#000 9%,#000 91%,transparent)}
+/* the software-GL poster: the hero still stays at the top, past it the page is a page */
+html.poster.poster-past #cv{opacity:0;transition:opacity .5s}
+html.poster #inside .chips,html.poster #angles .vlab{display:none}
+html.poster.poster-past body,html.nogpu body{background:#050506 radial-gradient(60% 40% at 50% 60%,#1c1c20 0%,#050506 70%) no-repeat fixed}
+html.poster.away #cv{visibility:hidden}
+html.poster *{transition:none!important}
+html.poster #grain,html.poster #vig{display:none}
+#page{position:relative;z-index:2;pointer-events:none}
+#grain{position:fixed;inset:0;z-index:3;pointer-events:none;opacity:.05;background-size:220px 220px;mix-blend-mode:screen}
+#vig{position:fixed;inset:0;z-index:3;pointer-events:none;background:radial-gradient(130% 95% at 50% 45%,transparent 58%,rgba(0,0,0,.6) 100%)}
+#loading{position:fixed;inset:0;z-index:60;background:#000;display:grid;place-items:center;transition:opacity .8s ease .15s;pointer-events:none}
+#loading.off{opacity:0}
+#loading.fast{transition:opacity .25s ease}
+#loading b{display:block;font:400 11px/1 var(--mono);letter-spacing:.16em;color:#5a5a60;text-transform:lowercase}
+#loading b i{display:block;height:1px;background:var(--text);width:0;margin-top:14px;transition:width .5s ease}
+/* the boot: the wordmark scrolls down from the top in whole-pixel steps and settles, like a handheld's boot logo */
+#loading .boot{display:block;font:400 22px/1 var(--pix);letter-spacing:.08em;color:#c9c9cf;text-transform:lowercase;animation:boot 1.4s steps(18,end) both}
+@keyframes boot{from{transform:translateY(-38vh)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){#loading .boot{animation:none}}
+/* ── nav: fixed, three quiet links, the one buy button ── */
+/* the band under the nav: tinted with the current ground (set per frame), so copy and the product's top edge
+pass under it instead of through the labels */
+#scrim{position:fixed;left:0;right:0;top:0;height:calc(var(--nav) + 30px);z-index:19;pointer-events:none;
+background:linear-gradient(rgb(var(--sg,5 5 6) / .96) 0,rgb(var(--sg,5 5 6) / .9) calc(var(--nav) - 10px),rgb(var(--sg,5 5 6) / 0) 100%)}
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:0 var(--gutter);font:500 13px/1 var(--sans);letter-spacing:-.005em}
+#nav .wm{display:flex;align-items:center;gap:9px;text-decoration:none;color:var(--text)}
+#nav .wm svg{width:18px;height:18px;fill:currentColor}
+#nav .links{display:flex;gap:clamp(16px,2.2vw,32px);align-items:center}
+#nav .links a,#nav .snd{color:var(--text-2);text-decoration:none}
+#nav .links a:hover,#nav .snd:hover{color:var(--text)}
+#nav .snd{display:inline-flex;align-items:center;gap:8px}
+#nav .snd i{width:7px;height:7px;border-radius:50%;background:#3a3a40;transition:background .25s,box-shadow .25s}
+#nav .snd.on i{background:var(--go);box-shadow:0 0 10px var(--go)}
+.buy{position:relative;display:inline-flex;align-items:center;gap:10px;padding:10px 16px 10px 18px;border-radius:999px;background:var(--text);color:#08080a!important;font:600 13px/1 var(--sans);text-decoration:none;overflow:hidden;isolation:isolate;transition:transform .25s ease}
+.buy:hover{transform:translateY(-1px)}
+.buy::after{content:'';position:absolute;inset:-40% auto -40% -30%;width:30%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.75),transparent);transform:translateX(-120%) skewX(-18deg);transition:transform .9s cubic-bezier(.2,.7,.2,1);z-index:-1}
+.buy:hover::after{transform:translateX(520%) skewX(-18deg)}
+.buy .p{font-weight:500;color:#55555c}
+.buy .dot{width:6px;height:6px;border-radius:50%;background:var(--go)}
+/* ── type ── */
+.k{font:500 var(--s0)/1.4 var(--mono);letter-spacing:.02em;color:var(--dim)}
+.k b{font-weight:500;color:var(--text-2)}
+h1,h2,h3{margin:0;font-weight:560;font-stretch:82%;letter-spacing:-.035em;line-height:.9;text-wrap:balance}
+p{margin:0;color:var(--text-2);text-wrap:pretty}
+.split .w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.06em}
+.split .w>span{display:inline-block;transform:translateY(105%);transition:transform .9s cubic-bezier(.2,.75,.15,1)}
+.split.in .w>span{transform:none}
+.rev{opacity:0;transform:translateY(12px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.rev.in{opacity:1;transform:none}
+.beat{position:relative;pointer-events:none}
+.stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;pointer-events:none}
+.stage>*{pointer-events:auto}
+/* 1 · hero */
+#hero{height:240vh}
+#hero .band{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(20px,4.5vh,48px);display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+#hero .band h1{font-size:var(--s5);max-width:11ch}
+#hero .band .k{margin-bottom:14px}
+#hero .band .right{display:flex;flex-direction:column;align-items:flex-end;gap:14px;text-align:right}
+#hero .band .right p{font-size:var(--s1);max-width:30ch}
+#hero .band>*{transition:opacity .25s linear}
+/* the hero's second beat: Pocket turns to its profile and moves right; the claim takes the left */
+#hero .b2{position:absolute;left:var(--gutter);top:50%;transform:translateY(-50%);width:min(32ch,34vw);opacity:0}
+#hero .b2 h2{font-size:var(--s6);margin:12px 0 18px}
+#hero .b2 p{font-size:var(--s2);line-height:1.3;color:var(--text-2)}
+/* the hero copy arrives once, as the device settles (heroIn() animates kicker, words in turn, right column) */
+#hero:not(.in) .band .k,#hero:not(.in) .band .right>*{opacity:0}
+/* 2 · display */
+#display{height:380vh}
+#display .num{position:absolute;left:calc(var(--gutter) - .05em);top:calc(var(--nav) + 2vh);font-weight:560;font-stretch:78%;font-size:var(--s8);letter-spacing:-.05em;line-height:.85;font-variant-numeric:tabular-nums;white-space:nowrap}
+#display .num #resW,#display .num #resH{display:inline-block}
+#display .num .z{font-style:normal;opacity:.18}
+#display .num small{display:block;font-size:var(--s2);letter-spacing:-.01em;color:var(--dim);margin:.5em 0 0 .08em;font-stretch:90%;line-height:1}
+#display .copy{position:absolute;right:var(--gutter);top:calc(var(--nav) + 2vh + 6px);width:min(34ch,40vw)}
+/* the dive fills the frame with the panel's pixels, so the number and the copy get their own ground: one opaque
+band across the top (its height is set from the type it holds), the Pocket framed below it */
+#display .lb{position:absolute;left:0;right:0;top:0;height:var(--lbh,32vh);background:#050506;box-shadow:0 1px 0 rgba(255,255,255,.06)}
+#display .copy p{font-size:var(--s2);line-height:1.3;color:var(--text)}
+#display .copy .k{margin-top:14px}
+/* 3 · modes */
+#modes{height:340vh}
+#modes .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:18ch}
+#modes .head h2{font-size:var(--s5)}
+#modes .head p{margin-top:16px;max-width:30ch}
+#modes .switch{position:absolute;right:var(--gutter);top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:6px;padding:6px;border-radius:16px;background:rgba(18,18,20,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 20px 60px rgba(0,0,0,.5)}
+#modes .switch button{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:6px;min-width:clamp(92px,11vw,150px);padding:12px 14px;border-radius:11px;color:var(--dim);transition:background .3s ease,color .3s ease;text-align:left}
+#modes .switch button b{font:400 13px/1 var(--pix);letter-spacing:.02em;color:inherit}
+#modes .switch button span{font:500 11px/1.2 var(--mono);color:#56565c}
+#modes .switch button i{position:absolute;right:12px;top:12px;width:8px;height:8px;border-radius:2px;background:var(--sw,#444)}
+#modes .switch button[aria-checked="true"]{background:rgba(255,255,255,.07);color:var(--text)}
+#modes .switch button[aria-checked="true"] span{color:var(--text-2)}
+#modes .play{position:absolute;right:var(--gutter);top:calc(var(--nav) + 3vh);text-align:right}
+#modes .play .keys{display:flex;gap:6px;align-items:center;justify-content:flex-end;margin-top:10px}
+#modes .play .keys span{font:500 13px/1 var(--mono);color:var(--dim);margin:0 10px 0 4px}
+#modes .play .keys span:last-child{margin-right:0}
+#modes .play kbd{display:inline-grid;place-items:center;min-width:28px;height:28px;padding:0 7px;border-radius:6px;font:500 13px/1 var(--mono);color:var(--text-2);background:rgba(255,255,255,.06);box-shadow:inset 0 -1px 0 rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.08)}
+#modes .play kbd.on{background:var(--go);color:#000}
+/* 4 · cartridge */
+#cart{height:380vh}
+#cart .big{position:absolute;left:calc(var(--gutter) - .05em);top:calc(var(--nav) + 1vh);font-weight:560;font-stretch:78%;font-size:var(--s8);letter-spacing:-.05em;line-height:.85}
+#cart .copy{position:absolute;right:var(--gutter);top:calc(var(--nav) + 4vh);width:min(30ch,34vw);text-align:right}
+#cart .copy p{font-size:var(--s2);line-height:1.3;color:var(--text)}
+#cart .marq{position:absolute;left:0;right:0;bottom:clamp(18px,4vh,40px);overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+#cart .marq div{display:inline-flex;gap:3.2em;font:560 var(--s4)/1 var(--sans);font-stretch:82%;letter-spacing:-.03em;color:#2c2c31;animation:marq 38s linear infinite;padding-right:3.2em}
+#cart .marq div b{font-weight:560;color:var(--text-2)}
+@keyframes marq{to{transform:translateX(-100%)}}
+/* 5 · details */
+#details{height:560vh}
+#details .cap{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(20px,5vh,56px)}
+#details .cap .row{position:absolute;left:0;bottom:0;width:min(34ch,40vw);padding:22px 24px 24px;border-radius:18px;background:linear-gradient(160deg,rgba(40,40,46,.55),rgba(14,14,17,.62));-webkit-backdrop-filter:blur(22px) saturate(1.2);backdrop-filter:blur(22px) saturate(1.2);box-shadow:0 30px 80px rgba(0,0,0,.45);opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .6s cubic-bezier(.2,.7,.2,1)}
+#details .cap .row.on{opacity:1;transform:none}
+/* a caption sits in the clear air its macro leaves: left by default, right where the device edge runs down the middle */
+#details .cap .row.r{left:auto;right:0}
+#details .cap .row::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(150deg,rgba(255,255,255,.22),rgba(255,255,255,.03) 45%,rgba(62,209,108,.18));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none}
+#details .cap h3{font-size:var(--s4);margin-bottom:10px}
+#details .cap p{font-size:var(--s1)}
+/* 5a · angles: the press 'All Angles' plate, four orthographic views on green */
+#angles{height:300vh}
+#angles .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:none}
+#angles .head h2{font-size:var(--s4);margin-top:10px;white-space:nowrap}
+#angles .dims{position:absolute;right:var(--gutter);top:calc(var(--nav) + 3vh);display:flex;align-items:baseline;gap:.12em;font:560 var(--s5)/.85 var(--sans);font-stretch:78%;letter-spacing:-.04em}
+#angles .dims span{color:var(--dim);font-weight:400}
+#angles .dims small{font:500 14px/1 var(--mono);letter-spacing:0;color:var(--dim);margin-left:.8em}
+#angles .vlab span{position:absolute;left:0;top:0;font:500 13px/1 var(--mono);color:var(--text-2);opacity:0;white-space:nowrap}
+/* 5b · inside: the exploded stack, labels riding on each layer */
+#inside{height:560vh}
+#inside .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:30ch}
+#inside .head h2{font-size:var(--s5);margin:12px 0 16px}
+#inside .head .k{color:#b9b9c0}
+#inside .chips span{position:absolute;left:0;top:0;display:inline-flex;align-items:center;gap:10px;padding:8px 12px 8px 9px;border-radius:10px;font:500 12px/1 var(--mono);color:#f1f1f3;white-space:nowrap;background:linear-gradient(160deg,rgba(30,30,34,.72),rgba(10,10,12,.8));-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 12px 40px rgba(0,0,0,.35);opacity:0;will-change:transform,opacity}
+#inside .chips span b{font-weight:500;color:#08080a;background:var(--go);border-radius:5px;padding:4px 5px}
+#inside .chips span i{font-style:normal}
+#inside .chips span em{display:none;font-style:normal}
+#inside .leads i{position:absolute;left:0;top:0;height:1px;background:rgba(255,255,255,.55);transform-origin:0 50%;opacity:0;display:none}
+#inside .count{position:absolute;left:var(--gutter);bottom:clamp(20px,5vh,56px);font-size:13px}
+#inside .count b{font:560 var(--s3)/.8 var(--sans);font-stretch:78%;letter-spacing:-.04em;color:var(--text);font-variant-numeric:tabular-nums;margin-right:.1em}
+/* 5c · clear: the transparent editions */
+#clear{height:380vh}
+#clear .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:26ch}
+#clear .head h2{font-size:var(--s7);margin:10px 0 18px}
+#clear .eds{position:absolute;left:var(--gutter);bottom:clamp(20px,5vh,56px);display:flex;flex-wrap:wrap;gap:8px;max-width:min(660px,50vw)}
+#clear .eds button{display:inline-flex;align-items:center;gap:9px;padding:9px 14px 9px 10px;border-radius:999px;font:500 13px/1 var(--sans);color:var(--text-2);background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);transition:background .3s,color .3s,box-shadow .3s}
+#clear .eds button::before{content:'';width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 12px var(--c),inset 0 0 0 1px rgba(255,255,255,.3);opacity:.9}
+#clear .eds button[aria-checked="true"]{color:var(--text);background:rgba(255,255,255,.1);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--c) 60%,transparent)}
+/* 5d · link: two players on a table */
+#link{height:320vh}
+#link .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:30ch}
+#link .head h2{font-size:var(--s5);margin:12px 0 16px;max-width:11em}
+/* 5e · loop: the sequencer */
+#loop{height:300vh}
+#loop .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);max-width:28ch}
+#loop .head h2{font-size:var(--s5);margin:12px 0 16px;max-width:10em}
+#loop .tap{position:absolute;left:var(--gutter);bottom:clamp(20px,5vh,56px);display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+/* light grounds (the four views, the exploded studio, the white finish): type turns to ink */
+body,.k,p,h1,h2,h3{transition:color .5s ease}
+/* the nav's ink switches in the same frame as its band: a 0.5 s colour fade left it grey on grey mid-travel */
+#nav .wm,#nav .links a,#nav .snd{transition:none}
+html[data-ground="light"]{--text:#0e0e10;--text-2:#2c2c31;--dim:#5c5c63;--line:rgba(0,0,0,.14)}
+html[data-ground="light"] body{color:var(--text)}
+html[data-ground="light"] .buy{background:#0e0e10;color:#f2f2f2!important}
+html[data-ground="light"] .buy .p{color:#8a8a90}
+html[data-ground="light"] #grain{mix-blend-mode:multiply;opacity:.06}
+html[data-ground="light"] #vig{opacity:0}
+/* the display chapter's pixel field: a dot-matrix room behind the copy, lit by the pointer */
+#px{position:fixed;inset:0;width:100vw;height:100vh;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;
+-webkit-mask-image:linear-gradient(90deg,transparent 0 21%,#000 27% 31%,transparent 37% 63%,#000 69%);mask-image:linear-gradient(90deg,transparent 0 21%,#000 27% 31%,transparent 37% 63%,#000 69%)}
+#modes .hud{position:absolute;left:50%;transform:translateX(-50%);top:calc(var(--nav) + 3vh);display:flex;gap:28px;font:400 12px/1 var(--pix);letter-spacing:.06em;color:var(--mc,#9bbc0f)}
+#modes .hud b{font-weight:400;color:var(--text)}
+#modes .hud .blink{animation:blink 1.1s steps(2,jump-none) infinite}
+@keyframes blink{50%{opacity:0}}
+/* 6 · colourway */
+#colour{height:300vh}
+#colour .pick{position:absolute;left:var(--gutter);bottom:clamp(20px,5vh,56px);display:flex;flex-direction:column;align-items:flex-start;gap:.06em}
+#colour .pick button{font-weight:560;font-stretch:78%;font-size:var(--s6);letter-spacing:-.05em;line-height:.8;color:#26262a;transition:color .45s ease}
+#colour .pick button[aria-pressed="true"]{color:var(--text)}
+#colour .pick button:hover{color:#6a6a70}
+#colour .pick button[aria-pressed="true"]:hover{color:var(--text)}
+#colour .note{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh)}
+/* the film: an inset frame that opens to the whole screen as you arrive, then plays (muted until asked) */
+#film{height:260vh;position:relative;background:#030304}
+/* it rises and leaves as a fade through black, not a hard sheet slicing the Pocket */
+#film::before,#film::after{content:'';position:absolute;left:0;right:0;height:34vh;pointer-events:none}
+#film::before{bottom:100%;background:linear-gradient(rgba(3,3,4,0),#030304)}
+#film::after{top:100%;background:linear-gradient(rgba(3,3,4,var(--fa,1)),rgba(3,3,4,0))}
+#film .stage{background:#030304}
+#film .head{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);z-index:2}
+#film .head h2{font-size:var(--s6);margin-top:10px}
+#film .frame{position:absolute;left:0;top:0;width:100vw;height:100vh;height:100svh;transform-origin:50% 50%;overflow:hidden;background:#000;will-change:transform}
+#film .frame video{width:100%;height:100%;object-fit:cover;display:block}
+#film .scrim{position:absolute;left:0;right:0;bottom:0;height:24vh;background:linear-gradient(transparent,rgba(0,0,0,.6));opacity:0;transition:opacity .6s ease;pointer-events:none}
+#film .ui{position:absolute;left:var(--gutter);right:var(--gutter);bottom:clamp(22px,4.5vh,44px);display:flex;align-items:center;gap:26px;font:500 13px/1 var(--mono);letter-spacing:.04em;color:var(--text-2);opacity:0;transition:opacity .6s ease;pointer-events:none}
+#film .ui button{display:inline-flex;align-items:center;gap:8px;padding:8px 0;color:var(--text);text-transform:lowercase}
+#film .ui .fs i{width:7px;height:7px;border-radius:50%;background:#3a3a40;transition:background .25s}
+#film .ui .fs[aria-pressed="true"] i{background:var(--go)}
+#film .ui .tc{margin-left:auto;font-variant-numeric:tabular-nums;color:var(--dim)}
+#film .bar{position:absolute;left:0;right:0;bottom:0;height:2px;background:rgba(255,255,255,.1);opacity:0;transition:opacity .6s ease}
+#film .bar i{display:block;height:100%;width:100%;background:var(--text);transform-origin:0 50%;transform:scaleX(0)}
+#film.full:not(.leaving) .ui,#film.full:not(.leaving) .scrim,#film.full:not(.leaving) .bar{opacity:1}
+#film.full .ui{pointer-events:auto}
+@media (max-aspect-ratio:4/5){
+/* portrait without a vertical cut: the film keeps its 16:9 under the title, full width; full screen plays it in landscape */
+#film:not(.vert) .frame{top:var(--ft,40%);height:56.25vw}
+#film:not(.vert) .scrim{display:none}
+#film:not(.vert) .ui{bottom:auto;top:calc(var(--fb,70%) + 16px);gap:20px}
+#film:not(.vert) .bar{bottom:auto;top:var(--fb,70%)}
+#film .ui{gap:20px}
+/* the vertical cut is fitted, not cropped: its label column sits near the frame edge */
+#film.vert .frame video{object-fit:contain}
+}
+/* 7 · close */
+#close{height:190vh}
+#close .sheet{position:absolute;left:var(--gutter);top:calc(var(--nav) + 3vh);width:min(640px,48vw)}
+#close .sheet h2{font-size:var(--s6);margin-bottom:22px}
+#close .sheet table{width:100%;border-collapse:collapse;font:500 13px/1.45 var(--mono)}
+#close .sheet td{padding:9px 0;border-top:1px solid var(--line);vertical-align:top}
+#close .sheet td:first-child{color:var(--dim);width:34%;padding-right:18px}
+#close .sheet td:last-child{color:var(--text-2)}
+#close .sheet .buyrow{display:flex;align-items:center;gap:18px;margin-top:26px}
+#close .sheet .buyrow .price{font:560 var(--s4)/1 var(--sans);font-stretch:82%;letter-spacing:-.03em}
+#close footer{position:absolute;left:var(--gutter);right:var(--gutter);bottom:18px;display:flex;justify-content:space-between;gap:16px;font:500 12px/1.5 var(--mono);color:#4a4a50;flex-wrap:wrap}
+#close footer a{color:#6a6a70;text-decoration:none;margin-right:16px}
+#close footer a:hover{color:var(--text)}
+@media (max-height:760px) and (min-width:761px){
+:root{--s8:clamp(64px,9vw + 6px,140px);--s7:clamp(54px,7vw + 8px,110px);--s6:clamp(44px,5vw + 10px,80px);--s5:clamp(34px,3.2vw + 12px,56px);--s4:clamp(26px,2vw + 12px,40px)}
+#close .sheet td{padding:4px 0;line-height:1.28}
+#close .sheet h2{margin-bottom:14px}
+}
+/* the phone layout is for every portrait screen, not only narrow ones: a portrait tablet had the portrait camera
+under the desktop copy */
+@media (max-width:760px), (max-aspect-ratio:4/5){
+:root{--nav:54px}
+#nav .links a.hide-s{display:none}
+#hero .band{flex-direction:column;align-items:flex-start}
+#hero .band .right{align-items:flex-start;text-align:left}
+#hero .b2{top:auto;bottom:clamp(20px,4.5vh,48px);transform:none;width:auto;right:var(--gutter)}
+#display .copy,#cart .copy{left:var(--gutter);right:var(--gutter);width:auto;text-align:left}
+#display .copy{top:var(--dct,calc(var(--nav) + 2vh + var(--s8) * 1.4 + 14px))}
+#cart .copy{top:calc(var(--nav) + 1vh + var(--s8) * .9 + 12px);bottom:auto}
+#modes .switch{left:var(--gutter);right:var(--gutter);top:auto;bottom:auto;transform:none;display:grid;grid-template-columns:repeat(4,1fr)}
+#modes .switch button{min-width:0;padding:10px 6px;align-items:center;text-align:center} /* a column flexbox: align-items centres across */
+#modes .switch button span,#modes .switch button i{display:none}
+#modes .play{display:none}
+#details .cap{width:auto;right:var(--gutter)}
+/* on a phone the macros fill the frame: the caption is an opaque sheet along the bottom and the subject is framed above it */
+#details .cap{left:0;right:0;bottom:0}
+#details .cap .row,#details .cap .row.r{width:auto;left:0;right:0;border-radius:20px 20px 0 0;padding:20px var(--gutter) 28px;background:#0e0e10;-webkit-backdrop-filter:none;backdrop-filter:none;box-shadow:0 -1px 0 rgba(255,255,255,.07)}
+/* phones: the whole Pocket under its name with the price, then the specs rise over it as an opaque sheet */
+#close .sheet{width:auto;right:var(--gutter);bottom:0}
+#close .sheet table{font-size:11px;position:absolute;left:calc(-1 * var(--gutter));right:calc(-1 * var(--gutter));top:35vh;bottom:108px;display:block;overflow:hidden;
+padding:14px var(--gutter);background:#0b0b0c;border-radius:18px 18px 0 0;box-shadow:0 -1px 0 rgba(255,255,255,.07);transform:translate3d(0,var(--tp,120%),0);clip-path:inset(0 0 var(--tp,120%) 0)}
+#close .sheet table tbody{display:table;width:100%;border-collapse:collapse}
+#close .sheet .buyrow{position:absolute;left:0;right:0;bottom:62px;margin:0}
+#inside .head,#clear .head,#angles .head,#link .head,#loop .head{right:var(--gutter)}
+#angles .dims{top:auto;bottom:22px;left:var(--gutter);right:auto;font-size:var(--s5)}
+#clear .eds{max-width:none;right:var(--gutter)}
+#clear .head h2{font-size:var(--s6)}
+#inside .chips span{font-size:11px;padding:5px 6px}
+/* on a phone the stack fills the width: each layer carries its number, the names are a legend under the copy */
+#inside .chips span i,#inside .count{display:none}
+#inside .chips span em{display:inline}
+#inside .leads i{display:block}
+#inside .legend{display:grid;gap:6px;position:absolute;left:var(--gutter);right:var(--gutter);margin:0;padding:0;list-style:none;font:500 10.5px/1.2 var(--mono);color:#d8d8dc;opacity:0}
+#inside .legend li{display:flex;align-items:center;gap:8px}
+#inside .legend b{font-weight:500;color:#08080a;background:var(--go);border-radius:4px;padding:3px 4px}
+#modes .hud{display:none}
+#px{-webkit-mask-image:linear-gradient(180deg,transparent 0 76%,#000 84%);mask-image:linear-gradient(180deg,transparent 0 76%,#000 84%)}
+#close footer{left:0;right:0;bottom:0;padding:14px var(--gutter) 16px;background:var(--bg,#050506);box-shadow:0 -24px 24px -4px var(--bg,#050506)}
+#colour .pick button{font-size:clamp(56px,20vw,100px)}
+}
+/* short phones: the specs take the whole sheet and the footer shrinks, or it covered the price */
+@media (max-width:760px) and (max-height:720px), (max-aspect-ratio:4/5) and (max-height:720px){
+#close .sheet table{top:58px;bottom:118px;font-size:11px}
+#close .sheet td{padding:3px 0;line-height:1.28}
+#close .sheet .buyrow{bottom:66px}
+#close footer{padding:9px var(--gutter) 10px;font-size:11px}
+}
+@media (prefers-reduced-motion:reduce){ .split .w>span,.rev{transition:none} #cart .marq div{animation:none} #modes .hud .blink{animation:none} }
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>document.addEventListener('click', event => {
+const anchor = event.target.closest?.('a[href]');
+const href = anchor?.getAttribute('href');
+if (event.defaultPrevented || !href?.startsWith('#')) return;
+event.preventDefault();
+if (href === '#') { window.scrollTo({top: 0, behavior: 'smooth'}); return; }
+try {
+const id = decodeURIComponent(href.slice(1));
+const target = document.getElementById(id) || document.getElementsByName(id)[0];
+target?.scrollIntoView({behavior: 'smooth', block: 'start'});
+} catch { /* Invalid fragments remain in the saved document. */ }
+});</script>
+<script>document.addEventListener('click', event => {
+if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+const anchor = event.target.closest?.('a[href]');
+if (!anchor || anchor.hasAttribute('download')) return;
+const target = anchor.getAttribute('target')?.toLowerCase();
+if (target && target !== '_self' && target !== '_top') return;
+try {
+const destination = new URL(anchor.href, document.baseURI);
+const base = new URL(document.baseURI);
+if (!['http:', 'https:'].includes(destination.protocol) || destination.origin === base.origin) return;
+event.preventDefault();
+window.open(destination.href, '_blank', 'noopener,noreferrer');
+} catch { /* Leave invalid links to the browser. */ }
+}, true);</script></head>
+<body>
+<canvas id="cv"></canvas>
+<video id="intro" muted="" playsinline="" preload="auto" disablepictureinpicture="" aria-hidden="true" tabindex="-1"></video>
+<canvas id="px" aria-hidden="true"></canvas>
+<div id="grain"></div><div id="vig"></div>
+<div id="loading"><b><span class="boot">analogue</span><i></i></b></div>
+
+<div id="scrim" aria-hidden="true"></div>
+<nav id="nav">
+  <a class="wm" href="#hero" aria-label="Analogue"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="7.5" cy="16.2" r="3.4"></circle><rect x="11" y="3.5" width="6.8" height="15.8" rx="3.4" transform="rotate(-28 14.4 11.4)"></rect></svg><span>Analogue</span></a>
+  <div class="links">
+    <button class="snd" id="sndBtn" aria-pressed="false"><i></i><span>sound</span></button>
+    <a class="hide-s" href="#display">Display</a>
+    <a class="hide-s" href="#cart">Cartridges</a>
+    <a class="hide-s" href="#close">Specs</a>
+    <a class="buy" href="#close"><span class="dot"></span><span>Buy</span><span class="p">$239.99</span></a>
+  </div>
+</nav>
+
+<div id="cdn" data-r="VanhDc/aura-assets" data-t="pocket-v3" data-p="pocket" hidden=""></div>
+<main id="page">
+  <section class="beat" id="hero"><div class="stage">
+    <div class="band">
+      <div><div class="k">Analogue Pocket</div><h1 class="split">A tribute to portable gaming.</h1></div>
+      <div class="right"><p>A handheld built around the cartridges you already own, with ten times the resolution of the screens they were made for.</p><a class="buy" href="#close"><span>Buy Pocket</span><span class="p">$239.99</span></a></div>
+    </div>
+    <div class="b2"><div class="k">two FPGAs</div><h2>No emulation.</h2><p>Two FPGAs reproduce the original hardware in logic, so a cartridge plays the way it did in 1989.</p></div>
+  </div></section>
+
+  <section class="beat" id="display"><div class="stage">
+    <div class="lb" aria-hidden="true"></div>
+    <div class="num" aria-label="1600 by 1440 pixels"><span id="resW">1600</span>×<span id="resH">1440</span><small>615 ppi</small></div>
+    <div class="copy rev"><p>The most advanced display in handheld gaming. 3.5 inches of LCD, ten physical pixels for every pixel of a Game Boy game.</p><div class="k">1600 × 1440 · variable refresh · 360° rotation</div></div>
+  </div></section>
+
+  <section class="beat" id="modes"><div class="stage">
+    <div class="head rev"><h2 class="scr" data-glyphs="pix">Original Display Modes.</h2><p>Pocket's panel reproduces the screens games were drawn for, down to the dot matrix and the ghosting.</p></div>
+    <div class="play rev"><div class="k">controls</div><div class="keys"><kbd data-k="left">←</kbd><kbd data-k="right">→</kbd><span>move</span><kbd data-k="a">X</kbd><span>jump</span></div></div>
+    <div class="switch" role="radiogroup" aria-label="Display mode">
+      <button role="radio" aria-checked="true" data-mode="0" style="--sw:#ececec"><b>POCKET</b><span>1600 × 1440 native</span><i></i></button>
+      <button role="radio" aria-checked="false" data-mode="1" style="--sw:#9bbc0f"><b>GB</b><span>four greens, dot matrix</span><i></i></button>
+      <button role="radio" aria-checked="false" data-mode="2" style="--sw:#e0a36a"><b>GBC</b><span>colour LCD grid</span><i></i></button>
+      <button role="radio" aria-checked="false" data-mode="3" style="--sw:#6a86e0"><b>GBA</b><span>reflective TFT</span><i></i></button>
+    </div>
+  </div></section>
+
+  <section class="beat" id="cart"><div class="stage">
+    <div class="big"><span id="cartN">2,780</span>+</div>
+    <div class="copy rev"><p>Game Boy, Game Boy Color and Game Boy Advance cartridges. Out of the slot, into the slot, straight in.</p><div class="k" style="margin-top:14px">cartridge adapters sold separately</div></div>
+    <div class="marq" aria-label="Adapters: Game Gear, Neo Geo Pocket Color, TurboGrafx-16, Atari Lynx"><div><b>Game Gear</b><span>Neo Geo Pocket Color</span><b>TurboGrafx-16</b><span>Atari Lynx</span><b>Game Gear</b><span>Neo Geo Pocket Color</span><b>TurboGrafx-16</b><span>Atari Lynx</span></div></div>
+  </div></section>
+
+  <section class="beat" id="details"><div class="stage">
+    <div class="cap">
+      <div class="row on"><h3>A d-pad with a floor.</h3><p>A shallow dish in the centre, crisp arms, and a pivot that rocks toward the arm you press.</p></div>
+      <div class="row r"><h3>Four face buttons.</h3><p>Flat-topped, satin, with a rounded edge, set in a diamond at the same pitch your thumb already knows.</p></div>
+      <div class="row"><h3>Green means on.</h3><p>The power button is the one colour on the whole shell. The speaker grille and the volume rocker live beside it.</p></div>
+      <div class="row"><h3>Everything plugs into the bottom.</h3><p>Link port on the seam; USB-C, a status light, an infrared transceiver and a 3.5 mm headphone output along the front shell.</p></div>
+      <div class="row"><h3>A grip you can feel.</h3><p>Sixteen moulded grooves across the back, four recessed screws, and the A pressed into the shell.</p></div>
+    </div>
+  </div></section>
+
+  <section class="beat" id="angles"><div class="stage">
+    <div class="head"><div class="k">front · left · back · right</div><h2 class="scr">Every side, to the millimetre.</h2></div>
+    <div class="dims"><b>149.5</b><span>×</span><b>88.5</b><span>×</span><b>22</b><small>mm · 275 g</small></div>
+    <div class="vlab" aria-hidden="true"><span data-v="-1">Front</span><span data-v="0">Left</span><span data-v="1">Back</span><span data-v="2">Right</span></div>
+  </div></section>
+
+  <section class="beat" id="inside"><div class="stage">
+    <div class="head"><div class="k">exploded view</div><h2 class="scr">Built in layers.</h2><p class="rev">Glass, shell, panel, the board and the battery, the grip. Every part of Pocket is its own piece, and each one closes on the next with nothing to rattle.</p></div>
+    <div class="chips" aria-hidden="true">
+      <span data-l="0" data-side="r"><b>01</b><i>Gorilla Glass · 1.5 mm</i><em>Glass</em></span>
+      <span data-l="1" data-side="r"><b>02</b><i>Front shell and controls</i><em>Shell</em></span>
+      <span data-l="2" data-side="l"><b>03</b><i>3.5" LCD · 1600 × 1440</i><em>LCD</em></span>
+      <span data-l="3" data-side="r"><b>04</b><i>Main board · two FPGAs</i><em>Board</em></span>
+      <span data-l="4" data-side="r"><b>05</b><i>4300 mAh battery</i><em>Battery</em></span>
+      <span data-l="5" data-side="r"><b>06</b><i>Grip shell · 16 grooves</i><em>Grip</em></span>
+    </div>
+    <div class="leads" aria-hidden="true"></div>
+    <div class="count k" aria-hidden="true"><b id="layN">00</b> / 06</div>
+  </div></section>
+
+  <section class="beat" id="clear"><div class="stage">
+    <div class="head"><div class="k">limited editions</div><h2 class="scr">Transparent.</h2><p class="rev">The same Pocket in clear polycarbonate. Every board, button membrane and screw boss, in plain sight.</p></div>
+    <div class="eds" role="radiogroup" aria-label="Transparent edition">
+      <button role="radio" aria-checked="true" data-ed="#dcdce0" style="--c:#dcdce0">Clear</button>
+      <button role="radio" aria-checked="false" data-ed="#3a3a40" style="--c:#5a5a62">Smoke</button>
+      <button role="radio" aria-checked="false" data-ed="#ff2a1a" style="--c:#ff3b2a">Red</button>
+      <button role="radio" aria-checked="false" data-ed="#1a3cff" style="--c:#2f55ff">Blue</button>
+      <button role="radio" aria-checked="false" data-ed="#ff7a10" style="--c:#ff8a2a">Orange</button>
+      <button role="radio" aria-checked="false" data-ed="#2cff3a" style="--c:#39e04a">Green</button>
+      <button role="radio" aria-checked="false" data-ed="#a634ff" style="--c:#b46cff">Purple</button>
+    </div>
+  </div></section>
+
+  <section class="beat" id="link"><div class="stage">
+    <div class="head"><div class="k">link port · two players</div><h2 class="scr">Two players, one cable.</h2><p class="rev">The original-style link port sits on the bottom edge of every Pocket. Trade, battle and play head to head, the way handhelds always did.</p></div>
+  </div></section>
+
+  <section class="beat" id="loop"><div class="stage">
+    <div class="head"><div class="k">nanoloop · music</div><h2 class="scr">A synthesizer in your pocket.</h2><p class="rev">Nanoloop runs on Pocket: sixteen steps, four channels, and the link port to sync with a drum machine or a laptop. Games made in GB Studio run on it too.</p></div>
+    <div class="tap"><button id="loopPlay" class="buy" type="button"><span>Sound on</span></button></div>
+  </div></section>
+
+  <section class="beat" id="colour"><div class="stage">
+    <div class="note rev"><div class="k">soft-touch black · soft-touch white · aluminum limited edition</div></div>
+    <div class="pick"><button id="cwBlack" aria-pressed="true">Black</button><button id="cwWhite" aria-pressed="false">White</button><button id="cwAlu" aria-pressed="false">Aluminum</button></div>
+  </div></section>
+
+  <section id="film" aria-label="Film"><div class="stage">
+    <div class="head"><div class="k">film · <span id="filmDur">1:01</span></div><h2>Pocket, in motion.</h2></div>
+    <div class="frame"><video id="filmV" playsinline="" muted="" loop="" preload="none" disablepictureinpicture=""></video></div>
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="ui"><button class="pp" type="button">pause</button><button class="fs" type="button" aria-pressed="false"><i></i>sound</button><button class="fsc" type="button">full screen</button><span class="tc" aria-hidden="true">0:00</span></div>
+    <div class="bar" aria-hidden="true"><i></i></div>
+  </div></section>
+
+  <section class="beat" id="close"><div class="stage">
+    <div class="sheet rev">
+      <h2>Pocket.</h2>
+      <table>
+        <tbody><tr><td>display</td><td>3.5" LCD&nbsp;· 1600&nbsp;×&nbsp;1440&nbsp;· 615&nbsp;ppi&nbsp;· Gorilla&nbsp;Glass</td></tr>
+        <tr><td>cartridges</td><td>Game&nbsp;Boy&nbsp;· Game&nbsp;Boy&nbsp;Color&nbsp;· Game&nbsp;Boy&nbsp;Advance&nbsp;· 2,780+&nbsp;titles</td></tr>
+        <tr><td>adapters</td><td>Game&nbsp;Gear&nbsp;· Neo&nbsp;Geo&nbsp;Pocket&nbsp;Color&nbsp;· TurboGrafx‑16&nbsp;· Atari&nbsp;Lynx</td></tr>
+        <tr><td>battery</td><td>4300&nbsp;mAh&nbsp;· 6-10&nbsp;h play&nbsp;· 10+&nbsp;h sleep</td></tr>
+        <tr><td>i/o</td><td>USB‑C&nbsp;· microSD&nbsp;· 3.5&nbsp;mm&nbsp;· original‑style link&nbsp;port</td></tr>
+        <tr><td>sound</td><td>stereo speakers</td></tr>
+        <tr><td>size</td><td>149.5 × 88.5 × 22 mm&nbsp;· 275 g</td></tr>
+      </tbody></table>
+      <div class="buyrow"><span class="price">$239.99</span><a class="buy" href="#"><span>Buy Pocket</span></a></div>
+    </div>
+    <footer><div><a href="#">Store</a><a href="#">Support</a><a href="#">Developers</a><a href="#">Press</a></div><div>© Analogue</div></footer>
+  </div></section>
+</main>
+<script type="importmap">{"imports":{
+  "three":"https://cdn.jsdelivr.net/npm/three@0.186.0/build/three.module.js",
+  "three/addons/":"https://cdn.jsdelivr.net/npm/three@0.186.0/examples/jsm/",
+  "gsap":"https://cdn.jsdelivr.net/npm/gsap@3.15.0/index.js",
+  "gsap/ScrollTrigger":"https://cdn.jsdelivr.net/npm/gsap@3.15.0/ScrollTrigger.js",
+  "lenis":"https://cdn.jsdelivr.net/npm/lenis@1.3.26/dist/lenis.mjs"
+}}</script>
+<script type="module">
+/* every ESM import of the page, in one place · build.sh puts these first in the single module */
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+import { BokehPass } from 'three/addons/postprocessing/BokehPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { HDRLoader } from 'three/addons/loaders/HDRLoader.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Lenis from 'lenis';
+gsap.registerPlugin(ScrollTrigger);
+window.gsap = gsap; window.ScrollTrigger = ScrollTrigger;
+const MODEL_URL = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/01f30104bd8b18a630876b335f8560e34bdaf7710aab14309b0fc8a390c0b941.glb";
+const ENV_URL = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/53b3c8f58b0bcc0547d3e8d18c6184325966d6482ac8e646427e97425971f316.hdr";
+const INTRO_D = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/d78e4445ec358f9bf93cb7efaf1a55922690814fa5faf0ac767f370b06cc7b08.webm";
+const INTRO_M = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/87ab63b6ea25acf02f74fb78838efa524bb2dfee55bd551ecc1eea70415b1434.webm";
+const FILM_URL = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/dcb3f584fc2d803d563ea5fafd1f42021039929c70169706c35adeb87d572cf0.webm";
+const FILM_POSTER = 'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/3c89e42aef3e15e152e6b11b68ae77c4e229acb38583bce687cd288b3749687a.jpg';
+const FILM_URL_M = "https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/e2288161e7ffe7083a185321e89a5ad67bb095cb1759e173da5ed53ae8c24b4a.webm";
+const FILM_POSTER_M = 'https://ublctyddhtbgaersvxxb.supabase.co/storage/v1/object/public/threeui-media/scene-images/seven-pro/b0358c12528d2ba3cd9861ac8b5789983194eb596651a47d798300406a84a844.jpg';
+/* ═══════════ POCKET · the display ═══════════
+   The screen is a real 160 × 144 game (a fictional homebrew, LANTERN) drawn into a canvas every frame,
+   shown through a shader that models the panel: a 1600 × 1440 RGB-stripe LCD at 615 ppi (subpixels
+   resolve only when the camera is close enough to see them; far away they average out), and the
+   Original Display Modes: GB (four greens, dot-matrix gaps, the shadow each pixel casts on the
+   reflector, slow response), GBC and GBA (their own grids and colour response).
+   The boot logo and the UI are drawn on a separate high-resolution layer, crisp at any distance. */
+
+/* hash + value noise for the game's stars and ridges */
+function _hash(x, y, s) { let h = (x * 374761393 + y * 668265263 + s * 2147483647) | 0; h = (h ^ (h >>> 13)) * 1274126177 | 0; return ((h ^ (h >>> 16)) >>> 0) / 4294967295; }
+
+/* tileable value noise, `cells` per side, smooth-stepped */
+function _vnoise(u, v, cells, seed) {
+  const x = u * cells, y = v * cells, xi = Math.floor(x), yi = Math.floor(y), xf = x - xi, yf = y - yi;
+  const w = (a) => ((a % cells) + cells) % cells;
+  const a = _hash(w(xi), w(yi), seed), b = _hash(w(xi + 1), w(yi), seed), c = _hash(w(xi), w(yi + 1), seed), d = _hash(w(xi + 1), w(yi + 1), seed);
+  const sx = xf * xf * (3 - 2 * xf), sy = yf * yf * (3 - 2 * yf);
+  return a + (b - a) * sx + (c - a) * sy + (a - b - c + d) * sx * sy;
+}
+
+/* a height field → tangent-space normal map + a roughness map, both as CanvasTextures */
+const SCREEN = (window.POCKET_SCREEN = {
+  mode: 0,            /* 0 Pocket native · 1 GB · 2 GBC · 3 GBA */
+  modeT: 0,           /* eased */
+  power: 0,           /* 0 off → 1 on */
+  bootT: -1,          /* seconds since power on; <0 = not booted */
+  input: { left: false, right: false, up: false, down: false, a: false, b: false },
+  score: 0,
+  app: 'game',        /* 'game' (LANTERN) or 'loop' (a 16-step sequencer, the Nanoloop way) */
+  loop: { steps: [1,0,0,0, 1,0,1,0, 0,0,1,0, 1,0,0,1], notes: [0,0,0,0, 3,0,5,0, 0,0,7,0, 5,0,0,10], i: -1, t: 0, bpm: 124 },
+});
+
+function buildScreen() {
+  const GW = 160, GH = 144;
+  const game = document.createElement('canvas'); game.width = GW; game.height = GH;
+  const gx = game.getContext('2d');
+  const ui = document.createElement('canvas'); ui.width = 800; ui.height = 720;
+  const ux = ui.getContext('2d');
+  const gameTex = new THREE.CanvasTexture(game); gameTex.magFilter = THREE.NearestFilter; gameTex.minFilter = THREE.NearestFilter; gameTex.generateMipmaps = false; gameTex.colorSpace = THREE.SRGBColorSpace; gameTex.flipY = false;
+  const uiTex = new THREE.CanvasTexture(ui); uiTex.colorSpace = THREE.SRGBColorSpace; uiTex.anisotropy = 8; uiTex.flipY = false;
+  /* the previous game frame, for the GB's slow LCD response (ghosting) */
+  const prev = document.createElement('canvas'); prev.width = GW; prev.height = GH; const px = prev.getContext('2d');
+  const prevTex = new THREE.CanvasTexture(prev); prevTex.magFilter = THREE.NearestFilter; prevTex.minFilter = THREE.NearestFilter; prevTex.generateMipmaps = false; prevTex.colorSpace = THREE.SRGBColorSpace; prevTex.flipY = false;
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: {
+      uGame: { value: gameTex }, uPrev: { value: prevTex }, uUI: { value: uiTex },
+      uMode: { value: 0 }, uModeB: { value: 0 }, uModeT: { value: 0 }, uPower: { value: 0 }, uUIMix: { value: 1 }, uTime: { value: 0 }, uFloor: { value: 1 }, uGBArt: { value: 1 },
+      uBright: { value: 1.35 },
+    },
+    vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+    fragmentShader: `
+      precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D uGame, uPrev, uUI; uniform float uMode, uModeB, uModeT, uPower, uUIMix, uTime, uBright, uFloor, uGBArt;
+      vec3 toLin(vec3 c){ return pow(c, vec3(2.2)); }
+      /* the integral of subpixel column k (period 3) up to x: box-filtering the RGB stripes over the pixel footprint */
+      float colI(float x, float k){ return floor(x / 3.0) + clamp(x - 3.0 * floor(x / 3.0) - k, 0.0, 1.0); }
+      /* a pixel-gap grid box-filtered over the footprint: lit fraction of cell [gw, 1-gw], integrated analytically,
+         so the dot matrix stays visible at 3-5 px a cell without beating into moiré */
+      float gapI(float x, float gw){ return floor(x) * (1.0 - 2.0 * gw) + clamp(fract(x) - gw, 0.0, 1.0 - 2.0 * gw); }
+      float grid(vec2 p, vec2 w, float gw){ vec2 a = p - w * 0.5, b = p + w * 0.5;
+        return (gapI(b.x, gw) - gapI(a.x, gw)) / w.x * (gapI(b.y, gw) - gapI(a.y, gw)) / w.y; }
+      /* the four DMG greens */
+      vec3 dmg(float l){ vec3 c0 = vec3(0.059,0.220,0.059), c1 = vec3(0.188,0.384,0.188), c2 = vec3(0.545,0.675,0.059), c3 = vec3(0.608,0.737,0.059);
+        return l < 0.25 ? c0 : l < 0.5 ? c1 : l < 0.75 ? c2 : c3; }
+      vec3 dmgI(float i){ return i < 0.5 ? vec3(0.059,0.220,0.059) : i < 1.5 ? vec3(0.188,0.384,0.188) : i < 2.5 ? vec3(0.545,0.675,0.059) : vec3(0.608,0.737,0.059); }
+      /* LANTERN as a DMG game would draw it: by luminance alone the navy sky and the violet hills fell into one green.
+         The sky is blue (g over r), the ridges violet (r over g): the sky takes the light greens, the ridges step down
+         by depth, lights take the lightest, and between two shades a 4x4 ordered dither, as DMG art did */
+      float gbLevel(vec3 c){ float l = dot(c, vec3(0.3, 0.59, 0.11)); if (l > 0.5) return 3.0;
+        return c.g - c.r > 0.004 ? 1.0 + clamp((l - 0.056) / 0.206, 0.0, 1.0) : clamp((l - 0.033) / 0.205, 0.0, 2.0); }
+      float bay2(vec2 a){ a = floor(a); return fract(dot(a, vec2(0.5, a.y * 0.75))); }
+      float bay4(vec2 a){ return bay2(a * 0.5) * 0.25 + bay2(a) + 0.0625; }
+      vec3 look(float mode, vec2 uv){
+        vec2 gp = uv * vec2(160.0, 144.0); vec2 cell = fract(gp); vec2 gpix = (floor(gp) + 0.5) / vec2(160.0, 144.0);
+        /* a dot-matrix gap narrower than a screen pixel aliases into moiré stripes: past ~1/5 of a cell per pixel
+           the grid gives way to its average (the dimming it causes), and returns as the lens gets close */
+        vec2 fwc = fwidth(gp); float aa = smoothstep(0.08, 0.26, max(fwc.x, fwc.y));
+        vec3 src = texture2D(uGame, gpix).rgb;
+        if (mode < 0.5) {            /* Pocket native: pixel-perfect ×10 scaling on a 1600 × 1440 panel */
+          return toLin(src);
+        } else if (mode < 1.5) {     /* GB: four greens, dot gaps, pixel shadow on the reflector, ghosting */
+          float l = dot(src, vec3(0.3, 0.59, 0.11)); float lp = dot(texture2D(uPrev, gpix).rgb, vec3(0.3,0.59,0.11));
+          vec3 c = dmg(mix(l, lp, 0.35)); vec3 bg = vec3(0.61, 0.70, 0.07);
+          if (uGBArt > 0.5) { float v = mix(gbLevel(src), gbLevel(texture2D(uPrev, gpix).rgb), 0.35); c = dmgI(floor(v) + step(fract(bay4(floor(gp))), fract(v))); }
+          float gap = grid(gp, max(fwc, vec2(1e-3)), 0.07);
+          vec2 sp = aa > 0.5 ? gpix : (floor(gp - vec2(0.12, -0.12)) + 0.5) / vec2(160.0, 144.0); /* the offset shadow's sub-cell edge aliases too */ float ls = dot(texture2D(uGame, sp).rgb, vec3(0.3,0.59,0.11));
+          vec3 shade = mix(vec3(1.0), vec3(0.86, 0.9, 0.8), 1.0 - smoothstep(0.2, 0.6, ls));
+          return toLin(mix(bg * 0.92, c, gap) * shade) * 0.9;
+        } else if (mode < 2.5) {     /* GBC: washed, warm-ish colour, thin grid */
+          /* the GBC's reflective TFT: washed, a warm cast, a lifted black and a grid you can see */
+          vec3 c = src; c = mix(vec3(dot(c, vec3(0.3,0.59,0.11))), c, 0.7) * vec3(1.04, 0.98, 0.86) * 0.86 + vec3(0.1, 0.09, 0.06);
+          float g = grid(gp, max(fwc, vec2(1e-3)), 0.06);
+          return toLin(c) * mix(0.72, 1.0, g);
+        } else {                     /* GBA: darker, cooler, a visible grid */
+          /* the GBA's unlit reflective screen: dark, low contrast, a cold cast */
+          vec3 c = mix(pow(src, vec3(1.35)), vec3(0.16, 0.19, 0.26), 0.32) * vec3(0.86, 0.94, 1.08);
+          float g = grid(gp, max(fwc, vec2(1e-3)), 0.05);
+          return toLin(c) * mix(0.55, 1.0, g) * 0.85;
+        }
+      }
+      void main(){
+        vec3 game = mix(look(uModeB, vUv), look(uMode, vUv), uModeT);
+        vec4 ui = texture2D(uUI, vUv); vec3 uiL = toLin(ui.rgb);
+        vec3 col = mix(game, uiL, uUIMix * ui.a);
+        /* the panel: RGB stripes at 1600 × 1440, resolved only when a subpixel covers enough screen */
+        vec2 pp = vUv * vec2(1600.0, 1440.0); float fw = max(fwidth(pp.x), fwidth(pp.y));
+        float see = smoothstep(0.34, 0.16, fw);   /* only once a subpixel is clearly resolved */
+        /* stripes box-filtered over the pixel's footprint (hard steps beat into moiré while a subpixel is 1-2 px) */
+        float X = pp.x * 3.0, w = max(fwidth(X), 1e-4), a0 = X - w * 0.5, a1 = X + w * 0.5;
+        vec3 stripe = vec3(colI(a1, 0.0) - colI(a0, 0.0), colI(a1, 1.0) - colI(a0, 1.0), colI(a1, 2.0) - colI(a0, 2.0)) / w;
+        float gapY = smoothstep(0.0, 0.12, fract(pp.y)) * smoothstep(1.0, 0.88, fract(pp.y));
+        gapY = mix(gapY, 0.9, smoothstep(0.12, 0.3, fwidth(pp.y)));  /* the row gap, same rule */
+        vec3 panel = mix(vec3(1.0), stripe * 3.0 * gapY, see);
+        col *= panel;
+        /* an LCD is never black: a faint lit floor when on */
+        col = col * uPower * uBright + vec3(0.004, 0.005, 0.007) * uPower * uFloor;
+        gl_FragColor = vec4(col, 1.0);
+        #include <colorspace_fragment>
+      }`,
+    toneMapped: false,
+  });
+
+  /* ── the game: LANTERN · a lantern carrier walks the night, fireflies to catch ── */
+  const PAL = { sky0: '#0b0d1f', sky1: '#182047', sky2: '#34407a', far: '#3b3470', mid: '#241f4a', near: '#141228', ground: '#08080f', moon: '#f2e7c4', star: '#c9cdea', lamp: '#f6c85f', body: '#e8e4f0', fly: '#b8f36a' };
+  const G = { x: 40, vx: 0, y: 0, vy: 0, cam: 0, t: 0, flies: [], auto: true, idle: 0, face: 1 };
+  for (let i = 0; i < 14; i++) G.flies.push({ x: 60 + i * 47 + _hash(i, 1, 3) * 30, y: 40 + _hash(i, 2, 3) * 50, on: true, ph: _hash(i, 3, 3) * 6.28 });
+  const hNoise = (x, s, f) => _vnoise(((x / 600) % 1 + 1) % 1, 0.5, f, s);
+  function ground(x) { return 118 + Math.round(6 * Math.sin(x * 0.03) + 4 * Math.sin(x * 0.071)); }
+
+  function drawGame(dt) {
+    const I = SCREEN.input; G.t += dt;
+    const any = I.left || I.right || I.up || I.a;
+    if (any) { G.auto = false; G.idle = 0; } else { G.idle += dt; if (G.idle > 6) G.auto = true; }
+    const dir = G.auto ? 1 : (I.right ? 1 : 0) - (I.left ? 1 : 0);
+    G.vx += (dir * 38 - G.vx) * Math.min(1, dt * 8); if (dir) G.face = dir;
+    G.x += G.vx * dt;
+    const gy = ground(G.x);
+    if ((I.a || I.up || (G.auto && Math.sin(G.t * 0.9) > 0.995)) && G.y >= 0) G.vy = -95;
+    G.vy += 260 * dt; G.y = Math.min(0, G.y + G.vy * dt);
+    if (G.y >= 0) G.vy = 0;
+    G.cam += (G.x - 60 - G.cam) * Math.min(1, dt * 4);
+    /* sky bands */
+    const bands = [PAL.sky0, PAL.sky1, PAL.sky2];
+    for (let y = 0; y < GH; y += 2) { gx.fillStyle = bands[Math.min(2, Math.floor(y / 36))]; gx.fillRect(0, y, GW, 2); }
+    /* stars (twinkle) */
+    for (let i = 0; i < 40; i++) { const sx = ((_hash(i, 7, 1) * 400 - G.cam * 0.05) % GW + GW) % GW, sy = _hash(i, 8, 1) * 60; if (Math.sin(G.t * 3 + i) > -0.6) { gx.fillStyle = PAL.star; gx.fillRect(sx | 0, sy | 0, 1, 1); } }
+    /* moon */
+    gx.fillStyle = PAL.moon; for (let y = -6; y <= 6; y++) for (let x = -6; x <= 6; x++) if (x * x + y * y <= 36 && (x + 2) * (x + 2) + (y - 1) * (y - 1) > 20) gx.fillRect(122 + x, 22 + y, 1, 1);
+    /* three parallax ridges */
+    const ridge = (col, base, amp, par, seed, freq) => { gx.fillStyle = col; for (let x = 0; x < GW; x++) { const wx = x + G.cam * par; const h = base - amp * hNoise(wx, seed, freq); gx.fillRect(x, h | 0, 1, GH - (h | 0)); } };
+    ridge(PAL.far, 92, 30, 0.15, 3, 6); ridge(PAL.mid, 104, 22, 0.35, 7, 9); ridge(PAL.near, 116, 12, 0.6, 11, 14);
+    /* ground */
+    gx.fillStyle = PAL.ground; for (let x = 0; x < GW; x++) { const h = ground(x + G.cam); gx.fillRect(x, h, 1, GH - h); }
+    /* fireflies */
+    for (const f of G.flies) {
+      if (f.x < G.cam - 40) { f.x += 47 * 14; f.on = true; }
+      const sx = f.x - G.cam, sy = f.y + Math.sin(G.t * 2 + f.ph) * 3;
+      if (!f.on || sx < -2 || sx > GW + 2) continue;
+      if (Math.abs(sx - (G.x - G.cam)) < 7 && Math.abs(sy - (ground(G.x) + G.y - 12)) < 10) { f.on = false; SCREEN.score++; SCREEN.onCatch?.(); continue; }
+      if (Math.sin(G.t * 5 + f.ph) > -0.3) { gx.fillStyle = PAL.fly; gx.fillRect(sx | 0, sy | 0, 1, 1); gx.fillStyle = 'rgba(184,243,106,0.35)'; gx.fillRect((sx | 0) - 1, sy | 0, 3, 1); gx.fillRect(sx | 0, (sy | 0) - 1, 1, 3); }
+    }
+    /* the walker + lantern glow */
+    const hx = (G.x - G.cam) | 0, hy = (gy + G.y) | 0;
+    const glow = gx.createRadialGradient(hx + 4 * G.face, hy - 9, 1, hx + 4 * G.face, hy - 9, 22);
+    glow.addColorStop(0, 'rgba(246,200,95,0.45)'); glow.addColorStop(1, 'rgba(246,200,95,0)');
+    gx.fillStyle = glow; gx.fillRect(hx - 30, hy - 40, 60, 50);
+    const step = Math.abs(G.vx) > 4 ? (Math.floor(G.t * 8) % 2) : 0;
+    const spr = ['.bb.', 'bbbb', '.bb.', 'bbbb', '.bb.', step ? 'b..b' : '.bb.'];
+    gx.fillStyle = PAL.body; spr.forEach((r, y) => [...r].forEach((c, x) => { if (c === 'b') gx.fillRect(hx - 2 + (G.face < 0 ? 3 - x : x), hy - 6 + y, 1, 1); }));
+    gx.fillStyle = PAL.lamp; gx.fillRect(hx + 3 * G.face - (G.face < 0 ? 1 : 0), hy - 10, 2, 2);
+    /* HUD */
+    gx.fillStyle = '#e8e4f0'; gx.font = '8px Silkscreen, monospace'; gx.textBaseline = 'top'; gx.fillText('✦ ' + String(SCREEN.score).padStart(3, '0'), 4, 3);
+  }
+
+  /* ── the UI layer: boot logo, then the title card ── */
+  function drawUI(t) {
+    ux.clearRect(0, 0, 800, 720);
+    let mix = 0;
+    if (t >= 0 && t < 3.4) {
+      mix = 1;
+      /* the logo crossfades straight into the title card (it used to fade to black, hold, then pop the title) */
+      ux.fillStyle = `rgba(0,0,0,${t < 2.9 ? 1 : 1 - 0.45 * Math.min(1, (t - 2.9) / 0.5)})`; ux.fillRect(0, 0, 800, 720);
+      const aT = Math.min(1, Math.max(0, (t - 2.75) / 0.6));
+      if (aT > 0) { ux.globalAlpha = aT; ux.fillStyle = '#f6c85f'; ux.font = '64px Silkscreen, monospace'; ux.textAlign = 'center'; ux.fillText('LANTERN', 400, 330);
+        ux.fillStyle = '#e8e4f0'; ux.font = '24px Silkscreen, monospace'; ux.fillText('PRESS  START', 400, 400); ux.globalAlpha = 1; ux.textAlign = 'left'; }
+      const a = Math.min(1, Math.max(0, (t - 0.35) / 0.5)) * (1 - Math.min(1, Math.max(0, (t - 2.6) / 0.5)));
+      /* the A: disc low-left, a capsule leaning left at the top */
+      ux.save(); ux.globalAlpha = a; ux.fillStyle = '#fff'; ux.translate(400, 360);
+      const s = 34 * (0.94 + 0.06 * Math.min(1, t / 1.2));
+      ux.beginPath(); ux.arc(-0.95 * s, 0.55 * s, 0.9 * s, 0, Math.PI * 2); ux.fill();
+      ux.save(); ux.translate(0.55 * s, -0.35 * s); ux.rotate(-28 * Math.PI / 180);
+      const w = 1.8 * s, h = 4.2 * s, r = w / 2;
+      ux.beginPath(); ux.moveTo(-w / 2, -h / 2 + r); ux.arc(0, -h / 2 + r, r, Math.PI, 0); ux.lineTo(w / 2, h / 2 - r); ux.arc(0, h / 2 - r, r, 0, Math.PI); ux.closePath(); ux.fill();
+      ux.restore(); ux.restore();
+    } else if (t >= 3.4 && t < 5.2) {
+      /* title card over the game */
+      mix = 1 - Math.min(1, Math.max(0, (t - 4.6) / 0.6));
+      ux.fillStyle = `rgba(0,0,0,${0.55 * mix})`; ux.fillRect(0, 0, 800, 720);
+      ux.globalAlpha = mix; ux.fillStyle = '#f6c85f'; ux.font = '64px Silkscreen, monospace'; ux.textAlign = 'center'; ux.fillText('LANTERN', 400, 330);
+      ux.fillStyle = '#e8e4f0'; ux.font = '24px Silkscreen, monospace'; ux.fillText('PRESS  START', 400, 400); ux.globalAlpha = 1; ux.textAlign = 'left';
+    }
+    return mix;
+  }
+
+  /* the sequencer: a 4 × 4 grid of steps, the playhead walking it. Pixel-exact on the 160 × 144 screen */
+  const LOOP = { x0: 36, y0: 22, cell: 20, gap: 4 };
+  SCREEN.cellAt = (u, v) => { const x = u * GW, y = v * GH; const cx = Math.floor((x - LOOP.x0) / (LOOP.cell + LOOP.gap)), cy = Math.floor((y - LOOP.y0) / (LOOP.cell + LOOP.gap));
+    if (cx < 0 || cx > 3 || cy < 0 || cy > 3) return -1; return cy * 4 + cx; };
+  function drawLoop(dt) {
+    const L = SCREEN.loop; L.t += dt; const stepDur = 60 / L.bpm / 4;
+    while (L.t >= stepDur) { L.t -= stepDur; L.i = (L.i + 1) % 16; SCREEN.onStep?.(L.i, L.steps[L.i], L.notes[L.i]); }
+    gx.fillStyle = '#0c1410'; gx.fillRect(0, 0, GW, GH);
+    gx.fillStyle = '#9bbc0f'; gx.font = '8px Silkscreen, monospace'; gx.textBaseline = 'top'; gx.fillText('CH1 PULSE', 36, 7); gx.fillText(String(L.bpm), 112, 7);
+    for (let k = 0; k < 16; k++) { const cx = k % 4, cy = (k / 4) | 0, x = LOOP.x0 + cx * (LOOP.cell + LOOP.gap), y = LOOP.y0 + cy * (LOOP.cell + LOOP.gap);
+      const on = L.steps[k], head = k === L.i;
+      gx.fillStyle = on ? (head ? '#e8ffb0' : '#9bbc0f') : (head ? '#5a7a32' : '#2e4626'); gx.fillRect(x, y, LOOP.cell, LOOP.cell);
+      if (on && L.notes[k]) { gx.fillStyle = head ? '#9bbc0f' : '#306230'; gx.fillRect(x + 4, y + LOOP.cell - 4 - Math.min(12, L.notes[k]), 3, Math.min(12, L.notes[k])); } }
+    gx.fillStyle = '#306230'; for (let k = 0; k < 16; k++) gx.fillRect(36 + k * 6, 124, 4, k === L.i ? 6 : 3);
+  }
+  let acc = 0;
+  function update(dt, time) {
+    const S = SCREEN;
+    if (S.bootT >= 0) S.bootT += dt;
+    const u = mat.uniforms;
+    u.uTime.value = time; u.uPower.value = S.power;
+    /* the game only runs once booted; the previous frame is copied first (ghosting) */
+    acc += dt;
+    if (S.power > 0.01 && S.bootT > 2.9 && acc > 1 / 60) {
+      px.drawImage(game, 0, 0); prevTex.needsUpdate = true;
+      if (S.app === 'loop') drawLoop(Math.min(0.05, acc)); else drawGame(Math.min(0.05, acc)); u.uGBArt.value = S.app === 'loop' ? 0 : 1; /* the sequencer is drawn in greens already */ gameTex.needsUpdate = true; acc = 0;
+    }
+    const m = drawUI(S.bootT < 0 ? -1 : S.bootT); u.uUIMix.value = m; uiTex.needsUpdate = true;
+    /* mode crossfade */
+    if (u.uMode.value !== S.mode) { u.uModeB.value = u.uMode.value; u.uMode.value = S.mode; u.uModeT.value = 0; }
+    u.uModeT.value = Math.min(1, u.uModeT.value + dt * 2.5);
+  }
+  /* draw one frame immediately so the screen is never empty on a paused tier */
+  drawGame(0.016); gameTex.needsUpdate = true;
+  return { material: mat, update };
+}
+/* ═══════════ POCKET · the scene ═══════════
+   One fixed canvas behind the page. The page asks for a camera station and gestures; the scene
+   renders. Units: the GLB root is a 0.001 empty, so parts are in millimetres and the world is metres.
+   glTF axes: X right, Y up, +Z out of the screen (the front face is at z = +11.05 mm, the cover glass 1.0 proud of it). */
+
+const POCKET = (window.POCKET = { ready: false });
+
+/* ── the studio: the press set's light, as an environment ──
+   A big soft key above-left, a long strip behind for the rim, a low cool bounce, black everywhere
+   else. Black soft-touch plastic shows NOTHING without bright shapes to reflect: the env is where its
+   form comes from, the direct lights only add the shadow. */
+function buildStudio(renderer, warm = 1, scrim = 0) {
+  const sc = new THREE.Scene();
+  const room = new THREE.Mesh(new THREE.SphereGeometry(8, 32, 16), new THREE.MeshBasicMaterial({ color: 0x020203, side: THREE.BackSide }));
+  sc.add(room);
+  const softbox = (w, h, color, i, pos, look, grad = true) => {
+    /* a softbox is brighter in the middle: draw a radial falloff so reflections have a real shape */
+    const c = document.createElement('canvas'); c.width = c.height = 128; const g = c.getContext('2d');
+    const r = g.createRadialGradient(64, 64, 4, 64, 64, 64); r.addColorStop(0, '#fff'); r.addColorStop(grad ? 0.55 : 0.9, '#ddd'); r.addColorStop(1, grad ? '#444' : '#ccc');
+    g.fillStyle = r; g.fillRect(0, 0, 128, 128);
+    const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: t, color, side: THREE.DoubleSide }));
+    m.material.color.multiplyScalar(i); m.position.set(...pos); m.lookAt(...look); sc.add(m); return m;
+  };
+  softbox(3.2, 2.2, new THREE.Color(1, 0.97, 0.93), 3.2 * warm, [-2.2, 2.6, 2.4], [0, 0, 0]);   /* key · above left, in front */
+  softbox(5.0, 0.35, new THREE.Color(1, 1, 1), 6.0, [0.3, 1.4, -3.2], [0, 0.2, 0], false);      /* rim strip · behind, long */
+  softbox(0.5, 3.4, new THREE.Color(0.9, 0.94, 1), 2.4, [3.0, 0.6, -0.6], [0, 0, 0], false);    /* edge strip · right, vertical */
+  softbox(2.4, 1.2, new THREE.Color(0.85, 0.9, 1), 0.5, [2.4, -0.4, 2.2], [0, 0, 0]);           /* low cool bounce */
+  softbox(1.6, 1.6, new THREE.Color(1, 1, 1), 1.4, [0.2, 3.4, 0.4], [0, 0, 0]);                 /* top */
+  /* a big front scrim with a hard diagonal edge: the gradient the press shots carry across the glass */
+  { const c = document.createElement('canvas'); c.width = c.height = 256; const g = c.getContext('2d');
+    /* dark lower-left, a soft-edged diagonal into a grey upper-right: seen in a vertical glass from any
+       camera height the reflection carries one clean diagonal, like the press hero */
+    const lg = g.createLinearGradient(0, 256, 256, 0); lg.addColorStop(0, '#000'); lg.addColorStop(0.47, '#000'); lg.addColorStop(0.5, '#808080'); lg.addColorStop(0.7, '#4a4a4a'); lg.addColorStop(1, '#222');
+    g.fillStyle = lg; g.fillRect(0, 0, 256, 256); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace;
+    const m = new THREE.Mesh(new THREE.PlaneGeometry(9, 7), new THREE.MeshBasicMaterial({ map: t, side: THREE.DoubleSide })); m.material.color.setScalar(scrim); m.position.set(0, -0.3, 3.4); m.lookAt(0, -0.1, 0); m.visible = scrim > 0; sc.add(m); }
+  /* (16×: glass reflects 4 % at normal incidence, so a scrim that should read in it must be bright) */
+  const pm = new THREE.PMREMGenerator(renderer); const rt = pm.fromScene(sc, 0.02); pm.dispose();
+  return rt.texture;
+}
+
+/* ── the room: the press hero stands the Pocket in a dark grid room. Floor + back wall carry a faint
+   grid (canvas), both fall to black with distance; the floor is a dark gloss that shows a soft mirror
+   image of the product (a flipped copy drawn under a graded, rough floor). ── */
+function gridTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 512; const g = c.getContext('2d');
+  g.fillStyle = '#000'; g.fillRect(0, 0, 512, 512);
+  g.strokeStyle = 'rgba(255,255,255,0.9)'; g.lineWidth = 2; g.strokeRect(0, 0, 512, 512);
+  const t = new THREE.CanvasTexture(c); t.wrapS = t.wrapT = THREE.RepeatWrapping; t.anisotropy = 16; t.colorSpace = THREE.SRGBColorSpace; return t;
+}
+
+const _c01 = x => Math.max(0, Math.min(1, x));
+const _sm = x => { x = _c01(x); return x * x * (3 - 2 * x); };
+const _lerp = (a, b, t) => a + (b - a) * t;
+/* ease-in-out back · zero speed at both ends, ~3.5 % overshoot (assembly film v3.1) */
+const _c2 = 0.7 * 1.525 * 1.525;
+const _back = x => x < 0.5 ? (Math.pow(2 * x, 2) * ((_c2 + 1) * 2 * x - _c2)) / 2 : (Math.pow(2 * x - 2, 2) * ((_c2 + 1) * (x * 2 - 2) + _c2) + 2) / 2;
+
+async function bootScene({ MODEL_URL, ENV_URL }) {
+  const canvas = document.getElementById('cv');
+  const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance', stencil: false });
+  /* a retina screen renders 4x the pixels through MSAA, AO and bloom (31-43 fps at 2x, M4 Pro): it starts on a 1.5x
+     buffer with every effect kept. Measuring first put the drop inside the visitor's first seconds (48 fps) */
+  const DSF = Math.min(window.devicePixelRatio || 1, 1.5); POCKET.dpr15 = (window.devicePixelRatio || 1) > 1.5;
+  renderer.setPixelRatio(DSF); renderer.setSize(innerWidth, innerHeight, false);
+  renderer.toneMapping = THREE.AgXToneMapping; renderer.toneMappingExposure = 1.0;
+  renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFShadowMap;
+  const gl = renderer.getContext(); const dbg = gl.getExtension('WEBGL_debug_renderer_info');
+  const gpuName = dbg ? gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL) : '';
+  const softGL = /swiftshader|llvmpipe|software|basic render/i.test(gpuName);
+  let quality = softGL ? 0 : 2; let dirty = 3;
+  /* software GL takes 1-4 s a frame whatever the resolution (the verify gate's SwiftShader; GPU-less machines):
+     every damped value crawls and every scroll event costs seconds. So it gets a POSTER: the hero drawn once,
+     after the boot has played on the LCD, then the loop stops and the page carries on as a page */
+  const POSTER = softGL; let posterAt = 0;
+  POCKET.gpu = gpuName; POCKET.quality = quality; POCKET.dirty = () => { dirty = 3; };
+
+  const scene = new THREE.Scene();
+  /* the backdrop: a studio gradient with one coloured glow, redrawn only when a section changes it.
+     Each chapter sets its own ground (dark room, grey studio, a transparent edition's glow, paper) */
+  const bgC = document.createElement('canvas'); bgC.width = 512; bgC.height = 512; const bgX = bgC.getContext('2d');
+  const bgTex = new THREE.CanvasTexture(bgC); bgTex.colorSpace = THREE.SRGBColorSpace; scene.background = bgTex;
+  let bgKey = '';
+  const drawBg = (top, bot, glow, gx, gy, gr, ga) => {
+    const k = [top, bot, glow, gx, gy, gr, ga].map(v => typeof v === 'number' ? v.toFixed(3) : v).join('|'); if (k === bgKey) return; bgKey = k;
+    const g = bgX.createLinearGradient(0, 0, 0, 512); g.addColorStop(0, top); g.addColorStop(1, bot); bgX.fillStyle = g; bgX.fillRect(0, 0, 512, 512);
+    if (ga > 0.002) { const r = bgX.createRadialGradient(gx * 512, gy * 512, 0, gx * 512, gy * 512, gr * 512); const c = new THREE.Color(glow);
+      r.addColorStop(0, `rgba(${c.r * 255 | 0},${c.g * 255 | 0},${c.b * 255 | 0},${ga})`); r.addColorStop(1, 'rgba(0,0,0,0)'); bgX.fillStyle = r; bgX.fillRect(0, 0, 512, 512); }
+    bgTex.needsUpdate = true; dirty = 3; };
+  POCKET.drawBg = drawBg; drawBg('#000000', '#000000', '#000000', 0.5, 0.5, 0.5, 0);
+  /* the environment is the Blender studio (model/env/studio.hdr, rendered from the device's centre), so the
+     page is lit exactly as the .blend is. The procedural studio is only a fallback if the file fails */
+  let env; const pmrem = new THREE.PMREMGenerator(renderer);
+  try { const hdr = await new HDRLoader().loadAsync(ENV_URL); hdr.mapping = THREE.EquirectangularReflectionMapping; env = pmrem.fromEquirectangular(hdr).texture; hdr.dispose(); }
+  catch (e) { console.warn('studio.hdr unavailable, procedural fallback', e); env = buildStudio(renderer); }
+  scene.environment = env; scene.environmentIntensity = 1;
+  /* the glass and the satin buttons see an extra front scrim the matte body must not: a bright diagonal
+     for the glass (4 % Fresnel needs a bright source), a gentler one for the button domes */
+  scene.environmentRotation = new THREE.Euler(0, 0, 0);
+  const camera = new THREE.PerspectiveCamera(22, innerWidth / innerHeight, 0.005, 20);
+
+  /* lights: the key casts the one soft shadow; a rim; the env does the modelling */
+  /* the Blender studio (the env) does the lighting; the key only casts the one contact shadow, faintly */
+  const key = new THREE.SpotLight(0xfff3e6, 0.8, 5, Math.PI / 6, 0.85, 1.4);
+  key.position.set(-0.55, 0.9, 0.75); key.castShadow = true;
+  key.shadow.mapSize.set(2048, 2048); key.shadow.bias = -0.00008; key.shadow.normalBias = 0.0006; key.shadow.radius = 6;
+  key.shadow.camera.near = 0.3; key.shadow.camera.far = 3;
+  const keyT = new THREE.Object3D(); keyT.position.set(0, -0.02, 0); scene.add(keyT); key.target = keyT; scene.add(key);
+  const rim = new THREE.DirectionalLight(0xffffff, 0); rim.position.set(0.3, 0.6, -1.0); scene.add(rim);
+  /* a front fill for bare metal (the Aluminum edition): a flat bead-blasted face only brightens when a light sits near the lens */
+  /* the studio plate: a big soft key from the front and above so a black shell shows every edge on a light ground */
+  const plateKey = new THREE.DirectionalLight(0xffffff, 0); plateKey.position.set(0.15, 0.9, 1.2); scene.add(plateKey);
+  const plateFill = new THREE.DirectionalLight(0xf2f4ff, 0); plateFill.position.set(-1.0, 0.2, 0.6); scene.add(plateFill);
+  const metalFill = new THREE.DirectionalLight(0xf4f6fa, 0); metalFill.position.set(-0.35, 0.45, 1.0); scene.add(metalFill); POCKET.metalFill = metalFill;
+  /* the side kicker: from behind and right, at the mirror angle of the hero lens off the right-hand side, so that side
+     reads as a lit silver band while the face stays dark (the hero intro film's light; the page matches it at the hand-over) */
+  const sideKey = new THREE.DirectionalLight(0xf6f7fa, 0); sideKey.position.set(0.45, -0.12, -0.89); scene.add(sideKey); POCKET.sideKey = sideKey; POCKET.sideI = 3;
+  /* it comes from behind, so the body must shadow the controls on the face, or their right-hand walls light up as white rims */
+  sideKey.castShadow = true; sideKey.shadow.mapSize.set(1024, 1024); sideKey.shadow.bias = -0.0002; sideKey.shadow.normalBias = 0.0008;
+  Object.assign(sideKey.shadow.camera, { left: -0.11, right: 0.11, top: 0.13, bottom: -0.13, near: 0.4, far: 1.6 }); sideKey.shadow.camera.updateProjectionMatrix();
+  /* the map is only updated while the light is on, and it is only ALLOCATED by an update: a visitor who lands past
+     the hero (a reload mid-page) never had one, and every lit material sampled a missing map and drew nothing */
+  sideKey.shadow.needsUpdate = true;
+
+  /* the room */
+  const FLOOR_Y = -0.0745 - 0.03;
+  const grid = gridTexture();
+  const floorMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: { uGrid: { value: grid }, uCell: { value: 0.12 }, uLine: { value: 0.012 }, uFade: { value: 2.2 }, uMirror: { value: 0.28 }, uLight: { value: new THREE.Vector2(0, 0.05) }, uTint: { value: new THREE.Vector3() }, uRoom: { value: 1 } },
+    vertexShader: `varying vec3 vW; void main(){ vec4 w = modelMatrix * vec4(position,1.0); vW = w.xyz; gl_Position = projectionMatrix * viewMatrix * w; }`,
+    fragmentShader: `varying vec3 vW; uniform float uCell, uLine, uFade, uMirror, uRoom; uniform vec2 uLight; uniform vec3 uTint;
+      void main(){
+        vec2 p = vW.xz / uCell; vec2 d = abs(fract(p - 0.5) - 0.5) / fwidth(p);
+        float line = 1.0 - min(min(d.x, d.y), 1.0);
+        float r = length(vW.xz - uLight);
+        float fall = exp(-r * r * uFade);
+        /* the floor itself: near black, a soft pool of the key light, the grid lines faint */
+        vec3 col = vec3(0.0015) + vec3(0.016, 0.0155, 0.015) * fall + vec3(uLine) * line * (0.15 + 0.85 * fall) + uTint * line * 0.06 * (0.25 + 0.75 * fall);
+        /* alpha: opaque far away, partially transparent near the product so the mirror copy reads */
+        float a = mix(1.0 - uMirror, 1.0, smoothstep(0.0, 0.35, r));
+        gl_FragColor = vec4(col, a * uRoom);
+      }`,
+  });
+  const floor = new THREE.Mesh(new THREE.PlaneGeometry(12, 12), floorMat); floor.rotation.x = -Math.PI / 2; floor.position.y = FLOOR_Y; floor.renderOrder = 2; scene.add(floor);
+  const shadowMat = new THREE.ShadowMaterial({ opacity: 0.55, color: 0x000000, depthWrite: false });
+  const shadowCatcher = new THREE.Mesh(new THREE.PlaneGeometry(4, 4), shadowMat); shadowCatcher.rotation.x = -Math.PI / 2; shadowCatcher.position.y = FLOOR_Y + 0.0002; shadowCatcher.receiveShadow = true; shadowCatcher.renderOrder = 3; scene.add(shadowCatcher);
+  const wallMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false,
+    uniforms: { uCell: { value: 0.12 }, uLine: { value: 0.01 }, uTint: { value: new THREE.Vector3() }, uRoom: { value: 1 } },
+    vertexShader: `varying vec3 vW; void main(){ vec4 w = modelMatrix * vec4(position,1.0); vW = w.xyz; gl_Position = projectionMatrix * viewMatrix * w; }`,
+    fragmentShader: `varying vec3 vW; uniform float uCell, uLine, uRoom; uniform vec3 uTint;
+      void main(){ vec2 p = vW.xy / uCell; vec2 d = abs(fract(p - 0.5) - 0.5) / fwidth(p); float line = 1.0 - min(min(d.x, d.y), 1.0);
+        float fall = exp(-(vW.x * vW.x) * 1.4 - pow(max(0.0, vW.y - ${(-0.1045).toFixed(4)}), 2.0) * 2.0);
+        gl_FragColor = vec4(vec3(0.001) + vec3(0.006) * fall + vec3(uLine) * line * fall + uTint * line * 0.05 * (0.3 + 0.7 * fall), uRoom); }`,
+  });
+  const wall = new THREE.Mesh(new THREE.PlaneGeometry(12, 6), wallMat); wall.position.set(0, FLOOR_Y + 3, -0.55); scene.add(wall);
+  /* the wordmark standing in the room, behind the product: type crossing the subject, lit by the room */
+  const wordC = document.createElement('canvas'); wordC.width = 2048; wordC.height = 640;
+  { const g = wordC.getContext('2d'); g.clearRect(0, 0, 2048, 640); g.fillStyle = '#ffffff';
+    g.font = '560 520px "Instrument Sans"'; g.fontStretch = 'condensed';
+    try { g.fontStretch = 'semi-condensed'; } catch (e) {}
+    g.textAlign = 'center'; g.textBaseline = 'alphabetic'; g.letterSpacing = '-18px'; g.fillText('Pocket', 1024, 520); }
+  const wordTex = new THREE.CanvasTexture(wordC); wordTex.colorSpace = THREE.SRGBColorSpace; wordTex.anisotropy = 8;
+  const wordMat = new THREE.MeshBasicMaterial({ map: wordTex, transparent: true, depthWrite: false, color: new THREE.Color(0.012, 0.012, 0.014), opacity: 0 });
+  const word = new THREE.Mesh(new THREE.PlaneGeometry(0.62, 0.62 * 640 / 2048), wordMat); word.position.set(0, 0.02, -0.16); word.renderOrder = 1; scene.add(word);
+
+  /* ── the model ── */
+  const draco = new DRACOLoader().setDecoderPath(import.meta.resolve('three').replace(/build\/three\.module\.js$/, 'examples/jsm/libs/draco/gltf/'));
+  const loader = new GLTFLoader().setDRACOLoader(draco);
+  const bar = document.querySelector('#loading i'); if (bar) bar.style.width = '35%';
+  const gltf = await loader.loadAsync(MODEL_URL, e => { if (bar && e.total) bar.style.width = (35 + 40 * e.loaded / e.total) + '%'; });
+  const root = gltf.scene;
+  const rig = new THREE.Group(); const pose = new THREE.Group(); rig.add(pose); pose.add(root); scene.add(rig);
+  rig.position.y = 0.0;
+
+  /* every look comes from the GLB: the materials authored in Blender, found by name. The finishes the page
+     switches to (white, aluminium, the transparent editions, the white glass ink) ship as Swatch_* nodes */
+  const G = {}; root.traverse(o => { if (o.isMesh && o.material?.name && !G[o.material.name]) G[o.material.name] = o.material; });
+  /* glTF maps load with anisotropy 1: a thin print line at a grazing angle breaks into dashes */
+  { const an = Math.min(16, renderer.capabilities.getMaxAnisotropy()); for (const m of Object.values(G)) for (const k of ['map', 'normalMap', 'roughnessMap', 'metalnessMap', 'emissiveMap', 'alphaMap']) if (m[k]) { m[k].anisotropy = an; m[k].needsUpdate = true; } }
+  root.traverse(o => { if (/^Swatch_/.test(o.name)) o.visible = false; });
+  /* the glass ink's screen window is a MASK (alpha test): with no MSAA its edge steps, and the display module's frame
+     behind shows through as a dashed line. Blended, the edge is filtered and the frame reads as the one thin line it is */
+  for (const m of Object.values(G)) if (/^GlassPrint/.test(m.name) && m.alphaTest > 0) { m.alphaTest = 0; m.transparent = true; m.depthWrite = true; m.needsUpdate = true; }
+  const COLORWAYS = { black: { body: G.Body, button: G.Button, print: G.GlassPrint }, white: { body: G.BodyWhite, button: G.ButtonWhite, print: G.GlassPrintWhite }, aluminium: { body: G.BodyAluminium, button: G.ButtonAluminium, print: G.GlassPrint } };
+  const M = {
+    body: G.Body, button: G.Button, mark: G.Mark, power: G.Power, glass: G.Glass, print: G.GlassPrint, bed: G.DisplayBed, cart: G.CartPlastic, label: G.CartLabel,
+    screw: G.Screw, port: G.PortDark, led: G.Led, board: G.Board, chip: G.Chip, metal: G.Metal, gold: G.Gold, battery: G.Battery, flex: G.Flex, rubber: G.Rubber,
+  };
+  /* the page animates these: keep what it touches present and unshared with the swatches */
+  M.glass.depthWrite = false;
+  /* transparency does not scale a physical reflection: at full strength the cover glass laid a grey sheet of studio
+     over every screen seen from above (loop). An explicit env map at 0.35 (rotation kept in step below) */
+  M.glass.envMap = env; M.glass.envMapIntensity = 0.35; M.power.emissiveIntensity = 0; M.led.emissiveIntensity = 0;
+  /* the black finish kept aside, so switching back restores exactly what Blender exported */
+  const ORIG = { body: G.Body.clone(), button: G.Button.clone(), print: G.GlassPrint.clone(), ms: G.MarkSatin ? G.MarkSatin.color.clone() : null };
+  /* GLTFLoader clones a material (normalScale.y flipped) for meshes without tangents, so 'Button' is TWO instances:
+     the d-pad, shoulders, volume and button tabs sat on the second and missed every identity check (they stayed
+     black on the white and aluminum editions, were never clipped by the x-ray, stayed black on player two) */
+  const SIB = {}; root.traverse(o => { if (o.isMesh && o.material?.name) (SIB[o.material.name] ||= new Set()).add(o.material); });
+  const sibs = m => [...(SIB[m.name] || [m])], isM = (o, m) => o.material === m || (m && o.material?.name === m.name);
+  const screen = buildScreen();
+  const parts = {}; const ctrls = {}; const meshes = [];
+  root.traverse(o => {
+    if (o.isMesh) {
+      meshes.push(o); o.castShadow = true; o.receiveShadow = true;
+      const n = o.material?.name || '';
+      /* the one material the page owns: the live LCD. Everything else is the GLB's */
+      if (n === 'Display') o.material = screen.material;
+      if (n === 'Glass' || n === 'GlassPrint' || n === 'Display' || n === 'DisplayBed') o.castShadow = false;
+    }
+    parts[o.name] = o;
+    const cm = /^CTRL_(.+)$/.exec(o.name); if (cm) { ctrls[cm[1]] = o; o.userData.rest = o.position.clone(); o.userData.restQ = o.quaternion.clone(); }
+  });
+  /* the inside: drawn only when it can be seen (the exploded view, a transparent edition). Sealed in the
+     shell it is 45k triangles of nothing, and every copy of the Pocket (mirror, four views, player two)
+     drops it for good */
+  const INTERNAL = /^(Board|Chips|ChipLabels|Silk|Parts|Pins|Membranes|CartConnector|Speakers|DisplayModule|Flex|Battery)(\d+)?$/;
+  const internals = meshes.filter(o => INTERNAL.test(o.name));
+  const stripCopy = copy => copy.traverse(o => { if (o.isMesh && (INTERNAL.test(o.name) || o.material === M.clear || o.material === M.clearBtn)) o.visible = false; });
+  /* ── the glass's reflection, art-directed: an additive layer on the glass that reflects ONE soft
+     diagonal scrim, parallax-correct (the reflection vector is taken in the glass's own frame) and
+     Fresnel-weighted. A physical 4 % glass needs a scene-bright source to show anything, which
+     washed the whole screen grey; this is what a product photographer does with a flag and a scrim. ── */
+  const reflMat = new THREE.ShaderMaterial({
+    transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4,
+    /* uEdge is an ANGULAR width: at 0.18 the whole glass sat inside the band from any normal distance and the screen
+       read through a grey fog; at 0.05 it is a streak of light that crosses the glass */
+    uniforms: { uSweep: { value: 0.3 }, uAmt: { value: 1 }, uEdge: { value: 0.05 } },
+    vertexShader: `varying vec3 vN; varying vec3 vV; varying vec3 vL;
+      void main(){ vec4 w = modelMatrix * vec4(position, 1.0); vN = normalize(mat3(modelMatrix) * normal); vV = normalize(cameraPosition - w.xyz);
+        /* the view direction in the glass's own frame */
+        vL = normalize(inverse(mat3(modelMatrix)) * (cameraPosition - w.xyz));
+        gl_Position = projectionMatrix * viewMatrix * w; }`,
+    fragmentShader: `varying vec3 vN; varying vec3 vV; varying vec3 vL; uniform float uSweep, uAmt, uEdge;
+      void main(){
+        vec3 Rl = reflect(-normalize(vL), vec3(0.0, 0.0, 1.0));
+        vec2 s = Rl.xy / max(Rl.z, 0.08);
+        float d = s.x * 0.8 + s.y * 1.0 + uSweep;            /* the diagonal, moving with the sweep */
+        /* one narrow soft streak, not a half-plane: the panel behind stays black */
+        float band = exp(-d * d / (uEdge * uEdge * 0.35)) + 0.12 * exp(-(d - uEdge * 1.6) * (d - uEdge * 1.6) / (uEdge * uEdge * 0.08));
+        float fres = 0.04 + 0.96 * pow(1.0 - clamp(dot(normalize(vN), normalize(vV)), 0.0, 1.0), 5.0);
+        /* grazing views see the glass edge-on: fade the scrim out there or it reads as a grey slab */
+        float face = smoothstep(0.12, 0.45, abs(dot(normalize(vN), normalize(vV))));
+        float a = band * (0.03 + fres * 0.5) * uAmt * face;
+        gl_FragColor = vec4(vec3(0.92, 0.94, 1.0) * a, 1.0);
+      }`,
+  });
+  const glassMesh = parts.Glass;
+  if (glassMesh) { const r = new THREE.Mesh(glassMesh.geometry, reflMat); r.renderOrder = 20; r.castShadow = false; glassMesh.add(r); POCKET.refl = reflMat; }
+
+
+  /* ── the mirror copy on the floor (drawn under the semi-transparent floor) ── */
+  const mirror = root.clone(true);
+  const mirrorWrap = new THREE.Group(); mirrorWrap.add(mirror); scene.add(mirrorWrap);
+  mirror.traverse(o => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; } }); stripCopy(mirror);
+  const mirrorParts = {}; mirror.traverse(o => { mirrorParts[o.name] = o; });
+
+  /* ── the transparent editions: every shell and control gets a clear twin sharing its geometry. One
+     plane splits them: above it the opaque part draws, below it the clear one, so sweeping the plane
+     down the device is an x-ray wipe. The plane lives in the rig's frame (it moves with the product). ── */
+  renderer.localClippingEnabled = true;
+  const scanPlane = new THREE.Plane(new THREE.Vector3(0, -1, 0), 99), scanInv = new THREE.Plane(new THREE.Vector3(0, 1, 0), -99);
+  /* the transparent editions are the Blender ClearShell / ClearButton materials; the page adds only the
+     wall thickness for refraction and the clip plane of the x-ray wipe */
+  M.clear = G.ClearShell.clone(); M.clear.thickness = 0.0022; M.clear.clippingPlanes = [scanInv]; M.clear.side = THREE.DoubleSide;
+  M.clearBtn = G.ClearButton.clone(); M.clearBtn.thickness = 0.0022; M.clearBtn.clippingPlanes = [scanInv];
+  /* clipShadows: without it the clipped-away opaque shell still casts its shadow and the inside stays black */
+  const MS = G.MarkSatin || null; /* the fpga mark's floors: part of the shell, so clipped, made clear and recoloured with it */
+  for (const m of [M.body, M.button, M.power, MS].filter(Boolean)) for (const s of sibs(m)) { s.clippingPlanes = [scanPlane]; s.clipShadows = true; }
+  /* a raking light for the inside of a transparent edition, up only while the shell is clear */
+  const xray = new THREE.PointLight(0xfff4e8, 0, 0.6, 1.6); xray.position.set(0.02, 0.17, 0.05); scene.add(xray);
+  const xray2 = new THREE.PointLight(0xe8f0ff, 0, 0.5, 1.6); xray2.position.set(-0.16, -0.02, 0.025); scene.add(xray2);
+  const clearTwins = [];
+  for (const o of meshes.slice()) if (isM(o, M.body) || isM(o, M.button) || isM(o, M.power) || (MS && isM(o, MS))) {
+    const c = new THREE.Mesh(o.geometry, isM(o, M.body) || (MS && isM(o, MS)) ? M.clear : M.clearBtn); c.castShadow = false; c.visible = false; o.add(c); clearTwins.push(c); }
+  /* ── the four views (the press 'All Angles' plate): three static copies stand beside the live one,
+     turned to left side, back and right side. They slide in from the right on st.lineup ── */
+  const lineup = new THREE.Group(); scene.add(lineup); lineup.visible = false;
+  const VIEWS = [{ yaw: -Math.PI / 2, x: 0.105 }, { yaw: Math.PI, x: 0.19 }, { yaw: Math.PI / 2, x: 0.285 }];
+  for (const v of VIEWS) { const c = root.clone(true); stripCopy(c); c.traverse(o => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; } }); const g = new THREE.Group(); g.add(c); g.rotation.y = v.yaw; g.userData.v = v; lineup.add(g); }
+  POCKET.lineup = lineup;
+  /* ── two players (the press 2-player shot): a white Pocket lies beside the live one, a link cable
+     runs port to port. The cable is built once in the final layout and drawn in by its draw range ── */
+  const p2 = new THREE.Group(); scene.add(p2); p2.visible = false;
+  const p2m = root.clone(true); stripCopy(p2m); const p2pose = new THREE.Group(); p2pose.rotation.x = -Math.PI / 2; p2pose.add(p2m); p2.add(p2pose);
+  const W2 = { body: G.BodyWhite.clone(), button: G.ButtonWhite.clone(), print: G.GlassPrintWhite.clone() };
+  for (const m of Object.values(W2)) m.clippingPlanes = [];
+  p2m.traverse(o => { if (!o.isMesh) return; if (o.material === M.clear || o.material === M.clearBtn) { o.visible = false; return; }
+    if (MS && isM(o, MS)) { o.material = (W2.ms ||= Object.assign(MS.clone(), {})).clone(); o.material.color.copy(W2.body.color).multiplyScalar(0.86); o.material.clippingPlanes = []; o.castShadow = true; return; }
+    const w = isM(o, M.body) ? W2.body : isM(o, M.button) ? W2.button : isM(o, M.print) ? W2.print : null;
+    if (w) { let m = w; if (o.material.normalScale && o.material.normalScale.y < 0 && w.normalScale) { m = (w.userData.flip ||= w.clone()); m.normalScale.y = -Math.abs(w.normalScale.y); } o.material = m; } o.castShadow = true; });
+  const cableMat = new THREE.MeshPhysicalMaterial({ color: 0x0c0c0e, roughness: 0.42, clearcoat: 0.3, clearcoatRoughness: 0.4 });
+  let cable = null; POCKET.p2 = p2;
+  const buildCable = () => {
+    rig.updateMatrixWorld(true); p2.updateMatrixWorld(true);
+    const a = new THREE.Vector3(), b = new THREE.Vector3(); new THREE.Box3().setFromObject(parts.LinkWell).getCenter(a); new THREE.Box3().setFromObject(p2m.getObjectByName('LinkWell')).getCenter(b);
+    const floorY = FLOOR_Y + 0.0022, outA = new THREE.Vector3(0, 0, 1).applyQuaternion(rig.quaternion), outB = new THREE.Vector3(0, 0, 1).applyQuaternion(p2.quaternion);
+    const P = [a, a.clone().addScaledVector(outA, 0.012), a.clone().addScaledVector(outA, 0.05).setY(floorY),
+      new THREE.Vector3(a.x - 0.012, floorY, a.z + 0.075), new THREE.Vector3((a.x + b.x) / 2 + 0.01, floorY, Math.max(a.z, b.z) + 0.095),
+      new THREE.Vector3(b.x + 0.03, floorY, b.z + 0.07), b.clone().addScaledVector(outB, 0.05).setY(floorY), b.clone().addScaledVector(outB, 0.012), b];
+    const curve = new THREE.CatmullRomCurve3(P, false, 'centripetal', 0.5);
+    cable = new THREE.Mesh(new THREE.TubeGeometry(curve, 360, 0.0016, 10, false), cableMat); cable.castShadow = true; cable.receiveShadow = true; scene.add(cable);
+    cable.userData.n = cable.geometry.index.count;
+    /* the sync pulse: a short lit stretch of a slightly fatter tube that runs port to port */
+    const pulse = new THREE.Mesh(new THREE.TubeGeometry(curve, 360, 0.00205, 10, false), new THREE.MeshBasicMaterial({ color: 0xb8f04a, transparent: true, opacity: 0.95, blending: THREE.AdditiveBlending, depthWrite: false, toneMapped: false }));
+    pulse.visible = false; pulse.renderOrder = 6; cable.add(pulse); cable.userData.pulse = pulse;
+    /* the plugs: moulded housings seated in each port */
+    for (const [pt, dir, q] of [[a, outA, rig.quaternion], [b, outB, p2.quaternion]]) {
+      const plug = new THREE.Mesh(new THREE.BoxGeometry(0.0105, 0.0056, 0.011), cableMat); plug.position.copy(pt).addScaledVector(dir, 0.005); plug.quaternion.copy(q); plug.castShadow = true; cable.add(plug);
+      const boot = new THREE.Mesh(new THREE.CylinderGeometry(0.0022, 0.0032, 0.008, 16), cableMat); boot.position.copy(pt).addScaledVector(dir, 0.0135); boot.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir); cable.add(boot); }
+    };
+  /* ── the cartridge adapters (press shot 13): clear shells with a board inside and gold edge fingers.
+     Game Gear, Neo Geo Pocket Color, Atari Lynx. They drift around the Pocket in the cartridge chapter ── */
+  const adapters = new THREE.Group(); scene.add(adapters); adapters.visible = false;
+  {
+    const clearA = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.06, transmission: 1, thickness: 0.004, ior: 1.49, attenuationColor: new THREE.Color(0xe4e6ea), attenuationDistance: 0.05, specularIntensity: 0.5 /* a flat face turned to the softbox read as a milky block */, clearcoat: 0.12, clearcoatRoughness: 0.08, envMapIntensity: 1.5 /* a full clearcoat doubled every glint into a blown white block */, side: THREE.DoubleSide });
+    const goldF = new THREE.MeshPhysicalMaterial({ color: 0xe8b85e, metalness: 1, roughness: 0.22 });
+    const pcbFor = (code, sys) => { const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const g = c.getContext('2d');
+      g.fillStyle = '#0a100c'; g.fillRect(0, 0, 1024, 512); g.fillStyle = 'rgba(255,255,255,.08)'; for (let i = 0; i < 40; i++) g.fillRect(80 + i * 22, 120 + (i % 5) * 30, 1.5, 180);
+      g.fillStyle = '#c9ccd2'; g.font = '500 44px "JetBrains Mono", monospace'; g.fillText('Pocket Adapter', 70, 360); g.font = '500 30px "JetBrains Mono", monospace'; g.fillStyle = '#8a8d94'; g.fillText(code + '  ' + sys, 70, 410);
+      const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; /* solder mask: a dim dielectric with a tight coat; at full specular its flat face mirrored the studio as a grey sheet and lost the label */
+      return new THREE.MeshPhysicalMaterial({ map: t, roughness: 0.35, specularIntensity: 0.3, clearcoat: 0.35, clearcoatRoughness: 0.04 }); };
+    const A = [{ code: 'AP_A01', sys: 'GG', pos: [-0.108, 0.022, -0.05], rot: [0.45, 2.75, 0.3] }, { code: 'AP_A02', sys: 'NGP + NGPC', pos: [0.112, 0.036, -0.02], rot: [-0.3, 3.45, -0.35] }, { code: 'AP_A03', sys: 'LYNX', pos: [0.1, -0.02, -0.06], rot: [0.2, 3.05, 0.45] }];
+    for (const d of A) {
+      const g = new THREE.Group(); const W = 0.058, H = 0.03, D = 0.012;
+      const box = new THREE.Mesh(new RoundedBoxGeometry(W, H, D, 3, 0.0012), clearA); g.add(box);
+      const tongue = new THREE.Mesh(new RoundedBoxGeometry(W * 0.72, 0.011, D * 0.5, 2, 0.0006), clearA); tongue.position.y = -H / 2 - 0.0055; g.add(tongue);
+      const pcb = new THREE.Mesh(new THREE.BoxGeometry(W * 0.9, H * 0.84 + 0.01, 0.0009), pcbFor(d.code, d.sys)); pcb.position.y = -0.004; g.add(pcb);
+      const fin = new THREE.InstancedMesh(new THREE.BoxGeometry(0.0007, 0.0065, 0.0003), goldF, 32);
+      const m4 = new THREE.Matrix4(); for (let i = 0; i < 32; i++) { m4.makeTranslation(-W * 0.33 + i * (W * 0.66 / 31), -H / 2 - 0.0075, 0.0006); fin.setMatrixAt(i, m4); } g.add(fin);
+      const chip = new THREE.Mesh(new THREE.BoxGeometry(0.0075, 0.0075, 0.0012), M.chip); chip.position.set(0.006, 0.004, 0.001); g.add(chip);
+      g.position.set(...d.pos); g.rotation.set(...d.rot); g.userData.d = d; adapters.add(g);
+    }
+  }
+  POCKET.adapters = adapters;
+  /* ── the hard case (press shot 10): two clear polycarbonate trays that close around Pocket. Built in the
+     model's frame (mm, +Z out of the screen) so they lie down with it ── */
+  const caseG = new THREE.Group(); (parts.POCKET || root).add(caseG); caseG.visible = false; /* the mm-scaled node, not the glTF scene */
+  {
+    /* clear polycarbonate as reflections only: black diffuse, premultiplied so the reflections add at full strength
+       and what is behind shows through. Physical specular is NOT scaled by opacity, so its strength is the only dial:
+       at full specular + clearcoat the studio's softboxes washed the screen out through the lid. Transmission read as a frosted white slab with a blocky edge (it samples a
+       buffer without the other transmissive faces) */
+    const cm = new THREE.MeshPhysicalMaterial({ color: 0x000000, roughness: 0.14, metalness: 0, clearcoat: 0, specularIntensity: 0.28, transparent: true, opacity: 0.08, premultipliedAlpha: true, depthWrite: false, side: THREE.DoubleSide });
+    const CW = 92, CH = 156, T = 1.6, WALL = 10;
+    const tray = sgn => { const g = new THREE.Group();
+      const plate = new THREE.Mesh(new RoundedBoxGeometry(CW, CH, T, 4, 3.2), cm); plate.position.z = sgn * (WALL - T / 2); g.add(plate);
+      for (const [w, h, x, y] of [[CW, T, 0, CH / 2 - T / 2], [CW, T, 0, -CH / 2 + T / 2], [T, CH - 2 * T, CW / 2 - T / 2, 0], [T, CH - 2 * T, -CW / 2 + T / 2, 0]]) {
+        const wall = new THREE.Mesh(new RoundedBoxGeometry(w, h, WALL, 2, 0.7), cm); wall.position.set(x, y, sgn * WALL / 2); g.add(wall); }
+      /* the hinge-side clips and a finger notch, like the press case */
+      for (const y of [-40, 40]) { const clip = new THREE.Mesh(new RoundedBoxGeometry(3.2, 18, WALL * 0.9, 2, 0.6), cm); clip.position.set(-CW / 2 - 1.2, y, sgn * WALL * 0.45); g.add(clip); }
+      g.userData.sgn = sgn; return g; };
+    caseG.add(tray(1), tray(-1));
+    caseG.traverse(o => { if (o.isMesh) { o.castShadow = false; o.renderOrder = 5; } });
+  }
+  /* a thin line of light rides the plane */
+  const scanLine = new THREE.Mesh(new THREE.PlaneGeometry(0.11, 0.0007), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }));
+  scanLine.visible = false; scene.add(scanLine);
+
+  /* ── post: AO for contact, DoF for macros, a whisper of bloom for the display ── */
+  /* multisampled: with antialias off on the canvas, a single-sampled composer broke every thin edge
+     (the 24 grip grooves) into dashes */
+  const rt = new THREE.WebGLRenderTarget(innerWidth * DSF, innerHeight * DSF, { type: THREE.HalfFloatType, samples: 4 });
+  const composer = new EffectComposer(renderer, rt);
+  composer.addPass(new RenderPass(scene, camera));
+  const gtao = new GTAOPass(scene, camera, innerWidth, innerHeight);
+  /* half resolution: at full retina size GTAO alone cost ~70 ms a frame (measured, M4 Pro, 2880 × 1800);
+     contact shade is soft by nature, a half-res buffer loses nothing visible */
+  { const full = gtao.setSize.bind(gtao); gtao.setSize = (w, h) => full(Math.round(w / 2), Math.round(h / 2)); gtao.setSize(innerWidth * DSF, innerHeight * DSF); }
+  gtao.updateGtaoMaterial({ radius: 0.012, distanceExponent: 1.4, thickness: 0.6, scale: 1.1, samples: 12, distanceFallOff: 1.0 });
+  gtao.blendIntensity = 0.85; composer.addPass(gtao);
+  /* GTAO draws its own depth/normal pass of the whole scene: a clear surface that writes no depth (the case, the lid
+     glass) came out as a solid wall in it, and its half-res AO stepped 4-6 px stairs along the case rim and across
+     the face under the lid. Hide those for the AO pass only */
+  { const r0 = gtao.render.bind(gtao), hid = [];
+    gtao.render = (...a) => { scene.traverse(o => { if (o.isMesh && o.visible && o.material && o.material.transparent && !o.material.depthWrite) { o.visible = false; hid.push(o); } });
+      try { r0(...a); } finally { for (const o of hid) o.visible = true; hid.length = 0; } }; }
+  const bokeh = new BokehPass(scene, camera, { focus: 0.3, aperture: 0.0, maxblur: 0.0 }); bokeh.enabled = false; composer.addPass(bokeh);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(innerWidth, innerHeight), 0.14, 0.18, 4.0) /* only emitters: lit white or aluminium plastic stays under it */; composer.addPass(bloom);
+  composer.addPass(new OutputPass());
+  POCKET.composer = composer; POCKET.gtao = gtao;
+
+  /* ── state the page drives ── */
+  const st = POCKET.state = {
+    yaw: 0, pitch: 0, roll: 0, lift: 0.0, float: 1,
+    spring: { yaw: 0, yawV: 0, pitch: 0, pitchV: 0 }, pointer: { x: 0, y: 0, on: false },
+    dragYaw: 0, dragV: 0, dragging: false,
+    explode: 0,            /* 0 assembled → 1 fully apart (the assembly film drives it per part) */
+    cartOut: 0,            /* 0 seated → 1 fully out of the slot */
+    cartSpin: 0,
+    dof: 0, focus: 0.3, room: 1, mirror: 1, envYaw: 0, word: 0, wordY: 0, sweep: 0.62, sweepAmt: 1,
+    colorway: 'black',
+    layers: 0,             /* 0 assembled → 1 the axial exploded view (the page scrubs it) */
+    light: { x: 0, y: 0, amt: 0 }, /* a hand-held light: the pointer moves the rim */
+    tint: [0.62, 0.74, 0.06], tintAmt: 0, /* the room's grid lines take a display mode's colour */
+    bg: { top: '#000000', bot: '#000000', glow: '#000000', gx: 0.5, gy: 0.5, gr: 0.5, ga: 0 }, shadow: 0.55,
+    flat: 0,               /* 0 standing → 1 lying face-up (the exploded view) */
+    lineup: 0,             /* the four views slide in */
+    tone: 'agx', plate: 0, adapters: 0, caseOn: 0, caseOpen: 0, caseAway: 0, rigX: 0, rest: 0, link: 0, linkDraw: 0, linkSettled: false,
+    scan: -1,              /* the x-ray wipe: -1 all opaque … +1 all clear (plane sweeps top → bottom) */
+    edition: '#d8d8dc',    /* the transparent edition's tint */
+  };
+  const cam = { pos: new THREE.Vector3(0, 0, 0.5), look: new THREE.Vector3(), fov: 22, shift: new THREE.Vector2() };
+  const camS = { pos: new THREE.Vector3(0, 0, 0.5), look: new THREE.Vector3(), fov: 22, shift: new THREE.Vector2(), init: false };
+  POCKET.cam = cam;
+  POCKET.setCam = (a, b, t = 0, pullMin = 0) => {
+    const A = a, B = b || a;
+    cam.look.set(_lerp(A.look[0], B.look[0], t), _lerp(A.look[1], B.look[1], t), _lerp(A.look[2], B.look[2], t));
+    /* around the subject: slerp the direction, lerp the distance, pull out through the middle */
+    const d0 = new THREE.Vector3(...A.pos).sub(new THREE.Vector3(...A.look)), d1 = new THREE.Vector3(...B.pos).sub(new THREE.Vector3(...B.look));
+    const l0 = d0.length(), l1 = d1.length(); d0.normalize(); d1.normalize();
+    const dir = d0.clone().multiplyScalar(1 - t).addScaledVector(d1, t); if (dir.lengthSq() < 1e-6) dir.copy(d1); dir.normalize();
+    /* the pull-out keeps a turn from passing through the product; a move that doesn't turn (a push-in, a lens
+       shift) doesn't need it and shrank mid-way without it being asked for */
+    /* ... and when the distance itself changes a lot the lerp already opens the gap: a full pull left the product a
+       speck in a grey field mid-travel (details to angles, angles to inside) */
+    const turn = Math.acos(Math.min(1, Math.max(-1, d0.dot(d1)))), span = Math.max(l0, l1) / Math.max(1e-4, Math.min(l0, l1)), pull = 0.35 * Math.min(1, turn / 0.6) * (span > 2 ? 0.25 : span > 1.4 ? 0.6 : 1);
+    /* the distance follows the product's apparent size, interpolated geometrically with the lens: a linear distance
+       while the fov went 20 to 9.2 left it a speck mid-travel (details to angles) */
+    const fA = Math.tan(A.fov * Math.PI / 360), fB = Math.tan(B.fov * Math.PI / 360), fT = Math.tan(_lerp(A.fov, B.fov, t) * Math.PI / 360);
+    const sz = Math.exp(_lerp(Math.log(1 / (l0 * fA)), Math.log(1 / (Math.max(1e-4, l1) * fB)), t));
+    const dist = (b ? 1 / (sz * fT) : l0) * (b ? 1 + Math.sin(Math.PI * t) * Math.max(pull, pullMin) : 1);
+    cam.pos.copy(cam.look).addScaledVector(dir, dist);
+    cam.fov = _lerp(A.fov, B.fov, t); cam.shift.set(_lerp(A.shift?.[0] || 0, B.shift?.[0] || 0, t), _lerp(A.shift?.[1] || 0, B.shift?.[1] || 0, t));
+  };
+
+  /* ── controls: presses and the d-pad rock ── */
+  const press = {}; /* name → {t, v} */
+  POCKET.press = (n, on) => { (press[n] ||= { t: 0, v: 0 }).t = on ? 1 : 0; dirty = 3; };
+  POCKET.tap = (n, ms = 110) => { POCKET.press(n, 1); setTimeout(() => POCKET.press(n, 0), ms); };
+  const dpadDir = { x: 0, y: 0 };
+  POCKET.dpad = (x, y) => { dpadDir.x = x; dpadDir.y = y; dirty = 3; };
+  const TRAVEL = { BtnA: 0.6, BtnB: 0.6, BtnX: 0.6, BtnY: 0.6, BtnSelect: 0.4, BtnHome: 0.4, BtnStart: 0.4, Power: 0.35, VolUp: 0.3, VolDown: 0.3, ShoulderL: 0.5, ShoulderR: 0.5 };
+  const AXIS = { Power: 'x', VolUp: 'x', VolDown: 'x', ShoulderL: 'y', ShoulderR: 'y' };
+
+  /* ── the assembly: each part's exploded offset (mm, in the model's frame) and its window in the film ── */
+  const EXPLODE = {
+    FrontShell: { off: [0, 0, 42], rot: [0.25, -0.35, 0.05], t0: 0.18, t1: 0.62, with: ['Display', 'DisplayBed', 'SpeakerMesh', 'UsbWell', 'UsbTongue', 'JackBore', 'Led', 'IrWindow'] },
+    Glass: { off: [0, 18, 78], rot: [-0.35, 0.2, 0], t0: 0.40, t1: 0.80, with: ['GlassPrint'] },
+    Grip: { off: [0, -26, -46], rot: [-0.3, 0.3, 0.05], t0: 0.10, t1: 0.52, with: ['Screw', 'BackMark_dot', 'BackMark_cap'] },
+    CTRL_DPad: { off: [-26, -10, 58], rot: [0.8, 0.9, 0.4], t0: 0.46, t1: 0.82 },
+    CTRL_BtnA: { off: [30, 6, 64], rot: [1.2, 0.3, 0], t0: 0.50, t1: 0.84 }, CTRL_BtnB: { off: [22, -14, 60], rot: [0.9, -0.6, 0], t0: 0.52, t1: 0.86 },
+    CTRL_BtnX: { off: [16, 20, 66], rot: [-0.7, 0.9, 0], t0: 0.48, t1: 0.83 }, CTRL_BtnY: { off: [-8, 14, 70], rot: [1.0, 0.2, 0.3], t0: 0.51, t1: 0.85 },
+    CTRL_BtnSelect: { off: [-12, -22, 52], rot: [0.6, 0, 0], t0: 0.55, t1: 0.88 }, CTRL_BtnHome: { off: [0, -26, 56], rot: [0.8, 0, 0], t0: 0.56, t1: 0.89 }, CTRL_BtnStart: { off: [12, -22, 52], rot: [0.6, 0, 0], t0: 0.57, t1: 0.90 },
+    CTRL_ShoulderL: { off: [-30, 10, -30], rot: [0.5, 0.5, 0], t0: 0.30, t1: 0.70 }, CTRL_ShoulderR: { off: [30, 10, -30], rot: [0.5, -0.5, 0], t0: 0.31, t1: 0.71 },
+    CTRL_Power: { off: [-34, 0, 10], rot: [0, 0, 1.2], t0: 0.58, t1: 0.9 }, CTRL_VolUp: { off: [-30, 8, 14], rot: [0, 0, 0.8], t0: 0.59, t1: 0.9 }, CTRL_VolDown: { off: [-30, -4, 14], rot: [0, 0, -0.8], t0: 0.6, t1: 0.9 },
+  };
+  /* parts named in the GLB may be duplicated (Screw, Screw.001…) or carry a suffix (FrontShell_MouldL): collect by prefix */
+  const groupsFor = key => Object.values(parts).filter(o => o.name === key || new RegExp('^' + key + '\\d+$').test(o.name) || o.name.startsWith(key + '_'));
+  const explodeSet = [];
+  for (const [k, e] of Object.entries(EXPLODE)) {
+    for (const nm of [k, ...(e.with || [])]) for (const o of groupsFor(nm)) {
+      if (o.userData.ex) continue;
+      o.userData.ex = { e, rest: o.position.clone(), restQ: o.quaternion.clone(), seed: Math.random() * 6.28 };
+      explodeSet.push(o);
+    }
+  }
+  /* explode(k): k = 1 apart → 0 seated. film(T) plays each part's own window; the page can also scrub */
+  function applyExplode(T, drift) {
+    for (const o of explodeSet) {
+      const { e, rest, restQ, seed } = o.userData.ex;
+      const u = _c01((T - e.t0) / (e.t1 - e.t0)); const k = 1 - _back(u);
+      const arc = Math.sin(Math.PI * u) * 8;
+      const fl = k > 0.001 ? drift : 0;
+      o.position.set(rest.x + e.off[0] * k + Math.sin(fl * 0.9 + seed) * 3 * k, rest.y + e.off[1] * k + arc * (e.off[1] >= 0 ? 1 : -1) * 0.2 + Math.sin(fl * 1.3 + seed * 2) * 2.5 * k, rest.z + e.off[2] * k + Math.cos(fl * 0.7 + seed) * 2 * k);
+      o.quaternion.copy(restQ).multiply(new THREE.Quaternion().setFromEuler(new THREE.Euler(e.rot[0] * k + Math.sin(fl * 0.6 + seed) * 0.12 * k, e.rot[1] * k + Math.sin(fl * 0.5 + seed) * 0.12 * k, e.rot[2] * k)));
+    }
+  }
+  POCKET.film = { T: 0, on: true, done: false };
+  /* the exploded stack, front → back (mm along +Z, the screen's normal) */
+  const LAYERS = [
+    { names: ['Glass', 'GlassPrint'], z: 176, x: 74, d: 0.0 },
+    { names: ['FrontShell', 'SpeakerMesh', 'UsbWell', 'UsbTongue', 'JackBore', 'Led', 'IrWindow', 'CTRL_DPad', 'CTRL_BtnA', 'CTRL_BtnB', 'CTRL_BtnX', 'CTRL_BtnY', 'CTRL_BtnSelect', 'CTRL_BtnHome', 'CTRL_BtnStart', 'CTRL_Power', 'CTRL_VolUp', 'CTRL_VolDown', 'Membranes'], box: ['FrontShell'], z: 132, x: 55, d: 0.07 },
+    { names: ['Display', 'DisplayBed', 'DisplayModule', 'Flex'], box: ['DisplayBed'], z: 94, d: 0.14,
+      /* on a wide screen the panel steps out left of the stack (under the shell it never showed); a phone's labels own that side */
+      get x() { return innerWidth < 761 || innerWidth / innerHeight < 0.8 ? 39 : -30; } },
+    { names: ['Board', 'Chips', 'ChipLabels', 'Silk', 'Parts', 'Pins', 'CartConnector', 'Speakers'], box: ['Board'], z: 58, x: 24, d: 0.21 },
+    { names: ['Battery'], z: 24, x: 10, d: 0.28 },
+    { names: ['Grip', 'Screw', 'BackMark_dot', 'BackMark_cap', 'CTRL_ShoulderL', 'CTRL_ShoulderR', 'LinkWell', 'CTRL_Cart'], box: ['Grip'], z: -14, x: -6, d: 0.35 },
+  ];
+  for (const L of LAYERS) { L.objs = []; for (const n of L.names) for (const o of groupsFor(n)) if (!L.objs.includes(o)) L.objs.push(o); }
+  /* a node whose parent is in the same layer already rides with it: moving both threw FrontShell's meshes out twice
+     as far, past the glass and off the top of the frame */
+  for (const L of LAYERS) L.objs = L.objs.filter(o => { for (let q = o.parent; q; q = q.parent) if (L.objs.includes(q)) return false; return true; });
+  /* parts the assembly film doesn't own (the internals) keep their own rest, re-seated every frame */
+  const layerOwn = []; for (const L of LAYERS) for (const o of L.objs) if (!o.userData.ex && !/^CTRL_Cart$/.test(o.name)) { o.userData.layRest = o.position.clone(); layerOwn.push(o); }
+  POCKET.layers = LAYERS;
+  /* a part's (or several parts') centre in CSS pixels, for labels that ride on the stack */
+  /* screen bounds from each mesh's OWN box (local bounds through its world matrix): a world-aligned box around a
+     tilted plate projected twice its size, and the stack's labels pointed at air (phone inside) */
+  const _box = new THREE.Box3(), _v = new THREE.Vector3();
+  const _proj = objs => { let l = 1e9, r = -1e9, tp = 1e9, bt = -1e9;
+    for (const root of objs) root.traverse(m => { if (!m.isMesh || !m.visible) return; const g = m.geometry; if (!g.boundingBox) g.computeBoundingBox(); const bb = g.boundingBox;
+      for (let i = 0; i < 8; i++) { _v.set(i & 1 ? bb.max.x : bb.min.x, i & 2 ? bb.max.y : bb.min.y, i & 4 ? bb.max.z : bb.min.z).applyMatrix4(m.matrixWorld).project(camera);
+        const x = (_v.x * 0.5 + 0.5) * innerWidth, y = (-_v.y * 0.5 + 0.5) * innerHeight; l = Math.min(l, x); r = Math.max(r, x); tp = Math.min(tp, y); bt = Math.max(bt, y); } });
+    return l > r ? null : { left: l, right: r, top: tp, bottom: bt }; };
+  POCKET.projectBox = names => _proj(names.flatMap(n => groupsFor(n)));
+  POCKET.projectObj = obj => { _box.makeEmpty(); _box.expandByObject(obj); if (_box.isEmpty()) return null; let l = 1e9, r = -1e9, tp = 1e9, bt = -1e9;
+    for (let i = 0; i < 8; i++) { _v.set(i & 1 ? _box.max.x : _box.min.x, i & 2 ? _box.max.y : _box.min.y, i & 4 ? _box.max.z : _box.min.z).project(camera);
+      const x = (_v.x * 0.5 + 0.5) * innerWidth, y = (-_v.y * 0.5 + 0.5) * innerHeight; l = Math.min(l, x); r = Math.max(r, x); tp = Math.min(tp, y); bt = Math.max(bt, y); }
+    return { left: l, right: r, top: tp, bottom: bt }; };
+  POCKET.project = names => { _box.makeEmpty(); for (const n of names) for (const o of groupsFor(n)) _box.expandByObject(o);
+    if (_box.isEmpty()) return null; _box.getCenter(_v).project(camera);
+    return { x: (_v.x * 0.5 + 0.5) * innerWidth, y: (-_v.y * 0.5 + 0.5) * innerHeight, z: _v.z }; };
+
+  /* ── pointer + keyboard handled by the page; hit testing here ── */
+  const ray = new THREE.Raycaster(); const ndc = new THREE.Vector2();
+  const hitNames = ['DPad', 'BtnA', 'BtnB', 'BtnX', 'BtnY', 'BtnSelect', 'BtnHome', 'BtnStart', 'Power', 'VolUp', 'VolDown', 'ShoulderL', 'ShoulderR', 'Cart'];
+  const hitMeshes = []; for (const n of hitNames) ctrls[n]?.traverse(o => { if (o.isMesh) { o.userData.hit = n; hitMeshes.push(o); } });
+  POCKET.pick = (x, y) => { ndc.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); const h = ray.intersectObjects(hitMeshes, false)[0]; return h ? { name: h.object.userData.hit, point: h.point, local: ctrls.DPad ? ctrls.DPad.worldToLocal(h.point.clone()) : null } : null; };
+  /* the screen under the pointer, as (u, v) on the 160 × 144 frame (for the sequencer) */
+  POCKET.pickScreen = (x, y) => { if (!parts.Display) return null; ndc.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera);
+    const h = ray.intersectObject(parts.Display, false)[0]; if (!h || !h.uv) return null;
+    /* the game texture is uploaded with flipY off: uv.y = 0 is the canvas's top row */
+    return { u: h.uv.x, v: h.uv.y }; };
+  /* for the text gate: which of these CSS-pixel points land on a Pocket in the frame (the product, the four views,
+     player two, the adapters, the case) · the mirror's reflection is not the product */
+  POCKET.onProduct = pts => {
+    const vis = o => { for (let p = o; p; p = p.parent) if (!p.visible) return false; return true; };
+    const list = []; for (const g of [rig, lineup, p2, adapters, caseG]) g.traverse(o => { if (o.isMesh && vis(o) && o.material?.visible !== false) list.push(o); });
+    return pts.map(([x, y]) => { ndc.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.intersectObjects(list, false).length > 0; });
+  };
+  POCKET.hitsProduct = (x, y) => { ndc.set((x / innerWidth) * 2 - 1, -(y / innerHeight) * 2 + 1); ray.setFromCamera(ndc, camera); return ray.intersectObjects(meshes.filter(m => m.visible), false).length > 0; };
+
+  /* ── colourway ── */
+  POCKET.setColorway = cw => {
+    /* ease the live materials toward the Blender swatch: colour and scalars glide, maps swap at the midpoint */
+    const C = COLORWAYS[cw]; st.colorway = cw;
+    /* Aluminum is one anodised bead-blast part: its buttons take the body's own finish (their swatch still read polished) */
+    const tgt = { body: cw === 'black' ? ORIG.body : C.body, button: cw === 'black' ? ORIG.button : cw === 'aluminium' ? C.body : C.button };
+    for (const k of ['body', 'button']) for (const m of sibs(M[k])) { const s = tgt[k]; if (!s) continue;
+      gsap.to(m.color, { r: s.color.r, g: s.color.g, b: s.color.b, duration: 0.9, ease: 'power2.inOut' });
+      gsap.to(m, { roughness: s.roughness, metalness: s.metalness, sheen: s.sheen || 0, clearcoat: s.clearcoat || 0, duration: 0.9, ease: 'power2.inOut',
+        onUpdate() { if (this.progress() > 0.5 && m.normalMap !== s.normalMap) { m.normalMap = s.normalMap; m.roughnessMap = s.roughnessMap; m.metalnessMap = s.metalnessMap; if (s.sheenColor) m.sheenColor.copy(s.sheenColor); m.needsUpdate = true; } } }); }
+    if (MS) { const tc = cw === 'black' ? ORIG.ms : C.body.color.clone().multiplyScalar(0.86); for (const m of sibs(MS)) gsap.to(m.color, { r: tc.r, g: tc.g, b: tc.b, duration: 0.9, ease: 'power2.inOut' }); }
+    gsap.to(POCKET.metalFill, { intensity: 0, duration: 0.9, ease: 'power2.inOut' });
+    const pr = cw === 'black' || cw === 'aluminium' ? ORIG.print : C.print;  /* Aluminum keeps the black glass */ if (pr && M.print.map !== pr.map) { M.print.map = pr.map; M.print.needsUpdate = true; }
+    dirty = 3;
+  };
+
+  /* ── frame ── */
+  const timer = new THREE.Timer(); let fpsBuf = []; let last = 0;
+  const tmpQ = new THREE.Quaternion(), eul = new THREE.Euler();
+  function frame() {
+    const dtR = (timer.update(), timer.getDelta()); const dt = Math.min(0.05, dtR); const now = performance.now();
+    /* the hero intro film is playing over the canvas: hold everything, render nothing */
+    if (POCKET.hold || POCKET.holdFilm) { last = 0; requestAnimationFrame(frame); return; }
+    if (last) { fpsBuf.push(1000 / (now - last)); if (fpsBuf.length > 120) fpsBuf.shift(); } last = now;
+    /* only a machine still under 28 fps loses the AO */
+    if (quality === 2 && fpsBuf.length >= 110) { const avg = fpsBuf.reduce((a, b) => a + b, 0) / fpsBuf.length; if (avg < 28) { quality = 1; POCKET.quality = 1; gtao.enabled = false; renderer.setPixelRatio(Math.min(DSF, 1.5)); renderer.setSize(innerWidth, innerHeight, false); fpsBuf = []; } }
+
+    /* the film clock: parts converge, the cart drops in, power on (the page times its copy on POCKET.film.T) */
+    const F = POCKET.film; const tt = now / 1000;
+    if (F.on && !F.done) { F.T += quality === 0 ? 99 : dt; dirty = 3; if (F.T > 7.2) { F.done = true; POCKET.onFilmDone?.(); } }
+    const T = F.on ? F.T : 99;
+    /* assembly runs 0.0 → 3.4 s of the film */
+    applyExplode(Math.max(T / 3.4, 1 - st.explode), tt);
+    /* the cartridge: out and up in the film until 3.3 s, then slides home with a click */
+    const cartT = F.on && !F.done ? (T < 3.3 ? 1 : 1 - _back(_c01((T - 3.3) / 0.8))) : st.cartOut;
+    if (ctrls.Cart) { const r = ctrls.Cart.userData.rest; ctrls.Cart.position.set(r.x, r.y + cartT * 58, r.z - cartT * 6);
+      ctrls.Cart.quaternion.copy(ctrls.Cart.userData.restQ).multiply(tmpQ.setFromEuler(eul.set(0, st.cartSpin + (F.on && !F.done ? (1 - _c01((T - 2.4) / 1.0)) * 0.6 : 0), 0))); }
+    /* power: the LED and the screen come up after the click */
+    const powerOn = F.done || T > 4.25;
+    if (powerOn && SCREEN.bootT < 0) { SCREEN.bootT = 0; POCKET.onPowerOn?.(); }
+    SCREEN.power += ((powerOn ? 1 : 0) - SCREEN.power) * Math.min(1, dt * 6);
+    M.led.emissiveIntensity = SCREEN.power * 4; M.power.emissiveIntensity = SCREEN.power * 0.35;
+    screen.update(dt, tt); screen.material.uniforms.uFloor && (screen.material.uniforms.uFloor.value = 1 - st.plate);
+
+    /* presses */
+    for (const [n, p] of Object.entries(press)) {
+      p.v += (p.t - p.v) * Math.min(1, dt * 30); const c = ctrls[n]; if (!c) continue; const r = c.userData.rest;
+      const tr = (TRAVEL[n] || 0.5) * p.v; const ax = AXIS[n] || 'z';
+      c.position.set(r.x + (ax === 'x' ? tr : 0), r.y - (ax === 'y' ? tr * 0.2 : 0), r.z - (ax === 'z' ? tr : 0) + (ax === 'y' ? -tr : 0));
+      if (Math.abs(p.t - p.v) > 0.002) dirty = 3;
+    }
+    if (ctrls.DPad) { const d = ctrls.DPad; const tgt = d.userData.rock ||= new THREE.Vector2(); tgt.x += (dpadDir.x - tgt.x) * Math.min(1, dt * 28); tgt.y += (dpadDir.y - tgt.y) * Math.min(1, dt * 28);
+      if (!d.userData.ex || F.done || T > 3.4) d.quaternion.copy(d.userData.restQ).multiply(tmpQ.setFromEuler(eul.set(tgt.y * 0.075, tgt.x * 0.075, 0))); }
+
+    /* the axial exploded view: every layer slides out along the depth axis, front layers first,
+       like the press parts shot seen from the side; staggered so the stack opens as a sequence */
+    { const see = st.layers > 0.001 || st.scan > -0.999; for (const o of internals) o.visible = see; }
+    for (const o of layerOwn) o.position.copy(o.userData.layRest);
+    if (st.layers > 0.0005) {
+      for (const L of LAYERS) {
+        const u = _c01((st.layers - L.d) / 0.62), k = u < 1 ? _back(u) : 1;
+        for (const o of L.objs) { o.position.z += L.z * k; o.position.x += (L.x || 0) * k; o.position.y += (L.y || 0) * k; }
+      }
+      dirty = 3;
+    }
+    /* the rig: pointer spring, drag, idle float */
+    const sp = st.spring, k = 14, zc = 2 * 0.42 * Math.sqrt(k);
+    const pa = st.pointerAmt ?? 1, ty = st.pointer.on && F.done ? st.pointer.x * 0.14 * pa : 0, tp = st.pointer.on && F.done ? st.pointer.y * 0.08 * pa : 0;
+    sp.yawV += (-k * (sp.yaw - ty) - zc * sp.yawV) * dt; sp.yaw += sp.yawV * dt; sp.pitchV += (-k * (sp.pitch - tp) - zc * sp.pitchV) * dt; sp.pitch += sp.pitchV * dt;
+    if (!st.dragging) { st.dragV *= Math.exp(-dt * 2.4); st.dragYaw += st.dragV * dt; }
+    const bob = quality > 0 ? st.float * (Math.sin(tt * 0.9) * 0.0016 + Math.sin(tt * 1.6) * 0.0006) : 0;
+    /* portrait: the front view rises with the lens pulling back (a faster rise put it under the headline) */
+    rig.position.y = st.lift + bob + (innerWidth / innerHeight < 0.8 ? 0.094 * st.lineup : 0); rig.position.x = st.rigX;
+    eul.set(st.pitch + sp.pitch + (quality > 0 ? st.float * Math.sin(tt * 0.55) * 0.012 : 0), st.yaw + sp.yaw + st.dragYaw, st.roll);
+    rig.quaternion.setFromEuler(eul);
+    /* the adapters drift in and hang in the air, each on its own slow orbit */
+    adapters.visible = st.adapters > 0.001;
+    if (adapters.visible) { adapters.children.forEach((g, i) => { const d = g.userData.d, k = _back(_c01((st.adapters - i * 0.1) / 0.7));
+      /* portrait: the adapters gather under the Pocket inside the width, clear of the copy above (at the desktop
+         spread they were slivers at both screen edges) */
+      const tallA = innerWidth / innerHeight < 0.8, ax = tallA ? [-0.052, 0.054, 0.004][i] : d.pos[0], ay = tallA ? [-0.03, -0.045, -0.068][i] : d.pos[1];
+      g.position.set(ax * (0.6 + 0.4 * k) + Math.sin(tt * 0.5 + i * 2) * 0.003, ay + Math.sin(tt * 0.7 + i) * 0.004 + (1 - k) * -0.12, d.pos[2]);
+      g.rotation.set(d.rot[0] + Math.sin(tt * 0.4 + i) * 0.06, d.rot[1] + Math.sin(tt * 0.3 + i * 3) * 0.08, d.rot[2]); g.scale.setScalar(Math.max(0.001, k)); }); dirty = 3; }
+    /* the hard case: closed → parted (the press shot) → gone, top half up and bottom half down */
+    caseG.visible = st.caseOn > 0.001;
+    if (caseG.visible) { caseG.children.forEach(g => { const s = g.userData.sgn; g.position.z = s * (10.6 + st.caseOpen * 34 + _sm(st.caseAway) * 260); }); dirty = 3; }
+    /* the lineup: each copy glides in from the right, staggered */
+    lineup.visible = st.lineup > 0.001;
+    /* on a portrait screen the four views stack two by two: front | left over back | right */
+    const tall = innerWidth / innerHeight < 0.8, G2 = [[0.068, 0.094], [0, -0.094], [0.068, -0.094]];
+    /* portrait: the back view waits until the front has cleared its row, or it slides through the front's lower edge */
+    if (lineup.visible) lineup.children.forEach((g, i) => { const d = tall ? [0.3, 0.5, 0.4][i] : i * 0.12, u = _c01((st.lineup - d) / (tall ? 0.4 : 0.64)), k = _back(u);
+      /* a short slide: the back-ease overshoot scales with the distance, and over 0.5 m it carried a view into its neighbour */
+      g.position.set((tall ? G2[i][0] : g.userData.v.x) + (1 - k) * 0.25, st.lift + (tall ? G2[i][1] : 0), 0); });
+    /* lying face-up for the exploded view: pose turns about the device's own centre */
+    pose.rotation.x = -Math.PI / 2 * st.flat; pose.position.y = _lerp(-0.03 * st.flat, FLOOR_Y + 0.0283 - st.lift, st.rest);
+    /* two players */
+    p2.visible = st.link > 0.001;
+    if (p2.visible) { const k = _back(_c01(st.link / 0.7)); p2.position.set(0.14 + (1 - k) * 0.35, FLOOR_Y + 0.0283, -0.03); p2.rotation.y = 0.42;
+      if (!cable && st.link > 0.99 && st.linkSettled) buildCable();
+      if (cable) { cable.visible = true; cable.geometry.setDrawRange(0, Math.floor(cable.userData.n * _c01((st.linkDraw))));
+        const pu = cable.userData.pulse, k = st.linkPulse || 0, n = cable.userData.n, w = Math.floor(n * 0.07), seg = 60;
+        pu.visible = k > 0.001 && k < 0.999; if (pu.visible) { const s0 = Math.floor((k * (n + w) - w) / seg) * seg; pu.geometry.setDrawRange(Math.max(0, s0), Math.min(w, n - Math.max(0, s0))); } } dirty = 3; }
+    else if (cable) cable.visible = false;
+    /* the x-ray: world-space plane at a height mapped from scan (-1 above the device … +1 below it) */
+    { const on = st.scan > -0.999; const yH = 0.09 - (st.scan * 0.5 + 0.5) * 0.19 + rig.position.y;
+      scanPlane.constant = on ? yH : 99; scanInv.constant = on ? -yH : -99;
+      for (const c of clearTwins) c.visible = on;
+      const clr = on ? _c01((st.scan + 1) / 2) : 0; xray.intensity = clr * 0.12; /* at 0.34 it lit sparks on the tiny board parts (fireflies) and added little else */ xray2.intensity = 0; M.metal.envMapIntensity = 1 + clr * 1.6; M.board.envMapIntensity = 1 + clr * 1.2; scanLine.visible = false; /* the sweep IS the material change: a drawn bar read as a decorative line over the copy and the product */ scanLine.position.set(0, yH, 0.012); scanLine.quaternion.copy(camera.quaternion);
+      /* a coloured edition tints the plastic itself; Clear stays water-white */
+      if (M.clear.userData.ed !== st.edition) { M.clear.userData.ed = st.edition; const c = new THREE.Color(st.edition), wht = new THREE.Color(0xffffff);
+        const clearEd = c.getHSL({}).s < 0.1 && c.getHSL({}).l > 0.6;
+        for (const m of [M.clear, M.clearBtn]) { m.attenuationColor.copy(c); m.attenuationDistance = clearEd ? 0.05 : 0.004; m.color.copy(clearEd ? wht : wht.clone().lerp(c, 0.55)); m.roughness = clearEd ? 0.12 : 0.16; } }
+      if (on) dirty = 3; }
+    /* the floor mirror: the same pose reflected in the floor plane */
+    rig.updateMatrixWorld(true);
+    mirrorWrap.matrixAutoUpdate = false;
+    mirrorWrap.matrix.makeScale(1, -1, 1).premultiply(new THREE.Matrix4().makeTranslation(0, 2 * FLOOR_Y, 0)).multiply(rig.matrixWorld);
+    mirrorWrap.matrixWorldNeedsUpdate = true;
+    mirror.traverse(o => { const s = parts[o.name]; if (s && o !== mirror) { o.position.copy(s.position); o.quaternion.copy(s.quaternion); } });
+    mirrorWrap.visible = st.mirror > 0.01 && quality > 0 && innerWidth / innerHeight >= 0.8; /* on a phone the copy stands on the floor: no reflection under it */ floor.visible = st.room > 0.01; wall.visible = st.room > 0.01; floorMat.uniforms.uRoom.value = st.room; wallMat.uniforms.uRoom.value = st.room;
+    shadowMat.opacity = st.shadow;
+    /* the green plate needs Neutral: AgX desaturates a flat #99FEA2 into sage. Only the output pass recompiles */
+    { const tm = st.tone === 'neutral' ? THREE.NeutralToneMapping : THREE.AgXToneMapping; if (renderer.toneMapping !== tm) { renderer.toneMapping = tm; dirty = 3; } }
+    drawBg(st.bg.top, st.bg.bot, st.bg.glow, st.bg.gx, st.bg.gy, st.bg.gr, st.bg.ga);
+    floorMat.uniforms.uMirror.value = 0.3 * st.mirror;
+
+    /* the camera: damped in real time */
+    const a = (!camS.init) ? 1 : 1 - Math.exp(-Math.min(0.5, dtR) * 3.6); /* a heavier camera: moves settle like a dolly, not a snap */ camS.init = true;
+    camS.pos.lerp(cam.pos, a); camS.look.lerp(cam.look, a); camS.fov = _lerp(camS.fov, cam.fov, a); camS.shift.lerp(cam.shift, a);
+    camera.position.copy(camS.pos); camera.lookAt(camS.look);
+    /* the near plane follows the subject distance: at 1.55 m with a 5 mm near the depth buffer could not
+       separate the screen or the cart label from the surface 0.1 mm behind, and they fought in wedges */
+    const nearW = Math.max(0.005, camS.pos.distanceTo(camS.look) * 0.35);
+    if (Math.abs(camera.fov - camS.fov) > 1e-4 || Math.abs(camera.near - nearW) > nearW * 0.05) { camera.fov = camS.fov; camera.near = nearW; camera.updateProjectionMatrix(); }
+    const W = innerWidth, H = innerHeight; camera.setViewOffset(W, H, -camS.shift.x * W * 0.5, -camS.shift.y * H * 0.5, W, H);
+    /* depth of field follows the look point */
+    bokeh.enabled = quality === 2 && st.dof > 0.02;
+    if (bokeh.enabled) { const u = bokeh.uniforms; u.focus.value = camS.pos.distanceTo(camS.look); u.aperture.value = 0.012 * st.dof; u.maxblur.value = 0.008 * st.dof; }
+    /* the Blender studio sits a quarter turn off after the Z-up → Y-up export: at -90° the page matches the .blend's
+       renders (measured: 42 vs 82 grey on the soft-touch face, and no veil on the glass) */
+    /* lying face-up, the soft-touch face looks straight into the studio's top softbox and reads grey: ease it */
+    /* half-way through turning face-up (or back) the half-tilted studio lines its softbox up with the face: the
+       black flashed silver mid-travel (luma 86-94). The studio dips through the middle of the pose change */
+    scene.environmentIntensity = (1 - 0.45 * st.rest) * (st.envI ?? 1) * (1 - 0.93 * Math.pow(Math.sin(Math.PI * _c01(st.flat)), 0.6));
+    scene.environmentRotation.y = -Math.PI / 2 + st.envYaw + st.light.x * 0.5 * st.light.amt;
+    /* a face-up Pocket under a lens from above mirrors the studio's overhead softbox across the whole face (the black
+       read 66-122 of 255 in loop, link, inside); tilting the studio as the device lies down is the ceiling flag of a
+       real top-down shot */
+    scene.environmentRotation.x = st.flat * 1.25; M.glass.envMapRotation.copy(scene.environmentRotation);
+    /* the hand-held light: the rim swings with the pointer, the key leans after it */
+    rim.position.set(0.3 + st.light.x * 1.1 * st.light.amt, 0.6 - st.light.y * 0.7 * st.light.amt, -1.0 + Math.abs(st.light.x) * 0.5 * st.light.amt);
+    rim.intensity = 0.6 * st.light.amt; /* only the hand-held light the pointer moves */
+    /* bloom is for a dark room: on a light ground it haloed the cart label and the screen */
+    bloom.strength = 0.14 * (1 - st.plate); bloom.enabled = st.plate < 0.98;
+    plateKey.intensity = 0.5 * st.plate; plateFill.intensity = 0.3 * st.plate; sideKey.intensity = POCKET.sideI * (st.side ?? 0); sideKey.shadow.autoUpdate = sideKey.intensity > 0.001; 
+    key.position.x = -0.55 + st.light.x * 0.35 * st.light.amt;
+    floorMat.uniforms.uTint.value.set(...st.tint).multiplyScalar(st.tintAmt); wallMat.uniforms.uTint.value.set(...st.tint).multiplyScalar(st.tintAmt);
+    /* the wordmark and the glass sweep; during the film the page's values are overridden */
+    const filmOn = F.on && !F.done;
+    wordMat.opacity = filmOn ? _sm((T - 4.6) / 1.2) : st.word; word.position.y = 0.02 + (filmOn ? (1 - _sm((T - 4.6) / 1.4)) * -0.03 : st.wordY);
+    word.visible = false; /* retired: at a readable level it fought the product, at a quiet one it read as murky blocks */
+    if (POCKET.refl) { POCKET.refl.uniforms.uSweep.value = filmOn ? _lerp(-0.9, 0.62, _sm((T - 4.3) / 1.3)) : st.sweep; POCKET.refl.uniforms.uAmt.value = st.sweepAmt; }
+
+    if (POSTER) {
+      if (!posterAt) posterAt = now + 2600;
+      if (now < posterAt) { requestAnimationFrame(frame); return; }
+      renderer.render(scene, camera); POCKET.renders = 1; POCKET.poster = true; document.documentElement.classList.add('poster'); return;
+    }
+    if (quality > 0 || dirty > 0) { if (quality === 2) composer.render(); else renderer.render(scene, camera); dirty--; POCKET.renders = (POCKET.renders || 0) + 1; }
+    requestAnimationFrame(frame);
+  }
+  addEventListener('resize', () => { renderer.setSize(innerWidth, innerHeight, false); composer.setSize(innerWidth, innerHeight); camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); dirty = 3; });
+
+  Object.assign(POCKET, { THREE, scene, camera, renderer, rig, root, parts, ctrls, M, screen, bokeh, bloom, gtao, composer, key, rim, floor, wall, meshes,
+    fps: () => fpsBuf.length ? fpsBuf.reduce((a, b) => a + b, 0) / fpsBuf.length : 0,
+    skipFilm: () => { POCKET.film.T = 99; }, ready: true });
+  if (bar) bar.style.width = '100%';
+  requestAnimationFrame(frame);
+  return POCKET;
+}
+/* ═══════════ POCKET · sound ═══════════
+   A tiny chip: two pulse channels and noise, the way the games on this device sound. Off until the
+   reader asks (the nav toggle, or their first press on the model). Quiet behind a limiter. */
+const AUDIO = (window.POCKET_AUDIO = { on: false, ctx: null });
+function audioInit() {
+  if (AUDIO.ctx) return AUDIO.ctx;
+  const ctx = new (window.AudioContext || window.webkitAudioContext)();
+  const out = ctx.createGain(); out.gain.value = 0.16;
+  const lim = ctx.createDynamicsCompressor(); lim.threshold.value = -14; lim.ratio.value = 8; lim.attack.value = 0.003; lim.release.value = 0.12;
+  out.connect(lim); lim.connect(ctx.destination);
+  /* a 12.5 % pulse wave, the chip's thin lead */
+  const n = 64, re = new Float32Array(n), im = new Float32Array(n);
+  for (let k = 1; k < n; k++) im[k] = (2 / (k * Math.PI)) * Math.sin(k * Math.PI * 0.125);
+  const pulse = ctx.createPeriodicWave(re, im);
+  const nb = ctx.createBuffer(1, ctx.sampleRate * 0.5, ctx.sampleRate); const nd = nb.getChannelData(0); for (let i = 0; i < nd.length; i++) nd[i] = Math.random() * 2 - 1;
+  Object.assign(AUDIO, { ctx, out, pulse, noise: nb });
+  return ctx;
+}
+AUDIO.enable = async () => { const c = audioInit(); if (c.state !== 'running') await c.resume(); AUDIO.on = true; const b = document.getElementById('sndBtn'); b?.classList.add('on'); b?.setAttribute('aria-pressed', 'true'); };
+AUDIO.disable = () => { AUDIO.on = false; const b = document.getElementById('sndBtn'); b?.classList.remove('on'); b?.setAttribute('aria-pressed', 'false'); };
+AUDIO.tone = (hz, dur = 0.08, { when = 0, vol = 0.5, wave = 'pulse', slide = 0 } = {}) => {
+  if (!AUDIO.on) return; const c = AUDIO.ctx, t = c.currentTime + when;
+  const o = c.createOscillator(); if (wave === 'pulse') o.setPeriodicWave(AUDIO.pulse); else o.type = wave;
+  o.frequency.setValueAtTime(hz, t); if (slide) o.frequency.exponentialRampToValueAtTime(hz * slide, t + dur);
+  const g = c.createGain(); g.gain.setValueAtTime(vol, t); g.gain.setValueAtTime(vol, t + dur * 0.7); g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+  o.connect(g); g.connect(AUDIO.out); o.start(t); o.stop(t + dur + 0.02);
+};
+AUDIO.noiseHit = (dur = 0.05, { when = 0, vol = 0.35, hp = 1200 } = {}) => {
+  if (!AUDIO.on) return; const c = AUDIO.ctx, t = c.currentTime + when;
+  const s = c.createBufferSource(); s.buffer = AUDIO.noise; const f = c.createBiquadFilter(); f.type = 'highpass'; f.frequency.value = hp;
+  const g = c.createGain(); g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(0.0008, t + dur);
+  s.connect(f); f.connect(g); g.connect(AUDIO.out); s.start(t); s.stop(t + dur + 0.02);
+};
+/* the vocabulary */
+AUDIO.click = () => AUDIO.noiseHit(0.018, { vol: 0.22, hp: 3000 });
+AUDIO.button = n => AUDIO.tone({ BtnA: 988, BtnB: 784, BtnX: 1175, BtnY: 659, BtnStart: 1319, BtnSelect: 523, BtnHome: 1568 }[n] || 880, 0.06, { vol: 0.35 });
+AUDIO.jump = () => AUDIO.tone(392, 0.14, { slide: 2.2, vol: 0.4 });
+AUDIO.catch = () => { [1319, 1568, 2093].forEach((f, i) => AUDIO.tone(f, 0.07, { when: i * 0.055, vol: 0.3 })); };
+AUDIO.boot = () => { AUDIO.tone(1047, 0.09, { vol: 0.35 }); AUDIO.tone(2093, 0.5, { when: 0.1, vol: 0.4 }); };
+AUDIO.seat = () => { AUDIO.noiseHit(0.03, { vol: 0.5, hp: 600 }); AUDIO.tone(110, 0.08, { wave: 'triangle', vol: 0.5, when: 0.005 }); };
+AUDIO.mode = i => AUDIO.tone([880, 523, 659, 784][i] || 880, 0.07, { vol: 0.3 });
+/* the sequencer's voice: a kick on the beat, the pulse lead on every written step (pentatonic) */
+AUDIO.loopStep = (i, on, note) => { if (!AUDIO.on) return; if (i % 4 === 0) AUDIO.tone(96, 0.12, { wave: 'sine', slide: 0.45, vol: 0.9 }); if (i % 8 === 4) AUDIO.noiseHit(0.06, { vol: 0.28, hp: 1800 });
+  if (on) AUDIO.tone(262 * Math.pow(2, (note || 0) / 12), 0.09, { vol: 0.32 }); };
+/* ═══════════ POCKET · the page ═══════════
+   Scroll, copy motion, controls, and the per-frame hand-off to the scene. Two clocks, never both:
+   while the NEXT section's top crosses the viewport (the sticky stages sliding) the camera TRAVELS
+   and the copy hands over; while a section is pinned its own progress p drives that beat. */
+
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const S_ = x => { x = x < 0 ? 0 : x > 1 ? 1 : x; return x * x * (3 - 2 * x); };
+const _lin = x => x < 0 ? 0 : x > 1 ? 1 : x;
+const L_ = (a, b, t) => a + (b - a) * t;
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* the phone layout: narrow OR portrait (the CSS uses the same rule) */
+const PHONE = () => innerWidth < 761 || innerWidth / innerHeight < 0.8;
+/* a section's wall grid; on the phone layout the modes wall ran through the paragraph, at rest and in its travels */
+const roomOf = (w, id) => id === 'modes' && PHONE() ? 0.25 : w.room ?? 1;
+
+/* camera stations · metres; look = target; shift = lens shift (x right / y up of the subject);
+   m = portrait override (shift, distance factor) */
+const STATIONS = (window.STATIONS = {
+  film0: { pos: [-0.036, -0.012, 0.075], look: [-0.024, -0.026, 0.012], fov: 24 },
+  hero: { pos: [0.19, 0.055, 0.375], look: [0.0, -0.004, 0.0], fov: 22, shift: [0, 0.15], m: { shift: [0, -0.32], ms: [0, -0.42], k: 1.77 } },
+  /* the hero's second beat: Pocket turns to face the lens (yaw), a touch farther, moved right for the claim on the left */
+  heroB: { pos: [0.2135, 0.0575, 0.4313], look: [0.0, -0.004, 0.0], fov: 22, shift: [0.36, 0.1], yaw: 0.5, m: { shift: [0, -0.32], ms: [0, -0.42], k: 1.77 } },
+  dispFar: { pos: [0.0, 0.034, 0.30], look: [0.0003, 0.0344, 0.0087], fov: 22, shift: [0.18, 0.2], m: { shift: [0, 0.0], k: 1.3 } },
+  /* the dive ends on the moon of the game on screen (sprite px 122,22 of 160×144 → world 17.7, 55.9 mm): its edge shows the pixel grid */
+  dispNear: { pos: [0.0194, 0.0559, 0.0245], look: [0.0194, 0.0559, 0.0087], fov: 22, shift: [0, 0.24], m: { shift: [0, 0], k: 1 } },
+  /* display only: the panel fills the frame, a touch of angle so the glass edge catches the light */
+  modes: { pos: [0.0489, 0.0436, 0.3255], look: [0.0003, 0.0344, 0.0087], fov: 22, shift: [0.0, 0.0], m: { shift: [0, 0.5], k: 1.32 } },
+  modesB: { pos: [0.0455, 0.0430, 0.3033], look: [0.0003, 0.0344, 0.0087], fov: 22, shift: [0.0, 0.0], m: { shift: [0, 0.5], k: 1.32 } },
+  /* the top of the back and the cartridge, low and close: the slot is the subject */
+  back: { pos: [-0.2079, 0.0652, -0.694], look: [0.0, 0.085, -0.01], fov: 19.8, shift: [0.02, -0.56], m: { fov: 22, shift: [0, -0.29], ms: [0, -0.1], k: 1.35 } }, /* desk: 11 % larger than at fov 22 (the Pocket was 45 % of the frame); more met the marquee at 1440x900 */
+  m1: { pos: [-0.052, 0.006, 0.105], look: [-0.026, -0.026, 0.011], fov: 20, shift: [0.36, 0.08], m: { shift: [0, -0.3], k: 1.3 } },
+  m2: { pos: [0.074, 0.004, 0.090], look: [0.0245, -0.026, 0.011], fov: 20, shift: [-0.54, 0.08], m: { shift: [-0.1, -0.3], k: 1.64 } },
+  m3: { pos: [-0.135, 0.066, -0.004], look: [-0.043, 0.036, 0.004], fov: 20, shift: [0.2, 0.08], m: { shift: [0, -0.3], k: 1.3 } },
+  m4: { pos: [0.05, -0.15, -0.05], look: [-0.004, -0.0736, -0.005], fov: 20, shift: [0.2, 0.08], m: { shift: [0, -0.3], k: 1.3 } },
+  m5: { pos: [0.075, -0.03, -0.105], look: [0.0, -0.048, -0.010], fov: 20, shift: [0.35, -1.08], m: { shift: [0, -0.3], k: 1.3 } },
+  /* the exploded stack from the front-right and above: depth reads as a diagonal staircase of layers */
+  /* the four views: long lens, square-on, like the orthographic press plate */
+  anglesD: { pos: [0.1425, 0.0, 1.55], look: [0.1425, 0.0, 0.0], fov: 9.2, shift: [0, 0.16] },
+  anglesM: { pos: [0.034, 0.0, 3.45], look: [0.034, 0.0, 0.0], fov: 9.2, shift: [0, -0.02] },
+  /* the exploded stack lying face-up, seen from high on a three-quarter, like the press hardcase shot */
+  /* the hardcase moment: the whole parted case in frame, centred like the press shot */
+  insideCase: { pos: [0.25, 0.44, 0.27], look: [0.0, -0.03, 0.0], fov: 24, shift: [0.16, -0.02], m: { shift: [0, 0.36], k: 1.9 } },
+  inside: { pos: [0.40, 0.40, 0.40], look: [0.0, 0.08, 0.0], fov: 24, shift: [0.08, -0.12], m: { shift: [-0.12, 0.36], k: 2.4, kt: 1.9, st: [-0.12, 0.22] } },
+  /* once the stack has closed the lens comes back down to the whole Pocket (it ended small in an empty frame) */
+  insideB: { pos: [0.22, 0.31, 0.24], look: [0.0, 0.0, 0.0], fov: 24, shift: [0.14, -0.04], m: { shift: [0, 0.3], k: 1.9 } },
+  /* the transparent editions: front, a touch of angle, big */
+  /* the lower half, close: the controls and the board behind them are the subject */
+  clear: { pos: [0.14, 0.0188, 0.4418], look: [0.0, -0.025, 0.006], fov: 22, shift: [0.46, 0.38], m: { shift: [0, 0.56], k: 1.95 } },
+  /* two players from above, on the table */
+  link: { pos: [0.0775, 0.3725, 0.414], look: [0.075, -0.095, 0.04], fov: 24, shift: [0.24, 0.05], m: { shift: [0, 0.3], k: 2.45 } },
+  /* the sequencer: from above, the screen square to the lens */
+  loop: { pos: [0.03, 0.235, 0.075], look: [0.0, -0.075, -0.018], fov: 24, shift: [0.3, 0.02], m: { shift: [0, 0.55], k: 1.9 } },
+  /* the loop is written as you scroll while the lens leans in to the screen */
+  loopB: { pos: [0.0252, 0.1854, 0.0601], look: [0.0, -0.075, -0.018], fov: 24, shift: [0.28, 0.34], m: { shift: [0, 0.55], k: 1.9 } },
+  /* the finish up close: the upper three quarters, the shell's edge and the side buttons in the light */
+  colour: { pos: [-0.165, 0.07, 0.25], look: [0.0, 0.012, 0.0], fov: 22, shift: [0.28, 0.36], m: { shift: [0, -0.3], k: 2.8 } },
+  close: { pos: [-0.053, 0.028, 0.5], look: [0.0, -0.004, 0.0], fov: 22, shift: [0.44, 0.06], m: { shift: [0, 0.02], k: 1.72 } },
+  closeUp: { pos: [-0.053, 0.028, 0.5], look: [0.0, -0.004, 0.0], fov: 22, shift: [0.44, 0.06], m: { shift: [0, -0.4], k: 3.0 } },
+});
+/* the four views re-arrange two by two on a portrait screen, so the plate has two framings */
+Object.defineProperty(STATIONS, 'angles', { get: () => innerWidth / innerHeight < 0.8 ? STATIONS.anglesM : STATIONS.anglesD });
+/* where the plate starts: the live Pocket alone, square-on and closer; the other three views arrive with the scroll */
+STATIONS.anglesDA = { pos: [0.0, 0.0, 1.3], look: [0.0, 0.0, 0.0], fov: 9.2, shift: [0.22, 0.2] };
+STATIONS.anglesMA = { pos: [0.0, 0.0, 2.3], look: [0.0, 0.0, 0.0], fov: 9.2, shift: [0, -0.02] };
+Object.defineProperty(STATIONS, 'anglesA', { get: () => innerWidth / innerHeight < 0.8 ? STATIONS.anglesMA : STATIONS.anglesDA });
+const STATION = { hero: 'hero', display: 'dispFar', modes: 'modes', cart: 'back', details: 'm1', angles: 'anglesA', inside: 'insideCase', clear: 'clear', link: 'link', loop: 'loop', colour: 'colour', close: 'close' };
+const BEATS = ['hero', 'display', 'modes', 'cart', 'details', 'angles', 'inside', 'clear', 'link', 'loop', 'colour', 'close'];
+function resolve(s) {
+  const asp = innerWidth / innerHeight, portrait = asp < 0.8; let wide = asp > 1.65 ? Math.sqrt(asp / 1.6) : 1;
+  if (s === STATIONS.hero) wide = L_(1, wide, PAGE.heroK ?? 1);
+  /* short portrait screens: the copy takes more of a shorter frame, so the lens pulls back (1.0 at 760 px tall) */
+  const short = portrait && innerHeight < 760 ? Math.min(1.3, 760 / innerHeight) ** 0.9 : 1;
+  /* a portrait tablet (3:4) has room a phone lacks: a station may frame it closer (kt) and place it (st) */
+  const m = portrait && s.m ? s.m : null, tab = portrait && asp > 0.62, k = (m ? (tab && m.kt ? m.kt : m.k) : 1) * (portrait ? short : 1) * (s === STATIONS.dispNear ? 1 : wide);
+  return { pos: s.look.map((l, i) => l + (s.pos[i] - l) * k), look: s.look, fov: m && m.fov ? m.fov : s.fov, shift: m ? (short > 1 && m.ms ? m.ms : tab && m.st ? m.st : m.shift) : (s.shift || [0, 0]) };
+}
+const cam = (a, b, t, pullMin) => POCKET.setCam(resolve(a), b ? resolve(b) : null, t || 0, pullMin || 0);
+
+function makeGrain() {
+  const c = document.createElement('canvas'); c.width = c.height = 220; const x = c.getContext('2d'); const img = x.createImageData(220, 220);
+  for (let i = 0; i < img.data.length; i += 4) { const v = 96 + Math.random() * 120; img.data[i] = img.data[i + 1] = img.data[i + 2] = v; img.data[i + 3] = 255; }
+  x.putImageData(img, 0, 0); $('#grain').style.backgroundImage = `url(${c.toDataURL('image/png')})`;
+}
+/* a four-digit odometer: the leading zeros are dim, the width never changes */
+function setOdo(el, n) { if (!el || el.dataset.n === String(n)) return; el.dataset.n = n; const s = String(n).padStart(4, '0'), z = s.length - String(n).length;
+  el.innerHTML = (z ? `<i class="z">${s.slice(0, z)}</i>` : '') + s.slice(z); }
+function splitWords(el) { el.innerHTML = el.textContent.trim().split(/\s+/).map((w, i) => `<span class="w"><span style="transition-delay:${120 + i * 70}ms">${w}</span></span>`).join(' '); }
+
+const PAGE = (window.POCKET_PAGE = { beat: 'hero', prog: {}, arriving: null });
+
+/* ── the display chapter's pixel field: a dot-matrix room in the current mode's palette. The pointer
+   leaves a glowing trail, a mode switch sweeps the new palette in through a 4×4 ordered dither, and
+   arriving in the chapter dithers the whole field in. ── */
+const MODE_TINT = [[0.85, 0.86, 0.9], [0.61, 0.74, 0.06], [0.88, 0.64, 0.42], [0.42, 0.53, 0.88]];
+const PALS = [['#101012', '#2a2a2e', '#8a8a92', '#ececec'], ['#0f380f', '#306230', '#8bac0f', '#9bbc0f'], ['#2b160c', '#6e3418', '#e0a36a', '#ffe0b0'], ['#0c1230', '#25397a', '#6a86e0', '#d4dcff']];
+const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+const PX = { on: 0, arrive: 0, mode: 0, prev: 0, wipe: 1, mx: -999, my: -999, e: null, cols: 0, rows: 0, cell: 14, t0: 0 };
+function pxFrame(dt) {
+  const cv = $('#px'); if (!cv) return;
+  cv.style.opacity = PX.on.toFixed(3);
+  if (PX.on < 0.01) return;
+  const c = PX.cell, cols = Math.ceil(innerWidth / c), rows = Math.ceil(innerHeight / c);
+  if (cols !== PX.cols || rows !== PX.rows) { PX.cols = cols; PX.rows = rows; cv.width = cols * c; cv.height = rows * c; PX.e = new Float32Array(cols * rows); }
+  if (PX.mode !== PX.cur) { PX.prev = PX.cur ?? PX.mode; PX.cur = PX.mode; PX.wipe = 0; }
+  PX.wipe = Math.min(1, PX.wipe + dt * 1.6);
+  /* a 2D context can come back null (seen under software GL while the GPU process is saturated): skip the frame */
+  const g = cv.getContext('2d'); if (!g) return; const E = PX.e, t = performance.now() / 1000;
+  const mcx = PX.mx / c, mcy = PX.my / c;
+  /* the wall is a 2D layer ABOVE the WebGL canvas: without a mask it drew over the Pocket (the shell read as see-
+     through). Cells touching the device's projected bounds are skipped */
+  let mx0 = 1e9, my0 = 1e9, mx1 = -1e9, my1 = -1e9;
+  if (window.POCKET?.rig) { const T = POCKET.THREE; if (!PX.lbox) { const r = POCKET.rig, m = r.matrixWorld.clone(); PX.lbox = new T.Box3().setFromObject(r).applyMatrix4(m.clone().invert()); PX.v = new T.Vector3(); }
+    const b = PX.lbox, v = PX.v, M = POCKET.rig.matrixWorld, cam = POCKET.camera;
+    for (let k = 0; k < 8; k++) { v.set(k & 1 ? b.max.x : b.min.x, k & 2 ? b.max.y : b.min.y, k & 4 ? b.max.z : b.min.z).applyMatrix4(M).project(cam);
+      const X = (v.x * 0.5 + 0.5) * innerWidth, Y = (0.5 - v.y * 0.5) * innerHeight; mx0 = Math.min(mx0, X); mx1 = Math.max(mx1, X); my0 = Math.min(my0, Y); my1 = Math.max(my1, Y); } }
+  g.clearRect(0, 0, cv.width, cv.height);
+  for (let y = 0; y < rows; y++) for (let x = 0; x < cols; x++) {
+    if ((x + 1) * c > mx0 - 4 && x * c < mx1 + 4 && (y + 1) * c > my0 - 4 && y * c < my1 + 4) continue;
+    const i = y * cols + x, b = BAYER[(y & 3) * 4 + (x & 3)] / 16;
+    if (b >= PX.arrive * 1.07) continue;
+    const d = Math.hypot(x - mcx, y - mcy); if (d < 5) E[i] = Math.max(E[i], 1 - d / 5);
+    E[i] *= Math.exp(-dt * 1.7);
+    /* the new palette sweeps left → right, dithered at its front */
+    const pal = PALS[(PX.wipe * 1.5 - x / cols * 0.5) > b ? PX.cur : PX.prev];
+    const scan = Math.max(0, 1 - Math.abs(((t * 0.22) % 1.3 - 0.15) * rows - y) / 3) * 0.35;
+    const lv = Math.min(3, Math.floor(E[i] * 3.2 + scan * 2 + (((x * 7 + y * 13) % 29 === 0) && Math.sin(t * 2 + x) > 0.6 ? 1 : 0)));
+    g.globalAlpha = lv === 0 ? 0.55 : 1; g.fillStyle = pal[lv];
+    g.fillRect(x * c + 2, y * c + 2, c - 4, c - 4);
+  }
+}
+
+/* ── type in motion: a scramble that resolves left → right when a heading first shows ── */
+const GLYPHS = { pix: '▚▞▙▟▛▜█▓▒░', def: 'ABCDEFGHJKLMNPRSTUVXYZ0123456789#%&' };
+function scramble(el) {
+  const src = el.dataset.src || (el.dataset.src = el.textContent), set = GLYPHS[el.dataset.glyphs] || GLYPHS.def, T = 750, t0 = performance.now();
+  if (REDUCED) { el.textContent = src; return; }
+  const step = () => { const k = Math.min(1, (performance.now() - t0) / T), n = src.length;
+    el.textContent = [...src].map((ch, i) => ch === ' ' || i / n < k * 1.15 - 0.15 ? ch : set[(Math.random() * set.length) | 0]).join('');
+    if (k < 1) requestAnimationFrame(step); else el.textContent = src; };
+  step();
+}
+/* 2,780 counts up as the cartridge chapter slides in */
+function countCart(t) { const el = $('#cartN'); if (!el) return; const v = Math.round(2780 * (1 - Math.pow(1 - Math.min(1, t), 3))); const s = v.toLocaleString('en-US'); if (el.textContent !== s) el.textContent = s; }
+/* the adapter marquee runs faster and leans with the scroll's speed */
+let marqV = 0;
+function marqueeFeel() { const d = $('#cart .marq div'); if (!d || !window.lenis) return; const a = d.getAnimations?.()[0]; const v = Math.max(-40, Math.min(40, window.lenis.velocity || 0));
+  marqV += (v - marqV) * 0.12; if (a) a.playbackRate = 1 + Math.abs(marqV) * 0.22; d.style.transform = ''; d.parentElement.style.transform = `skewX(${(-marqV * 0.35).toFixed(2)}deg)`; }
+/* the four views' captions sit under each copy */
+function placeViews(hide) { const els = $$('#angles .vlab span'); if (!els.length || !window.POCKET?.lineup) return;
+  if (hide) { els.forEach(el => el.style.opacity = 0); return; }
+  /* labels in a row share one baseline: the lowest bottom of the views in that row */
+  const bs = els.map(el => { const v = +el.dataset.v; return POCKET.projectObj(v < 0 ? POCKET.parts.POCKET : POCKET.lineup.children[v]); });
+  els.forEach((el, i) => { const b = bs[i]; if (!b) return; const v = +el.dataset.v; el.style.opacity = POCKET.state.lineup > 0.9 || v < 0 ? 1 : 0;
+    const cy = (b.top + b.bottom) / 2, row = bs.filter(o => o && Math.abs((o.top + o.bottom) / 2 - cy) < (b.bottom - b.top) * 0.5), base = Math.max(...row.map(o => o.bottom));
+    el.style.transform = `translate(${((b.left + b.right) / 2 - el.offsetWidth / 2).toFixed(1)}px,${(base + 16).toFixed(1)}px)`; }); }
+/* the exploded stack's labels ride beside their layer; the counter reads how many are open */
+function placeChips(L) {
+  const chips = $$('#inside .chips span'); if (!chips.length || !window.POCKET?.projectBox) return; let open = 0; const placed = [];
+  /* on a phone the copy spans the width: each layer's short name rides left of it, tied to it by a leader line
+     (a legend list under the copy repeated every name) */
+  const phone = PHONE(), leads = $('#inside .leads');
+  if (leads && leads.children.length !== chips.length) leads.innerHTML = chips.map(() => '<i></i>').join('');
+  const top = phone ? $('#inside .head').getBoundingClientRect().bottom + 10 : 72;
+  /* the copy block is an obstacle too: a chip left of the stack met the paragraph on short screens */
+  if (!phone) { const hr = $('#inside .head')?.getBoundingClientRect(); if (hr) placed.push({ x: hr.left, y: hr.top, w: hr.width, h: hr.height + 12 }); }
+  /* every part's box, so a chip clears whatever shares its row (mid-explode the grip reached past the battery) */
+  const boxes = POCKET.layers.map(l => POCKET.projectBox(l.box || l.names)).filter(Boolean);
+  const rowL = (y, h, v) => boxes.reduce((m, q) => q.top < y + h && y < q.bottom ? Math.min(m, q.left) : m, v), rowR = (y, h, v) => boxes.reduce((m, q) => q.top < y + h && y < q.bottom ? Math.max(m, q.right) : m, v);
+  chips.forEach((ch, ci) => { const lay = POCKET.layers[+ch.dataset.l]; const k = S_((L - lay.d) / 0.5), ln = leads?.children[ci];
+    ch.style.opacity = k.toFixed(3); if (ln) ln.style.opacity = 0; if (k < 0.01) return; if (k > 0.5) open++;
+    const b = POCKET.projectBox(lay.box || lay.names); if (!b) { ch.style.opacity = 0; return; }
+    /* above the layer's top edge or below its bottom edge (alternating, so neighbours never share a
+       row), always in the clear air beside the part, never on it */
+    const w = ch.offsetWidth, h = ch.offsetHeight + 8, below = ch.dataset.side === 'b';
+    const cx = (b.left + b.right) / 2 - w / 2;
+    const right = ch.dataset.side === 'r', left = ch.dataset.side === 'l'; /* the LCD steps out to the left of the stack */
+    let x = phone ? Math.max(8, b.left - w - 10) : right ? Math.min(innerWidth - w - 16, b.right + 22) : left ? Math.max(16, b.left - w - 22) : Math.max(16, Math.min(innerWidth - w - 16, cx)),
+      y = right || left ? (b.top + b.bottom) / 2 - h / 2 : below ? Math.min(innerHeight - h - 70, b.bottom + 10) : Math.max(top, b.top - h - 6);
+    for (let guard = 0; guard < 12; guard++) { const hit = placed.find(r => x < r.x + r.w + 8 && r.x < x + w + 8 && y < r.y + r.h && r.y < y + h); if (!hit) break; y = below || right || left ? hit.y + hit.h : hit.y - h; }
+    y = Math.max(top, Math.min(innerHeight - h - 60, y));
+    if (phone) x = Math.max(8, rowL(y, h, b.left) - w - 10); else if (right) x = Math.min(innerWidth - w - 16, rowR(y, h, b.right) + 22); else if (left) x = Math.max(16, rowL(y, h, b.left) - w - 22);
+    placed.push({ x, y, w, h });
+    ch.style.transform = `translate(${x.toFixed(1)}px,${(y + (1 - k) * 14).toFixed(1)}px)`;
+    if (phone && ln) { const x0 = x + w + 4, y0 = y + (h - 8) / 2 + (1 - k) * 14, x1 = b.left + (b.right - b.left) * 0.2, y1 = Math.max(b.top + 8, Math.min(b.bottom - 8, y0));
+      const d = Math.hypot(x1 - x0, y1 - y0); ln.style.width = Math.max(0, d).toFixed(1) + 'px'; ln.style.opacity = x1 > x0 + 6 ? (k * 0.9).toFixed(3) : 0;
+      ln.style.transform = `translate(${x0.toFixed(1)}px,${y0.toFixed(1)}px) rotate(${Math.atan2(y1 - y0, x1 - x0).toFixed(4)}rad)`; } });
+  const cnt = $('#inside .count'); if (cnt) cnt.style.opacity = S_(L / 0.15).toFixed(3);
+  const n = $('#layN'); if (n) { const s = String(open).padStart(2, '0'); if (n.textContent !== s) n.textContent = s; }
+}
+
+async function bootSite() {
+  makeGrain();
+  $$('.split').forEach(splitWords);
+  initFilm();
+  document.addEventListener('click', e => { const a = e.target.closest('a'); if (!a) return; const h = a.getAttribute('href') || '';
+    if (h === '#') e.preventDefault();
+    else if (h.startsWith('#')) { e.preventDefault(); const el = $(h); if (el) { const off = el.id === 'hero' ? 0 : Math.round(0.3 * (el.offsetHeight - innerHeight)); window.lenis ? window.lenis.scrollTo(el, { offset: off, duration: 1.8 }) : el.scrollIntoView(); } } });
+  const lenis = new Lenis({ lerp: 0.06, wheelMultiplier: 0.8 }); window.lenis = lenis;
+  lenis.on('scroll', () => { ScrollTrigger.update(); window.POCKET?.dirty?.(); if (window.POCKET?.poster) document.documentElement.classList.toggle('poster-past', scrollY > innerHeight * 0.8); });
+  gsap.ticker.add(t => lenis.raf(t * 1000)); gsap.ticker.lagSmoothing(0);
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); }), { rootMargin: '-6% 0px -6% 0px' });
+  $$('.rev').forEach(el => io.observe(el));
+  const io2 = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { io2.unobserve(e.target); scramble(e.target); } }), { rootMargin: '-10% 0px -10% 0px' });
+  $$('.scr').forEach(el => io2.observe(el));
+  $('#sndBtn').addEventListener('click', () => { if (POCKET_AUDIO.on) POCKET_AUDIO.disable(); else POCKET_AUDIO.enable(); });
+  const els = BEATS.map(id => $('#' + id));
+  PAGE.measure = () => { let cur = 'hero'; els.forEach((el, i) => { const r = el.getBoundingClientRect(); PAGE.prog[BEATS[i]] = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - innerHeight))); if (r.top <= 0.5) cur = BEATS[i]; }); PAGE.beat = cur; };
+  PAGE.measure();
+}
+
+/* ── controls: keyboard + pointer drive the model AND the game ── */
+const KEYMAP = { ArrowLeft: 'left', ArrowRight: 'right', ArrowUp: 'up', ArrowDown: 'down', KeyX: 'a', KeyZ: 'b', Enter: 'start', ShiftLeft: 'select', ShiftRight: 'select' };
+const BTN_OF = { a: 'BtnA', b: 'BtnB', start: 'BtnStart', select: 'BtnSelect' };
+function setInput(k, on) {
+  const I = POCKET_SCREEN.input;
+  if (k === 'left' || k === 'right' || k === 'up' || k === 'down') {
+    I[k] = on; POCKET.dpad((I.right ? 1 : 0) - (I.left ? 1 : 0), (I.down ? 1 : 0) - (I.up ? 1 : 0));
+    if (on) { POCKET_AUDIO.click(); if (k === 'up') POCKET_AUDIO.jump(); }
+  } else if (BTN_OF[k]) { I[k] = on; POCKET.press(BTN_OF[k], on); if (on) { POCKET_AUDIO.button(BTN_OF[k]); if (k === 'a') POCKET_AUDIO.jump(); } }
+  const kb = $(`#modes kbd[data-k="${k}"]`); if (kb) kb.classList.toggle('on', on);
+}
+
+/* on a phone the controls sit right under the copy (the edition chips, the mode switch), so the Pocket framed below
+   them never carries type */
+/* the Display band ends just under the lowest line of type it carries */
+function placeLB() { const st = $('#display .stage'), lb = $('#display .lb'); if (!st || !lb) return; const top = st.getBoundingClientRect().top;
+  /* phones: the paragraph starts under the ppi line, measured (a fixed offset put 615 ppi on its first line) */
+  if (PHONE()) { const nb = $('#display .num').getBoundingClientRect().bottom - top; st.style.setProperty('--dct', Math.ceil(nb + 16) + 'px'); } else st.style.removeProperty('--dct');
+  const bot = Math.max(...['.num', '.copy'].map(q => { const e = $('#display ' + q); return e ? e.getBoundingClientRect().bottom - top : 0; }));
+  lb.style.setProperty('--lbh', Math.ceil(bot + 22) + 'px'); }
+addEventListener('resize', placeLB);
+function placeEds() {
+  for (const [ctl, head] of [['#clear .eds', '#clear .head'], ['#modes .switch', '#modes .head'], ['#loop .tap', '#loop .head']]) {
+    const e = $(ctl), h = $(head); if (!e || !h) continue;
+    if (innerWidth / innerHeight < 0.8) { e.style.top = (h.offsetTop + h.offsetHeight + 12) + 'px'; e.style.bottom = 'auto'; } else { e.style.top = ''; e.style.bottom = ''; } } }
+addEventListener('resize', placeEds);
+
+function afterScene() {
+  placeEds(); placeLB();
+  if (!window.POCKET?.ready) { if (INTRO.active) INTRO.nogpu = true; else heroIn(); $$('.split:not(#hero .split)').forEach(e => e.classList.add('in')); return; }
+  const st = POCKET.state;
+  POCKET_SCREEN.onCatch = () => POCKET_AUDIO.catch();
+  POCKET.onPowerOn = () => POCKET_AUDIO.boot();
+  POCKET.onFilmDone = () => { if (!INTRO.active) heroIn(); };
+  if (REDUCED) POCKET.skipFilm();
+  if (INTRO.active) { POCKET.skipFilm(); INTRO.armed = true; }
+
+  addEventListener('keydown', e => { if (e.repeat || /input|textarea/i.test(e.target.tagName)) return; const k = KEYMAP[e.code]; if (!k) return; if (k.startsWith('Arrow') || ['left', 'right', 'up', 'down'].includes(k)) { if (PAGE.beat === 'modes' || PAGE.beat === 'hero' || PAGE.beat === 'close') e.preventDefault(); } setInput(k, true); POCKET_AUDIO.enable(); });
+  addEventListener('keyup', e => { const k = KEYMAP[e.code]; if (k) setInput(k, false); });
+
+  /* pointer: press what you click on the model (the d-pad by which arm), drag empty space to turn it */
+  const canvas = $('#cv'); let held = null, dragX = 0, dragT = 0;
+  const overUI = e => e.target !== canvas && e.target !== document.body && e.target !== document.documentElement;
+  const hitFor = (x, y) => { const h = POCKET.pick(x, y); if (!h) return null;
+    if (h.name === 'DPad') { const l = h.local; const ax = Math.abs(l.x), ay = Math.abs(l.y); return { name: 'DPad', dir: ax > ay ? (l.x > 0 ? 'right' : 'left') : (l.y > 0 ? 'up' : 'down') }; }
+    return { name: h.name }; };
+  addEventListener('pointermove', e => {
+    const x = (e.clientX / innerWidth) * 2 - 1, y = (e.clientY / innerHeight) * 2 - 1; st.pointer.x = x; st.pointer.y = y; st.pointer.on = true; st.light.x = x; st.light.y = y; PX.mx = e.clientX; PX.my = e.clientY; POCKET.dirty();
+    if (st.dragging) { const now = performance.now(), dx = e.clientX - dragX; st.dragYaw += dx * 0.006; st.dragV = dx * 0.006 / Math.max(0.001, (now - dragT) / 1000) * 0.6; dragX = e.clientX; dragT = now; return; }
+    if (!POCKET.film.done || overUI(e)) { canvas.style.cursor = ''; return; }
+    canvas.style.cursor = POCKET.pick(e.clientX, e.clientY) ? 'pointer' : 'grab';
+  }, { passive: true });
+  addEventListener('pointerdown', e => {
+    if (!POCKET.film.done || overUI(e)) return;
+    const h = hitFor(e.clientX, e.clientY); POCKET_AUDIO.enable();
+    if (!h) { st.dragging = true; dragX = e.clientX; dragT = performance.now(); st.dragV = 0; canvas.style.cursor = 'grabbing'; return; }
+    held = h;
+    if (h.name === 'DPad') setInput(h.dir, true);
+    else if (h.name === 'Power') { POCKET.tap('Power', 160); POCKET_AUDIO.click(); }
+    else if (h.name === 'Cart') { POCKET_AUDIO.click(); }
+    else { POCKET.press(h.name, true); POCKET_AUDIO.button(h.name); const k = Object.keys(BTN_OF).find(k => BTN_OF[k] === h.name); if (k) setInput(k, true); }
+  });
+  const up = () => { if (held) { if (held.name === 'DPad') setInput(held.dir, false); else { POCKET.press(held.name, false); const k = Object.keys(BTN_OF).find(k => BTN_OF[k] === held.name); if (k) setInput(k, false); } held = null; }
+    if (st.dragging) { st.dragging = false; canvas.style.cursor = ''; } };
+  addEventListener('pointerup', up); addEventListener('pointercancel', up);
+
+  /* the sequencer: tap a cell on the Pocket's own screen to write or clear a step */
+  POCKET_SCREEN.onStep = (i, on, note) => { POCKET_AUDIO.loopStep(i, on, note); };
+  addEventListener('pointerdown', e => { if (POCKET_SCREEN.app !== 'loop' || overUI(e)) return; const uv = POCKET.pickScreen(e.clientX, e.clientY); if (!uv) return;
+    const k = POCKET_SCREEN.cellAt(uv.u, uv.v); if (k < 0) return; PAGE.loopTouched = true; const L = POCKET_SCREEN.loop; L.steps[k] = L.steps[k] ? 0 : 1; if (L.steps[k] && !L.notes[k]) L.notes[k] = [0, 3, 5, 7, 10][(Math.random() * 5) | 0]; POCKET_AUDIO.enable(); POCKET_AUDIO.click(); POCKET.dirty(); }, true);
+  $('#loopPlay')?.addEventListener('click', () => { if (POCKET_AUDIO.on) POCKET_AUDIO.disable(); else POCKET_AUDIO.enable(); $('#loopPlay span').textContent = POCKET_AUDIO.on ? 'Sound off' : 'Sound on'; });
+  /* display modes */
+  let modeChosen = false;
+  const setMode = (i, user) => { if (user) modeChosen = true; if (POCKET_SCREEN.mode === i) return; PAGE.mSw = 0; POCKET_SCREEN.mode = i; $$('#modes .switch button').forEach(b => b.setAttribute('aria-checked', String(+b.dataset.mode === i))); POCKET_AUDIO.mode(i); POCKET.dirty(); };
+  $$('#modes .switch button').forEach(b => b.addEventListener('click', () => { POCKET_AUDIO.enable(); setMode(+b.dataset.mode, true); }));
+  /* colourways */
+  let cwChosen = false;
+  const setCw = (cw, user, quiet) => { if (user) cwChosen = true; if (st.colorway === cw) return; POCKET.setColorway(cw); $('#cwBlack').setAttribute('aria-pressed', String(cw === 'black')); $('#cwWhite').setAttribute('aria-pressed', String(cw === 'white')); $('#cwAlu').setAttribute('aria-pressed', String(cw === 'aluminium')); if (!quiet) POCKET_AUDIO.click(); };
+  $('#cwBlack').addEventListener('click', () => setCw('black', true)); $('#cwWhite').addEventListener('click', () => setCw('white', true)); $('#cwAlu').addEventListener('click', () => setCw('aluminium', true));
+  /* transparent editions */
+  let edChosen = false;
+  const setEd = (c, user) => { if (user) edChosen = true; if (st.edition === c) return; st.edition = c; $$('#clear .eds button').forEach(b => b.setAttribute('aria-checked', String(b.dataset.ed === c))); POCKET_AUDIO.click(); };
+  $$('#clear .eds button').forEach(b => b.addEventListener('click', () => setEd(b.dataset.ed, true)));
+
+  /* every chapter owns its ground: backdrop gradient + glow, the grid room's presence, the contact
+     shadow, and whether the type is ink (light grounds) or paper (dark) */
+  const DARK = { top: '#000000', bot: '#000000', glow: '#1a1a1e', gx: 0.5, gy: 0.55, gr: 0.5, ga: 0 };
+  const WANT = {
+    hero: { word: 1, sweep: 0.62, room: 1, mirror: 1, light: 1, side: 1, bg: DARK },
+    display: { word: 0, sweep: 0.62, room: 1, mirror: 1, bg: DARK },
+    modes: { word: 0, sweep: -1.3, room: 1, mirror: 1, light: 1, tint: 1, bg: DARK },
+    cart: { word: 0, sweep: 0.3, envI: 0.7, room: 0.35, mirror: 0.5, light: 1, adapters: 1, bg: { top: '#1b1b20', bot: '#030304', glow: '#3a3a44', gx: 0.52, gy: 0.45, gr: 0.42, ga: 0.55 } },
+    details: { word: 0, sweep: 0.62, dof: 1, room: 1, mirror: 0, bg: DARK },
+    angles: { word: 0, sweep: 0.2, room: 0, mirror: 0, shadow: 0.16, ground: 'light', lineup: 1, bg: { top: '#e9e8e5', bot: '#c9c7c2', glow: '#ffffff', gx: 0.5, gy: 0.35, gr: 0.6, ga: 0.7 }, plate: 1 },
+    inside: { word: 0, sweep: 0.62, envI: 0.62, room: 0, mirror: 0, light: 0.4, shadow: 0.45, flat: 1, bg: { top: '#5e5e64', bot: '#1c1c1f', glow: '#8a8a92', gx: 0.62, gy: 0.42, gr: 0.5, ga: 0.5 } },
+    clear: { word: 0, sweep: -1.2, room: 0, mirror: 0, light: 1, bg: 'ed' },
+    link: { word: 0, sweep: 0.4, room: 0, mirror: 0, light: 0.3, shadow: 0.62, flat: 1, rest: 1, link: 1, rigX: 0.01, bg: { top: '#2b2b2f', bot: '#0b0b0c', glow: '#55555c', gx: 0.6, gy: 0.5, gr: 0.55, ga: 0.5 } },
+    loop: { word: 0, sweep: -1.3, envI: 0.5, room: 0, mirror: 0, light: 0.3, shadow: 0.55, flat: 1, rest: 1, bg: { top: '#34302b', bot: '#0e0d0c', glow: '#8a7a5c', gx: 0.66, gy: 0.5, gr: 0.5, ga: 0.45 } },
+    colour: { word: 0, sweep: 0.9, room: 0, mirror: 0, shadow: 0.5, light: 1, bg: 'cw' },
+    close: { word: 0, sweep: 0.25, room: 1, mirror: 1, light: 1, bg: DARK },
+  };
+  const hexL = (a, b, t) => { const A = new POCKET.THREE.Color(a), B = new POCKET.THREE.Color(b); return '#' + A.lerp(B, t).getHexString(); };
+  const bgOf = W => W.bg === 'ed' ? { top: '#030304', bot: '#000000', glow: st.edition, gx: 0.64, gy: 0.5, gr: 0.42, ga: 0.42 }
+    : W.bg === 'cw' ? (st.colorway === 'white' ? { top: '#efeeea', bot: '#c9c7c1', glow: '#ffffff', gx: 0.5, gy: 0.4, gr: 0.6, ga: 0.6 }
+      : st.colorway === 'aluminium' ? { top: '#3c3e44', bot: '#0c0d0f', glow: '#c8d0dc', gx: 0.5, gy: 0.42, gr: 0.5, ga: 0.4 } : { top: '#141417', bot: '#020203', glow: '#2e2e36', gx: 0.5, gy: 0.45, gr: 0.45, ga: 0.6 }) : (W.bg || DARK);
+  const groundOf = W => W.ground || (W.bg === 'cw' && st.colorway === 'white' ? 'light' : 'dark');
+  const bgL = (A, B, t) => ({ top: hexL(A.top, B.top, t), bot: hexL(A.bot, B.bot, t), glow: hexL(A.glow, B.glow, t), gx: L_(A.gx, B.gx, t), gy: L_(A.gy, B.gy, t), gr: L_(A.gr, B.gr, t), ga: L_(A.ga, B.ga, t) });
+  const MK = ['m1', 'm2', 'm3', 'm4', 'm5'];
+  /* until the visitor writes their own, the first n steps of the pattern are written */
+  const writeLoop = nW => { if (PAGE.loopTouched) return; const L = POCKET_SCREEN.loop, P0 = PAGE.loopPat ||= { s: L.steps.slice(), n: L.notes.slice() };
+    for (let k = 0; k < 16; k++) { const on = k < nW ? P0.s[k] : 0; if (L.steps[k] !== on) { L.steps[k] = on; L.notes[k] = on ? P0.n[k] : 0; POCKET.dirty(); } } };
+  let lastP = 0, seated = true, lastT = performance.now();
+  gsap.ticker.add(() => {
+    const nowT = performance.now(), dtT = Math.min(0.05, (nowT - lastT) / 1000); lastT = nowT; pxFrame(dtT);
+    PAGE.measure();
+    const F = POCKET.film;
+    if (!F.done) {
+      /* the film owns the camera: a macro on the floating d-pad, then out and up to the hero */
+      const T = F.T; cam(STATIONS.film0, STATIONS.hero, S_((T - 0.3) / 4.8));
+      return;
+    }
+    const b = PAGE.beat, p = PAGE.prog[b] || 0, cur = BEATS.indexOf(b);
+    if (POCKET.quality === 0) document.documentElement.classList.toggle('away', b !== 'hero');
+    let arriving = -1, tS = 0, t0travel = 0;
+    for (let i = 1; i < BEATS.length; i++) { const top = $('#' + BEATS[i]).getBoundingClientRect().top; if (top > 0 && top < innerHeight) { arriving = i; tS = (innerHeight - top) / innerHeight; break; } }
+    PAGE.arriving = arriving > 0 ? BEATS[arriving] : null;
+    const W = WANT[b]; let word = W.word ?? 0, sweep = W.sweep ?? 0.62, dof = W.dof ?? 0, mirror = W.mirror ?? 1, cartOut = 0, cartSpin = 0, yaw = 0, float = 1, light = W.light ?? 0, tint = W.tint ?? 0, layers = 0,
+      room = roomOf(W, b), shadow = W.shadow ?? 0.55, flat = W.flat ?? 0, rest = W.rest ?? 0, link = W.link ?? 0, rigX = W.rigX ?? 0, linkDraw = 0, adapters = W.adapters ?? 0, lineup = W.lineup ?? 0, scan = -1, bg = bgOf(W), ground = groundOf(W);
+    /* where the outgoing beat's camera ENDS (the travel starts there) */
+    /* each beat's turn of the product, by progress; a travel interpolates the outgoing END to the incoming START
+       (it used to ease back to 0 on a timer at every boundary, then turn again) */
+    const YAW = { hero: q => (STATIONS.heroB.yaw || 0) * S_((q - 0.12) / 0.4), inside: q => L_(0.42, 0.62, q), clear: q => L_(-0.28, 0.1, q), link: () => -0.3, colour: q => L_(-0.35, 0.35, q), close: q => L_(-0.34, -0.06, q) };
+    const yawAt = (id, q) => YAW[id] ? YAW[id](q) : 0;
+    const endOf = id => id === 'hero' ? STATIONS.heroB : id === 'loop' ? STATIONS.loopB : id === 'modes' ? STATIONS.modesB : id === 'angles' ? STATIONS.angles : id === 'display' ? STATIONS.dispNear : id === 'details' ? STATIONS.m5 : id === 'inside' ? STATIONS.insideB : STATIONS[STATION[id]];
+    if (arriving > 0) {
+      /* copy choreography: the outgoing copy is gone before the camera moves (tS < 0.18), the camera travels through
+         the middle of the slide, and the incoming copy arrives once it has settled (tS > 0.82) */
+      const a = BEATS[arriving], t = S_((tS - 0.18) / 0.64), WA = WANT[a]; t0travel = t;
+      cam(endOf(b), STATIONS[STATION[a]], t); yaw = L_(yawAt(b, 1), yawAt(a, 0), t);
+      word = L_(W.word ?? 0, WA.word ?? 0, t); sweep = L_(W.sweep ?? 0.62, WA.sweep ?? 0.62, t); dof = L_(W.dof ?? 0, WA.dof ?? 0, t); mirror = L_(W.mirror ?? 1, WA.mirror ?? 1, t); light = L_(W.light ?? 0, WA.light ?? 0, t); tint = L_(W.tint ?? 0, WA.tint ?? 0, t);
+      room = L_(roomOf(W, b), roomOf(WA, a), t); shadow = L_(W.shadow ?? 0.55, WA.shadow ?? 0.55, t); flat = L_(W.flat ?? 0, WA.flat ?? 0, t); rest = L_(W.rest ?? 0, WA.rest ?? 0, t); link = L_(W.link ?? 0, WA.link ?? 0, t); rigX = L_(W.rigX ?? 0, WA.rigX ?? 0, t); adapters = WA.adapters ? S_((t - 0.35) / 0.65) : W.adapters ? 1 - S_(t / 0.4) : 0; linkDraw = b === 'link' ? 1 - t : 0; lineup = WA.lineup ? 0 : W.lineup ? 1 - S_(t / 0.5) : 0;
+      bg = bgL(bgOf(W), bgOf(WA), t); ground = t > 0.5 ? groundOf(WA) : groundOf(W);
+      if (b === 'clear') scan = 1 - 2 * S_(t / 0.6); if (a === 'clear') scan = -1;
+      if (a === 'cart') countCart(t); if (a === 'modes') PX.arrive = t;
+      if (a === 'angles') $('#angles .dims').style.opacity = 0;
+      if (a === 'display') { setOdo($('#resW'), 160); setOdo($('#resH'), 144); }
+      if (b === 'hero') $$('#hero .band > *').forEach(e => e.style.opacity = 0);
+    } else if (b === 'hero') {
+      /* the first line leaves, Pocket turns to its profile and moves right, the claim arrives on the left */
+      const u = S_((p - 0.12) / 0.4); cam(STATIONS.hero, STATIONS.heroB, u); yaw = yawAt('hero', p);
+      const out = 1 - S_((p - 0.06) / 0.24); $$('#hero .band > *').forEach(e => e.style.opacity = out);
+      $('#hero .b2').style.opacity = S_((p - (innerWidth / innerHeight < 0.8 ? 0.3 : 0.5)) / 0.14);
+      word = 1 - S_((p - 0.3) / 0.5);
+    } else if (b === 'display') {
+      /* the dive: far → into the glass until the subpixels resolve; the number counts 160 → 1600 */
+      const q = S_(p / 0.85); cam(STATIONS.dispFar, STATIONS.dispNear, q);
+      const k = Math.pow(q, 1.6); setOdo($('#resW'), Math.round(L_(160, 1600, k))); setOdo($('#resH'), Math.round(L_(144, 1440, k)));
+      POCKET.state.float = 1 - q;
+    } else if (b === 'modes') {
+      /* a slow dolly so each mode lands on its own frame; the glass is clean at rest and a streak of light crosses
+         it on each mode change */
+      cam(STATIONS.modes, STATIONS.modesB, S_(p)); PX.arrive = 1; room = roomOf(W, 'modes');
+      if ((PAGE.mSw ?? 1) < 1) { PAGE.mSw = Math.min(1, PAGE.mSw + dtT / 0.55); sweep = L_(-1.3, 1.3, S_(PAGE.mSw)); }
+      if (!modeChosen) setMode(Math.min(3, Math.floor(p * 4.2)), false);
+    } else if (b === 'cart') {
+      cam(STATIONS.back); countCart(1);
+      /* up out of the slot label-first (the label faces the back camera), a slow swing that lets the key
+         light cross it, back down, and home with a click. 0.78 of the film's lift keeps it under the nav */
+      const up = S_((p - 0.08) / 0.25), down = S_((p - 0.8) / 0.15);
+      cartOut = up * (1 - down) * 0.55; cartSpin = (S_((p - 0.3) / 0.14) - 2 * S_((p - 0.44) / 0.14) + S_((p - 0.58) / 0.14)) * 0.38;
+      const isSeated = cartOut < 0.02; if (isSeated && !seated && lastP < p) POCKET_AUDIO.seat(); seated = isSeated;
+    } else if (b === 'details') {
+      /* each leg: rest, a move through its middle half, rest (the captions read for half the scroll, not a quarter) */
+      const n = MK.length - 1, leg = Math.min(n - 1, Math.floor(p * n)), u = S_((p * n - leg - 0.25) / 0.5);
+      /* phones: between macros the lens backs off to the whole Pocket and pushes into the next (mid-move frames were a cut-off detail) */
+      cam(STATIONS[MK[leg]], STATIONS[MK[leg + 1]], u, innerWidth / innerHeight < 0.8 ? 1.4 : 0);
+      /* a caption shows only while its macro is at rest: never over the product while the camera travels */
+      /* desktop: a caption only while its macro is at rest (the frosted card would sit on the Pocket mid-move);
+         phones: an opaque sheet, so it stays and changes at the move's midpoint */
+      const row = Math.min(4, Math.round(p * n)), still = u < 0.04 || u > 0.96 || innerWidth / innerHeight < 0.8; $$('#details .cap .row').forEach((e, i) => e.classList.toggle('on', still && i === row));
+      if (row !== PAGE.row) { PAGE.row = row; const h3 = $$('#details .cap .row h3')[row]; if (h3) scramble(h3); }
+      float = 0.3;
+    } else if (b === 'angles') {
+      /* the plate builds with the scroll: the front view alone, then left, back and right glide in while the lens
+         pulls back to the full plate, then the dimensions count up */
+      cam(STATIONS.anglesA, STATIONS.angles, S_((p - 0.02) / 0.55)); float = 0; lineup = S_((p - 0.04) / 0.52); placeViews();
+      const kd = S_((p - 0.5) / 0.3), dm = $$('#angles .dims b'); $('#angles .dims').style.opacity = S_((p - 0.46) / 0.12);
+      [149.5, 88.5, 22].forEach((v, i) => { const s = i === 2 ? String(Math.round(v * kd)) : (v * kd).toFixed(1); if (dm[i] && dm[i].textContent !== s) dm[i].textContent = s; });
+    } else if (b === 'inside') {
+      /* lie down, open the stack glass-first, hold while the labels read, close before the editions */
+      /* first the press hardcase shot: the clear case parts around the Pocket; then it lifts away and the
+         Pocket itself opens into its layers; it all closes before the editions */
+      /* the lens closes in with the layers, so the assembled Pocket never sits small in the stack's framing */
+      { const q2 = S_((p - 0.76) / 0.24); if (q2 > 0) cam(STATIONS.inside, STATIONS.insideB, q2); else cam(STATIONS.insideCase, STATIONS.inside, S_((p - 0.18) / 0.22)); } st.caseOn = 1 - S_((p - 0.3) / 0.06); st.caseOpen = 1; st.caseAway = S_((p - 0.2) / 0.14);
+      layers = S_((p - 0.3) / 0.34) * (1 - S_((p - 0.76) / 0.12)); yaw = yawAt('inside', p); float = 0.35;
+    } else if (b === 'clear') {
+      /* the x-ray: a line of light sweeps down and leaves the shell clear; the editions cycle until chosen */
+      cam(STATIONS.clear); scan = -1 + 2 * S_((p - 0.02) / 0.3); yaw = yawAt('clear', p); float = 0.6;
+      const EDS = $$('#clear .eds button').map(b => b.dataset.ed); if (!edChosen && p > 0.34) setEd(EDS[Math.min(EDS.length - 1, Math.floor((p - 0.34) / 0.6 * EDS.length))], false);
+    } else if (b === 'link') {
+      /* the second Pocket slides in beside the first, then the cable plugs in and runs port to port */
+      cam(STATIONS.link); yaw = yawAt('link', p); float = 0; st.linkSettled = p > 0.18; linkDraw = S_((p - 0.22) / 0.34);
+      /* then a sync pulse runs port to port and both screens switch to the sequencer as it lands (the tail of the
+         section held one frame before) */
+      st.linkPulse = _lin((p - 0.6) / 0.24); writeLoop(0);  /* the sequencer arrives empty; the loop section writes it */
+    } else if (b === 'loop') {
+      cam(STATIONS.loop, STATIONS.loopB, S_(p)); yaw = 0; float = 0;
+      /* until the visitor writes their own, the pattern writes itself one step at a time with the scroll, evenly to
+         p0.9 (eased to 0.76 it finished early and the tail sat still) */
+      writeLoop(Math.round(Math.min(1, Math.max(0, (p - 0.04) / 0.86)) * 16));
+    } else if (b === 'colour') {
+      cam(STATIONS.colour); yaw = yawAt('colour', p);
+      if (!cwChosen && !POCKET.holdFilm) setCw(p > 0.66 ? 'aluminium' : p > 0.33 ? 'white' : 'black', false);
+    } else if (b === 'close') {
+      /* the last look: a slow turn toward the lens while a light crosses the glass */
+      const ku = S_((p - 0.42) / 0.3); cam(STATIONS.close, innerWidth / innerHeight < 0.8 && innerHeight > 720 ? STATIONS.closeUp : null, ku);  /* short phones: no room above the sheet, so no lift */ yaw = yawAt('close', p); sweep = L_(-0.7, 0.95, S_(p));
+      if (PHONE()) $('#close .sheet').style.setProperty('--tp', `${((1 - ku) * 120).toFixed(1)}%`);
+    }
+    if (b !== 'display') POCKET.state.float = float;
+    /* the tour's colourway goes back to black out of sight: behind the opaque film, or past the colour chapter */
+    if ((POCKET.holdFilm || (b !== 'colour' && arriving !== BEATS.indexOf('colour'))) && !cwChosen && st.colorway !== 'black') setCw('black', false, POCKET.holdFilm);
+    st.tone = (arriving > 0 && tS > 0.5 ? WANT[BEATS[arriving]] : W).tone || 'agx';
+    if (b !== 'link') st.linkPulse = 0;
+    { const app = (b === 'loop' || PAGE.arriving === 'loop' || (b === 'link' && (st.linkPulse || 0) > 0.97)) ? 'loop' : 'game'; if (POCKET_SCREEN.app !== app) { POCKET_SCREEN.app = app; POCKET.dirty(); } }
+    /* the case parts as it arrives: closed, its lid lay on the screen and washed the lower half out (judge) */
+    if (b !== 'inside') { const ci = arriving > 0 && BEATS[arriving] === 'inside' ? S_((tS - 0.3) / 0.5) : 0; st.caseOn = ci; st.caseOpen = ci; st.caseAway = 0; }
+    st.plate = (arriving > 0 ? L_(W.plate ?? 0, WANT[BEATS[arriving]].plate ?? 0, t0travel) : W.plate ?? 0);  /* with the camera, not ahead of it */
+    st.adapters = adapters; st.rest = rest; st.link = link; st.rigX = rigX; st.linkDraw = linkDraw;
+    /* grounds ease, never snap: a colourway or edition change used to swap the backdrop in one frame */
+    PAGE.bg = PAGE.bg ? bgL(PAGE.bg, bg, 0.085) : bg; bg = PAGE.bg;
+    /* the nav's band and ink: the band is tinted with the ground; during a travel the ink is whichever reads better,
+       and where neither reaches 4.5:1 (a mid-grey ground) the band darkens under a light ink (it measured 1.4-2.6:1) */
+    { const fr = $('#film')?.getBoundingClientRect(), under = fr && fr.top < 90 && fr.bottom > 0;
+      const n = parseInt((under ? '#030304' : bg.top).slice(1), 16); let sc = [n >> 16 & 255, n >> 8 & 255, n & 255];
+      const lin = v => (v /= 255) <= 0.04045 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4, G = 0.2126 * lin(sc[0]) + 0.7152 * lin(sc[1]) + 0.0722 * lin(sc[2]);
+      /* sized for the links' secondary ink (#b7b7bc on dark, #2c2c31 on light), the weakest text in the nav */
+      /* dark ink only with margin (what shows through the band is often darker than the ground colour) */
+      if (arriving > 0 && !under) { const cL = 0.52 / (G + 0.05), cD = (G + 0.05) / 0.077; ground = cD >= 6 ? 'light' : 'dark';
+        if (ground === 'dark' && cL < 4.7) { ground = 'dark'; const f = Math.min(1, (0.036 / Math.max(G, 1e-3)) ** (1 / 2.2)); /* the band is ~93% opaque, so aim under the ink's 4.5:1 floor */ sc = sc.map(v => Math.round(v * f)); } }
+      const key = sc.join(' '); if (key !== PAGE.sg) { PAGE.sg = key; document.documentElement.style.setProperty('--sg', key); } }
+    st.room = room; st.shadow = shadow; st.flat += (flat - st.flat) * 0.1; st.lineup = lineup; st.scan = scan; st.bg = bg;
+    if (document.documentElement.dataset.ground !== ground) document.documentElement.dataset.ground = ground;
+    if (b !== 'angles') placeViews(true);
+    st.layers = layers; st.light.amt += (light - st.light.amt) * 0.08; st.tintAmt = tint;
+    st.tint = MODE_TINT[POCKET_SCREEN.mode] || MODE_TINT[1];
+    PX.on = tint; PX.mode = POCKET_SCREEN.mode;
+    placeChips(b === 'inside' ? layers : 0);
+    const hs = $('#hudScore'); if (hs) { const sc = String(POCKET_SCREEN.score || 0).padStart(3, '0'); if (hs.textContent !== sc) hs.textContent = sc; }
+    marqueeFeel();
+    if ((PAGE.reveal ?? 1) < 1) { const R = PAGE.reveal; st.room = room * R; mirror *= R; sweep = L_(-0.9, sweep, R); st.float *= R; st.light.amt *= R; }
+    st.pointerAmt = PAGE.reveal ?? 1;
+    st.side = arriving > 0 ? L_(W.side ?? 0, WANT[BEATS[arriving]].side ?? 0, S_(tS)) : W.side ?? 0;
+    /* a top-down lens sees the overhead softbox across the whole face: the loop takes the studio down a stop */
+    /* EI: a section's own studio move · inside takes it down half a stop as the layers close, so the assembled black
+       separates from the grey ground (face 45-50 on a 53 ground) */
+    { const EI = { inside: q => 1 - 0.3 * S_((q - 0.76) / 0.2) }, eiAt = (id, q) => EI[id] ? EI[id](q) : 1;
+      st.envI = arriving > 0 ? L_((W.envI ?? 1) * eiAt(b, 1), (WANT[BEATS[arriving]].envI ?? 1) * eiAt(BEATS[arriving], 0), S_(tS)) : (W.envI ?? 1) * eiAt(b, p); }
+    /* the clear edition turns the studio 0.9 rad as its sweep begins (the softbox on the right mirrored off the clear
+       side rail as a white bar; turned from the first frame it lit the black face grey) */
+    { const EY = { clear: q => 0.9 * S_((q - 0.02) / 0.08) }, eyAt = (id, q) => EY[id] ? EY[id](q) : 0;
+      st.envYaw = arriving > 0 ? L_(eyAt(b, 1), eyAt(BEATS[arriving], 0), t0travel) : eyAt(b, p); }
+    st.word = word; st.sweep = sweep; st.dof = dof; st.mirror = mirror; st.cartOut = cartOut; st.cartSpin = cartSpin;
+    st.yaw += (yaw - st.yaw) * 0.08;
+    /* copy hands over inside the slide */
+    /* the film section rises over the page like any travel: the copy it would carry across the Pocket leaves first */
+    const fTop = $('#film')?.getBoundingClientRect().top ?? 1e9, filmIn = fTop < innerHeight && fTop > -innerHeight ? 1 - S_(((innerHeight - fTop) / innerHeight) / 0.18) : 1;
+    BEATS.forEach((id, i) => { const el = $('#' + id + ' .stage'); let o = 1;
+      if (arriving > 0) o = i === cur ? 1 - S_(tS / 0.18) : i === arriving ? S_((tS - 0.82) / 0.18) : 0; else o = i === cur ? filmIn : 0;
+      el.style.opacity = o; el.style.visibility = o < 0.01 ? 'hidden' : 'visible'; });
+    lastP = p;
+  });
+}
+/* ═══════════ the hero intro ═══════════
+   A 7.5 s Blender film (the Pocket assembling, lit with depth of field) plays while the 3D loads. Its last
+   second is a still on the page's own hero camera (distance factor 1, the hero's lens shift), so the hand-over
+   is a crossfade with nothing moving. Then the live scene takes the room: the grid and the reflection come up,
+   a light crosses the glass, and on a wide screen the camera settles back to the page's framing.
+   No video (reduced motion, data saver, a failed load) → the code assembly film, as before.            */
+const INTRO = (window.POCKET_INTRO = { active: false, done: false, t: 0 });
+const INTRO_HOLD = 6.5;      /* the film's still starts here (s) */
+const INTRO_WARM = 5.9;      /* the live scene starts rendering behind the film (shaders compile out of sight) */
+const INTRO_COPY = 5.7;      /* the hero copy arrives as the device settles */
+const INTRO_SWAP = 6.85;     /* the crossfade, a third of a second into the still */
+
+function heroIn() {
+  const hero = $('#hero'); if (!hero || hero.classList.contains('in')) return;
+  hero.classList.add('in'); $$('#hero .split').forEach(e => e.classList.add('in'));
+  if (REDUCED) return;
+  const up = (el, d) => el?.animate([{ opacity: 0, transform: 'translateY(16px)' }, { opacity: 1, transform: 'none' }], { duration: 1000, delay: d, easing: 'cubic-bezier(.2,.75,.15,1)', fill: 'backwards' });
+  up($('#hero .band .k'), 0); up($('#hero .band .right p'), 380); up($('#hero .band .right .buy'), 560);
+}
+
+async function startIntro() {
+  const v = $('#intro');
+  /* ?nointro: labs and review captures that need the live hero at once */
+  if (!v || REDUCED || navigator.connection?.saveData || typeof INTRO_D === 'undefined' || /[?&]nointro\b/.test(location.search)) return false;
+  const portrait = innerWidth / innerHeight < 0.8;
+  let src = portrait ? INTRO_M : INTRO_D;
+  /* a data: video can't be ranged by Safari; a blob URL can */
+  if (src.startsWith('data:')) { try { src = URL.createObjectURL(await (await fetch(src)).blob()); INTRO.blob = src; } catch (e) { return false; } }
+  v.muted = true; v.playsInline = true; v.src = src;
+  const ready = await new Promise(res => {
+    const t = setTimeout(() => res(false), 4000);
+    v.addEventListener('canplaythrough', () => { clearTimeout(t); res(true); }, { once: true });
+    v.addEventListener('error', () => { clearTimeout(t); res(false); }, { once: true });
+    v.load();
+  });
+  if (!ready) { v.removeAttribute('src'); return false; }
+  try { await v.play(); } catch (e) { v.removeAttribute('src'); return false; }
+  INTRO.active = true; POCKET.hold = true;
+  PAGE.heroK = 0; PAGE.reveal = 0;
+  const fit = () => v.classList.toggle('narrow', v.getBoundingClientRect().width < innerWidth - 1);
+  fit(); addEventListener('resize', fit);
+  v.classList.add('on'); $('#loading')?.classList.add('off', 'fast');  /* its boot word must not sit over the film */
+  /* the visitor moves first: hand over as soon as the scene can take it */
+  const skip = () => { INTRO.skip = true; };
+  addEventListener('wheel', skip, { passive: true, once: true }); addEventListener('touchmove', skip, { passive: true, once: true });
+  addEventListener('keydown', skip, { once: true }); addEventListener('scroll', () => { if (scrollY > 4) skip(); }, { passive: true });
+  requestAnimationFrame(introTick);
+  return true;
+}
+
+function introTick() {
+  const v = $('#intro'); if (!v || INTRO.done) return;
+  const t = INTRO.t = v.ended ? 99 : v.currentTime;
+  if (t >= (innerWidth / innerHeight < 0.8 ? INTRO_COPY - 1.3 : INTRO_COPY) || INTRO.skip) heroIn();  /* the phone film's lower half is the copy's */
+  const scene = POCKET.ready && INTRO.armed;
+  if (scene && POCKET.hold && (t >= INTRO_WARM || INTRO.skip)) {
+    /* warm: power on with the boot logo up, the same frame the film holds */
+    POCKET.hold = false; INTRO.r0 = POCKET.renders || 0;
+    POCKET_SCREEN.power = 1; POCKET_SCREEN.bootT = innerWidth / innerHeight < 0.8 ? 1.3 : 1.0; POCKET.dirty();
+  }
+  const drawn = POCKET.quality === 0 ? POCKET.poster : (POCKET.renders || 0) >= (INTRO.r0 ?? 1e9) + 3;
+  if (scene && !POCKET.hold && drawn && !INTRO.handing && (t >= INTRO_SWAP || INTRO.skip)) handOver();
+  /* no 3D at all: the film's last frame is the hero, and it steps aside past it */
+  if (INTRO.nogpu && t > 7) v.classList.toggle('on', scrollY < innerHeight * 0.6);
+  requestAnimationFrame(introTick);
+}
+
+function handOver() {
+  const v = $('#intro'); INTRO.handing = true;
+  heroIn(); POCKET_SCREEN.bootT = Math.max(POCKET_SCREEN.bootT, 1.25);
+  v.classList.remove('on');
+  /* the live scene takes the room: grid, reflection and the glass light come up, the camera settles */
+  gsap.to(PAGE, { reveal: 1, duration: 2.8, delay: 0.35, ease: 'sine.inOut' });  /* the room comes up slowly: at 1.8 s the floor grid read as a pop */
+  gsap.to(PAGE, { heroK: 1, duration: 2.2, delay: 0.7, ease: 'power2.inOut' });
+  setTimeout(() => {
+    INTRO.done = true; INTRO.active = false; v.pause(); v.removeAttribute('src'); v.load();
+    if (INTRO.blob) URL.revokeObjectURL(INTRO.blob);
+  }, 1200);
+}
+/* ═══════════ the film ═══════════
+   A section of its own between the colourways and the close. It arrives as an inset frame under its title; the
+   scroll opens it to the whole screen (landscape) or the full width (portrait), then it plays, muted until asked.
+   While it covers the screen the 3D is held (nothing renders behind an opaque film). */
+function initFilm() {
+  const sec = $('#film'), v = $('#filmV'); if (!sec || !v || typeof FILM_URL === 'undefined') { sec?.remove(); return; }
+  const frame = $('#film .frame'), head = $('#film .head'), pp = $('#film .pp'), snd = $('#film .fs'), tc = $('#film .tc'), bar = $('#film .bar i');
+  /* a phone gets the vertical cut when there is one: then it opens to the full screen like the desktop does */
+  const VERT = innerWidth / innerHeight < 0.8 && typeof FILM_URL_M !== 'undefined'; if (VERT) sec.classList.add('vert');
+  const posterUrl = VERT && typeof FILM_POSTER_M !== 'undefined' ? FILM_POSTER_M : typeof FILM_POSTER !== 'undefined' ? FILM_POSTER : null; if (posterUrl) v.poster = posterUrl;
+  const fmt = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}`;
+  /* the muted preview opens on the exploded stack (the poster's own moment); asking for sound or full screen
+     plays the film from its first frame */
+  const PREVIEW_AT = 15.0; let fromStart = false;
+  const startOver = () => { if (!fromStart) { fromStart = true; try { v.currentTime = 0; } catch (e) {} } };
+  let loaded = false, userPaused = false, geo = null, lastOpen = -1, lastFull = null, opened = false, cued = false;
+  const load = async () => { if (loaded) return; loaded = true; let src = VERT ? FILM_URL_M : FILM_URL;
+    if (src.startsWith('data:')) { try { src = URL.createObjectURL(await (await fetch(src)).blob()); } catch (e) { return; } }
+    v.src = src; v.preload = 'auto'; v.load(); };
+  new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) load(); }, { rootMargin: '150% 0px 150% 0px' }).observe(sec);
+  v.addEventListener('loadedmetadata', () => { $('#filmDur').textContent = fmt(v.duration); });
+  /* the inset: as wide as the layout allows under the title, never over it */
+  const measure = () => {
+    const W = innerWidth, H = innerHeight, portrait = W / H < 0.8 && !VERT;
+    const hb = head.getBoundingClientRect(), hBottom = hb.bottom - sec.querySelector('.stage').getBoundingClientRect().top;
+    if (portrait) {
+      /* title, film and controls as one group, centred under the nav */
+      const nav = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--nav')) || 54, hh = hb.height, group = hh + 36 + W * 9 / 16 + 64;
+      const ht = Math.max(nav + 16, nav + (H - nav - group) / 2); head.style.top = Math.round(ht) + 'px';
+      const top = Math.round(ht + hh + 36); sec.style.setProperty('--ft', top + 'px'); sec.style.setProperty('--fb', Math.round(top + W * 9 / 16) + 'px'); geo = { s0: 0.86, ty0: 0, portrait }; return; }
+    let s0 = Math.min(0.62, 1180 / W); const room = H - (hBottom + 32) - 28; if (H * s0 > room) s0 = Math.max(0.3, room / H);
+    const ty0 = hBottom + 32 - (H - H * s0) / 2; geo = { s0, ty0: Math.max(0, ty0), portrait };
+  };
+  addEventListener('resize', () => { geo = null; });
+  pp.addEventListener('click', () => { if (v.paused) { userPaused = false; v.play().catch(() => {}); } else { userPaused = true; v.pause(); } });
+  snd.addEventListener('click', () => { if (v.muted) startOver(); v.muted = !v.muted; snd.setAttribute('aria-pressed', String(!v.muted)); if (!v.muted && v.paused) { userPaused = false; v.play().catch(() => {}); } });
+  /* full screen: the video element itself (iOS only fullscreens a <video>), landscape where the platform allows */
+  $('#film .fsc').addEventListener('click', () => { userPaused = false; opened = true; startOver(); v.play().catch(() => {});
+    if (v.requestFullscreen) v.requestFullscreen().then(() => screen.orientation?.lock?.('landscape').catch(() => {})).catch(() => {}); else v.webkitEnterFullscreen?.(); });
+  v.addEventListener('play', () => { pp.textContent = 'pause'; }); v.addEventListener('pause', () => { pp.textContent = 'play'; });
+  const cv = document.getElementById('cv');
+  gsap.ticker.add(() => {
+    const r = sec.getBoundingClientRect(), H = innerHeight;
+    if (r.bottom < -50 || r.top > H + 50) { if (!v.paused) v.pause(); if (window.POCKET) POCKET.holdFilm = false; if (cv && cv.dataset.fo) { cv.dataset.fo = ''; cv.style.opacity = ''; } return; }
+    if (!geo) { measure(); lastOpen = -1; }
+    const p = Math.max(0, Math.min(1, -r.top / Math.max(1, r.height - H)));
+    const open = REDUCED ? 1 : S_((p - 0.02) / 0.34);
+    if (Math.abs(open - lastOpen) > 1e-4) {
+      lastOpen = open; const s = L_(geo.s0, 1, open), ty = L_(geo.ty0, 0, open);
+      frame.style.transform = `translate3d(0,${ty.toFixed(2)}px,0) scale(${s.toFixed(4)})`; frame.style.borderRadius = `${(18 * (1 - open) / s).toFixed(2)}px`;
+      frame.style.boxShadow = `0 0 0 ${(1 / s).toFixed(3)}px rgba(255,255,255,${(0.09 * (1 - open)).toFixed(3)})`;
+      if (!geo.portrait) { head.style.opacity = String(1 - S_((open - 0.25) / 0.45)); head.style.transform = `translate3d(0,${(-40 * open).toFixed(1)}px,0)`; }
+    }
+    const full = open > 0.985; if (full !== lastFull) { lastFull = full; sec.classList.toggle('full', full); }
+    /* the inset shows the poster; the film starts once the frame has opened, and plays while at least 40 % of the
+       screen is film; it pauses on the way out (with its sound) */
+    const seen = Math.min(r.bottom, H) - Math.max(r.top, 0);
+    if (full) opened = true;
+    if (loaded && opened && !cued && v.readyState >= 1) { cued = true; if (!fromStart) try { v.currentTime = PREVIEW_AT; } catch (e) {} }
+    if (loaded && opened && seen > H * 0.4 && v.paused && !userPaused && v.readyState >= 2) v.play().catch(() => {});
+    if (seen < H * 0.25 && !v.paused) v.pause();
+    if (v.duration) { tc.textContent = `${fmt(v.currentTime)} / ${fmt(v.duration)}`; bar.style.transform = `scaleX(${(v.currentTime / v.duration).toFixed(4)})`; }
+    /* leaving is a dip, not a dissolve: the controls go at once, the picture fades to black by 28 % of the slide, and
+       only then does the black lift off the live close (30-65 %) with the page canvas held dark until it does. A
+       dissolve put the film's board over the close device (a double exposure) and a mask drew a straight edge */
+    const u = r.bottom < H ? Math.min(1, (H - r.bottom) / H) : 0; sec.classList.toggle('leaving', u > 0.001);
+    const fo = (1 - S_(u / 0.28)).toFixed(3); if (frame.dataset.fo !== fo) { frame.dataset.fo = fo; frame.style.opacity = fo; }
+    const lift = S_((u - 0.3) / 0.35), cvO = r.bottom < H ? lift.toFixed(3) : '';
+    if (cv && cv.dataset.fo !== cvO) { cv.dataset.fo = cvO; cv.style.opacity = cvO; }
+    const bgA = (1 - lift).toFixed(3); if (sec.dataset.bgA !== bgA) { sec.dataset.bgA = bgA; sec.style.setProperty('--fa', bgA); sec.style.backgroundColor = `rgba(3,3,4,${bgA})`; sec.querySelector('.stage').style.backgroundColor = `rgba(3,3,4,${bgA})`; }
+    if (window.POCKET) POCKET.holdFilm = r.top <= 0 && r.bottom >= H;
+  });
+}
+/* Boot order: the page first (it must be a page with no GPU), then the scene, then the overlay
+   clears · unconditionally, so a loading screen can never outlive its cause. */
+(async () => {
+  let ok = false;
+  try { const c = document.createElement('canvas'); ok = !!c.getContext('webgl2'); } catch (e) { ok = false; }
+  if (!ok) document.documentElement.classList.add('nogpu');
+  const bar = document.querySelector('#loading i'); if (bar) bar.style.width = '15%';
+  await document.fonts.ready;
+  if (typeof bootSite === 'function') await bootSite();
+  const intro = typeof startIntro === 'function' ? startIntro().catch(() => false) : Promise.resolve(false);
+  if (ok) {
+    try { await bootScene({ MODEL_URL, ENV_URL: typeof ENV_URL !== 'undefined' ? ENV_URL : null }); }
+    catch (e) { console.warn('3D unavailable, the page continues without it:', e); document.documentElement.classList.add('nogpu'); }
+  }
+  await intro;
+  if (typeof afterScene === 'function') afterScene();
+  document.getElementById('loading').classList.add('off');
+})();
+</script>
+
+</body></html>
